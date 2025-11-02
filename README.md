@@ -26,8 +26,10 @@ This creates a human-readable "schema library" that you can browse, search, and 
 .
 ├── all.sh                  # <-- Main script to run everything
 ├── extract_schema_json.py  #
+├── extract_schema_tf.py    # <-- Core Python scripts to parse schema.json
 ├── extract_schema_tf.py    # <-- Core Python scripts
 ├── extract_schema_yaml.py  #
+├── LICENSE
 ├── main.tf                 # <-- Your provider definitions
 ├── output/                 # <-- All generated files land here
 │   ├── aws_schema_json/
@@ -40,6 +42,9 @@ This creates a human-readable "schema library" that you can browse, search, and 
 ├── split_schema_json.sh    #
 ├── split_schema_tf.sh      # <-- Helper scripts
 └── split_schema_yaml.sh    #
+├── split-aws.sh            # 
+├── split-azurerm.sh        # <-- Helper scripts (one per provider)
+└── split-google.sh         #
 ```
 
 ## How to Use
@@ -76,24 +81,20 @@ terraform {
 
 ### Step 2: Configure Helper Scripts
 
-The `split_*.sh` scripts tell the Python scripts which providers to extract from the main `schema.json`. If you added a new provider to `main.tf` (e.g., `kubernetes`), you must also add it to all three `split_*.sh` scripts.
+To add a new provider, you don't need to edit any existing files. Instead, you create a new helper script for that provider. This approach is more scalable and keeps the configuration for each provider separate.
 
-**`split_schema_tf.sh` (Example)**
+For example, to add the `kubernetes` provider, you would create a new file named `split-kubernetes.sh`:
+
+**`split-kubernetes.sh` (New File)**
 ```bash
-python3 extract_schema_tf.py \
-  --provider google \
-  --schema-json schema.json \
-  --base-dir ./output
+#!/bin/bash
+PROVIDER_NAME="kubernetes"
+BASE_DIR="./output"
+SCHEMA_JSON="schema.json"
 
-python3 extract_schema_tf.py \
-  --provider aws \
-  --schema-json schema.json \
-  --base-dir ./output
-
-python3 extract_schema_tf.py \
-  --provider azurerm \
-  --schema-json schema.json \
-  --base-dir ./output
+python3 extract_schema_tf.py --provider "$PROVIDER_NAME" --schema-json "$SCHEMA_JSON" --base-dir "$BASE_DIR"
+python3 extract_schema_yaml.py --provider "$PROVIDER_NAME" --schema-json "$SCHEMA_JSON" --base-dir "$BASE_DIR"
+python3 extract_schema_json.py --provider "$PROVIDER_NAME" --schema-json "$SCHEMA_JSON" --base-dir "$BASE_DIR"
 ```
 
 ### Step 3: Run the Exporter
