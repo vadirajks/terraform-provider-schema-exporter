@@ -1,0 +1,18 @@
+data "aws_kendra_faq" "name" {
+  faq_id = string (Required)
+  index_id = string (Required)
+  arn = string (Computed)
+  created_at = string (Computed)
+  description = string (Computed)
+  error_message = string (Computed)
+  file_format = string (Computed)
+  id = string (Optional, Computed)
+  language_code = string (Computed)
+  name = string (Computed)
+  region = string (Optional, Computed)
+  role_arn = string (Computed)
+  s3_path = ['list', ['object', {'bucket': 'string', 'key': 'string'}]] (Computed)
+  status = string (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  updated_at = string (Computed)
+}

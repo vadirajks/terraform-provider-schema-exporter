@@ -1,0 +1,72 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "associations": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "backup_plan": "string",
+              "create_time": "string",
+              "data_source": "string",
+              "name": "string",
+              "resource": "string",
+              "rules_config_info": [
+                "list",
+                [
+                  "object",
+                  {
+                    "last_backup_error": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "code": "number",
+                          "message": "string"
+                        }
+                      ]
+                    ],
+                    "last_backup_state": "string",
+                    "last_successful_backup_consistency_time": "string",
+                    "rule_id": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "A list of the backup plan associations found.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location to list the backup plan associations from.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description": "The ID of the project in which the resource belongs.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "resource_type": {
+        "type": "string",
+        "description": "The resource type of workload on which backup plan is applied. Examples include, \"compute.googleapis.com/Instance\", \"compute.googleapis.com/Disk\".",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

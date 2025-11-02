@@ -1,0 +1,105 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "allocated_outbound_ports": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "backend_address_pool_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "enable_tcp_reset": {
+        "type": "bool",
+        "description_kind": "plain",
+        "deprecated": true,
+        "optional": true,
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "idle_timeout_in_minutes": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "loadbalancer_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "protocol": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tcp_reset_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "frontend_ip_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

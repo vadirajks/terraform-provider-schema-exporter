@@ -1,0 +1,216 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    scaling_plan_version:
+      type: number
+      description_kind: plain
+      computed: true
+  block_types:
+    application_source:
+      nesting_mode: list
+      block:
+        attributes:
+          cloudformation_stack_arn:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          tag_filter:
+            nesting_mode: set
+            block:
+              attributes:
+                key:
+                  type: string
+                  description_kind: plain
+                  required: true
+                values:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 50
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    scaling_instruction:
+      nesting_mode: set
+      block:
+        attributes:
+          disable_dynamic_scaling:
+            type: bool
+            description_kind: plain
+            optional: true
+          max_capacity:
+            type: number
+            description_kind: plain
+            required: true
+          min_capacity:
+            type: number
+            description_kind: plain
+            required: true
+          predictive_scaling_max_capacity_behavior:
+            type: string
+            description_kind: plain
+            optional: true
+          predictive_scaling_max_capacity_buffer:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+          predictive_scaling_mode:
+            type: string
+            description_kind: plain
+            optional: true
+          resource_id:
+            type: string
+            description_kind: plain
+            required: true
+          scalable_dimension:
+            type: string
+            description_kind: plain
+            required: true
+          scaling_policy_update_behavior:
+            type: string
+            description_kind: plain
+            optional: true
+          scheduled_action_buffer_time:
+            type: number
+            description_kind: plain
+            optional: true
+          service_namespace:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          customized_load_metric_specification:
+            nesting_mode: list
+            block:
+              attributes:
+                dimensions:
+                  type:
+                  - map
+                  - string
+                  description_kind: plain
+                  optional: true
+                metric_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                namespace:
+                  type: string
+                  description_kind: plain
+                  required: true
+                statistic:
+                  type: string
+                  description_kind: plain
+                  required: true
+                unit:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          predefined_load_metric_specification:
+            nesting_mode: list
+            block:
+              attributes:
+                predefined_load_metric_type:
+                  type: string
+                  description_kind: plain
+                  required: true
+                resource_label:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          target_tracking_configuration:
+            nesting_mode: set
+            block:
+              attributes:
+                disable_scale_in:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                estimated_instance_warmup:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                scale_in_cooldown:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                scale_out_cooldown:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                target_value:
+                  type: number
+                  description_kind: plain
+                  required: true
+              block_types:
+                customized_scaling_metric_specification:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      dimensions:
+                        type:
+                        - map
+                        - string
+                        description_kind: plain
+                        optional: true
+                      metric_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      namespace:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      statistic:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      unit:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+                predefined_scaling_metric_specification:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      predefined_scaling_metric_type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      resource_label:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+            max_items: 10
+        description_kind: plain
+      min_items: 1
+  description_kind: plain

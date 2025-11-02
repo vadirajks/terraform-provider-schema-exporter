@@ -1,0 +1,105 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    monitor_id:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    log_rule:
+      nesting_mode: list
+      block:
+        attributes:
+          send_activity_logs_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          send_azure_active_directory_logs_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          send_subscription_logs_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+        block_types:
+          filtering_tag:
+            nesting_mode: list
+            block:
+              attributes:
+                action:
+                  type: string
+                  description_kind: plain
+                  required: true
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+        description_kind: plain
+      max_items: 1
+    metric_rule:
+      nesting_mode: list
+      block:
+        attributes:
+          sending_metrics_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+        block_types:
+          filtering_tag:
+            nesting_mode: list
+            block:
+              attributes:
+                action:
+                  type: string
+                  description_kind: plain
+                  required: true
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

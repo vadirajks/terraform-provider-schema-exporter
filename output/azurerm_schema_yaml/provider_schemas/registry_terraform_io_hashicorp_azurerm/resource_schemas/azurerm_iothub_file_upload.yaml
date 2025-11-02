@@ -1,0 +1,72 @@
+version: 0
+block:
+  attributes:
+    authentication_type:
+      type: string
+      description_kind: plain
+      optional: true
+    connection_string:
+      type: string
+      description_kind: plain
+      required: true
+      sensitive: true
+    container_name:
+      type: string
+      description_kind: plain
+      required: true
+    default_ttl:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    identity_id:
+      type: string
+      description_kind: plain
+      optional: true
+    iothub_id:
+      type: string
+      description_kind: plain
+      required: true
+    lock_duration:
+      type: string
+      description_kind: plain
+      optional: true
+    max_delivery_count:
+      type: number
+      description_kind: plain
+      optional: true
+    notifications_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    sas_ttl:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

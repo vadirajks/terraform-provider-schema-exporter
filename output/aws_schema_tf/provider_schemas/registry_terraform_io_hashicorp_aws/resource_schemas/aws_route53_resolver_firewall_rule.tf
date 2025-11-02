@@ -1,0 +1,15 @@
+resource "aws_route53_resolver_firewall_rule" "name" {
+  action = string (Required)
+  firewall_domain_list_id = string (Required)
+  firewall_rule_group_id = string (Required)
+  name = string (Required)
+  priority = number (Required)
+  block_override_dns_type = string (Optional)
+  block_override_domain = string (Optional)
+  block_override_ttl = number (Optional)
+  block_response = string (Optional)
+  firewall_domain_redirection_action = string (Optional)
+  id = string (Optional, Computed)
+  q_type = string (Optional)
+  region = string (Optional, Computed)
+}

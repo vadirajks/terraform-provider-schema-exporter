@@ -1,0 +1,16 @@
+data "google_beyondcorp_security_gateway" "name" {
+  security_gateway_id = string (Required)
+  create_time = string (Computed)
+  delegating_service_account = string (Computed)
+  display_name = string (Computed)
+  external_ips = ['list', 'string'] (Computed)
+  hubs = ['set', ['object', {'internet_gateway': ['list', ['object', {'assigned_ips': ['list', 'string']}]], 'region': 'string'}]] (Computed)
+  id = string (Optional, Computed)
+  location = string (Computed)
+  name = string (Computed)
+  project = string (Optional)
+  proxy_protocol_config = ['list', ['object', {'allowed_client_headers': ['list', 'string'], 'client_ip': 'bool', 'contextual_headers': ['list', ['object', {'device_info': ['list', ['object', {'output_type': 'string'}]], 'group_info': ['list', ['object', {'output_type': 'string'}]], 'output_type': 'string', 'user_info': ['list', ['object', {'output_type': 'string'}]]}]], 'gateway_identity': 'string', 'metadata_headers': ['map', 'string']}]] (Computed)
+  service_discovery = ['list', ['object', {'api_gateway': ['list', ['object', {'resource_override': ['list', ['object', {'path': 'string'}]]}]]}]] (Computed)
+  state = string (Computed)
+  update_time = string (Computed)
+}

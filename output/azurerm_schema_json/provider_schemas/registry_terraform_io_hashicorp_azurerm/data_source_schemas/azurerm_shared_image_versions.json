@@ -1,0 +1,84 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "gallery_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "image_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "images": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "exclude_from_latest": "bool",
+              "id": "string",
+              "location": "string",
+              "managed_image_id": "string",
+              "name": "string",
+              "tags": [
+                "map",
+                "string"
+              ],
+              "target_region": [
+                "list",
+                [
+                  "object",
+                  {
+                    "name": "string",
+                    "regional_replica_count": "number",
+                    "storage_account_type": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags_filter": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

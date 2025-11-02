@@ -1,0 +1,15 @@
+data "google_pubsub_topic" "name" {
+  name = string (Required)
+  effective_labels = ['map', 'string'] (Computed)
+  id = string (Optional, Computed)
+  ingestion_data_source_settings = ['list', ['object', {'aws_kinesis': ['list', ['object', {'aws_role_arn': 'string', 'consumer_arn': 'string', 'gcp_service_account': 'string', 'stream_arn': 'string'}]], 'aws_msk': ['list', ['object', {'aws_role_arn': 'string', 'cluster_arn': 'string', 'gcp_service_account': 'string', 'topic': 'string'}]], 'azure_event_hubs': ['list', ['object', {'client_id': 'string', 'event_hub': 'string', 'gcp_service_account': 'string', 'namespace': 'string', 'resource_group': 'string', 'subscription_id': 'string', 'tenant_id': 'string'}]], 'cloud_storage': ['list', ['object', {'avro_format': ['list', ['object', {}]], 'bucket': 'string', 'match_glob': 'string', 'minimum_object_create_time': 'string', 'pubsub_avro_format': ['list', ['object', {}]], 'text_format': ['list', ['object', {'delimiter': 'string'}]]}]], 'confluent_cloud': ['list', ['object', {'bootstrap_server': 'string', 'cluster_id': 'string', 'gcp_service_account': 'string', 'identity_pool_id': 'string', 'topic': 'string'}]], 'platform_logs_settings': ['list', ['object', {'severity': 'string'}]]}]] (Computed)
+  kms_key_name = string (Computed)
+  labels = ['map', 'string'] (Computed)
+  message_retention_duration = string (Computed)
+  message_storage_policy = ['list', ['object', {'allowed_persistence_regions': ['set', 'string'], 'enforce_in_transit': 'bool'}]] (Computed)
+  message_transforms = ['list', ['object', {'disabled': 'bool', 'javascript_udf': ['list', ['object', {'code': 'string', 'function_name': 'string'}]]}]] (Computed)
+  project = string (Optional)
+  schema_settings = ['list', ['object', {'encoding': 'string', 'schema': 'string'}]] (Computed)
+  tags = ['map', 'string'] (Computed)
+  terraform_labels = ['map', 'string'] (Computed)
+}

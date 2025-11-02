@@ -1,0 +1,32 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    result:
+      type: string
+      description_kind: plain
+      computed: true
+    service_code:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    filters:
+      nesting_mode: list
+      block:
+        attributes:
+          field:
+            type: string
+            description_kind: plain
+            required: true
+          value:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+  description_kind: plain

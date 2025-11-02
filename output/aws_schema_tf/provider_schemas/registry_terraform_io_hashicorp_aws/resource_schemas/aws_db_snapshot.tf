@@ -1,0 +1,30 @@
+resource "aws_db_snapshot" "name" {
+  db_instance_identifier = string (Required)
+  db_snapshot_identifier = string (Required)
+  allocated_storage = number (Computed)
+  availability_zone = string (Computed)
+  db_snapshot_arn = string (Computed)
+  encrypted = bool (Computed)
+  engine = string (Computed)
+  engine_version = string (Computed)
+  id = string (Optional, Computed)
+  iops = number (Computed)
+  kms_key_id = string (Computed)
+  license_model = string (Computed)
+  option_group_name = string (Computed)
+  port = number (Computed)
+  region = string (Optional, Computed)
+  shared_accounts = ['set', 'string'] (Optional)
+  snapshot_type = string (Computed)
+  source_db_snapshot_identifier = string (Computed)
+  source_region = string (Computed)
+  status = string (Computed)
+  storage_type = string (Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+  vpc_id = string (Computed)
+
+  timeouts block "single" (Optional) {
+    create = string (Optional)
+  }
+}

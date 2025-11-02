@@ -1,0 +1,61 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    hub_description:
+      type: string
+      description_kind: plain
+      required: true
+    hub_display_name:
+      type: string
+      description_kind: plain
+      optional: true
+    hub_name:
+      type: string
+      description_kind: plain
+      required: true
+    hub_search_keywords:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    s3_storage_config:
+      nesting_mode: list
+      block:
+        attributes:
+          s3_output_path:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

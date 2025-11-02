@@ -1,0 +1,324 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "automation_account_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "boot_diagnostics_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "defender_for_cloud_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "guest_configuration_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "log_analytics_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "status_change_alert_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "antimalware": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "real_time_protection_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "scheduled_scan_day": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "scheduled_scan_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "scheduled_scan_time_in_minutes": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "scheduled_scan_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "exclusions": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "extensions": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "paths": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "processes": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "azure_security_baseline": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "assignment_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "backup": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "instant_rp_retention_range_in_days": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "policy_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "time_zone": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "retention_policy": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "retention_policy_type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "daily_schedule": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "retention_times": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "retention_duration": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "count": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "duration_type": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "weekly_schedule": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "retention_times": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "retention_duration": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "count": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "duration_type": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "schedule_policy": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "schedule_policy_type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "schedule_run_days": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "schedule_run_frequency": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "schedule_run_times": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

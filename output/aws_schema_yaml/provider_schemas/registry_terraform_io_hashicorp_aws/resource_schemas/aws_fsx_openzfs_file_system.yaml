@@ -1,0 +1,246 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    automatic_backup_retention_days:
+      type: number
+      description_kind: plain
+      optional: true
+    backup_id:
+      type: string
+      description_kind: plain
+      optional: true
+    copy_tags_to_backups:
+      type: bool
+      description_kind: plain
+      optional: true
+    copy_tags_to_volumes:
+      type: bool
+      description_kind: plain
+      optional: true
+    daily_automatic_backup_start_time:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    delete_options:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    deployment_type:
+      type: string
+      description_kind: plain
+      required: true
+    dns_name:
+      type: string
+      description_kind: plain
+      computed: true
+    endpoint_ip_address:
+      type: string
+      description_kind: plain
+      computed: true
+    endpoint_ip_address_range:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    final_backup_tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kms_key_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    network_interface_ids:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    owner_id:
+      type: string
+      description_kind: plain
+      computed: true
+    preferred_subnet_id:
+      type: string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    root_volume_id:
+      type: string
+      description_kind: plain
+      computed: true
+    route_table_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    security_group_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    skip_final_backup:
+      type: bool
+      description_kind: plain
+      optional: true
+    storage_capacity:
+      type: number
+      description_kind: plain
+      optional: true
+    storage_type:
+      type: string
+      description_kind: plain
+      optional: true
+    subnet_ids:
+      type:
+      - list
+      - string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    throughput_capacity:
+      type: number
+      description_kind: plain
+      required: true
+    vpc_id:
+      type: string
+      description_kind: plain
+      computed: true
+    weekly_maintenance_start_time:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    disk_iops_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          iops:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+          mode:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    root_volume_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          copy_tags_to_snapshots:
+            type: bool
+            description_kind: plain
+            optional: true
+          data_compression_type:
+            type: string
+            description_kind: plain
+            optional: true
+          read_only:
+            type: bool
+            description_kind: plain
+            optional: true
+            computed: true
+          record_size_kib:
+            type: number
+            description_kind: plain
+            optional: true
+        block_types:
+          nfs_exports:
+            nesting_mode: list
+            block:
+              block_types:
+                client_configurations:
+                  nesting_mode: set
+                  block:
+                    attributes:
+                      clients:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      options:
+                        type:
+                        - list
+                        - string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 25
+              description_kind: plain
+            max_items: 1
+          user_and_group_quotas:
+            nesting_mode: set
+            block:
+              attributes:
+                id:
+                  type: number
+                  description_kind: plain
+                  required: true
+                storage_capacity_quota_gib:
+                  type: number
+                  description_kind: plain
+                  required: true
+                type:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

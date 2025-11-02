@@ -1,0 +1,30 @@
+resource "aws_vpc_ipam_pool" "name" {
+  address_family = string (Required)
+  ipam_scope_id = string (Required)
+  allocation_default_netmask_length = number (Optional)
+  allocation_max_netmask_length = number (Optional)
+  allocation_min_netmask_length = number (Optional)
+  allocation_resource_tags = ['map', 'string'] (Optional)
+  arn = string (Computed)
+  auto_import = bool (Optional)
+  aws_service = string (Optional)
+  cascade = bool (Optional)
+  description = string (Optional)
+  id = string (Optional, Computed)
+  ipam_scope_type = string (Computed)
+  locale = string (Optional)
+  pool_depth = number (Computed)
+  public_ip_source = string (Optional)
+  publicly_advertisable = bool (Optional)
+  region = string (Optional, Computed)
+  source_ipam_pool_id = string (Optional)
+  state = string (Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+
+  timeouts block "single" (Optional) {
+    create = string (Optional)
+    delete = string (Optional)
+    update = string (Optional)
+  }
+}

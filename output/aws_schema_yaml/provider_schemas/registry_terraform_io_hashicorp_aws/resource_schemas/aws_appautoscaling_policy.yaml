@@ -1,0 +1,522 @@
+version: 0
+block:
+  attributes:
+    alarm_arns:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    policy_type:
+      type: string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_id:
+      type: string
+      description_kind: plain
+      required: true
+    scalable_dimension:
+      type: string
+      description_kind: plain
+      required: true
+    service_namespace:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    predictive_scaling_policy_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          max_capacity_breach_behavior:
+            type: string
+            description_kind: plain
+            optional: true
+          max_capacity_buffer:
+            type: number
+            description_kind: plain
+            optional: true
+          mode:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          scheduling_buffer_time:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          metric_specification:
+            nesting_mode: list
+            block:
+              attributes:
+                target_value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                customized_capacity_metric_specification:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      metric_data_query:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            expression:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            id:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            label:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            return_data:
+                              type: bool
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            metric_stat:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  stat:
+                                    type: string
+                                    description_kind: plain
+                                    required: true
+                                  unit:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                block_types:
+                                  metric:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        metric_name:
+                                          type: string
+                                          description_kind: plain
+                                          optional: true
+                                        namespace:
+                                          type: string
+                                          description_kind: plain
+                                          optional: true
+                                      block_types:
+                                        dimension:
+                                          nesting_mode: set
+                                          block:
+                                            attributes:
+                                              name:
+                                                type: string
+                                                description_kind: plain
+                                                required: true
+                                              value:
+                                                type: string
+                                                description_kind: plain
+                                                required: true
+                                            description_kind: plain
+                                      description_kind: plain
+                                    min_items: 1
+                                    max_items: 1
+                                description_kind: plain
+                              max_items: 1
+                          description_kind: plain
+                        min_items: 1
+                    description_kind: plain
+                  max_items: 1
+                customized_load_metric_specification:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      metric_data_query:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            expression:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            id:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            label:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            return_data:
+                              type: bool
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            metric_stat:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  stat:
+                                    type: string
+                                    description_kind: plain
+                                    required: true
+                                  unit:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                block_types:
+                                  metric:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        metric_name:
+                                          type: string
+                                          description_kind: plain
+                                          optional: true
+                                        namespace:
+                                          type: string
+                                          description_kind: plain
+                                          optional: true
+                                      block_types:
+                                        dimension:
+                                          nesting_mode: set
+                                          block:
+                                            attributes:
+                                              name:
+                                                type: string
+                                                description_kind: plain
+                                                required: true
+                                              value:
+                                                type: string
+                                                description_kind: plain
+                                                required: true
+                                            description_kind: plain
+                                      description_kind: plain
+                                    min_items: 1
+                                    max_items: 1
+                                description_kind: plain
+                              max_items: 1
+                          description_kind: plain
+                        min_items: 1
+                    description_kind: plain
+                  max_items: 1
+                customized_scaling_metric_specification:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      metric_data_query:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            expression:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            id:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            label:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            return_data:
+                              type: bool
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            metric_stat:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  stat:
+                                    type: string
+                                    description_kind: plain
+                                    required: true
+                                  unit:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                block_types:
+                                  metric:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        metric_name:
+                                          type: string
+                                          description_kind: plain
+                                          optional: true
+                                        namespace:
+                                          type: string
+                                          description_kind: plain
+                                          optional: true
+                                      block_types:
+                                        dimension:
+                                          nesting_mode: set
+                                          block:
+                                            attributes:
+                                              name:
+                                                type: string
+                                                description_kind: plain
+                                                required: true
+                                              value:
+                                                type: string
+                                                description_kind: plain
+                                                required: true
+                                            description_kind: plain
+                                      description_kind: plain
+                                    min_items: 1
+                                    max_items: 1
+                                description_kind: plain
+                              max_items: 1
+                          description_kind: plain
+                        min_items: 1
+                    description_kind: plain
+                  max_items: 1
+                predefined_load_metric_specification:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      predefined_metric_type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      resource_label:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+                predefined_metric_pair_specification:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      predefined_metric_type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      resource_label:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+                predefined_scaling_metric_specification:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      predefined_metric_type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      resource_label:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+        description_kind: plain
+      max_items: 1
+    step_scaling_policy_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          adjustment_type:
+            type: string
+            description_kind: plain
+            optional: true
+          cooldown:
+            type: number
+            description_kind: plain
+            optional: true
+          metric_aggregation_type:
+            type: string
+            description_kind: plain
+            optional: true
+          min_adjustment_magnitude:
+            type: number
+            description_kind: plain
+            optional: true
+        block_types:
+          step_adjustment:
+            nesting_mode: set
+            block:
+              attributes:
+                metric_interval_lower_bound:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                metric_interval_upper_bound:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                scaling_adjustment:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+      max_items: 1
+    target_tracking_scaling_policy_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          disable_scale_in:
+            type: bool
+            description_kind: plain
+            optional: true
+          scale_in_cooldown:
+            type: number
+            description_kind: plain
+            optional: true
+          scale_out_cooldown:
+            type: number
+            description_kind: plain
+            optional: true
+          target_value:
+            type: number
+            description_kind: plain
+            required: true
+        block_types:
+          customized_metric_specification:
+            nesting_mode: list
+            block:
+              attributes:
+                metric_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                namespace:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                statistic:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                unit:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                dimensions:
+                  nesting_mode: set
+                  block:
+                    attributes:
+                      name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      value:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                metrics:
+                  nesting_mode: set
+                  block:
+                    attributes:
+                      expression:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      id:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      label:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      return_data:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      metric_stat:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            stat:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            unit:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            metric:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  metric_name:
+                                    type: string
+                                    description_kind: plain
+                                    required: true
+                                  namespace:
+                                    type: string
+                                    description_kind: plain
+                                    required: true
+                                block_types:
+                                  dimensions:
+                                    nesting_mode: set
+                                    block:
+                                      attributes:
+                                        name:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                        value:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                      description_kind: plain
+                                description_kind: plain
+                              min_items: 1
+                              max_items: 1
+                          description_kind: plain
+                        max_items: 1
+                    description_kind: plain
+              description_kind: plain
+            max_items: 1
+          predefined_metric_specification:
+            nesting_mode: list
+            block:
+              attributes:
+                predefined_metric_type:
+                  type: string
+                  description_kind: plain
+                  required: true
+                resource_label:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

@@ -1,0 +1,58 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The geographic location where the transfer config should reside. Examples: US, EU, asia-northeast1. The default value is US.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The generated id for the TagBinding. This is a string of the form: 'tagBindings/{full-resource-name}/{tag-value-name}'",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "parent": {
+        "type": "string",
+        "description": "The full resource name of the resource the TagValue is bound to. E.g. //cloudresourcemanager.googleapis.com/projects/123",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tag_value": {
+        "type": "string",
+        "description": "The TagValue of the TagBinding. Must be of the form tagValues/456.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

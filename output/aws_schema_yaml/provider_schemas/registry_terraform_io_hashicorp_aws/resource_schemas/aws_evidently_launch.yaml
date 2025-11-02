@@ -1,0 +1,195 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    created_time:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    execution:
+      type:
+      - list
+      - - object
+        - ended_time: string
+          started_time: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    last_updated_time:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      required: true
+    randomization_salt:
+      type: string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    status:
+      type: string
+      description_kind: plain
+      computed: true
+    status_reason:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    type:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    groups:
+      nesting_mode: list
+      block:
+        attributes:
+          description:
+            type: string
+            description_kind: plain
+            optional: true
+          feature:
+            type: string
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          variation:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+      max_items: 5
+    metric_monitors:
+      nesting_mode: list
+      block:
+        block_types:
+          metric_definition:
+            nesting_mode: list
+            block:
+              attributes:
+                entity_id_key:
+                  type: string
+                  description_kind: plain
+                  required: true
+                event_pattern:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                unit_label:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                value_key:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      max_items: 3
+    scheduled_splits_config:
+      nesting_mode: list
+      block:
+        block_types:
+          steps:
+            nesting_mode: list
+            block:
+              attributes:
+                group_weights:
+                  type:
+                  - map
+                  - number
+                  description_kind: plain
+                  required: true
+                start_time:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                segment_overrides:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      evaluation_order:
+                        type: number
+                        description_kind: plain
+                        required: true
+                      segment:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      weights:
+                        type:
+                        - map
+                        - number
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 6
+              description_kind: plain
+            min_items: 1
+            max_items: 6
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

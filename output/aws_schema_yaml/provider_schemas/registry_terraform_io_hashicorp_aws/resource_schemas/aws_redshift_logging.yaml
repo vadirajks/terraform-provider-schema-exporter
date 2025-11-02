@@ -1,0 +1,37 @@
+version: 0
+block:
+  attributes:
+    bucket_name:
+      type: string
+      description_kind: plain
+      optional: true
+    cluster_identifier:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      deprecated: true
+      computed: true
+    log_destination_type:
+      type: string
+      description_kind: plain
+      optional: true
+    log_exports:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    s3_key_prefix:
+      type: string
+      description_kind: plain
+      optional: true
+  description_kind: plain

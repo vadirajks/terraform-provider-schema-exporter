@@ -1,0 +1,446 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: The date and time that the DbSystem was created.
+      description_kind: plain
+      computed: true
+    db_system_id:
+      type: string
+      description: The ID of the DbSystem to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
+      description_kind: plain
+      required: true
+    deletion_protection:
+      type: bool
+      description: Whether or not to allow Terraform to destroy the instance. Unless this field is set to false in Terraform state, a terraform destroy or terraform apply that would delete the instance will fail.
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description: The display name for the System db. The name does not have to be unique within your project.
+      description_kind: plain
+      required: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    entitlement_id:
+      type: string
+      description: The ID of the subscription entitlement associated with the DbSystem
+      description_kind: plain
+      computed: true
+    gcp_oracle_zone:
+      type: string
+      description: 'The GCP Oracle zone where Oracle DbSystem is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.'
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'The labels or tags associated with the DbSystem. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: Resource ID segment making up resource 'name'. It identifies the resource within its parent collection as described in https://google.aip.dev/122.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: 'Identifier. The name of the DbSystem resource in the following format: projects/{project}/locations/{region}/dbSystems/{db_system}'
+      description_kind: plain
+      computed: true
+    oci_url:
+      type: string
+      description: HTTPS link to OCI resources exposed to Customer via UI Interface.
+      description_kind: plain
+      computed: true
+    odb_network:
+      type: string
+      description: 'The name of the OdbNetwork associated with the DbSystem. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network} It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.'
+      description_kind: plain
+      optional: true
+    odb_subnet:
+      type: string
+      description: 'The name of the OdbSubnet associated with the DbSystem for IP allocation. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}'
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+  block_types:
+    properties:
+      nesting_mode: list
+      block:
+        attributes:
+          compute_count:
+            type: number
+            description: The number of CPU cores to enable for the DbSystem.
+            description_kind: plain
+            required: true
+          compute_model:
+            type: string
+            description: 'The compute model of the DbSystem. Possible values: ECPU OCPU'
+            description_kind: plain
+            optional: true
+            computed: true
+          data_storage_size_gb:
+            type: number
+            description: The data storage size in GB that is currently available to DbSystems.
+            description_kind: plain
+            optional: true
+            computed: true
+          database_edition:
+            type: string
+            description: 'The database edition of the DbSystem. Possible values: STANDARD_EDITION ENTERPRISE_EDITION ENTERPRISE_EDITION_HIGH_PERFORMANCE'
+            description_kind: plain
+            required: true
+          domain:
+            type: string
+            description: The host domain name of the DbSystem.
+            description_kind: plain
+            optional: true
+            computed: true
+          hostname:
+            type: string
+            description: The hostname of the DbSystem.
+            description_kind: plain
+            computed: true
+          hostname_prefix:
+            type: string
+            description: Prefix for DB System host names.
+            description_kind: plain
+            optional: true
+          initial_data_storage_size_gb:
+            type: number
+            description: The initial data storage size in GB.
+            description_kind: plain
+            required: true
+          license_model:
+            type: string
+            description: 'The license model of the DbSystem. Possible values: LICENSE_INCLUDED BRING_YOUR_OWN_LICENSE'
+            description_kind: plain
+            required: true
+          lifecycle_state:
+            type: string
+            description: 'State of the DbSystem. Possible values: PROVISIONING AVAILABLE UPDATING TERMINATING TERMINATED FAILED MIGRATED MAINTENANCE_IN_PROGRESS NEEDS_ATTENTION UPGRADING'
+            description_kind: plain
+            computed: true
+          memory_size_gb:
+            type: number
+            description: The memory size in GB.
+            description_kind: plain
+            optional: true
+            computed: true
+          node_count:
+            type: number
+            description: The number of nodes in the DbSystem.
+            description_kind: plain
+            optional: true
+            computed: true
+          ocid:
+            type: string
+            description: OCID of the DbSystem.
+            description_kind: plain
+            computed: true
+          private_ip:
+            type: string
+            description: The private IP address of the DbSystem.
+            description_kind: plain
+            optional: true
+            computed: true
+          reco_storage_size_gb:
+            type: number
+            description: The reco/redo storage size in GB.
+            description_kind: plain
+            optional: true
+            computed: true
+          shape:
+            type: string
+            description: Shape of DB System.
+            description_kind: plain
+            required: true
+          ssh_public_keys:
+            type:
+            - list
+            - string
+            description: SSH public keys to be stored with the DbSystem.
+            description_kind: plain
+            required: true
+        block_types:
+          data_collection_options:
+            nesting_mode: list
+            block:
+              attributes:
+                is_diagnostics_events_enabled:
+                  type: bool
+                  description: Indicates whether to enable data collection for diagnostics.
+                  description_kind: plain
+                  optional: true
+                is_incident_logs_enabled:
+                  type: bool
+                  description: Indicates whether to enable incident logs and trace collection.
+                  description_kind: plain
+                  optional: true
+              description: Data collection options for DbSystem.
+              description_kind: plain
+            max_items: 1
+          db_home:
+            nesting_mode: list
+            block:
+              attributes:
+                db_version:
+                  type: string
+                  description: A valid Oracle Database version. For a list of supported versions, use the ListDbVersions operation.
+                  description_kind: plain
+                  required: true
+                display_name:
+                  type: string
+                  description: The display name for the Database Home. The name does not have to be unique within your project.
+                  description_kind: plain
+                  optional: true
+                is_unified_auditing_enabled:
+                  type: bool
+                  description: Whether unified auditing is enabled for the Database Home.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              block_types:
+                database:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      admin_password:
+                        type: string
+                        description: The password for the default ADMIN user.
+                        description_kind: plain
+                        required: true
+                      character_set:
+                        type: string
+                        description: The character set for the database. The default is AL32UTF8.
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      create_time:
+                        type: string
+                        description: The date and time that the Database was created.
+                        description_kind: plain
+                        computed: true
+                      database_id:
+                        type: string
+                        description: The database ID of the Database.
+                        description_kind: plain
+                        required: true
+                      db_home_name:
+                        type: string
+                        description: The name of the DbHome resource associated with the Database.
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      db_name:
+                        type: string
+                        description: The database name. The name must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted.
+                        description_kind: plain
+                        optional: true
+                      db_unique_name:
+                        type: string
+                        description: The DB_UNIQUE_NAME of the Oracle Database being backed up.
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      gcp_oracle_zone:
+                        type: string
+                        description: The GCP Oracle zone where the Database is created.
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      name:
+                        type: string
+                        description: 'Identifier. The name of the Database resource in the following format: projects/{project}/locations/{region}/databases/{database}'
+                        description_kind: plain
+                        computed: true
+                      ncharacter_set:
+                        type: string
+                        description: The national character set for the database. The default is AL16UTF16.
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      oci_url:
+                        type: string
+                        description: HTTPS link to OCI resources exposed to Customer via UI Interface.
+                        description_kind: plain
+                        computed: true
+                      ops_insights_status:
+                        type: string
+                        description: 'The Status of Operations Insights for this Database. Possible values: ENABLING ENABLED DISABLING NOT_ENABLED FAILED_ENABLING FAILED_DISABLING'
+                        description_kind: plain
+                        computed: true
+                      tde_wallet_password:
+                        type: string
+                        description: The TDE wallet password for the database.
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      properties:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            db_version:
+                              type: string
+                              description: The Oracle Database version.
+                              description_kind: plain
+                              required: true
+                            state:
+                              type: string
+                              description: 'State of the Database. Possible values: PROVISIONING AVAILABLE UPDATING BACKUP_IN_PROGRESS UPGRADING CONVERTING TERMINATING TERMINATED RESTORE_FAILED FAILED'
+                              description_kind: plain
+                              computed: true
+                          block_types:
+                            database_management_config:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  management_state:
+                                    type: string
+                                    description: 'The status of the Database Management service. Possible values: ENABLING ENABLED DISABLING DISABLED UPDATING FAILED_ENABLING FAILED_DISABLING FAILED_UPDATING'
+                                    description_kind: plain
+                                    computed: true
+                                  management_type:
+                                    type: string
+                                    description: 'The Database Management type. Possible values: BASIC ADVANCED'
+                                    description_kind: plain
+                                    computed: true
+                                description: The configuration of the Database Management service.
+                                description_kind: plain
+                              max_items: 1
+                            db_backup_config:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  auto_backup_enabled:
+                                    type: bool
+                                    description: If set to true, enables automatic backups on the database.
+                                    description_kind: plain
+                                    optional: true
+                                  auto_full_backup_day:
+                                    type: string
+                                    description: 'Possible values: MONDAY TUESDAY WEDNESDAY THURSDAY FRIDAY SATURDAY SUNDAY'
+                                    description_kind: plain
+                                    optional: true
+                                  auto_full_backup_window:
+                                    type: string
+                                    description: 'The window in which the full backup should be performed on the database. If no value is provided, the default is anytime. Possible values: SLOT_ONE SLOT_TWO SLOT_THREE SLOT_FOUR SLOT_FIVE SLOT_SIX SLOT_SEVEN SLOT_EIGHT SLOT_NINE SLOT_TEN SLOT_ELEVEN SLOT_TWELVE'
+                                    description_kind: plain
+                                    optional: true
+                                    computed: true
+                                  auto_incremental_backup_window:
+                                    type: string
+                                    description: 'The window in which the incremental backup should be performed on the database. If no value is provided, the default is anytime except the auto full backup day. Possible values: SLOT_ONE SLOT_TWO SLOT_THREE SLOT_FOUR SLOT_FIVE SLOT_SIX SLOT_SEVEN SLOT_EIGHT SLOT_NINE SLOT_TEN SLOT_ELEVEN SLOT_TWELVE'
+                                    description_kind: plain
+                                    optional: true
+                                    computed: true
+                                  backup_deletion_policy:
+                                    type: string
+                                    description: 'This defines when the backups will be deleted after Database termination. Possible values: DELETE_IMMEDIATELY DELETE_AFTER_RETENTION_PERIOD'
+                                    description_kind: plain
+                                    optional: true
+                                    computed: true
+                                  retention_period_days:
+                                    type: number
+                                    description: 'The number of days an automatic backup is retained before being automatically deleted. This value determines the earliest point in time to which a database can be restored. Min: 1, Max: 60.'
+                                    description_kind: plain
+                                    optional: true
+                                    computed: true
+                                block_types:
+                                  backup_destination_details:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        type:
+                                          type: string
+                                          description: 'The type of the database backup destination. Possible values: NFS RECOVERY_APPLIANCE OBJECT_STORE LOCAL DBRS'
+                                          description_kind: plain
+                                          optional: true
+                                          computed: true
+                                      description: Details of the database backup destinations.
+                                      description_kind: plain
+                                description: Backup Options for the Database.
+                                description_kind: plain
+                              max_items: 1
+                          description: The properties of a Database.
+                          description_kind: plain
+                        max_items: 1
+                    description: Details of the Database resource. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/Database/
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description: Details of the Database Home resource.
+              description_kind: plain
+            max_items: 1
+          db_system_options:
+            nesting_mode: list
+            block:
+              attributes:
+                storage_management:
+                  type: string
+                  description: 'The storage option used in DB system. Possible values: ASM LVM'
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              description: Details of the DbSystem Options.
+              description_kind: plain
+            max_items: 1
+          time_zone:
+            nesting_mode: list
+            block:
+              attributes:
+                id:
+                  type: string
+                  description: IANA Time Zone Database time zone. For example "America/New_York".
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              description: Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones).
+              description_kind: plain
+            max_items: 1
+        description: The properties of a DbSystem.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

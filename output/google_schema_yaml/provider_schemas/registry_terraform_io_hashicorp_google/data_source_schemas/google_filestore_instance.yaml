@@ -1,0 +1,181 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: Creation timestamp in RFC3339 text format.
+      description_kind: plain
+      computed: true
+    deletion_protection_enabled:
+      type: bool
+      description: Indicates whether the instance is protected against deletion.
+      description_kind: plain
+      computed: true
+    deletion_protection_reason:
+      type: string
+      description: The reason for enabling deletion protection.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: A description of the instance.
+      description_kind: plain
+      computed: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    effective_replication:
+      type:
+      - list
+      - - object
+        - replicas:
+          - list
+          - - object
+            - last_active_sync_time: string
+              peer_instance: string
+              state: string
+              state_reasons:
+              - list
+              - string
+          role: string
+      description: Output only fields for replication configuration.
+      description_kind: plain
+      computed: true
+    etag:
+      type: string
+      description: Server-specified ETag for the instance resource to prevent simultaneous updates from overwriting each other.
+      description_kind: plain
+      computed: true
+    file_shares:
+      type:
+      - list
+      - - object
+        - capacity_gb: number
+          name: string
+          nfs_export_options:
+          - list
+          - - object
+            - access_mode: string
+              anon_gid: number
+              anon_uid: number
+              ip_ranges:
+              - list
+              - string
+              network: string
+              squash_mode: string
+          source_backup: string
+      description: File system shares on the instance. For this version, only a single file share is supported.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    initial_replication:
+      type:
+      - list
+      - - object
+        - replicas:
+          - list
+          - - object
+            - peer_instance: string
+          role: string
+      description: Replication configuration, once set, this cannot be updated. Additionally this should be specified on the replica instance only, indicating the active as the peer_instance
+      description_kind: plain
+      computed: true
+    kms_key_name:
+      type: string
+      description: KMS key name used for data encryption.
+      description_kind: plain
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Resource labels to represent user-provided metadata. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description: The name of the location of the instance. This can be a region for ENTERPRISE tier instances.
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: The resource name of the instance.
+      description_kind: plain
+      required: true
+    networks:
+      type:
+      - list
+      - - object
+        - connect_mode: string
+          ip_addresses:
+          - list
+          - string
+          modes:
+          - list
+          - string
+          network: string
+          psc_config:
+          - list
+          - - object
+            - endpoint_project: string
+          reserved_ip_range: string
+      description: VPC networks to which the instance is connected. For this version, only a single network is supported.
+      description_kind: plain
+      computed: true
+    performance_config:
+      type:
+      - list
+      - - object
+        - fixed_iops:
+          - list
+          - - object
+            - max_iops: number
+          iops_per_tb:
+          - list
+          - - object
+            - max_iops_per_tb: number
+      description: Performance configuration for the instance. If not provided, the default performance settings will be used.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+    protocol:
+      type: string
+      description: 'Either NFSv3, for using NFS version 3 as file sharing protocol, or NFSv4.1, for using NFS version 4.1 as file sharing protocol. NFSv4.1 can be used with HIGH_SCALE_SSD, ZONAL, REGIONAL and ENTERPRISE. The default is NFSv3. Default value: "NFS_V3" Possible values: ["NFS_V3", "NFS_V4_1"]'
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description: A map of resource manager tags. Resource manager tag keys and values have the same definition as resource manager tags. Keys must be in the format tagKeys/{tag_key_id}, and values are in the format tagValues/456. The field is ignored when empty. The field is immutable and causes resource replacement when mutated. This field is only set at create time and modifying this field after creation will trigger recreation. To apply tags to an existing resource, see the 'google_tags_tag_value' resource.
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    tier:
+      type: string
+      description: 'The service tier of the instance. Possible values include: STANDARD, PREMIUM, BASIC_HDD, BASIC_SSD, HIGH_SCALE_SSD, ZONAL, REGIONAL and ENTERPRISE'
+      description_kind: plain
+      computed: true
+    zone:
+      type: string
+      description: The name of the Filestore zone of the instance.
+      description_kind: plain
+      computed: true
+  description_kind: plain

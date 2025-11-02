@@ -1,0 +1,64 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    caller_reference:
+      type: string
+      description_kind: plain
+      computed: true
+    comment:
+      type: string
+      description_kind: plain
+      optional: true
+    etag:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    encryption_entities:
+      nesting_mode: list
+      block:
+        block_types:
+          items:
+            nesting_mode: set
+            block:
+              attributes:
+                provider_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+                public_key_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                field_patterns:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      items:
+                        type:
+                        - set
+                        - string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description_kind: plain
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+  description_kind: plain

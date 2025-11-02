@@ -1,0 +1,200 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    availability_zones:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    connection_draining:
+      type: bool
+      description_kind: plain
+      optional: true
+    connection_draining_timeout:
+      type: number
+      description_kind: plain
+      optional: true
+    cross_zone_load_balancing:
+      type: bool
+      description_kind: plain
+      optional: true
+    desync_mitigation_mode:
+      type: string
+      description_kind: plain
+      optional: true
+    dns_name:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    idle_timeout:
+      type: number
+      description_kind: plain
+      optional: true
+    instances:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    internal:
+      type: bool
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name_prefix:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    security_groups:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    source_security_group:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    source_security_group_id:
+      type: string
+      description_kind: plain
+      computed: true
+    subnets:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    zone_id:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    access_logs:
+      nesting_mode: list
+      block:
+        attributes:
+          bucket:
+            type: string
+            description_kind: plain
+            required: true
+          bucket_prefix:
+            type: string
+            description_kind: plain
+            optional: true
+          enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          interval:
+            type: number
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    health_check:
+      nesting_mode: list
+      block:
+        attributes:
+          healthy_threshold:
+            type: number
+            description_kind: plain
+            required: true
+          interval:
+            type: number
+            description_kind: plain
+            required: true
+          target:
+            type: string
+            description_kind: plain
+            required: true
+          timeout:
+            type: number
+            description_kind: plain
+            required: true
+          unhealthy_threshold:
+            type: number
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    listener:
+      nesting_mode: set
+      block:
+        attributes:
+          instance_port:
+            type: number
+            description_kind: plain
+            required: true
+          instance_protocol:
+            type: string
+            description_kind: plain
+            required: true
+          lb_port:
+            type: number
+            description_kind: plain
+            required: true
+          lb_protocol:
+            type: string
+            description_kind: plain
+            required: true
+          ssl_certificate_id:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

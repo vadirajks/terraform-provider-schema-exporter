@@ -1,0 +1,177 @@
+version: 0
+block:
+  attributes:
+    active_directory:
+      type: string
+      description: 'Specifies the Active Directory policy to be used. Format: ''projects/{{project}}/locations/{{location}}/activeDirectories/{{name}}''. The policy needs to be in the same location as the storage pool.'
+      description_kind: plain
+      optional: true
+    allow_auto_tiering:
+      type: bool
+      description: Optional. True if the storage pool supports Auto Tiering enabled volumes. Default is false. Auto-tiering can be enabled after storage pool creation but it can't be disabled once enabled.
+      description_kind: plain
+      optional: true
+    available_throughput_mibps:
+      type: number
+      description: Available throughput of the storage pool (in MiB/s).
+      description_kind: plain
+      computed: true
+    capacity_gib:
+      type: string
+      description: Capacity of the storage pool (in GiB).
+      description_kind: plain
+      required: true
+    cold_tier_size_used_gib:
+      type: string
+      description: Total cold tier data rounded down to the nearest GiB used by the storage pool.
+      description_kind: plain
+      computed: true
+    custom_performance_enabled:
+      type: bool
+      description: Optional. True if using Independent Scaling of capacity and performance (Hyperdisk). Default is false.
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description: An optional description of this resource.
+      description_kind: plain
+      optional: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    enable_hot_tier_auto_resize:
+      type: bool
+      description: Flag indicating that the hot-tier threshold will be auto-increased by 10% of the hot-tier when it hits 100%. Default is true. The increment will kick in only if the new size after increment is still less than or equal to storage pool size.
+      description_kind: plain
+      optional: true
+    encryption_type:
+      type: string
+      description: Reports if volumes in the pool are encrypted using a Google-managed encryption key or CMEK.
+      description_kind: plain
+      computed: true
+    hot_tier_size_gib:
+      type: string
+      description: Total hot tier capacity for the Storage Pool. It is applicable only to Flex service level. It should be less than the minimum storage pool size and cannot be more than the current storage pool size. It cannot be decreased once set.
+      description_kind: plain
+      optional: true
+    hot_tier_size_used_gib:
+      type: string
+      description: Total hot tier data rounded down to the nearest GiB used by the storage pool.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kms_config:
+      type: string
+      description: 'Specifies the CMEK policy to be used for volume encryption. Format: ''projects/{{project}}/locations/{{location}}/kmsConfigs/{{name}}''. The policy needs to be in the same location as the storage pool.'
+      description_kind: plain
+      optional: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Labels as key value pairs. Example: ''{ "owner": "Bob", "department": "finance", "purpose": "testing" }''. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    ldap_enabled:
+      type: bool
+      description: When enabled, the volumes uses Active Directory as LDAP name service for UID/GID lookups. Required to enable extended group support for NFSv3, using security identifiers for NFSv4.1 or principal names for kerberized NFSv4.1.
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: Name of the location. For zonal Flex pools specify a zone name, in all other cases a region name.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The resource name of the storage pool. Needs to be unique per location/region.
+      description_kind: plain
+      required: true
+    network:
+      type: string
+      description: 'VPC network name with format: ''projects/{{project}}/global/networks/{{network}}'''
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    qos_type:
+      type: string
+      description: 'QoS (Quality of Service) type of the storage pool. Possible values are: AUTO, MANUAL. Possible values: ["QOS_TYPE_UNSPECIFIED", "AUTO", "MANUAL"]'
+      description_kind: plain
+      optional: true
+      computed: true
+    replica_zone:
+      type: string
+      description: Specifies the replica zone for regional Flex pools. 'zone' and 'replica_zone' values can be swapped to initiate a [zone switch](https://cloud.google.com/netapp/volumes/docs/configure-and-use/storage-pools/edit-or-delete-storage-pool#switch_active_and_replica_zones).
+      description_kind: plain
+      optional: true
+    service_level:
+      type: string
+      description: 'Service level of the storage pool. Possible values: ["PREMIUM", "EXTREME", "STANDARD", "FLEX"]'
+      description_kind: plain
+      required: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    total_iops:
+      type: string
+      description: Optional. Custom Performance Total IOPS of the pool If not provided, it will be calculated based on the totalThroughputMibps
+      description_kind: plain
+      optional: true
+      computed: true
+    total_throughput_mibps:
+      type: string
+      description: Optional. Custom Performance Total Throughput of the pool (in MiB/s).
+      description_kind: plain
+      optional: true
+      computed: true
+    volume_capacity_gib:
+      type: string
+      description: Size allocated to volumes in the storage pool (in GiB).
+      description_kind: plain
+      computed: true
+    volume_count:
+      type: number
+      description: Number of volume in the storage pool.
+      description_kind: plain
+      computed: true
+    zone:
+      type: string
+      description: Specifies the active zone for regional Flex pools. 'zone' and 'replica_zone' values can be swapped to initiate a [zone switch](https://cloud.google.com/netapp/volumes/docs/configure-and-use/storage-pools/edit-or-delete-storage-pool#switch_active_and_replica_zones). If you want to create a zonal Flex pool, specify a zone name for 'location' and omit 'zone'.
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,393 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "autoclass": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "enabled": "bool",
+              "terminal_storage_class": "string"
+            }
+          ]
+        ],
+        "description": "The bucket's autoclass configuration.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cors": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "max_age_seconds": "number",
+              "method": [
+                "list",
+                "string"
+              ],
+              "origin": [
+                "list",
+                "string"
+              ],
+              "response_header": [
+                "list",
+                "string"
+              ]
+            }
+          ]
+        ],
+        "description": "The bucket's Cross-Origin Resource Sharing (CORS) configuration.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "custom_placement_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "data_locations": [
+                "set",
+                "string"
+              ]
+            }
+          ]
+        ],
+        "description": "The bucket's custom location configuration, which specifies the individual regions that comprise a dual-region bucket. If the bucket is designated a single or multi-region, the parameters are empty.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "default_event_based_hold": {
+        "type": "bool",
+        "description": "Whether or not to automatically apply an eventBasedHold to new objects added to the bucket.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "enable_object_retention": {
+        "type": "bool",
+        "description": "Enables each object in the bucket to have its own retention policy, which prevents deletion until stored for a specific length of time.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "encryption": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "default_kms_key_name": "string"
+            }
+          ]
+        ],
+        "description": "The bucket's encryption configuration.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "force_destroy": {
+        "type": "bool",
+        "description": "When deleting a bucket, this boolean option will delete all contained objects, or anywhereCaches (if any). If you try to delete a bucket that contains objects or anywhereCaches, Terraform will fail that run, deleting anywhereCaches may take 80 minutes to complete.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "hierarchical_namespace": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "enabled": "bool"
+            }
+          ]
+        ],
+        "description": "The bucket's HNS configuration, which defines bucket can organize folders in logical file system structure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ip_filter": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "allow_all_service_agent_access": "bool",
+              "allow_cross_org_vpcs": "bool",
+              "mode": "string",
+              "public_network_source": [
+                "list",
+                [
+                  "object",
+                  {
+                    "allowed_ip_cidr_ranges": [
+                      "list",
+                      "string"
+                    ]
+                  }
+                ]
+              ],
+              "vpc_network_sources": [
+                "list",
+                [
+                  "object",
+                  {
+                    "allowed_ip_cidr_ranges": [
+                      "list",
+                      "string"
+                    ],
+                    "network": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "The bucket IP filtering configuration.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "A set of key/value label pairs to assign to the bucket.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "lifecycle_rule": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "action": [
+                "set",
+                [
+                  "object",
+                  {
+                    "storage_class": "string",
+                    "type": "string"
+                  }
+                ]
+              ],
+              "condition": [
+                "set",
+                [
+                  "object",
+                  {
+                    "age": "number",
+                    "created_before": "string",
+                    "custom_time_before": "string",
+                    "days_since_custom_time": "number",
+                    "days_since_noncurrent_time": "number",
+                    "matches_prefix": [
+                      "list",
+                      "string"
+                    ],
+                    "matches_storage_class": [
+                      "list",
+                      "string"
+                    ],
+                    "matches_suffix": [
+                      "list",
+                      "string"
+                    ],
+                    "noncurrent_time_before": "string",
+                    "num_newer_versions": "number",
+                    "send_age_if_zero": "bool",
+                    "send_days_since_custom_time_if_zero": "bool",
+                    "send_days_since_noncurrent_time_if_zero": "bool",
+                    "send_num_newer_versions_if_zero": "bool",
+                    "with_state": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "The bucket's Lifecycle Rules configuration.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The Google Cloud Storage location or region.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "logging": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "log_bucket": "string",
+              "log_object_prefix": "string"
+            }
+          ]
+        ],
+        "description": "The bucket's Access & Storage Logs configuration.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the bucket.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description": "The ID of the project in which the resource belongs. If it is not provided, the provider project is used.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "project_number": {
+        "type": "number",
+        "description": "The project number of the project in which the resource belongs.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "public_access_prevention": {
+        "type": "string",
+        "description": "Prevents public access to a bucket.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "requester_pays": {
+        "type": "bool",
+        "description": "Enables Requester Pays on a storage bucket.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "retention_policy": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "is_locked": "bool",
+              "retention_period": "string"
+            }
+          ]
+        ],
+        "description": "Configuration of the bucket's data retention policy for how long objects in the bucket should be retained.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "rpo": {
+        "type": "string",
+        "description": "Specifies the RPO setting of bucket. If set 'ASYNC_TURBO', The Turbo Replication will be enabled for the dual-region bucket. Value 'DEFAULT' will set RPO setting to default. Turbo Replication is only for buckets in dual-regions.See the docs for more details.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "self_link": {
+        "type": "string",
+        "description": "The URI of the created resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "soft_delete_policy": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "effective_time": "string",
+              "retention_duration_seconds": "number"
+            }
+          ]
+        ],
+        "description": "The bucket's soft delete policy, which defines the period of time that soft-deleted objects will be retained, and cannot be permanently deleted. If it is not provided, by default Google Cloud Storage sets this to default soft delete policy",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "storage_class": {
+        "type": "string",
+        "description": "The Storage Class of the new bucket. Supported values include: STANDARD, MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, ARCHIVE.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "time_created": {
+        "type": "string",
+        "description": "The creation time of the bucket in RFC 3339 format.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "uniform_bucket_level_access": {
+        "type": "bool",
+        "description": "Enables uniform bucket-level access on a bucket.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "updated": {
+        "type": "string",
+        "description": "The time at which the bucket's metadata or IAM policy was last updated, in RFC 3339 format.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "url": {
+        "type": "string",
+        "description": "The base URL of the bucket, in the format gs://<bucket-name>.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "versioning": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "enabled": "bool"
+            }
+          ]
+        ],
+        "description": "The bucket's Versioning configuration.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "website": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "main_page_suffix": "string",
+              "not_found_page": "string"
+            }
+          ]
+        ],
+        "description": "Configuration if the bucket acts as a website.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

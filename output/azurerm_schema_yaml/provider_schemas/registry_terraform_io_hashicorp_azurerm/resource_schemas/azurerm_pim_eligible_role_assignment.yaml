@@ -1,0 +1,116 @@
+version: 0
+block:
+  attributes:
+    condition:
+      type: string
+      description_kind: plain
+      optional: true
+    condition_version:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    justification:
+      type: string
+      description: The justification for this eligible role assignment
+      description_kind: plain
+      optional: true
+      computed: true
+    principal_id:
+      type: string
+      description: Object ID of the principal for this eligible role assignment
+      description_kind: plain
+      required: true
+    principal_type:
+      type: string
+      description: Type of principal to which the role will be assigned
+      description_kind: plain
+      computed: true
+    role_definition_id:
+      type: string
+      description: Role definition ID for this eligible role assignment
+      description_kind: plain
+      required: true
+    scope:
+      type: string
+      description: Scope for this eligible role assignment, should be a valid resource ID
+      description_kind: plain
+      required: true
+  block_types:
+    schedule:
+      nesting_mode: list
+      block:
+        attributes:
+          start_date_time:
+            type: string
+            description: The start date/time
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          expiration:
+            nesting_mode: list
+            block:
+              attributes:
+                duration_days:
+                  type: number
+                  description: The duration of the eligible role assignment in days
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                duration_hours:
+                  type: number
+                  description: The duration of the eligible role assignment in hours
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                end_date_time:
+                  type: string
+                  description: The end date/time of the eligible role assignment
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              description_kind: plain
+            max_items: 1
+        description: The schedule details for this eligible role assignment
+        description_kind: plain
+      max_items: 1
+    ticket:
+      nesting_mode: list
+      block:
+        attributes:
+          number:
+            type: string
+            description: User-supplied ticket number to be included with the request
+            description_kind: plain
+            optional: true
+          system:
+            type: string
+            description: User-supplied ticket system name to be included with the request
+            description_kind: plain
+            optional: true
+        description: Ticket details relating to the eligible assignment
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

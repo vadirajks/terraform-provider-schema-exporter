@@ -1,0 +1,70 @@
+version: 0
+block:
+  attributes:
+    domain:
+      type: string
+      description: The fully qualified domain name. e.g. mydomain.myorganization.com, with the restrictions of https://cloud.google.com/managed-microsoft-ad/reference/rest/v1/projects.locations.global.domains.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    selective_authentication:
+      type: bool
+      description: Whether the trusted side has forest/domain wide access or selective access to an approved set of resources.
+      description_kind: plain
+      optional: true
+    target_dns_ip_addresses:
+      type:
+      - set
+      - string
+      description: The target DNS server IP addresses which can resolve the remote domain involved in the trust.
+      description_kind: plain
+      required: true
+    target_domain_name:
+      type: string
+      description: The fully qualified target domain name which will be in trust with the current domain.
+      description_kind: plain
+      required: true
+    trust_direction:
+      type: string
+      description: 'The trust direction, which decides if the current domain is trusted, trusting, or both. Possible values: ["INBOUND", "OUTBOUND", "BIDIRECTIONAL"]'
+      description_kind: plain
+      required: true
+    trust_handshake_secret:
+      type: string
+      description: The trust secret used for the handshake with the target domain. This will not be stored.
+      description_kind: plain
+      required: true
+      sensitive: true
+    trust_type:
+      type: string
+      description: 'The type of trust represented by the trust resource. Possible values: ["FOREST", "EXTERNAL"]'
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

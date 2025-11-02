@@ -1,0 +1,138 @@
+version: 0
+block:
+  attributes:
+    connection_string:
+      type: string
+      description_kind: plain
+      required: true
+      sensitive: true
+    expiry:
+      type: string
+      description_kind: plain
+      required: true
+    https_only:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ip_addresses:
+      type: string
+      description_kind: plain
+      optional: true
+    sas:
+      type: string
+      description_kind: plain
+      computed: true
+      sensitive: true
+    signed_version:
+      type: string
+      description_kind: plain
+      optional: true
+    start:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    permissions:
+      nesting_mode: list
+      block:
+        attributes:
+          add:
+            type: bool
+            description_kind: plain
+            required: true
+          create:
+            type: bool
+            description_kind: plain
+            required: true
+          delete:
+            type: bool
+            description_kind: plain
+            required: true
+          filter:
+            type: bool
+            description_kind: plain
+            required: true
+          list:
+            type: bool
+            description_kind: plain
+            required: true
+          process:
+            type: bool
+            description_kind: plain
+            required: true
+          read:
+            type: bool
+            description_kind: plain
+            required: true
+          tag:
+            type: bool
+            description_kind: plain
+            required: true
+          update:
+            type: bool
+            description_kind: plain
+            required: true
+          write:
+            type: bool
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    resource_types:
+      nesting_mode: list
+      block:
+        attributes:
+          container:
+            type: bool
+            description_kind: plain
+            required: true
+          object:
+            type: bool
+            description_kind: plain
+            required: true
+          service:
+            type: bool
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    services:
+      nesting_mode: list
+      block:
+        attributes:
+          blob:
+            type: bool
+            description_kind: plain
+            required: true
+          file:
+            type: bool
+            description_kind: plain
+            required: true
+          queue:
+            type: bool
+            description_kind: plain
+            required: true
+          table:
+            type: bool
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,265 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "accept_language": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cloudwatch_dashboard_names": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "created_time": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ignore_errors": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "last_provisioning_record_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "last_record_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "last_successful_provisioning_record_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "launch_role_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "notification_arns": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "outputs": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "description": "string",
+              "key": "string",
+              "value": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "path_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "path_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "product_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "product_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "provisioning_artifact_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "provisioning_artifact_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "retain_physical_resources": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "status": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "status_message": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "type": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "provisioning_parameters": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "key": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "use_previous_value": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "value": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "stack_set_provisioning_preferences": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "accounts": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "failure_tolerance_count": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "failure_tolerance_percentage": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "max_concurrency_count": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "max_concurrency_percentage": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "regions": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

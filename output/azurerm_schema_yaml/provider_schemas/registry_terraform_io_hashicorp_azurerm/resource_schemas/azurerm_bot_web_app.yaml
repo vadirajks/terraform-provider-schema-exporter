@@ -1,0 +1,90 @@
+version: 0
+block:
+  attributes:
+    developer_app_insights_api_key:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+    developer_app_insights_application_id:
+      type: string
+      description_kind: plain
+      optional: true
+    developer_app_insights_key:
+      type: string
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    endpoint:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    luis_app_ids:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    luis_key:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+    microsoft_app_id:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    sku:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

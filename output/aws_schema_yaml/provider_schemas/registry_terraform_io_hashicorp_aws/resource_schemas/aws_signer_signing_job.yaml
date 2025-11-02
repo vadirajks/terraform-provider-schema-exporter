@@ -1,0 +1,140 @@
+version: 0
+block:
+  attributes:
+    completed_at:
+      type: string
+      description_kind: plain
+      computed: true
+    created_at:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ignore_signing_job_failure:
+      type: bool
+      description_kind: plain
+      optional: true
+    job_id:
+      type: string
+      description_kind: plain
+      computed: true
+    job_invoker:
+      type: string
+      description_kind: plain
+      computed: true
+    job_owner:
+      type: string
+      description_kind: plain
+      computed: true
+    platform_display_name:
+      type: string
+      description_kind: plain
+      computed: true
+    platform_id:
+      type: string
+      description_kind: plain
+      computed: true
+    profile_name:
+      type: string
+      description_kind: plain
+      required: true
+    profile_version:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    requested_by:
+      type: string
+      description_kind: plain
+      computed: true
+    revocation_record:
+      type:
+      - list
+      - - object
+        - reason: string
+          revoked_at: string
+          revoked_by: string
+      description_kind: plain
+      computed: true
+    signature_expires_at:
+      type: string
+      description_kind: plain
+      computed: true
+    signed_object:
+      type:
+      - list
+      - - object
+        - s3:
+          - list
+          - - object
+            - bucket: string
+              key: string
+      description_kind: plain
+      computed: true
+    status:
+      type: string
+      description_kind: plain
+      computed: true
+    status_reason:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    destination:
+      nesting_mode: list
+      block:
+        block_types:
+          s3:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket:
+                  type: string
+                  description_kind: plain
+                  required: true
+                prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    source:
+      nesting_mode: list
+      block:
+        block_types:
+          s3:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket:
+                  type: string
+                  description_kind: plain
+                  required: true
+                key:
+                  type: string
+                  description_kind: plain
+                  required: true
+                version:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+  description_kind: plain

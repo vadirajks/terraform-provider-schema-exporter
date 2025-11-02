@@ -1,0 +1,680 @@
+version: 0
+block:
+  attributes:
+    certificate_authority:
+      type: string
+      description: The Certificate Authority ID that should issue the certificate. For example, to issue a Certificate from a Certificate Authority with resource name 'projects/my-project/locations/us-central1/caPools/my-pool/certificateAuthorities/my-ca', argument 'pool' should be set to 'projects/my-project/locations/us-central1/caPools/my-pool', argument 'certificate_authority' should be set to 'my-ca'.
+      description_kind: plain
+      optional: true
+    certificate_description:
+      type:
+      - list
+      - - object
+        - aia_issuing_certificate_urls:
+          - list
+          - string
+          authority_key_id:
+          - list
+          - - object
+            - key_id: string
+          cert_fingerprint:
+          - list
+          - - object
+            - sha256_hash: string
+          crl_distribution_points:
+          - list
+          - string
+          public_key:
+          - list
+          - - object
+            - format: string
+              key: string
+          subject_description:
+          - list
+          - - object
+            - hex_serial_number: string
+              lifetime: string
+              not_after_time: string
+              not_before_time: string
+              subject:
+              - list
+              - - object
+                - common_name: string
+                  country_code: string
+                  locality: string
+                  organization: string
+                  organizational_unit: string
+                  postal_code: string
+                  province: string
+                  street_address: string
+              subject_alt_name:
+              - list
+              - - object
+                - custom_sans:
+                  - list
+                  - - object
+                    - critical: bool
+                      obect_id:
+                      - list
+                      - - object
+                        - object_id_path:
+                          - list
+                          - number
+                      value: string
+                  dns_names:
+                  - list
+                  - string
+                  email_addresses:
+                  - list
+                  - string
+                  ip_addresses:
+                  - list
+                  - string
+                  uris:
+                  - list
+                  - string
+          subject_key_id:
+          - list
+          - - object
+            - key_id: string
+          x509_description:
+          - list
+          - - object
+            - additional_extensions:
+              - list
+              - - object
+                - critical: bool
+                  object_id:
+                  - list
+                  - - object
+                    - object_id_path:
+                      - list
+                      - number
+                  value: string
+              aia_ocsp_servers:
+              - list
+              - string
+              ca_options:
+              - list
+              - - object
+                - is_ca: bool
+                  max_issuer_path_length: number
+              key_usage:
+              - list
+              - - object
+                - base_key_usage:
+                  - list
+                  - - object
+                    - cert_sign: bool
+                      content_commitment: bool
+                      crl_sign: bool
+                      data_encipherment: bool
+                      decipher_only: bool
+                      digital_signature: bool
+                      encipher_only: bool
+                      key_agreement: bool
+                      key_encipherment: bool
+                  extended_key_usage:
+                  - list
+                  - - object
+                    - client_auth: bool
+                      code_signing: bool
+                      email_protection: bool
+                      ocsp_signing: bool
+                      server_auth: bool
+                      time_stamping: bool
+                  unknown_extended_key_usages:
+                  - list
+                  - - object
+                    - object_id_path:
+                      - list
+                      - number
+              name_constraints:
+              - list
+              - - object
+                - critical: bool
+                  excluded_dns_names:
+                  - list
+                  - string
+                  excluded_email_addresses:
+                  - list
+                  - string
+                  excluded_ip_ranges:
+                  - list
+                  - string
+                  excluded_uris:
+                  - list
+                  - string
+                  permitted_dns_names:
+                  - list
+                  - string
+                  permitted_email_addresses:
+                  - list
+                  - string
+                  permitted_ip_ranges:
+                  - list
+                  - string
+                  permitted_uris:
+                  - list
+                  - string
+              policy_ids:
+              - list
+              - - object
+                - object_id_path:
+                  - list
+                  - number
+      description: Output only. Details regarding the revocation of this Certificate. This Certificate is considered revoked if and only if this field is present.
+      description_kind: plain
+      computed: true
+    certificate_template:
+      type: string
+      description: The resource name for a CertificateTemplate used to issue this certificate, in the format 'projects/*/locations/*/certificateTemplates/*'. If this is specified, the caller must have the necessary permission to use this template. If this is omitted, no template will be used. This template must be in the same location as the Certificate.
+      description_kind: plain
+      optional: true
+    create_time:
+      type: string
+      description: The time that this resource was created on the server. This is in RFC3339 text format.
+      description_kind: plain
+      computed: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    issuer_certificate_authority:
+      type: string
+      description: The resource name of the issuing CertificateAuthority in the format 'projects/*/locations/*/caPools/*/certificateAuthorities/*'.
+      description_kind: plain
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Labels with user-defined metadata to apply to this resource. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    lifetime:
+      type: string
+      description: 'The desired lifetime of the CA certificate. Used to create the "notBeforeTime" and "notAfterTime" fields inside an X.509 certificate. A duration in seconds with up to nine fractional digits, terminated by ''s''. Example: "3.5s".'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: Location of the Certificate. A full list of valid locations can be found by running 'gcloud privateca locations list'.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The name for this Certificate.
+      description_kind: plain
+      required: true
+    pem_certificate:
+      type: string
+      description: Output only. The pem-encoded, signed X.509 certificate.
+      description_kind: plain
+      computed: true
+    pem_certificate_chain:
+      type:
+      - list
+      - string
+      description: The chain that may be used to verify the X.509 certificate. Expected to be in issuer-to-root order according to RFC 5246.
+      description_kind: plain
+      computed: true
+    pem_csr:
+      type: string
+      description: Immutable. A pem-encoded X.509 certificate signing request (CSR).
+      description_kind: plain
+      optional: true
+    pool:
+      type: string
+      description: The name of the CaPool this Certificate belongs to.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    revocation_details:
+      type:
+      - list
+      - - object
+        - revocation_state: string
+          revocation_time: string
+      description: Output only. Details regarding the revocation of this Certificate. This Certificate is considered revoked if and only if this field is present.
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: Output only. The time at which this CertificateAuthority was updated. This is in RFC3339 text format.
+      description_kind: plain
+      computed: true
+  block_types:
+    config:
+      nesting_mode: list
+      block:
+        block_types:
+          public_key:
+            nesting_mode: list
+            block:
+              attributes:
+                format:
+                  type: string
+                  description: 'The format of the public key. Currently, only PEM format is supported. Possible values: ["KEY_TYPE_UNSPECIFIED", "PEM"]'
+                  description_kind: plain
+                  required: true
+                key:
+                  type: string
+                  description: Required. A public key. When this is specified in a request, the padding and encoding can be any of the options described by the respective 'KeyType' value. When this is generated by the service, it will always be an RFC 5280 SubjectPublicKeyInfo structure containing an algorithm identifier and a key. A base64-encoded string.
+                  description_kind: plain
+                  optional: true
+              description: A PublicKey describes a public key.
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+          subject_config:
+            nesting_mode: list
+            block:
+              block_types:
+                subject:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      common_name:
+                        type: string
+                        description: The common name of the distinguished name.
+                        description_kind: plain
+                        required: true
+                      country_code:
+                        type: string
+                        description: The country code of the subject.
+                        description_kind: plain
+                        optional: true
+                      locality:
+                        type: string
+                        description: The locality or city of the subject.
+                        description_kind: plain
+                        optional: true
+                      organization:
+                        type: string
+                        description: The organization of the subject.
+                        description_kind: plain
+                        required: true
+                      organizational_unit:
+                        type: string
+                        description: The organizational unit of the subject.
+                        description_kind: plain
+                        optional: true
+                      postal_code:
+                        type: string
+                        description: The postal code of the subject.
+                        description_kind: plain
+                        optional: true
+                      province:
+                        type: string
+                        description: The province, territory, or regional state of the subject.
+                        description_kind: plain
+                        optional: true
+                      street_address:
+                        type: string
+                        description: The street address of the subject.
+                        description_kind: plain
+                        optional: true
+                    description: Contains distinguished name fields such as the location and organization.
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+                subject_alt_name:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      dns_names:
+                        type:
+                        - list
+                        - string
+                        description: Contains only valid, fully-qualified host names.
+                        description_kind: plain
+                        optional: true
+                      email_addresses:
+                        type:
+                        - list
+                        - string
+                        description: Contains only valid RFC 2822 E-mail addresses.
+                        description_kind: plain
+                        optional: true
+                      ip_addresses:
+                        type:
+                        - list
+                        - string
+                        description: Contains only valid 32-bit IPv4 addresses or RFC 4291 IPv6 addresses.
+                        description_kind: plain
+                        optional: true
+                      uris:
+                        type:
+                        - list
+                        - string
+                        description: Contains only valid RFC 3986 URIs.
+                        description_kind: plain
+                        optional: true
+                    description: The subject alternative name fields.
+                    description_kind: plain
+                  max_items: 1
+              description: Specifies some of the values in a certificate that are related to the subject.
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+          subject_key_id:
+            nesting_mode: list
+            block:
+              attributes:
+                key_id:
+                  type: string
+                  description: The value of the KeyId in lowercase hexadecimal.
+                  description_kind: plain
+                  optional: true
+              description: When specified this provides a custom SKI to be used in the certificate. This should only be used to maintain a SKI of an existing CA originally created outside CA service, which was not generated using method (1) described in RFC 5280 section 4.2.1.2..
+              description_kind: plain
+            max_items: 1
+          x509_config:
+            nesting_mode: list
+            block:
+              attributes:
+                aia_ocsp_servers:
+                  type:
+                  - list
+                  - string
+                  description: Describes Online Certificate Status Protocol (OCSP) endpoint addresses that appear in the "Authority Information Access" extension in the certificate.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                additional_extensions:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      critical:
+                        type: bool
+                        description: Indicates whether or not this extension is critical (i.e., if the client does not know how to handle this extension, the client should consider this to be an error).
+                        description_kind: plain
+                        required: true
+                      value:
+                        type: string
+                        description: The value of this X.509 extension. A base64-encoded string.
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      object_id:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            object_id_path:
+                              type:
+                              - list
+                              - number
+                              description: An ObjectId specifies an object identifier (OID). These provide context and describe types in ASN.1 messages.
+                              description_kind: plain
+                              required: true
+                          description: Describes values that are relevant in a CA certificate.
+                          description_kind: plain
+                        min_items: 1
+                        max_items: 1
+                    description: Specifies an X.509 extension, which may be used in different parts of X.509 objects like certificates, CSRs, and CRLs.
+                    description_kind: plain
+                ca_options:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      is_ca:
+                        type: bool
+                        description: When true, the "CA" in Basic Constraints extension will be set to true.
+                        description_kind: plain
+                        optional: true
+                      max_issuer_path_length:
+                        type: number
+                        description: Refers to the "path length constraint" in Basic Constraints extension. For a CA certificate, this value describes the depth of subordinate CA certificates that are allowed. If this value is less than 0, the request will fail.
+                        description_kind: plain
+                        optional: true
+                      non_ca:
+                        type: bool
+                        description: When true, the "CA" in Basic Constraints extension will be set to false. If both 'is_ca' and 'non_ca' are unset, the extension will be omitted from the CA certificate.
+                        description_kind: plain
+                        optional: true
+                      zero_max_issuer_path_length:
+                        type: bool
+                        description: When true, the "path length constraint" in Basic Constraints extension will be set to 0. if both 'max_issuer_path_length' and 'zero_max_issuer_path_length' are unset, the max path length will be omitted from the CA certificate.
+                        description_kind: plain
+                        optional: true
+                    description: Describes values that are relevant in a CA certificate.
+                    description_kind: plain
+                  max_items: 1
+                key_usage:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      base_key_usage:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            cert_sign:
+                              type: bool
+                              description: The key may be used to sign certificates.
+                              description_kind: plain
+                              optional: true
+                            content_commitment:
+                              type: bool
+                              description: The key may be used for cryptographic commitments. Note that this may also be referred to as "non-repudiation".
+                              description_kind: plain
+                              optional: true
+                            crl_sign:
+                              type: bool
+                              description: The key may be used sign certificate revocation lists.
+                              description_kind: plain
+                              optional: true
+                            data_encipherment:
+                              type: bool
+                              description: The key may be used to encipher data.
+                              description_kind: plain
+                              optional: true
+                            decipher_only:
+                              type: bool
+                              description: The key may be used to decipher only.
+                              description_kind: plain
+                              optional: true
+                            digital_signature:
+                              type: bool
+                              description: The key may be used for digital signatures.
+                              description_kind: plain
+                              optional: true
+                            encipher_only:
+                              type: bool
+                              description: The key may be used to encipher only.
+                              description_kind: plain
+                              optional: true
+                            key_agreement:
+                              type: bool
+                              description: The key may be used in a key agreement protocol.
+                              description_kind: plain
+                              optional: true
+                            key_encipherment:
+                              type: bool
+                              description: The key may be used to encipher other keys.
+                              description_kind: plain
+                              optional: true
+                          description: Describes high-level ways in which a key may be used.
+                          description_kind: plain
+                        min_items: 1
+                        max_items: 1
+                      extended_key_usage:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            client_auth:
+                              type: bool
+                              description: Corresponds to OID 1.3.6.1.5.5.7.3.2. Officially described as "TLS WWW client authentication", though regularly used for non-WWW TLS.
+                              description_kind: plain
+                              optional: true
+                            code_signing:
+                              type: bool
+                              description: Corresponds to OID 1.3.6.1.5.5.7.3.3. Officially described as "Signing of downloadable executable code client authentication".
+                              description_kind: plain
+                              optional: true
+                            email_protection:
+                              type: bool
+                              description: Corresponds to OID 1.3.6.1.5.5.7.3.4. Officially described as "Email protection".
+                              description_kind: plain
+                              optional: true
+                            ocsp_signing:
+                              type: bool
+                              description: Corresponds to OID 1.3.6.1.5.5.7.3.9. Officially described as "Signing OCSP responses".
+                              description_kind: plain
+                              optional: true
+                            server_auth:
+                              type: bool
+                              description: Corresponds to OID 1.3.6.1.5.5.7.3.1. Officially described as "TLS WWW server authentication", though regularly used for non-WWW TLS.
+                              description_kind: plain
+                              optional: true
+                            time_stamping:
+                              type: bool
+                              description: Corresponds to OID 1.3.6.1.5.5.7.3.8. Officially described as "Binding the hash of an object to a time".
+                              description_kind: plain
+                              optional: true
+                          description: Describes high-level ways in which a key may be used.
+                          description_kind: plain
+                        min_items: 1
+                        max_items: 1
+                      unknown_extended_key_usages:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            object_id_path:
+                              type:
+                              - list
+                              - number
+                              description: An ObjectId specifies an object identifier (OID). These provide context and describe types in ASN.1 messages.
+                              description_kind: plain
+                              required: true
+                          description: An ObjectId specifies an object identifier (OID). These provide context and describe types in ASN.1 messages.
+                          description_kind: plain
+                    description: Indicates the intended use for keys that correspond to a certificate.
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+                name_constraints:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      critical:
+                        type: bool
+                        description: Indicates whether or not the name constraints are marked critical.
+                        description_kind: plain
+                        required: true
+                      excluded_dns_names:
+                        type:
+                        - list
+                        - string
+                        description: Contains excluded DNS names. Any DNS name that can be constructed by simply adding zero or more labels to the left-hand side of the name satisfies the name constraint. For example, 'example.com', 'www.example.com', 'www.sub.example.com' would satisfy 'example.com' while 'example1.com' does not.
+                        description_kind: plain
+                        optional: true
+                      excluded_email_addresses:
+                        type:
+                        - list
+                        - string
+                        description: Contains the excluded email addresses. The value can be a particular email address, a hostname to indicate all email addresses on that host or a domain with a leading period (e.g. '.example.com') to indicate all email addresses in that domain.
+                        description_kind: plain
+                        optional: true
+                      excluded_ip_ranges:
+                        type:
+                        - list
+                        - string
+                        description: Contains the excluded IP ranges. For IPv4 addresses, the ranges are expressed using CIDR notation as specified in RFC 4632. For IPv6 addresses, the ranges are expressed in similar encoding as IPv4 addresses.
+                        description_kind: plain
+                        optional: true
+                      excluded_uris:
+                        type:
+                        - list
+                        - string
+                        description: Contains the excluded URIs that apply to the host part of the name. The value can be a hostname or a domain with a leading period (like '.example.com')
+                        description_kind: plain
+                        optional: true
+                      permitted_dns_names:
+                        type:
+                        - list
+                        - string
+                        description: Contains permitted DNS names. Any DNS name that can be constructed by simply adding zero or more labels to the left-hand side of the name satisfies the name constraint. For example, 'example.com', 'www.example.com', 'www.sub.example.com' would satisfy 'example.com' while 'example1.com' does not.
+                        description_kind: plain
+                        optional: true
+                      permitted_email_addresses:
+                        type:
+                        - list
+                        - string
+                        description: Contains the permitted email addresses. The value can be a particular email address, a hostname to indicate all email addresses on that host or a domain with a leading period (e.g. '.example.com') to indicate all email addresses in that domain.
+                        description_kind: plain
+                        optional: true
+                      permitted_ip_ranges:
+                        type:
+                        - list
+                        - string
+                        description: Contains the permitted IP ranges. For IPv4 addresses, the ranges are expressed using CIDR notation as specified in RFC 4632. For IPv6 addresses, the ranges are expressed in similar encoding as IPv4 addresses.
+                        description_kind: plain
+                        optional: true
+                      permitted_uris:
+                        type:
+                        - list
+                        - string
+                        description: Contains the permitted URIs that apply to the host part of the name. The value can be a hostname or a domain with a leading period (like '.example.com')
+                        description_kind: plain
+                        optional: true
+                    description: Describes the X.509 name constraints extension.
+                    description_kind: plain
+                  max_items: 1
+                policy_ids:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      object_id_path:
+                        type:
+                        - list
+                        - number
+                        description: An ObjectId specifies an object identifier (OID). These provide context and describe types in ASN.1 messages.
+                        description_kind: plain
+                        required: true
+                    description: Describes the X.509 certificate policy object identifiers, per https://tools.ietf.org/html/rfc5280#section-4.2.1.4.
+                    description_kind: plain
+              description: Describes how some of the technical X.509 fields in a certificate should be populated.
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description: The config used to create a self-signed X.509 certificate or CSR.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

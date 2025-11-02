@@ -1,0 +1,73 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: The time at which the Regional Parameter Version was created.
+      description_kind: plain
+      computed: true
+    disabled:
+      type: bool
+      description: The current state of Regional Parameter Version. This field is only applicable for updating Regional Parameter Version.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kms_key_version:
+      type: string
+      description: The resource name of the Cloud KMS CryptoKeyVersion used to decrypt regional parameter version payload. Format 'projects/{{project}}/locations/{{location}}/keyRings/{{key_ring}}/cryptoKeys/{{crypto_key}}/cryptoKeyVersions/{{crypto_key_version}}'
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description: Location of Parameter Manager Regional parameter resource.
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: 'The resource name of the Regional Parameter Version. Format: ''projects/{{project}}/locations/{{location}}/parameters/{{parameter_id}}/versions/{{parameter_version_id}}'''
+      description_kind: plain
+      computed: true
+    parameter:
+      type: string
+      description: Parameter Manager Regional Parameter resource.
+      description_kind: plain
+      required: true
+    parameter_data:
+      type: string
+      description: The Regional Parameter data.
+      description_kind: plain
+      required: true
+      sensitive: true
+    parameter_version_id:
+      type: string
+      description: Version ID of the Regional Parameter Version Resource. This must be unique within the Regional Parameter.
+      description_kind: plain
+      required: true
+    update_time:
+      type: string
+      description: The time at which the Regional Parameter Version was updated.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,304 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "update_token": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "encryption_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "key_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "firewall_policy": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "stateful_default_actions": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "stateless_default_actions": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "stateless_fragment_default_actions": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "tls_inspection_configuration_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "policy_variables": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "rule_variables": {
+                    "nesting_mode": "set",
+                    "block": {
+                      "attributes": {
+                        "key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "ip_set": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "definition": {
+                                "type": [
+                                  "set",
+                                  "string"
+                                ],
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "stateful_engine_options": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "rule_order": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "stream_exception_policy": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "flow_timeouts": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "tcp_idle_timeout_seconds": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "stateful_rule_group_reference": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "deep_threat_inspection": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "priority": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "resource_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "override": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "action": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "stateless_custom_action": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "action_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "action_definition": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "block_types": {
+                        "publish_metric_action": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "block_types": {
+                              "dimension": {
+                                "nesting_mode": "set",
+                                "block": {
+                                  "attributes": {
+                                    "value": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "required": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "min_items": 1
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "stateless_rule_group_reference": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "priority": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "resource_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

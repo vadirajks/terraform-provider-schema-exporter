@@ -1,0 +1,69 @@
+version: 1
+block:
+  attributes:
+    display_name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    log_analytics_workspace_id:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    nrt_template:
+      type:
+      - list
+      - - object
+        - description: string
+          query: string
+          severity: string
+          tactics:
+          - list
+          - string
+      description_kind: plain
+      computed: true
+    scheduled_template:
+      type:
+      - list
+      - - object
+        - description: string
+          query: string
+          query_frequency: string
+          query_period: string
+          severity: string
+          tactics:
+          - list
+          - string
+          trigger_operator: string
+          trigger_threshold: number
+      description_kind: plain
+      computed: true
+    security_incident_template:
+      type:
+      - list
+      - - object
+        - description: string
+          product_filter: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

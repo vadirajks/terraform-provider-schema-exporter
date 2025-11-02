@@ -1,0 +1,179 @@
+version: 0
+block:
+  attributes:
+    as_paths:
+      type:
+      - list
+      - - object
+        - as_lists:
+          - list
+          - number
+          path_segment_type: string
+      description_kind: plain
+      computed: true
+    creation_timestamp:
+      type: string
+      description: Creation timestamp in RFC3339 text format.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: An optional description of this resource. Provide this property when you create the resource.
+      description_kind: plain
+      optional: true
+    dest_range:
+      type: string
+      description: The destination range of outgoing packets that this route applies to. Only IPv4 is supported.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.  Specifically, the name must be 1-63 characters long and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+      description_kind: plain
+      required: true
+    network:
+      type: string
+      description: The network that this route applies to.
+      description_kind: plain
+      required: true
+    next_hop_gateway:
+      type: string
+      description: 'URL to a gateway that should handle matching packets. Currently, you can only specify the internet gateway, using a full or partial valid URL: * ''https://www.googleapis.com/compute/v1/projects/project/global/gateways/default-internet-gateway'' * ''projects/project/global/gateways/default-internet-gateway'' * ''global/gateways/default-internet-gateway'' * The string ''default-internet-gateway''.'
+      description_kind: plain
+      optional: true
+    next_hop_hub:
+      type: string
+      description: The hub network that should handle matching packets, which should conform to RFC1035.
+      description_kind: plain
+      computed: true
+    next_hop_ilb:
+      type: string
+      description: 'The IP address or URL to a forwarding rule of type loadBalancingScheme=INTERNAL that should handle matching packets. With the GA provider you can only specify the forwarding rule as a partial or full URL. For example, the following are all valid values: * 10.128.0.56 * https://www.googleapis.com/compute/v1/projects/project/regions/region/forwardingRules/forwardingRule * regions/region/forwardingRules/forwardingRule When the beta provider, you can also specify the IP address of a forwarding rule from the same VPC or any peered VPC. Note that this can only be used when the destinationRange is a public (non-RFC 1918) IP CIDR range.'
+      description_kind: plain
+      optional: true
+    next_hop_instance:
+      type: string
+      description: 'URL to an instance that should handle matching packets. You can specify this as a full or partial URL. For example: * ''https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance'' * ''projects/project/zones/zone/instances/instance'' * ''zones/zone/instances/instance'' * Just the instance name, with the zone in ''next_hop_instance_zone''.'
+      description_kind: plain
+      optional: true
+    next_hop_instance_zone:
+      type: string
+      description: The zone of the instance specified in next_hop_instance. Omit if next_hop_instance is specified as a URL.
+      description_kind: plain
+      optional: true
+      computed: true
+    next_hop_inter_region_cost:
+      type: string
+      description: Internal fixed region-to-region cost that Google Cloud calculates based on factors such as network performance, distance, and available bandwidth between regions.
+      description_kind: plain
+      computed: true
+    next_hop_ip:
+      type: string
+      description: Network IP address of an instance that should handle matching packets.
+      description_kind: plain
+      optional: true
+      computed: true
+    next_hop_med:
+      type: string
+      description: Multi-Exit Discriminator, a BGP route metric that indicates the desirability of a particular route in a network.
+      description_kind: plain
+      computed: true
+    next_hop_network:
+      type: string
+      description: URL to a Network that should handle matching packets.
+      description_kind: plain
+      computed: true
+    next_hop_origin:
+      type: string
+      description: Indicates the origin of the route. Can be IGP (Interior Gateway Protocol), EGP (Exterior Gateway Protocol), or INCOMPLETE.
+      description_kind: plain
+      computed: true
+    next_hop_peering:
+      type: string
+      description: The network peering name that should handle matching packets, which should conform to RFC1035.
+      description_kind: plain
+      computed: true
+    next_hop_vpn_tunnel:
+      type: string
+      description: URL to a VpnTunnel that should handle matching packets.
+      description_kind: plain
+      optional: true
+    priority:
+      type: number
+      description: The priority of this route. Priority is used to break ties in cases where there is more than one matching route of equal prefix length. In the case of two routes with equal prefix length, the one with the lowest-numbered priority value wins. Default value is 1000. Valid range is 0 through 65535.
+      description_kind: plain
+      optional: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    route_status:
+      type: string
+      description: 'The status of the route, which can be one of the following values: - ''ACTIVE'' for an active route - ''INACTIVE'' for an inactive route'
+      description_kind: plain
+      computed: true
+    route_type:
+      type: string
+      description: 'The type of this route, which can be one of the following values: - ''TRANSIT'' for a transit route that this router learned from another Cloud Router and will readvertise to one of its BGP peers - ''SUBNET'' for a route from a subnet of the VPC - ''BGP'' for a route learned from a BGP peer of this router - ''STATIC'' for a static route'
+      description_kind: plain
+      computed: true
+    self_link:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - set
+      - string
+      description: A list of instance tags to which this route applies.
+      description_kind: plain
+      optional: true
+    warnings:
+      type:
+      - list
+      - - object
+        - code: string
+          data:
+          - list
+          - - object
+            - key: string
+              value: string
+          message: string
+      description: If potential misconfigurations are detected for this route, this field will be populated with warning messages.
+      description_kind: plain
+      computed: true
+  block_types:
+    params:
+      nesting_mode: list
+      block:
+        attributes:
+          resource_manager_tags:
+            type:
+            - map
+            - string
+            description: Resource manager tags to be bound to the route. Tag keys and values have the same definition as resource manager tags. Keys must be in the format tagKeys/{tag_key_id}, and values are in the format tagValues/456. The field is ignored when empty. The field is immutable and causes resource replacement when mutated. This field is only set at create time and modifying this field after creation will trigger recreation. To apply tags to an existing resource, see the google_tags_tag_binding resource.
+            description_kind: plain
+            optional: true
+        description: Additional params passed with the request, but not persisted as part of resource payload
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

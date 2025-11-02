@@ -1,0 +1,44 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instance:
+      type: string
+      description: The name of the instance in which the resource policies are attached to.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The resource policy to be attached to the instance for scheduling start/stop operations. Do not specify the self link.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    zone:
+      type: string
+      description: A reference to the zone where the instance resides.
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

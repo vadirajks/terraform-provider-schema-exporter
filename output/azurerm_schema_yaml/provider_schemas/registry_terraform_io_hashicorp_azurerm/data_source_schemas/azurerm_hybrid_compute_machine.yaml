@@ -1,0 +1,220 @@
+version: 0
+block:
+  attributes:
+    ad_fqdn:
+      type: string
+      description_kind: plain
+      computed: true
+    agent_configuration:
+      type:
+      - list
+      - - object
+        - extensions_allow_list:
+          - list
+          - - object
+            - publisher: string
+              type: string
+          extensions_block_list:
+          - list
+          - - object
+            - publisher: string
+              type: string
+          extensions_enabled: bool
+          guest_configuration_enabled: bool
+          incoming_connections_ports:
+          - list
+          - string
+          proxy_bypass:
+          - list
+          - string
+          proxy_url: string
+      description_kind: plain
+      computed: true
+    agent_version:
+      type: string
+      description_kind: plain
+      computed: true
+    client_public_key:
+      type: string
+      description_kind: plain
+      computed: true
+    cloud_metadata:
+      type:
+      - list
+      - - object
+        - provider: string
+      description_kind: plain
+      computed: true
+    detected_properties:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    display_name:
+      type: string
+      description_kind: plain
+      computed: true
+    dns_fqdn:
+      type: string
+      description_kind: plain
+      computed: true
+    domain_name:
+      type: string
+      description_kind: plain
+      computed: true
+    error_details:
+      type:
+      - list
+      - - object
+        - additional_info:
+          - list
+          - - object
+            - info: string
+              type: string
+          code: string
+          message: string
+          target: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    identity:
+      type:
+      - list
+      - - object
+        - principal_id: string
+          tenant_id: string
+          type: string
+      description_kind: plain
+      computed: true
+    last_status_change:
+      type: string
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    location_data:
+      type:
+      - list
+      - - object
+        - city: string
+          country_or_region: string
+          district: string
+          name: string
+      description_kind: plain
+      computed: true
+    machine_fqdn:
+      type: string
+      description_kind: plain
+      computed: true
+    mssql_discovered:
+      type: bool
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    os_name:
+      type: string
+      description_kind: plain
+      computed: true
+    os_profile:
+      type:
+      - list
+      - - object
+        - computer_name: string
+          linux_configuration:
+          - list
+          - - object
+            - patch_settings:
+              - list
+              - - object
+                - assessment_mode: string
+                  patch_mode: string
+          windows_configuration:
+          - list
+          - - object
+            - patch_settings:
+              - list
+              - - object
+                - assessment_mode: string
+                  patch_mode: string
+      description_kind: plain
+      computed: true
+    os_sku:
+      type: string
+      description_kind: plain
+      computed: true
+    os_type:
+      type: string
+      description_kind: plain
+      computed: true
+    os_version:
+      type: string
+      description_kind: plain
+      computed: true
+    parent_cluster_resource_id:
+      type: string
+      description_kind: plain
+      computed: true
+    private_link_scope_resource_id:
+      type: string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    service_status:
+      type:
+      - list
+      - - object
+        - extension_service:
+          - list
+          - - object
+            - startup_type: string
+              status: string
+          guest_configuration_service:
+          - list
+          - - object
+            - startup_type: string
+              status: string
+      description_kind: plain
+      computed: true
+    status:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    vm_id:
+      type: string
+      description_kind: plain
+      computed: true
+    vm_uuid:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

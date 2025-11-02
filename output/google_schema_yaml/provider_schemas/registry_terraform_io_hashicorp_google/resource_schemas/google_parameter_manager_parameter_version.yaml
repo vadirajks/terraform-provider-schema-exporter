@@ -1,0 +1,68 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: The time at which the Parameter Version was created.
+      description_kind: plain
+      computed: true
+    disabled:
+      type: bool
+      description: The current state of Parameter Version. This field is only applicable for updating Parameter Version.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kms_key_version:
+      type: string
+      description: The resource name of the Cloud KMS CryptoKeyVersion used to decrypt parameter version payload. Format 'projects/{{project}}/locations/global/keyRings/{{key_ring}}/cryptoKeys/{{crypto_key}}/cryptoKeyVersions/{{crypto_key_version}}'
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: 'The resource name of the Parameter Version. Format: ''projects/{{project}}/locations/global/parameters/{{parameter_id}}/versions/{{parameter_version_id}}'''
+      description_kind: plain
+      computed: true
+    parameter:
+      type: string
+      description: Parameter Manager Parameter resource.
+      description_kind: plain
+      required: true
+    parameter_data:
+      type: string
+      description: The Parameter data.
+      description_kind: plain
+      required: true
+      sensitive: true
+    parameter_version_id:
+      type: string
+      description: Version ID of the Parameter Version Resource. This must be unique within the Parameter.
+      description_kind: plain
+      required: true
+    update_time:
+      type: string
+      description: The time at which the Parameter Version was updated.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

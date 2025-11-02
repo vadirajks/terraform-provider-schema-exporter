@@ -1,0 +1,254 @@
+version: 0
+block:
+  attributes:
+    all_instances_config:
+      type:
+      - list
+      - - object
+        - labels:
+          - map
+          - string
+          metadata:
+          - map
+          - string
+      description: Specifies configuration that overrides the instance template configuration for the group.
+      description_kind: plain
+      computed: true
+    auto_healing_policies:
+      type:
+      - list
+      - - object
+        - health_check: string
+          initial_delay_sec: number
+      description: The autohealing policies for this managed instance group. You can specify only one value.
+      description_kind: plain
+      computed: true
+    base_instance_name:
+      type: string
+      description: The base instance name to use for instances in this group. The value must be a valid RFC1035 name. Supported characters are lowercase letters, numbers, and hyphens (-). Instances are named by appending a hyphen and a random four-character string to the base instance name.
+      description_kind: plain
+      computed: true
+    creation_timestamp:
+      type: string
+      description: Creation timestamp in RFC3339 text format.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: An optional textual description of the instance group manager.
+      description_kind: plain
+      computed: true
+    distribution_policy_target_shape:
+      type: string
+      description: The shape to which the group converges either proactively or on resize events (depending on the value set in updatePolicy.instanceRedistributionType).
+      description_kind: plain
+      computed: true
+    distribution_policy_zones:
+      type:
+      - set
+      - string
+      description: The distribution policy for this managed instance group. You can specify one or more values.
+      description_kind: plain
+      computed: true
+    fingerprint:
+      type: string
+      description: The fingerprint of the instance group manager.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instance_flexibility_policy:
+      type:
+      - list
+      - - object
+        - instance_selections:
+          - set
+          - - object
+            - machine_types:
+              - set
+              - string
+              name: string
+              rank: number
+      description: The flexibility policy for this managed instance group. Instance flexibility allowing MIG to create VMs from multiple types of machines. Instance flexibility configuration on MIG overrides instance template configuration.
+      description_kind: plain
+      computed: true
+    instance_group:
+      type: string
+      description: The full URL of the instance group created by the manager.
+      description_kind: plain
+      computed: true
+    instance_group_manager_id:
+      type: number
+      description: The unique identifier number for the resource. This identifier is defined by the server.
+      description_kind: plain
+      computed: true
+    instance_lifecycle_policy:
+      type:
+      - list
+      - - object
+        - default_action_on_failure: string
+          force_update_on_repair: string
+      description: The instance lifecycle policy for this managed instance group.
+      description_kind: plain
+      computed: true
+    list_managed_instances_results:
+      type: string
+      description: 'Pagination behavior of the listManagedInstances API method for this managed instance group. Valid values are: "PAGELESS", "PAGINATED". If PAGELESS (default), Pagination is disabled for the group''s listManagedInstances API method. maxResults and pageToken query parameters are ignored and all instances are returned in a single response. If PAGINATED, pagination is enabled, maxResults and pageToken query parameters are respected.'
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: The name of the instance group manager. Must be 1-63 characters long and comply with RFC1035. Supported characters include lowercase letters, numbers, and hyphens.
+      description_kind: plain
+      optional: true
+    named_port:
+      type:
+      - set
+      - - object
+        - name: string
+          port: number
+      description: The named port configuration.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description: The ID of the project in which the resource belongs. If it is not provided, the provider project is used.
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: The region where the managed instance group resides.
+      description_kind: plain
+      optional: true
+    self_link:
+      type: string
+      description: The URL of the created resource.
+      description_kind: plain
+      optional: true
+    standby_policy:
+      type:
+      - list
+      - - object
+        - initial_delay_sec: number
+          mode: string
+      description: Standby policy for stopped and suspended instances.
+      description_kind: plain
+      computed: true
+    stateful_disk:
+      type:
+      - set
+      - - object
+        - delete_rule: string
+          device_name: string
+      description: Disks created on the instances that will be preserved on instance delete, update, etc. Structure is documented below. For more information see the official documentation. Proactive cross zone instance redistribution must be disabled before you can update stateful disks on existing instance group managers. This can be controlled via the update_policy.
+      description_kind: plain
+      computed: true
+    stateful_external_ip:
+      type:
+      - list
+      - - object
+        - delete_rule: string
+          interface_name: string
+      description: External IPs considered stateful by the instance group.
+      description_kind: plain
+      computed: true
+    stateful_internal_ip:
+      type:
+      - list
+      - - object
+        - delete_rule: string
+          interface_name: string
+      description: External IPs considered stateful by the instance group.
+      description_kind: plain
+      computed: true
+    status:
+      type:
+      - list
+      - - object
+        - all_instances_config:
+          - list
+          - - object
+            - current_revision: string
+              effective: bool
+          is_stable: bool
+          stateful:
+          - list
+          - - object
+            - has_stateful_config: bool
+              per_instance_configs:
+              - list
+              - - object
+                - all_effective: bool
+          version_target:
+          - list
+          - - object
+            - is_reached: bool
+      description: The status of this managed instance group.
+      description_kind: plain
+      computed: true
+    target_pools:
+      type:
+      - set
+      - string
+      description: The full URL of all target pools to which new instances in the group are added. Updating the target pools attribute does not affect existing instances.
+      description_kind: plain
+      computed: true
+    target_size:
+      type: number
+      description: The target number of running instances for this managed instance group. This value should always be explicitly set unless this resource is attached to an autoscaler, in which case it should never be set. Defaults to 0.
+      description_kind: plain
+      computed: true
+    target_stopped_size:
+      type: number
+      description: The target number of stopped instances for this managed instance group.
+      description_kind: plain
+      computed: true
+    target_suspended_size:
+      type: number
+      description: The target number of suspended instances for this managed instance group.
+      description_kind: plain
+      computed: true
+    update_policy:
+      type:
+      - list
+      - - object
+        - instance_redistribution_type: string
+          max_surge_fixed: number
+          max_surge_percent: number
+          max_unavailable_fixed: number
+          max_unavailable_percent: number
+          minimal_action: string
+          most_disruptive_allowed_action: string
+          replacement_method: string
+          type: string
+      description: The update policy for this managed instance group.
+      description_kind: plain
+      computed: true
+    version:
+      type:
+      - list
+      - - object
+        - instance_template: string
+          name: string
+          target_size:
+          - list
+          - - object
+            - fixed: number
+              percent: number
+      description: Application versions managed by this instance group. Each version deals with a specific instance template, allowing canary release scenarios.
+      description_kind: plain
+      computed: true
+    wait_for_instances:
+      type: bool
+      description: Whether to wait for all instances to be created/updated before returning. Note that if this is set to true and the operation does not succeed, Terraform will continue trying until it times out.
+      description_kind: plain
+      computed: true
+    wait_for_instances_status:
+      type: string
+      description: When used with wait_for_instances specifies the status to wait for. When STABLE is specified this resource will wait until the instances are stable before returning. When UPDATED is set, it will wait for the version target to be reached and any per instance configs to be effective and all instances configs to be effective as well as all instances to be stable before returning.
+      description_kind: plain
+      computed: true
+  description_kind: plain

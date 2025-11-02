@@ -1,0 +1,1502 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "cluster": {
+        "type": "string",
+        "description": "The cluster to create the node pool for. Cluster must be present in location provided for zonal clusters.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "initial_node_count": {
+        "type": "number",
+        "description": "The initial number of nodes for the pool. In regional or multi-zonal clusters, this is the number of nodes per zone. Changing this will force recreation of the resource.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "instance_group_urls": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "The resource URLs of the managed instance groups associated with this node pool.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location (region or zone) of the cluster.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "managed_instance_group_urls": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "List of instance group URLs which have been assigned to this node pool.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "max_pods_per_node": {
+        "type": "number",
+        "description": "The maximum number of pods per node in this node pool. Note that this does not work on node pools which are \"route-based\" - that is, node pools belonging to clusters that do not have IP Aliasing enabled.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the node pool. If left blank, Terraform will auto-generate a unique name.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name_prefix": {
+        "type": "string",
+        "description": "Creates a unique name for the node pool beginning with the specified prefix. Conflicts with name.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "node_count": {
+        "type": "number",
+        "description": "The number of nodes per instance group. This field can be used to update the number of nodes per instance group but should not be used alongside autoscaling.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "node_locations": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description": "The list of zones in which the node pool's nodes should be located. Nodes must be in the region of their regional cluster or in the same region as their cluster's zone for zonal clusters. If unspecified, the cluster-level node_locations will be used.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "operation": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description": "The ID of the project in which to create the node pool. If blank, the provider-configured project will be used.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "version": {
+        "type": "string",
+        "description": "The Kubernetes version for the nodes in this pool. Note that if this field and auto_upgrade are both specified, they will fight each other for what the node version should be, so setting both is highly discouraged. While a fuzzy version can be specified, it's recommended that you specify explicit versions as Terraform will see spurious diffs when fuzzy versions are used. See the google_container_engine_versions data source's version_prefix field to approximate fuzzy versions in a Terraform-compatible way.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "autoscaling": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "location_policy": {
+              "type": "string",
+              "description": "Location policy specifies the algorithm used when scaling-up the node pool. \"BALANCED\" - Is a best effort policy that aims to balance the sizes of available zones. \"ANY\" - Instructs the cluster autoscaler to prioritize utilization of unused reservations, and reduces preemption risk for Spot VMs.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "max_node_count": {
+              "type": "number",
+              "description": "Maximum number of nodes per zone in the node pool. Must be >= min_node_count. Cannot be used with total limits.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "min_node_count": {
+              "type": "number",
+              "description": "Minimum number of nodes per zone in the node pool. Must be >=0 and <= max_node_count. Cannot be used with total limits.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "total_max_node_count": {
+              "type": "number",
+              "description": "Maximum number of all nodes in the node pool. Must be >= total_min_node_count. Cannot be used with per zone limits.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "total_min_node_count": {
+              "type": "number",
+              "description": "Minimum number of all nodes in the node pool. Must be >=0 and <= total_max_node_count. Cannot be used with per zone limits.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Configuration required by cluster autoscaler to adjust the size of the node pool to the current cluster usage.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "management": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "auto_repair": {
+              "type": "bool",
+              "description": "Whether the nodes will be automatically repaired. Enabled by default.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "auto_upgrade": {
+              "type": "bool",
+              "description": "Whether the nodes will be automatically upgraded. Enabled by default.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Node management configuration, wherein auto-repair and auto-upgrade is configured.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "network_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "create_pod_range": {
+              "type": "bool",
+              "description": "Whether to create a new range for pod IPs in this node pool. Defaults are provided for pod_range and pod_ipv4_cidr_block if they are not specified.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "enable_private_nodes": {
+              "type": "bool",
+              "description": "Whether nodes have internal IP addresses only.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "pod_ipv4_cidr_block": {
+              "type": "string",
+              "description": "The IP address range for pod IPs in this node pool. Only applicable if create_pod_range is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. /14) to have a range chosen with a specific netmask. Set to a CIDR notation (e.g. 10.96.0.0/14) to pick a specific range to use.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "pod_range": {
+              "type": "string",
+              "description": "The ID of the secondary range for pod IPs. If create_pod_range is true, this ID is used for the new range. If create_pod_range is false, uses an existing secondary range with this ID.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "subnetwork": {
+              "type": "string",
+              "description": "The subnetwork path for the node pool. Format: projects/{project}/regions/{region}/subnetworks/{subnetwork} . If the cluster is associated with multiple subnetworks, the subnetwork for the node pool is picked based on the IP utilization during node pool creation and is immutable.",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "block_types": {
+            "additional_node_network_configs": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "network": {
+                    "type": "string",
+                    "description": "Name of the VPC where the additional interface belongs.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "subnetwork": {
+                    "type": "string",
+                    "description": "Name of the subnetwork where the additional interface belongs.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "We specify the additional node networks for this node pool using this list. Each node network corresponds to an additional interface",
+                "description_kind": "plain"
+              }
+            },
+            "additional_pod_network_configs": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "max_pods_per_node": {
+                    "type": "number",
+                    "description": "The maximum number of pods per node which use this pod network.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "secondary_pod_range": {
+                    "type": "string",
+                    "description": "The name of the secondary range on the subnet which provides IP address for this pod range.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "subnetwork": {
+                    "type": "string",
+                    "description": "Name of the subnetwork where the additional pod network belongs.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "We specify the additional pod networks for this node pool using this list. Each pod network corresponds to an additional alias IP range for the node",
+                "description_kind": "plain"
+              }
+            },
+            "network_performance_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "total_egress_bandwidth_tier": {
+                    "type": "string",
+                    "description": "Specifies the total network bandwidth tier for the NodePool. [Valid values](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.Tier) include: \"TIER_1\" and \"TIER_UNSPECIFIED\".",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Network bandwidth tier configuration.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "pod_cidr_overprovision_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "disabled": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Configuration for node-pool level pod cidr overprovision. If not set, the cluster level setting will be inherited",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Networking configuration for this NodePool. If specified, it overrides the cluster-level defaults.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "node_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "boot_disk_kms_key": {
+              "type": "string",
+              "description": "The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "disk_size_gb": {
+              "type": "number",
+              "description": "Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "disk_type": {
+              "type": "string",
+              "description": "Type of the disk attached to each node. Such as pd-standard, pd-balanced or pd-ssd",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "effective_taints": {
+              "type": [
+                "list",
+                [
+                  "object",
+                  {
+                    "effect": "string",
+                    "key": "string",
+                    "value": "string"
+                  }
+                ]
+              ],
+              "description": "List of kubernetes taints applied to each node.",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "enable_confidential_storage": {
+              "type": "bool",
+              "description": "If enabled boot disks are configured with confidential mode.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "flex_start": {
+              "type": "bool",
+              "description": "Enables Flex Start provisioning model for the node pool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "image_type": {
+              "type": "string",
+              "description": "The image type to use for this node. Note that for a given image type, the latest version of it will be used.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "labels": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description": "The map of Kubernetes labels (key/value pairs) to be applied to each node. These will added in addition to any default label(s) that Kubernetes may apply to the node.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "local_ssd_count": {
+              "type": "number",
+              "description": "The number of local SSD disks to be attached to the node.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "local_ssd_encryption_mode": {
+              "type": "string",
+              "description": "LocalSsdEncryptionMode specified the method used for encrypting the local SSDs attached to the node.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "logging_variant": {
+              "type": "string",
+              "description": "Type of logging agent that is used as the default value for node pools in the cluster. Valid values include DEFAULT and MAX_THROUGHPUT.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "machine_type": {
+              "type": "string",
+              "description": "The name of a Google Compute Engine machine type.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "max_run_duration": {
+              "type": "string",
+              "description": "The runtime of each node in the node pool in seconds, terminated by 's'. Example: \"3600s\".",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "metadata": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description": "The metadata key/value pairs assigned to instances in the cluster.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "min_cpu_platform": {
+              "type": "string",
+              "description": "Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "node_group": {
+              "type": "string",
+              "description": "Setting this field will assign instances of this pool to run on the specified node group. This is useful for running workloads on sole tenant nodes.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "oauth_scopes": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description": "The set of Google API scopes to be made available on all of the node VMs.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "preemptible": {
+              "type": "bool",
+              "description": "Whether the nodes are created as preemptible VM instances.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "resource_labels": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description": "The GCE resource labels (a map of key/value pairs) to be applied to the node pool.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "resource_manager_tags": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description": "A map of resource manager tags. Resource manager tag keys and values have the same definition as resource manager tags. Keys must be in the format tagKeys/{tag_key_id}, and values are in the format tagValues/456. The field is ignored (both PUT & PATCH) when empty.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "service_account": {
+              "type": "string",
+              "description": "The Google Cloud Platform Service Account to be used by the node VMs.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "spot": {
+              "type": "bool",
+              "description": "Whether the nodes are created as spot VM instances.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "storage_pools": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "The list of Storage Pools where boot disks are provisioned.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "tags": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "The list of instance tags applied to all nodes.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "advanced_machine_features": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enable_nested_virtualization": {
+                    "type": "bool",
+                    "description": "Whether the node should have nested virtualization enabled.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "performance_monitoring_unit": {
+                    "type": "string",
+                    "description": "Level of Performance Monitoring Unit (PMU) requested. If unset, no access to the PMU is assumed.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "threads_per_core": {
+                    "type": "number",
+                    "description": "The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Specifies options for controlling advanced machine features.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "boot_disk": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "disk_type": {
+                    "type": "string",
+                    "description": "Type of the disk attached to each node. Such as pd-standard, pd-balanced or pd-ssd",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "provisioned_iops": {
+                    "type": "number",
+                    "description": "Configured IOPs provisioning. Only valid with disk type hyperdisk-balanced.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "provisioned_throughput": {
+                    "type": "number",
+                    "description": "Configured throughput provisioning. Only valid with disk type hyperdisk-balanced.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "size_gb": {
+                    "type": "number",
+                    "description": "Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  }
+                },
+                "description": "Boot disk configuration for node pools nodes.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "confidential_nodes": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "confidential_instance_type": {
+                    "type": "string",
+                    "description": "Defines the type of technology used by the confidential node.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "enabled": {
+                    "type": "bool",
+                    "description": "Whether Confidential Nodes feature is enabled for all nodes in this pool.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Configuration for the confidential nodes feature, which makes nodes run on confidential VMs.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "containerd_config": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "private_registry_access_config": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "enabled": {
+                          "type": "bool",
+                          "description": "Whether or not private registries are configured.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "certificate_authority_domain_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "fqdns": {
+                                "type": [
+                                  "list",
+                                  "string"
+                                ],
+                                "description": "List of fully-qualified-domain-names. IPv4s and port specification are supported.",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "block_types": {
+                              "gcp_secret_manager_certificate_config": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "secret_uri": {
+                                      "type": "string",
+                                      "description": "URI for the secret that hosts a certificate. Must be in the format 'projects/PROJECT_NUM/secrets/SECRET_NAME/versions/VERSION_OR_LATEST'.",
+                                      "description_kind": "plain",
+                                      "required": true
+                                    }
+                                  },
+                                  "description": "Parameters for configuring a certificate hosted in GCP SecretManager.",
+                                  "description_kind": "plain"
+                                },
+                                "min_items": 1,
+                                "max_items": 1
+                              }
+                            },
+                            "description": "Parameters for configuring CA certificate and domains.",
+                            "description_kind": "plain"
+                          }
+                        }
+                      },
+                      "description": "Parameters for private container registries configuration.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "Parameters for containerd configuration.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "ephemeral_storage_local_ssd_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "data_cache_count": {
+                    "type": "number",
+                    "description": "Number of local SSDs to be utilized for GKE Data Cache. Uses NVMe interfaces.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "local_ssd_count": {
+                    "type": "number",
+                    "description": "Number of local SSDs to use to back ephemeral storage. Uses NVMe interfaces. Each local SSD must be 375 or 3000 GB in size, and all local SSDs must share the same size.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Parameters for the ephemeral storage filesystem. If unspecified, ephemeral storage is backed by the boot disk.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "fast_socket": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enabled": {
+                    "type": "bool",
+                    "description": "Whether or not NCCL Fast Socket is enabled",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Enable or disable NCCL Fast Socket in the node pool.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "gcfs_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enabled": {
+                    "type": "bool",
+                    "description": "Whether or not GCFS is enabled",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "GCFS configuration for this node.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "guest_accelerator": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "count": {
+                    "type": "number",
+                    "description": "The number of the accelerator cards exposed to an instance.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "gpu_partition_size": {
+                    "type": "string",
+                    "description": "Size of partitions to create on the GPU. Valid values are described in the NVIDIA mig user guide (https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning)",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "The accelerator type resource name.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "gpu_driver_installation_config": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "gpu_driver_version": {
+                          "type": "string",
+                          "description": "Mode for how the GPU driver is installed.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "Configuration for auto installation of GPU driver.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "gpu_sharing_config": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "gpu_sharing_strategy": {
+                          "type": "string",
+                          "description": "The type of GPU sharing strategy to enable on the GPU node. Possible values are described in the API package (https://pkg.go.dev/google.golang.org/api/container/v1#GPUSharingConfig)",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "max_shared_clients_per_gpu": {
+                          "type": "number",
+                          "description": "The maximum number of containers that can share a GPU.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "Configuration for GPU sharing.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "List of the type and count of accelerator cards attached to the instance.",
+                "description_kind": "plain"
+              }
+            },
+            "gvnic": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enabled": {
+                    "type": "bool",
+                    "description": "Whether or not gvnic is enabled",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Enable or disable gvnic in the node pool.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "host_maintenance_policy": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "maintenance_interval": {
+                    "type": "string",
+                    "description": ".",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "The maintenance policy for the hosts on which the GKE VMs run on.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "kubelet_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "allowed_unsafe_sysctls": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Defines a comma-separated allowlist of unsafe sysctls or sysctl patterns which can be set on the Pods.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "container_log_max_files": {
+                    "type": "number",
+                    "description": "Defines the maximum number of container log files that can be present for a container.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "container_log_max_size": {
+                    "type": "string",
+                    "description": "Defines the maximum size of the container log file before it is rotated.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "cpu_cfs_quota": {
+                    "type": "bool",
+                    "description": "Enable CPU CFS quota enforcement for containers that specify CPU limits.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "cpu_cfs_quota_period": {
+                    "type": "string",
+                    "description": "Set the CPU CFS quota period value 'cpu.cfs_period_us'.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "cpu_manager_policy": {
+                    "type": "string",
+                    "description": "Control the CPU management policy on the node.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "eviction_max_pod_grace_period_seconds": {
+                    "type": "number",
+                    "description": "Defines the maximum allowed grace period (in seconds) to use when terminating pods in response to a soft eviction threshold being met.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "image_gc_high_threshold_percent": {
+                    "type": "number",
+                    "description": "Defines the percent of disk usage after which image garbage collection is always run.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "image_gc_low_threshold_percent": {
+                    "type": "number",
+                    "description": "Defines the percent of disk usage before which image garbage collection is never run. Lowest disk usage to garbage collect to.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "image_maximum_gc_age": {
+                    "type": "string",
+                    "description": "Defines the maximum age an image can be unused before it is garbage collected.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "image_minimum_gc_age": {
+                    "type": "string",
+                    "description": "Defines the minimum age for an unused image before it is garbage collected.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "insecure_kubelet_readonly_port_enabled": {
+                    "type": "string",
+                    "description": "Controls whether the kubelet read-only port is enabled. It is strongly recommended to set this to `FALSE`. Possible values: `TRUE`, `FALSE`.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "max_parallel_image_pulls": {
+                    "type": "number",
+                    "description": "Set the maximum number of image pulls in parallel.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "pod_pids_limit": {
+                    "type": "number",
+                    "description": "Controls the maximum number of processes allowed to run in a pod.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "single_process_oom_kill": {
+                    "type": "bool",
+                    "description": "Defines whether to enable single process OOM killer.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "eviction_minimum_reclaim": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "imagefs_available": {
+                          "type": "string",
+                          "description": "Defines percentage of minimum reclaim for imagefs.available.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "imagefs_inodes_free": {
+                          "type": "string",
+                          "description": "Defines percentage of minimum reclaim for imagefs.inodesFree.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "memory_available": {
+                          "type": "string",
+                          "description": "Defines percentage of minimum reclaim for memory.available.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "nodefs_available": {
+                          "type": "string",
+                          "description": "Defines percentage of minimum reclaim for nodefs.available.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "nodefs_inodes_free": {
+                          "type": "string",
+                          "description": "Defines percentage of minimum reclaim for nodefs.inodesFree.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "pid_available": {
+                          "type": "string",
+                          "description": "Defines percentage of minimum reclaim for pid.available.",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "Defines a map of signal names to percentage that defines minimum reclaims. It describes the minimum amount of a given resource the kubelet will reclaim when performing a pod eviction.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "eviction_soft": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "imagefs_available": {
+                          "type": "string",
+                          "description": "Defines percentage of soft eviction threshold for imagefs.available.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "imagefs_inodes_free": {
+                          "type": "string",
+                          "description": "Defines percentage of soft eviction threshold for imagefs.inodesFree.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "memory_available": {
+                          "type": "string",
+                          "description": "Defines quantity of soft eviction threshold for memory.available.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "nodefs_available": {
+                          "type": "string",
+                          "description": "Defines percentage of soft eviction threshold for nodefs.available.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "nodefs_inodes_free": {
+                          "type": "string",
+                          "description": "Defines percentage of soft eviction threshold for nodefs.inodesFree.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "pid_available": {
+                          "type": "string",
+                          "description": "Defines percentage of soft eviction threshold for pid.available.",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "Defines a map of signal names to quantities or percentage that defines soft eviction thresholds.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "eviction_soft_grace_period": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "imagefs_available": {
+                          "type": "string",
+                          "description": "Defines grace period for the imagefs.available soft eviction threshold",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "imagefs_inodes_free": {
+                          "type": "string",
+                          "description": "Defines grace period for the imagefs.inodesFree soft eviction threshold.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "memory_available": {
+                          "type": "string",
+                          "description": "Defines grace period for the memory.available soft eviction threshold.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "nodefs_available": {
+                          "type": "string",
+                          "description": "Defines grace period for the nodefs.available soft eviction threshold.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "nodefs_inodes_free": {
+                          "type": "string",
+                          "description": "Defines grace period for the nodefs.inodesFree soft eviction threshold.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "pid_available": {
+                          "type": "string",
+                          "description": "Defines grace period for the pid.available soft eviction threshold.",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "Defines a map of signal names to durations that defines grace periods for soft eviction thresholds. Each soft eviction threshold must have a corresponding grace period.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "memory_manager": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "policy": {
+                          "type": "string",
+                          "description": "The Memory Manager policy to use. This policy guides how memory and hugepages are allocated and managed for pods on the node, influencing NUMA affinity.",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        }
+                      },
+                      "description": "Configuration for the Memory Manager on the node. The memory manager optimizes memory and hugepages allocation for pods, especially those in the Guaranteed QoS class, by influencing NUMA affinity.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "topology_manager": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "policy": {
+                          "type": "string",
+                          "description": "The Topology Manager policy to use. This policy dictates how resource alignment is handled on the node.",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "scope": {
+                          "type": "string",
+                          "description": "The Topology Manager scope, defining the granularity at which policy decisions are applied. Valid values are \"container\" (resources are aligned per container within a pod) or \"pod\" (resources are aligned for the entire pod).",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        }
+                      },
+                      "description": "Configuration for the Topology Manager on the node. The Topology Manager aligns CPU, memory, and device resources on a node to optimize performance, especially for NUMA-aware workloads, by ensuring resource co-location.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "Node kubelet configs.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "linux_node_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "cgroup_mode": {
+                    "type": "string",
+                    "description": "cgroupMode specifies the cgroup mode to be used on the node.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "sysctls": {
+                    "type": [
+                      "map",
+                      "string"
+                    ],
+                    "description": "The Linux kernel parameters to be applied to the nodes and all pods running on the nodes.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "transparent_hugepage_defrag": {
+                    "type": "string",
+                    "description": "The Linux kernel transparent hugepage defrag setting.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "transparent_hugepage_enabled": {
+                    "type": "string",
+                    "description": "The Linux kernel transparent hugepage setting.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  }
+                },
+                "block_types": {
+                  "hugepages_config": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "hugepage_size_1g": {
+                          "type": "number",
+                          "description": "Amount of 1G hugepages.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "hugepage_size_2m": {
+                          "type": "number",
+                          "description": "Amount of 2M hugepages.",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "Amounts for 2M and 1G hugepages.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "Parameters that can be configured on Linux nodes.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "local_nvme_ssd_block_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "local_ssd_count": {
+                    "type": "number",
+                    "description": "Number of raw-block local NVMe SSD disks to be attached to the node. Each local SSD is 375 GB in size.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Parameters for raw-block local NVMe SSDs.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "reservation_affinity": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "consume_reservation_type": {
+                    "type": "string",
+                    "description": "Corresponds to the type of reservation consumption.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "key": {
+                    "type": "string",
+                    "description": "The label key of a reservation resource.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "values": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description": "The label values of the reservation resource.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "The reservation affinity configuration for the node pool.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "secondary_boot_disks": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "disk_image": {
+                    "type": "string",
+                    "description": "Disk image to create the secondary boot disk from",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "mode": {
+                    "type": "string",
+                    "description": "Mode for how the secondary boot disk is used.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Secondary boot disks for preloading data or container images.",
+                "description_kind": "plain"
+              },
+              "max_items": 127
+            },
+            "shielded_instance_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enable_integrity_monitoring": {
+                    "type": "bool",
+                    "description": "Defines whether the instance has integrity monitoring enabled.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "enable_secure_boot": {
+                    "type": "bool",
+                    "description": "Defines whether the instance has Secure Boot enabled.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Shielded Instance options.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "sole_tenant_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "min_node_cpus": {
+                    "type": "number",
+                    "description": "Specifies the minimum number of vCPUs that each sole tenant node must have to use CPU overcommit. If not specified, the CPU overcommit feature is disabled.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "node_affinity": {
+                    "nesting_mode": "set",
+                    "block": {
+                      "attributes": {
+                        "key": {
+                          "type": "string",
+                          "description": ".",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "operator": {
+                          "type": "string",
+                          "description": ".",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "values": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description": ".",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": ".",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1
+                  }
+                },
+                "description": "Node affinity options for sole tenant node pools.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "taint": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "effect": {
+                    "type": "string",
+                    "description": "Effect for taint.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "key": {
+                    "type": "string",
+                    "description": "Key for taint.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "Value for taint.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "List of Kubernetes taints to be applied to each node.",
+                "description_kind": "plain"
+              }
+            },
+            "windows_node_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "osversion": {
+                    "type": "string",
+                    "description": "The OS Version of the windows nodepool.Values are OS_VERSION_UNSPECIFIED,OS_VERSION_LTSC2019 and OS_VERSION_LTSC2022",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Parameters that can be configured on Windows nodes.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "workload_metadata_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "mode": {
+                    "type": "string",
+                    "description": "Mode is the configuration for how to expose metadata to workloads running on the node.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "The workload metadata configuration for this node.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "The configuration of the nodepool",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "placement_policy": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "policy_name": {
+              "type": "string",
+              "description": "If set, refers to the name of a custom resource policy supplied by the user. The resource policy must be in the same project and region as the node pool. If not found, InvalidArgument error is returned.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "tpu_topology": {
+              "type": "string",
+              "description": "The TPU topology like \"2x4\" or \"2x2x2\". https://cloud.google.com/kubernetes-engine/docs/concepts/plan-tpus#topology",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "type": {
+              "type": "string",
+              "description": "Type defines the type of placement policy",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Specifies the node placement policy",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "queued_provisioning": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enabled": {
+              "type": "bool",
+              "description": "Whether nodes in this node pool are obtainable solely through the ProvisioningRequest API",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Specifies the configuration of queued provisioning",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "upgrade_settings": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "max_surge": {
+              "type": "number",
+              "description": "The number of additional nodes that can be added to the node pool during an upgrade. Increasing max_surge raises the number of nodes that can be upgraded simultaneously. Can be set to 0 or greater.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "max_unavailable": {
+              "type": "number",
+              "description": "The number of nodes that can be simultaneously unavailable during an upgrade. Increasing max_unavailable raises the number of nodes that can be upgraded in parallel. Can be set to 0 or greater.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "strategy": {
+              "type": "string",
+              "description": "Update strategy for the given nodepool.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "blue_green_settings": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "node_pool_soak_duration": {
+                    "type": "string",
+                    "description": "Time needed after draining entire blue pool. After this period, blue pool will be cleaned up.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  }
+                },
+                "block_types": {
+                  "standard_rollout_policy": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "batch_node_count": {
+                          "type": "number",
+                          "description": "Number of blue nodes to drain in a batch.",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "batch_percentage": {
+                          "type": "number",
+                          "description": "Percentage of the blue pool nodes to drain in a batch.",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "batch_soak_duration": {
+                          "type": "string",
+                          "description": "Soak time after each batch gets drained.",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        }
+                      },
+                      "description": "Standard rollout policy is the default policy for blue-green.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  }
+                },
+                "description": "Settings for BlueGreen node pool upgrade.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Specify node upgrade settings to change how many nodes GKE attempts to upgrade at once. The number of nodes upgraded simultaneously is the sum of max_surge and max_unavailable. The maximum number of nodes upgraded simultaneously is limited to 20.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "cidr": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ipam_pool_cidr_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "ipam_pool_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "netmask_length": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "cidr_authorization_context": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "message": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "signature": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

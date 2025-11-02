@@ -1,0 +1,16 @@
+data "google_backup_dr_backup_plan" "name" {
+  backup_plan_id = string (Required)
+  location = string (Required)
+  backup_rules = ['list', ['object', {'backup_retention_days': 'number', 'rule_id': 'string', 'standard_schedule': ['list', ['object', {'backup_window': ['list', ['object', {'end_hour_of_day': 'number', 'start_hour_of_day': 'number'}]], 'days_of_month': ['list', 'number'], 'days_of_week': ['list', 'string'], 'hourly_frequency': 'number', 'months': ['list', 'string'], 'recurrence_type': 'string', 'time_zone': 'string', 'week_day_of_month': ['list', ['object', {'day_of_week': 'string', 'week_of_month': 'string'}]]}]]}]] (Computed)
+  backup_vault = string (Computed)
+  backup_vault_service_account = string (Computed)
+  create_time = string (Computed)
+  description = string (Computed)
+  id = string (Optional, Computed)
+  log_retention_days = number (Computed)
+  name = string (Computed)
+  project = string (Optional)
+  resource_type = string (Computed)
+  supported_resource_types = ['list', 'string'] (Computed)
+  update_time = string (Computed)
+}

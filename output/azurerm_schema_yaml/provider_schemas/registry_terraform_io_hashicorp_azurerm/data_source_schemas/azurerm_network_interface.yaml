@@ -1,0 +1,109 @@
+version: 0
+block:
+  attributes:
+    accelerated_networking_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    applied_dns_servers:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    dns_servers:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    internal_dns_name_label:
+      type: string
+      description_kind: plain
+      computed: true
+    ip_configuration:
+      type:
+      - list
+      - - object
+        - application_gateway_backend_address_pools_ids:
+          - set
+          - string
+          application_security_group_ids:
+          - set
+          - string
+          gateway_load_balancer_frontend_ip_configuration_id: string
+          load_balancer_backend_address_pools_ids:
+          - set
+          - string
+          load_balancer_inbound_nat_rules_ids:
+          - set
+          - string
+          name: string
+          primary: bool
+          private_ip_address: string
+          private_ip_address_allocation: string
+          private_ip_address_version: string
+          public_ip_address_id: string
+          subnet_id: string
+      description_kind: plain
+      computed: true
+    ip_forwarding_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    mac_address:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    network_security_group_id:
+      type: string
+      description_kind: plain
+      computed: true
+    private_ip_address:
+      type: string
+      description_kind: plain
+      computed: true
+    private_ip_addresses:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    virtual_machine_id:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,114 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    internet_security_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    remote_virtual_network_id:
+      type: string
+      description_kind: plain
+      required: true
+    virtual_hub_id:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    routing:
+      nesting_mode: list
+      block:
+        attributes:
+          associated_route_table_id:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          inbound_route_map_id:
+            type: string
+            description_kind: plain
+            optional: true
+          outbound_route_map_id:
+            type: string
+            description_kind: plain
+            optional: true
+          static_vnet_local_route_override_criteria:
+            type: string
+            description_kind: plain
+            optional: true
+          static_vnet_propagate_static_routes_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+        block_types:
+          propagated_route_table:
+            nesting_mode: list
+            block:
+              attributes:
+                labels:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                route_table_ids:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              description_kind: plain
+            max_items: 1
+          static_vnet_route:
+            nesting_mode: list
+            block:
+              attributes:
+                address_prefixes:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                next_hop_ip_address:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

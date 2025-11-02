@@ -1,0 +1,417 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "autonomous_data_storage_percentage": {
+        "type": "number",
+        "description": "The progress of the current operation on the Autonomous VM cluster, as a percentage.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "autonomous_data_storage_size_in_tbs": {
+        "type": "number",
+        "description": "The data storage size allocated for Autonomous Databases in the Autonomous VM cluster, in TB. Changing this will force terraform to create new resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "available_autonomous_data_storage_size_in_tbs": {
+        "type": "number",
+        "description": "The available data storage space for Autonomous Databases in the Autonomous VM cluster, in TB.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "available_container_databases": {
+        "type": "number",
+        "description": "The number of Autonomous CDBs that you can create with the currently available storage.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "available_cpus": {
+        "type": "number",
+        "description": "The number of CPU cores available for allocation to Autonomous Databases",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cloud_exadata_infrastructure_id": {
+        "type": "string",
+        "description": "Exadata infrastructure id. Changing this will force terraform to create new resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "compute_model": {
+        "type": "string",
+        "description": "The compute model of the Autonomous VM cluster: ECPU or OCPU.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cpu_core_count": {
+        "type": "number",
+        "description": "The total number of CPU cores in the Autonomous VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cpu_core_count_per_node": {
+        "type": "number",
+        "description": "The number of CPU cores enabled per node in the Autonomous VM cluster.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "cpu_percentage": {
+        "type": "number",
+        "description": "The percentage of total CPU cores currently in use in the Autonomous VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "created_at": {
+        "type": "string",
+        "description": "The date and time when the Autonomous VM cluster was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "data_storage_size_in_gbs": {
+        "type": "number",
+        "description": "The total data storage allocated to the Autonomous VM cluster, in GB.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "data_storage_size_in_tbs": {
+        "type": "number",
+        "description": "The total data storage allocated to the Autonomous VM cluster, in TB.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "db_servers": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description": "The database servers in the Autonomous VM cluster. Changing this will force terraform to create new resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "description": {
+        "type": "string",
+        "description": "The description of the Autonomous VM cluster.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "The display name of the Autonomous VM cluster. Changing this will force terraform to create new resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "domain": {
+        "type": "string",
+        "description": "The domain name of the Autonomous VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "exadata_storage_in_tbs_lowest_scaled_value": {
+        "type": "number",
+        "description": "The minimum value to which you can scale down the Exadata storage, in TB.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "hostname": {
+        "type": "string",
+        "description": "The hostname of the Autonomous VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "is_mtls_enabled_vm_cluster": {
+        "type": "bool",
+        "description": "Indicates whether mutual TLS (mTLS) authentication is enabled for the Autonomous VM cluster. Changing this will force terraform to create new resource.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "license_model": {
+        "type": "string",
+        "description": "The license model for the Autonomous VM cluster. Valid values are LICENSE_INCLUDED or BRING_YOUR_OWN_LICENSE . Changing this will force terraform to create new resource.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "max_acds_lowest_scaled_value": {
+        "type": "number",
+        "description": "The minimum value to which you can scale down the maximum number of Autonomous CDBs.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "memory_per_oracle_compute_unit_in_gbs": {
+        "type": "number",
+        "description": "The amount of memory allocated per Oracle Compute Unit, in GB. Changing this will force terraform to create new resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "memory_size_in_gbs": {
+        "type": "number",
+        "description": "The total amount of memory allocated to the Autonomous VM cluster, in gigabytes(GB).",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "node_count": {
+        "type": "number",
+        "description": "The number of database server nodes in the Autonomous VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "non_provisionable_autonomous_container_databases": {
+        "type": "number",
+        "description": "The number of Autonomous CDBs that can't be provisioned because of resource constraints.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "oci_resource_anchor_name": {
+        "type": "string",
+        "description": "The name of the OCI resource anchor associated with this Autonomous VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "oci_url": {
+        "type": "string",
+        "description": "The URL for accessing the OCI console page for this Autonomous VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "ocid": {
+        "type": "string",
+        "description": "The Oracle Cloud Identifier (OCID) of the Autonomous VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "odb_network_id": {
+        "type": "string",
+        "description": "The unique identifier of the ODB network associated with this Autonomous VM Cluster. Changing this will force terraform to create new resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "odb_node_storage_size_in_gbs": {
+        "type": "number",
+        "description": "The local node storage allocated to the Autonomous VM cluster, in gigabytes (GB)",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "percent_progress": {
+        "type": "number",
+        "description": "The progress of the current operation on the Autonomous VM cluster, as a percentage.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "provisionable_autonomous_container_databases": {
+        "type": "number",
+        "description": "The number of Autonomous CDBs that can be provisioned in the Autonomous VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "provisioned_autonomous_container_databases": {
+        "type": "number",
+        "description": "The number of Autonomous CDBs currently provisioned in the Autonomous VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "provisioned_cpus": {
+        "type": "number",
+        "description": "The number of CPUs provisioned in the Autonomous VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "reclaimable_cpus": {
+        "type": "number",
+        "description": "The number of CPU cores that can be reclaimed from terminated or scaled-down Autonomous Databases.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "reserved_cpus": {
+        "type": "number",
+        "description": "The number of CPU cores reserved for system operations and redundancy.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "scan_listener_port_non_tls": {
+        "type": "number",
+        "description": "The SCAN listener port for non-TLS (TCP) protocol. The default is 1521. Changing this will force terraform to create new resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "scan_listener_port_tls": {
+        "type": "number",
+        "description": "The SCAN listener port for TLS (TCP) protocol. The default is 2484. Changing this will force terraform to create new resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "shape": {
+        "type": "string",
+        "description": "The shape of the Exadata infrastructure for the Autonomous VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "status": {
+        "type": "string",
+        "description": "The status of the Autonomous VM cluster. Possible values include CREATING, AVAILABLE , UPDATING , DELETING , DELETED , FAILED",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "status_reason": {
+        "type": "string",
+        "description": "Additional information about the current status of the Autonomous VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "time_database_ssl_certificate_expires": {
+        "type": "string",
+        "description": "The expiration date and time of the database SSL certificate.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "time_ords_certificate_expires": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "time_zone": {
+        "type": "string",
+        "description": "The time zone of the Autonomous VM cluster. Changing this will force terraform to create new resource.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "total_container_databases": {
+        "type": "number",
+        "description": "The total number of Autonomous Container Databases that can be created with the allocated local storage. Changing this will force terraform to create new resource.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "maintenance_window": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "days_of_week": {
+              "type": [
+                "set",
+                [
+                  "object",
+                  {
+                    "name": "string"
+                  }
+                ]
+              ],
+              "description": "The days of the week when maintenance can be performed.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "hours_of_day": {
+              "type": [
+                "set",
+                "number"
+              ],
+              "description": "The hours of the day when maintenance can be performed.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "lead_time_in_weeks": {
+              "type": "number",
+              "description": "The lead time in weeks before the maintenance window.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "months": {
+              "type": [
+                "set",
+                [
+                  "object",
+                  {
+                    "name": "string"
+                  }
+                ]
+              ],
+              "description": "The months when maintenance can be performed.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "preference": {
+              "type": "string",
+              "description": "The preference for the maintenance window scheduling.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "weeks_of_month": {
+              "type": [
+                "set",
+                "number"
+              ],
+              "description": "Indicates whether to skip release updates during maintenance.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "The maintenance window of the Autonomous VM cluster.",
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours).",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours).",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

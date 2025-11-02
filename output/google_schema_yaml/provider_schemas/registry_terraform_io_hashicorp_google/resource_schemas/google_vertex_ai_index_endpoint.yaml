@@ -1,0 +1,134 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: The timestamp of when the Index was created in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: The description of the Index.
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description: The display name of the Index. The name can be up to 128 characters long and can consist of any UTF-8 characters.
+      description_kind: plain
+      required: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    etag:
+      type: string
+      description: Used to perform consistent read-modify-write updates.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'The labels with user-defined metadata to organize your Indexes. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: The resource name of the Index.
+      description_kind: plain
+      computed: true
+    network:
+      type: string
+      description: 'The full name of the Google Compute Engine [network](https://cloud.google.com//compute/docs/networks-and-firewalls#networks) to which the index endpoint should be peered. Private services access must already be configured for the network. If left unspecified, the index endpoint is not peered with any network. [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert): ''projects/{project}/global/networks/{network}''. Where ''{project}'' is a project number, as in ''12345'', and ''{network}'' is network name.'
+      description_kind: plain
+      optional: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    public_endpoint_domain_name:
+      type: string
+      description: If publicEndpointEnabled is true, this field will be populated with the domain name to use for this index endpoint.
+      description_kind: plain
+      computed: true
+    public_endpoint_enabled:
+      type: bool
+      description: If true, the deployed index will be accessible through public endpoint.
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: The region of the index endpoint. eg us-central1
+      description_kind: plain
+      optional: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: The timestamp of when the Index was last updated in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits.
+      description_kind: plain
+      computed: true
+  block_types:
+    encryption_spec:
+      nesting_mode: list
+      block:
+        attributes:
+          kms_key_name:
+            type: string
+            description: 'Required. The Cloud KMS resource identifier of the customer managed encryption key used to protect a resource. Has the form: ''projects/my-project/locations/my-region/keyRings/my-kr/cryptoKeys/my-key''. The key needs to be in the same region as where the compute resource is created.'
+            description_kind: plain
+            required: true
+        description: Customer-managed encryption key spec for an IndexEndpoint. If set, this IndexEndpoint and all sub-resources of this IndexEndpoint will be secured by this key.
+        description_kind: plain
+      max_items: 1
+    private_service_connect_config:
+      nesting_mode: list
+      block:
+        attributes:
+          enable_private_service_connect:
+            type: bool
+            description: If set to true, the IndexEndpoint is created without private service access.
+            description_kind: plain
+            required: true
+          project_allowlist:
+            type:
+            - list
+            - string
+            description: A list of Projects from which the forwarding rule will target the service attachment.
+            description_kind: plain
+            optional: true
+        description: Optional. Configuration for private service connect. 'network' and 'privateServiceConnectConfig' are mutually exclusive.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

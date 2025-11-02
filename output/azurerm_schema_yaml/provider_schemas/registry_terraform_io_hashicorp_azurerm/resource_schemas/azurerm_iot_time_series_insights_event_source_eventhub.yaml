@@ -1,0 +1,80 @@
+version: 0
+block:
+  attributes:
+    consumer_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    environment_id:
+      type: string
+      description_kind: plain
+      required: true
+    event_source_resource_id:
+      type: string
+      description_kind: plain
+      required: true
+    eventhub_name:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    namespace_name:
+      type: string
+      description_kind: plain
+      required: true
+    shared_access_key:
+      type: string
+      description_kind: plain
+      required: true
+      sensitive: true
+    shared_access_key_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    timestamp_property_name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

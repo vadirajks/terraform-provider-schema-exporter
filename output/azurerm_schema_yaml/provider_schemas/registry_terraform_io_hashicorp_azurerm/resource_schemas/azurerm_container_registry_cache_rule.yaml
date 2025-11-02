@@ -1,0 +1,55 @@
+version: 0
+block:
+  attributes:
+    container_registry_id:
+      type: string
+      description_kind: plain
+      required: true
+    credential_set_id:
+      type: string
+      description: The ARM resource ID of the credential store which is associated with the cache rule.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: The name of the cache rule.
+      description_kind: plain
+      required: true
+    source_repo:
+      type: string
+      description: The full source repository path such as 'docker.io/library/ubuntu'.
+      description_kind: plain
+      required: true
+    target_repo:
+      type: string
+      description: The target repository namespace such as 'ubuntu'.
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

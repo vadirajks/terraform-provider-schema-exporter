@@ -1,0 +1,46 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "block_public_security_group_rules": {
+        "type": "bool",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "permitted_public_security_group_rule_range": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "max_range": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "min_range": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

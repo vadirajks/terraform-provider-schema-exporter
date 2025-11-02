@@ -1,0 +1,15 @@
+resource "aws_default_security_group" "name" {
+  arn = string (Computed)
+  description = string (Computed)
+  egress = ['set', ['object', {'cidr_blocks': ['list', 'string'], 'description': 'string', 'from_port': 'number', 'ipv6_cidr_blocks': ['list', 'string'], 'prefix_list_ids': ['list', 'string'], 'protocol': 'string', 'security_groups': ['set', 'string'], 'self': 'bool', 'to_port': 'number'}]] (Optional, Computed)
+  id = string (Optional, Computed)
+  ingress = ['set', ['object', {'cidr_blocks': ['list', 'string'], 'description': 'string', 'from_port': 'number', 'ipv6_cidr_blocks': ['list', 'string'], 'prefix_list_ids': ['list', 'string'], 'protocol': 'string', 'security_groups': ['set', 'string'], 'self': 'bool', 'to_port': 'number'}]] (Optional, Computed)
+  name = string (Computed)
+  name_prefix = string (Computed)
+  owner_id = string (Computed)
+  region = string (Optional, Computed)
+  revoke_rules_on_delete = bool (Optional)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+  vpc_id = string (Optional, Computed)
+}

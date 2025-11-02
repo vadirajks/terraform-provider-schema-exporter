@@ -1,0 +1,293 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "internet_security_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "remote_vpn_site_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "vpn_gateway_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "routing": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "associated_route_table": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "inbound_route_map_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "outbound_route_map_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "propagated_route_table": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "labels": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "route_table_ids": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "traffic_selector_policy": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "local_address_ranges": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "remote_address_ranges": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "vpn_link": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "bandwidth_mbps": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "bgp_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "connection_mode": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dpd_timeout_seconds": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "egress_nat_rule_ids": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "ingress_nat_rule_ids": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "local_azure_ip_address_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "policy_based_traffic_selector_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "protocol": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "ratelimit_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "route_weight": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "shared_key": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "vpn_site_link_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "custom_bgp_address": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "ip_address": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "ip_configuration_id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "ipsec_policy": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "dh_group": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "encryption_algorithm": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "ike_encryption_algorithm": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "ike_integrity_algorithm": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "integrity_algorithm": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "pfs_group": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "sa_data_size_kb": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "sa_lifetime_sec": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

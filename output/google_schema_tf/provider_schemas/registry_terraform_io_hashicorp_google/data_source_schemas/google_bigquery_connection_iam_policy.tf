@@ -1,0 +1,8 @@
+data "google_bigquery_connection_iam_policy" "name" {
+  connection_id = string (Required)
+  etag = string (Computed)
+  id = string (Optional, Computed)
+  location = string (Optional, Computed)
+  policy_data = string (Computed)
+  project = string (Optional, Computed)
+}

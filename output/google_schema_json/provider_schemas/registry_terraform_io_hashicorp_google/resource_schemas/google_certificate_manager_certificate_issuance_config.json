@@ -1,0 +1,147 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "The creation timestamp of a CertificateIssuanceConfig. Timestamp is in RFC3339 UTC \"Zulu\" format, accurate to nanoseconds with up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\".",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "One or more paragraphs of text description of a CertificateIssuanceConfig.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "key_algorithm": {
+        "type": "string",
+        "description": "Key algorithm to use when generating the private key. Possible values: [\"RSA_2048\", \"ECDSA_P256\"]",
+        "description_kind": "plain",
+        "required": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "'Set of label tags associated with the CertificateIssuanceConfig resource. An object containing a list of \"key\": value pairs. Example: { \"name\": \"wrench\", \"count\": \"3\" }. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "lifetime": {
+        "type": "string",
+        "description": "Lifetime of issued certificates. A duration in seconds with up to nine fractional digits, ending with 's'. Example: \"1814400s\". Valid values are from 21 days (1814400s) to 30 days (2592000s)",
+        "description_kind": "plain",
+        "required": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The Certificate Manager location. If not specified, \"global\" is used.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "A user-defined name of the certificate issuance config. CertificateIssuanceConfig names must be unique globally.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "rotation_window_percentage": {
+        "type": "number",
+        "description": "It specifies the percentage of elapsed time of the certificate lifetime to wait before renewing the certificate. Must be a number between 1-99, inclusive. You must set the rotation window percentage in relation to the certificate lifetime so that certificate renewal occurs at least 7 days after the certificate has been issued and at least 7 days before it expires.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "The last update timestamp of a CertificateIssuanceConfig. Timestamp is in RFC3339 UTC \"Zulu\" format, accurate to nanoseconds with up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\".",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "certificate_authority_config": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "certificate_authority_service_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "ca_pool": {
+                    "type": "string",
+                    "description": "A CA pool resource used to issue a certificate. The CA pool string has a relative resource path following the form \"projects/{project}/locations/{location}/caPools/{caPool}\".",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Defines a CertificateAuthorityServiceConfig.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "The CA that issues the workload certificate. It includes the CA address, type, authentication to CA service, etc.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

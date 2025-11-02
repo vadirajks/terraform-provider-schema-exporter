@@ -1,0 +1,152 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "attached_database_names": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cluster_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "cluster_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "cluster_resource_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "deprecated": true,
+        "optional": true,
+        "computed": true
+      },
+      "database_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "default_principal_modification_kind": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "sharing": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "external_tables_to_exclude": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "external_tables_to_include": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "materialized_views_to_exclude": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "materialized_views_to_include": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "tables_to_exclude": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "tables_to_include": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

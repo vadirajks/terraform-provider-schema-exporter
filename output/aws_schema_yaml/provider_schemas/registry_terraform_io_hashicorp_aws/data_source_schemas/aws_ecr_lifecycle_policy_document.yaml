@@ -1,0 +1,65 @@
+version: 0
+block:
+  attributes:
+    json:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    rule:
+      nesting_mode: list
+      block:
+        attributes:
+          description:
+            type: string
+            description_kind: plain
+            optional: true
+          priority:
+            type: number
+            description_kind: plain
+            required: true
+        block_types:
+          action:
+            nesting_mode: list
+            block:
+              attributes:
+                type:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          selection:
+            nesting_mode: list
+            block:
+              attributes:
+                count_number:
+                  type: number
+                  description_kind: plain
+                  required: true
+                count_type:
+                  type: string
+                  description_kind: plain
+                  required: true
+                count_unit:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                tag_pattern_list:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                tag_prefix_list:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                tag_status:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+  description_kind: plain

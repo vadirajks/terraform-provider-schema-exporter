@@ -1,0 +1,191 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    default_time_to_live:
+      type: number
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    keyspace_name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    table_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    capacity_specification:
+      nesting_mode: list
+      block:
+        attributes:
+          read_capacity_units:
+            type: number
+            description_kind: plain
+            optional: true
+          throughput_mode:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          write_capacity_units:
+            type: number
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    client_side_timestamps:
+      nesting_mode: list
+      block:
+        attributes:
+          status:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    comment:
+      nesting_mode: list
+      block:
+        attributes:
+          message:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    encryption_specification:
+      nesting_mode: list
+      block:
+        attributes:
+          kms_key_identifier:
+            type: string
+            description_kind: plain
+            optional: true
+          type:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    point_in_time_recovery:
+      nesting_mode: list
+      block:
+        attributes:
+          status:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    schema_definition:
+      nesting_mode: list
+      block:
+        block_types:
+          clustering_key:
+            nesting_mode: list
+            block:
+              attributes:
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                order_by:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          column:
+            nesting_mode: set
+            block:
+              attributes:
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                type:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+          partition_key:
+            nesting_mode: list
+            block:
+              attributes:
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+          static_column:
+            nesting_mode: set
+            block:
+              attributes:
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    ttl:
+      nesting_mode: list
+      block:
+        attributes:
+          status:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

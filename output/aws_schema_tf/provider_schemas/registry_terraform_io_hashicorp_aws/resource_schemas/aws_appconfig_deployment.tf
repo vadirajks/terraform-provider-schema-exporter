@@ -1,0 +1,17 @@
+resource "aws_appconfig_deployment" "name" {
+  application_id = string (Required)
+  configuration_profile_id = string (Required)
+  configuration_version = string (Required)
+  deployment_strategy_id = string (Required)
+  environment_id = string (Required)
+  arn = string (Computed)
+  deployment_number = number (Computed)
+  description = string (Optional)
+  id = string (Optional, Computed)
+  kms_key_arn = string (Computed)
+  kms_key_identifier = string (Optional)
+  region = string (Optional, Computed)
+  state = string (Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+}

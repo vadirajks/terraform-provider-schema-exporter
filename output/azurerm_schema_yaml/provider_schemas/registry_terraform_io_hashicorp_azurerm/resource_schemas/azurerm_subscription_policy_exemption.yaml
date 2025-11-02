@@ -1,0 +1,70 @@
+version: 0
+block:
+  attributes:
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description_kind: plain
+      optional: true
+    exemption_category:
+      type: string
+      description_kind: plain
+      required: true
+    expires_on:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    metadata:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    policy_assignment_id:
+      type: string
+      description_kind: plain
+      required: true
+    policy_definition_reference_ids:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    subscription_id:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

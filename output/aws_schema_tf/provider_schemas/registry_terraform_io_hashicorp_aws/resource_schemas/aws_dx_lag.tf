@@ -1,0 +1,16 @@
+resource "aws_dx_lag" "name" {
+  connections_bandwidth = string (Required)
+  location = string (Required)
+  name = string (Required)
+  arn = string (Computed)
+  connection_id = string (Optional)
+  force_destroy = bool (Optional)
+  has_logical_redundancy = string (Computed)
+  id = string (Optional, Computed)
+  jumbo_frame_capable = bool (Computed)
+  owner_account_id = string (Computed)
+  provider_name = string (Optional, Computed)
+  region = string (Optional, Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+}

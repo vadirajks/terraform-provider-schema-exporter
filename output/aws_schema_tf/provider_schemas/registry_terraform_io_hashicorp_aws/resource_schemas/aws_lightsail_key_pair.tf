@@ -1,0 +1,15 @@
+resource "aws_lightsail_key_pair" "name" {
+  arn = string (Computed)
+  encrypted_fingerprint = string (Computed)
+  encrypted_private_key = string (Computed)
+  fingerprint = string (Computed)
+  id = string (Optional, Computed)
+  name = string (Optional, Computed)
+  name_prefix = string (Optional, Computed)
+  pgp_key = string (Optional)
+  private_key = string (Computed)
+  public_key = string (Optional, Computed)
+  region = string (Optional, Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+}

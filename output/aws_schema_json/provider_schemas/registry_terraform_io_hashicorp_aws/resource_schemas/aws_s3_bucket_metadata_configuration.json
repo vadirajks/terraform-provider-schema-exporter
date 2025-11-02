@@ -1,0 +1,165 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "bucket": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "expected_bucket_owner": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "metadata_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "destination": {
+              "type": [
+                "list",
+                [
+                  "object",
+                  {
+                    "table_bucket_arn": "string",
+                    "table_bucket_type": "string",
+                    "table_namespace": "string"
+                  }
+                ]
+              ],
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "block_types": {
+            "inventory_table_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "configuration_state": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "table_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "computed": true
+                  },
+                  "table_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "block_types": {
+                  "encryption_configuration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "kms_key_arn": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "sse_algorithm": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "journal_table_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "table_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "computed": true
+                  },
+                  "table_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "block_types": {
+                  "encryption_configuration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "kms_key_arn": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "sse_algorithm": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  },
+                  "record_expiration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "days": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "expiration": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours).",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

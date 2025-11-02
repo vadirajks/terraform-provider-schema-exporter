@@ -1,0 +1,269 @@
+version: 0
+block:
+  attributes:
+    connection_id:
+      type: string
+      description: Optional connection id that should be assigned to the created connection.
+      description_kind: plain
+      optional: true
+      computed: true
+    description:
+      type: string
+      description: A descriptive description for the connection
+      description_kind: plain
+      optional: true
+    friendly_name:
+      type: string
+      description: A descriptive name for the connection
+      description_kind: plain
+      optional: true
+    has_credential:
+      type: bool
+      description: True if the connection has credential assigned.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kms_key_name:
+      type: string
+      description: 'Optional. The Cloud KMS key that is used for encryption. Example: projects/[kms_project_id]/locations/[region]/keyRings/[key_region]/cryptoKeys/[key]'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: 'The geographic location where the connection should reside. Cloud SQL instance must be in the same location as the connection with following exceptions: Cloud SQL us-central1 maps to BigQuery US, Cloud SQL europe-west1 maps to BigQuery EU. Examples: US, EU, asia-northeast1, us-central1, europe-west1. Spanner Connections same as spanner region AWS allowed regions are aws-us-east-1 Azure allowed regions are azure-eastus2'
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: 'The resource name of the connection in the form of: "projects/{project_id}/locations/{location_id}/connections/{connectionId}"'
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    aws:
+      nesting_mode: list
+      block:
+        block_types:
+          access_role:
+            nesting_mode: list
+            block:
+              attributes:
+                iam_role_id:
+                  type: string
+                  description: "The user\u2019s AWS IAM Role that trusts the Google-owned AWS IAM user Connection."
+                  description_kind: plain
+                  required: true
+                identity:
+                  type: string
+                  description: A unique Google-owned and Google-generated identity for the Connection. This identity will be used to access the user's AWS IAM Role.
+                  description_kind: plain
+                  computed: true
+              description: Authentication using Google owned service account to assume into customer's AWS IAM Role.
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description: Connection properties specific to Amazon Web Services.
+        description_kind: plain
+      max_items: 1
+    azure:
+      nesting_mode: list
+      block:
+        attributes:
+          application:
+            type: string
+            description: The name of the Azure Active Directory Application.
+            description_kind: plain
+            computed: true
+          client_id:
+            type: string
+            description: The client id of the Azure Active Directory Application.
+            description_kind: plain
+            computed: true
+          customer_tenant_id:
+            type: string
+            description: The id of customer's directory that host the data.
+            description_kind: plain
+            required: true
+          federated_application_client_id:
+            type: string
+            description: The Azure Application (client) ID where the federated credentials will be hosted.
+            description_kind: plain
+            optional: true
+          identity:
+            type: string
+            description: A unique Google-owned and Google-generated identity for the Connection. This identity will be used to access the user's Azure Active Directory Application.
+            description_kind: plain
+            computed: true
+          object_id:
+            type: string
+            description: The object id of the Azure Active Directory Application.
+            description_kind: plain
+            computed: true
+          redirect_uri:
+            type: string
+            description: The URL user will be redirected to after granting consent during connection setup.
+            description_kind: plain
+            computed: true
+        description: Container for connection properties specific to Azure.
+        description_kind: plain
+      max_items: 1
+    cloud_resource:
+      nesting_mode: list
+      block:
+        attributes:
+          service_account_id:
+            type: string
+            description: The account ID of the service created for the purpose of this connection.
+            description_kind: plain
+            computed: true
+        description: Container for connection properties for delegation of access to GCP resources.
+        description_kind: plain
+      max_items: 1
+    cloud_spanner:
+      nesting_mode: list
+      block:
+        attributes:
+          database:
+            type: string
+            description: Cloud Spanner database in the form 'project/instance/database'.
+            description_kind: plain
+            required: true
+          database_role:
+            type: string
+            description: Cloud Spanner database role for fine-grained access control. The Cloud Spanner admin should have provisioned the database role with appropriate permissions, such as 'SELECT' and 'INSERT'. Other users should only use roles provided by their Cloud Spanner admins. The database role name must start with a letter, and can only contain letters, numbers, and underscores. For more details, see https://cloud.google.com/spanner/docs/fgac-about.
+            description_kind: plain
+            optional: true
+          max_parallelism:
+            type: number
+            description: Allows setting max parallelism per query when executing on Spanner independent compute resources. If unspecified, default values of parallelism are chosen that are dependent on the Cloud Spanner instance configuration. 'useParallelism' and 'useDataBoost' must be set when setting max parallelism.
+            description_kind: plain
+            optional: true
+          use_data_boost:
+            type: bool
+            description: If set, the request will be executed via Spanner independent compute resources. 'use_parallelism' must be set when using data boost.
+            description_kind: plain
+            optional: true
+          use_parallelism:
+            type: bool
+            description: If parallelism should be used when reading from Cloud Spanner.
+            description_kind: plain
+            optional: true
+          use_serverless_analytics:
+            type: bool
+            description: If the serverless analytics service should be used to read data from Cloud Spanner. 'useParallelism' must be set when using serverless analytics.
+            description_kind: plain
+            deprecated: true
+            optional: true
+        description: Connection properties specific to Cloud Spanner
+        description_kind: plain
+      max_items: 1
+    cloud_sql:
+      nesting_mode: list
+      block:
+        attributes:
+          database:
+            type: string
+            description: Database name.
+            description_kind: plain
+            required: true
+          instance_id:
+            type: string
+            description: Cloud SQL instance ID in the form project:location:instance.
+            description_kind: plain
+            required: true
+          service_account_id:
+            type: string
+            description: When the connection is used in the context of an operation in BigQuery, this service account will serve as the identity being used for connecting to the CloudSQL instance specified in this connection.
+            description_kind: plain
+            computed: true
+          type:
+            type: string
+            description: 'Type of the Cloud SQL database. Possible values: ["DATABASE_TYPE_UNSPECIFIED", "POSTGRES", "MYSQL"]'
+            description_kind: plain
+            required: true
+        block_types:
+          credential:
+            nesting_mode: list
+            block:
+              attributes:
+                password:
+                  type: string
+                  description: Password for database.
+                  description_kind: plain
+                  required: true
+                  sensitive: true
+                username:
+                  type: string
+                  description: Username for database.
+                  description_kind: plain
+                  required: true
+              description: Cloud SQL properties.
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description: Connection properties specific to the Cloud SQL.
+        description_kind: plain
+      max_items: 1
+    spark:
+      nesting_mode: list
+      block:
+        attributes:
+          service_account_id:
+            type: string
+            description: The account ID of the service created for the purpose of this connection.
+            description_kind: plain
+            computed: true
+        block_types:
+          metastore_service_config:
+            nesting_mode: list
+            block:
+              attributes:
+                metastore_service:
+                  type: string
+                  description: Resource name of an existing Dataproc Metastore service in the form of projects/[projectId]/locations/[region]/services/[serviceId].
+                  description_kind: plain
+                  optional: true
+              description: Dataproc Metastore Service configuration for the connection.
+              description_kind: plain
+            max_items: 1
+          spark_history_server_config:
+            nesting_mode: list
+            block:
+              attributes:
+                dataproc_cluster:
+                  type: string
+                  description: Resource name of an existing Dataproc Cluster to act as a Spark History Server for the connection if the form of projects/[projectId]/regions/[region]/clusters/[cluster_name].
+                  description_kind: plain
+                  optional: true
+              description: Spark History Server configuration for the connection.
+              description_kind: plain
+            max_items: 1
+        description: Container for connection properties to execute stored procedures for Apache Spark. resources.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

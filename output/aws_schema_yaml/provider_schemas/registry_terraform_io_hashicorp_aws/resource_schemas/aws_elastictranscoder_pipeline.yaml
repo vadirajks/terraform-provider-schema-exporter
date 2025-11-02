@@ -1,0 +1,133 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    aws_kms_key_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    input_bucket:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    output_bucket:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    role:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    content_config:
+      nesting_mode: list
+      block:
+        attributes:
+          bucket:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          storage_class:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    content_config_permissions:
+      nesting_mode: set
+      block:
+        attributes:
+          access:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          grantee:
+            type: string
+            description_kind: plain
+            optional: true
+          grantee_type:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    notifications:
+      nesting_mode: list
+      block:
+        attributes:
+          completed:
+            type: string
+            description_kind: plain
+            optional: true
+          error:
+            type: string
+            description_kind: plain
+            optional: true
+          progressing:
+            type: string
+            description_kind: plain
+            optional: true
+          warning:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    thumbnail_config:
+      nesting_mode: list
+      block:
+        attributes:
+          bucket:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          storage_class:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    thumbnail_config_permissions:
+      nesting_mode: set
+      block:
+        attributes:
+          access:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          grantee:
+            type: string
+            description_kind: plain
+            optional: true
+          grantee_type:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

@@ -1,0 +1,97 @@
+version: 0
+block:
+  attributes:
+    admin:
+      type: string
+      description: The name of delegated administrator account used to perform Active Directory operations. If not specified, setupadmin will be used.
+      description_kind: plain
+      optional: true
+    authorized_networks:
+      type:
+      - set
+      - string
+      description: The full names of the Google Compute Engine networks the domain instance is connected to. The domain is only available on networks listed in authorizedNetworks. If CIDR subnets overlap between networks, domain creation will fail.
+      description_kind: plain
+      optional: true
+    deletion_protection:
+      type: bool
+      description: Whether Terraform will be prevented from destroying the domain. Defaults to true. When a'terraform destroy' or 'terraform apply' would delete the domain, the command will fail if this field is not set to false in Terraform state. When the field is set to true or unset in Terraform state, a 'terraform apply' or 'terraform destroy' that would delete the domain will fail. When the field is set to false, deleting the domain is allowed.
+      description_kind: plain
+      optional: true
+    domain_name:
+      type: string
+      description: The fully qualified domain name. e.g. mydomain.myorganization.com, with the restrictions of https://cloud.google.com/managed-microsoft-ad/reference/rest/v1/projects.locations.global.domains.
+      description_kind: plain
+      required: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    fqdn:
+      type: string
+      description: The fully-qualified domain name of the exposed domain used by clients to connect to the service. Similar to what would be chosen for an Active Directory set up on an internal network.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Resource labels that can contain user-provided metadata **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    locations:
+      type:
+      - list
+      - string
+      description: Locations where domain needs to be provisioned. [regions][compute/docs/regions-zones/] e.g. us-west1 or us-east4 Service supports up to 4 locations at once. Each location will use a /26 block.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: 'The unique name of the domain using the format: ''projects/{project}/locations/global/domains/{domainName}''.'
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    reserved_ip_range:
+      type: string
+      description: The CIDR range of internal addresses that are reserved for this domain. Reserved networks must be /24 or larger. Ranges must be unique and non-overlapping with existing subnets in authorizedNetworks
+      description_kind: plain
+      required: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

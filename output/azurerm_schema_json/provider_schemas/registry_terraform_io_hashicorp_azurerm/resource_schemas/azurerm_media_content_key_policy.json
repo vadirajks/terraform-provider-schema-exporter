@@ -1,0 +1,420 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "media_services_account_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "policy_option": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "clear_key_configuration_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "open_restriction_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "playready_response_custom_data": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "widevine_configuration_template": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "fairplay_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "ask": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "pfx": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "pfx_password": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "rental_and_lease_key_type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "rental_duration_seconds": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "offline_rental_configuration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "playback_duration_seconds": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "storage_duration_seconds": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "playready_configuration_license": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "allow_test_devices": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "begin_date": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "content_key_location_from_header_enabled": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "content_key_location_from_key_id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "content_type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "expiration_date": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "grace_period": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "license_type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "relative_begin_date": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "relative_expiration_date": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "security_level": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "play_right": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "agc_and_color_stripe_restriction": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "allow_passing_video_content_to_unknown_output": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "analog_video_opl": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "compressed_digital_audio_opl": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "compressed_digital_video_opl": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "digital_video_only_content_restriction": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "first_play_expiration": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "image_constraint_for_analog_component_video_restriction": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "image_constraint_for_analog_computer_monitor_restriction": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "scms_restriction": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "uncompressed_digital_audio_opl": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "uncompressed_digital_video_opl": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "explicit_analog_television_output_restriction": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "best_effort_enforced": {
+                                "type": "bool",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "control_bits": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "token_restriction": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "audience": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "issuer": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "open_id_connect_discovery_document": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "primary_rsa_token_key_exponent": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "primary_rsa_token_key_modulus": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "primary_symmetric_token_key": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "primary_x509_token_key_raw": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "token_type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "alternate_key": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "rsa_token_key_exponent": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "sensitive": true
+                        },
+                        "rsa_token_key_modulus": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "sensitive": true
+                        },
+                        "symmetric_token_key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "sensitive": true
+                        },
+                        "x509_token_key_raw": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "sensitive": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  },
+                  "required_claim": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "value": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain",
+    "deprecated": true
+  }
+}

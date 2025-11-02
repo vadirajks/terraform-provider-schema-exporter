@@ -1,0 +1,598 @@
+version: 0
+block:
+  attributes:
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    gateway_identifier:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    target_id:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    credential_provider_configuration:
+      nesting_mode: list
+      block:
+        block_types:
+          api_key:
+            nesting_mode: list
+            block:
+              attributes:
+                credential_location:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                credential_parameter_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                credential_prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                provider_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          gateway_iam_role:
+            nesting_mode: list
+            block:
+              description_kind: plain
+          oauth:
+            nesting_mode: list
+            block:
+              attributes:
+                custom_parameters:
+                  type:
+                  - map
+                  - string
+                  description_kind: plain
+                  optional: true
+                provider_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                scopes:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+    target_configuration:
+      nesting_mode: list
+      block:
+        block_types:
+          mcp:
+            nesting_mode: list
+            block:
+              block_types:
+                lambda:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      lambda_arn:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      tool_schema:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            inline_payload:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  description:
+                                    type: string
+                                    description_kind: plain
+                                    required: true
+                                  name:
+                                    type: string
+                                    description_kind: plain
+                                    required: true
+                                block_types:
+                                  input_schema:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        description:
+                                          type: string
+                                          description_kind: plain
+                                          optional: true
+                                        type:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                      block_types:
+                                        items:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              description:
+                                                type: string
+                                                description_kind: plain
+                                                optional: true
+                                              type:
+                                                type: string
+                                                description_kind: plain
+                                                required: true
+                                            block_types:
+                                              items:
+                                                nesting_mode: list
+                                                block:
+                                                  attributes:
+                                                    description:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    items_json:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    properties_json:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    type:
+                                                      type: string
+                                                      description_kind: plain
+                                                      required: true
+                                                  description_kind: plain
+                                              property:
+                                                nesting_mode: set
+                                                block:
+                                                  attributes:
+                                                    description:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    items_json:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    name:
+                                                      type: string
+                                                      description_kind: plain
+                                                      required: true
+                                                    properties_json:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    required:
+                                                      type: bool
+                                                      description_kind: plain
+                                                      optional: true
+                                                      computed: true
+                                                    type:
+                                                      type: string
+                                                      description_kind: plain
+                                                      required: true
+                                                  description_kind: plain
+                                            description_kind: plain
+                                        property:
+                                          nesting_mode: set
+                                          block:
+                                            attributes:
+                                              description:
+                                                type: string
+                                                description_kind: plain
+                                                optional: true
+                                              name:
+                                                type: string
+                                                description_kind: plain
+                                                required: true
+                                              required:
+                                                type: bool
+                                                description_kind: plain
+                                                optional: true
+                                                computed: true
+                                              type:
+                                                type: string
+                                                description_kind: plain
+                                                required: true
+                                            block_types:
+                                              items:
+                                                nesting_mode: list
+                                                block:
+                                                  attributes:
+                                                    description:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    type:
+                                                      type: string
+                                                      description_kind: plain
+                                                      required: true
+                                                  block_types:
+                                                    items:
+                                                      nesting_mode: list
+                                                      block:
+                                                        attributes:
+                                                          description:
+                                                            type: string
+                                                            description_kind: plain
+                                                            optional: true
+                                                          items_json:
+                                                            type: string
+                                                            description_kind: plain
+                                                            optional: true
+                                                          properties_json:
+                                                            type: string
+                                                            description_kind: plain
+                                                            optional: true
+                                                          type:
+                                                            type: string
+                                                            description_kind: plain
+                                                            required: true
+                                                        description_kind: plain
+                                                    property:
+                                                      nesting_mode: set
+                                                      block:
+                                                        attributes:
+                                                          description:
+                                                            type: string
+                                                            description_kind: plain
+                                                            optional: true
+                                                          items_json:
+                                                            type: string
+                                                            description_kind: plain
+                                                            optional: true
+                                                          name:
+                                                            type: string
+                                                            description_kind: plain
+                                                            required: true
+                                                          properties_json:
+                                                            type: string
+                                                            description_kind: plain
+                                                            optional: true
+                                                          required:
+                                                            type: bool
+                                                            description_kind: plain
+                                                            optional: true
+                                                            computed: true
+                                                          type:
+                                                            type: string
+                                                            description_kind: plain
+                                                            required: true
+                                                        description_kind: plain
+                                                  description_kind: plain
+                                              property:
+                                                nesting_mode: set
+                                                block:
+                                                  attributes:
+                                                    description:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    items_json:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    name:
+                                                      type: string
+                                                      description_kind: plain
+                                                      required: true
+                                                    properties_json:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    required:
+                                                      type: bool
+                                                      description_kind: plain
+                                                      optional: true
+                                                      computed: true
+                                                    type:
+                                                      type: string
+                                                      description_kind: plain
+                                                      required: true
+                                                  description_kind: plain
+                                            description_kind: plain
+                                      description_kind: plain
+                                  output_schema:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        description:
+                                          type: string
+                                          description_kind: plain
+                                          optional: true
+                                        type:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                      block_types:
+                                        items:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              description:
+                                                type: string
+                                                description_kind: plain
+                                                optional: true
+                                              type:
+                                                type: string
+                                                description_kind: plain
+                                                required: true
+                                            block_types:
+                                              items:
+                                                nesting_mode: list
+                                                block:
+                                                  attributes:
+                                                    description:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    items_json:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    properties_json:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    type:
+                                                      type: string
+                                                      description_kind: plain
+                                                      required: true
+                                                  description_kind: plain
+                                              property:
+                                                nesting_mode: set
+                                                block:
+                                                  attributes:
+                                                    description:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    items_json:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    name:
+                                                      type: string
+                                                      description_kind: plain
+                                                      required: true
+                                                    properties_json:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    required:
+                                                      type: bool
+                                                      description_kind: plain
+                                                      optional: true
+                                                      computed: true
+                                                    type:
+                                                      type: string
+                                                      description_kind: plain
+                                                      required: true
+                                                  description_kind: plain
+                                            description_kind: plain
+                                        property:
+                                          nesting_mode: set
+                                          block:
+                                            attributes:
+                                              description:
+                                                type: string
+                                                description_kind: plain
+                                                optional: true
+                                              name:
+                                                type: string
+                                                description_kind: plain
+                                                required: true
+                                              required:
+                                                type: bool
+                                                description_kind: plain
+                                                optional: true
+                                                computed: true
+                                              type:
+                                                type: string
+                                                description_kind: plain
+                                                required: true
+                                            block_types:
+                                              items:
+                                                nesting_mode: list
+                                                block:
+                                                  attributes:
+                                                    description:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    type:
+                                                      type: string
+                                                      description_kind: plain
+                                                      required: true
+                                                  block_types:
+                                                    items:
+                                                      nesting_mode: list
+                                                      block:
+                                                        attributes:
+                                                          description:
+                                                            type: string
+                                                            description_kind: plain
+                                                            optional: true
+                                                          items_json:
+                                                            type: string
+                                                            description_kind: plain
+                                                            optional: true
+                                                          properties_json:
+                                                            type: string
+                                                            description_kind: plain
+                                                            optional: true
+                                                          type:
+                                                            type: string
+                                                            description_kind: plain
+                                                            required: true
+                                                        description_kind: plain
+                                                    property:
+                                                      nesting_mode: set
+                                                      block:
+                                                        attributes:
+                                                          description:
+                                                            type: string
+                                                            description_kind: plain
+                                                            optional: true
+                                                          items_json:
+                                                            type: string
+                                                            description_kind: plain
+                                                            optional: true
+                                                          name:
+                                                            type: string
+                                                            description_kind: plain
+                                                            required: true
+                                                          properties_json:
+                                                            type: string
+                                                            description_kind: plain
+                                                            optional: true
+                                                          required:
+                                                            type: bool
+                                                            description_kind: plain
+                                                            optional: true
+                                                            computed: true
+                                                          type:
+                                                            type: string
+                                                            description_kind: plain
+                                                            required: true
+                                                        description_kind: plain
+                                                  description_kind: plain
+                                              property:
+                                                nesting_mode: set
+                                                block:
+                                                  attributes:
+                                                    description:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    items_json:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    name:
+                                                      type: string
+                                                      description_kind: plain
+                                                      required: true
+                                                    properties_json:
+                                                      type: string
+                                                      description_kind: plain
+                                                      optional: true
+                                                    required:
+                                                      type: bool
+                                                      description_kind: plain
+                                                      optional: true
+                                                      computed: true
+                                                    type:
+                                                      type: string
+                                                      description_kind: plain
+                                                      required: true
+                                                  description_kind: plain
+                                            description_kind: plain
+                                      description_kind: plain
+                                description_kind: plain
+                            s3:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  bucket_owner_account_id:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  uri:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                description_kind: plain
+                          description_kind: plain
+                    description_kind: plain
+                open_api_schema:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      inline_payload:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            payload:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                      s3:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            bucket_owner_account_id:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            uri:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                    description_kind: plain
+                smithy_model:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      inline_payload:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            payload:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                      s3:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            bucket_owner_account_id:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            uri:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                    description_kind: plain
+              description_kind: plain
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

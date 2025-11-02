@@ -1,0 +1,166 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "associations": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "name": "string",
+              "network": "string",
+              "state": "string"
+            }
+          ]
+        ],
+        "description": "List of associations to this endpoint group.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "connected_deployment_groups": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "locations": [
+                "set",
+                [
+                  "object",
+                  {
+                    "location": "string",
+                    "state": "string"
+                  }
+                ]
+              ],
+              "name": "string"
+            }
+          ]
+        ],
+        "description": "List of details about the connected deployment groups to this endpoint group.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "User-provided description of the endpoint group. Used as additional context for the endpoint group.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Labels are key/value pairs that help to organize and filter resources. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The cloud location of the endpoint group, currently restricted to 'global'.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "mirroring_deployment_group": {
+        "type": "string",
+        "description": "The deployment group that this DIRECT endpoint group is connected to, for example: 'projects/123456789/locations/global/mirroringDeploymentGroups/my-dg'. See https://google.aip.dev/124.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "mirroring_endpoint_group_id": {
+        "type": "string",
+        "description": "The ID to use for the endpoint group, which will become the final component of the endpoint group's resource name.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name of this endpoint group, for example: 'projects/123456789/locations/global/mirroringEndpointGroups/my-eg'. See https://google.aip.dev/122 for more details.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "reconciling": {
+        "type": "bool",
+        "description": "The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This is part of the normal operation (e.g. adding a new association to the group). See https://google.aip.dev/128.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "state": {
+        "type": "string",
+        "description": "The current state of the endpoint group. See https://google.aip.dev/216. Possible values: STATE_UNSPECIFIED ACTIVE CLOSED CREATING DELETING OUT_OF_SYNC DELETE_FAILED",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

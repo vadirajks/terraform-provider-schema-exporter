@@ -1,0 +1,2020 @@
+version: 1
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    destination:
+      type: string
+      description_kind: plain
+      required: true
+    destination_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    version_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    elasticsearch_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          buffering_interval:
+            type: number
+            description_kind: plain
+            optional: true
+          buffering_size:
+            type: number
+            description_kind: plain
+            optional: true
+          cluster_endpoint:
+            type: string
+            description_kind: plain
+            optional: true
+          domain_arn:
+            type: string
+            description_kind: plain
+            optional: true
+          index_name:
+            type: string
+            description_kind: plain
+            required: true
+          index_rotation_period:
+            type: string
+            description_kind: plain
+            optional: true
+          retry_duration:
+            type: number
+            description_kind: plain
+            optional: true
+          role_arn:
+            type: string
+            description_kind: plain
+            required: true
+          s3_backup_mode:
+            type: string
+            description_kind: plain
+            optional: true
+          type_name:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          cloudwatch_logging_options:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                log_group_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                log_stream_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          processing_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              block_types:
+                processors:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      parameters:
+                        nesting_mode: set
+                        block:
+                          attributes:
+                            parameter_name:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            parameter_value:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                    description_kind: plain
+              description_kind: plain
+            max_items: 1
+          s3_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                buffering_interval:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                buffering_size:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                compression_format:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                error_output_prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                kms_key_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                cloudwatch_logging_options:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      enabled:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                      log_group_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      log_stream_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+          vpc_config:
+            nesting_mode: list
+            block:
+              attributes:
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                security_group_ids:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  required: true
+                subnet_ids:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  required: true
+                vpc_id:
+                  type: string
+                  description_kind: plain
+                  computed: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    extended_s3_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          bucket_arn:
+            type: string
+            description_kind: plain
+            required: true
+          buffering_interval:
+            type: number
+            description_kind: plain
+            optional: true
+          buffering_size:
+            type: number
+            description_kind: plain
+            optional: true
+          compression_format:
+            type: string
+            description_kind: plain
+            optional: true
+          custom_time_zone:
+            type: string
+            description_kind: plain
+            optional: true
+          error_output_prefix:
+            type: string
+            description_kind: plain
+            optional: true
+          file_extension:
+            type: string
+            description_kind: plain
+            optional: true
+          kms_key_arn:
+            type: string
+            description_kind: plain
+            optional: true
+          prefix:
+            type: string
+            description_kind: plain
+            optional: true
+          role_arn:
+            type: string
+            description_kind: plain
+            required: true
+          s3_backup_mode:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          cloudwatch_logging_options:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                log_group_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                log_stream_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          data_format_conversion_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              block_types:
+                input_format_configuration:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      deserializer:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            hive_json_ser_de:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  timestamp_formats:
+                                    type:
+                                    - list
+                                    - string
+                                    description_kind: plain
+                                    optional: true
+                                description_kind: plain
+                              max_items: 1
+                            open_x_json_ser_de:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  case_insensitive:
+                                    type: bool
+                                    description_kind: plain
+                                    optional: true
+                                  column_to_json_key_mappings:
+                                    type:
+                                    - map
+                                    - string
+                                    description_kind: plain
+                                    optional: true
+                                  convert_dots_in_json_keys_to_underscores:
+                                    type: bool
+                                    description_kind: plain
+                                    optional: true
+                                description_kind: plain
+                              max_items: 1
+                          description_kind: plain
+                        min_items: 1
+                        max_items: 1
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+                output_format_configuration:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      serializer:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            orc_ser_de:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  block_size_bytes:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  bloom_filter_columns:
+                                    type:
+                                    - list
+                                    - string
+                                    description_kind: plain
+                                    optional: true
+                                  bloom_filter_false_positive_probability:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  compression:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  dictionary_key_threshold:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  enable_padding:
+                                    type: bool
+                                    description_kind: plain
+                                    optional: true
+                                  format_version:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  padding_tolerance:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  row_index_stride:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  stripe_size_bytes:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                description_kind: plain
+                              max_items: 1
+                            parquet_ser_de:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  block_size_bytes:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  compression:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  enable_dictionary_compression:
+                                    type: bool
+                                    description_kind: plain
+                                    optional: true
+                                  max_padding_bytes:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  page_size_bytes:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  writer_version:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                description_kind: plain
+                              max_items: 1
+                          description_kind: plain
+                        min_items: 1
+                        max_items: 1
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+                schema_configuration:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      catalog_id:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      database_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      region:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      role_arn:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      table_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      version_id:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          dynamic_partitioning_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                retry_duration:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          processing_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              block_types:
+                processors:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      parameters:
+                        nesting_mode: set
+                        block:
+                          attributes:
+                            parameter_name:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            parameter_value:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                    description_kind: plain
+              description_kind: plain
+            max_items: 1
+          s3_backup_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                buffering_interval:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                buffering_size:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                compression_format:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                error_output_prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                kms_key_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                cloudwatch_logging_options:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      enabled:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                      log_group_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      log_stream_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    http_endpoint_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          access_key:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          buffering_interval:
+            type: number
+            description_kind: plain
+            optional: true
+          buffering_size:
+            type: number
+            description_kind: plain
+            optional: true
+          name:
+            type: string
+            description_kind: plain
+            optional: true
+          retry_duration:
+            type: number
+            description_kind: plain
+            optional: true
+          role_arn:
+            type: string
+            description_kind: plain
+            optional: true
+          s3_backup_mode:
+            type: string
+            description_kind: plain
+            optional: true
+          url:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          cloudwatch_logging_options:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                log_group_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                log_stream_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          processing_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              block_types:
+                processors:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      parameters:
+                        nesting_mode: set
+                        block:
+                          attributes:
+                            parameter_name:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            parameter_value:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                    description_kind: plain
+              description_kind: plain
+            max_items: 1
+          request_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                content_encoding:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                common_attributes:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      value:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+              description_kind: plain
+            max_items: 1
+          s3_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                buffering_interval:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                buffering_size:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                compression_format:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                error_output_prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                kms_key_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                cloudwatch_logging_options:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      enabled:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                      log_group_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      log_stream_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+          secrets_manager_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                secret_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    iceberg_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          append_only:
+            type: bool
+            description_kind: plain
+            optional: true
+            computed: true
+          buffering_interval:
+            type: number
+            description_kind: plain
+            optional: true
+          buffering_size:
+            type: number
+            description_kind: plain
+            optional: true
+          catalog_arn:
+            type: string
+            description_kind: plain
+            required: true
+          retry_duration:
+            type: number
+            description_kind: plain
+            optional: true
+          role_arn:
+            type: string
+            description_kind: plain
+            required: true
+          s3_backup_mode:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          cloudwatch_logging_options:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                log_group_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                log_stream_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          destination_table_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                database_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                s3_error_output_prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                table_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                unique_keys:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          processing_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              block_types:
+                processors:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      parameters:
+                        nesting_mode: set
+                        block:
+                          attributes:
+                            parameter_name:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            parameter_value:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                    description_kind: plain
+              description_kind: plain
+            max_items: 1
+          s3_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                buffering_interval:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                buffering_size:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                compression_format:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                error_output_prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                kms_key_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                cloudwatch_logging_options:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      enabled:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                      log_group_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      log_stream_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    kinesis_source_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          kinesis_stream_arn:
+            type: string
+            description_kind: plain
+            required: true
+          role_arn:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    msk_source_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          msk_cluster_arn:
+            type: string
+            description_kind: plain
+            required: true
+          read_from_timestamp:
+            type: string
+            description_kind: plain
+            optional: true
+          topic_name:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          authentication_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                connectivity:
+                  type: string
+                  description_kind: plain
+                  required: true
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    opensearch_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          buffering_interval:
+            type: number
+            description_kind: plain
+            optional: true
+          buffering_size:
+            type: number
+            description_kind: plain
+            optional: true
+          cluster_endpoint:
+            type: string
+            description_kind: plain
+            optional: true
+          domain_arn:
+            type: string
+            description_kind: plain
+            optional: true
+          index_name:
+            type: string
+            description_kind: plain
+            required: true
+          index_rotation_period:
+            type: string
+            description_kind: plain
+            optional: true
+          retry_duration:
+            type: number
+            description_kind: plain
+            optional: true
+          role_arn:
+            type: string
+            description_kind: plain
+            required: true
+          s3_backup_mode:
+            type: string
+            description_kind: plain
+            optional: true
+          type_name:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          cloudwatch_logging_options:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                log_group_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                log_stream_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          document_id_options:
+            nesting_mode: list
+            block:
+              attributes:
+                default_document_id_format:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          processing_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              block_types:
+                processors:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      parameters:
+                        nesting_mode: set
+                        block:
+                          attributes:
+                            parameter_name:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            parameter_value:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                    description_kind: plain
+              description_kind: plain
+            max_items: 1
+          s3_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                buffering_interval:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                buffering_size:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                compression_format:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                error_output_prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                kms_key_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                cloudwatch_logging_options:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      enabled:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                      log_group_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      log_stream_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+          vpc_config:
+            nesting_mode: list
+            block:
+              attributes:
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                security_group_ids:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  required: true
+                subnet_ids:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  required: true
+                vpc_id:
+                  type: string
+                  description_kind: plain
+                  computed: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    opensearchserverless_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          buffering_interval:
+            type: number
+            description_kind: plain
+            optional: true
+          buffering_size:
+            type: number
+            description_kind: plain
+            optional: true
+          collection_endpoint:
+            type: string
+            description_kind: plain
+            required: true
+          index_name:
+            type: string
+            description_kind: plain
+            required: true
+          retry_duration:
+            type: number
+            description_kind: plain
+            optional: true
+          role_arn:
+            type: string
+            description_kind: plain
+            required: true
+          s3_backup_mode:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          cloudwatch_logging_options:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                log_group_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                log_stream_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          processing_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              block_types:
+                processors:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      parameters:
+                        nesting_mode: set
+                        block:
+                          attributes:
+                            parameter_name:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            parameter_value:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                    description_kind: plain
+              description_kind: plain
+            max_items: 1
+          s3_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                buffering_interval:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                buffering_size:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                compression_format:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                error_output_prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                kms_key_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                cloudwatch_logging_options:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      enabled:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                      log_group_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      log_stream_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+          vpc_config:
+            nesting_mode: list
+            block:
+              attributes:
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                security_group_ids:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  required: true
+                subnet_ids:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  required: true
+                vpc_id:
+                  type: string
+                  description_kind: plain
+                  computed: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    redshift_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          cluster_jdbcurl:
+            type: string
+            description_kind: plain
+            required: true
+          copy_options:
+            type: string
+            description_kind: plain
+            optional: true
+          data_table_columns:
+            type: string
+            description_kind: plain
+            optional: true
+          data_table_name:
+            type: string
+            description_kind: plain
+            required: true
+          password:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          retry_duration:
+            type: number
+            description_kind: plain
+            optional: true
+          role_arn:
+            type: string
+            description_kind: plain
+            required: true
+          s3_backup_mode:
+            type: string
+            description_kind: plain
+            optional: true
+          username:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          cloudwatch_logging_options:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                log_group_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                log_stream_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          processing_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              block_types:
+                processors:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      parameters:
+                        nesting_mode: set
+                        block:
+                          attributes:
+                            parameter_name:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            parameter_value:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                    description_kind: plain
+              description_kind: plain
+            max_items: 1
+          s3_backup_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                buffering_interval:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                buffering_size:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                compression_format:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                error_output_prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                kms_key_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                cloudwatch_logging_options:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      enabled:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                      log_group_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      log_stream_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          s3_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                buffering_interval:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                buffering_size:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                compression_format:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                error_output_prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                kms_key_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                cloudwatch_logging_options:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      enabled:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                      log_group_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      log_stream_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+          secrets_manager_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                secret_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    server_side_encryption:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          key_arn:
+            type: string
+            description_kind: plain
+            optional: true
+          key_type:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    snowflake_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          account_url:
+            type: string
+            description_kind: plain
+            required: true
+          buffering_interval:
+            type: number
+            description_kind: plain
+            optional: true
+          buffering_size:
+            type: number
+            description_kind: plain
+            optional: true
+          content_column_name:
+            type: string
+            description_kind: plain
+            optional: true
+          data_loading_option:
+            type: string
+            description_kind: plain
+            optional: true
+          database:
+            type: string
+            description_kind: plain
+            required: true
+          key_passphrase:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          metadata_column_name:
+            type: string
+            description_kind: plain
+            optional: true
+          private_key:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          retry_duration:
+            type: number
+            description_kind: plain
+            optional: true
+          role_arn:
+            type: string
+            description_kind: plain
+            required: true
+          s3_backup_mode:
+            type: string
+            description_kind: plain
+            optional: true
+          schema:
+            type: string
+            description_kind: plain
+            required: true
+          table:
+            type: string
+            description_kind: plain
+            required: true
+          user:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          cloudwatch_logging_options:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                log_group_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                log_stream_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          processing_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              block_types:
+                processors:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      parameters:
+                        nesting_mode: set
+                        block:
+                          attributes:
+                            parameter_name:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            parameter_value:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                    description_kind: plain
+              description_kind: plain
+            max_items: 1
+          s3_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                buffering_interval:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                buffering_size:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                compression_format:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                error_output_prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                kms_key_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                cloudwatch_logging_options:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      enabled:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                      log_group_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      log_stream_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+          secrets_manager_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                secret_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          snowflake_role_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                snowflake_role:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          snowflake_vpc_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                private_link_vpce_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    splunk_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          buffering_interval:
+            type: number
+            description_kind: plain
+            optional: true
+          buffering_size:
+            type: number
+            description_kind: plain
+            optional: true
+          hec_acknowledgment_timeout:
+            type: number
+            description_kind: plain
+            optional: true
+          hec_endpoint:
+            type: string
+            description_kind: plain
+            required: true
+          hec_endpoint_type:
+            type: string
+            description_kind: plain
+            optional: true
+          hec_token:
+            type: string
+            description_kind: plain
+            optional: true
+          retry_duration:
+            type: number
+            description_kind: plain
+            optional: true
+          s3_backup_mode:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          cloudwatch_logging_options:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                log_group_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                log_stream_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          processing_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              block_types:
+                processors:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      parameters:
+                        nesting_mode: set
+                        block:
+                          attributes:
+                            parameter_name:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            parameter_value:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                    description_kind: plain
+              description_kind: plain
+            max_items: 1
+          s3_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                buffering_interval:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                buffering_size:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                compression_format:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                error_output_prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                kms_key_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                cloudwatch_logging_options:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      enabled:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                      log_group_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      log_stream_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+          secrets_manager_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                secret_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,263 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "anomaly_settings_version": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "anomaly_version": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "built_in_rule_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "display_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "required": true
+      },
+      "frequency": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "is_default_settings": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "log_analytics_workspace_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "mode": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "required_data_connector": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "connector_id": "string",
+              "data_types": [
+                "list",
+                "string"
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "settings_definition_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tactics": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "techniques": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "multi_select_observation": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "description": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "supported_values": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "computed": true
+            },
+            "values": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "prioritized_exclude_observation": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "description": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "exclude": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "prioritize": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "single_select_observation": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "description": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "supported_values": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "computed": true
+            },
+            "value": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "threshold_observation": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "description": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "max": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "min": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "value": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,338 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_access_role_arn:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    elements:
+      nesting_mode: list
+      block:
+        attributes:
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          amazon_transcribe_call_analytics_processor_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                call_analytics_stream_categories:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                content_identification_type:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                content_redaction_type:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                enable_partial_results_stabilization:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                filter_partial_results:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                language_code:
+                  type: string
+                  description_kind: plain
+                  required: true
+                language_model_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                partial_results_stability:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                pii_entity_types:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                vocabulary_filter_method:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                vocabulary_filter_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                vocabulary_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                post_call_analytics_settings:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      content_redaction_output:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      data_access_role_arn:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      output_encryption_kms_key_id:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      output_location:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          amazon_transcribe_processor_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                content_identification_type:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                content_redaction_type:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                enable_partial_results_stabilization:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                filter_partial_results:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                language_code:
+                  type: string
+                  description_kind: plain
+                  required: true
+                language_model_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                partial_results_stability:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                pii_entity_types:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                show_speaker_label:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                vocabulary_filter_method:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                vocabulary_filter_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                vocabulary_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          kinesis_data_stream_sink_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                insights_target:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          lambda_function_sink_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                insights_target:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          s3_recording_sink_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                destination:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          sns_topic_sink_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                insights_target:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          sqs_queue_sink_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                insights_target:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          voice_analytics_processor_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                speaker_search_status:
+                  type: string
+                  description_kind: plain
+                  required: true
+                voice_tone_analysis_status:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+    real_time_alert_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          disabled:
+            type: bool
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          rules:
+            nesting_mode: list
+            block:
+              attributes:
+                type:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                issue_detection_configuration:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      rule_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 1
+                keyword_match_configuration:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      keywords:
+                        type:
+                        - list
+                        - string
+                        description_kind: plain
+                        required: true
+                      negate:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      rule_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 1
+                sentiment_configuration:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      rule_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      sentiment_type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      time_period:
+                        type: number
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+            max_items: 3
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,387 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "disabled": {
+        "type": "bool",
+        "description": "Indicates whether the webhook is disabled.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "The human-readable name of the webhook, unique within the agent.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "enable_spell_correction": {
+        "type": "bool",
+        "description": "Deprecated. Indicates if automatic spell correction is enabled in detect intent requests.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "enable_stackdriver_logging": {
+        "type": "bool",
+        "description": "Deprecated. Determines whether this agent should log conversation queries.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The unique identifier of the webhook. Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/webhooks/<Webhook ID>.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "parent": {
+        "type": "string",
+        "description": "The agent to create a webhook for. Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "security_settings": {
+        "type": "string",
+        "description": "Deprecated. Name of the SecuritySettings reference for the agent. Format: projects/<Project ID>/locations/<Location ID>/securitySettings/<Security Settings ID>.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "start_flow": {
+        "type": "string",
+        "description": "Deprecated. Name of the start flow in this agent. A start flow will be automatically created when the agent is created, and can only be deleted by deleting the agent. Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/flows/<Flow ID>.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "timeout": {
+        "type": "string",
+        "description": "Webhook execution timeout.",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "generic_web_service": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "allowed_ca_certs": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "Specifies a list of allowed custom CA certificates (in DER format) for HTTPS verification. This overrides the default SSL trust store. If this is empty or unspecified, Dialogflow will use Google's default trust store to verify certificates. N.B. Make sure the HTTPS server certificates are signed with \"subject alt name\". For instance a certificate can be self-signed using the following command, openssl x509 -req -days 200 -in example.com.csr \\ -signkey example.com.key \\ -out example.com.crt \\ -extfile <(printf \"\\nsubjectAltName='DNS:www.example.com'\")",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "http_method": {
+              "type": "string",
+              "description": "HTTP method for the flexible webhook calls. Standard webhook always uses POST. Possible values: [\"POST\", \"GET\", \"HEAD\", \"PUT\", \"DELETE\", \"PATCH\", \"OPTIONS\"]",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "parameter_mapping": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description": "Maps the values extracted from specific fields of the flexible webhook response into session parameters. - Key: session parameter name - Value: field path in the webhook response",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "request_body": {
+              "type": "string",
+              "description": "Defines a custom JSON object as request body to send to flexible webhook.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "request_headers": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description": "The HTTP request headers to send together with webhook requests.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "secret_version_for_username_password": {
+              "type": "string",
+              "description": "The SecretManager secret version resource storing the username:password pair for HTTP Basic authentication. Format: 'projects/{project}/secrets/{secret}/versions/{version}'",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "service_agent_auth": {
+              "type": "string",
+              "description": "Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header. Possible values: [\"NONE\", \"ID_TOKEN\", \"ACCESS_TOKEN\"]",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "uri": {
+              "type": "string",
+              "description": "The webhook URI for receiving POST requests. It must use https protocol.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "webhook_type": {
+              "type": "string",
+              "description": "Type of the webhook. Possible values: [\"STANDARD\", \"FLEXIBLE\"]",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "oauth_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "client_id": {
+                    "type": "string",
+                    "description": "The client ID provided by the 3rd party platform.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "client_secret": {
+                    "type": "string",
+                    "description": "The client secret provided by the 3rd party platform.  If the 'secret_version_for_client_secret' field is set, this field will be ignored.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "scopes": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "The OAuth scopes to grant.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "secret_version_for_client_secret": {
+                    "type": "string",
+                    "description": "The name of the SecretManager secret version resource storing the client secret. If this field is set, the 'client_secret' field will be ignored. Format: 'projects/{project}/secrets/{secret}/versions/{version}'",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "token_endpoint": {
+                    "type": "string",
+                    "description": "The token endpoint provided by the 3rd party platform to exchange an access token.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Represents configuration of OAuth client credential flow for 3rd party API authentication.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "secret_versions_for_request_headers": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "key": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "secret_version": {
+                    "type": "string",
+                    "description": "The SecretManager secret version resource storing the header value. Format: 'projects/{project}/secrets/{secret}/versions/{version}'",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "The HTTP request headers to send together with webhook requests. Header values are stored in SecretManager secret versions. When the same header name is specified in both 'request_headers' and 'secret_versions_for_request_headers', the value in 'secret_versions_for_request_headers' will be used.",
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description": "Represents configuration for a generic web service.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "service_directory": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "service": {
+              "type": "string",
+              "description": "The name of Service Directory service.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "generic_web_service": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "allowed_ca_certs": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Specifies a list of allowed custom CA certificates (in DER format) for HTTPS verification. This overrides the default SSL trust store. If this is empty or unspecified, Dialogflow will use Google's default trust store to verify certificates. N.B. Make sure the HTTPS server certificates are signed with \"subject alt name\". For instance a certificate can be self-signed using the following command, openssl x509 -req -days 200 -in example.com.csr \\ -signkey example.com.key \\ -out example.com.crt \\ -extfile <(printf \"\\nsubjectAltName='DNS:www.example.com'\")",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "http_method": {
+                    "type": "string",
+                    "description": "HTTP method for the flexible webhook calls. Standard webhook always uses POST. Possible values: [\"POST\", \"GET\", \"HEAD\", \"PUT\", \"DELETE\", \"PATCH\", \"OPTIONS\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "parameter_mapping": {
+                    "type": [
+                      "map",
+                      "string"
+                    ],
+                    "description": "Maps the values extracted from specific fields of the flexible webhook response into session parameters. - Key: session parameter name - Value: field path in the webhook response",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "request_body": {
+                    "type": "string",
+                    "description": "Defines a custom JSON object as request body to send to flexible webhook.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "request_headers": {
+                    "type": [
+                      "map",
+                      "string"
+                    ],
+                    "description": "The HTTP request headers to send together with webhook requests.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "secret_version_for_username_password": {
+                    "type": "string",
+                    "description": "The SecretManager secret version resource storing the username:password pair for HTTP Basic authentication. Format: 'projects/{project}/secrets/{secret}/versions/{version}'",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "service_agent_auth": {
+                    "type": "string",
+                    "description": "Indicate the auth token type generated from the [Diglogflow service agent](https://cloud.google.com/iam/docs/service-agents#dialogflow-service-agent). The generated token is sent in the Authorization header. Possible values: [\"NONE\", \"ID_TOKEN\", \"ACCESS_TOKEN\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "uri": {
+                    "type": "string",
+                    "description": "The webhook URI for receiving POST requests. It must use https protocol.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "webhook_type": {
+                    "type": "string",
+                    "description": "Type of the webhook. Possible values: [\"STANDARD\", \"FLEXIBLE\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "oauth_config": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "client_id": {
+                          "type": "string",
+                          "description": "The client ID provided by the 3rd party platform.",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "client_secret": {
+                          "type": "string",
+                          "description": "The client secret provided by the 3rd party platform.  If the 'secret_version_for_client_secret' field is set, this field will be ignored.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "scopes": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description": "The OAuth scopes to grant.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "secret_version_for_client_secret": {
+                          "type": "string",
+                          "description": "The name of the SecretManager secret version resource storing the client secret. If this field is set, the 'client_secret' field will be ignored. Format: 'projects/{project}/secrets/{secret}/versions/{version}'",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "token_endpoint": {
+                          "type": "string",
+                          "description": "The token endpoint provided by the 3rd party platform to exchange an access token.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "Represents configuration of OAuth client credential flow for 3rd party API authentication.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "secret_versions_for_request_headers": {
+                    "nesting_mode": "set",
+                    "block": {
+                      "attributes": {
+                        "key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "secret_version": {
+                          "type": "string",
+                          "description": "The SecretManager secret version resource storing the header value. Format: 'projects/{project}/secrets/{secret}/versions/{version}'",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "The HTTP request headers to send together with webhook requests. Header values are stored in SecretManager secret versions. When the same header name is specified in both 'request_headers' and 'secret_versions_for_request_headers', the value in 'secret_versions_for_request_headers' will be used.",
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description": "Represents configuration for a generic web service.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Configuration for a Service Directory service.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

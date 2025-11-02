@@ -1,0 +1,133 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    created_at:
+      type: string
+      description_kind: plain
+      computed: true
+    created_by:
+      type: string
+      description_kind: plain
+      computed: true
+    encryption_configuration:
+      type:
+      - object
+      - kms_key_arn: string
+        sse_algorithm: string
+      description_kind: plain
+      optional: true
+      computed: true
+    format:
+      type: string
+      description_kind: plain
+      required: true
+    maintenance_configuration:
+      type:
+      - object
+      - iceberg_compaction:
+        - object
+        - settings:
+          - object
+          - target_file_size_mb: number
+          status: string
+        iceberg_snapshot_management:
+        - object
+        - settings:
+          - object
+          - max_snapshot_age_hours: number
+            min_snapshots_to_keep: number
+          status: string
+      description_kind: plain
+      optional: true
+      computed: true
+    metadata_location:
+      type: string
+      description_kind: plain
+      computed: true
+    modified_at:
+      type: string
+      description_kind: plain
+      computed: true
+    modified_by:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    namespace:
+      type: string
+      description_kind: plain
+      required: true
+    owner_account_id:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    table_bucket_arn:
+      type: string
+      description_kind: plain
+      required: true
+    type:
+      type: string
+      description_kind: plain
+      computed: true
+    version_token:
+      type: string
+      description_kind: plain
+      computed: true
+    warehouse_location:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    metadata:
+      nesting_mode: list
+      block:
+        block_types:
+          iceberg:
+            nesting_mode: list
+            block:
+              block_types:
+                schema:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      field:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            name:
+                              type: string
+                              description: The name of the field.
+                              description_kind: plain
+                              required: true
+                            required:
+                              type: bool
+                              description: 'A Boolean value that specifies whether values are required for each row in this field. Default: false.'
+                              description_kind: plain
+                              optional: true
+                              computed: true
+                            type:
+                              type: string
+                              description: The field type. S3 Tables supports all Apache Iceberg primitive types.
+                              description_kind: plain
+                              required: true
+                          description: List of schema fields for the Iceberg table.
+                          description_kind: plain
+                    description: Schema configuration for the Iceberg table.
+                    description_kind: plain
+              description: Iceberg metadata configuration.
+              description_kind: plain
+        description_kind: plain
+  description_kind: plain

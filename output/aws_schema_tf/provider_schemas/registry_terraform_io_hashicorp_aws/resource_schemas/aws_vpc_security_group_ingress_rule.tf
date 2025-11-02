@@ -1,0 +1,17 @@
+resource "aws_vpc_security_group_ingress_rule" "name" {
+  ip_protocol = string (Required)
+  security_group_id = string (Required)
+  arn = string (Computed)
+  cidr_ipv4 = string (Optional)
+  cidr_ipv6 = string (Optional)
+  description = string (Optional)
+  from_port = number (Optional)
+  id = string (Computed)
+  prefix_list_id = string (Optional)
+  referenced_security_group_id = string (Optional)
+  region = string (Optional, Computed)
+  security_group_rule_id = string (Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Computed)
+  to_port = number (Optional)
+}

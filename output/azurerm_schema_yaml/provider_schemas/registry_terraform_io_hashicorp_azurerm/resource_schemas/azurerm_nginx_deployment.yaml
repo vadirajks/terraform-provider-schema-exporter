@@ -1,0 +1,216 @@
+version: 0
+block:
+  attributes:
+    automatic_upgrade_channel:
+      type: string
+      description_kind: plain
+      optional: true
+    capacity:
+      type: number
+      description_kind: plain
+      optional: true
+    dataplane_api_endpoint:
+      type: string
+      description_kind: plain
+      computed: true
+    diagnose_support_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    email:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ip_address:
+      type: string
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    managed_resource_group:
+      type: string
+      description_kind: plain
+      deprecated: true
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    nginx_version:
+      type: string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    sku:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    auto_scale_profile:
+      nesting_mode: list
+      block:
+        attributes:
+          max_capacity:
+            type: number
+            description_kind: plain
+            required: true
+          min_capacity:
+            type: number
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    frontend_private:
+      nesting_mode: list
+      block:
+        attributes:
+          allocation_method:
+            type: string
+            description_kind: plain
+            required: true
+          ip_address:
+            type: string
+            description_kind: plain
+            required: true
+          subnet_id:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    frontend_public:
+      nesting_mode: list
+      block:
+        attributes:
+          ip_address:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    identity:
+      nesting_mode: list
+      block:
+        attributes:
+          identity_ids:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          principal_id:
+            type: string
+            description_kind: plain
+            computed: true
+          tenant_id:
+            type: string
+            description_kind: plain
+            computed: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    logging_storage_account:
+      nesting_mode: list
+      block:
+        attributes:
+          container_name:
+            type: string
+            description_kind: plain
+            optional: true
+          name:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+        deprecated: true
+    network_interface:
+      nesting_mode: list
+      block:
+        attributes:
+          subnet_id:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    web_application_firewall:
+      nesting_mode: list
+      block:
+        attributes:
+          activation_state_enabled:
+            type: bool
+            description_kind: plain
+            required: true
+          status:
+            type:
+            - list
+            - - object
+              - attack_signatures_package:
+                - list
+                - - object
+                  - revision_datetime: string
+                    version: string
+                bot_signatures_package:
+                - list
+                - - object
+                  - revision_datetime: string
+                    version: string
+                component_versions:
+                - list
+                - - object
+                  - waf_engine_version: string
+                    waf_nginx_version: string
+                threat_campaigns_package:
+                - list
+                - - object
+                  - revision_datetime: string
+                    version: string
+            description_kind: plain
+            computed: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

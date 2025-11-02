@@ -1,0 +1,189 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "account_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "call_as": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "organizational_unit_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "parameter_overrides": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description_kind": "plain",
+        "deprecated": true,
+        "optional": true,
+        "computed": true
+      },
+      "retain_stack": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "stack_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "stack_instance_summaries": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "account_id": "string",
+              "organizational_unit_id": "string",
+              "stack_id": "string"
+            }
+          ]
+        ],
+        "description": "List of stack instances created from an organizational unit deployment target. This will only be populated when `deployment_targets` is set.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "stack_set_instance_region": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "stack_set_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "deployment_targets": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "account_filter_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "accounts": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "accounts_url": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "organizational_unit_ids": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "operation_preferences": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "concurrency_mode": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "failure_tolerance_count": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "failure_tolerance_percentage": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "max_concurrent_count": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "max_concurrent_percentage": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "region_concurrency_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "region_order": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

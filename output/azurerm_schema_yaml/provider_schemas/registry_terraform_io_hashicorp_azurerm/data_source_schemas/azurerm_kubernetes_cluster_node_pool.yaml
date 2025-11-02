@@ -1,0 +1,140 @@
+version: 0
+block:
+  attributes:
+    auto_scaling_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    eviction_policy:
+      type: string
+      description_kind: plain
+      computed: true
+    gpu_driver:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kubernetes_cluster_name:
+      type: string
+      description_kind: plain
+      required: true
+    max_count:
+      type: number
+      description_kind: plain
+      computed: true
+    max_pods:
+      type: number
+      description_kind: plain
+      computed: true
+    min_count:
+      type: number
+      description_kind: plain
+      computed: true
+    mode:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    node_count:
+      type: number
+      description_kind: plain
+      computed: true
+    node_labels:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    node_public_ip_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    node_public_ip_prefix_id:
+      type: string
+      description_kind: plain
+      computed: true
+    node_taints:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    orchestrator_version:
+      type: string
+      description_kind: plain
+      computed: true
+    os_disk_size_gb:
+      type: number
+      description_kind: plain
+      computed: true
+    os_disk_type:
+      type: string
+      description_kind: plain
+      computed: true
+    os_type:
+      type: string
+      description_kind: plain
+      computed: true
+    priority:
+      type: string
+      description_kind: plain
+      computed: true
+    proximity_placement_group_id:
+      type: string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    spot_max_price:
+      type: number
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    upgrade_settings:
+      type:
+      - list
+      - - object
+        - drain_timeout_in_minutes: number
+          max_surge: string
+          node_soak_duration_in_minutes: number
+      description_kind: plain
+      computed: true
+    vm_size:
+      type: string
+      description_kind: plain
+      computed: true
+    vnet_subnet_id:
+      type: string
+      description_kind: plain
+      computed: true
+    zones:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,86 @@
+version: 0
+block:
+  attributes:
+    default_slice_id:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    mobile_network_id:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    rat_frequency_selection_priority_index:
+      type: number
+      description_kind: plain
+      computed: true
+    registration_timer_in_seconds:
+      type: number
+      description_kind: plain
+      computed: true
+    slice:
+      type:
+      - list
+      - - object
+        - data_network:
+          - list
+          - - object
+            - additional_allowed_session_types:
+              - list
+              - string
+              allocation_and_retention_priority_level: number
+              allowed_services_ids:
+              - list
+              - string
+              data_network_id: string
+              default_session_type: string
+              max_buffered_packets: number
+              preemption_capability: string
+              preemption_vulnerability: string
+              qos_indicator: number
+              session_aggregate_maximum_bit_rate:
+              - list
+              - - object
+                - downlink: string
+                  uplink: string
+          default_data_network_id: string
+          slice_id: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    user_equipment_aggregate_maximum_bit_rate:
+      type:
+      - list
+      - - object
+        - downlink: string
+          uplink: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

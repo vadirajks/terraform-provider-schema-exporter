@@ -1,0 +1,64 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: 'Output only. Time when the security policy was created. A timestamp in RFC3339 UTC ''Zulu'' format, with nanosecond resolution and up to nine fractional digits. Examples: ''2014-10-02T15:01:23Z'' and ''2014-10-02T15:01:23.045123456Z'''
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: Free-text description of the resource.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: The location of the url lists.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: Short name of the UrlList resource to be created. This value should be 1-63 characters long, containing only letters, numbers, hyphens, and underscores, and should not start with a number. E.g. 'urlList'.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    update_time:
+      type: string
+      description: 'Output only. Time when the security policy was updated. A timestamp in RFC3339 UTC ''Zulu'' format, with nanosecond resolution and up to nine fractional digits. Examples: ''2014-10-02T15:01:23Z'' and ''2014-10-02T15:01:23.045123456Z''.'
+      description_kind: plain
+      computed: true
+    values:
+      type:
+      - list
+      - string
+      description: FQDNs and URLs.
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

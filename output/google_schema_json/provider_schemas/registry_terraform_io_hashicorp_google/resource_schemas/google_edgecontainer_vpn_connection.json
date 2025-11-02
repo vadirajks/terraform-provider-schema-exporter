@@ -1,0 +1,176 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "cluster": {
+        "type": "string",
+        "description": "The canonical Cluster name to connect to. It is in the form of projects/{project}/locations/{location}/clusters/{cluster}.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "The time when the VPN connection was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "details": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "cloud_router": [
+                "list",
+                [
+                  "object",
+                  {
+                    "name": "string"
+                  }
+                ]
+              ],
+              "cloud_vpns": [
+                "list",
+                [
+                  "object",
+                  {
+                    "gateway": "string"
+                  }
+                ]
+              ],
+              "error": "string",
+              "state": "string"
+            }
+          ]
+        ],
+        "description": "A nested object resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "enable_high_availability": {
+        "type": "bool",
+        "description": "Whether this VPN connection has HA enabled on cluster side. If enabled, when creating VPN connection we will attempt to use 2 ANG floating IPs.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Labels associated with this resource. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "Google Cloud Platform location.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name of VPN connection",
+        "description_kind": "plain",
+        "required": true
+      },
+      "nat_gateway_ip": {
+        "type": "string",
+        "description": "NAT gateway IP, or WAN IP address. If a customer has multiple NAT IPs, the customer needs to configure NAT such that only one external IP maps to the GMEC Anthos cluster. This is empty if NAT is not used.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "router": {
+        "type": "string",
+        "description": "The VPN connection Cloud Router name.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "The time when the VPN connection was last updated.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "vpc": {
+        "type": "string",
+        "description": "The network ID of VPC to connect to.",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "vpc_project": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "project_id": {
+              "type": "string",
+              "description": "The project of the VPC to connect to. If not specified, it is the same as the cluster project.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Project detail of the VPC network. Required if VPC is in a different project than the cluster project.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

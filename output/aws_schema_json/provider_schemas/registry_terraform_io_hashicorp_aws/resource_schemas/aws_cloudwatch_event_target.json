@@ -1,0 +1,462 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "event_bus_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "force_destroy": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "input": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "input_path": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "role_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "rule": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "target_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "appsync_target": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "graphql_operation": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "batch_target": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "array_size": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "job_attempts": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "job_definition": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "job_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "dead_letter_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "ecs_target": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enable_ecs_managed_tags": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "enable_execute_command": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "group": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "launch_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "platform_version": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "propagate_tags": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "tags": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "task_count": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "task_definition_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "capacity_provider_strategy": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "base": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "capacity_provider": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "weight": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "network_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "assign_public_ip": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "security_groups": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "subnets": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "ordered_placement_strategy": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "field": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 5
+            },
+            "placement_constraint": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "expression": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 10
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "http_target": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "header_parameters": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "path_parameter_values": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "query_string_parameters": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "input_transformer": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "input_paths": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "input_template": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "kinesis_target": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "partition_key_path": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "redshift_target": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "database": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "db_user": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "secrets_manager_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "sql": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "statement_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "with_event": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "retry_policy": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "maximum_event_age_in_seconds": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "maximum_retry_attempts": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "run_command_targets": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "key": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "values": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 5
+      },
+      "sagemaker_pipeline_target": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "pipeline_parameter_list": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "value": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 200
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "sqs_target": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "message_group_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

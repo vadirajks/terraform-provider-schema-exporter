@@ -1,0 +1,140 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "description": {
+        "type": "string",
+        "description": "A descriptive comment.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "global_policy_evaluation_mode": {
+        "type": "string",
+        "description": "Controls the evaluation of a Google-maintained global admission policy for common system-level images. Images not covered by the global policy will be subject to the project admission policy. Possible values: [\"ENABLE\", \"DISABLE\"]",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "admission_whitelist_patterns": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "name_pattern": {
+              "type": "string",
+              "description": "An image name pattern to whitelist, in the form 'registry/path/to/image'. This supports a trailing * as a wildcard, but this is allowed only in text after the registry/ part.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "A whitelist of image patterns to exclude from admission rules. If an image's name matches a whitelist pattern, the image's admission requests will always be permitted regardless of your admission rules.",
+          "description_kind": "plain"
+        }
+      },
+      "cluster_admission_rules": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "cluster": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "enforcement_mode": {
+              "type": "string",
+              "description": "The action when a pod creation is denied by the admission rule. Possible values: [\"ENFORCED_BLOCK_AND_AUDIT_LOG\", \"DRYRUN_AUDIT_LOG_ONLY\"]",
+              "description_kind": "plain",
+              "required": true
+            },
+            "evaluation_mode": {
+              "type": "string",
+              "description": "How this admission rule will be evaluated. Possible values: [\"ALWAYS_ALLOW\", \"REQUIRE_ATTESTATION\", \"ALWAYS_DENY\"]",
+              "description_kind": "plain",
+              "required": true
+            },
+            "require_attestations_by": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description": "The resource names of the attestors that must attest to a container image. If the attestor is in a different project from the policy, it should be specified in the format 'projects/*/attestors/*'. Each attestor must exist before a policy can reference it. To add an attestor to a policy the principal issuing the policy change request must be able to read the attestor resource. Note: this field must be non-empty when the evaluation_mode field specifies REQUIRE_ATTESTATION, otherwise it must be empty.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Per-cluster admission rules. An admission rule specifies either that all container images used in a pod creation request must be attested to by one or more attestors, that all pod creations will be allowed, or that all pod creations will be denied. There can be at most one admission rule per cluster spec. Identifier format: '{{location}}.{{clusterId}}'. A location is either a compute zone (e.g. 'us-central1-a') or a region (e.g. 'us-central1').",
+          "description_kind": "plain"
+        }
+      },
+      "default_admission_rule": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enforcement_mode": {
+              "type": "string",
+              "description": "The action when a pod creation is denied by the admission rule. Possible values: [\"ENFORCED_BLOCK_AND_AUDIT_LOG\", \"DRYRUN_AUDIT_LOG_ONLY\"]",
+              "description_kind": "plain",
+              "required": true
+            },
+            "evaluation_mode": {
+              "type": "string",
+              "description": "How this admission rule will be evaluated. Possible values: [\"ALWAYS_ALLOW\", \"REQUIRE_ATTESTATION\", \"ALWAYS_DENY\"]",
+              "description_kind": "plain",
+              "required": true
+            },
+            "require_attestations_by": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description": "The resource names of the attestors that must attest to a container image. If the attestor is in a different project from the policy, it should be specified in the format 'projects/*/attestors/*'. Each attestor must exist before a policy can reference it. To add an attestor to a policy the principal issuing the policy change request must be able to read the attestor resource. Note: this field must be non-empty when the evaluation_mode field specifies REQUIRE_ATTESTATION, otherwise it must be empty.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Default admission rule for a cluster without a per-cluster admission rule.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

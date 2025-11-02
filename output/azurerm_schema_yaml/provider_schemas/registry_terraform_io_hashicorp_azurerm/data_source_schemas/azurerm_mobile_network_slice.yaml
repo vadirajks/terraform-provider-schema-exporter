@@ -1,0 +1,49 @@
+version: 0
+block:
+  attributes:
+    description:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    mobile_network_id:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    single_network_slice_selection_assistance_information:
+      type:
+      - list
+      - - object
+        - slice_differentiator: string
+          slice_service_type: number
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

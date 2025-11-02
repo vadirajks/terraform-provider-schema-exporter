@@ -1,0 +1,133 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the Memorystore instance these endpoints should be added to.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "The name of the region of the Memorystore instance these endpoints should be added to.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "desired_user_created_endpoints": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "connections": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "psc_connection": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "connection_type": {
+                          "type": "string",
+                          "description": "Output Only. Type of a PSC Connection. Possible values: CONNECTION_TYPE_DISCOVERY CONNECTION_TYPE_PRIMARY CONNECTION_TYPE_READER",
+                          "description_kind": "plain",
+                          "computed": true
+                        },
+                        "forwarding_rule": {
+                          "type": "string",
+                          "description": "The URI of the consumer side forwarding rule. Format: projects/{project}/regions/{region}/forwardingRules/{forwarding_rule}",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "ip_address": {
+                          "type": "string",
+                          "description": "The IP allocated on the consumer network for the PSC forwarding rule.",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "network": {
+                          "type": "string",
+                          "description": "The consumer network where the IP address resides, in the form of projects/{project_id}/global/networks/{network_id}.",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "project_id": {
+                          "type": "string",
+                          "description": "The consumer project_id where the forwarding rule is created from.",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "psc_connection_id": {
+                          "type": "string",
+                          "description": "The PSC connection id of the forwarding rule connected to the service attachment.",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "psc_connection_status": {
+                          "type": "string",
+                          "description": "Output Only. The status of the PSC connection: whether a connection exists and ACTIVE or it no longer exists. Possible values: ACTIVE NOT_FOUND",
+                          "description_kind": "plain",
+                          "computed": true
+                        },
+                        "service_attachment": {
+                          "type": "string",
+                          "description": "The service attachment which is the target of the PSC connection, in the form of projects/{project-id}/regions/{region}/serviceAttachments/{service-attachment-id}.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "Detailed information of a PSC connection that is created by the customer who owns the cluster.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description": "A list of desired user endpoints",
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

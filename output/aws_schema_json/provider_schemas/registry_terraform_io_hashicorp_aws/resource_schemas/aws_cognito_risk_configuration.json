@@ -1,0 +1,267 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "client_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "user_pool_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "account_takeover_risk_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "actions": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "high_action": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "event_action": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "notify": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "low_action": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "event_action": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "notify": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "medium_action": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "event_action": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "notify": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "notify_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "from": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "reply_to": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "source_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "block_email": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "html_body": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "subject": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "text_body": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "mfa_email": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "html_body": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "subject": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "text_body": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "no_action_email": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "html_body": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "subject": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "text_body": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "compromised_credentials_risk_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "event_filter": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "block_types": {
+            "actions": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "event_action": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "risk_exception_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "blocked_ip_range_list": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "skipped_ip_range_list": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

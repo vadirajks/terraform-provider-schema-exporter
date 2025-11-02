@@ -1,0 +1,73 @@
+version: 0
+block:
+  attributes:
+    enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    logz_monitor_id:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    user:
+      nesting_mode: list
+      block:
+        attributes:
+          email:
+            type: string
+            description_kind: plain
+            required: true
+          first_name:
+            type: string
+            description_kind: plain
+            required: true
+          last_name:
+            type: string
+            description_kind: plain
+            required: true
+          phone_number:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+  description_kind: plain
+  deprecated: true

@@ -1,0 +1,203 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "date_created": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "date_updated": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "distribution": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "ami_distribution_configuration": [
+                "set",
+                [
+                  "object",
+                  {
+                    "ami_tags": [
+                      "map",
+                      "string"
+                    ],
+                    "description": "string",
+                    "kms_key_id": "string",
+                    "launch_permission": [
+                      "set",
+                      [
+                        "object",
+                        {
+                          "organization_arns": [
+                            "set",
+                            "string"
+                          ],
+                          "organizational_unit_arns": [
+                            "set",
+                            "string"
+                          ],
+                          "user_groups": [
+                            "set",
+                            "string"
+                          ],
+                          "user_ids": [
+                            "set",
+                            "string"
+                          ]
+                        }
+                      ]
+                    ],
+                    "name": "string",
+                    "target_account_ids": [
+                      "set",
+                      "string"
+                    ]
+                  }
+                ]
+              ],
+              "container_distribution_configuration": [
+                "set",
+                [
+                  "object",
+                  {
+                    "container_tags": [
+                      "set",
+                      "string"
+                    ],
+                    "description": "string",
+                    "target_repository": [
+                      "set",
+                      [
+                        "object",
+                        {
+                          "repository_name": "string",
+                          "service": "string"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "fast_launch_configuration": [
+                "set",
+                [
+                  "object",
+                  {
+                    "account_id": "string",
+                    "enabled": "bool",
+                    "launch_template": [
+                      "set",
+                      [
+                        "object",
+                        {
+                          "launch_template_id": "string",
+                          "launch_template_name": "string",
+                          "launch_template_version": "string"
+                        }
+                      ]
+                    ],
+                    "max_parallel_launches": "number",
+                    "snapshot_configuration": [
+                      "set",
+                      [
+                        "object",
+                        {
+                          "target_resource_count": "number"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "launch_template_configuration": [
+                "set",
+                [
+                  "object",
+                  {
+                    "account_id": "string",
+                    "default": "bool",
+                    "launch_template_id": "string"
+                  }
+                ]
+              ],
+              "license_configuration_arns": [
+                "set",
+                "string"
+              ],
+              "region": "string",
+              "s3_export_configuration": [
+                "set",
+                [
+                  "object",
+                  {
+                    "disk_image_format": "string",
+                    "role_name": "string",
+                    "s3_bucket": "string",
+                    "s3_prefix": "string"
+                  }
+                ]
+              ],
+              "ssm_parameter_configuration": [
+                "set",
+                [
+                  "object",
+                  {
+                    "ami_account_id": "string",
+                    "data_type": "string",
+                    "parameter_name": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

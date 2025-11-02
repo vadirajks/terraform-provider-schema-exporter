@@ -1,0 +1,229 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "endpoint_config_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "deployment_config": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "auto_rollback_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "alarms": {
+                    "nesting_mode": "set",
+                    "block": {
+                      "attributes": {
+                        "alarm_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 10
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "blue_green_update_policy": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "maximum_execution_timeout_in_seconds": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "termination_wait_in_seconds": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "traffic_routing_configuration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "wait_interval_in_seconds": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "canary_size": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "type": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "value": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "linear_step_size": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "type": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "value": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "rolling_update_policy": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "maximum_execution_timeout_in_seconds": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "wait_interval_in_seconds": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "maximum_batch_size": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "value": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  },
+                  "rollback_maximum_batch_size": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "value": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

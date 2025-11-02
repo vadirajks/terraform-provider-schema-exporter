@@ -1,0 +1,15 @@
+data "aws_networkmanager_device" "name" {
+  device_id = string (Required)
+  global_network_id = string (Required)
+  arn = string (Computed)
+  aws_location = ['list', ['object', {'subnet_arn': 'string', 'zone': 'string'}]] (Computed)
+  description = string (Computed)
+  id = string (Optional, Computed)
+  location = ['list', ['object', {'address': 'string', 'latitude': 'string', 'longitude': 'string'}]] (Computed)
+  model = string (Computed)
+  serial_number = string (Computed)
+  site_id = string (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  type = string (Computed)
+  vendor = string (Computed)
+}

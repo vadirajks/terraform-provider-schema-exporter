@@ -1,0 +1,89 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "images": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "data_disk": [
+                "list",
+                [
+                  "object",
+                  {
+                    "blob_uri": "string",
+                    "caching": "string",
+                    "lun": "number",
+                    "managed_disk_id": "string",
+                    "size_gb": "number"
+                  }
+                ]
+              ],
+              "location": "string",
+              "name": "string",
+              "os_disk": [
+                "list",
+                [
+                  "object",
+                  {
+                    "blob_uri": "string",
+                    "caching": "string",
+                    "disk_encryption_set_id": "string",
+                    "managed_disk_id": "string",
+                    "os_state": "string",
+                    "os_type": "string",
+                    "size_gb": "number"
+                  }
+                ]
+              ],
+              "tags": [
+                "map",
+                "string"
+              ],
+              "zone_resilient": "bool"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags_filter": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

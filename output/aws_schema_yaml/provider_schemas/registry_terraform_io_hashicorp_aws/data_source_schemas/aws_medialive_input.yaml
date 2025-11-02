@@ -1,0 +1,103 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    attached_channels:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    destinations:
+      type:
+      - list
+      - - object
+        - ip: string
+          port: string
+          url: string
+          vpc:
+          - list
+          - - object
+            - availability_zone: string
+              network_interface_id: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      required: true
+    input_class:
+      type: string
+      description_kind: plain
+      computed: true
+    input_devices:
+      type:
+      - list
+      - - object
+        - id: string
+      description_kind: plain
+      computed: true
+    input_partner_ids:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    input_source_type:
+      type: string
+      description_kind: plain
+      computed: true
+    media_connect_flows:
+      type:
+      - list
+      - - object
+        - flow_arn: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    role_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    security_groups:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    sources:
+      type:
+      - list
+      - - object
+        - password_param: string
+          url: string
+          username: string
+      description_kind: plain
+      computed: true
+    state:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    type:
+      type: string
+      description_kind: plain
+      computed: true
+  description_kind: plain

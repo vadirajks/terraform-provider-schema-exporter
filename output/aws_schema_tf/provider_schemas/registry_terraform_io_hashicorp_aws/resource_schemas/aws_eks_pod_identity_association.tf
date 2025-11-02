@@ -1,0 +1,15 @@
+resource "aws_eks_pod_identity_association" "name" {
+  cluster_name = string (Required)
+  namespace = string (Required)
+  role_arn = string (Required)
+  service_account = string (Required)
+  association_arn = string (Computed)
+  association_id = string (Computed)
+  disable_session_tags = bool (Optional, Computed)
+  external_id = string (Computed)
+  id = string (Computed)
+  region = string (Optional, Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Computed)
+  target_role_arn = string (Optional)
+}

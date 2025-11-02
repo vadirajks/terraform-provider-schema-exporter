@@ -1,0 +1,17 @@
+resource "aws_glue_schema" "name" {
+  compatibility = string (Required)
+  data_format = string (Required)
+  schema_definition = string (Required)
+  schema_name = string (Required)
+  arn = string (Computed)
+  description = string (Optional)
+  id = string (Optional, Computed)
+  latest_schema_version = number (Computed)
+  next_schema_version = number (Computed)
+  region = string (Optional, Computed)
+  registry_arn = string (Optional, Computed)
+  registry_name = string (Computed)
+  schema_checkpoint = number (Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+}

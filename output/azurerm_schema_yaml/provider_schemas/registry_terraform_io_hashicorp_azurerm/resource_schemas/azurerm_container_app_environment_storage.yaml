@@ -1,0 +1,66 @@
+version: 0
+block:
+  attributes:
+    access_key:
+      type: string
+      description: The Storage Account Access Key.
+      description_kind: plain
+      optional: true
+      sensitive: true
+    access_mode:
+      type: string
+      description: The access mode to connect this storage to the Container App. Possible values include `ReadOnly` and `ReadWrite`.
+      description_kind: plain
+      required: true
+    account_name:
+      type: string
+      description: The Azure Storage Account in which the Share to be used is located.
+      description_kind: plain
+      optional: true
+    container_app_environment_id:
+      type: string
+      description: The ID of the Container App Environment to which this storage belongs.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: The name for this Storage.
+      description_kind: plain
+      required: true
+    nfs_server_url:
+      type: string
+      description_kind: plain
+      optional: true
+    share_name:
+      type: string
+      description: The name of the Azure Storage Share to use.
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

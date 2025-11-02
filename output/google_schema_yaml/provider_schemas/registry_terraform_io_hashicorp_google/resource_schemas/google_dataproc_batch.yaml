@@ -1,0 +1,436 @@
+version: 0
+block:
+  attributes:
+    batch_id:
+      type: string
+      description: The ID to use for the batch, which will become the final component of the batch's resource name. This value must be 4-63 characters. Valid characters are /[a-z][0-9]-/.
+      description_kind: plain
+      optional: true
+    create_time:
+      type: string
+      description: The time when the batch was created.
+      description_kind: plain
+      computed: true
+    creator:
+      type: string
+      description: The email address of the user who created the batch.
+      description_kind: plain
+      computed: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'The labels to associate with this batch. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: The location in which the batch will be created in.
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: The resource name of the batch.
+      description_kind: plain
+      computed: true
+    operation:
+      type: string
+      description: The resource name of the operation associated with this batch.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    runtime_info:
+      type:
+      - list
+      - - object
+        - approximate_usage:
+          - list
+          - - object
+            - accelerator_type: string
+              milli_accelerator_seconds: string
+              milli_dcu_seconds: string
+              shuffle_storage_gb_seconds: string
+          current_usage:
+          - list
+          - - object
+            - accelerator_type: string
+              milli_accelerator: string
+              milli_dcu: string
+              milli_dcu_premium: string
+              shuffle_storage_gb: string
+              shuffle_storage_gb_premium: string
+              snapshot_time: string
+          diagnostic_output_uri: string
+          endpoints:
+          - map
+          - string
+          output_uri: string
+      description: Runtime information about batch execution.
+      description_kind: plain
+      computed: true
+    state:
+      type: string
+      description: The state of the batch. For possible values, see the [API documentation](https://cloud.google.com/dataproc-serverless/docs/reference/rest/v1/projects.locations.batches#State).
+      description_kind: plain
+      computed: true
+    state_history:
+      type:
+      - list
+      - - object
+        - state: string
+          state_message: string
+          state_start_time: string
+      description: Historical state information for the batch.
+      description_kind: plain
+      computed: true
+    state_message:
+      type: string
+      description: Batch state details, such as a failure description if the state is FAILED.
+      description_kind: plain
+      computed: true
+    state_time:
+      type: string
+      description: Batch state details, such as a failure description if the state is FAILED.
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    uuid:
+      type: string
+      description: A batch UUID (Unique Universal Identifier). The service generates this value when it creates the batch.
+      description_kind: plain
+      computed: true
+  block_types:
+    environment_config:
+      nesting_mode: list
+      block:
+        block_types:
+          execution_config:
+            nesting_mode: list
+            block:
+              attributes:
+                kms_key:
+                  type: string
+                  description: The Cloud KMS key to use for encryption.
+                  description_kind: plain
+                  optional: true
+                network_tags:
+                  type:
+                  - list
+                  - string
+                  description: Tags used for network traffic control.
+                  description_kind: plain
+                  optional: true
+                network_uri:
+                  type: string
+                  description: Network configuration for workload execution.
+                  description_kind: plain
+                  optional: true
+                service_account:
+                  type: string
+                  description: Service account that used to execute workload.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                staging_bucket:
+                  type: string
+                  description: A Cloud Storage bucket used to stage workload dependencies, config files, and store workload output and other ephemeral data, such as Spark history files. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location according to the region where your workload is running, and then create and manage project-level, per-location staging and temporary buckets. This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
+                  description_kind: plain
+                  optional: true
+                subnetwork_uri:
+                  type: string
+                  description: Subnetwork configuration for workload execution.
+                  description_kind: plain
+                  optional: true
+                ttl:
+                  type: string
+                  description: 'The duration after which the workload will be terminated. When the workload exceeds this duration, it will be unconditionally terminated without waiting for ongoing work to finish. If ttl is not specified for a batch workload, the workload will be allowed to run until it exits naturally (or run forever without exiting). If ttl is not specified for an interactive session, it defaults to 24 hours. If ttl is not specified for a batch that uses 2.1+ runtime version, it defaults to 4 hours. Minimum value is 10 minutes; maximum value is 14 days. If both ttl and idleTtl are specified (for an interactive session), the conditions are treated as OR conditions: the workload will be terminated when it has been idle for idleTtl or when ttl has been exceeded, whichever occurs first.'
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              block_types:
+                authentication_config:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      user_workload_authentication_type:
+                        type: string
+                        description: 'Authentication type for the user workload running in containers. Possible values: ["SERVICE_ACCOUNT", "END_USER_CREDENTIALS"]'
+                        description_kind: plain
+                        optional: true
+                    description: Authentication configuration for a workload is used to set the default identity for the workload execution.
+                    description_kind: plain
+                  max_items: 1
+              description: Execution configuration for a workload.
+              description_kind: plain
+            max_items: 1
+          peripherals_config:
+            nesting_mode: list
+            block:
+              attributes:
+                metastore_service:
+                  type: string
+                  description: Resource name of an existing Dataproc Metastore service.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                spark_history_server_config:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      dataproc_cluster:
+                        type: string
+                        description: Resource name of an existing Dataproc Cluster to act as a Spark History Server for the workload.
+                        description_kind: plain
+                        optional: true
+                    description: The Spark History Server configuration for the workload.
+                    description_kind: plain
+                  max_items: 1
+              description: Peripherals configuration that workload has access to.
+              description_kind: plain
+            max_items: 1
+        description: Environment configuration for the batch execution.
+        description_kind: plain
+      max_items: 1
+    pyspark_batch:
+      nesting_mode: list
+      block:
+        attributes:
+          archive_uris:
+            type:
+            - list
+            - string
+            description: 'HCFS URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.'
+            description_kind: plain
+            optional: true
+          args:
+            type:
+            - list
+            - string
+            description: The arguments to pass to the driver. Do not include arguments that can be set as batch properties, such as --conf, since a collision can occur that causes an incorrect batch submission.
+            description_kind: plain
+            optional: true
+          file_uris:
+            type:
+            - list
+            - string
+            description: HCFS URIs of files to be placed in the working directory of each executor.
+            description_kind: plain
+            optional: true
+          jar_file_uris:
+            type:
+            - list
+            - string
+            description: HCFS URIs of jar files to add to the classpath of the Spark driver and tasks.
+            description_kind: plain
+            optional: true
+          main_python_file_uri:
+            type: string
+            description: The HCFS URI of the main Python file to use as the Spark driver. Must be a .py file.
+            description_kind: plain
+            optional: true
+          python_file_uris:
+            type:
+            - list
+            - string
+            description: 'HCFS file URIs of Python files to pass to the PySpark framework. Supported file types: .py, .egg, and .zip.'
+            description_kind: plain
+            optional: true
+        description: PySpark batch config.
+        description_kind: plain
+      max_items: 1
+    runtime_config:
+      nesting_mode: list
+      block:
+        attributes:
+          cohort:
+            type: string
+            description: Optional. Cohort identifier. Identifies families of the workloads having the same shape, e.g. daily ETL jobs.
+            description_kind: plain
+            optional: true
+          container_image:
+            type: string
+            description: Optional custom container image for the job runtime environment. If not specified, a default container image will be used.
+            description_kind: plain
+            optional: true
+          effective_properties:
+            type:
+            - map
+            - string
+            description: A mapping of property names to values, which are used to configure workload execution.
+            description_kind: plain
+            computed: true
+          properties:
+            type:
+            - map
+            - string
+            description: A mapping of property names to values, which are used to configure workload execution.
+            description_kind: plain
+            optional: true
+          version:
+            type: string
+            description: Version of the batch runtime.
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          autotuning_config:
+            nesting_mode: list
+            block:
+              attributes:
+                scenarios:
+                  type:
+                  - list
+                  - string
+                  description: 'Optional. Scenarios for which tunings are applied. Possible values: ["SCALING", "BROADCAST_HASH_JOIN", "MEMORY"]'
+                  description_kind: plain
+                  optional: true
+              description: Optional. Autotuning configuration of the workload.
+              description_kind: plain
+            max_items: 1
+        description: Runtime configuration for the batch execution.
+        description_kind: plain
+      max_items: 1
+    spark_batch:
+      nesting_mode: list
+      block:
+        attributes:
+          archive_uris:
+            type:
+            - list
+            - string
+            description: 'HCFS URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.'
+            description_kind: plain
+            optional: true
+          args:
+            type:
+            - list
+            - string
+            description: The arguments to pass to the driver. Do not include arguments that can be set as batch properties, such as --conf, since a collision can occur that causes an incorrect batch submission.
+            description_kind: plain
+            optional: true
+          file_uris:
+            type:
+            - list
+            - string
+            description: HCFS URIs of files to be placed in the working directory of each executor.
+            description_kind: plain
+            optional: true
+          jar_file_uris:
+            type:
+            - list
+            - string
+            description: HCFS URIs of jar files to add to the classpath of the Spark driver and tasks.
+            description_kind: plain
+            optional: true
+          main_class:
+            type: string
+            description: The name of the driver main class. The jar file that contains the class must be in the classpath or specified in jarFileUris.
+            description_kind: plain
+            optional: true
+          main_jar_file_uri:
+            type: string
+            description: The HCFS URI of the jar file that contains the main class.
+            description_kind: plain
+            optional: true
+        description: Spark batch config.
+        description_kind: plain
+      max_items: 1
+    spark_r_batch:
+      nesting_mode: list
+      block:
+        attributes:
+          archive_uris:
+            type:
+            - list
+            - string
+            description: 'HCFS URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.'
+            description_kind: plain
+            optional: true
+          args:
+            type:
+            - list
+            - string
+            description: The arguments to pass to the driver. Do not include arguments that can be set as batch properties, such as --conf, since a collision can occur that causes an incorrect batch submission.
+            description_kind: plain
+            optional: true
+          file_uris:
+            type:
+            - list
+            - string
+            description: HCFS URIs of files to be placed in the working directory of each executor.
+            description_kind: plain
+            optional: true
+          main_r_file_uri:
+            type: string
+            description: The HCFS URI of the main R file to use as the driver. Must be a .R or .r file.
+            description_kind: plain
+            optional: true
+        description: SparkR batch config.
+        description_kind: plain
+      max_items: 1
+    spark_sql_batch:
+      nesting_mode: list
+      block:
+        attributes:
+          jar_file_uris:
+            type:
+            - list
+            - string
+            description: HCFS URIs of jar files to be added to the Spark CLASSPATH.
+            description_kind: plain
+            optional: true
+          query_file_uri:
+            type: string
+            description: The HCFS URI of the script that contains Spark SQL queries to execute.
+            description_kind: plain
+            optional: true
+          query_variables:
+            type:
+            - map
+            - string
+            description: 'Mapping of query variable names to values (equivalent to the Spark SQL command: SET name="value";).'
+            description_kind: plain
+            optional: true
+        description: Spark SQL batch config.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

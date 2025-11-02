@@ -1,0 +1,77 @@
+version: 0
+block:
+  attributes:
+    dns_config:
+      type:
+      - list
+      - - object
+        - relative_name: string
+          ttl: number
+      description_kind: plain
+      computed: true
+    fqdn:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    monitor_config:
+      type:
+      - list
+      - - object
+        - custom_header:
+          - list
+          - - object
+            - name: string
+              value: string
+          expected_status_code_ranges:
+          - list
+          - string
+          interval_in_seconds: number
+          path: string
+          port: number
+          protocol: string
+          timeout_in_seconds: number
+          tolerated_number_of_failures: number
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    profile_status:
+      type: string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    traffic_routing_method:
+      type: string
+      description_kind: plain
+      computed: true
+    traffic_view_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

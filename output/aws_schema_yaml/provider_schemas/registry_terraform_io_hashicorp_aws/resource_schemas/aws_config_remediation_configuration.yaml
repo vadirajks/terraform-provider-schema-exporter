@@ -1,0 +1,97 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    automatic:
+      type: bool
+      description_kind: plain
+      optional: true
+    config_rule_name:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    maximum_automatic_attempts:
+      type: number
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_type:
+      type: string
+      description_kind: plain
+      optional: true
+    retry_attempt_seconds:
+      type: number
+      description_kind: plain
+      optional: true
+    target_id:
+      type: string
+      description_kind: plain
+      required: true
+    target_type:
+      type: string
+      description_kind: plain
+      required: true
+    target_version:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    execution_controls:
+      nesting_mode: list
+      block:
+        block_types:
+          ssm_controls:
+            nesting_mode: list
+            block:
+              attributes:
+                concurrent_execution_rate_percentage:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                error_percentage:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    parameter:
+      nesting_mode: list
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          resource_value:
+            type: string
+            description_kind: plain
+            optional: true
+          static_value:
+            type: string
+            description_kind: plain
+            optional: true
+          static_values:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 25
+  description_kind: plain

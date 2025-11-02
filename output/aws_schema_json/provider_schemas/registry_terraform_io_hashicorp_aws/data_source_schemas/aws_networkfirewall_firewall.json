@@ -1,0 +1,213 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "availability_zone_change_protection": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "availability_zone_mapping": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "availability_zone_id": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "delete_protection": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "enabled_analysis_types": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "encryption_configuration": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "key_id": "string",
+              "type": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "firewall_policy_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "firewall_policy_change_protection": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "firewall_status": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "capacity_usage_summary": [
+                "set",
+                [
+                  "object",
+                  {
+                    "cidrs": [
+                      "set",
+                      [
+                        "object",
+                        {
+                          "available_cidr_count": "number",
+                          "ip_set_references": [
+                            "set",
+                            [
+                              "object",
+                              {
+                                "resolved_cidr_count": "number"
+                              }
+                            ]
+                          ],
+                          "utilized_cidr_count": "number"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "configuration_sync_state_summary": "string",
+              "status": "string",
+              "sync_states": [
+                "set",
+                [
+                  "object",
+                  {
+                    "attachment": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "endpoint_id": "string",
+                          "status": "string",
+                          "status_message": "string",
+                          "subnet_id": "string"
+                        }
+                      ]
+                    ],
+                    "availability_zone": "string"
+                  }
+                ]
+              ],
+              "transit_gateway_attachment_sync_states": [
+                "list",
+                [
+                  "object",
+                  {
+                    "attachment_id": "string",
+                    "status_message": "string",
+                    "transit_gateway_attachment_status": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "subnet_change_protection": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "subnet_mapping": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "subnet_id": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "transit_gateway_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "transit_gateway_owner_account_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_token": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "vpc_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

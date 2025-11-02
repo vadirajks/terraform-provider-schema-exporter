@@ -1,0 +1,118 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "comment": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "delegation_set_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "force_destroy": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name_servers": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "primary_name_server": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "zone_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "vpc": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "vpc_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "vpc_region": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

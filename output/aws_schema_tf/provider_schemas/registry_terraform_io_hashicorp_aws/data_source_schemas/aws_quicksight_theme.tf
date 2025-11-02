@@ -1,0 +1,17 @@
+data "aws_quicksight_theme" "name" {
+  theme_id = string (Required)
+  arn = string (Computed)
+  aws_account_id = string (Optional, Computed)
+  base_theme_id = string (Computed)
+  configuration = ['list', ['object', {'data_color_palette': ['list', ['object', {'colors': ['list', 'string'], 'empty_fill_color': 'string', 'min_max_gradient': ['list', 'string']}]], 'sheet': ['list', ['object', {'tile': ['list', ['object', {'border': ['list', ['object', {'show': 'bool'}]]}]], 'tile_layout': ['list', ['object', {'gutter': ['list', ['object', {'show': 'bool'}]], 'margin': ['list', ['object', {'show': 'bool'}]]}]]}]], 'typography': ['list', ['object', {'font_families': ['list', ['object', {'font_family': 'string'}]]}]], 'ui_color_palette': ['list', ['object', {'accent': 'string', 'accent_foreground': 'string', 'danger': 'string', 'danger_foreground': 'string', 'dimension': 'string', 'dimension_foreground': 'string', 'measure': 'string', 'measure_foreground': 'string', 'primary_background': 'string', 'primary_foreground': 'string', 'secondary_background': 'string', 'secondary_foreground': 'string', 'success': 'string', 'success_foreground': 'string', 'warning': 'string', 'warning_foreground': 'string'}]]}]] (Computed)
+  created_time = string (Computed)
+  id = string (Optional, Computed)
+  last_updated_time = string (Computed)
+  name = string (Computed)
+  permissions = ['list', ['object', {'actions': ['set', 'string'], 'principal': 'string'}]] (Computed)
+  region = string (Optional, Computed)
+  status = string (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  version_description = string (Computed)
+  version_number = number (Computed)
+}

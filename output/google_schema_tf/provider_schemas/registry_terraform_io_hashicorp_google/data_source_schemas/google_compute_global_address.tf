@@ -1,0 +1,15 @@
+data "google_compute_global_address" "name" {
+  name = string (Required)
+  address = string (Computed)
+  address_type = string (Computed)
+  id = string (Optional, Computed)
+  network = string (Computed)
+  network_tier = string (Computed)
+  prefix_length = number (Computed)
+  project = string (Optional, Computed)
+  purpose = string (Computed)
+  self_link = string (Computed)
+  status = string (Computed)
+  subnetwork = string (Computed)
+  users = string (Computed)
+}

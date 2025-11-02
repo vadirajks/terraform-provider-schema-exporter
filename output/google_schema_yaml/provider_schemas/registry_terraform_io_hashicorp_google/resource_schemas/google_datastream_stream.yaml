@@ -1,0 +1,1589 @@
+version: 0
+block:
+  attributes:
+    create_without_validation:
+      type: bool
+      description: Create the stream without validating it.
+      description_kind: plain
+      optional: true
+    customer_managed_encryption_key:
+      type: string
+      description: A reference to a KMS encryption key. If provided, it will be used to encrypt the data. If left blank, data will be encrypted using an internal Stream-specific encryption key provisioned through KMS.
+      description_kind: plain
+      optional: true
+    desired_state:
+      type: string
+      description: 'Desired state of the Stream. Set this field to ''RUNNING'' to start the stream, ''NOT_STARTED'' to create the stream without starting and ''PAUSED'' to pause the stream from a ''RUNNING'' state. Possible values: NOT_STARTED, RUNNING, PAUSED. Default: NOT_STARTED'
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description: Display name.
+      description_kind: plain
+      required: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Labels. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: The name of the location this stream is located in.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The stream's name.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    state:
+      type: string
+      description: The state of the stream.
+      description_kind: plain
+      computed: true
+    stream_id:
+      type: string
+      description: The stream identifier.
+      description_kind: plain
+      required: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+  block_types:
+    backfill_all:
+      nesting_mode: list
+      block:
+        block_types:
+          mongodb_excluded_objects:
+            nesting_mode: list
+            block:
+              block_types:
+                databases:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      database:
+                        type: string
+                        description: Database name.
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      collections:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            collection:
+                              type: string
+                              description: Collection name.
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            fields:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  field:
+                                    type: string
+                                    description: Field name.
+                                    description_kind: plain
+                                    optional: true
+                                description: Fields in the collection.
+                                description_kind: plain
+                          description: Collections in the database.
+                          description_kind: plain
+                    description: MongoDB databases in the cluster.
+                    description_kind: plain
+                  min_items: 1
+              description: MongoDB data source objects to avoid backfilling.
+              description_kind: plain
+            max_items: 1
+          mysql_excluded_objects:
+            nesting_mode: list
+            block:
+              block_types:
+                mysql_databases:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      database:
+                        type: string
+                        description: Database name.
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      mysql_tables:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            table:
+                              type: string
+                              description: Table name.
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            mysql_columns:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  collation:
+                                    type: string
+                                    description: Column collation.
+                                    description_kind: plain
+                                    optional: true
+                                  column:
+                                    type: string
+                                    description: Column name.
+                                    description_kind: plain
+                                    optional: true
+                                  data_type:
+                                    type: string
+                                    description: 'The MySQL data type. Full data types list can be found here: https://dev.mysql.com/doc/refman/8.0/en/data-types.html'
+                                    description_kind: plain
+                                    optional: true
+                                  length:
+                                    type: number
+                                    description: Column length.
+                                    description_kind: plain
+                                    computed: true
+                                  nullable:
+                                    type: bool
+                                    description: Whether or not the column can accept a null value.
+                                    description_kind: plain
+                                    optional: true
+                                  ordinal_position:
+                                    type: number
+                                    description: The ordinal position of the column in the table.
+                                    description_kind: plain
+                                    optional: true
+                                  primary_key:
+                                    type: bool
+                                    description: Whether or not the column represents a primary key.
+                                    description_kind: plain
+                                    optional: true
+                                description: MySQL columns in the schema. When unspecified as part of include/exclude objects, includes/excludes everything.
+                                description_kind: plain
+                          description: Tables in the database.
+                          description_kind: plain
+                    description: MySQL databases on the server
+                    description_kind: plain
+                  min_items: 1
+              description: MySQL data source objects to avoid backfilling.
+              description_kind: plain
+            max_items: 1
+          oracle_excluded_objects:
+            nesting_mode: list
+            block:
+              block_types:
+                oracle_schemas:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      schema:
+                        type: string
+                        description: Schema name.
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      oracle_tables:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            table:
+                              type: string
+                              description: Table name.
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            oracle_columns:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  column:
+                                    type: string
+                                    description: Column name.
+                                    description_kind: plain
+                                    optional: true
+                                  data_type:
+                                    type: string
+                                    description: 'The Oracle data type. Full data types list can be found here: https://docs.oracle.com/en/database/oracle/oracle-database/21/sqlrf/Data-Types.html'
+                                    description_kind: plain
+                                    optional: true
+                                  encoding:
+                                    type: string
+                                    description: Column encoding.
+                                    description_kind: plain
+                                    computed: true
+                                  length:
+                                    type: number
+                                    description: Column length.
+                                    description_kind: plain
+                                    computed: true
+                                  nullable:
+                                    type: bool
+                                    description: Whether or not the column can accept a null value.
+                                    description_kind: plain
+                                    computed: true
+                                  ordinal_position:
+                                    type: number
+                                    description: The ordinal position of the column in the table.
+                                    description_kind: plain
+                                    computed: true
+                                  precision:
+                                    type: number
+                                    description: Column precision.
+                                    description_kind: plain
+                                    computed: true
+                                  primary_key:
+                                    type: bool
+                                    description: Whether or not the column represents a primary key.
+                                    description_kind: plain
+                                    computed: true
+                                  scale:
+                                    type: number
+                                    description: Column scale.
+                                    description_kind: plain
+                                    computed: true
+                                description: Oracle columns in the schema. When unspecified as part of include/exclude objects, includes/excludes everything.
+                                description_kind: plain
+                          description: Tables in the database.
+                          description_kind: plain
+                    description: Oracle schemas/databases in the database server
+                    description_kind: plain
+                  min_items: 1
+              description: PostgreSQL data source objects to avoid backfilling.
+              description_kind: plain
+            max_items: 1
+          postgresql_excluded_objects:
+            nesting_mode: list
+            block:
+              block_types:
+                postgresql_schemas:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      schema:
+                        type: string
+                        description: Database name.
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      postgresql_tables:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            table:
+                              type: string
+                              description: Table name.
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            postgresql_columns:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  column:
+                                    type: string
+                                    description: Column name.
+                                    description_kind: plain
+                                    optional: true
+                                  data_type:
+                                    type: string
+                                    description: 'The PostgreSQL data type. Full data types list can be found here: https://www.postgresql.org/docs/current/datatype.html'
+                                    description_kind: plain
+                                    optional: true
+                                  length:
+                                    type: number
+                                    description: Column length.
+                                    description_kind: plain
+                                    computed: true
+                                  nullable:
+                                    type: bool
+                                    description: Whether or not the column can accept a null value.
+                                    description_kind: plain
+                                    optional: true
+                                  ordinal_position:
+                                    type: number
+                                    description: The ordinal position of the column in the table.
+                                    description_kind: plain
+                                    optional: true
+                                  precision:
+                                    type: number
+                                    description: Column precision.
+                                    description_kind: plain
+                                    computed: true
+                                  primary_key:
+                                    type: bool
+                                    description: Whether or not the column represents a primary key.
+                                    description_kind: plain
+                                    optional: true
+                                  scale:
+                                    type: number
+                                    description: Column scale.
+                                    description_kind: plain
+                                    computed: true
+                                description: PostgreSQL columns in the schema. When unspecified as part of include/exclude objects, includes/excludes everything.
+                                description_kind: plain
+                          description: Tables in the schema.
+                          description_kind: plain
+                    description: PostgreSQL schemas on the server
+                    description_kind: plain
+                  min_items: 1
+              description: PostgreSQL data source objects to avoid backfilling.
+              description_kind: plain
+            max_items: 1
+          salesforce_excluded_objects:
+            nesting_mode: list
+            block:
+              block_types:
+                objects:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      object_name:
+                        type: string
+                        description: Name of object in Salesforce Org.
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      fields:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            name:
+                              type: string
+                              description: Field name.
+                              description_kind: plain
+                              optional: true
+                          description: Fields in the Salesforce object. When unspecified as part of include/exclude objects, includes/excludes everything/nothing.
+                          description_kind: plain
+                    description: Salesforce objects in Salesforce Org.
+                    description_kind: plain
+                  min_items: 1
+              description: Salesforce objects to avoid backfilling.
+              description_kind: plain
+            max_items: 1
+          sql_server_excluded_objects:
+            nesting_mode: list
+            block:
+              block_types:
+                schemas:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      schema:
+                        type: string
+                        description: Schema name.
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      tables:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            table:
+                              type: string
+                              description: Table name.
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            columns:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  column:
+                                    type: string
+                                    description: Column name.
+                                    description_kind: plain
+                                    optional: true
+                                  data_type:
+                                    type: string
+                                    description: 'The SQL Server data type. Full data types list can be found here: https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-ver16'
+                                    description_kind: plain
+                                    optional: true
+                                  length:
+                                    type: number
+                                    description: Column length.
+                                    description_kind: plain
+                                    computed: true
+                                  nullable:
+                                    type: bool
+                                    description: Whether or not the column can accept a null value.
+                                    description_kind: plain
+                                    computed: true
+                                  ordinal_position:
+                                    type: number
+                                    description: The ordinal position of the column in the table.
+                                    description_kind: plain
+                                    computed: true
+                                  precision:
+                                    type: number
+                                    description: Column precision.
+                                    description_kind: plain
+                                    computed: true
+                                  primary_key:
+                                    type: bool
+                                    description: Whether or not the column represents a primary key.
+                                    description_kind: plain
+                                    computed: true
+                                  scale:
+                                    type: number
+                                    description: Column scale.
+                                    description_kind: plain
+                                    computed: true
+                                description: SQL Server columns in the schema. When unspecified as part of include/exclude objects, includes/excludes everything.
+                                description_kind: plain
+                          description: Tables in the database.
+                          description_kind: plain
+                    description: SQL Server schemas/databases in the database server
+                    description_kind: plain
+                  min_items: 1
+              description: SQL Server data source objects to avoid backfilling.
+              description_kind: plain
+            max_items: 1
+        description: Backfill strategy to automatically backfill the Stream's objects. Specific objects can be excluded.
+        description_kind: plain
+      max_items: 1
+    backfill_none:
+      nesting_mode: list
+      block:
+        description: Backfill strategy to disable automatic backfill for the Stream's objects.
+        description_kind: plain
+      max_items: 1
+    destination_config:
+      nesting_mode: list
+      block:
+        attributes:
+          destination_connection_profile:
+            type: string
+            description: 'Destination connection profile resource. Format: projects/{project}/locations/{location}/connectionProfiles/{name}'
+            description_kind: plain
+            required: true
+        block_types:
+          bigquery_destination_config:
+            nesting_mode: list
+            block:
+              attributes:
+                data_freshness:
+                  type: string
+                  description: 'The guaranteed data freshness (in seconds) when querying tables created by the stream. Editing this field will only affect new tables created in the future, but existing tables will not be impacted. Lower values mean that queries will return fresher data, but may result in higher cost. A duration in seconds with up to nine fractional digits, terminated by ''s''. Example: "3.5s". Defaults to 900s.'
+                  description_kind: plain
+                  optional: true
+              block_types:
+                append_only:
+                  nesting_mode: list
+                  block:
+                    description: AppendOnly mode defines that the stream of changes (INSERT, UPDATE-INSERT, UPDATE-DELETE and DELETE events) to a source table will be written to the destination Google BigQuery table, retaining the historical state of the data.
+                    description_kind: plain
+                  max_items: 1
+                blmt_config:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      bucket:
+                        type: string
+                        description: The Cloud Storage bucket name.
+                        description_kind: plain
+                        required: true
+                      connection_name:
+                        type: string
+                        description: 'The bigquery connection. Format: ''{project}.{location}.{name}'''
+                        description_kind: plain
+                        required: true
+                      file_format:
+                        type: string
+                        description: The file format.
+                        description_kind: plain
+                        required: true
+                      root_path:
+                        type: string
+                        description: The root path inside the Cloud Storage bucket.
+                        description_kind: plain
+                        optional: true
+                      table_format:
+                        type: string
+                        description: The table format.
+                        description_kind: plain
+                        required: true
+                    description: BigLake Managed Tables configuration for BigQuery streams.
+                    description_kind: plain
+                  max_items: 1
+                merge:
+                  nesting_mode: list
+                  block:
+                    description: Merge mode defines that all changes to a table will be merged at the destination Google BigQuery table. This is the default write mode. When selected, BigQuery reflects the way the data is stored in the source database. With Merge mode, no historical record of the change events is kept.
+                    description_kind: plain
+                  max_items: 1
+                single_target_dataset:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      dataset_id:
+                        type: string
+                        description: Dataset ID in the format projects/{project}/datasets/{dataset_id} or {project}:{dataset_id}
+                        description_kind: plain
+                        required: true
+                    description: A single target dataset to which all data will be streamed.
+                    description_kind: plain
+                  max_items: 1
+                source_hierarchy_datasets:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      project_id:
+                        type: string
+                        description: Optional. The project id of the BigQuery dataset. If not specified, the project will be inferred from the stream resource.
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      dataset_template:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            dataset_id_prefix:
+                              type: string
+                              description: If supplied, every created dataset will have its name prefixed by the provided value. The prefix and name will be separated by an underscore. i.e. _.
+                              description_kind: plain
+                              optional: true
+                            kms_key_name:
+                              type: string
+                              description: Describes the Cloud KMS encryption key that will be used to protect destination BigQuery table. The BigQuery Service Account associated with your project requires access to this encryption key. i.e. projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{cryptoKey}. See https://cloud.google.com/bigquery/docs/customer-managed-encryption for more information.
+                              description_kind: plain
+                              optional: true
+                            location:
+                              type: string
+                              description: The geographic location where the dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.
+                              description_kind: plain
+                              required: true
+                          description: Dataset template used for dynamic dataset creation.
+                          description_kind: plain
+                        min_items: 1
+                        max_items: 1
+                    description: Destination datasets are created so that hierarchy of the destination data objects matches the source hierarchy.
+                    description_kind: plain
+                  max_items: 1
+              description: A configuration for how data should be loaded to Google BigQuery.
+              description_kind: plain
+            max_items: 1
+          gcs_destination_config:
+            nesting_mode: list
+            block:
+              attributes:
+                file_rotation_interval:
+                  type: string
+                  description: 'The maximum duration for which new events are added before a file is closed and a new file is created. A duration in seconds with up to nine fractional digits, terminated by ''s''. Example: "3.5s". Defaults to 900s.'
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                file_rotation_mb:
+                  type: number
+                  description: The maximum file size to be saved in the bucket.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                path:
+                  type: string
+                  description: Path inside the Cloud Storage bucket to write data to.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                avro_file_format:
+                  nesting_mode: list
+                  block:
+                    description: AVRO file format configuration.
+                    description_kind: plain
+                  max_items: 1
+                json_file_format:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      compression:
+                        type: string
+                        description: 'Compression of the loaded JSON file. Possible values: ["NO_COMPRESSION", "GZIP"]'
+                        description_kind: plain
+                        optional: true
+                      schema_file_format:
+                        type: string
+                        description: 'The schema file format along JSON data files. Possible values: ["NO_SCHEMA_FILE", "AVRO_SCHEMA_FILE"]'
+                        description_kind: plain
+                        optional: true
+                    description: JSON file format configuration.
+                    description_kind: plain
+                  max_items: 1
+              description: A configuration for how data should be loaded to Cloud Storage.
+              description_kind: plain
+            max_items: 1
+        description: Destination connection profile configuration.
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    source_config:
+      nesting_mode: list
+      block:
+        attributes:
+          source_connection_profile:
+            type: string
+            description: 'Source connection profile resource. Format: projects/{project}/locations/{location}/connectionProfiles/{name}'
+            description_kind: plain
+            required: true
+        block_types:
+          mongodb_source_config:
+            nesting_mode: list
+            block:
+              attributes:
+                max_concurrent_backfill_tasks:
+                  type: number
+                  description: Optional. Maximum number of concurrent backfill tasks. The number should be non-negative and less than or equal to 50. If not set (or set to 0), the system''s default value is used
+                  description_kind: plain
+                  optional: true
+              block_types:
+                exclude_objects:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      databases:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            database:
+                              type: string
+                              description: Database name.
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            collections:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  collection:
+                                    type: string
+                                    description: Collection name.
+                                    description_kind: plain
+                                    optional: true
+                                block_types:
+                                  fields:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        field:
+                                          type: string
+                                          description: Field name.
+                                          description_kind: plain
+                                          optional: true
+                                      description: Fields in the collection.
+                                      description_kind: plain
+                                description: Collections in the database.
+                                description_kind: plain
+                          description: MongoDB databases in the cluster.
+                          description_kind: plain
+                    description: MongoDB collections to include in the stream.
+                    description_kind: plain
+                  max_items: 1
+                include_objects:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      databases:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            database:
+                              type: string
+                              description: Database name.
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            collections:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  collection:
+                                    type: string
+                                    description: Collection name.
+                                    description_kind: plain
+                                    optional: true
+                                block_types:
+                                  fields:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        field:
+                                          type: string
+                                          description: Field name.
+                                          description_kind: plain
+                                          optional: true
+                                      description: Fields in the collection.
+                                      description_kind: plain
+                                description: Collections in the database.
+                                description_kind: plain
+                          description: MongoDB databases in the cluster.
+                          description_kind: plain
+                    description: MongoDB collections to include in the stream.
+                    description_kind: plain
+                  max_items: 1
+              description: MongoDB source configuration.
+              description_kind: plain
+            max_items: 1
+          mysql_source_config:
+            nesting_mode: list
+            block:
+              attributes:
+                max_concurrent_backfill_tasks:
+                  type: number
+                  description: Maximum number of concurrent backfill tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                max_concurrent_cdc_tasks:
+                  type: number
+                  description: Maximum number of concurrent CDC tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              block_types:
+                binary_log_position:
+                  nesting_mode: list
+                  block:
+                    description: CDC reader reads from binary logs replication cdc method.
+                    description_kind: plain
+                  max_items: 1
+                exclude_objects:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      mysql_databases:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            database:
+                              type: string
+                              description: Database name.
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            mysql_tables:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  table:
+                                    type: string
+                                    description: Table name.
+                                    description_kind: plain
+                                    required: true
+                                block_types:
+                                  mysql_columns:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        collation:
+                                          type: string
+                                          description: Column collation.
+                                          description_kind: plain
+                                          optional: true
+                                        column:
+                                          type: string
+                                          description: Column name.
+                                          description_kind: plain
+                                          optional: true
+                                        data_type:
+                                          type: string
+                                          description: 'The MySQL data type. Full data types list can be found here: https://dev.mysql.com/doc/refman/8.0/en/data-types.html'
+                                          description_kind: plain
+                                          optional: true
+                                        length:
+                                          type: number
+                                          description: Column length.
+                                          description_kind: plain
+                                          computed: true
+                                        nullable:
+                                          type: bool
+                                          description: Whether or not the column can accept a null value.
+                                          description_kind: plain
+                                          optional: true
+                                        ordinal_position:
+                                          type: number
+                                          description: The ordinal position of the column in the table.
+                                          description_kind: plain
+                                          optional: true
+                                        primary_key:
+                                          type: bool
+                                          description: Whether or not the column represents a primary key.
+                                          description_kind: plain
+                                          optional: true
+                                      description: MySQL columns in the schema. When unspecified as part of include/exclude objects, includes/excludes everything.
+                                      description_kind: plain
+                                description: Tables in the database.
+                                description_kind: plain
+                          description: MySQL databases on the server
+                          description_kind: plain
+                        min_items: 1
+                    description: MySQL objects to exclude from the stream.
+                    description_kind: plain
+                  max_items: 1
+                gtid:
+                  nesting_mode: list
+                  block:
+                    description: CDC reader reads from gtid based replication.
+                    description_kind: plain
+                  max_items: 1
+                include_objects:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      mysql_databases:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            database:
+                              type: string
+                              description: Database name.
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            mysql_tables:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  table:
+                                    type: string
+                                    description: Table name.
+                                    description_kind: plain
+                                    required: true
+                                block_types:
+                                  mysql_columns:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        collation:
+                                          type: string
+                                          description: Column collation.
+                                          description_kind: plain
+                                          optional: true
+                                        column:
+                                          type: string
+                                          description: Column name.
+                                          description_kind: plain
+                                          optional: true
+                                        data_type:
+                                          type: string
+                                          description: 'The MySQL data type. Full data types list can be found here: https://dev.mysql.com/doc/refman/8.0/en/data-types.html'
+                                          description_kind: plain
+                                          optional: true
+                                        length:
+                                          type: number
+                                          description: Column length.
+                                          description_kind: plain
+                                          computed: true
+                                        nullable:
+                                          type: bool
+                                          description: Whether or not the column can accept a null value.
+                                          description_kind: plain
+                                          optional: true
+                                        ordinal_position:
+                                          type: number
+                                          description: The ordinal position of the column in the table.
+                                          description_kind: plain
+                                          optional: true
+                                        primary_key:
+                                          type: bool
+                                          description: Whether or not the column represents a primary key.
+                                          description_kind: plain
+                                          optional: true
+                                      description: MySQL columns in the schema. When unspecified as part of include/exclude objects, includes/excludes everything.
+                                      description_kind: plain
+                                description: Tables in the database.
+                                description_kind: plain
+                          description: MySQL databases on the server
+                          description_kind: plain
+                        min_items: 1
+                    description: MySQL objects to retrieve from the source.
+                    description_kind: plain
+                  max_items: 1
+              description: MySQL data source configuration.
+              description_kind: plain
+            max_items: 1
+          oracle_source_config:
+            nesting_mode: list
+            block:
+              attributes:
+                max_concurrent_backfill_tasks:
+                  type: number
+                  description: Maximum number of concurrent backfill tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                max_concurrent_cdc_tasks:
+                  type: number
+                  description: Maximum number of concurrent CDC tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              block_types:
+                drop_large_objects:
+                  nesting_mode: list
+                  block:
+                    description: Configuration to drop large object values.
+                    description_kind: plain
+                  max_items: 1
+                exclude_objects:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      oracle_schemas:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            schema:
+                              type: string
+                              description: Schema name.
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            oracle_tables:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  table:
+                                    type: string
+                                    description: Table name.
+                                    description_kind: plain
+                                    required: true
+                                block_types:
+                                  oracle_columns:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        column:
+                                          type: string
+                                          description: Column name.
+                                          description_kind: plain
+                                          optional: true
+                                        data_type:
+                                          type: string
+                                          description: 'The Oracle data type. Full data types list can be found here: https://docs.oracle.com/en/database/oracle/oracle-database/21/sqlrf/Data-Types.html'
+                                          description_kind: plain
+                                          optional: true
+                                        encoding:
+                                          type: string
+                                          description: Column encoding.
+                                          description_kind: plain
+                                          computed: true
+                                        length:
+                                          type: number
+                                          description: Column length.
+                                          description_kind: plain
+                                          computed: true
+                                        nullable:
+                                          type: bool
+                                          description: Whether or not the column can accept a null value.
+                                          description_kind: plain
+                                          computed: true
+                                        ordinal_position:
+                                          type: number
+                                          description: The ordinal position of the column in the table.
+                                          description_kind: plain
+                                          computed: true
+                                        precision:
+                                          type: number
+                                          description: Column precision.
+                                          description_kind: plain
+                                          computed: true
+                                        primary_key:
+                                          type: bool
+                                          description: Whether or not the column represents a primary key.
+                                          description_kind: plain
+                                          computed: true
+                                        scale:
+                                          type: number
+                                          description: Column scale.
+                                          description_kind: plain
+                                          computed: true
+                                      description: Oracle columns in the schema. When unspecified as part of include/exclude objects, includes/excludes everything.
+                                      description_kind: plain
+                                description: Tables in the database.
+                                description_kind: plain
+                          description: Oracle schemas/databases in the database server
+                          description_kind: plain
+                        min_items: 1
+                    description: Oracle objects to exclude from the stream.
+                    description_kind: plain
+                  max_items: 1
+                include_objects:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      oracle_schemas:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            schema:
+                              type: string
+                              description: Schema name.
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            oracle_tables:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  table:
+                                    type: string
+                                    description: Table name.
+                                    description_kind: plain
+                                    required: true
+                                block_types:
+                                  oracle_columns:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        column:
+                                          type: string
+                                          description: Column name.
+                                          description_kind: plain
+                                          optional: true
+                                        data_type:
+                                          type: string
+                                          description: 'The Oracle data type. Full data types list can be found here: https://docs.oracle.com/en/database/oracle/oracle-database/21/sqlrf/Data-Types.html'
+                                          description_kind: plain
+                                          optional: true
+                                        encoding:
+                                          type: string
+                                          description: Column encoding.
+                                          description_kind: plain
+                                          computed: true
+                                        length:
+                                          type: number
+                                          description: Column length.
+                                          description_kind: plain
+                                          computed: true
+                                        nullable:
+                                          type: bool
+                                          description: Whether or not the column can accept a null value.
+                                          description_kind: plain
+                                          computed: true
+                                        ordinal_position:
+                                          type: number
+                                          description: The ordinal position of the column in the table.
+                                          description_kind: plain
+                                          computed: true
+                                        precision:
+                                          type: number
+                                          description: Column precision.
+                                          description_kind: plain
+                                          computed: true
+                                        primary_key:
+                                          type: bool
+                                          description: Whether or not the column represents a primary key.
+                                          description_kind: plain
+                                          computed: true
+                                        scale:
+                                          type: number
+                                          description: Column scale.
+                                          description_kind: plain
+                                          computed: true
+                                      description: Oracle columns in the schema. When unspecified as part of include/exclude objects, includes/excludes everything.
+                                      description_kind: plain
+                                description: Tables in the database.
+                                description_kind: plain
+                          description: Oracle schemas/databases in the database server
+                          description_kind: plain
+                        min_items: 1
+                    description: Oracle objects to retrieve from the source.
+                    description_kind: plain
+                  max_items: 1
+                stream_large_objects:
+                  nesting_mode: list
+                  block:
+                    description: Configuration to drop large object values.
+                    description_kind: plain
+                  max_items: 1
+              description: MySQL data source configuration.
+              description_kind: plain
+            max_items: 1
+          postgresql_source_config:
+            nesting_mode: list
+            block:
+              attributes:
+                max_concurrent_backfill_tasks:
+                  type: number
+                  description: Maximum number of concurrent backfill tasks. The number should be non negative. If not set (or set to 0), the system's default value will be used.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                publication:
+                  type: string
+                  description: The name of the publication that includes the set of all tables that are defined in the stream's include_objects.
+                  description_kind: plain
+                  required: true
+                replication_slot:
+                  type: string
+                  description: The name of the logical replication slot that's configured with the pgoutput plugin.
+                  description_kind: plain
+                  required: true
+              block_types:
+                exclude_objects:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      postgresql_schemas:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            schema:
+                              type: string
+                              description: Database name.
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            postgresql_tables:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  table:
+                                    type: string
+                                    description: Table name.
+                                    description_kind: plain
+                                    required: true
+                                block_types:
+                                  postgresql_columns:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        column:
+                                          type: string
+                                          description: Column name.
+                                          description_kind: plain
+                                          optional: true
+                                        data_type:
+                                          type: string
+                                          description: 'The PostgreSQL data type. Full data types list can be found here: https://www.postgresql.org/docs/current/datatype.html'
+                                          description_kind: plain
+                                          optional: true
+                                        length:
+                                          type: number
+                                          description: Column length.
+                                          description_kind: plain
+                                          computed: true
+                                        nullable:
+                                          type: bool
+                                          description: Whether or not the column can accept a null value.
+                                          description_kind: plain
+                                          optional: true
+                                        ordinal_position:
+                                          type: number
+                                          description: The ordinal position of the column in the table.
+                                          description_kind: plain
+                                          optional: true
+                                        precision:
+                                          type: number
+                                          description: Column precision.
+                                          description_kind: plain
+                                          computed: true
+                                        primary_key:
+                                          type: bool
+                                          description: Whether or not the column represents a primary key.
+                                          description_kind: plain
+                                          optional: true
+                                        scale:
+                                          type: number
+                                          description: Column scale.
+                                          description_kind: plain
+                                          computed: true
+                                      description: PostgreSQL columns in the schema. When unspecified as part of include/exclude objects, includes/excludes everything.
+                                      description_kind: plain
+                                description: Tables in the schema.
+                                description_kind: plain
+                          description: PostgreSQL schemas on the server
+                          description_kind: plain
+                        min_items: 1
+                    description: PostgreSQL objects to exclude from the stream.
+                    description_kind: plain
+                  max_items: 1
+                include_objects:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      postgresql_schemas:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            schema:
+                              type: string
+                              description: Database name.
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            postgresql_tables:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  table:
+                                    type: string
+                                    description: Table name.
+                                    description_kind: plain
+                                    required: true
+                                block_types:
+                                  postgresql_columns:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        column:
+                                          type: string
+                                          description: Column name.
+                                          description_kind: plain
+                                          optional: true
+                                        data_type:
+                                          type: string
+                                          description: 'The PostgreSQL data type. Full data types list can be found here: https://www.postgresql.org/docs/current/datatype.html'
+                                          description_kind: plain
+                                          optional: true
+                                        length:
+                                          type: number
+                                          description: Column length.
+                                          description_kind: plain
+                                          computed: true
+                                        nullable:
+                                          type: bool
+                                          description: Whether or not the column can accept a null value.
+                                          description_kind: plain
+                                          optional: true
+                                        ordinal_position:
+                                          type: number
+                                          description: The ordinal position of the column in the table.
+                                          description_kind: plain
+                                          optional: true
+                                        precision:
+                                          type: number
+                                          description: Column precision.
+                                          description_kind: plain
+                                          computed: true
+                                        primary_key:
+                                          type: bool
+                                          description: Whether or not the column represents a primary key.
+                                          description_kind: plain
+                                          optional: true
+                                        scale:
+                                          type: number
+                                          description: Column scale.
+                                          description_kind: plain
+                                          computed: true
+                                      description: PostgreSQL columns in the schema. When unspecified as part of include/exclude objects, includes/excludes everything.
+                                      description_kind: plain
+                                description: Tables in the schema.
+                                description_kind: plain
+                          description: PostgreSQL schemas on the server
+                          description_kind: plain
+                        min_items: 1
+                    description: PostgreSQL objects to retrieve from the source.
+                    description_kind: plain
+                  max_items: 1
+              description: PostgreSQL data source configuration.
+              description_kind: plain
+            max_items: 1
+          salesforce_source_config:
+            nesting_mode: list
+            block:
+              attributes:
+                polling_interval:
+                  type: string
+                  description: Salesforce objects polling interval. The interval at which new changes will be polled for each object. The duration must be between 5 minutes and 24 hours.
+                  description_kind: plain
+                  required: true
+              block_types:
+                exclude_objects:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      objects:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            object_name:
+                              type: string
+                              description: Name of object in Salesforce Org.
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            fields:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  name:
+                                    type: string
+                                    description: Field name.
+                                    description_kind: plain
+                                    optional: true
+                                description: Fields in the Salesforce object. When unspecified as part of include/exclude objects, includes/excludes everything/nothing.
+                                description_kind: plain
+                          description: Salesforce objects in data source.
+                          description_kind: plain
+                        min_items: 1
+                    description: Salesforce objects to exclude from the stream.
+                    description_kind: plain
+                  max_items: 1
+                include_objects:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      objects:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            object_name:
+                              type: string
+                              description: Name of object in Salesforce Org.
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            fields:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  name:
+                                    type: string
+                                    description: Field name.
+                                    description_kind: plain
+                                    optional: true
+                                description: Fields in the Salesforce object. When unspecified as part of include/exclude objects, includes/excludes everything/nothing.
+                                description_kind: plain
+                          description: Salesforce objects in Salesforce Org.
+                          description_kind: plain
+                        min_items: 1
+                    description: Salesforce objects to retrieve from the source.
+                    description_kind: plain
+                  max_items: 1
+              description: Salesforce data source configuration.
+              description_kind: plain
+            max_items: 1
+          sql_server_source_config:
+            nesting_mode: list
+            block:
+              attributes:
+                max_concurrent_backfill_tasks:
+                  type: number
+                  description: Max concurrent backfill tasks.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                max_concurrent_cdc_tasks:
+                  type: number
+                  description: Max concurrent CDC tasks.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              block_types:
+                change_tables:
+                  nesting_mode: list
+                  block:
+                    description: CDC reader reads from change tables.
+                    description_kind: plain
+                  max_items: 1
+                exclude_objects:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      schemas:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            schema:
+                              type: string
+                              description: Schema name.
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            tables:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  table:
+                                    type: string
+                                    description: Table name.
+                                    description_kind: plain
+                                    required: true
+                                block_types:
+                                  columns:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        column:
+                                          type: string
+                                          description: Column name.
+                                          description_kind: plain
+                                          optional: true
+                                        data_type:
+                                          type: string
+                                          description: 'The SQL Server data type. Full data types list can be found here: https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-ver16'
+                                          description_kind: plain
+                                          optional: true
+                                        length:
+                                          type: number
+                                          description: Column length.
+                                          description_kind: plain
+                                          computed: true
+                                        nullable:
+                                          type: bool
+                                          description: Whether or not the column can accept a null value.
+                                          description_kind: plain
+                                          computed: true
+                                        ordinal_position:
+                                          type: number
+                                          description: The ordinal position of the column in the table.
+                                          description_kind: plain
+                                          computed: true
+                                        precision:
+                                          type: number
+                                          description: Column precision.
+                                          description_kind: plain
+                                          computed: true
+                                        primary_key:
+                                          type: bool
+                                          description: Whether or not the column represents a primary key.
+                                          description_kind: plain
+                                          computed: true
+                                        scale:
+                                          type: number
+                                          description: Column scale.
+                                          description_kind: plain
+                                          computed: true
+                                      description: SQL Server columns in the schema. When unspecified as part of include/exclude objects, includes/excludes everything.
+                                      description_kind: plain
+                                description: Tables in the database.
+                                description_kind: plain
+                          description: SQL Server schemas/databases in the database server
+                          description_kind: plain
+                        min_items: 1
+                    description: SQL Server objects to exclude from the stream.
+                    description_kind: plain
+                  max_items: 1
+                include_objects:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      schemas:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            schema:
+                              type: string
+                              description: Schema name.
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            tables:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  table:
+                                    type: string
+                                    description: Table name.
+                                    description_kind: plain
+                                    required: true
+                                block_types:
+                                  columns:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        column:
+                                          type: string
+                                          description: Column name.
+                                          description_kind: plain
+                                          optional: true
+                                        data_type:
+                                          type: string
+                                          description: 'The SQL Server data type. Full data types list can be found here: https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-ver16'
+                                          description_kind: plain
+                                          optional: true
+                                        length:
+                                          type: number
+                                          description: Column length.
+                                          description_kind: plain
+                                          computed: true
+                                        nullable:
+                                          type: bool
+                                          description: Whether or not the column can accept a null value.
+                                          description_kind: plain
+                                          computed: true
+                                        ordinal_position:
+                                          type: number
+                                          description: The ordinal position of the column in the table.
+                                          description_kind: plain
+                                          computed: true
+                                        precision:
+                                          type: number
+                                          description: Column precision.
+                                          description_kind: plain
+                                          computed: true
+                                        primary_key:
+                                          type: bool
+                                          description: Whether or not the column represents a primary key.
+                                          description_kind: plain
+                                          computed: true
+                                        scale:
+                                          type: number
+                                          description: Column scale.
+                                          description_kind: plain
+                                          computed: true
+                                      description: SQL Server columns in the schema. When unspecified as part of include/exclude objects, includes/excludes everything.
+                                      description_kind: plain
+                                description: Tables in the database.
+                                description_kind: plain
+                          description: SQL Server schemas/databases in the database server
+                          description_kind: plain
+                        min_items: 1
+                    description: SQL Server objects to retrieve from the source.
+                    description_kind: plain
+                  max_items: 1
+                transaction_logs:
+                  nesting_mode: list
+                  block:
+                    description: CDC reader reads from transaction logs.
+                    description_kind: plain
+                  max_items: 1
+              description: SQL Server data source configuration.
+              description_kind: plain
+            max_items: 1
+        description: Source connection profile configuration.
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

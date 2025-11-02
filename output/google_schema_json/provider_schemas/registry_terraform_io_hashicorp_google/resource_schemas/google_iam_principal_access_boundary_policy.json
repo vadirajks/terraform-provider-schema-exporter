@@ -1,0 +1,161 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "annotations": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "User defined annotations. See https://google.aip.dev/148#annotations for more details such as format and size limitations **Note**: This field is non-authoritative, and will only manage the annotations present in your configuration. Please refer to the field 'effective_annotations' for all of the annotations present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "Output only. The time when the principal access boundary policy was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "The description of the principal access boundary policy. Must be less than or equal to 63 characters.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "effective_annotations": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of annotations (key/value pairs) present on the resource in GCP, including the annotations configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "etag": {
+        "type": "string",
+        "description": "The etag for the principal access boundary. If this is provided on update, it must match the server's etag.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location the principal access boundary policy is in.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Identifier. The resource name of the principal access boundary policy.  The following format is supported: 'organizations/{organization_id}/locations/{location}/principalAccessBoundaryPolicies/{policy_id}'",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "organization": {
+        "type": "string",
+        "description": "The parent organization of the principal access boundary policy.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "principal_access_boundary_policy_id": {
+        "type": "string",
+        "description": "The ID to use to create the principal access boundary policy. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, hyphens, or dots. Pattern, /a-z{2,62}/.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "uid": {
+        "type": "string",
+        "description": "Output only. The globally unique ID of the principal access boundary policy.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Output only. The time when the principal access boundary policy was most recently updated.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "details": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enforcement_version": {
+              "type": "string",
+              "description": "The version number that indicates which Google Cloud services are included in the enforcement (e.g. \\\"latest\\\", \\\"1\\\", ...). If empty, the PAB policy version will be set to the current latest version, and this version won't get updated when new versions are released.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "block_types": {
+            "rules": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "description": {
+                    "type": "string",
+                    "description": "The description of the principal access boundary policy rule. Must be less than or equal to 256 characters.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "effect": {
+                    "type": "string",
+                    "description": "The access relationship of principals to the resources in this rule. Possible values: ALLOW",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "resources": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "A list of Cloud Resource Manager resources. The resource and all the descendants are included. The number of resources in a policy is limited to 500 across all rules. The following resource types are supported: * Organizations, such as '//cloudresourcemanager.googleapis.com/organizations/123'. * Folders, such as '//cloudresourcemanager.googleapis.com/folders/123'. * Projects, such as '//cloudresourcemanager.googleapis.com/projects/123' or '//cloudresourcemanager.googleapis.com/projects/my-project-id'.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "A list of principal access boundary policy rules. The number of rules in a policy is limited to 500.",
+                "description_kind": "plain"
+              },
+              "min_items": 1
+            }
+          },
+          "description": "Principal access boundary policy details",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

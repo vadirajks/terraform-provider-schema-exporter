@@ -1,0 +1,235 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: Create time stamp
+      description_kind: plain
+      computed: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Labels as key value pairs **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: Resource ID segment making up resource 'name'. It identifies the resource within its parent collection as described in https://google.aip.dev/122.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: Identifier. name of resource
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    template_id:
+      type: string
+      description: Id of the requesting object If auto-generating Id server-side, remove this field and template_id from the method_signature of Create RPC
+      description_kind: plain
+      required: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: Update time stamp
+      description_kind: plain
+      computed: true
+  block_types:
+    filter_config:
+      nesting_mode: list
+      block:
+        block_types:
+          malicious_uri_filter_settings:
+            nesting_mode: list
+            block:
+              attributes:
+                filter_enforcement:
+                  type: string
+                  description: 'Tells whether the Malicious URI filter is enabled or disabled. Possible values: ENABLED DISABLED'
+                  description_kind: plain
+                  optional: true
+              description: Malicious URI filter settings.
+              description_kind: plain
+            max_items: 1
+          pi_and_jailbreak_filter_settings:
+            nesting_mode: list
+            block:
+              attributes:
+                confidence_level:
+                  type: string
+                  description: 'Possible values: LOW_AND_ABOVE MEDIUM_AND_ABOVE HIGH'
+                  description_kind: plain
+                  optional: true
+                filter_enforcement:
+                  type: string
+                  description: 'Tells whether Prompt injection and Jailbreak filter is enabled or disabled. Possible values: ENABLED DISABLED'
+                  description_kind: plain
+                  optional: true
+              description: Prompt injection and Jailbreak Filter settings.
+              description_kind: plain
+            max_items: 1
+          rai_settings:
+            nesting_mode: list
+            block:
+              block_types:
+                rai_filters:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      confidence_level:
+                        type: string
+                        description: 'Possible values: LOW_AND_ABOVE MEDIUM_AND_ABOVE HIGH'
+                        description_kind: plain
+                        optional: true
+                      filter_type:
+                        type: string
+                        description: 'Possible values: SEXUALLY_EXPLICIT HATE_SPEECH HARASSMENT DANGEROUS'
+                        description_kind: plain
+                        required: true
+                    description: List of Responsible AI filters enabled for template.
+                    description_kind: plain
+                  min_items: 1
+              description: Responsible AI Filter settings.
+              description_kind: plain
+            max_items: 1
+          sdp_settings:
+            nesting_mode: list
+            block:
+              block_types:
+                advanced_config:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      deidentify_template:
+                        type: string
+                        description: Optional Sensitive Data Protection Deidentify template resource name. If provided then DeidentifyContent action is performed during Sanitization using this template and inspect template. The De-identified data will be returned in SdpDeidentifyResult. Note that all info-types present in the deidentify template must be present in inspect template. e.g. 'projects/{project}/locations/{location}/deidentifyTemplates/{deidentify_template}'
+                        description_kind: plain
+                        optional: true
+                      inspect_template:
+                        type: string
+                        description: Sensitive Data Protection inspect template resource name If only inspect template is provided (de-identify template not provided), then Sensitive Data Protection InspectContent action is performed during Sanitization. All Sensitive Data Protection findings identified during inspection will be returned as SdpFinding in SdpInsepctionResult. e.g:- 'projects/{project}/locations/{location}/inspectTemplates/{inspect_template}'
+                        description_kind: plain
+                        optional: true
+                    description: Sensitive Data Protection Advanced configuration.
+                    description_kind: plain
+                  max_items: 1
+                basic_config:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      filter_enforcement:
+                        type: string
+                        description: 'Tells whether the Sensitive Data Protection basic config is enabled or disabled. Possible values: ENABLED DISABLED'
+                        description_kind: plain
+                        optional: true
+                    description: Sensitive Data Protection basic configuration.
+                    description_kind: plain
+                  max_items: 1
+              description: Sensitive Data Protection settings.
+              description_kind: plain
+            max_items: 1
+        description: Filters configuration.
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    template_metadata:
+      nesting_mode: list
+      block:
+        attributes:
+          custom_llm_response_safety_error_code:
+            type: number
+            description: Indicates the custom error code set by the user to be returned to the end user if the LLM response trips Model Armor filters.
+            description_kind: plain
+            optional: true
+          custom_llm_response_safety_error_message:
+            type: string
+            description: Indicates the custom error message set by the user to be returned to the end user if the LLM response trips Model Armor filters.
+            description_kind: plain
+            optional: true
+          custom_prompt_safety_error_code:
+            type: number
+            description: Indicates the custom error code set by the user to be returned to the end user by the service extension if the prompt trips Model Armor filters.
+            description_kind: plain
+            optional: true
+          custom_prompt_safety_error_message:
+            type: string
+            description: Indicates the custom error message set by the user to be returned to the end user if the prompt trips Model Armor filters.
+            description_kind: plain
+            optional: true
+          enforcement_type:
+            type: string
+            description: 'Possible values: INSPECT_ONLY INSPECT_AND_BLOCK'
+            description_kind: plain
+            optional: true
+          ignore_partial_invocation_failures:
+            type: bool
+            description: If true, partial detector failures should be ignored.
+            description_kind: plain
+            optional: true
+          log_sanitize_operations:
+            type: bool
+            description: If true, log sanitize operations.
+            description_kind: plain
+            optional: true
+          log_template_operations:
+            type: bool
+            description: If true, log template crud operations.
+            description_kind: plain
+            optional: true
+        block_types:
+          multi_language_detection:
+            nesting_mode: list
+            block:
+              attributes:
+                enable_multi_language_detection:
+                  type: bool
+                  description: If true, multi language detection will be enabled.
+                  description_kind: plain
+                  required: true
+              description: Metadata to enable multi language detection via template.
+              description_kind: plain
+            max_items: 1
+        description: Message describing TemplateMetadata
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

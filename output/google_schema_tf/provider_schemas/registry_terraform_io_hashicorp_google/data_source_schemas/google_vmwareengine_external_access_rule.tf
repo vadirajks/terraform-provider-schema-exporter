@@ -1,0 +1,17 @@
+data "google_vmwareengine_external_access_rule" "name" {
+  name = string (Required)
+  parent = string (Required)
+  action = string (Computed)
+  create_time = string (Computed)
+  description = string (Computed)
+  destination_ip_ranges = ['list', ['object', {'external_address': 'string', 'ip_address_range': 'string'}]] (Computed)
+  destination_ports = ['list', 'string'] (Computed)
+  id = string (Optional, Computed)
+  ip_protocol = string (Computed)
+  priority = number (Computed)
+  source_ip_ranges = ['list', ['object', {'ip_address': 'string', 'ip_address_range': 'string'}]] (Computed)
+  source_ports = ['list', 'string'] (Computed)
+  state = string (Computed)
+  uid = string (Computed)
+  update_time = string (Computed)
+}

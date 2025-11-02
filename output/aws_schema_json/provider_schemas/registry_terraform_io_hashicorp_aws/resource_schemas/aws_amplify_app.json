@@ -1,0 +1,282 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "access_token": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "sensitive": true
+      },
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "auto_branch_creation_patterns": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "basic_auth_credentials": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "sensitive": true
+      },
+      "build_spec": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "compute_role_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "custom_headers": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "default_domain": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "enable_auto_branch_creation": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "enable_basic_auth": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "enable_branch_auto_build": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "enable_branch_auto_deletion": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "environment_variables": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "iam_service_role_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "oauth_token": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "sensitive": true
+      },
+      "platform": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "production_branch": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "branch_name": "string",
+              "last_deploy_time": "string",
+              "status": "string",
+              "thumbnail_url": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "repository": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "auto_branch_creation_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "basic_auth_credentials": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "sensitive": true
+            },
+            "build_spec": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "enable_auto_build": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "enable_basic_auth": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "enable_performance_mode": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "enable_pull_request_preview": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "environment_variables": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "framework": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "pull_request_environment_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "stage": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "cache_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "custom_rule": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "condition": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "source": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "status": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "target": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "job_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "build_compute_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

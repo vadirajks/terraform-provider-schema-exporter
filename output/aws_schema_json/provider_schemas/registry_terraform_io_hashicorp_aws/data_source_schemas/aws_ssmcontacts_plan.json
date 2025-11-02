@@ -1,0 +1,67 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "contact_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "stage": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "duration_in_minutes": "number",
+              "target": [
+                "list",
+                [
+                  "object",
+                  {
+                    "channel_target_info": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "contact_channel_id": "string",
+                          "retry_interval_in_minutes": "number"
+                        }
+                      ]
+                    ],
+                    "contact_target_info": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "contact_id": "string",
+                          "is_essential": "bool"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

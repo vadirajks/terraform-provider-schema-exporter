@@ -1,0 +1,296 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "auto_mitigation_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "created_with_api_version": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "display_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "evaluation_frequency": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "is_a_legacy_log_analytics_rule": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "is_workspace_alerts_storage_configured": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "mute_actions_after_alert_duration": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "query_time_range_override": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "scopes": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "required": true
+      },
+      "severity": {
+        "type": "number",
+        "description_kind": "plain",
+        "required": true
+      },
+      "skip_query_validation": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "target_resource_types": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "window_duration": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "workspace_alerts_storage_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "action": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "action_groups": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "custom_properties": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "criteria": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "metric_measure_column": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "operator": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "query": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "resource_id_column": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "threshold": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "time_aggregation_method": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "dimension": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "operator": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "values": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "failing_periods": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "minimum_failing_periods_to_trigger_alert": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "number_of_evaluation_periods": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "identity": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "identity_ids": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "principal_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "tenant_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

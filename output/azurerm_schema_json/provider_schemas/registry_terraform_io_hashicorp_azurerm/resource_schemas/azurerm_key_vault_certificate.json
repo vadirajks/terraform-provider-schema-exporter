@@ -1,0 +1,336 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "certificate_attribute": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "created": "string",
+              "enabled": "bool",
+              "expires": "string",
+              "not_before": "string",
+              "recovery_level": "string",
+              "updated": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "certificate_data": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "certificate_data_base64": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "key_vault_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_manager_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "resource_manager_versionless_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "secret_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "thumbprint": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "version": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "versionless_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "versionless_secret_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "certificate": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "contents": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true,
+              "sensitive": true
+            },
+            "password": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "sensitive": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "certificate_policy": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "issuer_parameters": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "key_properties": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "curve": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "exportable": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "key_size": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "key_type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "reuse_key": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "lifetime_action": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "action": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "action_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  },
+                  "trigger": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "days_before_expiry": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "lifetime_percentage": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "secret_properties": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "content_type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "x509_certificate_properties": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "extended_key_usage": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "key_usage": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "subject": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "validity_in_months": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "subject_alternative_names": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "dns_names": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "emails": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "upns": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

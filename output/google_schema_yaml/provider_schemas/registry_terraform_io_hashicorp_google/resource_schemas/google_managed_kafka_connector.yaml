@@ -1,0 +1,81 @@
+version: 0
+block:
+  attributes:
+    configs:
+      type:
+      - map
+      - string
+      description: 'Connector config as keys/values. The keys of the map are connector property names, for example: ''connector.class'', ''tasks.max'', ''key.converter''.'
+      description_kind: plain
+      optional: true
+    connect_cluster:
+      type: string
+      description: The connect cluster name.
+      description_kind: plain
+      required: true
+    connector_id:
+      type: string
+      description: 'The ID to use for the connector, which will become the final component of the connector''s name. This value is structured like: ''my-connector-id''.'
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: ID of the location of the Kafka Connect resource. See https://cloud.google.com/managed-kafka/docs/locations for a list of supported locations.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: 'The name of the connector. The ''connector'' segment is used when connecting directly to the connect cluster. Structured like: ''projects/PROJECT_ID/locations/LOCATION/connectClusters/CONNECT_CLUSTER/connectors/CONNECTOR_ID''.'
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    state:
+      type: string
+      description: 'The current state of the connect. Possible values: ''STATE_UNSPECIFIED'', ''UNASSIGNED'', ''RUNNING'', ''PAUSED'', ''FAILED'', ''RESTARTING'', and ''STOPPED''.'
+      description_kind: plain
+      computed: true
+  block_types:
+    task_restart_policy:
+      nesting_mode: list
+      block:
+        attributes:
+          maximum_backoff:
+            type: string
+            description: 'The maximum amount of time to wait before retrying a failed task. This sets an upper bound for the backoff delay. A duration in seconds with up to nine fractional digits, terminated by ''s''. Example: "3.5s".'
+            description_kind: plain
+            optional: true
+          minimum_backoff:
+            type: string
+            description: 'The minimum amount of time to wait before retrying a failed task. This sets a lower bound for the backoff delay. A duration in seconds with up to nine fractional digits, terminated by ''s''. Example: "3.5s".'
+            description_kind: plain
+            optional: true
+        description: A policy that specifies how to restart the failed connectors/tasks in a Cluster resource. If not set, the failed connectors/tasks won't be restarted.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,80 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "database_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "log_monitoring_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "retention_in_days": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "storage_account_access_key": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "sensitive": true
+      },
+      "storage_account_access_key_is_secondary": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "storage_endpoint": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

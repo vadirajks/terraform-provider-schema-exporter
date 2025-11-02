@@ -1,0 +1,67 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ip_configurations": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "private_ip_address": "string",
+              "private_ip_allocation_method": "string",
+              "subnet_id": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "private_dns_resolver_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

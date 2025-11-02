@@ -1,0 +1,344 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "comment": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "etag": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "cors_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "access_control_allow_credentials": {
+              "type": "bool",
+              "description_kind": "plain",
+              "required": true
+            },
+            "access_control_max_age_sec": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "origin_override": {
+              "type": "bool",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "access_control_allow_headers": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "items": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "access_control_allow_methods": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "items": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "access_control_allow_origins": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "items": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "access_control_expose_headers": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "items": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "custom_headers_config": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "items": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "header": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "override": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "value": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "remove_headers_config": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "items": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "header": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "security_headers_config": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "content_security_policy": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "content_security_policy": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "override": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "content_type_options": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "override": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "frame_options": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "frame_option": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "override": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "referrer_policy": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "override": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "referrer_policy": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "strict_transport_security": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "access_control_max_age_sec": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "include_subdomains": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "override": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "preload": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "xss_protection": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "mode_block": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "override": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "protection": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "report_uri": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "server_timing_headers_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "required": true
+            },
+            "sampling_rate": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,294 @@
+version: 0
+block:
+  attributes:
+    acl:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    bucket:
+      type: string
+      description_kind: plain
+      required: true
+    bucket_key_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+      computed: true
+    cache_control:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    checksum_algorithm:
+      type: string
+      description_kind: plain
+      optional: true
+    checksum_crc32:
+      type: string
+      description_kind: plain
+      computed: true
+    checksum_crc32c:
+      type: string
+      description_kind: plain
+      computed: true
+    checksum_crc64nvme:
+      type: string
+      description_kind: plain
+      computed: true
+    checksum_sha1:
+      type: string
+      description_kind: plain
+      computed: true
+    checksum_sha256:
+      type: string
+      description_kind: plain
+      computed: true
+    content_disposition:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    content_encoding:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    content_language:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    content_type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    copy_if_match:
+      type: string
+      description_kind: plain
+      optional: true
+    copy_if_modified_since:
+      type: string
+      description_kind: plain
+      optional: true
+    copy_if_none_match:
+      type: string
+      description_kind: plain
+      optional: true
+    copy_if_unmodified_since:
+      type: string
+      description_kind: plain
+      optional: true
+    customer_algorithm:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    customer_key:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+    customer_key_md5:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    etag:
+      type: string
+      description_kind: plain
+      computed: true
+    expected_bucket_owner:
+      type: string
+      description_kind: plain
+      optional: true
+    expected_source_bucket_owner:
+      type: string
+      description_kind: plain
+      optional: true
+    expiration:
+      type: string
+      description_kind: plain
+      computed: true
+    expires:
+      type: string
+      description_kind: plain
+      optional: true
+    force_destroy:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    key:
+      type: string
+      description_kind: plain
+      required: true
+    kms_encryption_context:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+      sensitive: true
+    kms_key_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+      sensitive: true
+    last_modified:
+      type: string
+      description_kind: plain
+      computed: true
+    metadata:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    metadata_directive:
+      type: string
+      description_kind: plain
+      optional: true
+    object_lock_legal_hold_status:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    object_lock_mode:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    object_lock_retain_until_date:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    request_charged:
+      type: bool
+      description_kind: plain
+      computed: true
+    request_payer:
+      type: string
+      description_kind: plain
+      optional: true
+    server_side_encryption:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    source:
+      type: string
+      description_kind: plain
+      required: true
+    source_customer_algorithm:
+      type: string
+      description_kind: plain
+      optional: true
+    source_customer_key:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+    source_customer_key_md5:
+      type: string
+      description_kind: plain
+      optional: true
+    source_version_id:
+      type: string
+      description_kind: plain
+      computed: true
+    storage_class:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    tagging_directive:
+      type: string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    version_id:
+      type: string
+      description_kind: plain
+      computed: true
+    website_redirect:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    grant:
+      nesting_mode: set
+      block:
+        attributes:
+          email:
+            type: string
+            description_kind: plain
+            optional: true
+          id:
+            type: string
+            description_kind: plain
+            optional: true
+          permissions:
+            type:
+            - set
+            - string
+            description_kind: plain
+            required: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+          uri:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    override_provider:
+      nesting_mode: list
+      block:
+        block_types:
+          default_tags:
+            nesting_mode: list
+            block:
+              attributes:
+                tags:
+                  type:
+                  - map
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

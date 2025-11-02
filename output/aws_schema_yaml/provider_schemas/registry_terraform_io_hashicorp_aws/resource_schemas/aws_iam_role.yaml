@@ -1,0 +1,91 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    assume_role_policy:
+      type: string
+      description_kind: plain
+      required: true
+    create_date:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    force_detach_policies:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    managed_policy_arns:
+      type:
+      - set
+      - string
+      description_kind: plain
+      deprecated: true
+      optional: true
+      computed: true
+    max_session_duration:
+      type: number
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name_prefix:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    path:
+      type: string
+      description_kind: plain
+      optional: true
+    permissions_boundary:
+      type: string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    unique_id:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    inline_policy:
+      nesting_mode: set
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            optional: true
+          policy:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+        deprecated: true
+  description_kind: plain

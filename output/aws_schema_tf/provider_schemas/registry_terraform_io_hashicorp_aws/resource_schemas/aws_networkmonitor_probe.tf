@@ -1,0 +1,16 @@
+resource "aws_networkmonitor_probe" "name" {
+  destination = string (Required)
+  monitor_name = string (Required)
+  protocol = string (Required)
+  source_arn = string (Required)
+  address_family = string (Computed)
+  arn = string (Computed)
+  destination_port = number (Optional)
+  id = string (Computed)
+  packet_size = number (Optional, Computed)
+  probe_id = string (Computed)
+  region = string (Optional, Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Computed)
+  vpc_id = string (Computed)
+}

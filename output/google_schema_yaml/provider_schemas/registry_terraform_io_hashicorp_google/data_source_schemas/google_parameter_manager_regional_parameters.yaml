@@ -1,0 +1,51 @@
+version: 0
+block:
+  attributes:
+    filter:
+      type: string
+      description: Filter string, adhering to the rules in List-operation filtering. List only parameters matching the filter. If filter is empty, all regional parameters are listed from specific location.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    parameters:
+      type:
+      - list
+      - - object
+        - create_time: string
+          effective_labels:
+          - map
+          - string
+          format: string
+          kms_key: string
+          labels:
+          - map
+          - string
+          location: string
+          name: string
+          parameter_id: string
+          policy_member:
+          - list
+          - - object
+            - iam_policy_name_principal: string
+              iam_policy_uid_principal: string
+          project: string
+          terraform_labels:
+          - map
+          - string
+          update_time: string
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  description_kind: plain

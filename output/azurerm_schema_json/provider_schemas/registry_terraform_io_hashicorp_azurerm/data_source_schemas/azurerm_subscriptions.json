@@ -1,0 +1,63 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "display_name_contains": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "display_name_prefix": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "subscriptions": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "display_name": "string",
+              "id": "string",
+              "location_placement_id": "string",
+              "quota_id": "string",
+              "spending_limit": "string",
+              "state": "string",
+              "subscription_id": "string",
+              "tags": [
+                "map",
+                "string"
+              ],
+              "tenant_id": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

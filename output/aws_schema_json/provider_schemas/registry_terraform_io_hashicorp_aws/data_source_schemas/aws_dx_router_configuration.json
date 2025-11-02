@@ -1,0 +1,59 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "customer_router_config": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "router": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "platform": "string",
+              "router_type_identifier": "string",
+              "software": "string",
+              "vendor": "string",
+              "xslt_template_name": "string",
+              "xslt_template_name_for_mac_sec": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "router_type_identifier": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "virtual_interface_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "virtual_interface_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

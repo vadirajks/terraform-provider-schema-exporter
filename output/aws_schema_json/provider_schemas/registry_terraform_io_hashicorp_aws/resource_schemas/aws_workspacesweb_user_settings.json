@@ -1,0 +1,185 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "additional_encryption_context": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "associated_portal_arns": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "copy_allowed": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "customer_managed_key": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "deep_link_allowed": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "disconnect_timeout_in_minutes": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "download_allowed": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "idle_disconnect_timeout_in_minutes": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "paste_allowed": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "print_allowed": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "upload_allowed": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "user_settings_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "cookie_synchronization_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "allowlist": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "domain": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "path": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "blocklist": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "domain": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "path": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "toolbar_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "hidden_toolbar_items": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "max_display_resolution": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "toolbar_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "visual_mode": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

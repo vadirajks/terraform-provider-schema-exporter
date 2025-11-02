@@ -1,0 +1,75 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "dns_suffix": {
+        "type": "string",
+        "description": "The DNS domain name suffix of the peered DNS domain.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the peered DNS domain.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "network": {
+        "type": "string",
+        "description": "Network in the consumer project to peer with.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "parent": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description": "The ID of the project that the service account will be created in. Defaults to the provider project configuration.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "service": {
+        "type": "string",
+        "description": "The name of the service to create a peered DNS domain for, e.g. servicenetworking.googleapis.com",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

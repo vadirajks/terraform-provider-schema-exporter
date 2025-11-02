@@ -1,0 +1,49 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+    query_string:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_count:
+      type:
+      - list
+      - - object
+        - complete: bool
+          total_resources: number
+      description_kind: plain
+      computed: true
+    resources:
+      type:
+      - list
+      - - object
+        - arn: string
+          last_reported_at: string
+          owning_account_id: string
+          properties:
+          - list
+          - - object
+            - data: string
+              last_reported_at: string
+              name: string
+          region: string
+          resource_type: string
+          service: string
+      description_kind: plain
+      computed: true
+    view_arn:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  description_kind: plain

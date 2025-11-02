@@ -1,0 +1,384 @@
+version: 2
+block:
+  attributes:
+    backend_pool_health_probes:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    backend_pool_load_balancing_settings:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    backend_pools:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    cname:
+      type: string
+      description_kind: plain
+      computed: true
+    explicit_resource_order:
+      type:
+      - list
+      - - object
+        - backend_pool_health_probe_ids:
+          - list
+          - string
+          backend_pool_ids:
+          - list
+          - string
+          backend_pool_load_balancing_ids:
+          - list
+          - string
+          frontend_endpoint_ids:
+          - list
+          - string
+          routing_rule_ids:
+          - list
+          - string
+      description_kind: plain
+      computed: true
+    friendly_name:
+      type: string
+      description_kind: plain
+      optional: true
+    frontend_endpoints:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    header_frontdoor_id:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    load_balancer_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    routing_rules:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    backend_pool:
+      nesting_mode: list
+      block:
+        attributes:
+          health_probe_name:
+            type: string
+            description_kind: plain
+            required: true
+          id:
+            type: string
+            description_kind: plain
+            computed: true
+          load_balancing_name:
+            type: string
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          backend:
+            nesting_mode: list
+            block:
+              attributes:
+                address:
+                  type: string
+                  description_kind: plain
+                  required: true
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                host_header:
+                  type: string
+                  description_kind: plain
+                  required: true
+                http_port:
+                  type: number
+                  description_kind: plain
+                  required: true
+                https_port:
+                  type: number
+                  description_kind: plain
+                  required: true
+                priority:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                weight:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            min_items: 1
+            max_items: 500
+        description_kind: plain
+      min_items: 1
+    backend_pool_health_probe:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          id:
+            type: string
+            description_kind: plain
+            computed: true
+          interval_in_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          path:
+            type: string
+            description_kind: plain
+            optional: true
+          probe_method:
+            type: string
+            description_kind: plain
+            optional: true
+          protocol:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+      max_items: 5000
+    backend_pool_load_balancing:
+      nesting_mode: list
+      block:
+        attributes:
+          additional_latency_milliseconds:
+            type: number
+            description_kind: plain
+            optional: true
+          id:
+            type: string
+            description_kind: plain
+            computed: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          sample_size:
+            type: number
+            description_kind: plain
+            optional: true
+          successful_samples_required:
+            type: number
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+      max_items: 5000
+    backend_pool_settings:
+      nesting_mode: list
+      block:
+        attributes:
+          backend_pools_send_receive_timeout_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+          enforce_backend_pools_certificate_name_check:
+            type: bool
+            description_kind: plain
+            required: true
+        description_kind: plain
+    frontend_endpoint:
+      nesting_mode: list
+      block:
+        attributes:
+          host_name:
+            type: string
+            description_kind: plain
+            required: true
+          id:
+            type: string
+            description_kind: plain
+            computed: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          session_affinity_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          session_affinity_ttl_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+          web_application_firewall_policy_link_id:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+      max_items: 500
+    routing_rule:
+      nesting_mode: list
+      block:
+        attributes:
+          accepted_protocols:
+            type:
+            - list
+            - string
+            description_kind: plain
+            required: true
+          enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          frontend_endpoints:
+            type:
+            - list
+            - string
+            description_kind: plain
+            required: true
+          id:
+            type: string
+            description_kind: plain
+            computed: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          patterns_to_match:
+            type:
+            - list
+            - string
+            description_kind: plain
+            required: true
+        block_types:
+          forwarding_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                backend_pool_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                cache_duration:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                cache_enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                cache_query_parameter_strip_directive:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                cache_query_parameters:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                cache_use_dynamic_compression:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                custom_forwarding_path:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                forwarding_protocol:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          redirect_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                custom_fragment:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                custom_host:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                custom_path:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                custom_query_string:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                redirect_protocol:
+                  type: string
+                  description_kind: plain
+                  required: true
+                redirect_type:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 500
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

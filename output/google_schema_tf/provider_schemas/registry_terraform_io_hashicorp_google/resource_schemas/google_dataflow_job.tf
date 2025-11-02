@@ -1,0 +1,32 @@
+resource "google_dataflow_job" "name" {
+  name = string (Required)
+  temp_gcs_location = string (Required)
+  template_gcs_path = string (Required)
+  additional_experiments = ['set', 'string'] (Optional, Computed)
+  effective_labels = ['map', 'string'] (Computed)
+  enable_streaming_engine = bool (Optional)
+  id = string (Optional, Computed)
+  ip_configuration = string (Optional)
+  job_id = string (Computed)
+  kms_key_name = string (Optional)
+  labels = ['map', 'string'] (Optional)
+  machine_type = string (Optional)
+  max_workers = number (Optional)
+  network = string (Optional)
+  on_delete = string (Optional)
+  parameters = ['map', 'string'] (Optional)
+  project = string (Optional, Computed)
+  region = string (Optional)
+  service_account_email = string (Optional)
+  skip_wait_on_job_termination = bool (Optional)
+  state = string (Computed)
+  subnetwork = string (Optional)
+  terraform_labels = ['map', 'string'] (Computed)
+  transform_name_mapping = ['map', 'string'] (Optional)
+  type = string (Computed)
+  zone = string (Optional)
+
+  timeouts block "single" (Optional) {
+    update = string (Optional)
+  }
+}

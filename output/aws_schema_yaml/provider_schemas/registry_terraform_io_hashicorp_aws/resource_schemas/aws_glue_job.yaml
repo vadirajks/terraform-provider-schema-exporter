@@ -1,0 +1,197 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    connections:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    default_arguments:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    execution_class:
+      type: string
+      description_kind: plain
+      optional: true
+    glue_version:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    job_mode:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    job_run_queuing_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    maintenance_window:
+      type: string
+      description_kind: plain
+      optional: true
+    max_capacity:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    max_retries:
+      type: number
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    non_overridable_arguments:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    number_of_workers:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    role_arn:
+      type: string
+      description_kind: plain
+      required: true
+    security_configuration:
+      type: string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    timeout:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    worker_type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    command:
+      nesting_mode: list
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            optional: true
+          python_version:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          runtime:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          script_location:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    execution_property:
+      nesting_mode: list
+      block:
+        attributes:
+          max_concurrent_runs:
+            type: number
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    notification_property:
+      nesting_mode: list
+      block:
+        attributes:
+          notify_delay_after:
+            type: number
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    source_control_details:
+      nesting_mode: list
+      block:
+        attributes:
+          auth_strategy:
+            type: string
+            description_kind: plain
+            optional: true
+          auth_token:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          branch:
+            type: string
+            description_kind: plain
+            optional: true
+          folder:
+            type: string
+            description_kind: plain
+            optional: true
+          last_commit_id:
+            type: string
+            description_kind: plain
+            optional: true
+          owner:
+            type: string
+            description_kind: plain
+            optional: true
+          provider:
+            type: string
+            description_kind: plain
+            optional: true
+          repository:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

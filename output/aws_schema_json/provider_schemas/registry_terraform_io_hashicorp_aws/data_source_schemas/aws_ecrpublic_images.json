@@ -1,0 +1,74 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "images": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "artifact_media_type": "string",
+              "image_digest": "string",
+              "image_manifest_media_type": "string",
+              "image_pushed_at": "string",
+              "image_size_in_bytes": "number",
+              "image_tags": [
+                "list",
+                "string"
+              ],
+              "registry_id": "string",
+              "repository_name": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "registry_id": {
+        "type": "string",
+        "description": "AWS account ID associated with the public registry that contains the repository. If not specified, the default public registry is assumed.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "repository_name": {
+        "type": "string",
+        "description": "Name of the public repository.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "image_ids": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "image_digest": {
+              "type": "string",
+              "description": "Image digest.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "image_tag": {
+              "type": "string",
+              "description": "Image tag.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "List of image IDs to filter. Each image ID can use either a tag or digest.",
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description": "Provides details about AWS ECR Public Images in a public repository.",
+    "description_kind": "plain"
+  }
+}

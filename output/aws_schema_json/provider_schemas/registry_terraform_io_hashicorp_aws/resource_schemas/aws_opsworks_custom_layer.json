@@ -1,0 +1,392 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "auto_assign_elastic_ips": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "auto_assign_public_ips": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "auto_healing": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "custom_configure_recipes": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "custom_deploy_recipes": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "custom_instance_profile_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "custom_json": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "custom_security_group_ids": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "custom_setup_recipes": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "custom_shutdown_recipes": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "custom_undeploy_recipes": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "drain_elb_on_shutdown": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "elastic_load_balancer": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "install_updates_on_boot": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "instance_shutdown_timeout": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "short_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "stack_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "system_packages": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "use_ebs_optimized_instances": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "cloudwatch_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "log_streams": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "batch_count": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "batch_size": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "buffer_duration": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "datetime_format": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "encoding": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "file": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "file_fingerprint_lines": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "initial_position": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "log_group_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "multiline_start_pattern": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "time_zone": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "ebs_volume": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "encrypted": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "iops": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "mount_point": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "number_of_disks": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "raid_level": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "size": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "load_based_auto_scaling": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enable": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "downscaling": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "alarms": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "cpu_threshold": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "ignore_metrics_time": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "instance_count": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "load_threshold": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "memory_threshold": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "thresholds_wait_time": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "upscaling": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "alarms": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "cpu_threshold": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "ignore_metrics_time": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "instance_count": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "load_threshold": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "memory_threshold": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "thresholds_wait_time": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain",
+    "deprecated": true
+  }
+}

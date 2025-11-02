@@ -1,0 +1,533 @@
+version: 0
+block:
+  attributes:
+    feature:
+      type: string
+      description: The name of the feature
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: The location of the feature
+      description_kind: plain
+      required: true
+    membership:
+      type: string
+      description: The name of the membership
+      description_kind: plain
+      required: true
+    membership_location:
+      type: string
+      description: The location of the membership
+      description_kind: plain
+      optional: true
+    project:
+      type: string
+      description: The project of the feature
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    configmanagement:
+      nesting_mode: list
+      block:
+        attributes:
+          management:
+            type: string
+            description: Set this field to MANAGEMENT_AUTOMATIC to enable Config Sync auto-upgrades, and set this field to MANAGEMENT_MANUAL or MANAGEMENT_UNSPECIFIED to disable Config Sync auto-upgrades.
+            description_kind: plain
+            optional: true
+            computed: true
+          version:
+            type: string
+            description: Optional. Version of ACM to install. Defaults to the latest version.
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          config_sync:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description: Enables the installation of ConfigSync. If set to true, ConfigSync resources will be created and the other ConfigSync fields will be applied if exist. If set to false, all other ConfigSync fields will be ignored, ConfigSync resources will be deleted. If omitted, ConfigSync resources will be managed depends on the presence of the git or oci field.
+                  description_kind: plain
+                  optional: true
+                metrics_gcp_service_account_email:
+                  type: string
+                  description: 'Deprecated: If Workload Identity Federation for GKE is enabled, Google Cloud Service Account is no longer needed for exporting Config Sync metrics: https://cloud.google.com/kubernetes-engine/enterprise/config-sync/docs/how-to/monitor-config-sync-cloud-monitoring#custom-monitoring.'
+                  description_kind: plain
+                  optional: true
+                prevent_drift:
+                  type: bool
+                  description: Set to true to enable the Config Sync admission webhook to prevent drifts. If set to `false`, disables the Config Sync admission webhook and does not prevent drifts.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                source_format:
+                  type: string
+                  description: Specifies whether the Config Sync Repo is in "hierarchical" or "unstructured" mode.
+                  description_kind: plain
+                  optional: true
+                stop_syncing:
+                  type: bool
+                  description: 'Set to true to stop syncing configs for a single cluster. Default: false.'
+                  description_kind: plain
+                  optional: true
+              block_types:
+                deployment_overrides:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      deployment_name:
+                        type: string
+                        description: The name of the Deployment.
+                        description_kind: plain
+                        optional: true
+                      deployment_namespace:
+                        type: string
+                        description: The namespace of the Deployment.
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      containers:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            container_name:
+                              type: string
+                              description: The name of the container.
+                              description_kind: plain
+                              optional: true
+                            cpu_limit:
+                              type: string
+                              description: The CPU limit of the container.
+                              description_kind: plain
+                              optional: true
+                            cpu_request:
+                              type: string
+                              description: The CPU request of the container.
+                              description_kind: plain
+                              optional: true
+                            memory_limit:
+                              type: string
+                              description: The memory limit of the container.
+                              description_kind: plain
+                              optional: true
+                            memory_request:
+                              type: string
+                              description: The memory request of the container.
+                              description_kind: plain
+                              optional: true
+                          description: The override configurations for the containers in the Deployment.
+                          description_kind: plain
+                    description: The override configurations for the Config Sync Deployments.
+                    description_kind: plain
+                git:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      gcp_service_account_email:
+                        type: string
+                        description: The GCP Service Account Email used for auth when secretType is gcpServiceAccount.
+                        description_kind: plain
+                        optional: true
+                      https_proxy:
+                        type: string
+                        description: URL for the HTTPS proxy to be used when communicating with the Git repo.
+                        description_kind: plain
+                        optional: true
+                      policy_dir:
+                        type: string
+                        description: 'The path within the Git repository that represents the top level of the repo to sync. Default: the root directory of the repository.'
+                        description_kind: plain
+                        optional: true
+                      secret_type:
+                        type: string
+                        description: Type of secret configured for access to the Git repo. Must be one of ssh, cookiefile, gcenode, token, gcpserviceaccount or none. The validation of this is case-sensitive.
+                        description_kind: plain
+                        optional: true
+                      sync_branch:
+                        type: string
+                        description: 'The branch of the repository to sync from. Default: master.'
+                        description_kind: plain
+                        optional: true
+                      sync_repo:
+                        type: string
+                        description: The URL of the Git repository to use as the source of truth.
+                        description_kind: plain
+                        optional: true
+                      sync_rev:
+                        type: string
+                        description: Git revision (tag or hash) to check out. Default HEAD.
+                        description_kind: plain
+                        optional: true
+                      sync_wait_secs:
+                        type: string
+                        description: 'Period in seconds between consecutive syncs. Default: 15.'
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+                oci:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      gcp_service_account_email:
+                        type: string
+                        description: The GCP Service Account Email used for auth when secret_type is gcpserviceaccount.
+                        description_kind: plain
+                        optional: true
+                      policy_dir:
+                        type: string
+                        description: 'The absolute path of the directory that contains the local resources. Default: the root directory of the image.'
+                        description_kind: plain
+                        optional: true
+                      secret_type:
+                        type: string
+                        description: Type of secret configured for access to the OCI Image. Must be one of gcenode, gcpserviceaccount or none. The validation of this is case-sensitive.
+                        description_kind: plain
+                        optional: true
+                      sync_repo:
+                        type: string
+                        description: The OCI image repository URL for the package to sync from. e.g. LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY_NAME/PACKAGE_NAME.
+                        description_kind: plain
+                        optional: true
+                      sync_wait_secs:
+                        type: string
+                        description: 'Period in seconds(int64 format) between consecutive syncs. Default: 15.'
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description: Config Sync configuration for the cluster.
+              description_kind: plain
+            max_items: 1
+          hierarchy_controller:
+            nesting_mode: list
+            block:
+              attributes:
+                enable_hierarchical_resource_quota:
+                  type: bool
+                  description: Whether hierarchical resource quota is enabled in this cluster.
+                  description_kind: plain
+                  optional: true
+                enable_pod_tree_labels:
+                  type: bool
+                  description: Whether pod tree labels are enabled in this cluster.
+                  description_kind: plain
+                  optional: true
+                enabled:
+                  type: bool
+                  description: '**DEPRECATED** Configuring Hierarchy Controller through the configmanagement feature is no longer recommended. Use https://github.com/kubernetes-sigs/hierarchical-namespaces instead.'
+                  description_kind: plain
+                  optional: true
+              description: Hierarchy Controller configuration for the cluster.
+              description_kind: plain
+            max_items: 1
+          policy_controller:
+            nesting_mode: list
+            block:
+              attributes:
+                audit_interval_seconds:
+                  type: string
+                  description: Sets the interval for Policy Controller Audit Scans (in seconds). When set to 0, this disables audit functionality altogether.
+                  description_kind: plain
+                  optional: true
+                enabled:
+                  type: bool
+                  description: Enables the installation of Policy Controller. If false, the rest of PolicyController fields take no effect.
+                  description_kind: plain
+                  optional: true
+                exemptable_namespaces:
+                  type:
+                  - list
+                  - string
+                  description: The set of namespaces that are excluded from Policy Controller checks. Namespaces do not need to currently exist on the cluster.
+                  description_kind: plain
+                  optional: true
+                log_denies_enabled:
+                  type: bool
+                  description: Logs all denies and dry run failures.
+                  description_kind: plain
+                  optional: true
+                mutation_enabled:
+                  type: bool
+                  description: Enable or disable mutation in policy controller. If true, mutation CRDs, webhook and controller deployment will be deployed to the cluster.
+                  description_kind: plain
+                  optional: true
+                referential_rules_enabled:
+                  type: bool
+                  description: Enables the ability to use Constraint Templates that reference to objects other than the object currently being evaluated.
+                  description_kind: plain
+                  optional: true
+                template_library_installed:
+                  type: bool
+                  description: Installs the default template library along with Policy Controller.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                monitoring:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      backends:
+                        type:
+                        - list
+                        - string
+                        description: Specifies the list of backends Policy Controller will export to. Specifying an empty value `[]` disables metrics export.
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                    description: 'Specifies the backends Policy Controller should export metrics to. For example, to specify metrics should be exported to Cloud Monitoring and Prometheus, specify backends: ["cloudmonitoring", "prometheus"]. Default: ["cloudmonitoring", "prometheus"]'
+                    description_kind: plain
+                  max_items: 1
+              description: '**DEPRECATED** Configuring Policy Controller through the configmanagement feature is no longer recommended. Use the policycontroller feature instead.'
+              description_kind: plain
+            max_items: 1
+        description: Config Management-specific spec.
+        description_kind: plain
+      max_items: 1
+    mesh:
+      nesting_mode: list
+      block:
+        attributes:
+          control_plane:
+            type: string
+            description: '**DEPRECATED** Whether to automatically manage Service Mesh control planes. Possible values: CONTROL_PLANE_MANAGEMENT_UNSPECIFIED, AUTOMATIC, MANUAL'
+            description_kind: plain
+            deprecated: true
+            optional: true
+          management:
+            type: string
+            description: 'Whether to automatically manage Service Mesh. Possible values: MANAGEMENT_UNSPECIFIED, MANAGEMENT_AUTOMATIC, MANAGEMENT_MANUAL'
+            description_kind: plain
+            optional: true
+        description: Manage Mesh Features
+        description_kind: plain
+      max_items: 1
+    policycontroller:
+      nesting_mode: list
+      block:
+        attributes:
+          version:
+            type: string
+            description: Optional. Version of Policy Controller to install. Defaults to the latest version.
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          policy_controller_hub_config:
+            nesting_mode: list
+            block:
+              attributes:
+                audit_interval_seconds:
+                  type: number
+                  description: Sets the interval for Policy Controller Audit Scans (in seconds). When set to 0, this disables audit functionality altogether.
+                  description_kind: plain
+                  optional: true
+                constraint_violation_limit:
+                  type: number
+                  description: The maximum number of audit violations to be stored in a constraint. If not set, the internal default of 20 will be used.
+                  description_kind: plain
+                  optional: true
+                exemptable_namespaces:
+                  type:
+                  - list
+                  - string
+                  description: The set of namespaces that are excluded from Policy Controller checks. Namespaces do not need to currently exist on the cluster.
+                  description_kind: plain
+                  optional: true
+                install_spec:
+                  type: string
+                  description: 'Configures the mode of the Policy Controller installation. Possible values: INSTALL_SPEC_UNSPECIFIED, INSTALL_SPEC_NOT_INSTALLED, INSTALL_SPEC_ENABLED, INSTALL_SPEC_SUSPENDED, INSTALL_SPEC_DETACHED'
+                  description_kind: plain
+                  optional: true
+                log_denies_enabled:
+                  type: bool
+                  description: Logs all denies and dry run failures.
+                  description_kind: plain
+                  optional: true
+                mutation_enabled:
+                  type: bool
+                  description: Enables the ability to mutate resources using Policy Controller.
+                  description_kind: plain
+                  optional: true
+                referential_rules_enabled:
+                  type: bool
+                  description: Enables the ability to use Constraint Templates that reference to objects other than the object currently being evaluated.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                deployment_configs:
+                  nesting_mode: set
+                  block:
+                    attributes:
+                      component_name:
+                        type: string
+                        description: The name for the key in the map for which this object is mapped to in the API
+                        description_kind: plain
+                        required: true
+                      pod_affinity:
+                        type: string
+                        description: 'Pod affinity configuration. Possible values: AFFINITY_UNSPECIFIED, NO_AFFINITY, ANTI_AFFINITY'
+                        description_kind: plain
+                        optional: true
+                      replica_count:
+                        type: number
+                        description: Pod replica count.
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      container_resources:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            limits:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  cpu:
+                                    type: string
+                                    description: CPU requirement expressed in Kubernetes resource units.
+                                    description_kind: plain
+                                    optional: true
+                                  memory:
+                                    type: string
+                                    description: Memory requirement expressed in Kubernetes resource units.
+                                    description_kind: plain
+                                    optional: true
+                                description: Limits describes the maximum amount of compute resources allowed for use by the running container.
+                                description_kind: plain
+                              max_items: 1
+                            requests:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  cpu:
+                                    type: string
+                                    description: CPU requirement expressed in Kubernetes resource units.
+                                    description_kind: plain
+                                    optional: true
+                                  memory:
+                                    type: string
+                                    description: Memory requirement expressed in Kubernetes resource units.
+                                    description_kind: plain
+                                    optional: true
+                                description: Requests describes the amount of compute resources reserved for the container by the kube-scheduler.
+                                description_kind: plain
+                              max_items: 1
+                          description: Container resource requirements.
+                          description_kind: plain
+                        max_items: 1
+                      pod_tolerations:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            effect:
+                              type: string
+                              description: Matches a taint effect.
+                              description_kind: plain
+                              optional: true
+                            key:
+                              type: string
+                              description: Matches a taint key (not necessarily unique).
+                              description_kind: plain
+                              optional: true
+                            operator:
+                              type: string
+                              description: Matches a taint operator.
+                              description_kind: plain
+                              optional: true
+                            value:
+                              type: string
+                              description: Matches a taint value.
+                              description_kind: plain
+                              optional: true
+                          description: Pod tolerations of node taints.
+                          description_kind: plain
+                    description: Map of deployment configs to deployments ("admission", "audit", "mutation").
+                    description_kind: plain
+                monitoring:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      backends:
+                        type:
+                        - list
+                        - string
+                        description: Specifies the list of backends Policy Controller will export to. Specifying an empty value `[]` disables metrics export.
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                    description: 'Specifies the backends Policy Controller should export metrics to. For example, to specify metrics should be exported to Cloud Monitoring and Prometheus, specify backends: ["cloudmonitoring", "prometheus"]. Default: ["cloudmonitoring", "prometheus"]'
+                    description_kind: plain
+                  max_items: 1
+                policy_content:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      bundles:
+                        nesting_mode: set
+                        block:
+                          attributes:
+                            bundle_name:
+                              type: string
+                              description: The name for the key in the map for which this object is mapped to in the API
+                              description_kind: plain
+                              required: true
+                            exempted_namespaces:
+                              type:
+                              - list
+                              - string
+                              description: The set of namespaces to be exempted from the bundle.
+                              description_kind: plain
+                              optional: true
+                          description: map of bundle name to BundleInstallSpec. The bundle name maps to the `bundleName` key in the `policycontroller.gke.io/constraintData` annotation on a constraint.
+                          description_kind: plain
+                      template_library:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            installation:
+                              type: string
+                              description: 'Configures the manner in which the template library is installed on the cluster. Possible values: INSTALLATION_UNSPECIFIED, NOT_INSTALLED, ALL'
+                              description_kind: plain
+                              optional: true
+                          description: Configures the installation of the Template Library.
+                          description_kind: plain
+                        max_items: 1
+                    description: Specifies the desired policy content on the cluster.
+                    description_kind: plain
+                  max_items: 1
+              description: Policy Controller configuration for the cluster.
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description: Policy Controller-specific spec.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

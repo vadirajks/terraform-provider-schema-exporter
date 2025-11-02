@@ -1,0 +1,99 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "The time at which the mute config was created. This field is set by the server and will be ignored if provided on config creation.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "A description of the mute config.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "filter": {
+        "type": "string",
+        "description": "An expression that defines the filter to apply across create/update events of findings. While creating a filter string, be mindful of the scope in which the mute configuration is being created. E.g., If a filter contains project = X but is created under the project = Y scope, it might not match any findings.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "folder": {
+        "type": "string",
+        "description": "The folder whose Cloud Security Command Center the Mute Config lives in.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "location Id is provided by folder. If not provided, Use global as default.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "most_recent_editor": {
+        "type": "string",
+        "description": "Email address of the user who last edited the mute config. This field is set by the server and will be ignored if provided on config creation or update.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "mute_config_id": {
+        "type": "string",
+        "description": "Unique identifier provided by the client within the parent scope.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the mute config. Its format is organizations/{organization}/locations/global/muteConfigs/{configId}, folders/{folder}/locations/global/muteConfigs/{configId}, or projects/{project}/locations/global/muteConfigs/{configId}",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "type": {
+        "type": "string",
+        "description": "The type of the mute config.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Output only. The most recent time at which the mute config was updated. This field is set by the server and will be ignored if provided on config creation or update.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

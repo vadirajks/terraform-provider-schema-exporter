@@ -1,0 +1,118 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_set_name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_set_type:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    resources:
+      nesting_mode: list
+      block:
+        attributes:
+          component_id:
+            type: string
+            description_kind: plain
+            computed: true
+          readiness_scopes:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          resource_arn:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          dns_target_resource:
+            nesting_mode: list
+            block:
+              attributes:
+                domain_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                hosted_zone_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                record_set_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                record_type:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                target_resource:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      nlb_resource:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            arn:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                      r53_resource:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            domain_name:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            record_set_id:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

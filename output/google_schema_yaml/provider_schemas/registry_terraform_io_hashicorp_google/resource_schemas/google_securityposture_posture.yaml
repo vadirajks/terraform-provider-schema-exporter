@@ -1,0 +1,503 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: Time the Posture was created in UTC.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: Description of the posture.
+      description_kind: plain
+      optional: true
+    etag:
+      type: string
+      description: For Resource freshness validation (https://google.aip.dev/154)
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: 'Location of the resource, eg: global.'
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: Name of the posture.
+      description_kind: plain
+      computed: true
+    parent:
+      type: string
+      description: The parent of the resource, an organization. Format should be 'organizations/{organization_id}'.
+      description_kind: plain
+      required: true
+    posture_id:
+      type: string
+      description: Id of the posture. It is an immutable field.
+      description_kind: plain
+      required: true
+    reconciling:
+      type: bool
+      description: If set, there are currently changes in flight to the posture.
+      description_kind: plain
+      computed: true
+    revision_id:
+      type: string
+      description: Revision_id of the posture.
+      description_kind: plain
+      computed: true
+    state:
+      type: string
+      description: 'State of the posture. Update to state field should not be triggered along with with other field updates. Possible values: ["DEPRECATED", "DRAFT", "ACTIVE"]'
+      description_kind: plain
+      required: true
+    update_time:
+      type: string
+      description: Time the Posture was updated in UTC.
+      description_kind: plain
+      computed: true
+  block_types:
+    policy_sets:
+      nesting_mode: list
+      block:
+        attributes:
+          description:
+            type: string
+            description: Description of the policy set.
+            description_kind: plain
+            optional: true
+          policy_set_id:
+            type: string
+            description: ID of the policy set.
+            description_kind: plain
+            required: true
+        block_types:
+          policies:
+            nesting_mode: list
+            block:
+              attributes:
+                description:
+                  type: string
+                  description: Description of the policy.
+                  description_kind: plain
+                  optional: true
+                policy_id:
+                  type: string
+                  description: ID of the policy.
+                  description_kind: plain
+                  required: true
+              block_types:
+                compliance_standards:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      control:
+                        type: string
+                        description: Mapping of security controls for the policy.
+                        description_kind: plain
+                        optional: true
+                      standard:
+                        type: string
+                        description: Mapping of compliance standards for the policy.
+                        description_kind: plain
+                        optional: true
+                    description: Mapping for policy to security standards and controls.
+                    description_kind: plain
+                constraint:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      org_policy_constraint:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            canned_constraint_id:
+                              type: string
+                              description: Organization policy canned constraint Id
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            policy_rules:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  allow_all:
+                                    type: bool
+                                    description: Setting this to true means that all values are allowed. This field can be set only in policies for list constraints.
+                                    description_kind: plain
+                                    optional: true
+                                  deny_all:
+                                    type: bool
+                                    description: Setting this to true means that all values are denied. This field can be set only in policies for list constraints.
+                                    description_kind: plain
+                                    optional: true
+                                  enforce:
+                                    type: bool
+                                    description: If 'true', then the policy is enforced. If 'false', then any configuration is acceptable. This field can be set only in policies for boolean constraints.
+                                    description_kind: plain
+                                    optional: true
+                                block_types:
+                                  condition:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        description:
+                                          type: string
+                                          description: Description of the expression
+                                          description_kind: plain
+                                          optional: true
+                                        expression:
+                                          type: string
+                                          description: Textual representation of an expression in Common Expression Language syntax.
+                                          description_kind: plain
+                                          required: true
+                                        location:
+                                          type: string
+                                          description: String indicating the location of the expression for error reporting, e.g. a file name and a position in the file
+                                          description_kind: plain
+                                          optional: true
+                                        title:
+                                          type: string
+                                          description: Title for the expression, i.e. a short string describing its purpose.
+                                          description_kind: plain
+                                          optional: true
+                                      description: Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. This page details the objects and attributes that are used to the build the CEL expressions for custom access levels - https://cloud.google.com/access-context-manager/docs/custom-access-level-spec.
+                                      description_kind: plain
+                                    max_items: 1
+                                  values:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        allowed_values:
+                                          type:
+                                          - list
+                                          - string
+                                          description: List of values allowed at this resource.
+                                          description_kind: plain
+                                          optional: true
+                                        denied_values:
+                                          type:
+                                          - list
+                                          - string
+                                          description: List of values denied at this resource.
+                                          description_kind: plain
+                                          optional: true
+                                      description: List of values to be used for this policy rule. This field can be set only in policies for list constraints.
+                                      description_kind: plain
+                                    max_items: 1
+                                description: Definition of policy rules
+                                description_kind: plain
+                              min_items: 1
+                          description: Organization policy canned constraint definition.
+                          description_kind: plain
+                        max_items: 1
+                      org_policy_constraint_custom:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            custom_constraint:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  action_type:
+                                    type: string
+                                    description: 'The action to take if the condition is met. Possible values: ["ALLOW", "DENY"]'
+                                    description_kind: plain
+                                    required: true
+                                  condition:
+                                    type: string
+                                    description: A CEL condition that refers to a supported service resource, for example 'resource.management.autoUpgrade == false'. For details about CEL usage, see [Common Expression Language](https://cloud.google.com/resource-manager/docs/organization-policy/creating-managing-custom-constraints#common_expression_language).
+                                    description_kind: plain
+                                    required: true
+                                  description:
+                                    type: string
+                                    description: A human-friendly description of the constraint to display as an error message when the policy is violated.
+                                    description_kind: plain
+                                    optional: true
+                                  display_name:
+                                    type: string
+                                    description: A human-friendly name for the constraint.
+                                    description_kind: plain
+                                    optional: true
+                                  method_types:
+                                    type:
+                                    - list
+                                    - string
+                                    description: A list of RESTful methods for which to enforce the constraint. Can be 'CREATE', 'UPDATE', or both. Not all Google Cloud services support both methods. To see supported methods for each service, find the service in [Supported services](https://cloud.google.com/resource-manager/docs/organization-policy/custom-constraint-supported-services).
+                                    description_kind: plain
+                                    required: true
+                                  name:
+                                    type: string
+                                    description: Immutable. The name of the custom constraint. This is unique within the organization.
+                                    description_kind: plain
+                                    required: true
+                                  resource_types:
+                                    type:
+                                    - list
+                                    - string
+                                    description: Immutable. The fully qualified name of the Google Cloud REST resource containing the object and field you want to restrict. For example, 'container.googleapis.com/NodePool'.
+                                    description_kind: plain
+                                    required: true
+                                description: Organization policy custom constraint definition.
+                                description_kind: plain
+                              max_items: 1
+                            policy_rules:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  allow_all:
+                                    type: bool
+                                    description: Setting this to true means that all values are allowed. This field can be set only in policies for list constraints.
+                                    description_kind: plain
+                                    optional: true
+                                  deny_all:
+                                    type: bool
+                                    description: Setting this to true means that all values are denied. This field can be set only in policies for list constraints.
+                                    description_kind: plain
+                                    optional: true
+                                  enforce:
+                                    type: bool
+                                    description: If 'true', then the policy is enforced. If 'false', then any configuration is acceptable. This field can be set only in policies for boolean constraints.
+                                    description_kind: plain
+                                    optional: true
+                                block_types:
+                                  condition:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        description:
+                                          type: string
+                                          description: Description of the expression
+                                          description_kind: plain
+                                          optional: true
+                                        expression:
+                                          type: string
+                                          description: Textual representation of an expression in Common Expression Language syntax.
+                                          description_kind: plain
+                                          required: true
+                                        location:
+                                          type: string
+                                          description: String indicating the location of the expression for error reporting, e.g. a file name and a position in the file
+                                          description_kind: plain
+                                          optional: true
+                                        title:
+                                          type: string
+                                          description: Title for the expression, i.e. a short string describing its purpose.
+                                          description_kind: plain
+                                          optional: true
+                                      description: Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. This page details the objects and attributes that are used to the build the CEL expressions for custom access levels - https://cloud.google.com/access-context-manager/docs/custom-access-level-spec.
+                                      description_kind: plain
+                                    max_items: 1
+                                  values:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        allowed_values:
+                                          type:
+                                          - list
+                                          - string
+                                          description: List of values allowed at this resource.
+                                          description_kind: plain
+                                          optional: true
+                                        denied_values:
+                                          type:
+                                          - list
+                                          - string
+                                          description: List of values denied at this resource.
+                                          description_kind: plain
+                                          optional: true
+                                      description: List of values to be used for this policy rule. This field can be set only in policies for list constraints.
+                                      description_kind: plain
+                                    max_items: 1
+                                description: Definition of policy rules
+                                description_kind: plain
+                              min_items: 1
+                          description: Organization policy custom constraint policy definition.
+                          description_kind: plain
+                        max_items: 1
+                      security_health_analytics_custom_module:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            display_name:
+                              type: string
+                              description: The display name of the Security Health Analytics custom module. This display name becomes the finding category for all findings that are returned by this custom module.
+                              description_kind: plain
+                              optional: true
+                            id:
+                              type: string
+                              description: A server generated id of custom module.
+                              description_kind: plain
+                              computed: true
+                            module_enablement_state:
+                              type: string
+                              description: 'The state of enablement for the module at its level of the resource hierarchy. Possible values: ["ENABLEMENT_STATE_UNSPECIFIED", "ENABLED", "DISABLED"]'
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            config:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  description:
+                                    type: string
+                                    description: Text that describes the vulnerability or misconfiguration that the custom module detects.
+                                    description_kind: plain
+                                    optional: true
+                                  recommendation:
+                                    type: string
+                                    description: An explanation of the recommended steps that security teams can take to resolve the detected issue
+                                    description_kind: plain
+                                    optional: true
+                                  severity:
+                                    type: string
+                                    description: 'The severity to assign to findings generated by the module. Possible values: ["SEVERITY_UNSPECIFIED", "CRITICAL", "HIGH", "MEDIUM", "LOW"]'
+                                    description_kind: plain
+                                    required: true
+                                block_types:
+                                  custom_output:
+                                    nesting_mode: list
+                                    block:
+                                      block_types:
+                                        properties:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              name:
+                                                type: string
+                                                description: Name of the property for the custom output.
+                                                description_kind: plain
+                                                required: true
+                                            block_types:
+                                              value_expression:
+                                                nesting_mode: list
+                                                block:
+                                                  attributes:
+                                                    description:
+                                                      type: string
+                                                      description: Description of the expression
+                                                      description_kind: plain
+                                                      optional: true
+                                                    expression:
+                                                      type: string
+                                                      description: Textual representation of an expression in Common Expression Language syntax.
+                                                      description_kind: plain
+                                                      required: true
+                                                    location:
+                                                      type: string
+                                                      description: String indicating the location of the expression for error reporting, e.g. a file name and a position in the file
+                                                      description_kind: plain
+                                                      optional: true
+                                                    title:
+                                                      type: string
+                                                      description: Title for the expression, i.e. a short string describing its purpose.
+                                                      description_kind: plain
+                                                      optional: true
+                                                  description: The CEL expression for the custom output. A resource property can be specified to return the value of the property or a text string enclosed in quotation marks.
+                                                  description_kind: plain
+                                                max_items: 1
+                                            description: A list of custom output properties to add to the finding.
+                                            description_kind: plain
+                                      description: Custom output properties. A set of optional name-value pairs that define custom source properties to return with each finding that is generated by the custom module. The custom source properties that are defined here are included in the finding JSON under 'sourceProperties'.
+                                      description_kind: plain
+                                    max_items: 1
+                                  predicate:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        description:
+                                          type: string
+                                          description: Description of the expression
+                                          description_kind: plain
+                                          optional: true
+                                        expression:
+                                          type: string
+                                          description: Textual representation of an expression in Common Expression Language syntax.
+                                          description_kind: plain
+                                          required: true
+                                        location:
+                                          type: string
+                                          description: String indicating the location of the expression for error reporting, e.g. a file name and a position in the file
+                                          description_kind: plain
+                                          optional: true
+                                        title:
+                                          type: string
+                                          description: Title for the expression, i.e. a short string describing its purpose.
+                                          description_kind: plain
+                                          optional: true
+                                      description: The CEL expression to evaluate to produce findings.When the expression evaluates to true against a resource, a finding is generated.
+                                      description_kind: plain
+                                    min_items: 1
+                                    max_items: 1
+                                  resource_selector:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        resource_types:
+                                          type:
+                                          - list
+                                          - string
+                                          description: The resource types to run the detector on.
+                                          description_kind: plain
+                                          required: true
+                                      description: The resource types that the custom module operates on. Each custom module can specify up to 5 resource types.
+                                      description_kind: plain
+                                    min_items: 1
+                                    max_items: 1
+                                description: Custom module details.
+                                description_kind: plain
+                              min_items: 1
+                              max_items: 1
+                          description: Definition of Security Health Analytics Custom Module.
+                          description_kind: plain
+                        max_items: 1
+                      security_health_analytics_module:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            module_enablement_state:
+                              type: string
+                              description: 'The state of enablement for the module at its level of the resource hierarchy. Possible values: ["ENABLEMENT_STATE_UNSPECIFIED", "ENABLED", "DISABLED"]'
+                              description_kind: plain
+                              optional: true
+                            module_name:
+                              type: string
+                              description: 'The name of the module eg: BIGQUERY_TABLE_CMEK_DISABLED.'
+                              description_kind: plain
+                              required: true
+                          description: Security Health Analytics built-in detector definition.
+                          description_kind: plain
+                        max_items: 1
+                    description: 'Policy constraint definition.It can have the definition of one of following constraints: orgPolicyConstraint orgPolicyConstraintCustom securityHealthAnalyticsModule securityHealthAnalyticsCustomModule'
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description: List of security policy
+              description_kind: plain
+            min_items: 1
+        description: List of policy sets for the posture.
+        description_kind: plain
+      min_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,149 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    copy_tags_to_snapshots:
+      type: bool
+      description_kind: plain
+      optional: true
+    data_compression_type:
+      type: string
+      description_kind: plain
+      optional: true
+    delete_volume_options:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    parent_volume_id:
+      type: string
+      description_kind: plain
+      required: true
+    read_only:
+      type: bool
+      description_kind: plain
+      optional: true
+      computed: true
+    record_size_kib:
+      type: number
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    storage_capacity_quota_gib:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    storage_capacity_reservation_gib:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    volume_type:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    nfs_exports:
+      nesting_mode: list
+      block:
+        block_types:
+          client_configurations:
+            nesting_mode: set
+            block:
+              attributes:
+                clients:
+                  type: string
+                  description_kind: plain
+                  required: true
+                options:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+            max_items: 25
+        description_kind: plain
+      max_items: 1
+    origin_snapshot:
+      nesting_mode: list
+      block:
+        attributes:
+          copy_strategy:
+            type: string
+            description_kind: plain
+            required: true
+          snapshot_arn:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    user_and_group_quotas:
+      nesting_mode: set
+      block:
+        attributes:
+          id:
+            type: number
+            description_kind: plain
+            required: true
+          storage_capacity_quota_gib:
+            type: number
+            description_kind: plain
+            required: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+  description_kind: plain

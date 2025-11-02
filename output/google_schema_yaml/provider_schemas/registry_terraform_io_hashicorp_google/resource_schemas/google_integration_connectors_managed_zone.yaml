@@ -1,0 +1,88 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: Time the Namespace was created in UTC.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: Description of the resource.
+      description_kind: plain
+      optional: true
+    dns:
+      type: string
+      description: DNS Name of the resource.
+      description_kind: plain
+      required: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Resource labels to represent user provided metadata. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: Name of Managed Zone needs to be created.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    target_project:
+      type: string
+      description: The name of the Target Project.
+      description_kind: plain
+      required: true
+    target_vpc:
+      type: string
+      description: The name of the Target Project VPC Network.
+      description_kind: plain
+      required: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: Time the Namespace was updated in UTC.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

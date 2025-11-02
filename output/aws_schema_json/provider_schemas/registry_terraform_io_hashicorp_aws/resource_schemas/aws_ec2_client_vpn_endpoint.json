@@ -1,0 +1,254 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "client_cidr_block": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "disconnect_on_session_timeout": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "dns_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "dns_servers": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "endpoint_ip_address_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "security_group_ids": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "self_service_portal": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "self_service_portal_url": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "server_certificate_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "session_timeout_hours": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "split_tunnel": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "traffic_ip_address_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "transport_protocol": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "vpc_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "vpn_port": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "authentication_options": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "active_directory_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "root_certificate_chain_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "saml_provider_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "self_service_saml_provider_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 2
+      },
+      "client_connect_options": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "lambda_function_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "client_login_banner_options": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "banner_text": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "client_route_enforcement_options": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enforced": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "connection_log_options": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "cloudwatch_log_group": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloudwatch_log_stream": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

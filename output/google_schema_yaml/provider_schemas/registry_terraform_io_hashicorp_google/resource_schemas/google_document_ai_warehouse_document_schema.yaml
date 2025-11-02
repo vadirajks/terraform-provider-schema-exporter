@@ -1,0 +1,293 @@
+version: 0
+block:
+  attributes:
+    display_name:
+      type: string
+      description: Name of the schema given by the user.
+      description_kind: plain
+      required: true
+    document_is_folder:
+      type: bool
+      description: Tells whether the document is a folder or a typical document.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: The location of the resource.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The resource name of the document schema.
+      description_kind: plain
+      computed: true
+    project_number:
+      type: string
+      description: The unique identifier of the project.
+      description_kind: plain
+      required: true
+  block_types:
+    property_definitions:
+      nesting_mode: list
+      block:
+        attributes:
+          display_name:
+            type: string
+            description: The display-name for the property, used for front-end.
+            description_kind: plain
+            optional: true
+          is_filterable:
+            type: bool
+            description: Whether the property can be filtered. If this is a sub-property, all the parent properties must be marked filterable.
+            description_kind: plain
+            optional: true
+          is_metadata:
+            type: bool
+            description: Whether the property is user supplied metadata.
+            description_kind: plain
+            optional: true
+          is_repeatable:
+            type: bool
+            description: Whether the property can have multiple values.
+            description_kind: plain
+            optional: true
+          is_required:
+            type: bool
+            description: Whether the property is mandatory.
+            description_kind: plain
+            optional: true
+          is_searchable:
+            type: bool
+            description: Indicates that the property should be included in a global search.
+            description_kind: plain
+            optional: true
+          name:
+            type: string
+            description: The name of the metadata property.
+            description_kind: plain
+            required: true
+          retrieval_importance:
+            type: string
+            description: 'Stores the retrieval importance. Possible values: ["HIGHEST", "HIGHER", "HIGH", "MEDIUM", "LOW", "LOWEST"]'
+            description_kind: plain
+            optional: true
+        block_types:
+          date_time_type_options:
+            nesting_mode: list
+            block:
+              description: Date time property. Not supported by CMEK compliant deployment.
+              description_kind: plain
+            max_items: 1
+          enum_type_options:
+            nesting_mode: list
+            block:
+              attributes:
+                possible_values:
+                  type:
+                  - list
+                  - string
+                  description: List of possible enum values.
+                  description_kind: plain
+                  required: true
+                validation_check_disabled:
+                  type: bool
+                  description: Make sure the enum property value provided in the document is in the possile value list during document creation. The validation check runs by default.
+                  description_kind: plain
+                  optional: true
+              description: Enum/categorical property.
+              description_kind: plain
+            max_items: 1
+          float_type_options:
+            nesting_mode: list
+            block:
+              description: Float property.
+              description_kind: plain
+            max_items: 1
+          integer_type_options:
+            nesting_mode: list
+            block:
+              description: Integer property.
+              description_kind: plain
+            max_items: 1
+          map_type_options:
+            nesting_mode: list
+            block:
+              description: Map property.
+              description_kind: plain
+            max_items: 1
+          property_type_options:
+            nesting_mode: list
+            block:
+              block_types:
+                property_definitions:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      display_name:
+                        type: string
+                        description: The display-name for the property, used for front-end.
+                        description_kind: plain
+                        optional: true
+                      is_filterable:
+                        type: bool
+                        description: Whether the property can be filtered. If this is a sub-property, all the parent properties must be marked filterable.
+                        description_kind: plain
+                        optional: true
+                      is_metadata:
+                        type: bool
+                        description: Whether the property is user supplied metadata.
+                        description_kind: plain
+                        optional: true
+                      is_repeatable:
+                        type: bool
+                        description: Whether the property can have multiple values.
+                        description_kind: plain
+                        optional: true
+                      is_required:
+                        type: bool
+                        description: Whether the property is mandatory.
+                        description_kind: plain
+                        optional: true
+                      is_searchable:
+                        type: bool
+                        description: Indicates that the property should be included in a global search.
+                        description_kind: plain
+                        optional: true
+                      name:
+                        type: string
+                        description: The name of the metadata property.
+                        description_kind: plain
+                        required: true
+                      retrieval_importance:
+                        type: string
+                        description: 'Stores the retrieval importance. Possible values: ["HIGHEST", "HIGHER", "HIGH", "MEDIUM", "LOW", "LOWEST"]'
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      date_time_type_options:
+                        nesting_mode: list
+                        block:
+                          description: Date time property. Not supported by CMEK compliant deployment.
+                          description_kind: plain
+                        max_items: 1
+                      enum_type_options:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            possible_values:
+                              type:
+                              - list
+                              - string
+                              description: List of possible enum values.
+                              description_kind: plain
+                              required: true
+                            validation_check_disabled:
+                              type: bool
+                              description: Make sure the enum property value provided in the document is in the possile value list during document creation. The validation check runs by default.
+                              description_kind: plain
+                              optional: true
+                          description: Enum/categorical property.
+                          description_kind: plain
+                        max_items: 1
+                      float_type_options:
+                        nesting_mode: list
+                        block:
+                          description: Float property.
+                          description_kind: plain
+                        max_items: 1
+                      integer_type_options:
+                        nesting_mode: list
+                        block:
+                          description: Integer property.
+                          description_kind: plain
+                        max_items: 1
+                      map_type_options:
+                        nesting_mode: list
+                        block:
+                          description: Map property.
+                          description_kind: plain
+                        max_items: 1
+                      schema_sources:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            name:
+                              type: string
+                              description: The schema name in the source.
+                              description_kind: plain
+                              optional: true
+                            processor_type:
+                              type: string
+                              description: The Doc AI processor type name.
+                              description_kind: plain
+                              optional: true
+                          description: The schema source information.
+                          description_kind: plain
+                      text_type_options:
+                        nesting_mode: list
+                        block:
+                          description: Text property.
+                          description_kind: plain
+                        max_items: 1
+                      timestamp_type_options:
+                        nesting_mode: list
+                        block:
+                          description: Timestamp property. Not supported by CMEK compliant deployment.
+                          description_kind: plain
+                        max_items: 1
+                    description: Defines the metadata for a schema property.
+                    description_kind: plain
+                  min_items: 1
+              description: Nested structured data property.
+              description_kind: plain
+            max_items: 1
+          schema_sources:
+            nesting_mode: list
+            block:
+              attributes:
+                name:
+                  type: string
+                  description: The schema name in the source.
+                  description_kind: plain
+                  optional: true
+                processor_type:
+                  type: string
+                  description: The Doc AI processor type name.
+                  description_kind: plain
+                  optional: true
+              description: The schema source information.
+              description_kind: plain
+          text_type_options:
+            nesting_mode: list
+            block:
+              description: Text/string property.
+              description_kind: plain
+            max_items: 1
+          timestamp_type_options:
+            nesting_mode: list
+            block:
+              description: Timestamp property. Not supported by CMEK compliant deployment.
+              description_kind: plain
+            max_items: 1
+        description: Defines the metadata for a schema property.
+        description_kind: plain
+      min_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

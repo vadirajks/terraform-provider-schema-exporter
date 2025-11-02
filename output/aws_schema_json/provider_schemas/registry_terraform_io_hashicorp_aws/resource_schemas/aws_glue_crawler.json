@@ -1,0 +1,416 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "classifiers": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "configuration": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "database_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "role": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "schedule": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "security_configuration": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "table_prefix": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "catalog_target": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "connection_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "database_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "dlq_event_queue_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "event_queue_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "tables": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "delta_target": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "connection_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "create_native_delta_table": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delta_tables": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "write_manifest": {
+              "type": "bool",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "dynamodb_target": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "path": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "scan_all": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "scan_rate": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "hudi_target": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "connection_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "exclusions": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "maximum_traversal_depth": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "paths": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "iceberg_target": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "connection_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "exclusions": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "maximum_traversal_depth": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "paths": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "jdbc_target": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "connection_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "enable_additional_metadata": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "exclusions": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "path": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "lake_formation_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "account_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "use_lake_formation_credentials": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "lineage_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "crawler_lineage_settings": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "mongodb_target": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "connection_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "path": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "scan_all": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "recrawl_policy": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "recrawl_behavior": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "s3_target": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "connection_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dlq_event_queue_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "event_queue_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "exclusions": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "path": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "sample_size": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "schema_change_policy": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "delete_behavior": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update_behavior": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

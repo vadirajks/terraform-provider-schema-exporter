@@ -1,0 +1,355 @@
+version: 0
+block:
+  attributes:
+    authorized_domains:
+      type:
+      - list
+      - string
+      description: List of domains authorized for OAuth redirects.
+      description_kind: plain
+      optional: true
+      computed: true
+    autodelete_anonymous_users:
+      type: bool
+      description: Whether anonymous users will be auto-deleted after a period of 30 days
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: The name of the Config resource
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    blocking_functions:
+      nesting_mode: list
+      block:
+        block_types:
+          forward_inbound_credentials:
+            nesting_mode: list
+            block:
+              attributes:
+                access_token:
+                  type: bool
+                  description: Whether to pass the user's OAuth identity provider's access token.
+                  description_kind: plain
+                  optional: true
+                id_token:
+                  type: bool
+                  description: Whether to pass the user's OIDC identity provider's ID token.
+                  description_kind: plain
+                  optional: true
+                refresh_token:
+                  type: bool
+                  description: Whether to pass the user's OAuth identity provider's refresh token.
+                  description_kind: plain
+                  optional: true
+              description: The user credentials to include in the JWT payload that is sent to the registered Blocking Functions.
+              description_kind: plain
+            max_items: 1
+          triggers:
+            nesting_mode: set
+            block:
+              attributes:
+                event_type:
+                  type: string
+                  description_kind: plain
+                  required: true
+                function_uri:
+                  type: string
+                  description: HTTP URI trigger for the Cloud Function.
+                  description_kind: plain
+                  required: true
+                update_time:
+                  type: string
+                  description: When the trigger was changed.
+                  description_kind: plain
+                  computed: true
+              description: 'Map of Trigger to event type. Key should be one of the supported event types: "beforeCreate", "beforeSignIn".'
+              description_kind: plain
+            min_items: 1
+        description: Configuration related to blocking functions.
+        description_kind: plain
+      max_items: 1
+    client:
+      nesting_mode: list
+      block:
+        attributes:
+          api_key:
+            type: string
+            description: API key that can be used when making requests for this project.
+            description_kind: plain
+            computed: true
+            sensitive: true
+          firebase_subdomain:
+            type: string
+            description: Firebase subdomain.
+            description_kind: plain
+            computed: true
+        block_types:
+          permissions:
+            nesting_mode: list
+            block:
+              attributes:
+                disabled_user_deletion:
+                  type: bool
+                  description: When true, end users cannot delete their account on the associated project through any of our API methods
+                  description_kind: plain
+                  optional: true
+                disabled_user_signup:
+                  type: bool
+                  description: When true, end users cannot sign up for a new account on the associated project through any of our API methods
+                  description_kind: plain
+                  optional: true
+              description: Configuration related to restricting a user's ability to affect their account.
+              description_kind: plain
+            max_items: 1
+        description: Options related to how clients making requests on behalf of a project should be configured.
+        description_kind: plain
+      max_items: 1
+    mfa:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled_providers:
+            type:
+            - list
+            - string
+            description: 'A list of usable second factors for this project. Possible values: ["PHONE_SMS"]'
+            description_kind: plain
+            optional: true
+          state:
+            type: string
+            description: 'Whether MultiFactor Authentication has been enabled for this project. Possible values: ["DISABLED", "ENABLED", "MANDATORY"]'
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          provider_configs:
+            nesting_mode: list
+            block:
+              attributes:
+                state:
+                  type: string
+                  description: 'Whether MultiFactor Authentication has been enabled for this project. Possible values: ["DISABLED", "ENABLED", "MANDATORY"]'
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              block_types:
+                totp_provider_config:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      adjacent_intervals:
+                        type: number
+                        description: The allowed number of adjacent intervals that will be used for verification to avoid clock skew.
+                        description_kind: plain
+                        optional: true
+                    description: TOTP MFA provider config for this project.
+                    description_kind: plain
+                  max_items: 1
+              description: A list of usable second factors for this project along with their configurations. This field does not support phone based MFA, for that use the 'enabledProviders' field.
+              description_kind: plain
+        description: Options related to how clients making requests on behalf of a project should be configured.
+        description_kind: plain
+      max_items: 1
+    monitoring:
+      nesting_mode: list
+      block:
+        block_types:
+          request_logging:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description: Whether logging is enabled for this project or not.
+                  description_kind: plain
+                  optional: true
+              description: Configuration for logging requests made to this project to Stackdriver Logging
+              description_kind: plain
+            max_items: 1
+        description: Configuration related to monitoring project activity.
+        description_kind: plain
+      max_items: 1
+    multi_tenant:
+      nesting_mode: list
+      block:
+        attributes:
+          allow_tenants:
+            type: bool
+            description: Whether this project can have tenants or not.
+            description_kind: plain
+            optional: true
+          default_tenant_location:
+            type: string
+            description: The default cloud parent org or folder that the tenant project should be created under. The parent resource name should be in the format of "/", such as "folders/123" or "organizations/456". If the value is not set, the tenant will be created under the same organization or folder as the agent project.
+            description_kind: plain
+            optional: true
+        description: Configuration related to multi-tenant functionality.
+        description_kind: plain
+      max_items: 1
+    quota:
+      nesting_mode: list
+      block:
+        block_types:
+          sign_up_quota_config:
+            nesting_mode: list
+            block:
+              attributes:
+                quota:
+                  type: number
+                  description: A sign up APIs quota that customers can override temporarily. Value can be in between 1 and 1000.
+                  description_kind: plain
+                  optional: true
+                quota_duration:
+                  type: string
+                  description: 'How long this quota will be active for. It is measurred in seconds, e.g., Example: "9.615s".'
+                  description_kind: plain
+                  optional: true
+                start_time:
+                  type: string
+                  description: When this quota will take affect.
+                  description_kind: plain
+                  optional: true
+              description: Quota for the Signup endpoint, if overwritten. Signup quota is measured in sign ups per project per hour per IP. None of quota, startTime, or quotaDuration can be skipped.
+              description_kind: plain
+            max_items: 1
+        description: Configuration related to quotas.
+        description_kind: plain
+      max_items: 1
+    sign_in:
+      nesting_mode: list
+      block:
+        attributes:
+          allow_duplicate_emails:
+            type: bool
+            description: Whether to allow more than one account to have the same email.
+            description_kind: plain
+            optional: true
+          hash_config:
+            type:
+            - list
+            - - object
+              - algorithm: string
+                memory_cost: number
+                rounds: number
+                salt_separator: string
+                signer_key: string
+            description: Output only. Hash config information.
+            description_kind: plain
+            computed: true
+        block_types:
+          anonymous:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description: Whether anonymous user auth is enabled for the project or not.
+                  description_kind: plain
+                  required: true
+              description: Configuration options related to authenticating an anonymous user.
+              description_kind: plain
+            max_items: 1
+          email:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description: Whether email auth is enabled for the project or not.
+                  description_kind: plain
+                  required: true
+                password_required:
+                  type: bool
+                  description: Whether a password is required for email auth or not. If true, both an email and password must be provided to sign in. If false, a user may sign in via either email/password or email link.
+                  description_kind: plain
+                  optional: true
+              description: Configuration options related to authenticating a user by their email address.
+              description_kind: plain
+            max_items: 1
+          phone_number:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description: Whether phone number auth is enabled for the project or not.
+                  description_kind: plain
+                  required: true
+                test_phone_numbers:
+                  type:
+                  - map
+                  - string
+                  description: A map of <test phone number, fake code> that can be used for phone auth testing.
+                  description_kind: plain
+                  optional: true
+              description: Configuration options related to authenticated a user by their phone number.
+              description_kind: plain
+            max_items: 1
+        description: Configuration related to local sign in methods.
+        description_kind: plain
+      max_items: 1
+    sms_region_config:
+      nesting_mode: list
+      block:
+        block_types:
+          allow_by_default:
+            nesting_mode: list
+            block:
+              attributes:
+                disallowed_regions:
+                  type:
+                  - list
+                  - string
+                  description: 'Two letter unicode region codes to disallow as defined by https://cldr.unicode.org/ The full list of these region codes is here: https://github.com/unicode-cldr/cldr-localenames-full/blob/master/main/en/territories.json'
+                  description_kind: plain
+                  optional: true
+              description: A policy of allowing SMS to every region by default and adding disallowed regions to a disallow list.
+              description_kind: plain
+            max_items: 1
+          allowlist_only:
+            nesting_mode: list
+            block:
+              attributes:
+                allowed_regions:
+                  type:
+                  - list
+                  - string
+                  description: 'Two letter unicode region codes to allow as defined by https://cldr.unicode.org/ The full list of these region codes is here: https://github.com/unicode-cldr/cldr-localenames-full/blob/master/main/en/territories.json'
+                  description_kind: plain
+                  optional: true
+              description: A policy of only allowing regions by explicitly adding them to an allowlist.
+              description_kind: plain
+            max_items: 1
+        description: Configures the regions where users are allowed to send verification SMS for the project or tenant. This is based on the calling code of the destination phone number.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

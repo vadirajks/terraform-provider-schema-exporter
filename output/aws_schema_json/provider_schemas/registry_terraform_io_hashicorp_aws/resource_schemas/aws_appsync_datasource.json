@@ -1,0 +1,279 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "api_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "service_role_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "type": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "dynamodb_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "region": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "table_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "use_caller_credentials": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "versioned": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "delta_sync_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "base_table_ttl": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "delta_sync_table_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "delta_sync_table_ttl": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "elasticsearch_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "region": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "event_bridge_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "event_bus_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "http_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "authorization_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "authorization_type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "aws_iam_config": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "signing_region": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "signing_service_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "lambda_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "function_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "opensearchservice_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "region": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "relational_database_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "source_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "http_endpoint_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "aws_secret_store_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "database_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "db_cluster_identifier": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "region": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "schema": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

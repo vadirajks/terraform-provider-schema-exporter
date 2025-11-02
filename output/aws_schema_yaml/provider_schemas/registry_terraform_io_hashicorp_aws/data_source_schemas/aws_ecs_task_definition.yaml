@@ -1,0 +1,158 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    arn_without_revision:
+      type: string
+      description_kind: plain
+      computed: true
+    container_definitions:
+      type: string
+      description_kind: plain
+      computed: true
+    cpu:
+      type: string
+      description_kind: plain
+      computed: true
+    enable_fault_injection:
+      type: bool
+      description_kind: plain
+      computed: true
+    ephemeral_storage:
+      type:
+      - list
+      - - object
+        - size_in_gib: number
+      description_kind: plain
+      computed: true
+    execution_role_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    family:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ipc_mode:
+      type: string
+      description_kind: plain
+      computed: true
+    memory:
+      type: string
+      description_kind: plain
+      computed: true
+    network_mode:
+      type: string
+      description_kind: plain
+      computed: true
+    pid_mode:
+      type: string
+      description_kind: plain
+      computed: true
+    placement_constraints:
+      type:
+      - set
+      - - object
+        - expression: string
+          type: string
+      description_kind: plain
+      computed: true
+    proxy_configuration:
+      type:
+      - list
+      - - object
+        - container_name: string
+          properties:
+          - map
+          - string
+          type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    requires_compatibilities:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    revision:
+      type: number
+      description_kind: plain
+      computed: true
+    runtime_platform:
+      type:
+      - list
+      - - object
+        - cpu_architecture: string
+          operating_system_family: string
+      description_kind: plain
+      computed: true
+    status:
+      type: string
+      description_kind: plain
+      computed: true
+    task_definition:
+      type: string
+      description_kind: plain
+      required: true
+    task_role_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    volume:
+      type:
+      - set
+      - - object
+        - configure_at_launch: bool
+          docker_volume_configuration:
+          - list
+          - - object
+            - autoprovision: bool
+              driver: string
+              driver_opts:
+              - map
+              - string
+              labels:
+              - map
+              - string
+              scope: string
+          efs_volume_configuration:
+          - list
+          - - object
+            - authorization_config:
+              - list
+              - - object
+                - access_point_id: string
+                  iam: string
+              file_system_id: string
+              root_directory: string
+              transit_encryption: string
+              transit_encryption_port: number
+          fsx_windows_file_server_volume_configuration:
+          - list
+          - - object
+            - authorization_config:
+              - list
+              - - object
+                - credentials_parameter: string
+                  domain: string
+              file_system_id: string
+              root_directory: string
+          host_path: string
+          name: string
+      description_kind: plain
+      computed: true
+  description_kind: plain

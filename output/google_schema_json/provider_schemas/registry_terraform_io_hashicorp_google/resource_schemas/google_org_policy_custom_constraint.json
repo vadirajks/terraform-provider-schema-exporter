@@ -1,0 +1,99 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "action_type": {
+        "type": "string",
+        "description": "The action to take if the condition is met. Possible values: [\"ALLOW\", \"DENY\"]",
+        "description_kind": "plain",
+        "required": true
+      },
+      "condition": {
+        "type": "string",
+        "description": "A CEL condition that refers to a supported service resource, for example 'resource.management.autoUpgrade == false'. For details about CEL usage, see [Common Expression Language](https://cloud.google.com/resource-manager/docs/organization-policy/creating-managing-custom-constraints#common_expression_language).",
+        "description_kind": "plain",
+        "required": true
+      },
+      "description": {
+        "type": "string",
+        "description": "A human-friendly description of the constraint to display as an error message when the policy is violated.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "A human-friendly name for the constraint.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "method_types": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "A list of RESTful methods for which to enforce the constraint. Can be 'CREATE', 'UPDATE', or both. Not all Google Cloud services support both methods. To see supported methods for each service, find the service in [Supported services](https://cloud.google.com/resource-manager/docs/organization-policy/custom-constraint-supported-services).",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Immutable. The name of the custom constraint. This is unique within the organization.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "parent": {
+        "type": "string",
+        "description": "The parent of the resource, an organization. Format should be 'organizations/{organization_id}'.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_types": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "Immutable. The fully qualified name of the Google Cloud REST resource containing the object and field you want to restrict. For example, 'container.googleapis.com/NodePool'.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Output only. The timestamp representing when the constraint was last updated.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

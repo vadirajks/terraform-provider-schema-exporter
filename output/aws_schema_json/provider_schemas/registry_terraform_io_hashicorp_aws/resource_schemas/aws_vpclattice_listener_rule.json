@@ -1,0 +1,254 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "listener_identifier": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "priority": {
+        "type": "number",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "rule_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "service_identifier": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "action": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "fixed_response": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "status_code": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "forward": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "target_groups": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "target_group_identifier": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "weight": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "match": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "http_match": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "method": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "header_matches": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "case_sensitive": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "match": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "contains": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "exact": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "prefix": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 5
+                  },
+                  "path_match": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "case_sensitive": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "match": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "exact": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "prefix": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

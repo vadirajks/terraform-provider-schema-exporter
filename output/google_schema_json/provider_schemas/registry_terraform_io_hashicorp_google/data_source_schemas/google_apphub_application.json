@@ -1,0 +1,148 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "application_id": {
+        "type": "string",
+        "description": "Required. The Application identifier.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "attributes": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "business_owners": [
+                "list",
+                [
+                  "object",
+                  {
+                    "display_name": "string",
+                    "email": "string"
+                  }
+                ]
+              ],
+              "criticality": [
+                "list",
+                [
+                  "object",
+                  {
+                    "type": "string"
+                  }
+                ]
+              ],
+              "developer_owners": [
+                "list",
+                [
+                  "object",
+                  {
+                    "display_name": "string",
+                    "email": "string"
+                  }
+                ]
+              ],
+              "environment": [
+                "list",
+                [
+                  "object",
+                  {
+                    "type": "string"
+                  }
+                ]
+              ],
+              "operator_owners": [
+                "list",
+                [
+                  "object",
+                  {
+                    "display_name": "string",
+                    "email": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "Consumer provided attributes.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "Output only. Create time.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "Optional. User-defined description of an Application.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "Optional. User-defined name for the Application.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "Part of 'parent'. See documentation of 'projectsId'.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Identifier. The resource name of an Application. Format: \"projects/{host-project-id}/locations/{location}/applications/{application-id}\"",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "scope": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "type": "string"
+            }
+          ]
+        ],
+        "description": "Scope of an application.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "state": {
+        "type": "string",
+        "description": "Output only. Application state. Possible values: STATE_UNSPECIFIED CREATING ACTIVE DELETING",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "uid": {
+        "type": "string",
+        "description": "Output only. A universally unique identifier (in UUID4 format) for the 'Application'.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Output only. Update time.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

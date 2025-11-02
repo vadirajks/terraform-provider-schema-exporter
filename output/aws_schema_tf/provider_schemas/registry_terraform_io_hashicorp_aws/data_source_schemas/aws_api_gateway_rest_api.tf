@@ -1,0 +1,15 @@
+data "aws_api_gateway_rest_api" "name" {
+  name = string (Required)
+  api_key_source = string (Computed)
+  arn = string (Computed)
+  binary_media_types = ['list', 'string'] (Computed)
+  description = string (Computed)
+  endpoint_configuration = ['list', ['object', {'ip_address_type': 'string', 'types': ['list', 'string'], 'vpc_endpoint_ids': ['set', 'string']}]] (Computed)
+  execution_arn = string (Computed)
+  id = string (Optional, Computed)
+  minimum_compression_size = string (Computed)
+  policy = string (Computed)
+  region = string (Optional, Computed)
+  root_resource_id = string (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+}

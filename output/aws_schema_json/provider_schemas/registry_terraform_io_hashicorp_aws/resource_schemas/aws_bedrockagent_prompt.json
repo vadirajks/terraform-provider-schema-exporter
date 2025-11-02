@@ -1,0 +1,422 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "created_at": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "customer_encryption_key_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "default_variant": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "updated_at": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "version": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "variant": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "additional_model_request_fields": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "model_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "template_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "gen_ai_resource": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "agent": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "agent_identifier": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "inference_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "text": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "max_tokens": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "stop_sequences": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "temperature": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "top_p": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "metadata": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "key": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "value": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "template_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "chat": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "block_types": {
+                        "input_variable": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "name": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          }
+                        },
+                        "message": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "role": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "block_types": {
+                              "content": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "text": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    }
+                                  },
+                                  "block_types": {
+                                    "cache_point": {
+                                      "nesting_mode": "list",
+                                      "block": {
+                                        "attributes": {
+                                          "type": {
+                                            "type": "string",
+                                            "description_kind": "plain",
+                                            "required": true
+                                          }
+                                        },
+                                        "description_kind": "plain"
+                                      }
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                }
+                              }
+                            },
+                            "description_kind": "plain"
+                          }
+                        },
+                        "system": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "text": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "block_types": {
+                              "cache_point": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "type": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "required": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                }
+                              }
+                            },
+                            "description_kind": "plain"
+                          }
+                        },
+                        "tool_configuration": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "block_types": {
+                              "tool": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "block_types": {
+                                    "cache_point": {
+                                      "nesting_mode": "list",
+                                      "block": {
+                                        "attributes": {
+                                          "type": {
+                                            "type": "string",
+                                            "description_kind": "plain",
+                                            "required": true
+                                          }
+                                        },
+                                        "description_kind": "plain"
+                                      }
+                                    },
+                                    "tool_spec": {
+                                      "nesting_mode": "list",
+                                      "block": {
+                                        "attributes": {
+                                          "description": {
+                                            "type": "string",
+                                            "description_kind": "plain",
+                                            "optional": true
+                                          },
+                                          "name": {
+                                            "type": "string",
+                                            "description_kind": "plain",
+                                            "required": true
+                                          }
+                                        },
+                                        "block_types": {
+                                          "input_schema": {
+                                            "nesting_mode": "list",
+                                            "block": {
+                                              "attributes": {
+                                                "json": {
+                                                  "type": "string",
+                                                  "description_kind": "plain",
+                                                  "optional": true
+                                                }
+                                              },
+                                              "description_kind": "plain"
+                                            }
+                                          }
+                                        },
+                                        "description_kind": "plain"
+                                      }
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                }
+                              },
+                              "tool_choice": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "block_types": {
+                                    "any": {
+                                      "nesting_mode": "list",
+                                      "block": {
+                                        "description_kind": "plain"
+                                      }
+                                    },
+                                    "auto": {
+                                      "nesting_mode": "list",
+                                      "block": {
+                                        "description_kind": "plain"
+                                      }
+                                    },
+                                    "tool": {
+                                      "nesting_mode": "list",
+                                      "block": {
+                                        "attributes": {
+                                          "name": {
+                                            "type": "string",
+                                            "description_kind": "plain",
+                                            "required": true
+                                          }
+                                        },
+                                        "description_kind": "plain"
+                                      }
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                }
+                              }
+                            },
+                            "description_kind": "plain"
+                          }
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  },
+                  "text": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "text": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "cache_point": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "type": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          }
+                        },
+                        "input_variable": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "name": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          }
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

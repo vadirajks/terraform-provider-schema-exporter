@@ -1,0 +1,778 @@
+version: 0
+block:
+  attributes:
+    creation_time:
+      type: string
+      description: When the Transfer Job was created.
+      description_kind: plain
+      computed: true
+    deletion_time:
+      type: string
+      description: When the Transfer Job was deleted.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: Unique description to identify the Transfer Job.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    last_modification_time:
+      type: string
+      description: When the Transfer Job was last modified.
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: The name of the Transfer Job.
+      description_kind: plain
+      optional: true
+      computed: true
+    project:
+      type: string
+      description: The project in which the resource belongs. If it is not provided, the provider project is used.
+      description_kind: plain
+      optional: true
+      computed: true
+    service_account:
+      type: string
+      description: The user-managed service account to run the job. If this field is specified, the given service account is granted the necessary permissions to all applicable resources (e.g. GCS buckets) required by the job.
+      description_kind: plain
+      optional: true
+    status:
+      type: string
+      description: 'Status of the job. Default: ENABLED. NOTE: The effect of the new job status takes place during a subsequent job run. For example, if you change the job status from ENABLED to DISABLED, and an operation spawned by the transfer is running, the status change would not affect the current operation.'
+      description_kind: plain
+      optional: true
+  block_types:
+    event_stream:
+      nesting_mode: list
+      block:
+        attributes:
+          event_stream_expiration_time:
+            type: string
+            description: Specifies the data and time at which Storage Transfer Service stops listening for events from this stream. After this time, any transfers in progress will complete, but no new transfers are initiated
+            description_kind: plain
+            optional: true
+          event_stream_start_time:
+            type: string
+            description: Specifies the date and time that Storage Transfer Service starts listening for events from this stream. If no start time is specified or start time is in the past, Storage Transfer Service starts listening immediately
+            description_kind: plain
+            optional: true
+          name:
+            type: string
+            description: Specifies a unique name of the resource such as AWS SQS ARN in the form 'arn:aws:sqs:region:account_id:queue_name', or Pub/Sub subscription resource name in the form 'projects/{project}/subscriptions/{sub}'
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    logging_config:
+      nesting_mode: list
+      block:
+        attributes:
+          enable_on_prem_gcs_transfer_logs:
+            type: bool
+            description: For transfers with a PosixFilesystem source, this option enables the Cloud Storage transfer logs for this transfer.
+            description_kind: plain
+            optional: true
+          log_action_states:
+            type:
+            - list
+            - string
+            description: States in which logActions are logged. Not supported for transfers with PosifxFilesystem data sources; use enable_on_prem_gcs_transfer_logs instead.
+            description_kind: plain
+            optional: true
+          log_actions:
+            type:
+            - list
+            - string
+            description: Specifies the actions to be logged. Not supported for transfers with PosifxFilesystem data sources; use enable_on_prem_gcs_transfer_logs instead.
+            description_kind: plain
+            optional: true
+        description: Logging configuration.
+        description_kind: plain
+      max_items: 1
+    notification_config:
+      nesting_mode: list
+      block:
+        attributes:
+          event_types:
+            type:
+            - set
+            - string
+            description: Event types for which a notification is desired. If empty, send notifications for all event types. The valid types are "TRANSFER_OPERATION_SUCCESS", "TRANSFER_OPERATION_FAILED", "TRANSFER_OPERATION_ABORTED".
+            description_kind: plain
+            optional: true
+          payload_format:
+            type: string
+            description: The desired format of the notification message payloads. One of "NONE" or "JSON".
+            description_kind: plain
+            required: true
+          pubsub_topic:
+            type: string
+            description: The Topic.name of the Pub/Sub topic to which to publish notifications.
+            description_kind: plain
+            required: true
+        description: Notification configuration.
+        description_kind: plain
+      max_items: 1
+    replication_spec:
+      nesting_mode: list
+      block:
+        block_types:
+          gcs_data_sink:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_name:
+                  type: string
+                  description: Google Cloud Storage bucket name.
+                  description_kind: plain
+                  required: true
+                path:
+                  type: string
+                  description: Google Cloud Storage path in bucket to transfer. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should not begin with a '/'.
+                  description_kind: plain
+                  optional: true
+              description: A Google Cloud Storage data sink.
+              description_kind: plain
+            max_items: 1
+          gcs_data_source:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_name:
+                  type: string
+                  description: Google Cloud Storage bucket name.
+                  description_kind: plain
+                  required: true
+                path:
+                  type: string
+                  description: Google Cloud Storage path in bucket to transfer. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should not begin with a '/'.
+                  description_kind: plain
+                  optional: true
+              description: A Google Cloud Storage data source.
+              description_kind: plain
+            max_items: 1
+          object_conditions:
+            nesting_mode: list
+            block:
+              attributes:
+                exclude_prefixes:
+                  type:
+                  - list
+                  - string
+                  description: exclude_prefixes must follow the requirements described for include_prefixes.
+                  description_kind: plain
+                  optional: true
+                include_prefixes:
+                  type:
+                  - list
+                  - string
+                  description: If include_refixes is specified, objects that satisfy the object conditions must have names that start with one of the include_prefixes and that do not start with any of the exclude_prefixes. If include_prefixes is not specified, all objects except those that have names starting with one of the exclude_prefixes must satisfy the object conditions.
+                  description_kind: plain
+                  optional: true
+                last_modified_before:
+                  type: string
+                  description: 'If specified, only objects with a "last modification time" before this timestamp and objects that don''t have a "last modification time" are transferred. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".'
+                  description_kind: plain
+                  optional: true
+                last_modified_since:
+                  type: string
+                  description: 'If specified, only objects with a "last modification time" on or after this timestamp and objects that don''t have a "last modification time" are transferred. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".'
+                  description_kind: plain
+                  optional: true
+                max_time_elapsed_since_last_modification:
+                  type: string
+                  description: 'A duration in seconds with up to nine fractional digits, terminated by ''s''. Example: "3.5s".'
+                  description_kind: plain
+                  optional: true
+                min_time_elapsed_since_last_modification:
+                  type: string
+                  description: 'A duration in seconds with up to nine fractional digits, terminated by ''s''. Example: "3.5s".'
+                  description_kind: plain
+                  optional: true
+              description: Only objects that satisfy these object conditions are included in the set of data source and data sink objects. Object conditions based on objects' last_modification_time do not exclude objects in a data sink.
+              description_kind: plain
+            max_items: 1
+          transfer_options:
+            nesting_mode: list
+            block:
+              attributes:
+                delete_objects_from_source_after_transfer:
+                  type: bool
+                  description: Whether objects should be deleted from the source after they are transferred to the sink. Note that this option and delete_objects_unique_in_sink are mutually exclusive.
+                  description_kind: plain
+                  optional: true
+                delete_objects_unique_in_sink:
+                  type: bool
+                  description: Whether objects that exist only in the sink should be deleted. Note that this option and delete_objects_from_source_after_transfer are mutually exclusive.
+                  description_kind: plain
+                  optional: true
+                overwrite_objects_already_existing_in_sink:
+                  type: bool
+                  description: Whether overwriting objects that already exist in the sink is allowed.
+                  description_kind: plain
+                  optional: true
+                overwrite_when:
+                  type: string
+                  description: When to overwrite objects that already exist in the sink. If not set, overwrite behavior is determined by overwriteObjectsAlreadyExistingInSink.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                metadata_options:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      acl:
+                        type: string
+                        description: Specifies how each object's ACLs should be preserved for transfers between Google Cloud Storage buckets
+                        description_kind: plain
+                        optional: true
+                      gid:
+                        type: string
+                        description: Specifies how each file's POSIX group ID (GID) attribute should be handled by the transfer.
+                        description_kind: plain
+                        optional: true
+                      kms_key:
+                        type: string
+                        description: Specifies how each object's Cloud KMS customer-managed encryption key (CMEK) is preserved for transfers between Google Cloud Storage buckets
+                        description_kind: plain
+                        optional: true
+                      mode:
+                        type: string
+                        description: Specifies how each file's mode attribute should be handled by the transfer.
+                        description_kind: plain
+                        optional: true
+                      storage_class:
+                        type: string
+                        description: Specifies the storage class to set on objects being transferred to Google Cloud Storage buckets
+                        description_kind: plain
+                        optional: true
+                      symlink:
+                        type: string
+                        description: Specifies how symlinks should be handled by the transfer.
+                        description_kind: plain
+                        optional: true
+                      temporary_hold:
+                        type: string
+                        description: SSpecifies how each object's temporary hold status should be preserved for transfers between Google Cloud Storage buckets
+                        description_kind: plain
+                        optional: true
+                      time_created:
+                        type: string
+                        description: Specifies how each object's timeCreated metadata is preserved for transfers.
+                        description_kind: plain
+                        optional: true
+                      uid:
+                        type: string
+                        description: Specifies how each file's POSIX user ID (UID) attribute should be handled by the transfer.
+                        description_kind: plain
+                        optional: true
+                    description: Specifies the metadata options for running a transfer
+                    description_kind: plain
+                  max_items: 1
+              description: Characteristics of how to treat files from datasource and sink during job. If the option delete_objects_unique_in_sink is true, object conditions based on objects' last_modification_time are ignored and do not exclude objects in a data source or a data sink.
+              description_kind: plain
+            max_items: 1
+        description: Replication specification.
+        description_kind: plain
+      max_items: 1
+    schedule:
+      nesting_mode: list
+      block:
+        attributes:
+          repeat_interval:
+            type: string
+            description: 'Interval between the start of each scheduled transfer. If unspecified, the default value is 24 hours. This value may not be less than 1 hour. A duration in seconds with up to nine fractional digits, terminated by ''s''. Example: "3.5s".'
+            description_kind: plain
+            optional: true
+        block_types:
+          schedule_end_date:
+            nesting_mode: list
+            block:
+              attributes:
+                day:
+                  type: number
+                  description: Day of month. Must be from 1 to 31 and valid for the year and month.
+                  description_kind: plain
+                  required: true
+                month:
+                  type: number
+                  description: Month of year. Must be from 1 to 12.
+                  description_kind: plain
+                  required: true
+                year:
+                  type: number
+                  description: Year of date. Must be from 1 to 9999.
+                  description_kind: plain
+                  required: true
+              description: The last day the recurring transfer will be run. If schedule_end_date is the same as schedule_start_date, the transfer will be executed only once.
+              description_kind: plain
+            max_items: 1
+          schedule_start_date:
+            nesting_mode: list
+            block:
+              attributes:
+                day:
+                  type: number
+                  description: Day of month. Must be from 1 to 31 and valid for the year and month.
+                  description_kind: plain
+                  required: true
+                month:
+                  type: number
+                  description: Month of year. Must be from 1 to 12.
+                  description_kind: plain
+                  required: true
+                year:
+                  type: number
+                  description: Year of date. Must be from 1 to 9999.
+                  description_kind: plain
+                  required: true
+              description: The first day the recurring transfer is scheduled to run. If schedule_start_date is in the past, the transfer will run for the first time on the following day.
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+          start_time_of_day:
+            nesting_mode: list
+            block:
+              attributes:
+                hours:
+                  type: number
+                  description: Hours of day in 24 hour format. Should be from 0 to 23.
+                  description_kind: plain
+                  required: true
+                minutes:
+                  type: number
+                  description: Minutes of hour of day. Must be from 0 to 59.
+                  description_kind: plain
+                  required: true
+                nanos:
+                  type: number
+                  description: Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+                  description_kind: plain
+                  required: true
+                seconds:
+                  type: number
+                  description: Seconds of minutes of the time. Must normally be from 0 to 59.
+                  description_kind: plain
+                  required: true
+              description: The time in UTC at which the transfer will be scheduled to start in a day. Transfers may start later than this time. If not specified, recurring and one-time transfers that are scheduled to run today will run immediately; recurring transfers that are scheduled to run on a future date will start at approximately midnight UTC on that date. Note that when configuring a transfer with the Cloud Platform Console, the transfer's start time in a day is specified in your local timezone.
+              description_kind: plain
+            max_items: 1
+        description: Schedule specification defining when the Transfer Job should be scheduled to start, end and what time to run.
+        description_kind: plain
+      max_items: 1
+    transfer_spec:
+      nesting_mode: list
+      block:
+        attributes:
+          sink_agent_pool_name:
+            type: string
+            description: Specifies the agent pool name associated with the posix data source. When unspecified, the default name is used.
+            description_kind: plain
+            optional: true
+            computed: true
+          source_agent_pool_name:
+            type: string
+            description: Specifies the agent pool name associated with the posix data source. When unspecified, the default name is used.
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          aws_s3_compatible_data_source:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_name:
+                  type: string
+                  description: Name of the bucket.
+                  description_kind: plain
+                  required: true
+                endpoint:
+                  type: string
+                  description: Endpoint of the storage service.
+                  description_kind: plain
+                  required: true
+                path:
+                  type: string
+                  description: Specifies the path to transfer objects.
+                  description_kind: plain
+                  optional: true
+                region:
+                  type: string
+                  description: Specifies the region to sign requests with. This can be left blank if requests should be signed with an empty region.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                s3_metadata:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      auth_method:
+                        type: string
+                        description: Authentication and authorization method used by the storage service. When not specified, Transfer Service will attempt to determine right auth method to use.
+                        description_kind: plain
+                        optional: true
+                      list_api:
+                        type: string
+                        description: The Listing API to use for discovering objects. When not specified, Transfer Service will attempt to determine the right API to use.
+                        description_kind: plain
+                        optional: true
+                      protocol:
+                        type: string
+                        description: The network protocol of the agent. When not specified, the default value of NetworkProtocol NETWORK_PROTOCOL_HTTPS is used.
+                        description_kind: plain
+                        optional: true
+                      request_model:
+                        type: string
+                        description: API request model used to call the storage service. When not specified, the default value of RequestModel REQUEST_MODEL_VIRTUAL_HOSTED_STYLE is used.
+                        description_kind: plain
+                        optional: true
+                    description: S3 compatible metadata.
+                    description_kind: plain
+                  max_items: 1
+              description: An AWS S3 Compatible data source.
+              description_kind: plain
+            max_items: 1
+          aws_s3_data_source:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_name:
+                  type: string
+                  description: S3 Bucket name.
+                  description_kind: plain
+                  required: true
+                cloudfront_domain:
+                  type: string
+                  description: 'The CloudFront distribution domain name pointing to this bucket, to use when fetching. See [Transfer from S3 via CloudFront](https://cloud.google.com/storage-transfer/docs/s3-cloudfront) for more information. Format: https://{id}.cloudfront.net or any valid custom domain. Must begin with https://.'
+                  description_kind: plain
+                  optional: true
+                credentials_secret:
+                  type: string
+                  description: 'The Resource name of a secret in Secret Manager. AWS credentials must be stored in Secret Manager in JSON format. If credentials_secret is specified, do not specify role_arn or aws_access_key. Format: projects/{projectNumber}/secrets/{secret_name}.'
+                  description_kind: plain
+                  optional: true
+                managed_private_network:
+                  type: bool
+                  description: Egress bytes over a Google-managed private network. This network is shared between other users of Storage Transfer Service.
+                  description_kind: plain
+                  optional: true
+                path:
+                  type: string
+                  description: S3 Bucket path in bucket to transfer.
+                  description_kind: plain
+                  optional: true
+                role_arn:
+                  type: string
+                  description: The Amazon Resource Name (ARN) of the role to support temporary credentials via 'AssumeRoleWithWebIdentity'. For more information about ARNs, see [IAM ARNs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns). When a role ARN is provided, Transfer Service fetches temporary credentials for the session using a 'AssumeRoleWithWebIdentity' call for the provided role using the [GoogleServiceAccount][] for this project.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                aws_access_key:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      access_key_id:
+                        type: string
+                        description: AWS Key ID.
+                        description_kind: plain
+                        required: true
+                        sensitive: true
+                      secret_access_key:
+                        type: string
+                        description: AWS Secret Access Key.
+                        description_kind: plain
+                        required: true
+                        sensitive: true
+                    description: AWS credentials block.
+                    description_kind: plain
+                  max_items: 1
+              description: An AWS S3 data source.
+              description_kind: plain
+            max_items: 1
+          azure_blob_storage_data_source:
+            nesting_mode: list
+            block:
+              attributes:
+                container:
+                  type: string
+                  description: The container to transfer from the Azure Storage account.
+                  description_kind: plain
+                  required: true
+                credentials_secret:
+                  type: string
+                  description: The Resource name of a secret in Secret Manager containing SAS Credentials in JSON form. Service Agent must have permissions to access secret. If credentials_secret is specified, do not specify azure_credentials.
+                  description_kind: plain
+                  optional: true
+                path:
+                  type: string
+                  description: Root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                storage_account:
+                  type: string
+                  description: The name of the Azure Storage account.
+                  description_kind: plain
+                  required: true
+              block_types:
+                azure_credentials:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      sas_token:
+                        type: string
+                        description: Azure shared access signature.
+                        description_kind: plain
+                        required: true
+                        sensitive: true
+                    description: Credentials used to authenticate API requests to Azure.
+                    description_kind: plain
+                  max_items: 1
+                federated_identity_config:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      client_id:
+                        type: string
+                        description: The client (application) ID of the application with federated credentials.
+                        description_kind: plain
+                        required: true
+                        sensitive: true
+                      tenant_id:
+                        type: string
+                        description: The tenant (directory) ID of the application with federated credentials.
+                        description_kind: plain
+                        required: true
+                        sensitive: true
+                    description: Workload Identity Details used to authenticate API requests to Azure.
+                    description_kind: plain
+                  max_items: 1
+              description: An Azure Blob Storage data source.
+              description_kind: plain
+            max_items: 1
+          gcs_data_sink:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_name:
+                  type: string
+                  description: Google Cloud Storage bucket name.
+                  description_kind: plain
+                  required: true
+                path:
+                  type: string
+                  description: Google Cloud Storage path in bucket to transfer. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should not begin with a '/'.
+                  description_kind: plain
+                  optional: true
+              description: A Google Cloud Storage data sink.
+              description_kind: plain
+            max_items: 1
+          gcs_data_source:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_name:
+                  type: string
+                  description: Google Cloud Storage bucket name.
+                  description_kind: plain
+                  required: true
+                path:
+                  type: string
+                  description: Google Cloud Storage path in bucket to transfer. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should not begin with a '/'.
+                  description_kind: plain
+                  optional: true
+              description: A Google Cloud Storage data source.
+              description_kind: plain
+            max_items: 1
+          hdfs_data_source:
+            nesting_mode: list
+            block:
+              attributes:
+                path:
+                  type: string
+                  description: Directory path to the filesystem.
+                  description_kind: plain
+                  required: true
+              description: An HDFS Storage data source.
+              description_kind: plain
+            max_items: 1
+          http_data_source:
+            nesting_mode: list
+            block:
+              attributes:
+                list_url:
+                  type: string
+                  description: The URL that points to the file that stores the object list entries. This file must allow public access. Currently, only URLs with HTTP and HTTPS schemes are supported.
+                  description_kind: plain
+                  required: true
+              description: A HTTP URL data source.
+              description_kind: plain
+            max_items: 1
+          object_conditions:
+            nesting_mode: list
+            block:
+              attributes:
+                exclude_prefixes:
+                  type:
+                  - list
+                  - string
+                  description: exclude_prefixes must follow the requirements described for include_prefixes.
+                  description_kind: plain
+                  optional: true
+                include_prefixes:
+                  type:
+                  - list
+                  - string
+                  description: If include_refixes is specified, objects that satisfy the object conditions must have names that start with one of the include_prefixes and that do not start with any of the exclude_prefixes. If include_prefixes is not specified, all objects except those that have names starting with one of the exclude_prefixes must satisfy the object conditions.
+                  description_kind: plain
+                  optional: true
+                last_modified_before:
+                  type: string
+                  description: 'If specified, only objects with a "last modification time" before this timestamp and objects that don''t have a "last modification time" are transferred. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".'
+                  description_kind: plain
+                  optional: true
+                last_modified_since:
+                  type: string
+                  description: 'If specified, only objects with a "last modification time" on or after this timestamp and objects that don''t have a "last modification time" are transferred. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".'
+                  description_kind: plain
+                  optional: true
+                max_time_elapsed_since_last_modification:
+                  type: string
+                  description: 'A duration in seconds with up to nine fractional digits, terminated by ''s''. Example: "3.5s".'
+                  description_kind: plain
+                  optional: true
+                min_time_elapsed_since_last_modification:
+                  type: string
+                  description: 'A duration in seconds with up to nine fractional digits, terminated by ''s''. Example: "3.5s".'
+                  description_kind: plain
+                  optional: true
+              description: Only objects that satisfy these object conditions are included in the set of data source and data sink objects. Object conditions based on objects' last_modification_time do not exclude objects in a data sink.
+              description_kind: plain
+            max_items: 1
+          posix_data_sink:
+            nesting_mode: list
+            block:
+              attributes:
+                root_directory:
+                  type: string
+                  description: Root directory path to the filesystem.
+                  description_kind: plain
+                  required: true
+              description: A POSIX filesystem data sink.
+              description_kind: plain
+            max_items: 1
+          posix_data_source:
+            nesting_mode: list
+            block:
+              attributes:
+                root_directory:
+                  type: string
+                  description: Root directory path to the filesystem.
+                  description_kind: plain
+                  required: true
+              description: A POSIX filesystem data source.
+              description_kind: plain
+            max_items: 1
+          transfer_manifest:
+            nesting_mode: list
+            block:
+              attributes:
+                location:
+                  type: string
+                  description: Cloud Storage path to the manifest CSV.
+                  description_kind: plain
+                  required: true
+              description: A manifest file listing specific objects to transfer.
+              description_kind: plain
+            max_items: 1
+          transfer_options:
+            nesting_mode: list
+            block:
+              attributes:
+                delete_objects_from_source_after_transfer:
+                  type: bool
+                  description: Whether objects should be deleted from the source after they are transferred to the sink. Note that this option and delete_objects_unique_in_sink are mutually exclusive.
+                  description_kind: plain
+                  optional: true
+                delete_objects_unique_in_sink:
+                  type: bool
+                  description: Whether objects that exist only in the sink should be deleted. Note that this option and delete_objects_from_source_after_transfer are mutually exclusive.
+                  description_kind: plain
+                  optional: true
+                overwrite_objects_already_existing_in_sink:
+                  type: bool
+                  description: Whether overwriting objects that already exist in the sink is allowed.
+                  description_kind: plain
+                  optional: true
+                overwrite_when:
+                  type: string
+                  description: When to overwrite objects that already exist in the sink. If not set, overwrite behavior is determined by overwriteObjectsAlreadyExistingInSink.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                metadata_options:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      acl:
+                        type: string
+                        description: Specifies how each object's ACLs should be preserved for transfers between Google Cloud Storage buckets
+                        description_kind: plain
+                        optional: true
+                      gid:
+                        type: string
+                        description: Specifies how each file's POSIX group ID (GID) attribute should be handled by the transfer.
+                        description_kind: plain
+                        optional: true
+                      kms_key:
+                        type: string
+                        description: Specifies how each object's Cloud KMS customer-managed encryption key (CMEK) is preserved for transfers between Google Cloud Storage buckets
+                        description_kind: plain
+                        optional: true
+                      mode:
+                        type: string
+                        description: Specifies how each file's mode attribute should be handled by the transfer.
+                        description_kind: plain
+                        optional: true
+                      storage_class:
+                        type: string
+                        description: Specifies the storage class to set on objects being transferred to Google Cloud Storage buckets
+                        description_kind: plain
+                        optional: true
+                      symlink:
+                        type: string
+                        description: Specifies how symlinks should be handled by the transfer.
+                        description_kind: plain
+                        optional: true
+                      temporary_hold:
+                        type: string
+                        description: SSpecifies how each object's temporary hold status should be preserved for transfers between Google Cloud Storage buckets
+                        description_kind: plain
+                        optional: true
+                      time_created:
+                        type: string
+                        description: Specifies how each object's timeCreated metadata is preserved for transfers.
+                        description_kind: plain
+                        optional: true
+                      uid:
+                        type: string
+                        description: Specifies how each file's POSIX user ID (UID) attribute should be handled by the transfer.
+                        description_kind: plain
+                        optional: true
+                    description: Specifies the metadata options for running a transfer
+                    description_kind: plain
+                  max_items: 1
+              description: Characteristics of how to treat files from datasource and sink during job. If the option delete_objects_unique_in_sink is true, object conditions based on objects' last_modification_time are ignored and do not exclude objects in a data source or a data sink.
+              description_kind: plain
+            max_items: 1
+        description: Transfer specification.
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

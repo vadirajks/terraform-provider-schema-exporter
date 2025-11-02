@@ -1,0 +1,18 @@
+data "aws_transfer_server" "name" {
+  server_id = string (Required)
+  arn = string (Computed)
+  certificate = string (Computed)
+  domain = string (Computed)
+  endpoint = string (Computed)
+  endpoint_type = string (Computed)
+  id = string (Optional, Computed)
+  identity_provider_type = string (Computed)
+  invocation_role = string (Computed)
+  logging_role = string (Computed)
+  protocols = ['list', 'string'] (Computed)
+  region = string (Optional, Computed)
+  security_policy_name = string (Computed)
+  structured_log_destinations = ['list', 'string'] (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  url = string (Computed)
+}

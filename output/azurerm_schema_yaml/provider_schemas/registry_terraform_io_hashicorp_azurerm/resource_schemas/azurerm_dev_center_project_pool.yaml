@@ -1,0 +1,75 @@
+version: 0
+block:
+  attributes:
+    dev_box_definition_name:
+      type: string
+      description_kind: plain
+      required: true
+    dev_center_attached_network_name:
+      type: string
+      description_kind: plain
+      required: true
+    dev_center_project_id:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    local_administrator_enabled:
+      type: bool
+      description_kind: plain
+      required: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    managed_virtual_network_regions:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    single_sign_on_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    stop_on_disconnect_grace_period_minutes:
+      type: number
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

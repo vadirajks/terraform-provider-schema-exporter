@@ -1,0 +1,83 @@
+version: 0
+block:
+  attributes:
+    certificate_id:
+      type: number
+      description: The unique identifier for the resource.
+      description_kind: plain
+      computed: true
+    creation_timestamp:
+      type: string
+      description: Creation timestamp in RFC3339 text format.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: An optional description of this resource.
+      description_kind: plain
+      optional: true
+    expire_time:
+      type: string
+      description: Expire time of the certificate in RFC3339 text format.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. These are in the same namespace as the managed SSL certificates.
+      description_kind: plain
+      optional: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    self_link:
+      type: string
+      description_kind: plain
+      computed: true
+    subject_alternative_names:
+      type:
+      - list
+      - string
+      description: Domains associated with the certificate via Subject Alternative Name.
+      description_kind: plain
+      computed: true
+    type:
+      type: string
+      description: 'Enum field whose value is always ''MANAGED'' - used to signal to the API which type this is. Default value: "MANAGED" Possible values: ["MANAGED"]'
+      description_kind: plain
+      optional: true
+  block_types:
+    managed:
+      nesting_mode: list
+      block:
+        attributes:
+          domains:
+            type:
+            - list
+            - string
+            description: Domains for which a managed SSL certificate will be valid.  Currently, there can be up to 100 domains in this list.
+            description_kind: plain
+            required: true
+        description: Properties relevant to a managed certificate.  These will be used if the certificate is managed (as indicated by a value of 'MANAGED' in 'type').
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

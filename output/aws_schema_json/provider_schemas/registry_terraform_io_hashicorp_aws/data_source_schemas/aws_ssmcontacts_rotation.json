@@ -1,0 +1,155 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "contact_ids": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "recurrence": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "daily_settings": [
+                "list",
+                [
+                  "object",
+                  {
+                    "hour_of_day": "number",
+                    "minute_of_hour": "number"
+                  }
+                ]
+              ],
+              "monthly_settings": [
+                "list",
+                [
+                  "object",
+                  {
+                    "day_of_month": "number",
+                    "hand_off_time": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "hour_of_day": "number",
+                          "minute_of_hour": "number"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "number_of_on_calls": "number",
+              "recurrence_multiplier": "number",
+              "shift_coverages": [
+                "list",
+                [
+                  "object",
+                  {
+                    "coverage_times": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "end": [
+                            "list",
+                            [
+                              "object",
+                              {
+                                "hour_of_day": "number",
+                                "minute_of_hour": "number"
+                              }
+                            ]
+                          ],
+                          "start": [
+                            "list",
+                            [
+                              "object",
+                              {
+                                "hour_of_day": "number",
+                                "minute_of_hour": "number"
+                              }
+                            ]
+                          ]
+                        }
+                      ]
+                    ],
+                    "map_block_key": "string"
+                  }
+                ]
+              ],
+              "weekly_settings": [
+                "list",
+                [
+                  "object",
+                  {
+                    "day_of_week": "string",
+                    "hand_off_time": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "hour_of_day": "number",
+                          "minute_of_hour": "number"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "start_time": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "time_zone_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

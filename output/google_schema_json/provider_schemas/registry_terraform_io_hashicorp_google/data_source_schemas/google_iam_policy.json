@@ -1,0 +1,105 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "policy_data": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "audit_config": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "service": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "audit_log_configs": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "exempted_members": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "log_type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "binding": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "members": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "role": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "condition": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "description": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "expression": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "title": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

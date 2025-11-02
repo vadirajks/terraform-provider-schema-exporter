@@ -1,0 +1,17 @@
+data "google_iam_workload_identity_pool_provider" "name" {
+  workload_identity_pool_id = string (Required)
+  workload_identity_pool_provider_id = string (Required)
+  attribute_condition = string (Computed)
+  attribute_mapping = ['map', 'string'] (Computed)
+  aws = ['list', ['object', {'account_id': 'string'}]] (Computed)
+  description = string (Computed)
+  disabled = bool (Computed)
+  display_name = string (Computed)
+  id = string (Optional, Computed)
+  name = string (Computed)
+  oidc = ['list', ['object', {'allowed_audiences': ['list', 'string'], 'issuer_uri': 'string', 'jwks_json': 'string'}]] (Computed)
+  project = string (Optional)
+  saml = ['list', ['object', {'idp_metadata_xml': 'string'}]] (Computed)
+  state = string (Computed)
+  x509 = ['list', ['object', {'trust_store': ['list', ['object', {'intermediate_cas': ['list', ['object', {'pem_certificate': 'string'}]], 'trust_anchors': ['list', ['object', {'pem_certificate': 'string'}]]}]]}]] (Computed)
+}

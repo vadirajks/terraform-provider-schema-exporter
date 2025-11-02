@@ -1,0 +1,110 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: Output only. The time the hub was created.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: An optional description of the hub.
+      description_kind: plain
+      optional: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    export_psc:
+      type: bool
+      description: Whether Private Service Connect transitivity is enabled for the hub. If true, Private Service Connect endpoints in VPC spokes attached to the hub are made accessible to other VPC spokes attached to the hub. The default value is false.
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Optional labels in key:value format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements). **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: 'Immutable. The name of the hub. Hub names must be unique. They use the following form: ''projects/{project_number}/locations/global/hubs/{hub_id}'''
+      description_kind: plain
+      optional: true
+      computed: true
+    policy_mode:
+      type: string
+      description: 'Optional. The policy mode of this hub. This field can be either PRESET or CUSTOM. If unspecified, the policyMode defaults to PRESET. Possible values: ["CUSTOM", "PRESET"]'
+      description_kind: plain
+      optional: true
+      computed: true
+    preset_topology:
+      type: string
+      description: 'Optional. The topology implemented in this hub. Currently, this field is only used when policyMode = PRESET. The available preset topologies are MESH and STAR. If presetTopology is unspecified and policyMode = PRESET, the presetTopology defaults to MESH. When policyMode = CUSTOM, the presetTopology is set to PRESET_TOPOLOGY_UNSPECIFIED. Possible values: ["MESH", "STAR", "HYBRID_INSPECTION"]'
+      description_kind: plain
+      optional: true
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    routing_vpcs:
+      type:
+      - list
+      - - object
+        - uri: string
+      description: The VPC network associated with this hub's spokes. All of the VPN tunnels, VLAN attachments, and router appliance instances referenced by this hub's spokes must belong to this VPC network. This field is read-only. Network Connectivity Center automatically populates it based on the set of spokes attached to the hub.
+      description_kind: plain
+      computed: true
+    state:
+      type: string
+      description: Output only. The current lifecycle state of this hub.
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    unique_id:
+      type: string
+      description: Output only. The Google-generated UUID for the hub. This value is unique across all hub resources. If a hub is deleted and another with the same name is created, the new hub is assigned a different unique_id.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: Output only. The time the hub was last updated.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

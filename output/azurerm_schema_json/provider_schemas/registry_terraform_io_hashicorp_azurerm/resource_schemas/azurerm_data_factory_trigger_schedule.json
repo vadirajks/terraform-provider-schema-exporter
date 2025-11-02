@@ -1,0 +1,195 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "activated": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "annotations": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "data_factory_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "end_time": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "frequency": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "interval": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "pipeline_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "pipeline_parameters": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "start_time": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "time_zone": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "pipeline": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "parameters": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "schedule": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "days_of_month": {
+              "type": [
+                "list",
+                "number"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "days_of_week": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "hours": {
+              "type": [
+                "list",
+                "number"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "minutes": {
+              "type": [
+                "list",
+                "number"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "monthly": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "week": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "weekday": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

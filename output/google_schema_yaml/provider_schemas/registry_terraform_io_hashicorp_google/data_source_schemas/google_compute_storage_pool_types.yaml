@@ -1,0 +1,103 @@
+version: 0
+block:
+  attributes:
+    creation_timestamp:
+      type: string
+      description: Creation timestamp in RFC3339 text format.
+      description_kind: plain
+      computed: true
+    deprecated:
+      type:
+      - list
+      - - object
+        - deleted: string
+          deprecated: string
+          obsolete: string
+          replacement: string
+          state: string
+      description: The deprecation status associated with this storage pool type.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: An optional description of this resource.
+      description_kind: plain
+      computed: true
+    id:
+      type: number
+      description: The unique identifier for the resource. This identifier is defined by the server.
+      description_kind: plain
+      computed: true
+    kind:
+      type: string
+      description: Type of the resource. Always compute#storagePoolType for storage pool types.
+      description_kind: plain
+      computed: true
+    max_pool_provisioned_capacity_gb:
+      type: number
+      description: Maximum storage pool size in GB.
+      description_kind: plain
+      computed: true
+    max_pool_provisioned_iops:
+      type: number
+      description: Maximum provisioned IOPS.
+      description_kind: plain
+      computed: true
+    max_pool_provisioned_throughput:
+      type: number
+      description: Maximum provisioned throughput.
+      description_kind: plain
+      computed: true
+    min_pool_provisioned_capacity_gb:
+      type: number
+      description: Minimum storage pool size in GB.
+      description_kind: plain
+      computed: true
+    min_pool_provisioned_iops:
+      type: number
+      description: Minimum provisioned IOPS.
+      description_kind: plain
+      computed: true
+    min_pool_provisioned_throughput:
+      type: number
+      description: Minimum provisioned throughput.
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: Name of the resource.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    self_link:
+      type: string
+      description: Server-defined URL for the resource.
+      description_kind: plain
+      computed: true
+    self_link_with_id:
+      type: string
+      description: Server-defined URL for this resource with the resource id.
+      description_kind: plain
+      computed: true
+    storage_pool_type:
+      type: string
+      description: Name of the storage pool type.
+      description_kind: plain
+      required: true
+    supported_disk_types:
+      type:
+      - list
+      - string
+      description: The list of disk types supported in this storage pool type.
+      description_kind: plain
+      computed: true
+    zone:
+      type: string
+      description: The name of the zone.
+      description_kind: plain
+      required: true
+  description_kind: plain

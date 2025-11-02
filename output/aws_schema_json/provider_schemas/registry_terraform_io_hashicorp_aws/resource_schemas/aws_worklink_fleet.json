@@ -1,0 +1,111 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "audit_stream_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "company_code": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "created_time": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "device_ca_certificate": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "display_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "last_updated_time": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "optimize_for_end_user_location": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "identity_provider": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "saml_metadata": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "network": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "security_group_ids": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "subnet_ids": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "vpc_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain",
+    "deprecated": true
+  }
+}

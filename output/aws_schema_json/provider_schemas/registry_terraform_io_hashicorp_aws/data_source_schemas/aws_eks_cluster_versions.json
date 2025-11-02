@@ -1,0 +1,64 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "cluster_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "cluster_versions": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "cluster_type": "string",
+              "cluster_version": "string",
+              "default_platform_version": "string",
+              "default_version": "bool",
+              "end_of_extended_support_date": "string",
+              "end_of_standard_support_date": "string",
+              "kubernetes_patch_version": "string",
+              "release_date": "string",
+              "version_status": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cluster_versions_only": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "default_only": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "include_all": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "version_status": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

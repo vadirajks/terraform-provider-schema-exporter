@@ -1,0 +1,72 @@
+version: 0
+block:
+  attributes:
+    exclude_compliant_resources:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    include_compliance_details:
+      type: bool
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_arn_list:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    resource_tag_mapping_list:
+      type:
+      - list
+      - - object
+        - compliance_details:
+          - list
+          - - object
+            - compliance_status: bool
+              keys_with_noncompliant_values:
+              - set
+              - string
+              non_compliant_keys:
+              - set
+              - string
+          resource_arn: string
+          tags:
+          - map
+          - string
+      description_kind: plain
+      computed: true
+    resource_type_filters:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    tag_filter:
+      nesting_mode: list
+      block:
+        attributes:
+          key:
+            type: string
+            description_kind: plain
+            required: true
+          values:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 50
+  description_kind: plain

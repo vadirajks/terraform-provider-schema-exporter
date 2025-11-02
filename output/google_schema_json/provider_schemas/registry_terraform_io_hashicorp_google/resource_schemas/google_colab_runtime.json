@@ -1,0 +1,127 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "auto_upgrade": {
+        "type": "bool",
+        "description": "Triggers an upgrade anytime the runtime is started if it is upgradable.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "description": {
+        "type": "string",
+        "description": "The description of the Runtime.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "desired_state": {
+        "type": "string",
+        "description": "Desired state of the Colab Runtime. Set this field to 'RUNNING' to start the runtime, and 'STOPPED' to stop it.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "Required. The display name of the Runtime.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "expiration_time": {
+        "type": "string",
+        "description": "Output only. Timestamp when this NotebookRuntime will be expired.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "is_upgradable": {
+        "type": "bool",
+        "description": "Output only. Checks if the NotebookRuntime is upgradable.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location for the resource: https://cloud.google.com/colab/docs/locations",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name of the Runtime",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "notebook_runtime_type": {
+        "type": "string",
+        "description": "Output only. The type of the notebook runtime.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "runtime_user": {
+        "type": "string",
+        "description": "The user email of the NotebookRuntime.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "state": {
+        "type": "string",
+        "description": "Output only. The state of the runtime.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "notebook_runtime_template_ref": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "notebook_runtime_template": {
+              "type": "string",
+              "description": "The resource name of the NotebookRuntimeTemplate based on which a NotebookRuntime will be created.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "'Runtime specific information used for NotebookRuntime creation.'",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

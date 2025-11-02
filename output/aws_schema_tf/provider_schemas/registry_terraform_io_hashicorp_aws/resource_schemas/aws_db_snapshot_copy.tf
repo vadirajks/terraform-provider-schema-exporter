@@ -1,0 +1,32 @@
+resource "aws_db_snapshot_copy" "name" {
+  source_db_snapshot_identifier = string (Required)
+  target_db_snapshot_identifier = string (Required)
+  allocated_storage = number (Computed)
+  availability_zone = string (Computed)
+  copy_tags = bool (Optional)
+  db_snapshot_arn = string (Computed)
+  destination_region = string (Optional)
+  encrypted = bool (Computed)
+  engine = string (Computed)
+  engine_version = string (Computed)
+  id = string (Optional, Computed)
+  iops = number (Computed)
+  kms_key_id = string (Optional)
+  license_model = string (Computed)
+  option_group_name = string (Optional, Computed)
+  port = number (Computed)
+  presigned_url = string (Optional)
+  region = string (Optional, Computed)
+  shared_accounts = ['set', 'string'] (Optional)
+  snapshot_type = string (Computed)
+  source_region = string (Computed)
+  storage_type = string (Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+  target_custom_availability_zone = string (Optional)
+  vpc_id = string (Computed)
+
+  timeouts block "single" (Optional) {
+    create = string (Optional)
+  }
+}

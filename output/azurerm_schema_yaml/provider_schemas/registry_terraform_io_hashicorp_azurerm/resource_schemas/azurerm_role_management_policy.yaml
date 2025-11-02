@@ -1,0 +1,428 @@
+version: 0
+block:
+  attributes:
+    description:
+      type: string
+      description: The Description of the policy
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: The name of the policy
+      description_kind: plain
+      computed: true
+    role_definition_id:
+      type: string
+      description: ID of the Azure Role to which this policy is assigned
+      description_kind: plain
+      required: true
+    scope:
+      type: string
+      description: The scope of the role to which this policy will apply
+      description_kind: plain
+      required: true
+  block_types:
+    activation_rules:
+      nesting_mode: list
+      block:
+        attributes:
+          maximum_duration:
+            type: string
+            description: The time after which the an activation can be valid for
+            description_kind: plain
+            optional: true
+            computed: true
+          require_approval:
+            type: bool
+            description: Whether an approval is required for activation
+            description_kind: plain
+            optional: true
+            computed: true
+          require_justification:
+            type: bool
+            description: Whether a justification is required during activation
+            description_kind: plain
+            optional: true
+            computed: true
+          require_multifactor_authentication:
+            type: bool
+            description: Whether multi-factor authentication is required during activation
+            description_kind: plain
+            optional: true
+            computed: true
+          require_ticket_info:
+            type: bool
+            description: Whether ticket information is required during activation
+            description_kind: plain
+            optional: true
+            computed: true
+          required_conditional_access_authentication_context:
+            type: string
+            description: Whether a conditional access context is required during activation
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          approval_stage:
+            nesting_mode: list
+            block:
+              block_types:
+                primary_approver:
+                  nesting_mode: set
+                  block:
+                    attributes:
+                      object_id:
+                        type: string
+                        description: The ID of the object to act as an approver
+                        description_kind: plain
+                        required: true
+                      type:
+                        type: string
+                        description: The type of object acting as an approver
+                        description_kind: plain
+                        required: true
+                    description: The IDs of the users or groups who can approve the activation
+                    description_kind: plain
+                  min_items: 1
+              description: The approval stages for the activation
+              description_kind: plain
+            max_items: 1
+        description: The activation rules of the policy
+        description_kind: plain
+      max_items: 1
+    active_assignment_rules:
+      nesting_mode: list
+      block:
+        attributes:
+          expiration_required:
+            type: bool
+            description: Must the assignment have an expiry date
+            description_kind: plain
+            optional: true
+            computed: true
+          expire_after:
+            type: string
+            description: The duration after which assignments expire
+            description_kind: plain
+            optional: true
+            computed: true
+          require_justification:
+            type: bool
+            description: Whether a justification is required to make an assignment
+            description_kind: plain
+            optional: true
+            computed: true
+          require_multifactor_authentication:
+            type: bool
+            description: Whether multi-factor authentication is required to make an assignment
+            description_kind: plain
+            optional: true
+            computed: true
+          require_ticket_info:
+            type: bool
+            description: Whether ticket information is required to make an assignment
+            description_kind: plain
+            optional: true
+            computed: true
+        description: The rules for active assignment of the policy
+        description_kind: plain
+      max_items: 1
+    eligible_assignment_rules:
+      nesting_mode: list
+      block:
+        attributes:
+          expiration_required:
+            type: bool
+            description: Must the assignment have an expiry date
+            description_kind: plain
+            optional: true
+            computed: true
+          expire_after:
+            type: string
+            description: The duration after which assignments expire
+            description_kind: plain
+            optional: true
+            computed: true
+        description: The rules for eligible assignment of the policy
+        description_kind: plain
+      max_items: 1
+    notification_rules:
+      nesting_mode: list
+      block:
+        block_types:
+          active_assignments:
+            nesting_mode: list
+            block:
+              block_types:
+                admin_notifications:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      additional_recipients:
+                        type:
+                        - set
+                        - string
+                        description: The additional recipients to notify
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      default_recipients:
+                        type: bool
+                        description: Whether the default recipients are notified
+                        description_kind: plain
+                        required: true
+                      notification_level:
+                        type: string
+                        description: What level of notifications are sent
+                        description_kind: plain
+                        required: true
+                    description: Admin notification settings
+                    description_kind: plain
+                  max_items: 1
+                approver_notifications:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      additional_recipients:
+                        type:
+                        - set
+                        - string
+                        description: The additional recipients to notify
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      default_recipients:
+                        type: bool
+                        description: Whether the default recipients are notified
+                        description_kind: plain
+                        required: true
+                      notification_level:
+                        type: string
+                        description: What level of notifications are sent
+                        description_kind: plain
+                        required: true
+                    description: Approver notification settings
+                    description_kind: plain
+                  max_items: 1
+                assignee_notifications:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      additional_recipients:
+                        type:
+                        - set
+                        - string
+                        description: The additional recipients to notify
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      default_recipients:
+                        type: bool
+                        description: Whether the default recipients are notified
+                        description_kind: plain
+                        required: true
+                      notification_level:
+                        type: string
+                        description: What level of notifications are sent
+                        description_kind: plain
+                        required: true
+                    description: Assignee notification settings
+                    description_kind: plain
+                  max_items: 1
+              description: Notifications about active assignments
+              description_kind: plain
+            max_items: 1
+          eligible_activations:
+            nesting_mode: list
+            block:
+              block_types:
+                admin_notifications:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      additional_recipients:
+                        type:
+                        - set
+                        - string
+                        description: The additional recipients to notify
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      default_recipients:
+                        type: bool
+                        description: Whether the default recipients are notified
+                        description_kind: plain
+                        required: true
+                      notification_level:
+                        type: string
+                        description: What level of notifications are sent
+                        description_kind: plain
+                        required: true
+                    description: Admin notification settings
+                    description_kind: plain
+                  max_items: 1
+                approver_notifications:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      additional_recipients:
+                        type:
+                        - set
+                        - string
+                        description: The additional recipients to notify
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      default_recipients:
+                        type: bool
+                        description: Whether the default recipients are notified
+                        description_kind: plain
+                        required: true
+                      notification_level:
+                        type: string
+                        description: What level of notifications are sent
+                        description_kind: plain
+                        required: true
+                    description: Approver notification settings
+                    description_kind: plain
+                  max_items: 1
+                assignee_notifications:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      additional_recipients:
+                        type:
+                        - set
+                        - string
+                        description: The additional recipients to notify
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      default_recipients:
+                        type: bool
+                        description: Whether the default recipients are notified
+                        description_kind: plain
+                        required: true
+                      notification_level:
+                        type: string
+                        description: What level of notifications are sent
+                        description_kind: plain
+                        required: true
+                    description: Assignee notification settings
+                    description_kind: plain
+                  max_items: 1
+              description: Notifications about activations of eligible assignments
+              description_kind: plain
+            max_items: 1
+          eligible_assignments:
+            nesting_mode: list
+            block:
+              block_types:
+                admin_notifications:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      additional_recipients:
+                        type:
+                        - set
+                        - string
+                        description: The additional recipients to notify
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      default_recipients:
+                        type: bool
+                        description: Whether the default recipients are notified
+                        description_kind: plain
+                        required: true
+                      notification_level:
+                        type: string
+                        description: What level of notifications are sent
+                        description_kind: plain
+                        required: true
+                    description: Admin notification settings
+                    description_kind: plain
+                  max_items: 1
+                approver_notifications:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      additional_recipients:
+                        type:
+                        - set
+                        - string
+                        description: The additional recipients to notify
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      default_recipients:
+                        type: bool
+                        description: Whether the default recipients are notified
+                        description_kind: plain
+                        required: true
+                      notification_level:
+                        type: string
+                        description: What level of notifications are sent
+                        description_kind: plain
+                        required: true
+                    description: Approver notification settings
+                    description_kind: plain
+                  max_items: 1
+                assignee_notifications:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      additional_recipients:
+                        type:
+                        - set
+                        - string
+                        description: The additional recipients to notify
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      default_recipients:
+                        type: bool
+                        description: Whether the default recipients are notified
+                        description_kind: plain
+                        required: true
+                      notification_level:
+                        type: string
+                        description: What level of notifications are sent
+                        description_kind: plain
+                        required: true
+                    description: Assignee notification settings
+                    description_kind: plain
+                  max_items: 1
+              description: Notifications about eligible assignments
+              description_kind: plain
+            max_items: 1
+        description: The notification rules of the policy
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

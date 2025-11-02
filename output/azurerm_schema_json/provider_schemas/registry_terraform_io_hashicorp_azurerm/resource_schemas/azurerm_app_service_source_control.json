@@ -1,0 +1,173 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "app_id": {
+        "type": "string",
+        "description": "The ID of the Windows or Linux Web App.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "branch": {
+        "type": "string",
+        "description": "The branch name to use for deployments.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "repo_url": {
+        "type": "string",
+        "description": "The URL for the repository.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "rollback_enabled": {
+        "type": "bool",
+        "description": "Should the Deployment Rollback be enabled? Defaults to `false`.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "scm_type": {
+        "type": "string",
+        "description": "The SCM Type in use. This value is decoded by the service from the repository information supplied.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "use_local_git": {
+        "type": "bool",
+        "description": "Should the App use local Git configuration.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "use_manual_integration": {
+        "type": "bool",
+        "description": "Should code be deployed manually. Set to `false` to enable continuous integration, such as webhooks into online repos such as GitHub. Defaults to `false`.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "use_mercurial": {
+        "type": "bool",
+        "description": "The repository specified is Mercurial. Defaults to `false`.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "uses_github_action": {
+        "type": "bool",
+        "description": "Indicates if the Slot uses a GitHub action for deployment. This value is decoded by the service from the repository information supplied.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "github_action_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "generate_workflow_file": {
+              "type": "bool",
+              "description": "Should the service generate the GitHub Action Workflow file. Defaults to `true`",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "linux_action": {
+              "type": "bool",
+              "description": "Denotes this action uses a Linux base image.",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "block_types": {
+            "code_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "runtime_stack": {
+                    "type": "string",
+                    "description": "The value to use for the Runtime Stack in the workflow file content for code base apps.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "runtime_version": {
+                    "type": "string",
+                    "description": "The value to use for the Runtime Version in the workflow file content for code base apps.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "container_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "image_name": {
+                    "type": "string",
+                    "description": "The image name for the build.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "registry_password": {
+                    "type": "string",
+                    "description": "The password used to upload the image to the container registry.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "registry_url": {
+                    "type": "string",
+                    "description": "The server URL for the container registry where the build will be hosted.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "registry_username": {
+                    "type": "string",
+                    "description": "The username used to upload the image to the container registry.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

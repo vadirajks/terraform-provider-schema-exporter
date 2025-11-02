@@ -1,0 +1,15 @@
+data "aws_dx_connection" "name" {
+  name = string (Required)
+  arn = string (Computed)
+  aws_device = string (Computed)
+  bandwidth = string (Computed)
+  id = string (Optional, Computed)
+  location = string (Computed)
+  owner_account_id = string (Computed)
+  partner_name = string (Computed)
+  provider_name = string (Computed)
+  region = string (Optional, Computed)
+  state = string (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  vlan_id = number (Computed)
+}

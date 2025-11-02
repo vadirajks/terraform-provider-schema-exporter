@@ -1,0 +1,155 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    authentication_strategy:
+      type: string
+      description_kind: plain
+      computed: true
+    auto_minor_version_upgrade:
+      type: bool
+      description_kind: plain
+      computed: true
+    broker_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    broker_name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    configuration:
+      type:
+      - list
+      - - object
+        - id: string
+          revision: number
+      description_kind: plain
+      computed: true
+    deployment_mode:
+      type: string
+      description_kind: plain
+      computed: true
+    encryption_options:
+      type:
+      - list
+      - - object
+        - kms_key_id: string
+          use_aws_owned_key: bool
+      description_kind: plain
+      computed: true
+    engine_type:
+      type: string
+      description_kind: plain
+      computed: true
+    engine_version:
+      type: string
+      description_kind: plain
+      computed: true
+    host_instance_type:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instances:
+      type:
+      - list
+      - - object
+        - console_url: string
+          endpoints:
+          - list
+          - string
+          ip_address: string
+      description_kind: plain
+      computed: true
+    ldap_server_metadata:
+      type:
+      - list
+      - - object
+        - hosts:
+          - list
+          - string
+          role_base: string
+          role_name: string
+          role_search_matching: string
+          role_search_subtree: bool
+          service_account_password: string
+          service_account_username: string
+          user_base: string
+          user_role_name: string
+          user_search_matching: string
+          user_search_subtree: bool
+      description_kind: plain
+      computed: true
+    logs:
+      type:
+      - list
+      - - object
+        - audit: string
+          general: bool
+      description_kind: plain
+      computed: true
+    maintenance_window_start_time:
+      type:
+      - list
+      - - object
+        - day_of_week: string
+          time_of_day: string
+          time_zone: string
+      description_kind: plain
+      computed: true
+    publicly_accessible:
+      type: bool
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    security_groups:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    storage_type:
+      type: string
+      description_kind: plain
+      computed: true
+    subnet_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    user:
+      type:
+      - set
+      - - object
+        - console_access: bool
+          groups:
+          - set
+          - string
+          replication_user: bool
+          username: string
+      description_kind: plain
+      computed: true
+  description_kind: plain

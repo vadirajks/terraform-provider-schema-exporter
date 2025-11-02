@@ -1,0 +1,16 @@
+data "aws_s3_access_point" "name" {
+  name = string (Required)
+  account_id = string (Optional, Computed)
+  alias = string (Computed)
+  arn = string (Computed)
+  bucket = string (Computed)
+  bucket_account_id = string (Computed)
+  data_source_id = string (Computed)
+  data_source_type = string (Computed)
+  endpoints = ['map', 'string'] (Computed)
+  network_origin = string (Computed)
+  public_access_block_configuration = ['list', ['object', {'block_public_acls': 'bool', 'block_public_policy': 'bool', 'ignore_public_acls': 'bool', 'restrict_public_buckets': 'bool'}]] (Computed)
+  region = string (Optional, Computed)
+  tags = ['map', 'string'] (Computed)
+  vpc_configuration = ['list', ['object', {'vpc_id': 'string'}]] (Computed)
+}

@@ -1,0 +1,115 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "display_name": {
+        "type": "string",
+        "description": "The human-readable name of the fulfillment, unique within the agent.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "enabled": {
+        "type": "bool",
+        "description": "Whether fulfillment is enabled.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The unique identifier of the fulfillment. Format: projects/<Project ID>/agent/fulfillment - projects/<Project ID>/locations/<Location ID>/agent/fulfillment",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "features": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "type": {
+              "type": "string",
+              "description": "The type of the feature that enabled for fulfillment. * SMALLTALK: Fulfillment is enabled for SmallTalk. Possible values: [\"SMALLTALK\"]",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "The field defines whether the fulfillment is enabled for certain features.",
+          "description_kind": "plain"
+        }
+      },
+      "generic_web_service": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "password": {
+              "type": "string",
+              "description": "The password for HTTP Basic authentication.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "request_headers": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description": "The HTTP request headers to send together with fulfillment requests.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "uri": {
+              "type": "string",
+              "description": "The fulfillment URI for receiving POST requests. It must use https protocol.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "username": {
+              "type": "string",
+              "description": "The user name for HTTP Basic authentication.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Represents configuration for a generic web service. Dialogflow supports two mechanisms for authentications: - Basic authentication with username and password. - Authentication with additional authentication headers.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

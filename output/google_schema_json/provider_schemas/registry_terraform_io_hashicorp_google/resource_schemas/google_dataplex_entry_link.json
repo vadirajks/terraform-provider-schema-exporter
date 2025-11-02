@@ -1,0 +1,110 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "The time when the Entry Link was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "entry_group_id": {
+        "type": "string",
+        "description": "The id of the entry group this entry link is in.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "entry_link_id": {
+        "type": "string",
+        "description": "The id of the entry link to create.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "entry_link_type": {
+        "type": "string",
+        "description": "Relative resource name of the Entry Link Type used to create this Entry Link. For example: projects/dataplex-types/locations/global/entryLinkTypes/definition",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location for the entry.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The relative resource name of the Entry Link, of the form: projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}/entryLinks/{entry_link_id}",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "The time when the Entry Link was last updated.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "entry_references": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "name": {
+              "type": "string",
+              "description": "The relative resource name of the referenced Entry, of the form: projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}/entries/{entry_id}",
+              "description_kind": "plain",
+              "required": true
+            },
+            "path": {
+              "type": "string",
+              "description": "The path in the Entry that is referenced in the Entry Link. Empty path denotes that the Entry itself is referenced in the Entry Link.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "type": {
+              "type": "string",
+              "description": "The reference type of the Entry. Possible values: [\"SOURCE\", \"TARGET\"]",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Specifies the Entries referenced in the Entry Link. There should be exactly two entry references.",
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

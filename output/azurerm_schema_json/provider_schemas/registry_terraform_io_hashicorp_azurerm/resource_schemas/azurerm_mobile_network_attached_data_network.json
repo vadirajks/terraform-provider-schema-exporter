@@ -1,0 +1,171 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "dns_addresses": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "mobile_network_data_network_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "mobile_network_packet_core_data_plane_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "user_equipment_address_pool_prefixes": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "user_equipment_static_address_pool_prefixes": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "user_plane_access_ipv4_address": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "user_plane_access_ipv4_gateway": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "user_plane_access_ipv4_subnet": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "user_plane_access_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "network_address_port_translation": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "icmp_pinhole_timeout_in_seconds": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "pinhole_maximum_number": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "tcp_pinhole_timeout_in_seconds": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "tcp_port_reuse_minimum_hold_time_in_seconds": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "udp_pinhole_timeout_in_seconds": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "udp_port_reuse_minimum_hold_time_in_seconds": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "port_range": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "maximum": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "minimum": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

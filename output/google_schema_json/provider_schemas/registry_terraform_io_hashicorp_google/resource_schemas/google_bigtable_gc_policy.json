@@ -1,0 +1,123 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "column_family": {
+        "type": "string",
+        "description": "The name of the column family.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "deletion_policy": {
+        "type": "string",
+        "description": "The deletion policy for the GC policy. Setting ABANDON allows the resource to be abandoned rather than deleted. This is useful for GC policy as it cannot be deleted in a replicated instance. Possible values are: \"ABANDON\".",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "gc_rules": {
+        "type": "string",
+        "description": "Serialized JSON string for garbage collection policy. Conflicts with \"mode\", \"max_age\" and \"max_version\".",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ignore_warnings": {
+        "type": "bool",
+        "description": "Allows ignoring warnings when updating the GC policy. This can be used to increase the gc policy on replicated clusters. Doing this may make clusters be inconsistent for a longer period of time, before using this make sure you understand the risks listed at https://cloud.google.com/bigtable/docs/garbage-collection#increasing",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "instance_name": {
+        "type": "string",
+        "description": "The name of the Bigtable instance.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "mode": {
+        "type": "string",
+        "description": "NOTE: 'gc_rules' is more flexible, and should be preferred over this field for new resources. This field may be deprecated in the future. If multiple policies are set, you should choose between UNION OR INTERSECTION.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "project": {
+        "type": "string",
+        "description": "The ID of the project in which the resource belongs. If it is not provided, the provider project is used.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "table": {
+        "type": "string",
+        "description": "The name of the table.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "max_age": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "days": {
+              "type": "number",
+              "description": "Number of days before applying GC policy.",
+              "description_kind": "plain",
+              "deprecated": true,
+              "optional": true,
+              "computed": true
+            },
+            "duration": {
+              "type": "string",
+              "description": "Duration before applying GC policy",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description": "NOTE: 'gc_rules' is more flexible, and should be preferred over this field for new resources. This field may be deprecated in the future. GC policy that applies to all cells older than the given age.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "max_version": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "number": {
+              "type": "number",
+              "description": "Number of version before applying the GC policy.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "NOTE: 'gc_rules' is more flexible, and should be preferred over this field for new resources. This field may be deprecated in the future. GC policy that applies to all versions of a cell except for the most recent.",
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

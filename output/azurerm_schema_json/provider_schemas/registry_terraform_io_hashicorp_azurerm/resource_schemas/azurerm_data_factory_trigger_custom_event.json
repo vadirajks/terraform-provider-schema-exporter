@@ -1,0 +1,125 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "activated": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "additional_properties": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "annotations": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "data_factory_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "eventgrid_topic_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "events": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "subject_begins_with": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "subject_ends_with": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "pipeline": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "parameters": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

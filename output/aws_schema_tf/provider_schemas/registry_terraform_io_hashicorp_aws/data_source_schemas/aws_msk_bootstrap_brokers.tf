@@ -1,0 +1,15 @@
+data "aws_msk_bootstrap_brokers" "name" {
+  cluster_arn = string (Required)
+  bootstrap_brokers = string (Computed)
+  bootstrap_brokers_public_sasl_iam = string (Computed)
+  bootstrap_brokers_public_sasl_scram = string (Computed)
+  bootstrap_brokers_public_tls = string (Computed)
+  bootstrap_brokers_sasl_iam = string (Computed)
+  bootstrap_brokers_sasl_scram = string (Computed)
+  bootstrap_brokers_tls = string (Computed)
+  bootstrap_brokers_vpc_connectivity_sasl_iam = string (Computed)
+  bootstrap_brokers_vpc_connectivity_sasl_scram = string (Computed)
+  bootstrap_brokers_vpc_connectivity_tls = string (Computed)
+  id = string (Optional, Computed)
+  region = string (Optional, Computed)
+}

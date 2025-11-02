@@ -1,0 +1,172 @@
+version: 0
+block:
+  attributes:
+    access_token:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+    adb_domain:
+      type: string
+      description_kind: plain
+      required: true
+    additional_properties:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    annotations:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    data_factory_id:
+      type: string
+      description_kind: plain
+      required: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    existing_cluster_id:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    integration_runtime_name:
+      type: string
+      description_kind: plain
+      optional: true
+    msi_work_space_resource_id:
+      type: string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    parameters:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    instance_pool:
+      nesting_mode: list
+      block:
+        attributes:
+          cluster_version:
+            type: string
+            description_kind: plain
+            required: true
+          instance_pool_id:
+            type: string
+            description_kind: plain
+            required: true
+          max_number_of_workers:
+            type: number
+            description_kind: plain
+            optional: true
+          min_number_of_workers:
+            type: number
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    key_vault_password:
+      nesting_mode: list
+      block:
+        attributes:
+          linked_service_name:
+            type: string
+            description_kind: plain
+            required: true
+          secret_name:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    new_cluster_config:
+      nesting_mode: list
+      block:
+        attributes:
+          cluster_version:
+            type: string
+            description_kind: plain
+            required: true
+          custom_tags:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+          driver_node_type:
+            type: string
+            description_kind: plain
+            optional: true
+          init_scripts:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          log_destination:
+            type: string
+            description_kind: plain
+            optional: true
+          max_number_of_workers:
+            type: number
+            description_kind: plain
+            optional: true
+          min_number_of_workers:
+            type: number
+            description_kind: plain
+            optional: true
+          node_type:
+            type: string
+            description_kind: plain
+            required: true
+          spark_config:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+          spark_environment_variables:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

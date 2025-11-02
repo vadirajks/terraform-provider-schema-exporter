@@ -1,0 +1,42 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+    service_properties:
+      type:
+      - list
+      - - object
+        - gcp_project: string
+          location: string
+          zone: string
+      description_kind: plain
+      computed: true
+    service_reference:
+      type:
+      - list
+      - - object
+        - path: string
+          uri: string
+      description_kind: plain
+      computed: true
+    service_uri:
+      type: string
+      description_kind: plain
+      required: true
+  description_kind: plain

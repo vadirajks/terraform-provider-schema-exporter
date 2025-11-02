@@ -1,0 +1,48 @@
+version: 0
+block:
+  attributes:
+    backup_vault_id:
+      type: string
+      description_kind: plain
+      required: true
+    backups:
+      type:
+      - list
+      - - object
+        - backup_id: string
+          backup_vault_id: string
+          create_time: string
+          data_source_id: string
+          location: string
+          name: string
+      description: List of all backups under data source.
+      description_kind: plain
+      computed: true
+    create_time:
+      type: string
+      description: The time when the backup was created.
+      description_kind: plain
+      computed: true
+    data_source_id:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: Name of resource
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      required: true
+  description_kind: plain

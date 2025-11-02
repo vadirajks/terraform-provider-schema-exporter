@@ -1,0 +1,88 @@
+version: 0
+block:
+  attributes:
+    created_at:
+      type: string
+      description: Time at which the developer was created in milliseconds since epoch.
+      description_kind: plain
+      computed: true
+    email:
+      type: string
+      description: Email address of the developer. This value is used to uniquely identify the developer in Apigee hybrid. Note that the email address has to be in lowercase only..
+      description_kind: plain
+      required: true
+    first_name:
+      type: string
+      description: First name of the developer.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    last_modified_at:
+      type: string
+      description: Time at which the developer was last modified in milliseconds since epoch.
+      description_kind: plain
+      computed: true
+    last_name:
+      type: string
+      description: Last name of the developer.
+      description_kind: plain
+      required: true
+    org_id:
+      type: string
+      description: The Apigee Organization associated with the Apigee instance, in the format 'organizations/{{org_name}}'.
+      description_kind: plain
+      required: true
+    organizatio_name:
+      type: string
+      description: Name of the Apigee organization in which the developer resides.
+      description_kind: plain
+      computed: true
+    status:
+      type: string
+      description: Status of the developer. Valid values are active and inactive.
+      description_kind: plain
+      computed: true
+    user_name:
+      type: string
+      description: User name of the developer. Not used by Apigee hybrid.
+      description_kind: plain
+      required: true
+  block_types:
+    attributes:
+      nesting_mode: list
+      block:
+        attributes:
+          name:
+            type: string
+            description: Key of the attribute
+            description_kind: plain
+            optional: true
+          value:
+            type: string
+            description: Value of the attribute
+            description_kind: plain
+            optional: true
+        description: Developer attributes (name/value pairs). The custom attribute limit is 18.
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

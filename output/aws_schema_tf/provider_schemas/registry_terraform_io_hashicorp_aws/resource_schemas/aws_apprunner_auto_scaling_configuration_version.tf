@@ -1,0 +1,16 @@
+resource "aws_apprunner_auto_scaling_configuration_version" "name" {
+  auto_scaling_configuration_name = string (Required)
+  arn = string (Computed)
+  auto_scaling_configuration_revision = number (Computed)
+  has_associated_service = bool (Computed)
+  id = string (Optional, Computed)
+  is_default = bool (Computed)
+  latest = bool (Computed)
+  max_concurrency = number (Optional)
+  max_size = number (Optional)
+  min_size = number (Optional)
+  region = string (Optional, Computed)
+  status = string (Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+}

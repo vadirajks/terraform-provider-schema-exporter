@@ -1,0 +1,66 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "cloud_exadata_infrastructure": {
+        "type": "string",
+        "description": "exadata",
+        "description_kind": "plain",
+        "required": true
+      },
+      "db_servers": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "display_name": "string",
+              "properties": [
+                "list",
+                [
+                  "object",
+                  {
+                    "db_node_ids": [
+                      "list",
+                      "string"
+                    ],
+                    "db_node_storage_size_gb": "number",
+                    "max_db_node_storage_size_gb": "number",
+                    "max_memory_size_gb": "number",
+                    "max_ocpu_count": "number",
+                    "memory_size_gb": "number",
+                    "ocid": "string",
+                    "ocpu_count": "number",
+                    "state": "string",
+                    "vm_count": "number"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "location",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description": "The ID of the project in which the dataset is located. If it is not provided, the provider project is used.",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

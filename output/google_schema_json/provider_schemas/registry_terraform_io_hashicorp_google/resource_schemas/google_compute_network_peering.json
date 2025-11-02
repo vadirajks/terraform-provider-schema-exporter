@@ -1,0 +1,103 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "export_custom_routes": {
+        "type": "bool",
+        "description": "Whether to export the custom routes to the peer network. Defaults to false.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "export_subnet_routes_with_public_ip": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "import_custom_routes": {
+        "type": "bool",
+        "description": "Whether to export the custom routes from the peer network. Defaults to false.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "import_subnet_routes_with_public_ip": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the peering.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "network": {
+        "type": "string",
+        "description": "The primary network of the peering.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "peer_network": {
+        "type": "string",
+        "description": "The peer network in the peering. The peer network may belong to a different project.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "stack_type": {
+        "type": "string",
+        "description": "Which IP version(s) of traffic and routes are allowed to be imported or exported between peer networks. The default value is IPV4_ONLY. Possible values: [\"IPV4_ONLY\", \"IPV4_IPV6\"]",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "state": {
+        "type": "string",
+        "description": "State for the peering, either ACTIVE or INACTIVE. The peering is ACTIVE when there's a matching configuration in the peer network.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "state_details": {
+        "type": "string",
+        "description": "Details about the current state of the peering.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_strategy": {
+        "type": "string",
+        "description": "The update strategy determines the semantics for updates and deletes to the peering connection configuration. The default value is INDEPENDENT. Possible values: [\"INDEPENDENT\", \"CONSENSUS\"]",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

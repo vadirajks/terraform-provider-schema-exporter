@@ -1,0 +1,128 @@
+version: 1
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      deprecated: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    export:
+      nesting_mode: list
+      block:
+        attributes:
+          description:
+            type: string
+            description_kind: plain
+            optional: true
+          export_arn:
+            type: string
+            description_kind: plain
+            computed: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          data_query:
+            nesting_mode: list
+            block:
+              attributes:
+                query_statement:
+                  type: string
+                  description_kind: plain
+                  required: true
+                table_configurations:
+                  type:
+                  - map
+                  - - map
+                    - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          destination_configurations:
+            nesting_mode: list
+            block:
+              block_types:
+                s3_destination:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      s3_bucket:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      s3_prefix:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      s3_region:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      s3_output_configurations:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            compression:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            format:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            output_type:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            overwrite:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                    description_kind: plain
+              description_kind: plain
+          refresh_cadence:
+            nesting_mode: list
+            block:
+              attributes:
+                frequency:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

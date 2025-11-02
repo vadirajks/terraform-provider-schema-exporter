@@ -1,0 +1,167 @@
+version: 0
+block:
+  attributes:
+    allowed_run_frequencies:
+      type:
+      - list
+      - string
+      description: Output only. The run frequencies that are allowed for the rule. Populated in BASIC view and FULL view.
+      description_kind: plain
+      computed: true
+    author:
+      type: string
+      description: Output only. The author of the rule. Extracted from the meta section of text. Populated in BASIC view and FULL view.
+      description_kind: plain
+      computed: true
+    compilation_diagnostics:
+      type:
+      - list
+      - - object
+        - message: string
+          position:
+          - list
+          - - object
+            - end_column: number
+              end_line: number
+              start_column: number
+              start_line: number
+          severity: string
+          uri: string
+      description: Output only. A list of a rule's corresponding compilation diagnostic messages such as compilation errors and compilation warnings. Populated in FULL view.
+      description_kind: plain
+      computed: true
+    compilation_state:
+      type: string
+      description: 'Output only. The current compilation state of the rule. Populated in FULL view. Possible values: COMPILATION_STATE_UNSPECIFIED SUCCEEDED FAILED'
+      description_kind: plain
+      computed: true
+    create_time:
+      type: string
+      description: Output only. The timestamp of when the rule was created. Populated in FULL view.
+      description_kind: plain
+      computed: true
+    data_tables:
+      type:
+      - list
+      - string
+      description: Output only. Resource names of the data tables used in this rule.
+      description_kind: plain
+      computed: true
+    deletion_policy:
+      type: string
+      description: 'Policy to determine if the rule should be deleted forcefully. If deletion_policy = "FORCE", any retrohunts and any detections associated with the rule will also be deleted. If deletion_policy = "DEFAULT", the call will only succeed if the rule has no associated retrohunts, including completed retrohunts, and no associated detections. Regardless of this field''s value, the rule deployment associated with this rule will also be deleted. Possible values: DEFAULT, FORCE'
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description: Output only. Display name of the rule. Populated in BASIC view and FULL view.
+      description_kind: plain
+      computed: true
+    etag:
+      type: string
+      description: The etag for this rule. If this is provided on update, the request will succeed if and only if it matches the server-computed value, and will fail with an ABORTED error otherwise. Populated in BASIC view and FULL view.
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instance:
+      type: string
+      description: The unique identifier for the Chronicle instance, which is the same as the customer ID.
+      description_kind: plain
+      required: true
+    location:
+      type: string
+      description: The location of the resource. This is the geographical region where the Chronicle instance resides, such as "us" or "europe-west2".
+      description_kind: plain
+      required: true
+    metadata:
+      type:
+      - map
+      - string
+      description: Output only. Additional metadata specified in the meta section of text. Populated in FULL view.
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: 'Full resource name for the rule. This unique identifier is generated using values provided for the URL parameters. Format: projects/{project}/locations/{location}/instances/{instance}/rules/{rule}'
+      description_kind: plain
+      computed: true
+    near_real_time_live_rule_eligible:
+      type: bool
+      description: Output only. Indicate the rule can run in near real time live rule. If this is true, the rule uses the near real time live rule when the run frequency is set to LIVE.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    reference_lists:
+      type:
+      - list
+      - string
+      description: Output only. Resource names of the reference lists used in this rule. Populated in FULL view.
+      description_kind: plain
+      computed: true
+    revision_create_time:
+      type: string
+      description: Output only. The timestamp of when the rule revision was created. Populated in FULL, REVISION_METADATA_ONLY views.
+      description_kind: plain
+      computed: true
+    revision_id:
+      type: string
+      description: 'Output only. The revision ID of the rule. A new revision is created whenever the rule text is changed in any way. Format: v_{10 digits}_{9 digits} Populated in REVISION_METADATA_ONLY view and FULL view.'
+      description_kind: plain
+      computed: true
+    rule_id:
+      type: string
+      description: Rule Id is the ID of the Rule.
+      description_kind: plain
+      optional: true
+      computed: true
+    scope:
+      type: string
+      description: 'Resource name of the DataAccessScope bound to this rule. Populated in BASIC view and FULL view. If reference lists are used in the rule, validations will be performed against this scope to ensure that the reference lists are compatible with both the user''s and the rule''s scopes. The scope should be in the format: "projects/{project}/locations/{location}/instances/{instance}/dataAccessScopes/{scope}".'
+      description_kind: plain
+      optional: true
+    severity:
+      type:
+      - list
+      - - object
+        - display_name: string
+      description: Severity represents the severity level of the rule.
+      description_kind: plain
+      computed: true
+    text:
+      type: string
+      description: The YARA-L content of the rule. Populated in FULL view.
+      description_kind: plain
+      optional: true
+    type:
+      type: string
+      description: 'Possible values: RULE_TYPE_UNSPECIFIED SINGLE_EVENT MULTI_EVENT'
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

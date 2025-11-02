@@ -1,0 +1,55 @@
+version: 0
+block:
+  attributes:
+    data:
+      type:
+      - map
+      - string
+      description: 'The "data" field of Kubernetes ConfigMap, organized in key-value pairs. For details see: https://kubernetes.io/docs/concepts/configuration/configmap/'
+      description_kind: plain
+      optional: true
+    environment:
+      type: string
+      description: Environment where the Kubernetes ConfigMap will be stored and used.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: Name of the Kubernetes ConfigMap.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: The location or Compute Engine region for the environment.
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

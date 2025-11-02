@@ -1,0 +1,83 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "activation_status": {
+        "type": "string",
+        "description": "The activation status of the preview feature. Possible values: [\"ENABLED\", \"ACTIVATION_STATE_UNSPECIFIED\"]",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the preview feature.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "rollout_operation": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "rollout_input": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "predefined_rollout_plan": {
+                    "type": "string",
+                    "description": "Predefined rollout plans. Possible values: [\"ROLLOUT_PLAN_FAST_ROLLOUT\"]",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "The input for the rollout operation.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "The rollout operation of the feature.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

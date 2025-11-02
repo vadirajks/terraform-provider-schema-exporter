@@ -1,0 +1,388 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "json": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "version": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "attachment_policies": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "condition_logic": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "description": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "rule_number": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "action": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "add_to_network_function_group": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "association_method": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "require_acceptance": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "segment": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "tag_value_of_key": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "conditions": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "key": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "operator": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "value": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "core_network_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "asn_ranges": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "dns_support": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "inside_cidr_blocks": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "security_group_referencing_support": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "vpn_ecmp_support": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "edge_locations": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "asn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "inside_cidr_blocks": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "location": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "network_function_groups": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "description": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "require_attachment_acceptance": {
+              "type": "bool",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "segment_actions": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "action": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "description": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "destination_cidr_blocks": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "destinations": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "mode": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "segment": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "share_with": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "share_with_except": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "via": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "network_function_groups": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "with_edge_override": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "edge_sets": {
+                          "type": [
+                            "set",
+                            [
+                              "set",
+                              "string"
+                            ]
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "use_edge": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "deprecated": true,
+                          "optional": true
+                        },
+                        "use_edge_location": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "when_sent_to": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "segments": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "segments": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "allow_filter": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "deny_filter": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "description": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "edge_locations": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "isolate_attachments": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "require_attachment_acceptance": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

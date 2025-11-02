@@ -1,0 +1,18 @@
+data "google_compute_subnetwork" "name" {
+  description = string (Computed)
+  external_ipv6_prefix = string (Computed)
+  gateway_address = string (Computed)
+  id = string (Optional, Computed)
+  internal_ipv6_prefix = string (Computed)
+  ip_cidr_range = string (Computed)
+  ipv6_access_type = string (Computed)
+  name = string (Optional)
+  network = string (Computed)
+  private_ip_google_access = bool (Computed)
+  project = string (Optional, Computed)
+  region = string (Optional, Computed)
+  secondary_ip_range = ['list', ['object', {'ip_cidr_range': 'string', 'range_name': 'string'}]] (Computed)
+  self_link = string (Optional, Computed)
+  stack_type = string (Computed)
+  subnetwork_id = number (Computed)
+}

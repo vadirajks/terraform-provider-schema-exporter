@@ -1,0 +1,47 @@
+version: 0
+block:
+  attributes:
+    description:
+      type: string
+      description: The description of the source (max of 1024 characters).
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description: "The source\u2019s display name. A source\u2019s display name must be unique amongst its siblings, for example, two sources with the same parent can't share the same display name. The display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens, and underscores, and can be no longer than 32 characters."
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: The resource name of this source, in the format 'organizations/{{organization}}/sources/{{source}}'.
+      description_kind: plain
+      computed: true
+    organization:
+      type: string
+      description: The organization whose Cloud Security Command Center the Source lives in.
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

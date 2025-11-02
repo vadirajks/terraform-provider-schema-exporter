@@ -1,0 +1,54 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "domain_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "enabled_regions": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "required": true
+      },
+      "environment_blueprint_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "manage_access_role_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "provisioning_role_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "regional_parameters": {
+        "type": [
+          "map",
+          [
+            "map",
+            "string"
+          ]
+        ],
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

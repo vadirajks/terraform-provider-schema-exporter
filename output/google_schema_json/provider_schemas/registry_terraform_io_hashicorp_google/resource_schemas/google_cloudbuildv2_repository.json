@@ -1,0 +1,101 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "annotations": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Allows clients to store small amounts of arbitrary data. **Note**: This field is non-authoritative, and will only manage the annotations present in your configuration. Please refer to the field 'effective_annotations' for all of the annotations present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "Output only. Server assigned timestamp for when the connection was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "effective_annotations": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of annotations (key/value pairs) present on the resource in GCP, including the annotations configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "etag": {
+        "type": "string",
+        "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location for the resource",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the repository.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "parent_connection": {
+        "type": "string",
+        "description": "The connection for the resource",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "remote_uri": {
+        "type": "string",
+        "description": "Required. Git Clone HTTPS URI.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Output only. Server assigned timestamp for when the connection was updated.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

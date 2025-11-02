@@ -1,0 +1,188 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "ami_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "capacity_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cluster_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "disk_size": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "instance_types": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "launch_template": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "id": "string",
+              "name": "string",
+              "version": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "node_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "node_role_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "release_version": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "remote_access": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "ec2_ssh_key": "string",
+              "source_security_group_ids": [
+                "set",
+                "string"
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "resources": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "autoscaling_groups": [
+                "list",
+                [
+                  "object",
+                  {
+                    "name": "string"
+                  }
+                ]
+              ],
+              "remote_access_security_group_id": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "scaling_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "desired_size": "number",
+              "max_size": "number",
+              "min_size": "number"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "status": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "subnet_ids": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "taints": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "effect": "string",
+              "key": "string",
+              "value": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "version": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

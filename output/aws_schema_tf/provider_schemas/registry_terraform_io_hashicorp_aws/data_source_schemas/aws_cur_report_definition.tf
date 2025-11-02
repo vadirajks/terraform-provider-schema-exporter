@@ -1,0 +1,15 @@
+data "aws_cur_report_definition" "name" {
+  report_name = string (Required)
+  additional_artifacts = ['set', 'string'] (Computed)
+  additional_schema_elements = ['set', 'string'] (Computed)
+  compression = string (Computed)
+  format = string (Computed)
+  id = string (Optional, Computed)
+  refresh_closed_reports = bool (Computed)
+  report_versioning = string (Computed)
+  s3_bucket = string (Computed)
+  s3_prefix = string (Computed)
+  s3_region = string (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  time_unit = string (Computed)
+}

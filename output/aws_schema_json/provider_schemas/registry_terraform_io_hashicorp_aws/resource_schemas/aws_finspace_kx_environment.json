@@ -1,0 +1,218 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "availability_zones": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "created_timestamp": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "infrastructure_account_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "kms_key_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "last_modified_timestamp": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "status": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "custom_dns_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "custom_dns_server_ip": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "custom_dns_server_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "transit_gateway_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "routable_cidr_space": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "transit_gateway_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "attachment_network_acl_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "cidr_block": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "protocol": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "rule_action": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "rule_number": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "icmp_type_code": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "code": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "type": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "port_range": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "from": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "to": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 100
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

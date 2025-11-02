@@ -1,0 +1,235 @@
+version: 0
+block:
+  attributes:
+    creation_time:
+      type: string
+      description: The time that this resource was created on the server. This is in RFC3339 text format.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: A textual description field. Defaults to 'Managed by Terraform'.
+      description_kind: plain
+      optional: true
+    dns_name:
+      type: string
+      description: The DNS name of this managed zone, for instance "example.com.".
+      description_kind: plain
+      required: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    force_destroy:
+      type: bool
+      description: Set this true to delete all records in the zone.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'A set of key/value label pairs to assign to this ManagedZone. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    managed_zone_id:
+      type: number
+      description: Unique identifier for the resource; defined by the server.
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: User assigned name for this resource. Must be unique within the project.
+      description_kind: plain
+      required: true
+    name_servers:
+      type:
+      - list
+      - string
+      description: Delegate your managed_zone to these virtual name servers; defined by the server
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    visibility:
+      type: string
+      description: 'The zone''s visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources. Default value: "public" Possible values: ["private", "public"]'
+      description_kind: plain
+      optional: true
+  block_types:
+    cloud_logging_config:
+      nesting_mode: list
+      block:
+        attributes:
+          enable_logging:
+            type: bool
+            description: If set, enable query logging for this ManagedZone. False by default, making logging opt-in.
+            description_kind: plain
+            required: true
+        description: Cloud logging configuration
+        description_kind: plain
+      max_items: 1
+    dnssec_config:
+      nesting_mode: list
+      block:
+        attributes:
+          kind:
+            type: string
+            description: Identifies what kind of resource this is
+            description_kind: plain
+            optional: true
+          non_existence:
+            type: string
+            description: 'Specifies the mechanism used to provide authenticated denial-of-existence responses. non_existence can only be updated when the state is ''off''. Possible values: ["nsec", "nsec3"]'
+            description_kind: plain
+            optional: true
+            computed: true
+          state:
+            type: string
+            description: 'Specifies whether DNSSEC is enabled, and what mode it is in Possible values: ["off", "on", "transfer"]'
+            description_kind: plain
+            optional: true
+        block_types:
+          default_key_specs:
+            nesting_mode: list
+            block:
+              attributes:
+                algorithm:
+                  type: string
+                  description: 'String mnemonic specifying the DNSSEC algorithm of this key Possible values: ["ecdsap256sha256", "ecdsap384sha384", "rsasha1", "rsasha256", "rsasha512"]'
+                  description_kind: plain
+                  optional: true
+                key_length:
+                  type: number
+                  description: Length of the keys in bits
+                  description_kind: plain
+                  optional: true
+                key_type:
+                  type: string
+                  description: 'Specifies whether this is a key signing key (KSK) or a zone signing key (ZSK). Key signing keys have the Secure Entry Point flag set and, when active, will only be used to sign resource record sets of type DNSKEY. Zone signing keys do not have the Secure Entry Point flag set and will be used to sign all other types of resource record sets. Possible values: ["keySigning", "zoneSigning"]'
+                  description_kind: plain
+                  optional: true
+                kind:
+                  type: string
+                  description: Identifies what kind of resource this is
+                  description_kind: plain
+                  optional: true
+              description: Specifies parameters that will be used for generating initial DnsKeys for this ManagedZone. If you provide a spec for keySigning or zoneSigning, you must also provide one for the other. default_key_specs can only be updated when the state is 'off'.
+              description_kind: plain
+        description: DNSSEC configuration
+        description_kind: plain
+      max_items: 1
+    forwarding_config:
+      nesting_mode: list
+      block:
+        block_types:
+          target_name_servers:
+            nesting_mode: set
+            block:
+              attributes:
+                domain_name:
+                  type: string
+                  description: Fully qualified domain name for the forwarding target.
+                  description_kind: plain
+                  optional: true
+                forwarding_path:
+                  type: string
+                  description: 'Forwarding path for this TargetNameServer. If unset or ''default'' Cloud DNS will make forwarding decision based on address ranges, i.e. RFC1918 addresses go to the VPC, Non-RFC1918 addresses go to the Internet. When set to ''private'', Cloud DNS will always send queries through VPC for this target Possible values: ["default", "private"]'
+                  description_kind: plain
+                  optional: true
+                ipv4_address:
+                  type: string
+                  description: IPv4 address of a target name server.
+                  description_kind: plain
+                  optional: true
+              description: List of target name servers to forward to. Cloud DNS will select the best available name server if more than one target is given.
+              description_kind: plain
+            min_items: 1
+        description: The presence for this field indicates that outbound forwarding is enabled for this zone. The value of this field contains the set of destinations to forward to.
+        description_kind: plain
+      max_items: 1
+    peering_config:
+      nesting_mode: list
+      block:
+        block_types:
+          target_network:
+            nesting_mode: list
+            block:
+              attributes:
+                network_url:
+                  type: string
+                  description: The id or fully qualified URL of the VPC network to forward queries to. This should be formatted like 'projects/{project}/global/networks/{network}' or 'https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}'
+                  description_kind: plain
+                  required: true
+              description: The network with which to peer.
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description: The presence of this field indicates that DNS Peering is enabled for this zone. The value of this field contains the network to peer with.
+        description_kind: plain
+      max_items: 1
+    private_visibility_config:
+      nesting_mode: list
+      block:
+        block_types:
+          gke_clusters:
+            nesting_mode: list
+            block:
+              attributes:
+                gke_cluster_name:
+                  type: string
+                  description: The resource name of the cluster to bind this ManagedZone to. This should be specified in the format like 'projects/*/locations/*/clusters/*'
+                  description_kind: plain
+                  required: true
+              description: The list of Google Kubernetes Engine clusters that can see this zone.
+              description_kind: plain
+          networks:
+            nesting_mode: set
+            block:
+              attributes:
+                network_url:
+                  type: string
+                  description: The id or fully qualified URL of the VPC network to bind to. This should be formatted like 'projects/{project}/global/networks/{network}' or 'https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}'
+                  description_kind: plain
+                  required: true
+              description: The list of VPC networks that can see this zone. Until the provider updates to use the Terraform 0.12 SDK in a future release, you may experience issues with this resource while updating. If you've defined a 'networks' block and add another 'networks' block while keeping the old block, Terraform will see an incorrect diff and apply an incorrect update to the resource. If you encounter this issue, remove all 'networks' blocks in an update and then apply another update adding all of them back simultaneously.
+              description_kind: plain
+        description: For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from. At least one of 'gke_clusters' or 'networks' must be specified.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

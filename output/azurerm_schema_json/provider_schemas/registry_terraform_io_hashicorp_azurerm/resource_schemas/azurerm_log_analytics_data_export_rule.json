@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "destination_resource_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "export_rule_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "table_names": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "required": true
+      },
+      "workspace_resource_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

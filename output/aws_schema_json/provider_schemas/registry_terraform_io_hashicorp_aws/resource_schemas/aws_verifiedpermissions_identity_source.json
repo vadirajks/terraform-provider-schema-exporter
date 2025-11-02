@@ -1,0 +1,166 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "policy_store_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "principal_entity_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "cognito_user_pool_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "client_ids": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "user_pool_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "group_configuration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "group_entity_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "open_id_connect_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "entity_id_prefix": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "issuer": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "group_configuration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "group_claim": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "group_entity_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  },
+                  "token_selection": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "block_types": {
+                        "access_token_only": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "audiences": {
+                                "type": [
+                                  "list",
+                                  "string"
+                                ],
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "principal_id_claim": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          }
+                        },
+                        "identity_token_only": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "client_ids": {
+                                "type": [
+                                  "list",
+                                  "string"
+                                ],
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "principal_id_claim": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          }
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,93 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    endpoint_url:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    role_arn:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    event_bus:
+      nesting_mode: list
+      block:
+        attributes:
+          event_bus_arn:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 2
+      max_items: 2
+    replication_config:
+      nesting_mode: list
+      block:
+        attributes:
+          state:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    routing_config:
+      nesting_mode: list
+      block:
+        block_types:
+          failover_config:
+            nesting_mode: list
+            block:
+              block_types:
+                primary:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      health_check:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+                secondary:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      route:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+  description_kind: plain

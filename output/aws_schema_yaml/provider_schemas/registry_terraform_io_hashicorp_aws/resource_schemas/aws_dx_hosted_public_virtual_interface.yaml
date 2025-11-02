@@ -1,0 +1,86 @@
+version: 0
+block:
+  attributes:
+    address_family:
+      type: string
+      description_kind: plain
+      required: true
+    amazon_address:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    amazon_side_asn:
+      type: string
+      description_kind: plain
+      computed: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    aws_device:
+      type: string
+      description_kind: plain
+      computed: true
+    bgp_asn:
+      type: number
+      description_kind: plain
+      required: true
+    bgp_auth_key:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    connection_id:
+      type: string
+      description_kind: plain
+      required: true
+    customer_address:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    owner_account_id:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    route_filter_prefixes:
+      type:
+      - set
+      - string
+      description_kind: plain
+      required: true
+    vlan:
+      type: number
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,15 @@
+data "google_folder" "name" {
+  folder = string (Required)
+  configured_capabilities = ['list', 'string'] (Computed)
+  create_time = string (Computed)
+  deletion_protection = bool (Computed)
+  display_name = string (Computed)
+  folder_id = string (Computed)
+  id = string (Optional, Computed)
+  lifecycle_state = string (Computed)
+  lookup_organization = bool (Optional)
+  management_project = string (Computed)
+  name = string (Computed)
+  organization = string (Computed)
+  parent = string (Computed)
+}

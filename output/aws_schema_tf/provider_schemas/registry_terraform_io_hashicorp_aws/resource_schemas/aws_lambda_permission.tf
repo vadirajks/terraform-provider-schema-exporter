@@ -1,0 +1,15 @@
+resource "aws_lambda_permission" "name" {
+  action = string (Required)
+  function_name = string (Required)
+  principal = string (Required)
+  event_source_token = string (Optional)
+  function_url_auth_type = string (Optional)
+  id = string (Optional, Computed)
+  principal_org_id = string (Optional)
+  qualifier = string (Optional)
+  region = string (Optional, Computed)
+  source_account = string (Optional)
+  source_arn = string (Optional)
+  statement_id = string (Optional, Computed)
+  statement_id_prefix = string (Optional, Computed)
+}

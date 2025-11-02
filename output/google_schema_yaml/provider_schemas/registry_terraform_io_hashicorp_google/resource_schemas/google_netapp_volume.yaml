@@ -1,0 +1,556 @@
+version: 0
+block:
+  attributes:
+    active_directory:
+      type: string
+      description: Reports the resource name of the Active Directory policy being used. Inherited from storage pool.
+      description_kind: plain
+      computed: true
+    capacity_gib:
+      type: string
+      description: Capacity of the volume (in GiB).
+      description_kind: plain
+      required: true
+    cold_tier_size_gib:
+      type: string
+      description: Output only. Size of the volume cold tier data in GiB.
+      description_kind: plain
+      computed: true
+    create_time:
+      type: string
+      description: 'Create time of the volume. A timestamp in RFC3339 UTC "Zulu" format. Examples: "2023-06-22T09:13:01.617Z".'
+      description_kind: plain
+      computed: true
+    deletion_policy:
+      type: string
+      description: 'Policy to determine if the volume should be deleted forcefully. Volumes may have nested snapshot resources. Deleting such a volume will fail. Setting this parameter to FORCE will delete volumes including nested snapshots. Possible values: DEFAULT, FORCE.'
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description: An optional description of this resource.
+      description_kind: plain
+      optional: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    encryption_type:
+      type: string
+      description: Reports the data-at-rest encryption type of the volume. Inherited from storage pool.
+      description_kind: plain
+      computed: true
+    has_replication:
+      type: bool
+      description: Indicates whether the volume is part of a volume replication relationship.
+      description_kind: plain
+      computed: true
+    hot_tier_size_used_gib:
+      type: string
+      description: Total hot tier data rounded down to the nearest GiB used by the volume. This field is only used for flex Service Level
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kerberos_enabled:
+      type: bool
+      description: Flag indicating if the volume is a kerberos volume or not, export policy rules control kerberos security modes (krb5, krb5i, krb5p).
+      description_kind: plain
+      optional: true
+    kms_config:
+      type: string
+      description: Reports the CMEK policy resurce name being used for volume encryption. Inherited from storage pool.
+      description_kind: plain
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Labels as key value pairs. Example: ''{ "owner": "Bob", "department": "finance", "purpose": "testing" }''. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    large_capacity:
+      type: bool
+      description: Optional. Flag indicating if the volume will be a large capacity volume or a regular volume.
+      description_kind: plain
+      optional: true
+    ldap_enabled:
+      type: bool
+      description: Flag indicating if the volume is NFS LDAP enabled or not. Inherited from storage pool.
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description: Name of the pool location. Usually a region name, expect for some STANDARD service level pools which require a zone name.
+      description_kind: plain
+      required: true
+    mount_options:
+      type:
+      - list
+      - - object
+        - export: string
+          export_full: string
+          instructions: string
+          ip_address: string
+          protocol: string
+      description: Reports mount instructions for this volume.
+      description_kind: plain
+      computed: true
+    multiple_endpoints:
+      type: bool
+      description: Optional. Flag indicating if the volume will have an IP address per node for volumes supporting multiple IP endpoints. Only the volume with largeCapacity will be allowed to have multiple endpoints.
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: The name of the volume. Needs to be unique per location.
+      description_kind: plain
+      required: true
+    network:
+      type: string
+      description: 'VPC network name with format: ''projects/{{project}}/global/networks/{{network}}''. Inherited from storage pool.'
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    protocols:
+      type:
+      - list
+      - string
+      description: 'The protocol of the volume. Allowed combinations are ''[''NFSV3'']'', ''[''NFSV4'']'', ''[''SMB'']'', ''[''NFSV3'', ''NFSV4'']'', ''[''SMB'', ''NFSV3'']'' and ''[''SMB'', ''NFSV4'']''. Possible values: ["NFSV3", "NFSV4", "SMB"]'
+      description_kind: plain
+      required: true
+    psa_range:
+      type: string
+      description: Name of the Private Service Access allocated range. Inherited from storage pool.
+      description_kind: plain
+      computed: true
+    replica_zone:
+      type: string
+      description: Specifies the replica zone for regional volume.
+      description_kind: plain
+      computed: true
+    restricted_actions:
+      type:
+      - list
+      - string
+      description: 'List of actions that are restricted on this volume. Possible values: ["DELETE"]'
+      description_kind: plain
+      optional: true
+    security_style:
+      type: string
+      description: 'Security Style of the Volume. Use UNIX to use UNIX or NFSV4 ACLs for file permissions. Use NTFS to use NTFS ACLs for file permissions. Can only be set for volumes which use SMB together with NFS as protocol. Possible values: ["NTFS", "UNIX"]'
+      description_kind: plain
+      optional: true
+      computed: true
+    service_level:
+      type: string
+      description: 'Service level of the volume. Inherited from storage pool. Supported values are : PREMIUM, EXTREME, STANDARD, FLEX.'
+      description_kind: plain
+      computed: true
+    share_name:
+      type: string
+      description: Share name (SMB) or export path (NFS) of the volume. Needs to be unique per location.
+      description_kind: plain
+      required: true
+    smb_settings:
+      type:
+      - list
+      - string
+      description: 'Settings for volumes with SMB access. Possible values: ["ENCRYPT_DATA", "BROWSABLE", "CHANGE_NOTIFY", "NON_BROWSABLE", "OPLOCKS", "SHOW_SNAPSHOT", "SHOW_PREVIOUS_VERSIONS", "ACCESS_BASED_ENUMERATION", "CONTINUOUSLY_AVAILABLE"]'
+      description_kind: plain
+      optional: true
+      computed: true
+    snapshot_directory:
+      type: bool
+      description: If enabled, a NFS volume will contain a read-only .snapshot directory which provides access to each of the volume's snapshots. Will enable "Previous Versions" support for SMB.
+      description_kind: plain
+      optional: true
+    state:
+      type: string
+      description: State of the volume.
+      description_kind: plain
+      computed: true
+    state_details:
+      type: string
+      description: State details of the volume.
+      description_kind: plain
+      computed: true
+    storage_pool:
+      type: string
+      description: Name of the storage pool to create the volume in. Pool needs enough spare capacity to accommodate the volume.
+      description_kind: plain
+      required: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    throughput_mibps:
+      type: number
+      description: Optional. Custom Performance Total Throughput of the pool (in MiB/s).
+      description_kind: plain
+      optional: true
+      computed: true
+    unix_permissions:
+      type: string
+      description: Unix permission the mount point will be created with. Default is 0770. Applicable for UNIX security style volumes only.
+      description_kind: plain
+      optional: true
+      computed: true
+    used_gib:
+      type: string
+      description: Used capacity of the volume (in GiB). This is computed periodically and it does not represent the realtime usage.
+      description_kind: plain
+      computed: true
+    zone:
+      type: string
+      description: Specifies the active zone for regional volume.
+      description_kind: plain
+      computed: true
+  block_types:
+    backup_config:
+      nesting_mode: list
+      block:
+        attributes:
+          backup_policies:
+            type:
+            - list
+            - string
+            description: 'Specify a single backup policy ID for scheduled backups. Format: ''projects/{{projectId}}/locations/{{location}}/backupPolicies/{{backupPolicyName}}'''
+            description_kind: plain
+            optional: true
+          backup_vault:
+            type: string
+            description: 'ID of the backup vault to use. A backup vault is reqired to create manual or scheduled backups. Format: ''projects/{{projectId}}/locations/{{location}}/backupVaults/{{backupVaultName}}'''
+            description_kind: plain
+            optional: true
+          scheduled_backup_enabled:
+            type: bool
+            description: When set to true, scheduled backup is enabled on the volume. Omit if no backup_policy is specified.
+            description_kind: plain
+            optional: true
+        description: Backup configuration for the volume.
+        description_kind: plain
+      max_items: 1
+    export_policy:
+      nesting_mode: list
+      block:
+        block_types:
+          rules:
+            nesting_mode: list
+            block:
+              attributes:
+                access_type:
+                  type: string
+                  description: 'Defines the access type for clients matching the ''allowedClients'' specification. Possible values: ["READ_ONLY", "READ_WRITE", "READ_NONE"]'
+                  description_kind: plain
+                  optional: true
+                allowed_clients:
+                  type: string
+                  description: Defines the client ingress specification (allowed clients) as a comma separated list with IPv4 CIDRs or IPv4 host addresses.
+                  description_kind: plain
+                  optional: true
+                anon_uid:
+                  type: number
+                  description: An integer representing the anonymous user ID. Range is 0 to 4294967295. Required when 'squash_mode' is 'ROOT_SQUASH' or 'ALL_SQUASH'.
+                  description_kind: plain
+                  optional: true
+                has_root_access:
+                  type: string
+                  description: If enabled, the root user (UID = 0) of the specified clients doesn't get mapped to nobody (UID = 65534). This is also known as no_root_squash.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                kerberos5_read_only:
+                  type: bool
+                  description: If enabled (true) the rule defines a read only access for clients matching the 'allowedClients' specification. It enables nfs clients to mount using 'authentication' kerberos security mode.
+                  description_kind: plain
+                  optional: true
+                kerberos5_read_write:
+                  type: bool
+                  description: If enabled (true) the rule defines read and write access for clients matching the 'allowedClients' specification. It enables nfs clients to mount using 'authentication' kerberos security mode. The 'kerberos5ReadOnly' value is ignored if this is enabled.
+                  description_kind: plain
+                  optional: true
+                kerberos5i_read_only:
+                  type: bool
+                  description: If enabled (true) the rule defines a read only access for clients matching the 'allowedClients' specification. It enables nfs clients to mount using 'integrity' kerberos security mode.
+                  description_kind: plain
+                  optional: true
+                kerberos5i_read_write:
+                  type: bool
+                  description: If enabled (true) the rule defines read and write access for clients matching the 'allowedClients' specification. It enables nfs clients to mount using 'integrity' kerberos security mode. The 'kerberos5iReadOnly' value is ignored if this is enabled.
+                  description_kind: plain
+                  optional: true
+                kerberos5p_read_only:
+                  type: bool
+                  description: If enabled (true) the rule defines a read only access for clients matching the 'allowedClients' specification. It enables nfs clients to mount using 'privacy' kerberos security mode.
+                  description_kind: plain
+                  optional: true
+                kerberos5p_read_write:
+                  type: bool
+                  description: If enabled (true) the rule defines read and write access for clients matching the 'allowedClients' specification. It enables nfs clients to mount using 'privacy' kerberos security mode. The 'kerberos5pReadOnly' value is ignored if this is enabled.
+                  description_kind: plain
+                  optional: true
+                nfsv3:
+                  type: bool
+                  description: Enable to apply the export rule to NFSV3 clients.
+                  description_kind: plain
+                  optional: true
+                nfsv4:
+                  type: bool
+                  description: Enable to apply the export rule to NFSV4.1 clients.
+                  description_kind: plain
+                  optional: true
+                squash_mode:
+                  type: string
+                  description: 'SquashMode defines how remote user privileges are restricted when accessing an NFS export. It controls how the user identities (like root) are mapped to anonymous users to limit access and enforce security. Possible values: ["NO_ROOT_SQUASH", "ROOT_SQUASH", "ALL_SQUASH"]'
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              description: Export rules (up to 5) control NFS volume access.
+              description_kind: plain
+            min_items: 1
+        description: Export policy of the volume for NFSV3 and/or NFSV4.1 access.
+        description_kind: plain
+      max_items: 1
+    hybrid_replication_parameters:
+      nesting_mode: list
+      block:
+        attributes:
+          cluster_location:
+            type: string
+            description: Optional. Name of source cluster location associated with the Hybrid replication. This is a free-form field for the display purpose only.
+            description_kind: plain
+            optional: true
+          description:
+            type: string
+            description: Optional. Description of the replication.
+            description_kind: plain
+            optional: true
+          hybrid_replication_type:
+            type: string
+            description: 'Optional. Type of the volume''s hybrid replication. Possible values: ["MIGRATION", "CONTINUOUS_REPLICATION", "ONPREM_REPLICATION", "REVERSE_ONPREM_REPLICATION"]'
+            description_kind: plain
+            optional: true
+          labels:
+            type:
+            - map
+            - string
+            description: 'Optional. Labels to be added to the replication as the key value pairs. An object containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.'
+            description_kind: plain
+            optional: true
+          large_volume_constituent_count:
+            type: number
+            description: Optional. Constituent volume count for large volume.
+            description_kind: plain
+            optional: true
+          peer_cluster_name:
+            type: string
+            description: Required. Name of the user's local source cluster to be peered with the destination cluster.
+            description_kind: plain
+            optional: true
+          peer_ip_addresses:
+            type:
+            - list
+            - string
+            description: Required. List of node ip addresses to be peered with.
+            description_kind: plain
+            optional: true
+          peer_svm_name:
+            type: string
+            description: Required. Name of the user's local source vserver svm to be peered with the destination vserver svm.
+            description_kind: plain
+            optional: true
+          peer_volume_name:
+            type: string
+            description: Required. Name of the user's local source volume to be peered with the destination volume.
+            description_kind: plain
+            optional: true
+          replication:
+            type: string
+            description: Required. Desired name for the replication of this volume.
+            description_kind: plain
+            optional: true
+          replication_schedule:
+            type: string
+            description: 'Optional. Replication Schedule for the replication created. Possible values: ["EVERY_10_MINUTES", "HOURLY", "DAILY"]'
+            description_kind: plain
+            optional: true
+        description: The Hybrid Replication parameters for the volume.
+        description_kind: plain
+      max_items: 1
+    restore_parameters:
+      nesting_mode: list
+      block:
+        attributes:
+          source_backup:
+            type: string
+            description: 'Full name of the backup to use for creating this volume. ''source_snapshot'' and ''source_backup'' cannot be used simultaneously. Format: ''projects/{{project}}/locations/{{location}}/backupVaults/{{backupVaultId}}/backups/{{backup}}''.'
+            description_kind: plain
+            optional: true
+          source_snapshot:
+            type: string
+            description: 'Full name of the snapshot to use for creating this volume. ''source_snapshot'' and ''source_backup'' cannot be used simultaneously. Format: ''projects/{{project}}/locations/{{location}}/volumes/{{volume}}/snapshots/{{snapshot}}''.'
+            description_kind: plain
+            optional: true
+        description: Used to create this volume from a snapshot (= cloning) or an backup.
+        description_kind: plain
+      max_items: 1
+    snapshot_policy:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled:
+            type: bool
+            description: Enables automated snapshot creation according to defined schedule. Default is false. To disable automatic snapshot creation you have to remove the whole snapshot_policy block.
+            description_kind: plain
+            optional: true
+        block_types:
+          daily_schedule:
+            nesting_mode: list
+            block:
+              attributes:
+                hour:
+                  type: number
+                  description: Set the hour to create the snapshot (0-23), defaults to midnight (0).
+                  description_kind: plain
+                  optional: true
+                minute:
+                  type: number
+                  description: Set the minute of the hour to create the snapshot (0-59), defaults to the top of the hour (0).
+                  description_kind: plain
+                  optional: true
+                snapshots_to_keep:
+                  type: number
+                  description: The maximum number of snapshots to keep for the daily schedule.
+                  description_kind: plain
+                  required: true
+              description: Daily schedule policy.
+              description_kind: plain
+            max_items: 1
+          hourly_schedule:
+            nesting_mode: list
+            block:
+              attributes:
+                minute:
+                  type: number
+                  description: Set the minute of the hour to create the snapshot (0-59), defaults to the top of the hour (0).
+                  description_kind: plain
+                  optional: true
+                snapshots_to_keep:
+                  type: number
+                  description: The maximum number of snapshots to keep for the hourly schedule.
+                  description_kind: plain
+                  required: true
+              description: Hourly schedule policy.
+              description_kind: plain
+            max_items: 1
+          monthly_schedule:
+            nesting_mode: list
+            block:
+              attributes:
+                days_of_month:
+                  type: string
+                  description: Set the day or days of the month to make a snapshot (1-31). Accepts a comma separated number of days. Defaults to '1'.
+                  description_kind: plain
+                  optional: true
+                hour:
+                  type: number
+                  description: Set the hour to create the snapshot (0-23), defaults to midnight (0).
+                  description_kind: plain
+                  optional: true
+                minute:
+                  type: number
+                  description: Set the minute of the hour to create the snapshot (0-59), defaults to the top of the hour (0).
+                  description_kind: plain
+                  optional: true
+                snapshots_to_keep:
+                  type: number
+                  description: The maximum number of snapshots to keep for the monthly schedule
+                  description_kind: plain
+                  required: true
+              description: Monthly schedule policy.
+              description_kind: plain
+            max_items: 1
+          weekly_schedule:
+            nesting_mode: list
+            block:
+              attributes:
+                day:
+                  type: string
+                  description: Set the day or days of the week to make a snapshot. Accepts a comma separated days of the week. Defaults to 'Sunday'.
+                  description_kind: plain
+                  optional: true
+                hour:
+                  type: number
+                  description: Set the hour to create the snapshot (0-23), defaults to midnight (0).
+                  description_kind: plain
+                  optional: true
+                minute:
+                  type: number
+                  description: Set the minute of the hour to create the snapshot (0-59), defaults to the top of the hour (0).
+                  description_kind: plain
+                  optional: true
+                snapshots_to_keep:
+                  type: number
+                  description: The maximum number of snapshots to keep for the weekly schedule.
+                  description_kind: plain
+                  required: true
+              description: Weekly schedule policy.
+              description_kind: plain
+            max_items: 1
+        description: Snapshot policy defines the schedule for automatic snapshot creation. To disable automatic snapshot creation you have to remove the whole snapshot_policy block.
+        description_kind: plain
+      max_items: 1
+    tiering_policy:
+      nesting_mode: list
+      block:
+        attributes:
+          cooling_threshold_days:
+            type: number
+            description: Optional. Time in days to mark the volume's data block as cold and make it eligible for tiering, can be range from 2-183. Default is 31.
+            description_kind: plain
+            optional: true
+          hot_tier_bypass_mode_enabled:
+            type: bool
+            description: Optional. Flag indicating that the hot tier bypass mode is enabled. Default is false. Only applicable to Flex service level.
+            description_kind: plain
+            optional: true
+          tier_action:
+            type: string
+            description: 'Optional. Flag indicating if the volume has tiering policy enable/pause. Default is PAUSED. Default value: "PAUSED" Possible values: ["ENABLED", "PAUSED"]'
+            description_kind: plain
+            optional: true
+        description: Tiering policy for the volume.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

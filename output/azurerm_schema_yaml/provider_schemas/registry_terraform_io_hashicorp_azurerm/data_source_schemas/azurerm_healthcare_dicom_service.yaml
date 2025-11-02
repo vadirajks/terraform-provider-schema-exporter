@@ -1,0 +1,104 @@
+version: 0
+block:
+  attributes:
+    authentication:
+      type:
+      - list
+      - - object
+        - audience:
+          - list
+          - string
+          authority: string
+      description_kind: plain
+      computed: true
+    cors:
+      type:
+      - list
+      - - object
+        - allow_credentials: bool
+          allowed_headers:
+          - list
+          - string
+          allowed_methods:
+          - list
+          - string
+          allowed_origins:
+          - list
+          - string
+          max_age_in_seconds: number
+      description_kind: plain
+      computed: true
+    data_partitions_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    encryption_key_url:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    identity:
+      type:
+      - list
+      - - object
+        - identity_ids:
+          - list
+          - string
+          principal_id: string
+          tenant_id: string
+          type: string
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    private_endpoint:
+      type:
+      - list
+      - - object
+        - id: string
+          name: string
+      description_kind: plain
+      computed: true
+    service_url:
+      type: string
+      description_kind: plain
+      computed: true
+    storage:
+      type:
+      - list
+      - - object
+        - file_system_name: string
+          storage_account_id: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    workspace_id:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

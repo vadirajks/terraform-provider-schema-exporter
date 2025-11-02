@@ -1,0 +1,17 @@
+resource "aws_directory_service_trust" "name" {
+  directory_id = string (Required)
+  remote_domain_name = string (Required)
+  trust_direction = string (Required)
+  trust_password = string (Required)
+  conditional_forwarder_ip_addrs = ['set', 'string'] (Optional)
+  created_date_time = string (Computed)
+  delete_associated_conditional_forwarder = bool (Optional, Computed)
+  id = string (Computed)
+  last_updated_date_time = string (Computed)
+  region = string (Optional, Computed)
+  selective_auth = string (Optional, Computed)
+  state_last_updated_date_time = string (Computed)
+  trust_state = string (Computed)
+  trust_state_reason = string (Computed)
+  trust_type = string (Optional, Computed)
+}

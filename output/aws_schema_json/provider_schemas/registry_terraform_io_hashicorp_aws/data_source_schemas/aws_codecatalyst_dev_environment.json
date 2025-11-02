@@ -1,0 +1,128 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "alias": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "creator_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "env_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ides": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "name": "string",
+              "runtime": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "inactivity_timeout_minutes": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "instance_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "last_updated_time": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "persistent_storage": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "size": "number"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "space_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "status": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "status_reason": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "repositories": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "branch_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "repository_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 100
+      }
+    },
+    "description_kind": "plain"
+  }
+}

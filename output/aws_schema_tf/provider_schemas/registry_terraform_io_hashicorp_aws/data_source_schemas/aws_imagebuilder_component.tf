@@ -1,0 +1,18 @@
+data "aws_imagebuilder_component" "name" {
+  arn = string (Required)
+  change_description = string (Computed)
+  data = string (Computed)
+  date_created = string (Computed)
+  description = string (Computed)
+  encrypted = bool (Computed)
+  id = string (Optional, Computed)
+  kms_key_id = string (Computed)
+  name = string (Computed)
+  owner = string (Computed)
+  platform = string (Computed)
+  region = string (Optional, Computed)
+  supported_os_versions = ['set', 'string'] (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  type = string (Computed)
+  version = string (Computed)
+}

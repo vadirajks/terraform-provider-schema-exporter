@@ -1,0 +1,105 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "encryption_configuration": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "encryption_type": "string",
+              "kms_key": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "image_scanning_configuration": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "scan_on_push": "bool"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "image_tag_mutability": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "image_tag_mutability_exclusion_filter": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "filter": "string",
+              "filter_type": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "most_recent_image_tags": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "registry_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "repository_url": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "cloud_hsm_cluster_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "custom_key_store_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "custom_key_store_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "key_store_password": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "trust_anchor_certificate": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "xks_proxy_connectivity": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "xks_proxy_uri_endpoint": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "xks_proxy_uri_path": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "xks_proxy_vpc_endpoint_service_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "xks_proxy_authentication_credential": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "access_key_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "raw_secret_access_key": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,110 @@
+version: 0
+block:
+  attributes:
+    account_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    alias:
+      type: string
+      description_kind: plain
+      computed: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    bucket:
+      type: string
+      description_kind: plain
+      required: true
+    bucket_account_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    domain_name:
+      type: string
+      description_kind: plain
+      computed: true
+    endpoints:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    has_public_access_policy:
+      type: bool
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    network_origin:
+      type: string
+      description_kind: plain
+      computed: true
+    policy:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    public_access_block_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          block_public_acls:
+            type: bool
+            description_kind: plain
+            optional: true
+          block_public_policy:
+            type: bool
+            description_kind: plain
+            optional: true
+          ignore_public_acls:
+            type: bool
+            description_kind: plain
+            optional: true
+          restrict_public_buckets:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    vpc_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          vpc_id:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

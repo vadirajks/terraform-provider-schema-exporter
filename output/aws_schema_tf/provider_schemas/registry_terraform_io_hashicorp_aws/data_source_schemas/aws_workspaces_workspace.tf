@@ -1,0 +1,16 @@
+data "aws_workspaces_workspace" "name" {
+  bundle_id = string (Computed)
+  computer_name = string (Computed)
+  directory_id = string (Optional, Computed)
+  id = string (Optional, Computed)
+  ip_address = string (Computed)
+  region = string (Optional, Computed)
+  root_volume_encryption_enabled = bool (Computed)
+  state = string (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  user_name = string (Optional, Computed)
+  user_volume_encryption_enabled = bool (Computed)
+  volume_encryption_key = string (Computed)
+  workspace_id = string (Optional, Computed)
+  workspace_properties = ['list', ['object', {'compute_type_name': 'string', 'root_volume_size_gib': 'number', 'running_mode': 'string', 'running_mode_auto_stop_timeout_in_minutes': 'number', 'user_volume_size_gib': 'number'}]] (Computed)
+}

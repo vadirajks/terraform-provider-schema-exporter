@@ -1,0 +1,172 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "deployment_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "domain_configuration_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "domain_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "filtered_sync_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "notifications": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "additional_recipients": [
+                "list",
+                "string"
+              ],
+              "notify_dc_admins": "bool",
+              "notify_global_admins": "bool"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "replica_sets": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "domain_controller_ip_addresses": [
+                "list",
+                "string"
+              ],
+              "external_access_ip_address": "string",
+              "id": "string",
+              "location": "string",
+              "service_status": "string",
+              "subnet_id": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "secure_ldap": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "certificate_expiry": "string",
+              "certificate_thumbprint": "string",
+              "enabled": "bool",
+              "external_access_enabled": "bool",
+              "public_certificate": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "security": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "kerberos_armoring_enabled": "bool",
+              "kerberos_rc4_encryption_enabled": "bool",
+              "ntlm_v1_enabled": "bool",
+              "sync_kerberos_passwords": "bool",
+              "sync_ntlm_passwords": "bool",
+              "sync_on_prem_passwords": "bool",
+              "tls_v1_enabled": "bool"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "sku": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "sync_owner": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tenant_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "version": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

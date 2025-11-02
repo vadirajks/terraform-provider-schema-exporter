@@ -1,0 +1,718 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "The time the job was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "end_time": {
+        "type": "string",
+        "description": "The time the transcoding finished.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The labels associated with this job. You can use these to organize and group your jobs. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location of the transcoding job resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name of the job.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "start_time": {
+        "type": "string",
+        "description": "The time the transcoding started.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "state": {
+        "type": "string",
+        "description": "The current state of the job.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "template_id": {
+        "type": "string",
+        "description": "Specify the templateId to use for populating Job.config. The default is preset/web-hd, which is the only supported preset.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "config": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "ad_breaks": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "start_time_offset": {
+                    "type": "string",
+                    "description": "Start time in seconds for the ad break, relative to the output file timeline",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  }
+                },
+                "description": "Ad break.",
+                "description_kind": "plain"
+              }
+            },
+            "edit_list": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "inputs": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "List of values identifying files that should be used in this atom.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "key": {
+                    "type": "string",
+                    "description": "A unique key for this atom.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "start_time_offset": {
+                    "type": "string",
+                    "description": "Start time in seconds for the atom, relative to the input file timeline. The default is '0s'.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  }
+                },
+                "description": "List of input assets stored in Cloud Storage.",
+                "description_kind": "plain"
+              }
+            },
+            "elementary_streams": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "key": {
+                    "type": "string",
+                    "description": "A unique key for this atom.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  }
+                },
+                "block_types": {
+                  "audio_stream": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "bitrate_bps": {
+                          "type": "number",
+                          "description": "Audio bitrate in bits per second.",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "channel_count": {
+                          "type": "number",
+                          "description": "Number of audio channels. The default is '2'.",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "channel_layout": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description": "A list of channel names specifying layout of the audio channels. The default is [\"fl\", \"fr\"].",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "codec": {
+                          "type": "string",
+                          "description": "The codec for this audio stream. The default is 'aac'.",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "sample_rate_hertz": {
+                          "type": "number",
+                          "description": "The audio sample rate in Hertz. The default is '48000'.",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        }
+                      },
+                      "description": "Encoding of an audio stream.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "video_stream": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "block_types": {
+                        "h264": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "bitrate_bps": {
+                                "type": "number",
+                                "description": "The video bitrate in bits per second.",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "crf_level": {
+                                "type": "number",
+                                "description": "Target CRF level. The default is '21'.",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              },
+                              "entropy_coder": {
+                                "type": "string",
+                                "description": "The entropy coder to use. The default is 'cabac'.",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              },
+                              "frame_rate": {
+                                "type": "number",
+                                "description": "The target video frame rate in frames per second (FPS).",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "gop_duration": {
+                                "type": "string",
+                                "description": "Select the GOP size based on the specified duration. The default is '3s'.",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              },
+                              "height_pixels": {
+                                "type": "number",
+                                "description": "The height of the video in pixels.",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              },
+                              "pixel_format": {
+                                "type": "string",
+                                "description": "Pixel format to use. The default is 'yuv420p'.",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              },
+                              "preset": {
+                                "type": "string",
+                                "description": "Enforces the specified codec preset. The default is 'veryfast'.",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              },
+                              "profile": {
+                                "type": "string",
+                                "description": "Enforces the specified codec profile.",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              },
+                              "rate_control_mode": {
+                                "type": "string",
+                                "description": "Specify the mode. The default is 'vbr'.",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              },
+                              "vbv_fullness_bits": {
+                                "type": "number",
+                                "description": "Initial fullness of the Video Buffering Verifier (VBV) buffer in bits.",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              },
+                              "vbv_size_bits": {
+                                "type": "number",
+                                "description": "Size of the Video Buffering Verifier (VBV) buffer in bits.",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              },
+                              "width_pixels": {
+                                "type": "number",
+                                "description": "The width of the video in pixels.",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              }
+                            },
+                            "block_types": {
+                              "hlg": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "description": "HLG color format setting for H264.",
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              },
+                              "sdr": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "description": "SDR color format setting for H264.",
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              }
+                            },
+                            "description": "H264 codec settings",
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description": "Encoding of a video stream.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "List of input assets stored in Cloud Storage.",
+                "description_kind": "plain"
+              }
+            },
+            "encryptions": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "id": {
+                    "type": "string",
+                    "description": "Identifier for this set of encryption options.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "aes128": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "description": "Configuration for AES-128 encryption.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "drm_systems": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "block_types": {
+                        "clearkey": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "description": "Clearkey configuration.",
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "fairplay": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "description": "Fairplay configuration.",
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "playready": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "description": "Playready configuration.",
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "widevine": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "description": "Widevine configuration.",
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description": "DRM system(s) to use; at least one must be specified. If a DRM system is omitted, it is considered disabled.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "mpeg_cenc": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "scheme": {
+                          "type": "string",
+                          "description": "Specify the encryption scheme.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "Configuration for MPEG Common Encryption (MPEG-CENC).",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "sample_aes": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "description": "Configuration for SAMPLE-AES encryption.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "secret_manager_key_source": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "secret_version": {
+                          "type": "string",
+                          "description": "The name of the Secret Version containing the encryption key in the following format: projects/{project}/secrets/{secret_id}/versions/{version_number}.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "Configuration for secrets stored in Google Secret Manager.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "List of encryption configurations for the content.",
+                "description_kind": "plain"
+              }
+            },
+            "inputs": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "key": {
+                    "type": "string",
+                    "description": "A unique key for this input. Must be specified when using advanced mapping and edit lists.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "uri": {
+                    "type": "string",
+                    "description": "URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, gs://bucket/inputs/file.mp4). If empty, the value is populated from Job.input_uri.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  }
+                },
+                "description": "List of input assets stored in Cloud Storage.",
+                "description_kind": "plain"
+              }
+            },
+            "manifests": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "file_name": {
+                    "type": "string",
+                    "description": "The name of the generated file. The default is 'manifest'.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "mux_streams": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "List of user supplied MuxStream.key values that should appear in this manifest.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "Type of the manifest. Possible values: [\"MANIFEST_TYPE_UNSPECIFIED\", \"HLS\", \"DASH\"]",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  }
+                },
+                "description": "Manifest configuration.",
+                "description_kind": "plain"
+              }
+            },
+            "mux_streams": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "container": {
+                    "type": "string",
+                    "description": "The container format. The default is 'mp4'.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "elementary_streams": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "List of ElementaryStream.key values multiplexed in this stream.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "encryption_id": {
+                    "type": "string",
+                    "description": "Identifier of the encryption configuration to use.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "file_name": {
+                    "type": "string",
+                    "description": "The name of the generated file.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "key": {
+                    "type": "string",
+                    "description": "A unique key for this multiplexed stream.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  }
+                },
+                "block_types": {
+                  "segment_settings": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "segment_duration": {
+                          "type": "string",
+                          "description": "Duration of the segments in seconds. The default is '6.0s'.",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        }
+                      },
+                      "description": "Segment settings for ts, fmp4 and vtt.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "Multiplexing settings for output stream.",
+                "description_kind": "plain"
+              }
+            },
+            "output": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "uri": {
+                    "type": "string",
+                    "description": "URI for the output file(s). For example, gs://my-bucket/outputs/.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  }
+                },
+                "description": "Location of output file(s) in a Cloud Storage bucket.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "overlays": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "animations": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "block_types": {
+                        "animation_fade": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "end_time_offset": {
+                                "type": "string",
+                                "description": "The time to end the fade animation, in seconds.",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              },
+                              "fade_type": {
+                                "type": "string",
+                                "description": "Required. Type of fade animation: 'FADE_IN' or 'FADE_OUT'. The possible values are: * 'FADE_TYPE_UNSPECIFIED': The fade type is not specified. * 'FADE_IN': Fade the overlay object into view. * 'FADE_OUT': Fade the overlay object out of view. Possible values: [\"FADE_TYPE_UNSPECIFIED\", \"FADE_IN\", \"FADE_OUT\"]",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "start_time_offset": {
+                                "type": "string",
+                                "description": "The time to start the fade animation, in seconds.",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              }
+                            },
+                            "block_types": {
+                              "xy": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "x": {
+                                      "type": "number",
+                                      "description": "Normalized x coordinate.",
+                                      "description_kind": "plain",
+                                      "optional": true,
+                                      "computed": true
+                                    },
+                                    "y": {
+                                      "type": "number",
+                                      "description": "Normalized y coordinate.",
+                                      "description_kind": "plain",
+                                      "optional": true,
+                                      "computed": true
+                                    }
+                                  },
+                                  "description": "Normalized coordinates based on output video resolution.",
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              }
+                            },
+                            "description": "Display overlay object with fade animation.",
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description": "List of animations. The list should be chronological, without any time overlap.",
+                      "description_kind": "plain"
+                    }
+                  },
+                  "image": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "uri": {
+                          "type": "string",
+                          "description": "URI of the image in Cloud Storage. For example, gs://bucket/inputs/image.png.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "Image overlay.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "List of overlays on the output video, in descending Z-order.",
+                "description_kind": "plain"
+              }
+            },
+            "pubsub_destination": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "topic": {
+                    "type": "string",
+                    "description": "The name of the Pub/Sub topic to publish job completion notification to. For example: projects/{project}/topics/{topic}.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Pub/Sub destination.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "The configuration for this template.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

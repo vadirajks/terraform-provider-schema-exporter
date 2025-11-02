@@ -1,0 +1,51 @@
+version: 1
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: The name of the Virtual Endpoint
+      description_kind: plain
+      required: true
+    replica_server_id:
+      type: string
+      description: The Resource ID of the *Replica* Postgres Flexible Server this should be associated with
+      description_kind: plain
+      required: true
+    source_server_id:
+      type: string
+      description: The Resource ID of the *Source* Postgres Flexible Server this should be associated with
+      description_kind: plain
+      required: true
+    type:
+      type: string
+      description: The type of Virtual Endpoint
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,537 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "availability_set_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "delete_data_disks_on_termination": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "delete_os_disk_on_termination": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "license_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "network_interface_ids": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "required": true
+      },
+      "primary_network_interface_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "proximity_placement_group_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "vm_size": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "zones": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "additional_capabilities": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "ultra_ssd_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "boot_diagnostics": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "required": true
+            },
+            "storage_uri": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "identity": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "identity_ids": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "principal_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "tenant_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "os_profile": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "admin_password": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "sensitive": true
+            },
+            "admin_username": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "computer_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "custom_data": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "os_profile_linux_config": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "disable_password_authentication": {
+              "type": "bool",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "ssh_keys": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "key_data": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "path": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "os_profile_secrets": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "source_vault_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "vault_certificates": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "certificate_store": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "certificate_url": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "os_profile_windows_config": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "enable_automatic_upgrades": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "provision_vm_agent": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "timezone": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "additional_unattend_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "component": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "content": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true,
+                    "sensitive": true
+                  },
+                  "pass": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "setting_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "winrm": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "certificate_url": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "protocol": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "plan": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "product": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "publisher": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "storage_data_disk": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "caching": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "create_option": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "disk_size_gb": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "lun": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "managed_disk_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "managed_disk_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "vhd_uri": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "write_accelerator_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "storage_image_reference": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "offer": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "publisher": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "sku": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "version": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "storage_os_disk": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "caching": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "create_option": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "disk_size_gb": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "image_uri": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "managed_disk_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "managed_disk_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "os_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "vhd_uri": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "write_accelerator_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

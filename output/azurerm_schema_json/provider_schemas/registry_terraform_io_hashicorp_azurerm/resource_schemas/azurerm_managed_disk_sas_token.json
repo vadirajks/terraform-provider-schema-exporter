@@ -1,0 +1,60 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "access_level": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "duration_in_seconds": {
+        "type": "number",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "managed_disk_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "sas_url": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true,
+        "sensitive": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

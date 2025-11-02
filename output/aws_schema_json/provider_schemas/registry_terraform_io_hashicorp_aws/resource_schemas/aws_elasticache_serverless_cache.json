@@ -1,0 +1,235 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "create_time": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "daily_snapshot_time": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "endpoint": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "address": "string",
+              "port": "number"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "engine": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "full_engine_version": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "kms_key_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "major_engine_version": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "reader_endpoint": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "address": "string",
+              "port": "number"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "security_group_ids": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "snapshot_arns_to_restore": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "snapshot_retention_limit": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "status": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "subnet_ids": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "user_group_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "cache_usage_limits": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "data_storage": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "maximum": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "minimum": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "unit": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "ecpu_per_second": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "maximum": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "minimum": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours).",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours).",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "bucket": {
+        "type": "string",
+        "description": "The name of the bucket.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "domain": {
+        "type": "string",
+        "description": "The domain associated with the entity.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "email": {
+        "type": "string",
+        "description": "The email address associated with the entity.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "entity": {
+        "type": "string",
+        "description": "The entity holding the permission, in one of the following forms: * user-{{userId}} * user-{{email}} (such as \"user-liz@example.com\") * group-{{groupId}} * group-{{email}} (such as \"group-example@googlegroups.com\") * domain-{{domain}} (such as \"domain-example.com\") * project-team-{{projectId}} * allUsers * allAuthenticatedUsers",
+        "description_kind": "plain",
+        "required": true
+      },
+      "entity_id": {
+        "type": "string",
+        "description": "The ID for the entity",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "generation": {
+        "type": "number",
+        "description": "The content generation of the object, if applied to an object.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "object": {
+        "type": "string",
+        "description": "The name of the object, if applied to an object.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "project_team": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "project_number": "string",
+              "team": "string"
+            }
+          ]
+        ],
+        "description": "The project team associated with the entity",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "role": {
+        "type": "string",
+        "description": "The access permission for the entity. Possible values: [\"OWNER\", \"READER\"]",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

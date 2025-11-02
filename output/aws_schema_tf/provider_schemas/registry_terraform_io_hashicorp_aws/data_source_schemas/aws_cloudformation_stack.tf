@@ -1,0 +1,15 @@
+data "aws_cloudformation_stack" "name" {
+  name = string (Required)
+  capabilities = ['set', 'string'] (Computed)
+  description = string (Computed)
+  disable_rollback = bool (Computed)
+  iam_role_arn = string (Computed)
+  id = string (Optional, Computed)
+  notification_arns = ['set', 'string'] (Computed)
+  outputs = ['map', 'string'] (Computed)
+  parameters = ['map', 'string'] (Computed)
+  region = string (Optional, Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  template_body = string (Computed)
+  timeout_in_minutes = number (Computed)
+}

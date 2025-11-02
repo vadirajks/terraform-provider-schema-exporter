@@ -1,0 +1,15 @@
+resource "aws_servicequotas_service_quota" "name" {
+  quota_code = string (Required)
+  service_code = string (Required)
+  value = number (Required)
+  adjustable = bool (Computed)
+  arn = string (Computed)
+  default_value = number (Computed)
+  id = string (Optional, Computed)
+  quota_name = string (Computed)
+  region = string (Optional, Computed)
+  request_id = string (Computed)
+  request_status = string (Computed)
+  service_name = string (Computed)
+  usage_metric = ['list', ['object', {'metric_dimensions': ['list', ['object', {'class': 'string', 'resource': 'string', 'service': 'string', 'type': 'string'}]], 'metric_name': 'string', 'metric_namespace': 'string', 'metric_statistic_recommendation': 'string'}]] (Computed)
+}

@@ -1,0 +1,145 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "in_guest_user_patch_mode": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "install_patches": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "linux": [
+                "list",
+                [
+                  "object",
+                  {
+                    "classifications_to_include": [
+                      "list",
+                      "string"
+                    ],
+                    "package_names_mask_to_exclude": [
+                      "list",
+                      "string"
+                    ],
+                    "package_names_mask_to_include": [
+                      "list",
+                      "string"
+                    ]
+                  }
+                ]
+              ],
+              "reboot": "string",
+              "windows": [
+                "list",
+                [
+                  "object",
+                  {
+                    "classifications_to_include": [
+                      "list",
+                      "string"
+                    ],
+                    "kb_numbers_to_exclude": [
+                      "list",
+                      "string"
+                    ],
+                    "kb_numbers_to_include": [
+                      "list",
+                      "string"
+                    ]
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "properties": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "scope": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "visibility": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "window": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "duration": "string",
+              "expiration_date_time": "string",
+              "recur_every": "string",
+              "start_date_time": "string",
+              "time_zone": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

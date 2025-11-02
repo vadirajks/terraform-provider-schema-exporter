@@ -1,0 +1,187 @@
+version: 0
+block:
+  attributes:
+    action:
+      type: string
+      description_kind: plain
+      required: true
+    applications:
+      type:
+      - list
+      - string
+      description_kind: plain
+      required: true
+    audit_comment:
+      type: string
+      description_kind: plain
+      optional: true
+    decryption_rule_type:
+      type: string
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    inspection_certificate_id:
+      type: string
+      description_kind: plain
+      optional: true
+    logging_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    negate_destination:
+      type: bool
+      description_kind: plain
+      optional: true
+    negate_source:
+      type: bool
+      description_kind: plain
+      optional: true
+    priority:
+      type: number
+      description_kind: plain
+      required: true
+    protocol:
+      type: string
+      description_kind: plain
+      optional: true
+    protocol_ports:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    rulestack_id:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    category:
+      nesting_mode: list
+      block:
+        attributes:
+          custom_urls:
+            type:
+            - list
+            - string
+            description_kind: plain
+            required: true
+          feeds:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    destination:
+      nesting_mode: list
+      block:
+        attributes:
+          cidrs:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          countries:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          feeds:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          local_rulestack_fqdn_list_ids:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          local_rulestack_prefix_list_ids:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    source:
+      nesting_mode: list
+      block:
+        attributes:
+          cidrs:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          countries:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          feeds:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          local_rulestack_prefix_list_ids:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

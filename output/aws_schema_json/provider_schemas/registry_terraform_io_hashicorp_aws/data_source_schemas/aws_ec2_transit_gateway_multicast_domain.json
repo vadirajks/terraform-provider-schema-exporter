@@ -1,0 +1,154 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "associations": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "subnet_id": "string",
+              "transit_gateway_attachment_id": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "auto_accept_shared_associations": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "igmpv2_support": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "members": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "group_ip_address": "string",
+              "network_interface_id": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "owner_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "sources": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "group_ip_address": "string",
+              "network_interface_id": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "state": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "static_sources_support": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "transit_gateway_attachment_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "transit_gateway_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "transit_gateway_multicast_domain_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "filter": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "values": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

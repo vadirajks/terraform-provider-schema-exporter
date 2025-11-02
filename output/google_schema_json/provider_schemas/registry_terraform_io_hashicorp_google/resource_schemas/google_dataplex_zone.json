@@ -1,0 +1,266 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "asset_status": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "active_assets": "number",
+              "security_policy_applying_assets": "number",
+              "update_time": "string"
+            }
+          ]
+        ],
+        "description": "Output only. Aggregated status of the underlying assets of the zone.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "Output only. The time when the zone was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "Optional. Description of the zone.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "Optional. User friendly display name.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Optional. User defined labels for the zone. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field `effective_labels` for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "lake": {
+        "type": "string",
+        "description": "The lake for the resource",
+        "description_kind": "plain",
+        "required": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location for the resource",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the zone.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description": "The project for the resource",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "state": {
+        "type": "string",
+        "description": "Output only. Current state of the zone. Possible values: STATE_UNSPECIFIED, ACTIVE, CREATING, DELETING, ACTION_REQUIRED",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "type": {
+        "type": "string",
+        "description": "Required. Immutable. The type of the zone. Possible values: TYPE_UNSPECIFIED, RAW, CURATED",
+        "description_kind": "plain",
+        "required": true
+      },
+      "uid": {
+        "type": "string",
+        "description": "Output only. System generated globally unique ID for the zone. This ID will be different if the zone is deleted and re-created with the same name.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Output only. The time when the zone was last updated.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "discovery_spec": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enabled": {
+              "type": "bool",
+              "description": "Required. Whether discovery is enabled.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "exclude_patterns": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "Optional. The list of patterns to apply for selecting data to exclude during discovery. For Cloud Storage bucket assets, these are interpreted as glob patterns used to match object names. For BigQuery dataset assets, these are interpreted as patterns to match table names.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "include_patterns": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "Optional. The list of patterns to apply for selecting data to include during discovery if only a subset of the data should considered. For Cloud Storage bucket assets, these are interpreted as glob patterns used to match object names. For BigQuery dataset assets, these are interpreted as patterns to match table names.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "schedule": {
+              "type": "string",
+              "description": "Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: \"CRON_TZ=${IANA_TIME_ZONE}\" or TZ=${IANA_TIME_ZONE}\". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, \"CRON_TZ=America/New_York 1 * * * *\", or \"TZ=America/New_York 1 * * * *\".",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "block_types": {
+            "csv_options": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "delimiter": {
+                    "type": "string",
+                    "description": "Optional. The delimiter being used to separate values. This defaults to ','.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "disable_type_inference": {
+                    "type": "bool",
+                    "description": "Optional. Whether to disable the inference of data type for CSV data. If true, all columns will be registered as strings.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "encoding": {
+                    "type": "string",
+                    "description": "Optional. The character encoding of the data. The default is UTF-8.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "header_rows": {
+                    "type": "number",
+                    "description": "Optional. The number of rows to interpret as header rows that should be skipped when reading data rows.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Optional. Configuration for CSV data.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "json_options": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "disable_type_inference": {
+                    "type": "bool",
+                    "description": "Optional. Whether to disable the inference of data type for Json data. If true, all columns will be registered as their primitive types (strings, number or boolean).",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "encoding": {
+                    "type": "string",
+                    "description": "Optional. The character encoding of the data. The default is UTF-8.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Optional. Configuration for Json data.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Required. Specification of the discovery feature applied to data in this zone.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "resource_spec": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "location_type": {
+              "type": "string",
+              "description": "Required. Immutable. The location type of the resources that are allowed to be attached to the assets within this zone. Possible values: LOCATION_TYPE_UNSPECIFIED, SINGLE_REGION, MULTI_REGION",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Required. Immutable. Specification of the resources that are referenced by the assets within this zone.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,828 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "aws_account_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "data_set_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "import_mode": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "output_columns": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "description": "string",
+              "name": "string",
+              "type": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "column_groups": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "geo_spatial_column_group": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "columns": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "country_code": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 8
+      },
+      "column_level_permission_rules": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "column_names": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "principals": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "data_set_usage_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "disable_use_as_direct_query_source": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "disable_use_as_imported_source": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "field_folders": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "columns": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "description": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "field_folders_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1000
+      },
+      "logical_table_map": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "alias": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "logical_table_map_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "data_transforms": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "cast_column_type_operation": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "column_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "format": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "new_column_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "create_columns_operation": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "block_types": {
+                        "columns": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "column_id": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "column_name": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "expression": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 128
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "filter_operation": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "condition_expression": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "project_operation": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "projected_columns": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "rename_column_operation": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "column_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "new_column_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "tag_column_operation": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "column_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "tags": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "column_geographic_role": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              }
+                            },
+                            "block_types": {
+                              "column_description": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "text": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true,
+                                      "computed": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 16
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "untag_column_operation": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "column_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "tag_names": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 2048
+            },
+            "source": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "data_set_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "physical_table_id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  }
+                },
+                "block_types": {
+                  "join_instruction": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "left_operand": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "on_clause": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "right_operand": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "left_join_key_properties": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "unique_key": {
+                                "type": "bool",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "right_join_key_properties": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "unique_key": {
+                                "type": "bool",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 64
+      },
+      "permissions": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "actions": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "principal": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 64
+      },
+      "physical_table_map": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "physical_table_map_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "custom_sql": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "data_source_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "sql_query": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "columns": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 2048
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "relational_table": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "catalog": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "data_source_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "schema": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "input_columns": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 2048
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "s3_source": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "data_source_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "input_columns": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 2048
+                  },
+                  "upload_settings": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "contains_header": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "delimiter": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "format": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "start_from_row": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "text_qualifier": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 32
+      },
+      "refresh_properties": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "refresh_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "incremental_refresh": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "block_types": {
+                        "lookback_window": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "column_name": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "size": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "size_unit": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "row_level_permission_data_set": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "format_version": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "namespace": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "permission_policy": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "status": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "row_level_permission_tag_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "status": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "tag_rules": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "column_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "match_all_value": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "tag_key": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "tag_multi_value_delimiter": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 50
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

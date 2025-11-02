@@ -1,0 +1,66 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    identity_pool_id:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    roles:
+      type:
+      - map
+      - string
+      description_kind: plain
+      required: true
+  block_types:
+    role_mapping:
+      nesting_mode: set
+      block:
+        attributes:
+          ambiguous_role_resolution:
+            type: string
+            description_kind: plain
+            optional: true
+          identity_provider:
+            type: string
+            description_kind: plain
+            required: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          mapping_rule:
+            nesting_mode: list
+            block:
+              attributes:
+                claim:
+                  type: string
+                  description_kind: plain
+                  required: true
+                match_type:
+                  type: string
+                  description_kind: plain
+                  required: true
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 25
+        description_kind: plain
+  description_kind: plain

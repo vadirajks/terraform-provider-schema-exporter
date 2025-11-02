@@ -1,0 +1,45 @@
+version: 0
+block:
+  attributes:
+    crash_consistency_mode_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    excluded_disks:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    virtual_machine_restore_point_collection_id:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

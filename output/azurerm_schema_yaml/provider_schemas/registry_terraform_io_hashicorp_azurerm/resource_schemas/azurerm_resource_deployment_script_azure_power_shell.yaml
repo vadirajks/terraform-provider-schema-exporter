@@ -1,0 +1,150 @@
+version: 0
+block:
+  attributes:
+    cleanup_preference:
+      type: string
+      description_kind: plain
+      optional: true
+    command_line:
+      type: string
+      description_kind: plain
+      optional: true
+    force_update_tag:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    outputs:
+      type: string
+      description_kind: plain
+      computed: true
+    primary_script_uri:
+      type: string
+      description_kind: plain
+      optional: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    retention_interval:
+      type: string
+      description_kind: plain
+      required: true
+    script_content:
+      type: string
+      description_kind: plain
+      optional: true
+    supporting_script_uris:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    timeout:
+      type: string
+      description_kind: plain
+      optional: true
+    version:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    container:
+      nesting_mode: list
+      block:
+        attributes:
+          container_group_name:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    environment_variable:
+      nesting_mode: set
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          secure_value:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          value:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    identity:
+      nesting_mode: list
+      block:
+        attributes:
+          identity_ids:
+            type:
+            - set
+            - string
+            description_kind: plain
+            required: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    storage_account:
+      nesting_mode: list
+      block:
+        attributes:
+          key:
+            type: string
+            description_kind: plain
+            required: true
+            sensitive: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

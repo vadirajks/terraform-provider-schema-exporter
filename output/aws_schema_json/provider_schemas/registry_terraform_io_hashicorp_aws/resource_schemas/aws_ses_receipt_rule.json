@@ -1,0 +1,263 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "after": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "recipients": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "rule_set_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "scan_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tls_policy": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "add_header_action": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "header_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "header_value": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "position": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "bounce_action": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "message": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "position": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "sender": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "smtp_reply_code": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "status_code": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "topic_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "lambda_action": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "function_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "invocation_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "position": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "topic_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "s3_action": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "bucket_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "iam_role_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "kms_key_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "object_key_prefix": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "position": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "topic_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "sns_action": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "encoding": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "position": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "topic_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "stop_action": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "position": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "scope": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "topic_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "workmail_action": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "organization_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "position": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "topic_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

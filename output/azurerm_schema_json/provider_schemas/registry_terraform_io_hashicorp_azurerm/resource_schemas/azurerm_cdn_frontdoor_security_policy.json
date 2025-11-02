@@ -1,0 +1,121 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "cdn_frontdoor_profile_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "security_policies": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "firewall": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "cdn_frontdoor_firewall_policy_id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "association": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "patterns_to_match": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "domain": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "active": {
+                                "type": "bool",
+                                "description_kind": "plain",
+                                "computed": true
+                              },
+                              "cdn_frontdoor_domain_id": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 500
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

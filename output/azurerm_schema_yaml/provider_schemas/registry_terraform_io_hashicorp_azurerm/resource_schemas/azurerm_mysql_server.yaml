@@ -1,0 +1,176 @@
+version: 0
+block:
+  attributes:
+    administrator_login:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    administrator_login_password:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+    auto_grow_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    backup_retention_days:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    create_mode:
+      type: string
+      description_kind: plain
+      optional: true
+    creation_source_server_id:
+      type: string
+      description_kind: plain
+      optional: true
+    fqdn:
+      type: string
+      description_kind: plain
+      computed: true
+    geo_redundant_backup_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    infrastructure_encryption_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    public_network_access_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    restore_point_in_time:
+      type: string
+      description_kind: plain
+      optional: true
+    sku_name:
+      type: string
+      description_kind: plain
+      required: true
+    ssl_enforcement_enabled:
+      type: bool
+      description_kind: plain
+      required: true
+    ssl_minimal_tls_version_enforced:
+      type: string
+      description_kind: plain
+      optional: true
+    storage_mb:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    version:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    identity:
+      nesting_mode: list
+      block:
+        attributes:
+          principal_id:
+            type: string
+            description_kind: plain
+            computed: true
+          tenant_id:
+            type: string
+            description_kind: plain
+            computed: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    threat_detection_policy:
+      nesting_mode: list
+      block:
+        attributes:
+          disabled_alerts:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          email_account_admins:
+            type: bool
+            description_kind: plain
+            optional: true
+          email_addresses:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          retention_days:
+            type: number
+            description_kind: plain
+            optional: true
+          storage_account_access_key:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          storage_endpoint:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

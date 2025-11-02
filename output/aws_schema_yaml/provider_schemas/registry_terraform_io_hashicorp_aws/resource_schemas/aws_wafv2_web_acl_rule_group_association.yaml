@@ -1,0 +1,371 @@
+version: 0
+block:
+  attributes:
+    override_action:
+      type: string
+      description: Override action for the rule group. Valid values are 'none' and 'count'. Defaults to 'none'.
+      description_kind: plain
+      optional: true
+      computed: true
+    priority:
+      type: number
+      description: Priority of the rule within the Web ACL.
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    rule_name:
+      type: string
+      description: Name of the rule to create in the Web ACL that references the rule group.
+      description_kind: plain
+      required: true
+    web_acl_arn:
+      type: string
+      description: ARN of the Web ACL to associate the Rule Group with.
+      description_kind: plain
+      required: true
+  block_types:
+    managed_rule_group:
+      nesting_mode: list
+      block:
+        attributes:
+          name:
+            type: string
+            description: Name of the managed rule group.
+            description_kind: plain
+            required: true
+          vendor_name:
+            type: string
+            description: Name of the managed rule group vendor.
+            description_kind: plain
+            required: true
+          version:
+            type: string
+            description: Version of the managed rule group. Omit this to use the default version.
+            description_kind: plain
+            optional: true
+        block_types:
+          rule_action_override:
+            nesting_mode: list
+            block:
+              attributes:
+                name:
+                  type: string
+                  description: Name of the rule to override.
+                  description_kind: plain
+                  required: true
+              block_types:
+                action_to_use:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      allow:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            custom_request_handling:
+                              nesting_mode: list
+                              block:
+                                block_types:
+                                  insert_header:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        name:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                        value:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                      description_kind: plain
+                                description_kind: plain
+                          description_kind: plain
+                      block:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            custom_response:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  custom_response_body_key:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  response_code:
+                                    type: number
+                                    description_kind: plain
+                                    required: true
+                                block_types:
+                                  response_header:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        name:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                        value:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                      description_kind: plain
+                                description_kind: plain
+                          description_kind: plain
+                      captcha:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            custom_request_handling:
+                              nesting_mode: list
+                              block:
+                                block_types:
+                                  insert_header:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        name:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                        value:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                      description_kind: plain
+                                description_kind: plain
+                          description_kind: plain
+                      challenge:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            custom_request_handling:
+                              nesting_mode: list
+                              block:
+                                block_types:
+                                  insert_header:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        name:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                        value:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                      description_kind: plain
+                                description_kind: plain
+                          description_kind: plain
+                      count:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            custom_request_handling:
+                              nesting_mode: list
+                              block:
+                                block_types:
+                                  insert_header:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        name:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                        value:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                      description_kind: plain
+                                description_kind: plain
+                          description_kind: plain
+                    description: Action to use in place of the rule action.
+                    description_kind: plain
+              description: Action settings to use in place of rule actions configured inside the rule group. You can specify up to 100 overrides.
+              description_kind: plain
+        description: Managed rule group configuration.
+        description_kind: plain
+    rule_group_reference:
+      nesting_mode: list
+      block:
+        attributes:
+          arn:
+            type: string
+            description: ARN of the Rule Group to associate with the Web ACL.
+            description_kind: plain
+            required: true
+        block_types:
+          rule_action_override:
+            nesting_mode: list
+            block:
+              attributes:
+                name:
+                  type: string
+                  description: Name of the rule to override.
+                  description_kind: plain
+                  required: true
+              block_types:
+                action_to_use:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      allow:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            custom_request_handling:
+                              nesting_mode: list
+                              block:
+                                block_types:
+                                  insert_header:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        name:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                        value:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                      description_kind: plain
+                                description_kind: plain
+                          description_kind: plain
+                      block:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            custom_response:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  custom_response_body_key:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  response_code:
+                                    type: number
+                                    description_kind: plain
+                                    required: true
+                                block_types:
+                                  response_header:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        name:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                        value:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                      description_kind: plain
+                                description_kind: plain
+                          description_kind: plain
+                      captcha:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            custom_request_handling:
+                              nesting_mode: list
+                              block:
+                                block_types:
+                                  insert_header:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        name:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                        value:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                      description_kind: plain
+                                description_kind: plain
+                          description_kind: plain
+                      challenge:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            custom_request_handling:
+                              nesting_mode: list
+                              block:
+                                block_types:
+                                  insert_header:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        name:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                        value:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                      description_kind: plain
+                                description_kind: plain
+                          description_kind: plain
+                      count:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            custom_request_handling:
+                              nesting_mode: list
+                              block:
+                                block_types:
+                                  insert_header:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        name:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                        value:
+                                          type: string
+                                          description_kind: plain
+                                          required: true
+                                      description_kind: plain
+                                description_kind: plain
+                          description_kind: plain
+                    description: Action to use in place of the rule action.
+                    description_kind: plain
+              description: Action settings to use in place of rule actions configured inside the rule group. You can specify up to 100 overrides.
+              description_kind: plain
+        description: Rule Group reference configuration.
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description: Associates a WAFv2 Rule Group (custom or managed) with a Web ACL by adding a rule that references the Rule Group.
+  description_kind: plain

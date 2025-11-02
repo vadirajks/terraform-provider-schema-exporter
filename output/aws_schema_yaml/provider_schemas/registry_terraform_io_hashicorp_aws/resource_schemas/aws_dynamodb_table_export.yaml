@@ -1,0 +1,119 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    billed_size_in_bytes:
+      type: number
+      description_kind: plain
+      computed: true
+    end_time:
+      type: string
+      description_kind: plain
+      computed: true
+    export_format:
+      type: string
+      description_kind: plain
+      optional: true
+    export_status:
+      type: string
+      description_kind: plain
+      computed: true
+    export_time:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    export_type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    item_count:
+      type: number
+      description_kind: plain
+      computed: true
+    manifest_files_s3_key:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    s3_bucket:
+      type: string
+      description_kind: plain
+      required: true
+    s3_bucket_owner:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    s3_prefix:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    s3_sse_algorithm:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    s3_sse_kms_key_id:
+      type: string
+      description_kind: plain
+      optional: true
+    start_time:
+      type: string
+      description_kind: plain
+      computed: true
+    table_arn:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    incremental_export_specification:
+      nesting_mode: list
+      block:
+        attributes:
+          export_from_time:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          export_to_time:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          export_view_type:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

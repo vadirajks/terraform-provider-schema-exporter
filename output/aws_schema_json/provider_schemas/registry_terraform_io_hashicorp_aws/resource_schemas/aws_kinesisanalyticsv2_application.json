@@ -1,0 +1,875 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "application_mode": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "create_timestamp": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "force_stop": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "last_update_timestamp": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "runtime_environment": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "service_execution_role": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "start_application": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "status": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "version_id": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "application_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "application_code_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "code_content_type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "code_content": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "text_content": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "s3_content_location": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "bucket_arn": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "file_key": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "object_version": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "application_snapshot_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "snapshots_enabled": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "environment_properties": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "property_group": {
+                    "nesting_mode": "set",
+                    "block": {
+                      "attributes": {
+                        "property_group_id": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "property_map": {
+                          "type": [
+                            "map",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 50
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "flink_application_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "checkpoint_configuration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "checkpoint_interval": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "checkpointing_enabled": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "configuration_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "min_pause_between_checkpoints": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "monitoring_configuration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "configuration_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "log_level": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "metrics_level": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "parallelism_configuration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "auto_scaling_enabled": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "configuration_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "parallelism": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "parallelism_per_kpu": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "run_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "application_restore_configuration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "application_restore_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "snapshot_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "flink_run_configuration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "allow_non_restored_state": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "sql_application_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "input": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "in_app_stream_names": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "computed": true
+                        },
+                        "input_id": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "computed": true
+                        },
+                        "name_prefix": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "input_parallelism": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "count": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "input_processing_configuration": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "block_types": {
+                              "input_lambda_processor": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "resource_arn": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "required": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "min_items": 1,
+                                "max_items": 1
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "input_schema": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "record_encoding": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "block_types": {
+                              "record_column": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "mapping": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "required": true
+                                    },
+                                    "sql_type": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "required": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "min_items": 1,
+                                "max_items": 1000
+                              },
+                              "record_format": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "record_format_type": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "required": true
+                                    }
+                                  },
+                                  "block_types": {
+                                    "mapping_parameters": {
+                                      "nesting_mode": "list",
+                                      "block": {
+                                        "block_types": {
+                                          "csv_mapping_parameters": {
+                                            "nesting_mode": "list",
+                                            "block": {
+                                              "attributes": {
+                                                "record_column_delimiter": {
+                                                  "type": "string",
+                                                  "description_kind": "plain",
+                                                  "required": true
+                                                },
+                                                "record_row_delimiter": {
+                                                  "type": "string",
+                                                  "description_kind": "plain",
+                                                  "required": true
+                                                }
+                                              },
+                                              "description_kind": "plain"
+                                            },
+                                            "max_items": 1
+                                          },
+                                          "json_mapping_parameters": {
+                                            "nesting_mode": "list",
+                                            "block": {
+                                              "attributes": {
+                                                "record_row_path": {
+                                                  "type": "string",
+                                                  "description_kind": "plain",
+                                                  "required": true
+                                                }
+                                              },
+                                              "description_kind": "plain"
+                                            },
+                                            "max_items": 1
+                                          }
+                                        },
+                                        "description_kind": "plain"
+                                      },
+                                      "min_items": 1,
+                                      "max_items": 1
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "min_items": 1,
+                                "max_items": 1
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        },
+                        "input_starting_position_configuration": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "input_starting_position": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          }
+                        },
+                        "kinesis_firehose_input": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "resource_arn": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "kinesis_streams_input": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "resource_arn": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "output": {
+                    "nesting_mode": "set",
+                    "block": {
+                      "attributes": {
+                        "name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "output_id": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "computed": true
+                        }
+                      },
+                      "block_types": {
+                        "destination_schema": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "record_format_type": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        },
+                        "kinesis_firehose_output": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "resource_arn": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "kinesis_streams_output": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "resource_arn": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "lambda_output": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "resource_arn": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 3
+                  },
+                  "reference_data_source": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "reference_id": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "computed": true
+                        },
+                        "table_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "reference_schema": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "record_encoding": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "block_types": {
+                              "record_column": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "mapping": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "name": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "required": true
+                                    },
+                                    "sql_type": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "required": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "min_items": 1,
+                                "max_items": 1000
+                              },
+                              "record_format": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "record_format_type": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "required": true
+                                    }
+                                  },
+                                  "block_types": {
+                                    "mapping_parameters": {
+                                      "nesting_mode": "list",
+                                      "block": {
+                                        "block_types": {
+                                          "csv_mapping_parameters": {
+                                            "nesting_mode": "list",
+                                            "block": {
+                                              "attributes": {
+                                                "record_column_delimiter": {
+                                                  "type": "string",
+                                                  "description_kind": "plain",
+                                                  "required": true
+                                                },
+                                                "record_row_delimiter": {
+                                                  "type": "string",
+                                                  "description_kind": "plain",
+                                                  "required": true
+                                                }
+                                              },
+                                              "description_kind": "plain"
+                                            },
+                                            "max_items": 1
+                                          },
+                                          "json_mapping_parameters": {
+                                            "nesting_mode": "list",
+                                            "block": {
+                                              "attributes": {
+                                                "record_row_path": {
+                                                  "type": "string",
+                                                  "description_kind": "plain",
+                                                  "required": true
+                                                }
+                                              },
+                                              "description_kind": "plain"
+                                            },
+                                            "max_items": 1
+                                          }
+                                        },
+                                        "description_kind": "plain"
+                                      },
+                                      "min_items": 1,
+                                      "max_items": 1
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "min_items": 1,
+                                "max_items": 1
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        },
+                        "s3_reference_data_source": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "bucket_arn": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "file_key": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "vpc_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "security_group_ids": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "subnet_ids": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "vpc_configuration_id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "computed": true
+                  },
+                  "vpc_id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "cloudwatch_logging_options": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "cloudwatch_logging_option_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "log_stream_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

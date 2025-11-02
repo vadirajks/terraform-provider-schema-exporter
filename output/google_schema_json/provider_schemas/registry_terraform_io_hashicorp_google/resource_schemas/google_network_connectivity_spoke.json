@@ -1,0 +1,340 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "Output only. The time the spoke was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "An optional description of the spoke.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "group": {
+        "type": "string",
+        "description": "The name of the group that this spoke is associated with.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "hub": {
+        "type": "string",
+        "description": "Immutable. The URI of the hub that this spoke is attached to.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Optional labels in key:value format. For more information about labels, see [Requirements for labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements). **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location for the resource",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Immutable. The name of the spoke. Spoke names must be unique.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "reasons": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "code": "string",
+              "message": "string",
+              "user_details": "string"
+            }
+          ]
+        ],
+        "description": "The reasons for the current state in the lifecycle",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "state": {
+        "type": "string",
+        "description": "Output only. The current lifecycle state of this spoke.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "unique_id": {
+        "type": "string",
+        "description": "Output only. The Google-generated UUID for the spoke. This value is unique across all spoke resources. If a spoke is deleted and another with the same name is created, the new spoke is assigned a different unique_id.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Output only. The time the spoke was last updated.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "linked_interconnect_attachments": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "include_import_ranges": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "IP ranges allowed to be included during import from hub (does not control transit connectivity). The only allowed value for now is \"ALL_IPV4_RANGES\".",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "site_to_site_data_transfer": {
+              "type": "bool",
+              "description": "A value that controls whether site-to-site data transfer is enabled for these resources. Note that data transfer is available only in supported locations.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "uris": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "The URIs of linked interconnect attachment resources",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "A collection of VLAN attachment resources. These resources should be redundant attachments that all advertise the same prefixes to Google Cloud. Alternatively, in active/passive configurations, all attachments should be capable of advertising the same prefixes.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "linked_producer_vpc_network": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "exclude_export_ranges": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "IP ranges encompassing the subnets to be excluded from peering.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "include_export_ranges": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "IP ranges allowed to be included from peering.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "network": {
+              "type": "string",
+              "description": "The URI of the Service Consumer VPC that the Producer VPC is peered with.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "peering": {
+              "type": "string",
+              "description": "The name of the VPC peering between the Service Consumer VPC and the Producer VPC (defined in the Tenant project) which is added to the NCC hub. This peering must be in ACTIVE state.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "producer_network": {
+              "type": "string",
+              "description": "The URI of the Producer VPC.",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "description": "Producer VPC network that is associated with the spoke.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "linked_router_appliance_instances": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "include_import_ranges": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "IP ranges allowed to be included during import from hub (does not control transit connectivity). The only allowed value for now is \"ALL_IPV4_RANGES\".",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "site_to_site_data_transfer": {
+              "type": "bool",
+              "description": "A value that controls whether site-to-site data transfer is enabled for these resources. Note that data transfer is available only in supported locations.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "instances": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "ip_address": {
+                    "type": "string",
+                    "description": "The IP address on the VM to use for peering.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "virtual_machine": {
+                    "type": "string",
+                    "description": "The URI of the virtual machine resource",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "The list of router appliance instances",
+                "description_kind": "plain"
+              },
+              "min_items": 1
+            }
+          },
+          "description": "The URIs of linked Router appliance resources",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "linked_vpc_network": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "exclude_export_ranges": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "IP ranges encompassing the subnets to be excluded from peering.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "include_export_ranges": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "IP ranges allowed to be included from peering.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "uri": {
+              "type": "string",
+              "description": "The URI of the VPC network resource.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "VPC network that is associated with the spoke.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "linked_vpn_tunnels": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "include_import_ranges": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "IP ranges allowed to be included during import from hub (does not control transit connectivity). The only allowed value for now is \"ALL_IPV4_RANGES\".",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "site_to_site_data_transfer": {
+              "type": "bool",
+              "description": "A value that controls whether site-to-site data transfer is enabled for these resources. Note that data transfer is available only in supported locations.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "uris": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "The URIs of linked VPN tunnel resources.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "The URIs of linked VPN tunnel resources",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

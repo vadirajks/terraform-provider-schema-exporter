@@ -1,0 +1,374 @@
+version: 0
+block:
+  attributes:
+    authorization_mode:
+      type: string
+      description: 'Optional. Immutable. Authorization mode of the instance. Possible values: AUTH_DISABLED IAM_AUTH'
+      description_kind: plain
+      computed: true
+    automated_backup_config:
+      type:
+      - list
+      - - object
+        - fixed_frequency_schedule:
+          - list
+          - - object
+            - start_time:
+              - list
+              - - object
+                - hours: number
+          retention: string
+      description: The automated backup config for a instance.
+      description_kind: plain
+      computed: true
+    available_maintenance_versions:
+      type:
+      - list
+      - string
+      description: This field is used to determine the available maintenance versions for the self service update.
+      description_kind: plain
+      computed: true
+    backup_collection:
+      type: string
+      description: 'The backup collection full resource name. Example: projects/{project}/locations/{location}/backupCollections/{collection}'
+      description_kind: plain
+      computed: true
+    create_time:
+      type: string
+      description: Output only. Creation timestamp of the instance.
+      description_kind: plain
+      computed: true
+    cross_instance_replication_config:
+      type:
+      - list
+      - - object
+        - instance_role: string
+          membership:
+          - list
+          - - object
+            - primary_instance:
+              - list
+              - - object
+                - instance: string
+                  uid: string
+              secondary_instance:
+              - list
+              - - object
+                - instance: string
+                  uid: string
+          primary_instance:
+          - list
+          - - object
+            - instance: string
+              uid: string
+          secondary_instances:
+          - list
+          - - object
+            - instance: string
+              uid: string
+          update_time: string
+      description: Cross instance replication config
+      description_kind: plain
+      computed: true
+    deletion_protection_enabled:
+      type: bool
+      description: Optional. If set to true deletion of the instance will fail.
+      description_kind: plain
+      computed: true
+    desired_auto_created_endpoints:
+      type:
+      - list
+      - - object
+        - network: string
+          project_id: string
+      description: Immutable. User inputs for the auto-created endpoints connections.
+      description_kind: plain
+      computed: true
+    desired_psc_auto_connections:
+      type:
+      - list
+      - - object
+        - network: string
+          project_id: string
+      description: '''desired_psc_auto_connections'' is deprecated  Use ''desired_auto_created_endpoints'' instead ''terraform import'' will only work with desired_auto_created_endpoints''.'
+      description_kind: plain
+      computed: true
+    discovery_endpoints:
+      type:
+      - list
+      - - object
+        - address: string
+          network: string
+          port: number
+      description: Deprecated. Output only. Endpoints clients can connect to the instance through.
+      description_kind: plain
+      computed: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    effective_maintenance_version:
+      type: string
+      description: This field represents the actual maintenance version of the cluster.
+      description_kind: plain
+      computed: true
+    endpoints:
+      type:
+      - list
+      - - object
+        - connections:
+          - list
+          - - object
+            - psc_auto_connection:
+              - list
+              - - object
+                - connection_type: string
+                  forwarding_rule: string
+                  ip_address: string
+                  network: string
+                  port: number
+                  project_id: string
+                  psc_connection_id: string
+                  service_attachment: string
+      description: Endpoints for the instance.
+      description_kind: plain
+      computed: true
+    engine_configs:
+      type:
+      - map
+      - string
+      description: Optional. User-provided engine configurations for the instance.
+      description_kind: plain
+      computed: true
+    engine_version:
+      type: string
+      description: Optional. Engine version of the instance.
+      description_kind: plain
+      computed: true
+    gcs_source:
+      type:
+      - list
+      - - object
+        - uris:
+          - set
+          - string
+      description: GCS source for the instance.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instance_id:
+      type: string
+      description: 'Required. The ID to use for the instance, which will become the final component of the instance''s resource name. This value is subject to the following restrictions: * Must be 4-63 characters in length * Must begin with a letter or digit * Must contain only lowercase letters, digits, and hyphens * Must not end with a hyphen * Must be unique within a location'
+      description_kind: plain
+      required: true
+    kms_key:
+      type: string
+      description: The KMS key used to encrypt the at-rest data of the cluster
+      description_kind: plain
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Optional. Labels to represent user-provided metadata. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description: Resource ID segment making up resource 'name'. It identifies the resource within its parent collection as described in https://google.aip.dev/122. See documentation for resource type 'memorystore.googleapis.com/CertificateAuthority'.
+      description_kind: plain
+      optional: true
+    maintenance_policy:
+      type:
+      - list
+      - - object
+        - create_time: string
+          update_time: string
+          weekly_maintenance_window:
+          - list
+          - - object
+            - day: string
+              duration: string
+              start_time:
+              - list
+              - - object
+                - hours: number
+                  minutes: number
+                  nanos: number
+                  seconds: number
+      description: Maintenance policy for a cluster
+      description_kind: plain
+      computed: true
+    maintenance_schedule:
+      type:
+      - list
+      - - object
+        - end_time: string
+          schedule_deadline_time: string
+          start_time: string
+      description: Upcoming maintenance schedule.
+      description_kind: plain
+      computed: true
+    maintenance_version:
+      type: string
+      description: 'This field can be used to trigger self service update to indicate the desired maintenance version. The input to this field can be determined by the available_maintenance_versions field. *Note*: This field can only be specified when updating an existing cluster to a newer version. Downgrades are currently not supported!'
+      description_kind: plain
+      computed: true
+    managed_backup_source:
+      type:
+      - list
+      - - object
+        - backup: string
+      description: Managed backup source for the instance.
+      description_kind: plain
+      computed: true
+    managed_server_ca:
+      type:
+      - list
+      - - object
+        - ca_certs:
+          - list
+          - - object
+            - certificates:
+              - list
+              - string
+      description: Instance's Certificate Authority. This field will only be populated if instance's transit_encryption_mode is SERVER_AUTHENTICATION
+      description_kind: plain
+      computed: true
+    mode:
+      type: string
+      description: 'Optional. cluster or cluster-disabled. Possible values: CLUSTER CLUSTER_DISABLED Possible values: ["CLUSTER", "CLUSTER_DISABLED"]'
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: 'Identifier. Unique name of the instance. Format: projects/{project}/locations/{location}/instances/{instance}'
+      description_kind: plain
+      computed: true
+    node_config:
+      type:
+      - list
+      - - object
+        - size_gb: number
+      description: Represents configuration for nodes of the instance.
+      description_kind: plain
+      computed: true
+    node_type:
+      type: string
+      description: 'Optional. Machine type for individual nodes of the instance. Possible values: SHARED_CORE_NANO HIGHMEM_MEDIUM HIGHMEM_XLARGE STANDARD_SMALL'
+      description_kind: plain
+      computed: true
+    persistence_config:
+      type:
+      - list
+      - - object
+        - aof_config:
+          - list
+          - - object
+            - append_fsync: string
+          mode: string
+          rdb_config:
+          - list
+          - - object
+            - rdb_snapshot_period: string
+              rdb_snapshot_start_time: string
+      description: Represents persistence configuration for a instance.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+    psc_attachment_details:
+      type:
+      - list
+      - - object
+        - connection_type: string
+          service_attachment: string
+      description: Configuration of a service attachment of the cluster, for creating PSC connections.
+      description_kind: plain
+      computed: true
+    psc_auto_connections:
+      type:
+      - list
+      - - object
+        - connection_type: string
+          forwarding_rule: string
+          ip_address: string
+          network: string
+          port: number
+          project_id: string
+          psc_connection_id: string
+          psc_connection_status: string
+          service_attachment: string
+      description: Output only. User inputs and resource details of the auto-created PSC connections.
+      description_kind: plain
+      computed: true
+    replica_count:
+      type: number
+      description: Optional. Number of replica nodes per shard. If omitted the default is 0 replicas.
+      description_kind: plain
+      computed: true
+    shard_count:
+      type: number
+      description: Required. Number of shards for the instance.
+      description_kind: plain
+      computed: true
+    state:
+      type: string
+      description: 'Output only. Current state of the instance. Possible values: CREATING ACTIVE UPDATING DELETING'
+      description_kind: plain
+      computed: true
+    state_info:
+      type:
+      - list
+      - - object
+        - update_info:
+          - list
+          - - object
+            - target_engine_version: string
+              target_node_type: string
+              target_replica_count: number
+              target_shard_count: number
+      description: Additional information about the state of the instance.
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    transit_encryption_mode:
+      type: string
+      description: 'Optional. Immutable. In-transit encryption mode of the instance. Possible values: TRANSIT_ENCRYPTION_DISABLED SERVER_AUTHENTICATION'
+      description_kind: plain
+      computed: true
+    uid:
+      type: string
+      description: Output only. System assigned, unique identifier for the instance.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: Output only. Latest update timestamp of the instance.
+      description_kind: plain
+      computed: true
+    zone_distribution_config:
+      type:
+      - list
+      - - object
+        - mode: string
+          zone: string
+      description: Zone distribution configuration for allocation of instance resources.
+      description_kind: plain
+      computed: true
+  description_kind: plain

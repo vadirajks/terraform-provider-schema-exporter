@@ -1,0 +1,17 @@
+resource "aws_ec2_transit_gateway_vpc_attachment" "name" {
+  subnet_ids = ['set', 'string'] (Required)
+  transit_gateway_id = string (Required)
+  vpc_id = string (Required)
+  appliance_mode_support = string (Optional)
+  arn = string (Computed)
+  dns_support = string (Optional)
+  id = string (Optional, Computed)
+  ipv6_support = string (Optional)
+  region = string (Optional, Computed)
+  security_group_referencing_support = string (Optional, Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+  transit_gateway_default_route_table_association = bool (Optional, Computed)
+  transit_gateway_default_route_table_propagation = bool (Optional, Computed)
+  vpc_owner_id = string (Computed)
+}

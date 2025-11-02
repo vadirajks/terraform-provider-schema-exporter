@@ -1,0 +1,52 @@
+version: 0
+block:
+  attributes:
+    container_name:
+      type: string
+      description_kind: plain
+      computed: true
+    data_share_id:
+      type: string
+      description_kind: plain
+      required: true
+    display_name:
+      type: string
+      description_kind: plain
+      computed: true
+    file_path:
+      type: string
+      description_kind: plain
+      computed: true
+    folder_path:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    storage_account:
+      type:
+      - list
+      - - object
+        - name: string
+          resource_group_name: string
+          subscription_id: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

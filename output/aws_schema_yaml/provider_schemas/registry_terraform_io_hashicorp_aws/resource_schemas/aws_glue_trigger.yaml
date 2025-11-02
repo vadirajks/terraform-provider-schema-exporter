@@ -1,0 +1,171 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    schedule:
+      type: string
+      description_kind: plain
+      optional: true
+    start_on_creation:
+      type: bool
+      description_kind: plain
+      optional: true
+    state:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    type:
+      type: string
+      description_kind: plain
+      required: true
+    workflow_name:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    actions:
+      nesting_mode: list
+      block:
+        attributes:
+          arguments:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+          crawler_name:
+            type: string
+            description_kind: plain
+            optional: true
+          job_name:
+            type: string
+            description_kind: plain
+            optional: true
+          security_configuration:
+            type: string
+            description_kind: plain
+            optional: true
+          timeout:
+            type: number
+            description_kind: plain
+            optional: true
+        block_types:
+          notification_property:
+            nesting_mode: list
+            block:
+              attributes:
+                notify_delay_after:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+    event_batching_condition:
+      nesting_mode: list
+      block:
+        attributes:
+          batch_size:
+            type: number
+            description_kind: plain
+            required: true
+          batch_window:
+            type: number
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    predicate:
+      nesting_mode: list
+      block:
+        attributes:
+          logical:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          conditions:
+            nesting_mode: list
+            block:
+              attributes:
+                crawl_state:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                crawler_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                job_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                logical_operator:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                state:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            min_items: 1
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

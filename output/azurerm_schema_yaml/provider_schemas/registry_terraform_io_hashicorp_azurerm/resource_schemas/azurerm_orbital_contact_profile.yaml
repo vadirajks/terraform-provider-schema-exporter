@@ -1,0 +1,138 @@
+version: 0
+block:
+  attributes:
+    auto_tracking:
+      type: string
+      description_kind: plain
+      required: true
+    event_hub_uri:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    minimum_elevation_degrees:
+      type: number
+      description_kind: plain
+      optional: true
+    minimum_variable_contact_duration:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    network_configuration_subnet_id:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    links:
+      nesting_mode: list
+      block:
+        attributes:
+          direction:
+            type: string
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          polarization:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          channels:
+            nesting_mode: list
+            block:
+              attributes:
+                bandwidth_mhz:
+                  type: number
+                  description_kind: plain
+                  required: true
+                center_frequency_mhz:
+                  type: number
+                  description_kind: plain
+                  required: true
+                demodulation_configuration:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                modulation_configuration:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                end_point:
+                  nesting_mode: set
+                  block:
+                    attributes:
+                      end_point_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      ip_address:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      port:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      protocol:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  min_items: 1
+              description_kind: plain
+            min_items: 1
+        description_kind: plain
+      min_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

@@ -1,0 +1,151 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    destination:
+      type: string
+      description_kind: plain
+      optional: true
+    destination_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    destination_ip:
+      type: string
+      description_kind: plain
+      optional: true
+    destination_port:
+      type: number
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    protocol:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    source:
+      type: string
+      description_kind: plain
+      required: true
+    source_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    source_ip:
+      type: string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    filter_at_destination:
+      nesting_mode: list
+      block:
+        attributes:
+          destination_address:
+            type: string
+            description_kind: plain
+            optional: true
+          source_address:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          destination_port_range:
+            nesting_mode: list
+            block:
+              attributes:
+                from_port:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                to_port:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          source_port_range:
+            nesting_mode: list
+            block:
+              attributes:
+                from_port:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                to_port:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    filter_at_source:
+      nesting_mode: list
+      block:
+        attributes:
+          destination_address:
+            type: string
+            description_kind: plain
+            optional: true
+          source_address:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          destination_port_range:
+            nesting_mode: list
+            block:
+              attributes:
+                from_port:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                to_port:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          source_port_range:
+            nesting_mode: list
+            block:
+              attributes:
+                from_port:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                to_port:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

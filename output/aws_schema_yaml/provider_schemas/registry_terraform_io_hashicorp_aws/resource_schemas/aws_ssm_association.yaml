@@ -1,0 +1,123 @@
+version: 1
+block:
+  attributes:
+    apply_only_at_cron_interval:
+      type: bool
+      description_kind: plain
+      optional: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    association_id:
+      type: string
+      description_kind: plain
+      computed: true
+    association_name:
+      type: string
+      description_kind: plain
+      optional: true
+    automation_target_parameter_name:
+      type: string
+      description_kind: plain
+      optional: true
+    compliance_severity:
+      type: string
+      description_kind: plain
+      optional: true
+    document_version:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    max_concurrency:
+      type: string
+      description_kind: plain
+      optional: true
+    max_errors:
+      type: string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    parameters:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    schedule_expression:
+      type: string
+      description_kind: plain
+      optional: true
+    sync_compliance:
+      type: string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    wait_for_success_timeout_seconds:
+      type: number
+      description_kind: plain
+      optional: true
+  block_types:
+    output_location:
+      nesting_mode: list
+      block:
+        attributes:
+          s3_bucket_name:
+            type: string
+            description_kind: plain
+            required: true
+          s3_key_prefix:
+            type: string
+            description_kind: plain
+            optional: true
+          s3_region:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    targets:
+      nesting_mode: list
+      block:
+        attributes:
+          key:
+            type: string
+            description_kind: plain
+            required: true
+          values:
+            type:
+            - list
+            - string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 5
+  description_kind: plain

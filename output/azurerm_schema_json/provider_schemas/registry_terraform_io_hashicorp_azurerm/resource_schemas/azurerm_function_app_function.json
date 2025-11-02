@@ -1,0 +1,142 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "config_json": {
+        "type": "string",
+        "description": "The config for this Function in JSON format.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "config_url": {
+        "type": "string",
+        "description": "The URL of the configuration JSON.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "enabled": {
+        "type": "bool",
+        "description": "Should this function be enabled. Defaults to `true`.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "function_app_id": {
+        "type": "string",
+        "description": "The ID of the Function App in which this function should reside.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "invocation_url": {
+        "type": "string",
+        "description": "The invocation URL.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "language": {
+        "type": "string",
+        "description": "The language the Function is written in.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the function.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "script_root_path_url": {
+        "type": "string",
+        "description": "The Script root path URL.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "script_url": {
+        "type": "string",
+        "description": "The script URL.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "secrets_file_url": {
+        "type": "string",
+        "description": "The URL for the Secrets File.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "test_data": {
+        "type": "string",
+        "description": "The test data for the function.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "test_data_url": {
+        "type": "string",
+        "description": "The Test data URL.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "url": {
+        "type": "string",
+        "description": "The function URL.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "file": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "content": {
+              "type": "string",
+              "description": "The content of the file.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "name": {
+              "type": "string",
+              "description": "The filename of the file to be uploaded.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "connectors": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "List of AppConnectors that are authorised to be associated with this AppConnection",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "An arbitrary user-provided name for the AppConnection.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Resource labels to represent user provided metadata. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "ID of the AppConnection.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "The region of the AppConnection.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "type": {
+        "type": "string",
+        "description": "The type of network connectivity used by the AppConnection. Refer to https://cloud.google.com/beyondcorp/docs/reference/rest/v1/projects.locations.appConnections#type for a list of possible values.",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "application_endpoint": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "host": {
+              "type": "string",
+              "description": "Hostname or IP address of the remote application endpoint.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "port": {
+              "type": "number",
+              "description": "Port of the remote application endpoint.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Address of the remote application endpoint for the BeyondCorp AppConnection.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "gateway": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "app_gateway": {
+              "type": "string",
+              "description": "AppGateway name in following format: projects/{project_id}/locations/{locationId}/appgateways/{gateway_id}.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "ingress_port": {
+              "type": "number",
+              "description": "Ingress port reserved on the gateways for this AppConnection, if not specified or zero, the default port is 19443.",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "type": {
+              "type": "string",
+              "description": "The type of hosting used by the gateway. Refer to https://cloud.google.com/beyondcorp/docs/reference/rest/v1/projects.locations.appConnections#Type_1 for a list of possible values.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "uri": {
+              "type": "string",
+              "description": "Server-defined URI for this resource.",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "description": "Gateway used by the AppConnection.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "active_directory_configuration": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "netbios_name": "string",
+              "self_managed_active_directory_configuration": [
+                "list",
+                [
+                  "object",
+                  {
+                    "dns_ips": [
+                      "set",
+                      "string"
+                    ],
+                    "domain_name": "string",
+                    "file_system_administrators_group": "string",
+                    "organizational_unit_distinguished_name": "string",
+                    "username": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "creation_time": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "endpoints": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "iscsi": [
+                "list",
+                [
+                  "object",
+                  {
+                    "dns_name": "string",
+                    "ip_addresses": [
+                      "set",
+                      "string"
+                    ]
+                  }
+                ]
+              ],
+              "management": [
+                "list",
+                [
+                  "object",
+                  {
+                    "dns_name": "string",
+                    "ip_addresses": [
+                      "set",
+                      "string"
+                    ]
+                  }
+                ]
+              ],
+              "nfs": [
+                "list",
+                [
+                  "object",
+                  {
+                    "dns_name": "string",
+                    "ip_addresses": [
+                      "set",
+                      "string"
+                    ]
+                  }
+                ]
+              ],
+              "smb": [
+                "list",
+                [
+                  "object",
+                  {
+                    "dns_name": "string",
+                    "ip_addresses": [
+                      "set",
+                      "string"
+                    ]
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "file_system_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "lifecycle_status": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "lifecycle_transition_reason": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "message": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "subtype": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "uuid": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "filter": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "values": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

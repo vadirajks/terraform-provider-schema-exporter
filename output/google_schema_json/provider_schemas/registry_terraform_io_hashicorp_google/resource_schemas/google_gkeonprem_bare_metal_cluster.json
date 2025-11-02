@@ -1,0 +1,1093 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "admin_cluster_membership": {
+        "type": "string",
+        "description": "The Admin Cluster this Bare Metal User Cluster belongs to. This is the full resource name of the Admin Cluster's hub membership.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "annotations": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Annotations on the Bare Metal User Cluster. This field has the same restrictions as Kubernetes annotations. The total size of all keys and values combined is limited to 256k. Key can have 2 segments: prefix (optional) and name (required), separated by a slash (/). Prefix must be a DNS subdomain. Name must be 63 characters or less, begin and end with alphanumerics, with dashes (-), underscores (_), dots (.), and alphanumerics between. **Note**: This field is non-authoritative, and will only manage the annotations present in your configuration. Please refer to the field 'effective_annotations' for all of the annotations present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "bare_metal_version": {
+        "type": "string",
+        "description": "A human readable description of this Bare Metal User Cluster.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "The time the cluster was created, in RFC3339 text format.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "delete_time": {
+        "type": "string",
+        "description": "The time the cluster was deleted, in RFC3339 text format.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "A human readable description of this Bare Metal User Cluster.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "effective_annotations": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of annotations (key/value pairs) present on the resource in GCP, including the annotations configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "endpoint": {
+        "type": "string",
+        "description": "The IP address name of Bare Metal User Cluster's API server.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "etag": {
+        "type": "string",
+        "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. Allows clients to perform consistent read-modify-writes through optimistic concurrency control.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "fleet": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "membership": "string"
+            }
+          ]
+        ],
+        "description": "Fleet related configuration. Fleets are a Google Cloud concept for logically organizing clusters, letting you use and manage multi-cluster capabilities and apply consistent policies across your systems. See [Anthos Fleets](https://cloud.google.com/anthos/multicluster-management/fleets) for more details on Anthos multi-cluster capabilities using Fleets.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "local_name": {
+        "type": "string",
+        "description": "The object name of the Bare Metal Cluster custom resource on the associated admin cluster. This field is used to support conflicting names when enrolling existing clusters to the API. When used as a part of cluster enrollment, this field will differ from the ID in the resource name. For new clusters, this field will match the user provided cluster ID and be visible in the last component of the resource name. It is not modifiable. All users should use this name to access their cluster using gkectl or kubectl and should expect to see the local name when viewing admin cluster controller logs.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location of the resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The bare metal cluster name.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "reconciling": {
+        "type": "bool",
+        "description": "If set, there are currently changes in flight to the Bare Metal User Cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "state": {
+        "type": "string",
+        "description": "The current state of this cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "status": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "conditions": [
+                "list",
+                [
+                  "object",
+                  {
+                    "last_transition_time": "string",
+                    "message": "string",
+                    "reason": "string",
+                    "state": "string",
+                    "type": "string"
+                  }
+                ]
+              ],
+              "error_message": "string"
+            }
+          ]
+        ],
+        "description": "Specifies detailed cluster status.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "uid": {
+        "type": "string",
+        "description": "The unique identifier of the Bare Metal User Cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "The time the cluster was last updated, in RFC3339 text format.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "validation_check": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "options": "string",
+              "scenario": "string",
+              "status": [
+                "list",
+                [
+                  "object",
+                  {
+                    "result": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "category": "string",
+                          "description": "string",
+                          "details": "string",
+                          "options": "string",
+                          "reason": "string"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "Specifies the security related settings for the Bare Metal User Cluster.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "binary_authorization": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "evaluation_mode": {
+              "type": "string",
+              "description": "Mode of operation for binauthz policy evaluation. If unspecified, defaults to DISABLED. Possible values: [\"DISABLED\", \"PROJECT_SINGLETON_POLICY_ENFORCE\"]",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Binary Authorization related configurations.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "cluster_operations": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enable_application_logs": {
+              "type": "bool",
+              "description": "Whether collection of application logs/metrics should be enabled (in addition to system logs/metrics).",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Specifies the User Cluster's observability infrastructure.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "control_plane": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "api_server_args": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "argument": {
+                    "type": "string",
+                    "description": "The argument name as it appears on the API Server command line please make sure to remove the leading dashes.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "The value of the arg as it will be passed to the API Server command line.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Customizes the default API server args. Only a subset of customized flags are supported. Please refer to the API server documentation below to know the exact format: https://kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/",
+                "description_kind": "plain"
+              }
+            },
+            "control_plane_node_pool_config": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "node_pool_config": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "labels": {
+                          "type": [
+                            "map",
+                            "string"
+                          ],
+                          "description": "The map of Kubernetes labels (key/value pairs) to be applied to each node. These will added in addition to any default label(s) that Kubernetes may apply to the node. In case of conflict in label keys, the applied set may differ depending on the Kubernetes version -- it's best to assume the behavior is undefined and conflicts should be avoided. For more information, including usage and the valid values, see: - http://kubernetes.io/v1.1/docs/user-guide/labels.html An object containing a list of \"key\": value pairs. For example: { \"name\": \"wrench\", \"mass\": \"1.3kg\", \"count\": \"3\" }.",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "operating_system": {
+                          "type": "string",
+                          "description": "Specifies the nodes operating system (default: LINUX).",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "node_configs": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "labels": {
+                                "type": [
+                                  "map",
+                                  "string"
+                                ],
+                                "description": "The map of Kubernetes labels (key/value pairs) to be applied to each node. These will added in addition to any default label(s) that Kubernetes may apply to the node. In case of conflict in label keys, the applied set may differ depending on the Kubernetes version -- it's best to assume the behavior is undefined and conflicts should be avoided. For more information, including usage and the valid values, see: - http://kubernetes.io/v1.1/docs/user-guide/labels.html An object containing a list of \"key\": value pairs. Example: { \"name\": \"wrench\", \"mass\": \"1.3kg\", \"count\": \"3\" }.",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "node_ip": {
+                                "type": "string",
+                                "description": "The default IPv4 address for SSH access and Kubernetes node. Example: 192.168.0.1",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description": "The list of machine addresses in the Bare Metal Node Pool.",
+                            "description_kind": "plain"
+                          }
+                        },
+                        "taints": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "effect": {
+                                "type": "string",
+                                "description": "Specifies the nodes operating system (default: LINUX). Possible values: [\"EFFECT_UNSPECIFIED\", \"PREFER_NO_SCHEDULE\", \"NO_EXECUTE\"]",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "key": {
+                                "type": "string",
+                                "description": "Key associated with the effect.",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "Value associated with the effect.",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description": "The initial taints assigned to nodes of this node pool.",
+                            "description_kind": "plain"
+                          }
+                        }
+                      },
+                      "description": "The generic configuration for a node pool running the control plane.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  }
+                },
+                "description": "Configures the node pool running the control plane. If specified the corresponding NodePool will be created for the cluster's control plane. The NodePool will have the same name and namespace as the cluster.",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description": "Specifies the control plane configuration.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "load_balancer": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "bgp_lb_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "asn": {
+                    "type": "number",
+                    "description": "BGP autonomous system number (ASN) of the cluster. This field can be updated after cluster creation.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "address_pools": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "addresses": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description": "The addresses that are part of this pool. Each address must be either in the CIDR form (1.2.3.0/24) or range form (1.2.3.1-1.2.3.5).",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "avoid_buggy_ips": {
+                          "type": "bool",
+                          "description": "If true, avoid using IPs ending in .0 or .255. This avoids buggy consumer devices mistakenly dropping IPv4 traffic for those special IP addresses.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "manual_assign": {
+                          "type": "bool",
+                          "description": "If true, prevent IP addresses from being automatically assigned.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "pool": {
+                          "type": "string",
+                          "description": "The name of the address pool.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "AddressPools is a list of non-overlapping IP pools used by load balancer typed services. All addresses must be routable to load balancer nodes. IngressVIP must be included in the pools.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1
+                  },
+                  "bgp_peer_configs": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "asn": {
+                          "type": "number",
+                          "description": "BGP autonomous system number (ASN) for the network that contains the external peer device.",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "control_plane_nodes": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description": "The IP address of the control plane node that connects to the external peer. If you don't specify any control plane nodes, all control plane nodes can connect to the external peer. If you specify one or more IP addresses, only the nodes specified participate in peering sessions.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "ip_address": {
+                          "type": "string",
+                          "description": "The IP address of the external peer device.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "The list of BGP peers that the cluster will connect to. At least one peer must be configured for each control plane node. Control plane nodes will connect to these peers to advertise the control plane VIP. The Services load balancer also uses these peers by default. This field can be updated after cluster creation.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1
+                  },
+                  "load_balancer_node_pool_config": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "block_types": {
+                        "node_pool_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "labels": {
+                                "type": [
+                                  "map",
+                                  "string"
+                                ],
+                                "description": "The map of Kubernetes labels (key/value pairs) to be applied to each node. These will added in addition to any default label(s) that Kubernetes may apply to the node. In case of conflict in label keys, the applied set may differ depending on the Kubernetes version -- it's best to assume the behavior is undefined and conflicts should be avoided. For more information, including usage and the valid values, see: - http://kubernetes.io/v1.1/docs/user-guide/labels.html An object containing a list of \"key\": value pairs. For example: { \"name\": \"wrench\", \"mass\": \"1.3kg\", \"count\": \"3\" }.",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "operating_system": {
+                                "type": "string",
+                                "description": "Specifies the nodes operating system (default: LINUX).",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "block_types": {
+                              "kubelet_config": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "registry_burst": {
+                                      "type": "number",
+                                      "description": "The maximum size of bursty pulls, temporarily allows pulls to burst to this number, while still not exceeding registry_pull_qps. The value must not be a negative number. Updating this field may impact scalability by changing the amount of traffic produced by image pulls. Defaults to 10.",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "registry_pull_qps": {
+                                      "type": "number",
+                                      "description": "The limit of registry pulls per second. Setting this value to 0 means no limit. Updating this field may impact scalability by changing the amount of traffic produced by image pulls. Defaults to 5.",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "serialize_image_pulls_disabled": {
+                                      "type": "bool",
+                                      "description": "Prevents the Kubelet from pulling multiple images at a time. We recommend *not* changing the default value on nodes that run docker daemon with version  < 1.9 or an Another Union File System (Aufs) storage backend. Issue https://github.com/kubernetes/kubernetes/issues/10959 has more details.",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    }
+                                  },
+                                  "description": "The modifiable kubelet configurations for the baremetal machines.",
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              },
+                              "node_configs": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "labels": {
+                                      "type": [
+                                        "map",
+                                        "string"
+                                      ],
+                                      "description": "The map of Kubernetes labels (key/value pairs) to be applied to each node. These will added in addition to any default label(s) that Kubernetes may apply to the node. In case of conflict in label keys, the applied set may differ depending on the Kubernetes version -- it's best to assume the behavior is undefined and conflicts should be avoided. For more information, including usage and the valid values, see: - http://kubernetes.io/v1.1/docs/user-guide/labels.html An object containing a list of \"key\": value pairs. For example: { \"name\": \"wrench\", \"mass\": \"1.3kg\", \"count\": \"3\" }.",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "node_ip": {
+                                      "type": "string",
+                                      "description": "The default IPv4 address for SSH access and Kubernetes node. Example: 192.168.0.1",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    }
+                                  },
+                                  "description": "The list of machine addresses in the Bare Metal Node Pool.",
+                                  "description_kind": "plain"
+                                }
+                              },
+                              "taints": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "effect": {
+                                      "type": "string",
+                                      "description": "Specifies the nodes operating system (default: LINUX). Possible values: [\"EFFECT_UNSPECIFIED\", \"PREFER_NO_SCHEDULE\", \"NO_EXECUTE\"]",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "key": {
+                                      "type": "string",
+                                      "description": "Key associated with the effect.",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "value": {
+                                      "type": "string",
+                                      "description": "Value associated with the effect.",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    }
+                                  },
+                                  "description": "The initial taints assigned to nodes of this node pool.",
+                                  "description_kind": "plain"
+                                }
+                              }
+                            },
+                            "description": "The generic configuration for a node pool running a load balancer.",
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description": "Specifies the node pool running data plane load balancing. L2 connectivity is required among nodes in this pool. If missing, the control plane node pool is used for data plane load balancing.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "Configuration for BGP typed load balancers.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "manual_lb_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enabled": {
+                    "type": "bool",
+                    "description": "Whether manual load balancing is enabled.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "A nested object resource.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "metal_lb_config": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "address_pools": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "addresses": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description": "The addresses that are part of this pool. Each address must be either in the CIDR form (1.2.3.0/24) or range form (1.2.3.1-1.2.3.5).",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "avoid_buggy_ips": {
+                          "type": "bool",
+                          "description": "If true, avoid using IPs ending in .0 or .255. This avoids buggy consumer devices mistakenly dropping IPv4 traffic for those special IP addresses.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "manual_assign": {
+                          "type": "bool",
+                          "description": "If true, prevent IP addresses from being automatically assigned.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "pool": {
+                          "type": "string",
+                          "description": "The name of the address pool.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "AddressPools is a list of non-overlapping IP pools used by load balancer typed services. All addresses must be routable to load balancer nodes. IngressVIP must be included in the pools.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1
+                  },
+                  "load_balancer_node_pool_config": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "block_types": {
+                        "node_pool_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "labels": {
+                                "type": [
+                                  "map",
+                                  "string"
+                                ],
+                                "description": "The map of Kubernetes labels (key/value pairs) to be applied to each node. These will added in addition to any default label(s) that Kubernetes may apply to the node. In case of conflict in label keys, the applied set may differ depending on the Kubernetes version -- it's best to assume the behavior is undefined and conflicts should be avoided. For more information, including usage and the valid values, see: - http://kubernetes.io/v1.1/docs/user-guide/labels.html An object containing a list of \"key\": value pairs. For example: { \"name\": \"wrench\", \"mass\": \"1.3kg\", \"count\": \"3\" }.",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              },
+                              "operating_system": {
+                                "type": "string",
+                                "description": "Specifies the nodes operating system (default: LINUX).",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              }
+                            },
+                            "block_types": {
+                              "node_configs": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "labels": {
+                                      "type": [
+                                        "map",
+                                        "string"
+                                      ],
+                                      "description": "The map of Kubernetes labels (key/value pairs) to be applied to each node. These will added in addition to any default label(s) that Kubernetes may apply to the node. In case of conflict in label keys, the applied set may differ depending on the Kubernetes version -- it's best to assume the behavior is undefined and conflicts should be avoided. For more information, including usage and the valid values, see: - http://kubernetes.io/v1.1/docs/user-guide/labels.html An object containing a list of \"key\": value pairs. For example: { \"name\": \"wrench\", \"mass\": \"1.3kg\", \"count\": \"3\" }.",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "node_ip": {
+                                      "type": "string",
+                                      "description": "The default IPv4 address for SSH access and Kubernetes node. Example: 192.168.0.1",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    }
+                                  },
+                                  "description": "The list of machine addresses in the Bare Metal Node Pool.",
+                                  "description_kind": "plain"
+                                }
+                              },
+                              "taints": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "effect": {
+                                      "type": "string",
+                                      "description": "Specifies the nodes operating system (default: LINUX). Possible values: [\"EFFECT_UNSPECIFIED\", \"PREFER_NO_SCHEDULE\", \"NO_EXECUTE\"]",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "key": {
+                                      "type": "string",
+                                      "description": "Key associated with the effect.",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "value": {
+                                      "type": "string",
+                                      "description": "Value associated with the effect.",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    }
+                                  },
+                                  "description": "The initial taints assigned to nodes of this node pool.",
+                                  "description_kind": "plain"
+                                }
+                              }
+                            },
+                            "description": "The generic configuration for a node pool running a load balancer.",
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description": "Specifies the load balancer's node pool configuration.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "A nested object resource.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "port_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "control_plane_load_balancer_port": {
+                    "type": "number",
+                    "description": "The port that control plane hosted load balancers will listen on.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Specifies the load balancer ports.",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "vip_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "control_plane_vip": {
+                    "type": "string",
+                    "description": "The VIP which you previously set aside for the Kubernetes API of this Bare Metal User Cluster.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "ingress_vip": {
+                    "type": "string",
+                    "description": "The VIP which you previously set aside for ingress traffic into this Bare Metal User Cluster.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Specified the Bare Metal Load Balancer Config",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description": "Specifies the load balancer configuration.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "maintenance_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "maintenance_address_cidr_blocks": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "All IPv4 address from these ranges will be placed into maintenance mode. Nodes in maintenance mode will be cordoned and drained. When both of these are true, the \"baremetal.cluster.gke.io/maintenance\" annotation will be set on the node resource.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Specifies the workload node configurations.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "network_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "advanced_networking": {
+              "type": "bool",
+              "description": "Enables the use of advanced Anthos networking features, such as Bundled Load Balancing with BGP or the egress NAT gateway. Setting configuration for advanced networking features will automatically set this flag.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "island_mode_cidr": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "pod_address_cidr_blocks": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "All pods in the cluster are assigned an RFC1918 IPv4 address from these ranges. This field cannot be changed after creation.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "service_address_cidr_blocks": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "All services in the cluster are assigned an RFC1918 IPv4 address from these ranges. This field cannot be changed after creation.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "A nested object resource.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "multiple_network_interfaces_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enabled": {
+                    "type": "bool",
+                    "description": "Whether to enable multiple network interfaces for your pods. When set network_config.advanced_networking is automatically set to true.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Configuration for multiple network interfaces.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "sr_iov_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enabled": {
+                    "type": "bool",
+                    "description": "Whether to install the SR-IOV operator.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Configuration for SR-IOV.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Network configuration.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "node_access_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "login_user": {
+              "type": "string",
+              "description": "LoginUser is the user name used to access node machines. It defaults to \"root\" if not set.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description": "Specifies the node access related settings for the bare metal user cluster.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "node_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "container_runtime": {
+              "type": "string",
+              "description": "The available runtimes that can be used to run containers in a Bare Metal User Cluster. Possible values: [\"CONTAINER_RUNTIME_UNSPECIFIED\", \"DOCKER\", \"CONTAINERD\"]",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "max_pods_per_node": {
+              "type": "number",
+              "description": "The maximum number of pods a node can run. The size of the CIDR range assigned to the node will be derived from this parameter.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description": "Specifies the workload node configurations.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "os_environment_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "package_repo_excluded": {
+              "type": "bool",
+              "description": "Whether the package repo should not be included when initializing bare metal machines.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "OS environment related configurations.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "proxy": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "no_proxy": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "A list of IPs, hostnames, and domains that should skip the proxy. For example [\"127.0.0.1\", \"example.com\", \".corp\", \"localhost\"].",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "uri": {
+              "type": "string",
+              "description": "Specifies the address of your proxy server. For example: http://domain WARNING: Do not provide credentials in the format of http://(username:password@)domain these will be rejected by the server.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Specifies the cluster proxy configuration.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "security_config": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "authorization": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "admin_users": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "username": {
+                          "type": "string",
+                          "description": "The name of the user, e.g. 'my-gcp-id@gmail.com'.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "Users that will be granted the cluster-admin role on the cluster, providing full access to the cluster.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1
+                  }
+                },
+                "description": "Configures user access to the Bare Metal User cluster.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Specifies the security related settings for the Bare Metal User Cluster.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "storage": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "lvp_node_mounts_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "path": {
+                    "type": "string",
+                    "description": "The host machine path.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "storage_class": {
+                    "type": "string",
+                    "description": "The StorageClass name that PVs will be created with.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Specifies the config for local PersistentVolumes backed by mounted node disks. These disks need to be formatted and mounted by the user, which can be done before or after cluster creation.",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "lvp_share_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "shared_path_pv_count": {
+                    "type": "number",
+                    "description": "The number of subdirectories to create under path.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "lvp_config": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "path": {
+                          "type": "string",
+                          "description": "The host machine path.",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "storage_class": {
+                          "type": "string",
+                          "description": "The StorageClass name that PVs will be created with.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "Defines the machine path and storage class for the LVP Share.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  }
+                },
+                "description": "Specifies the config for local PersistentVolumes backed by subdirectories in a shared filesystem. These subdirectores are automatically created during cluster creation.",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description": "Specifies the cluster storage configuration.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "upgrade_policy": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "policy": {
+              "type": "string",
+              "description": "Specifies which upgrade policy to use. Possible values: [\"SERIAL\", \"CONCURRENT\"]",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "The cluster upgrade policy.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

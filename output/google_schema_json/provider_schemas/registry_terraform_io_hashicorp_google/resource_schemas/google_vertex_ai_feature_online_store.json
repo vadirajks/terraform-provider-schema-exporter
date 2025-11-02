@@ -1,0 +1,212 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "The timestamp of when the feature online store was created in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "etag": {
+        "type": "string",
+        "description": "Used to perform consistent read-modify-write updates.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "force_destroy": {
+        "type": "bool",
+        "description": "If set to true, any FeatureViews and Features for this FeatureOnlineStore will also be deleted.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The labels with user-defined metadata to organize your feature online stores. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name of the Feature Online Store. This value may be up to 60 characters, and valid characters are [a-z0-9_]. The first character cannot be a number.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "The region of feature online store. eg us-central1",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "state": {
+        "type": "string",
+        "description": "The state of the Feature Online Store. See the possible states in [this link](https://cloud.google.com/vertex-ai/docs/reference/rest/v1/projects.locations.featureOnlineStores#state).",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "The timestamp of when the feature online store was last updated in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "bigtable": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "auto_scaling": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "cpu_utilization_target": {
+                    "type": "number",
+                    "description": "A percentage of the cluster's CPU capacity. Can be from 10% to 80%. When a cluster's CPU utilization exceeds the target that you have set, Bigtable immediately adds nodes to the cluster. When CPU utilization is substantially lower than the target, Bigtable removes nodes. If not set will default to 50%.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "max_node_count": {
+                    "type": "number",
+                    "description": "The maximum number of nodes to scale up to. Must be greater than or equal to minNodeCount, and less than or equal to 10 times of 'minNodeCount'.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "min_node_count": {
+                    "type": "number",
+                    "description": "The minimum number of nodes to scale down to. Must be greater than or equal to 1.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Autoscaling config applied to Bigtable Instance.",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description": "Settings for Cloud Bigtable instance that will be created to serve featureValues for all FeatureViews under this FeatureOnlineStore.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "dedicated_serving_endpoint": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "public_endpoint_domain_name": {
+              "type": "string",
+              "description": "Domain name to use for this FeatureOnlineStore",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "service_attachment": {
+              "type": "string",
+              "description": "Name of the service attachment resource. Applicable only if private service connect is enabled and after FeatureViewSync is created.",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "block_types": {
+            "private_service_connect_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enable_private_service_connect": {
+                    "type": "bool",
+                    "description": "If set to true, customers will use private service connection to send request. Otherwise, the connection will set to public endpoint.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "project_allowlist": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "A list of Projects from which the forwarding rule will target the service attachment.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Private service connect config.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "The dedicated serving endpoint for this FeatureOnlineStore, which is different from common vertex service endpoint. Only need to be set when you choose Optimized storage type or enable EmbeddingManagement. Will use public endpoint by default.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "optimized": {
+        "nesting_mode": "list",
+        "block": {
+          "description": "Settings for the Optimized store that will be created to serve featureValues for all FeatureViews under this FeatureOnlineStore",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

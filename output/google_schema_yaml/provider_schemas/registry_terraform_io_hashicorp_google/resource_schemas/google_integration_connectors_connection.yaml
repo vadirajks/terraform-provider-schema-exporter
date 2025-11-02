@@ -1,0 +1,883 @@
+version: 0
+block:
+  attributes:
+    connection_revision:
+      type: string
+      description: Connection revision. This field is only updated when the connection is created or updated by User.
+      description_kind: plain
+      computed: true
+    connector_version:
+      type: string
+      description: connectorVersion of the Connector.
+      description_kind: plain
+      required: true
+    connector_version_infra_config:
+      type:
+      - list
+      - - object
+        - ratelimit_threshold: string
+      description: This configuration provides infra configs like rate limit threshold which need to be configurable for every connector version.
+      description_kind: plain
+      computed: true
+    connector_version_launch_stage:
+      type: string
+      description: Flag to mark the version indicating the launch stage.
+      description_kind: plain
+      computed: true
+    create_time:
+      type: string
+      description: Time the Namespace was created in UTC.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: An arbitrary description for the Connection.
+      description_kind: plain
+      optional: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    eventing_enablement_type:
+      type: string
+      description: 'Eventing enablement type. Will be nil if eventing is not enabled. Possible values: ["EVENTING_AND_CONNECTION", "ONLY_EVENTING"]'
+      description_kind: plain
+      optional: true
+    eventing_runtime_data:
+      type:
+      - list
+      - - object
+        - events_listener_endpoint: string
+          status:
+          - list
+          - - object
+            - description: string
+              state: string
+      description: Eventing Runtime Data.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Resource labels to represent user provided metadata. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: Location in which Connection needs to be created.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: Name of Connection needs to be created.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    service_account:
+      type: string
+      description: Service account needed for runtime plane to access Google Cloud resources.
+      description_kind: plain
+      optional: true
+      computed: true
+    service_directory:
+      type: string
+      description: The name of the Service Directory service name. Used for Private Harpoon to resolve the ILB address. e.g. "projects/cloud-connectors-e2e-testing/locations/us-central1/namespaces/istio-system/services/istio-ingressgateway-connectors"
+      description_kind: plain
+      computed: true
+    status:
+      type:
+      - list
+      - - object
+        - description: string
+          state: string
+          status: string
+      description: Status of the Integration Connector.
+      description_kind: plain
+      computed: true
+    subscription_type:
+      type: string
+      description: This subscription type enum states the subscription type of the project.
+      description_kind: plain
+      computed: true
+    suspended:
+      type: bool
+      description: Suspended indicates if a user has suspended a connection or not.
+      description_kind: plain
+      optional: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: Time the Namespace was updated in UTC.
+      description_kind: plain
+      computed: true
+  block_types:
+    auth_config:
+      nesting_mode: list
+      block:
+        attributes:
+          auth_key:
+            type: string
+            description: The type of authentication configured.
+            description_kind: plain
+            optional: true
+          auth_type:
+            type: string
+            description: 'authType of the Connection Possible values: ["AUTH_TYPE_UNSPECIFIED", "USER_PASSWORD", "OAUTH2_JWT_BEARER", "OAUTH2_CLIENT_CREDENTIALS", "SSH_PUBLIC_KEY", "OAUTH2_AUTH_CODE_FLOW"]'
+            description_kind: plain
+            required: true
+        block_types:
+          additional_variable:
+            nesting_mode: list
+            block:
+              attributes:
+                boolean_value:
+                  type: bool
+                  description: Boolean Value of configVariable.
+                  description_kind: plain
+                  optional: true
+                integer_value:
+                  type: number
+                  description: Integer Value of configVariable.
+                  description_kind: plain
+                  optional: true
+                key:
+                  type: string
+                  description: Key for the configVariable
+                  description_kind: plain
+                  required: true
+                string_value:
+                  type: string
+                  description: String Value of configVariabley.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                encryption_key_value:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      kms_key_name:
+                        type: string
+                        description: 'The [KMS key name] with which the content of the Operation is encrypted. The expected format: projects/*/locations/*/keyRings/*/cryptoKeys/*. Will be empty string if google managed.'
+                        description_kind: plain
+                        optional: true
+                      type:
+                        type: string
+                        description: 'Type of Encryption Key Possible values: ["GOOGLE_MANAGED", "CUSTOMER_MANAGED"]'
+                        description_kind: plain
+                        required: true
+                    description: Encryption key value of configVariable.
+                    description_kind: plain
+                  max_items: 1
+                secret_value:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      secret_version:
+                        type: string
+                        description: Secret version of Secret Value for Config variable.
+                        description_kind: plain
+                        required: true
+                    description: Secret value of configVariable.
+                    description_kind: plain
+                  max_items: 1
+              description: List containing additional auth configs.
+              description_kind: plain
+          oauth2_auth_code_flow:
+            nesting_mode: list
+            block:
+              attributes:
+                auth_uri:
+                  type: string
+                  description: Auth URL for Authorization Code Flow.
+                  description_kind: plain
+                  optional: true
+                client_id:
+                  type: string
+                  description: Client ID for user-provided OAuth app.
+                  description_kind: plain
+                  optional: true
+                enable_pkce:
+                  type: bool
+                  description: Whether to enable PKCE when the user performs the auth code flow.
+                  description_kind: plain
+                  optional: true
+                scopes:
+                  type:
+                  - list
+                  - string
+                  description: Scopes the connection will request when the user performs the auth code flow.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                client_secret:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      secret_version:
+                        type: string
+                        description: 'The resource name of the secret version in the format, format as: projects/*/secrets/*/versions/*.'
+                        description_kind: plain
+                        required: true
+                    description: Client secret for user-provided OAuth app.
+                    description_kind: plain
+                  max_items: 1
+              description: Parameters to support Oauth 2.0 Auth Code Grant Authentication.
+              description_kind: plain
+            max_items: 1
+          oauth2_client_credentials:
+            nesting_mode: list
+            block:
+              attributes:
+                client_id:
+                  type: string
+                  description: Secret version of Password for Authentication.
+                  description_kind: plain
+                  required: true
+              block_types:
+                client_secret:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      secret_version:
+                        type: string
+                        description: 'The resource name of the secret version in the format, format as: projects/*/secrets/*/versions/*.'
+                        description_kind: plain
+                        required: true
+                    description: Secret version reference containing the client secret.
+                    description_kind: plain
+                  max_items: 1
+              description: OAuth3 Client Credentials for Authentication.
+              description_kind: plain
+            max_items: 1
+          oauth2_jwt_bearer:
+            nesting_mode: list
+            block:
+              block_types:
+                client_key:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      secret_version:
+                        type: string
+                        description: 'The resource name of the secret version in the format, format as: projects/*/secrets/*/versions/*.'
+                        description_kind: plain
+                        required: true
+                    description: 'Secret version reference containing a PKCS#8 PEM-encoded private key associated with the Client Certificate. This private key will be used to sign JWTs used for the jwt-bearer authorization grant. Specified in the form as: projects/*/secrets/*/versions/*.'
+                    description_kind: plain
+                  max_items: 1
+                jwt_claims:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      audience:
+                        type: string
+                        description: Value for the "aud" claim.
+                        description_kind: plain
+                        optional: true
+                      issuer:
+                        type: string
+                        description: Value for the "iss" claim.
+                        description_kind: plain
+                        optional: true
+                      subject:
+                        type: string
+                        description: Value for the "sub" claim.
+                        description_kind: plain
+                        optional: true
+                    description: JwtClaims providers fields to generate the token.
+                    description_kind: plain
+                  max_items: 1
+              description: OAuth2 JWT Bearer for Authentication.
+              description_kind: plain
+            max_items: 1
+          ssh_public_key:
+            nesting_mode: list
+            block:
+              attributes:
+                cert_type:
+                  type: string
+                  description: Format of SSH Client cert.
+                  description_kind: plain
+                  optional: true
+                username:
+                  type: string
+                  description: The user account used to authenticate.
+                  description_kind: plain
+                  required: true
+              block_types:
+                ssh_client_cert:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      secret_version:
+                        type: string
+                        description: 'The resource name of the secret version in the format, format as: projects/*/secrets/*/versions/*.'
+                        description_kind: plain
+                        required: true
+                    description: SSH Client Cert. It should contain both public and private key.
+                    description_kind: plain
+                  max_items: 1
+                ssh_client_cert_pass:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      secret_version:
+                        type: string
+                        description: 'The resource name of the secret version in the format, format as: projects/*/secrets/*/versions/*.'
+                        description_kind: plain
+                        required: true
+                    description: Password (passphrase) for ssh client certificate if it has one.
+                    description_kind: plain
+                  max_items: 1
+              description: SSH Public Key for Authentication.
+              description_kind: plain
+            max_items: 1
+          user_password:
+            nesting_mode: list
+            block:
+              attributes:
+                username:
+                  type: string
+                  description: Username for Authentication.
+                  description_kind: plain
+                  required: true
+              block_types:
+                password:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      secret_version:
+                        type: string
+                        description: 'The resource name of the secret version in the format, format as: projects/*/secrets/*/versions/*.'
+                        description_kind: plain
+                        required: true
+                    description: Password for Authentication.
+                    description_kind: plain
+                  max_items: 1
+              description: User password for Authentication.
+              description_kind: plain
+            max_items: 1
+        description: authConfig for the connection.
+        description_kind: plain
+      max_items: 1
+    config_variable:
+      nesting_mode: list
+      block:
+        attributes:
+          boolean_value:
+            type: bool
+            description: Boolean Value of configVariable
+            description_kind: plain
+            optional: true
+          integer_value:
+            type: number
+            description: Integer Value of configVariable
+            description_kind: plain
+            optional: true
+          key:
+            type: string
+            description: Key for the configVariable
+            description_kind: plain
+            required: true
+          string_value:
+            type: string
+            description: String Value of configVariabley
+            description_kind: plain
+            optional: true
+        block_types:
+          encryption_key_value:
+            nesting_mode: list
+            block:
+              attributes:
+                kms_key_name:
+                  type: string
+                  description: 'The [KMS key name] with which the content of the Operation is encrypted. The expected format: projects/*/locations/*/keyRings/*/cryptoKeys/*. Will be empty string if google managed.'
+                  description_kind: plain
+                  optional: true
+                type:
+                  type: string
+                  description: 'Type of Encryption Key Possible values: ["GOOGLE_MANAGED", "CUSTOMER_MANAGED"]'
+                  description_kind: plain
+                  required: true
+              description: Encryption key value of configVariable.
+              description_kind: plain
+            max_items: 1
+          secret_value:
+            nesting_mode: list
+            block:
+              attributes:
+                secret_version:
+                  type: string
+                  description: Secret version of Secret Value for Config variable.
+                  description_kind: plain
+                  required: true
+              description: Secret value of configVariable.
+              description_kind: plain
+            max_items: 1
+        description: Config Variables for the connection.
+        description_kind: plain
+    destination_config:
+      nesting_mode: list
+      block:
+        attributes:
+          key:
+            type: string
+            description: The key is the destination identifier that is supported by the Connector.
+            description_kind: plain
+            required: true
+        block_types:
+          destination:
+            nesting_mode: list
+            block:
+              attributes:
+                host:
+                  type: string
+                  description: For publicly routable host.
+                  description_kind: plain
+                  optional: true
+                port:
+                  type: number
+                  description: The port is the target port number that is accepted by the destination.
+                  description_kind: plain
+                  optional: true
+                service_attachment:
+                  type: string
+                  description: 'PSC service attachments. Format: projects/*/regions/*/serviceAttachments/*'
+                  description_kind: plain
+                  optional: true
+              description: The destinations for the key.
+              description_kind: plain
+        description: Define the Connectors target endpoint.
+        description_kind: plain
+    eventing_config:
+      nesting_mode: list
+      block:
+        attributes:
+          enrichment_enabled:
+            type: bool
+            description: Enrichment Enabled.
+            description_kind: plain
+            optional: true
+        block_types:
+          additional_variable:
+            nesting_mode: list
+            block:
+              attributes:
+                boolean_value:
+                  type: bool
+                  description: Boolean Value of configVariable.
+                  description_kind: plain
+                  optional: true
+                integer_value:
+                  type: number
+                  description: Integer Value of configVariable.
+                  description_kind: plain
+                  optional: true
+                key:
+                  type: string
+                  description: Key for the configVariable
+                  description_kind: plain
+                  required: true
+                string_value:
+                  type: string
+                  description: String Value of configVariabley.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                encryption_key_value:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      kms_key_name:
+                        type: string
+                        description: 'The [KMS key name] with which the content of the Operation is encrypted. The expected format: projects/*/locations/*/keyRings/*/cryptoKeys/*. Will be empty string if google managed.'
+                        description_kind: plain
+                        optional: true
+                      type:
+                        type: string
+                        description: 'Type of Encryption Key Possible values: ["GOOGLE_MANAGED", "CUSTOMER_MANAGED"]'
+                        description_kind: plain
+                        optional: true
+                    description: Encryption key value of configVariable.
+                    description_kind: plain
+                  max_items: 1
+                secret_value:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      secret_version:
+                        type: string
+                        description: Secret version of Secret Value for Config variable.
+                        description_kind: plain
+                        required: true
+                    description: Secret value of configVariable
+                    description_kind: plain
+                  max_items: 1
+              description: List containing additional auth configs.
+              description_kind: plain
+          auth_config:
+            nesting_mode: list
+            block:
+              attributes:
+                auth_key:
+                  type: string
+                  description: The type of authentication configured.
+                  description_kind: plain
+                  optional: true
+                auth_type:
+                  type: string
+                  description: 'authType of the Connection Possible values: ["USER_PASSWORD"]'
+                  description_kind: plain
+                  required: true
+              block_types:
+                additional_variable:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      boolean_value:
+                        type: bool
+                        description: Boolean Value of configVariable.
+                        description_kind: plain
+                        optional: true
+                      integer_value:
+                        type: number
+                        description: Integer Value of configVariable.
+                        description_kind: plain
+                        optional: true
+                      key:
+                        type: string
+                        description: Key for the configVariable
+                        description_kind: plain
+                        required: true
+                      string_value:
+                        type: string
+                        description: String Value of configVariabley.
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      encryption_key_value:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            kms_key_name:
+                              type: string
+                              description: 'The [KMS key name] with which the content of the Operation is encrypted. The expected format: projects/*/locations/*/keyRings/*/cryptoKeys/*. Will be empty string if google managed.'
+                              description_kind: plain
+                              optional: true
+                            type:
+                              type: string
+                              description: 'Type of Encryption Key Possible values: ["GOOGLE_MANAGED", "CUSTOMER_MANAGED"]'
+                              description_kind: plain
+                              optional: true
+                          description: Encryption key value of configVariable
+                          description_kind: plain
+                        max_items: 1
+                      secret_value:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            secret_version:
+                              type: string
+                              description: Secret version of Secret Value for Config variable.
+                              description_kind: plain
+                              required: true
+                          description: Secret value of configVariable
+                          description_kind: plain
+                        max_items: 1
+                    description: List containing additional auth configs.
+                    description_kind: plain
+                user_password:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      username:
+                        type: string
+                        description: Username for Authentication.
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      password:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            secret_version:
+                              type: string
+                              description: 'The resource name of the secret version in the format, format as: projects/*/secrets/*/versions/*.'
+                              description_kind: plain
+                              required: true
+                          description: Password for Authentication.
+                          description_kind: plain
+                        max_items: 1
+                    description: User password for Authentication.
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description: authConfig for Eventing Configuration.
+              description_kind: plain
+            max_items: 1
+          registration_destination_config:
+            nesting_mode: list
+            block:
+              attributes:
+                key:
+                  type: string
+                  description: Key for the connection
+                  description_kind: plain
+                  optional: true
+              block_types:
+                destination:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      host:
+                        type: string
+                        description: Host
+                        description_kind: plain
+                        optional: true
+                      port:
+                        type: number
+                        description: port number
+                        description_kind: plain
+                        optional: true
+                      service_attachment:
+                        type: string
+                        description: Service Attachment
+                        description_kind: plain
+                        optional: true
+                    description: destinations for the connection
+                    description_kind: plain
+              description: registrationDestinationConfig
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description: Eventing Configuration of a connection
+        description_kind: plain
+      max_items: 1
+    lock_config:
+      nesting_mode: list
+      block:
+        attributes:
+          locked:
+            type: bool
+            description: Indicates whether or not the connection is locked.
+            description_kind: plain
+            required: true
+          reason:
+            type: string
+            description: Describes why a connection is locked.
+            description_kind: plain
+            optional: true
+        description: Determines whether or no a connection is locked. If locked, a reason must be specified.
+        description_kind: plain
+      max_items: 1
+    log_config:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled:
+            type: bool
+            description: Enabled represents whether logging is enabled or not for a connection.
+            description_kind: plain
+            required: true
+          level:
+            type: string
+            description: 'Log configuration level. Possible values: ["LOG_LEVEL_UNSPECIFIED", "ERROR", "INFO", "DEBUG"]'
+            description_kind: plain
+            optional: true
+            computed: true
+        description: Log configuration for the connection.
+        description_kind: plain
+      max_items: 1
+    node_config:
+      nesting_mode: list
+      block:
+        attributes:
+          max_node_count:
+            type: number
+            description: Minimum number of nodes in the runtime nodes.
+            description_kind: plain
+            optional: true
+            computed: true
+          min_node_count:
+            type: number
+            description: Minimum number of nodes in the runtime nodes.
+            description_kind: plain
+            optional: true
+            computed: true
+        description: Node configuration for the connection.
+        description_kind: plain
+      max_items: 1
+    ssl_config:
+      nesting_mode: list
+      block:
+        attributes:
+          client_cert_type:
+            type: string
+            description: 'Type of Client Cert (PEM/JKS/.. etc.) Possible values: ["PEM"]'
+            description_kind: plain
+            optional: true
+          server_cert_type:
+            type: string
+            description: 'Type of Server Cert (PEM/JKS/.. etc.) Possible values: ["PEM"]'
+            description_kind: plain
+            optional: true
+          trust_model:
+            type: string
+            description: 'Enum for Trust Model Possible values: ["PUBLIC", "PRIVATE", "INSECURE"]'
+            description_kind: plain
+            optional: true
+          type:
+            type: string
+            description: 'Enum for controlling the SSL Type (TLS/MTLS) Possible values: ["TLS", "MTLS"]'
+            description_kind: plain
+            required: true
+          use_ssl:
+            type: bool
+            description: Bool for enabling SSL
+            description_kind: plain
+            optional: true
+        block_types:
+          additional_variable:
+            nesting_mode: list
+            block:
+              attributes:
+                boolean_value:
+                  type: bool
+                  description: Boolean Value of configVariable.
+                  description_kind: plain
+                  optional: true
+                integer_value:
+                  type: number
+                  description: Integer Value of configVariable.
+                  description_kind: plain
+                  optional: true
+                key:
+                  type: string
+                  description: Key for the configVariable
+                  description_kind: plain
+                  required: true
+                string_value:
+                  type: string
+                  description: String Value of configVariabley.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                encryption_key_value:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      kms_key_name:
+                        type: string
+                        description: 'The [KMS key name] with which the content of the Operation is encrypted. The expected format: projects/*/locations/*/keyRings/*/cryptoKeys/*. Will be empty string if google managed.'
+                        description_kind: plain
+                        optional: true
+                      type:
+                        type: string
+                        description: 'Type of Encryption Key Possible values: ["GOOGLE_MANAGED", "CUSTOMER_MANAGED"]'
+                        description_kind: plain
+                        optional: true
+                    description: Encryption key value of configVariable
+                    description_kind: plain
+                  max_items: 1
+                secret_value:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      secret_version:
+                        type: string
+                        description: Secret version of Secret Value for Config variable.
+                        description_kind: plain
+                        required: true
+                    description: Secret value of configVariable
+                    description_kind: plain
+                  max_items: 1
+              description: Additional SSL related field values.
+              description_kind: plain
+          client_certificate:
+            nesting_mode: list
+            block:
+              attributes:
+                secret_version:
+                  type: string
+                  description: Secret version of Secret Value for Config variable.
+                  description_kind: plain
+                  required: true
+              description: Client Certificate
+              description_kind: plain
+            max_items: 1
+          client_private_key:
+            nesting_mode: list
+            block:
+              attributes:
+                secret_version:
+                  type: string
+                  description: Secret version of Secret Value for Config variable.
+                  description_kind: plain
+                  required: true
+              description: Client Private Key
+              description_kind: plain
+            max_items: 1
+          client_private_key_pass:
+            nesting_mode: list
+            block:
+              attributes:
+                secret_version:
+                  type: string
+                  description: Secret version of Secret Value for Config variable.
+                  description_kind: plain
+                  required: true
+              description: Secret containing the passphrase protecting the Client Private Key
+              description_kind: plain
+            max_items: 1
+          private_server_certificate:
+            nesting_mode: list
+            block:
+              attributes:
+                secret_version:
+                  type: string
+                  description: Secret version of Secret Value for Config variable.
+                  description_kind: plain
+                  required: true
+              description: Private Server Certificate. Needs to be specified if trust model is PRIVATE.
+              description_kind: plain
+            max_items: 1
+        description: SSL Configuration of a connection
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

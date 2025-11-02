@@ -1,0 +1,68 @@
+version: 0
+block:
+  attributes:
+    administrator_login:
+      type: string
+      description_kind: plain
+      computed: true
+    fqdn:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    sku_name:
+      type: string
+      description_kind: plain
+      computed: true
+    ssl_enforcement:
+      type: string
+      description_kind: plain
+      computed: true
+    storage_profile:
+      type:
+      - list
+      - - object
+        - auto_grow: string
+          backup_retention_days: number
+          geo_redundant_backup: string
+          storage_mb: number
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    version:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

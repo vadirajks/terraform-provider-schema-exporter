@@ -1,0 +1,102 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    availability_zone:
+      type: string
+      description_kind: plain
+      required: true
+    ebs_optimized:
+      type: bool
+      description_kind: plain
+      optional: true
+    end_date:
+      type: string
+      description_kind: plain
+      optional: true
+    end_date_type:
+      type: string
+      description_kind: plain
+      optional: true
+    ephemeral_storage:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instance_count:
+      type: number
+      description_kind: plain
+      required: true
+    instance_match_criteria:
+      type: string
+      description_kind: plain
+      optional: true
+    instance_platform:
+      type: string
+      description_kind: plain
+      required: true
+    instance_type:
+      type: string
+      description_kind: plain
+      required: true
+    outpost_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    owner_id:
+      type: string
+      description_kind: plain
+      computed: true
+    placement_group_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    tenancy:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

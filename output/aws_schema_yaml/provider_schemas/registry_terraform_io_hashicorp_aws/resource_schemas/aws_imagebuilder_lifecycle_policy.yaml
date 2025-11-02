@@ -1,0 +1,187 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    execution_role:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_type:
+      type: string
+      description_kind: plain
+      required: true
+    status:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    policy_detail:
+      nesting_mode: set
+      block:
+        block_types:
+          action:
+            nesting_mode: list
+            block:
+              attributes:
+                type:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                include_resources:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      amis:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      containers:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      snapshots:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                    description_kind: plain
+              description_kind: plain
+          exclusion_rules:
+            nesting_mode: list
+            block:
+              attributes:
+                tag_map:
+                  type:
+                  - map
+                  - string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                amis:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      is_public:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      regions:
+                        type:
+                        - list
+                        - string
+                        description_kind: plain
+                        optional: true
+                      shared_accounts:
+                        type:
+                        - list
+                        - string
+                        description_kind: plain
+                        optional: true
+                      tag_map:
+                        type:
+                        - map
+                        - string
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      last_launched:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            unit:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            value:
+                              type: number
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                    description_kind: plain
+              description_kind: plain
+          filter:
+            nesting_mode: list
+            block:
+              attributes:
+                retain_at_least:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                type:
+                  type: string
+                  description_kind: plain
+                  required: true
+                unit:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                value:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+    resource_selection:
+      nesting_mode: list
+      block:
+        attributes:
+          tag_map:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+        block_types:
+          recipe:
+            nesting_mode: set
+            block:
+              attributes:
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                semantic_version:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+  description_kind: plain

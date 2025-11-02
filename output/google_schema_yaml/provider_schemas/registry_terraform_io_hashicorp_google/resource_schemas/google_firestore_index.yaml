@@ -1,0 +1,112 @@
+version: 0
+block:
+  attributes:
+    api_scope:
+      type: string
+      description: 'The API scope at which a query is run. Default value: "ANY_API" Possible values: ["ANY_API", "DATASTORE_MODE_API", "MONGODB_COMPATIBLE_API"]'
+      description_kind: plain
+      optional: true
+    collection:
+      type: string
+      description: The collection being indexed.
+      description_kind: plain
+      required: true
+    database:
+      type: string
+      description: The Firestore database id. Defaults to '"(default)"'.
+      description_kind: plain
+      optional: true
+    density:
+      type: string
+      description: 'The density configuration for this index. Possible values: ["SPARSE_ALL", "SPARSE_ANY", "DENSE"]'
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    multikey:
+      type: bool
+      description: Optional. Whether the index is multikey. By default, the index is not multikey. For non-multikey indexes, none of the paths in the index definition reach or traverse an array, except via an explicit array index. For multikey indexes, at most one of the paths in the index definition reach or traverse an array, except via an explicit array index. Violations will result in errors. Note this field only applies to indexes with MONGODB_COMPATIBLE_API ApiScope.
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: 'A server defined name for this index. Format: ''projects/{{project}}/databases/{{database}}/collectionGroups/{{collection}}/indexes/{{server_generated_id}}'''
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    query_scope:
+      type: string
+      description: 'The scope at which a query is run. Default value: "COLLECTION" Possible values: ["COLLECTION", "COLLECTION_GROUP", "COLLECTION_RECURSIVE"]'
+      description_kind: plain
+      optional: true
+    unique:
+      type: bool
+      description: Whether it is an unique index. Unique index ensures all values for the indexed field(s) are unique across documents.
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    fields:
+      nesting_mode: list
+      block:
+        attributes:
+          array_config:
+            type: string
+            description: 'Indicates that this field supports operations on arrayValues. Only one of ''order'', ''arrayConfig'', and ''vectorConfig'' can be specified. Possible values: ["CONTAINS"]'
+            description_kind: plain
+            optional: true
+          field_path:
+            type: string
+            description: Name of the field.
+            description_kind: plain
+            optional: true
+          order:
+            type: string
+            description: 'Indicates that this field supports ordering by the specified order or comparing using =, <, <=, >, >=. Only one of ''order'', ''arrayConfig'', and ''vectorConfig'' can be specified. Possible values: ["ASCENDING", "DESCENDING"]'
+            description_kind: plain
+            optional: true
+        block_types:
+          vector_config:
+            nesting_mode: list
+            block:
+              attributes:
+                dimension:
+                  type: number
+                  description: The resulting index will only include vectors of this dimension, and can be used for vector search with the same dimension.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                flat:
+                  nesting_mode: list
+                  block:
+                    description: Indicates the vector index is a flat index.
+                    description_kind: plain
+                  max_items: 1
+              description: Indicates that this field supports vector search operations. Only one of 'order', 'arrayConfig', and 'vectorConfig' can be specified. Vector Fields should come after the field path '__name__'.
+              description_kind: plain
+            max_items: 1
+        description: The fields supported by this index. The last non-stored field entry is always for the field path '__name__'. If, on creation, '__name__' was not specified as the last field, it will be added automatically with the same direction as that of the last field defined. If the final field in a composite index is not directional, the '__name__' will be ordered '"ASCENDING"' (unless explicitly specified otherwise).
+        description_kind: plain
+      min_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

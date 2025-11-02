@@ -1,0 +1,149 @@
+version: 0
+block:
+  attributes:
+    annotations:
+      type:
+      - map
+      - string
+      description: 'User specified annotations. See https://google.aip.dev/128#annotations for more details such as format and size limitations. **Note**: This field is non-authoritative, and will only manage the annotations present in your configuration. Please refer to the field `effective_annotations` for all of the annotations present on the resource.'
+      description_kind: plain
+      optional: true
+    create_time:
+      type: string
+      description: Output only. Time at which the request to create the `WorkerPool` was received.
+      description_kind: plain
+      computed: true
+    delete_time:
+      type: string
+      description: Output only. Time at which the request to delete the `WorkerPool` was received.
+      description_kind: plain
+      computed: true
+    display_name:
+      type: string
+      description: A user-specified, human-readable name for the `WorkerPool`. If provided, this value must be 1-63 characters.
+      description_kind: plain
+      optional: true
+    effective_annotations:
+      type:
+      - map
+      - string
+      description: All of annotations (key/value pairs) present on the resource in GCP, including the annotations configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: The location for the resource
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: User-defined name of the `WorkerPool`.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description: The project for the resource
+      description_kind: plain
+      optional: true
+      computed: true
+    state:
+      type: string
+      description: 'Output only. `WorkerPool` state. Possible values: STATE_UNSPECIFIED, PENDING, APPROVED, REJECTED, CANCELLED'
+      description_kind: plain
+      computed: true
+    uid:
+      type: string
+      description: Output only. A unique identifier for the `WorkerPool`.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: Output only. Time at which the request to update the `WorkerPool` was received.
+      description_kind: plain
+      computed: true
+  block_types:
+    network_config:
+      nesting_mode: list
+      block:
+        attributes:
+          peered_network:
+            type: string
+            description: Required. Immutable. The network definition that the workers are peered to. If this section is left empty, the workers will be peered to `WorkerPool.project_id` on the service producer network. Must be in the format `projects/{project}/global/networks/{network}`, where `{project}` is a project number, such as `12345`, and `{network}` is the name of a VPC network in the project. See [Understanding network configuration options](https://cloud.google.com/cloud-build/docs/custom-workers/set-up-custom-worker-pool-environment#understanding_the_network_configuration_options)
+            description_kind: plain
+            required: true
+          peered_network_ip_range:
+            type: string
+            description: Optional. Immutable. Subnet IP range within the peered network. This is specified in CIDR notation with a slash and the subnet prefix size. You can optionally specify an IP address before the subnet prefix value. e.g. `192.168.0.0/29` would specify an IP range starting at 192.168.0.0 with a prefix size of 29 bits. `/16` would specify a prefix size of 16 bits, with an automatically determined IP within the peered VPC. If unspecified, a value of `/24` will be used.
+            description_kind: plain
+            optional: true
+        description: Network configuration for the `WorkerPool`.
+        description_kind: plain
+      max_items: 1
+    private_service_connect:
+      nesting_mode: list
+      block:
+        attributes:
+          network_attachment:
+            type: string
+            description: Required. Immutable. The network attachment that the worker network interface is connected to. Must be in the format `projects/{project}/regions/{region}/networkAttachments/{networkAttachment}`. The region of network attachment must be the same as the worker pool. See [Network Attachments](https://cloud.google.com/vpc/docs/about-network-attachments)
+            description_kind: plain
+            required: true
+          route_all_traffic:
+            type: bool
+            description: Immutable. Route all traffic through PSC interface. Enable this if you want full control of traffic in the private pool. Configure Cloud NAT for the subnet of network attachment if you need to access public Internet. If false, Only route private IPs, e.g. 10.0.0.0/8, 172.16.0.0/12, and 192.168.0.0/16 through PSC interface.
+            description_kind: plain
+            optional: true
+        description: Private Service Connect configuration for the pool.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    worker_config:
+      nesting_mode: list
+      block:
+        attributes:
+          disk_size_gb:
+            type: number
+            description: Size of the disk attached to the worker, in GB. See [Worker pool config file](https://cloud.google.com/cloud-build/docs/custom-workers/worker-pool-config-file). Specify a value of up to 1000. If `0` is specified, Cloud Build will use a standard disk size.
+            description_kind: plain
+            optional: true
+          enable_nested_virtualization:
+            type: bool
+            description: Enable nested virtualization on the worker, if supported by the machine type. See [Worker pool config file](https://cloud.google.com/build/docs/private-pools/worker-pool-config-file-schema). If left blank, Cloud Build will set this to false.
+            description_kind: plain
+            optional: true
+          machine_type:
+            type: string
+            description: Machine type of a worker, such as `n1-standard-1`. See [Worker pool config file](https://cloud.google.com/cloud-build/docs/custom-workers/worker-pool-config-file). If left blank, Cloud Build will use `n1-standard-1`.
+            description_kind: plain
+            optional: true
+          no_external_ip:
+            type: bool
+            description: If true, workers are created without any public address, which prevents network egress to public IPs.
+            description_kind: plain
+            optional: true
+            computed: true
+        description: Configuration to be used for a creating workers in the `WorkerPool`.
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

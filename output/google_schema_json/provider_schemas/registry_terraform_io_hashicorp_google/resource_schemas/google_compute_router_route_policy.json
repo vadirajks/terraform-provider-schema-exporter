@@ -1,0 +1,162 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "fingerprint": {
+        "type": "string",
+        "description": "The fingerprint used for optimistic locking of this resource.  Used internally during updates.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the route policy. This policy's name, which must be a resource ID segment and unique within all policies owned by the Router",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where the router and NAT reside.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "router": {
+        "type": "string",
+        "description": "The name of the Cloud Router in which this route policy will be configured.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "type": {
+        "type": "string",
+        "description": "This is policy's type, which is one of IMPORT or EXPORT Possible values: [\"ROUTE_POLICY_TYPE_IMPORT\", \"ROUTE_POLICY_TYPE_EXPORT\"]",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "terms": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "priority": {
+              "type": "number",
+              "description": "The evaluation priority for this term, which must be between 0 (inclusive) and 231 (exclusive), and unique within the list.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "actions": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "description": {
+                    "type": "string",
+                    "description": "Description of the expression",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "expression": {
+                    "type": "string",
+                    "description": "Textual representation of an expression in Common Expression Language syntax.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "location": {
+                    "type": "string",
+                    "description": "String indicating the location of the expression for error reporting, e.g. a file name and a position in the file",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Title for the expression, i.e. a short string describing its purpose.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "'CEL expressions to evaluate to modify a route when this term matches.'\\",
+                "description_kind": "plain"
+              }
+            },
+            "match": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "description": {
+                    "type": "string",
+                    "description": "Description of the expression",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "expression": {
+                    "type": "string",
+                    "description": "Textual representation of an expression in Common Expression Language syntax.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "location": {
+                    "type": "string",
+                    "description": "String indicating the location of the expression for error reporting, e.g. a file name and a position in the file",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Title for the expression, i.e. a short string describing its purpose.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "CEL expression evaluated against a route to determine if this term applies (see Policy Language).",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description": "List of terms (the order in the list is not important, they are evaluated in order of priority).",
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

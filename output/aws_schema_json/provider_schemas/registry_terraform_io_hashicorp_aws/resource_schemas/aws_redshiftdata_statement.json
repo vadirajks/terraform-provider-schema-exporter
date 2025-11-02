@@ -1,0 +1,94 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "cluster_identifier": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "database": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "db_user": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "secret_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "sql": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "statement_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "with_event": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "workgroup_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "parameters": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "value": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,17 @@
+resource "aws_ssm_maintenance_window" "name" {
+  cutoff = number (Required)
+  duration = number (Required)
+  name = string (Required)
+  schedule = string (Required)
+  allow_unassociated_targets = bool (Optional)
+  description = string (Optional)
+  enabled = bool (Optional)
+  end_date = string (Optional)
+  id = string (Optional, Computed)
+  region = string (Optional, Computed)
+  schedule_offset = number (Optional)
+  schedule_timezone = string (Optional)
+  start_date = string (Optional)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+}

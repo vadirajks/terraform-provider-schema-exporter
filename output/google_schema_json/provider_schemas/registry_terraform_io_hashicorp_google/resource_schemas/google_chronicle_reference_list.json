@@ -1,0 +1,153 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "description": {
+        "type": "string",
+        "description": "Required. A user-provided description of the reference list.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "Output only. The unique display name of the reference list.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "instance": {
+        "type": "string",
+        "description": "The unique identifier for the Chronicle instance, which is the same as the customer ID.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location of the resource. This is the geographical region where the Chronicle instance resides, such as \"us\" or \"europe-west2\".",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Output only. The resource name of the reference list. Format: projects/{project}/locations/{location}/instances/{instance}/referenceLists/{reference_list}",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "reference_list_id": {
+        "type": "string",
+        "description": "Required. The ID to use for the reference list. This is also the display name for the reference list. It must satisfy the following requirements: - Starts with letter. - Contains only letters, numbers and underscore. - Has length < 256. - Must be unique.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "revision_create_time": {
+        "type": "string",
+        "description": "Output only. The timestamp when the reference list was last updated.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "rule_associations_count": {
+        "type": "number",
+        "description": "Output only. The count of self-authored rules using the reference list.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "rules": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "Output only. The resource names for the associated self-authored Rules that use this reference list. This is returned only when the view is REFERENCE_LIST_VIEW_FULL.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "syntax_type": {
+        "type": "string",
+        "description": "Possible values: REFERENCE_LIST_SYNTAX_TYPE_PLAIN_TEXT_STRING REFERENCE_LIST_SYNTAX_TYPE_REGEX REFERENCE_LIST_SYNTAX_TYPE_CIDR",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "entries": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "value": {
+              "type": "string",
+              "description": "Required. The value of the entry. Maximum length is 512 characters.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Required. The entries of the reference list. When listed, they are returned in the order that was specified at creation or update. The combined size of the values of the reference list may not exceed 6MB. This is returned only when the view is REFERENCE_LIST_VIEW_FULL.",
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "scope_info": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "reference_list_scope": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "scope_names": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Optional. The list of scope names of the reference list. The scope names should be full resource names and should be of the format: \"projects/{project}/locations/{location}/instances/{instance}/dataAccessScopes/{scope_name}\".",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "ReferenceListScope specifies the list of scope names of the reference list.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "ScopeInfo specifies the scope info of the reference list.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

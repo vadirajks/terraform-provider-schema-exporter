@@ -1,0 +1,79 @@
+version: 0
+block:
+  attributes:
+    base_size_in_tib:
+      type: number
+      description_kind: plain
+      computed: true
+    extended_size_in_tib:
+      type: number
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    sku:
+      type:
+      - list
+      - - object
+        - name: string
+          tier: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    total_iops:
+      type: number
+      description_kind: plain
+      computed: true
+    total_mbps:
+      type: number
+      description_kind: plain
+      computed: true
+    total_size_in_tib:
+      type: number
+      description_kind: plain
+      computed: true
+    total_volume_size_in_gib:
+      type: number
+      description_kind: plain
+      computed: true
+    volume_group_count:
+      type: number
+      description_kind: plain
+      computed: true
+    zones:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

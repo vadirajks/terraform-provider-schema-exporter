@@ -1,0 +1,123 @@
+version: 0
+block:
+  attributes:
+    edition_config:
+      type: string
+      description: Edition configuration of the Storage Intelligence resource. Valid values are INHERIT, TRIAL, DISABLED and STANDARD.
+      description_kind: plain
+      optional: true
+      computed: true
+    effective_intelligence_config:
+      type:
+      - list
+      - - object
+        - effective_edition: string
+          intelligence_config: string
+      description: The Intelligence config that is effective for the resource.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: Identifier of the GCP project. For GCP project, this field can be project name or project number.
+      description_kind: plain
+      required: true
+    trial_config:
+      type:
+      - list
+      - - object
+        - expire_time: string
+      description: The trial configuration of the Storage Intelligence resource.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: The time at which the Storage Intelligence Config resource is last updated.
+      description_kind: plain
+      computed: true
+  block_types:
+    filter:
+      nesting_mode: list
+      block:
+        block_types:
+          excluded_cloud_storage_buckets:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_id_regexes:
+                  type:
+                  - list
+                  - string
+                  description: List of bucket id regexes to exclude in the storage intelligence plan.
+                  description_kind: plain
+                  required: true
+              description: Buckets to exclude from the Storage Intelligence plan.
+              description_kind: plain
+            max_items: 1
+          excluded_cloud_storage_locations:
+            nesting_mode: list
+            block:
+              attributes:
+                locations:
+                  type:
+                  - list
+                  - string
+                  description: List of locations.
+                  description_kind: plain
+                  required: true
+              description: Locations to exclude from the Storage Intelligence plan.
+              description_kind: plain
+            max_items: 1
+          included_cloud_storage_buckets:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_id_regexes:
+                  type:
+                  - list
+                  - string
+                  description: List of bucket id regexes to exclude in the storage intelligence plan.
+                  description_kind: plain
+                  required: true
+              description: Buckets to include in the Storage Intelligence plan.
+              description_kind: plain
+            max_items: 1
+          included_cloud_storage_locations:
+            nesting_mode: list
+            block:
+              attributes:
+                locations:
+                  type:
+                  - list
+                  - string
+                  description: List of locations.
+                  description_kind: plain
+                  required: true
+              description: Locations to include in the Storage Intelligence plan.
+              description_kind: plain
+            max_items: 1
+        description: Filter over location and bucket using include or exclude semantics. Resources that match the include or exclude filter are exclusively included or excluded from the Storage Intelligence plan.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

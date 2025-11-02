@@ -1,0 +1,277 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "storage_account_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "rule": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "required": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "actions": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "base_blob": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "auto_tier_to_hot_from_cool_enabled": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "delete_after_days_since_creation_greater_than": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "delete_after_days_since_last_access_time_greater_than": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "delete_after_days_since_modification_greater_than": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "tier_to_archive_after_days_since_creation_greater_than": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "tier_to_archive_after_days_since_last_access_time_greater_than": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "tier_to_archive_after_days_since_last_tier_change_greater_than": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "tier_to_archive_after_days_since_modification_greater_than": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "tier_to_cold_after_days_since_creation_greater_than": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "tier_to_cold_after_days_since_last_access_time_greater_than": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "tier_to_cold_after_days_since_modification_greater_than": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "tier_to_cool_after_days_since_creation_greater_than": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "tier_to_cool_after_days_since_last_access_time_greater_than": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "tier_to_cool_after_days_since_modification_greater_than": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "snapshot": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "change_tier_to_archive_after_days_since_creation": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "change_tier_to_cool_after_days_since_creation": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "delete_after_days_since_creation_greater_than": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "tier_to_archive_after_days_since_last_tier_change_greater_than": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "tier_to_cold_after_days_since_creation_greater_than": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "version": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "change_tier_to_archive_after_days_since_creation": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "change_tier_to_cool_after_days_since_creation": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "delete_after_days_since_creation": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "tier_to_archive_after_days_since_last_tier_change_greater_than": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "tier_to_cold_after_days_since_creation_greater_than": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "filters": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "blob_types": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "prefix_match": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "match_blob_index_tag": {
+                    "nesting_mode": "set",
+                    "block": {
+                      "attributes": {
+                        "name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "operation": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "value": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

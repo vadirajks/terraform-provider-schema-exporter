@@ -1,0 +1,438 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    arn_prefix:
+      type: string
+      description_kind: plain
+      computed: true
+    container_properties:
+      type: string
+      description_kind: plain
+      optional: true
+    deregister_on_new_revision:
+      type: bool
+      description_kind: plain
+      optional: true
+    ecs_properties:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    node_properties:
+      type: string
+      description_kind: plain
+      optional: true
+    parameters:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    platform_capabilities:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    propagate_tags:
+      type: bool
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    revision:
+      type: number
+      description_kind: plain
+      computed: true
+    scheduling_priority:
+      type: number
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    type:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    eks_properties:
+      nesting_mode: list
+      block:
+        block_types:
+          pod_properties:
+            nesting_mode: list
+            block:
+              attributes:
+                dns_policy:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                host_network:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                service_account_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                share_process_namespace:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              block_types:
+                containers:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      args:
+                        type:
+                        - list
+                        - string
+                        description_kind: plain
+                        optional: true
+                      command:
+                        type:
+                        - list
+                        - string
+                        description_kind: plain
+                        optional: true
+                      image:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      image_pull_policy:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      env:
+                        nesting_mode: set
+                        block:
+                          attributes:
+                            name:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            value:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                      resources:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            limits:
+                              type:
+                              - map
+                              - string
+                              description_kind: plain
+                              optional: true
+                            requests:
+                              type:
+                              - map
+                              - string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                      security_context:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            privileged:
+                              type: bool
+                              description_kind: plain
+                              optional: true
+                            read_only_root_file_system:
+                              type: bool
+                              description_kind: plain
+                              optional: true
+                            run_as_group:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                            run_as_non_root:
+                              type: bool
+                              description_kind: plain
+                              optional: true
+                            run_as_user:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                      volume_mounts:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            mount_path:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            name:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            read_only:
+                              type: bool
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 10
+                image_pull_secret:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                init_containers:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      args:
+                        type:
+                        - list
+                        - string
+                        description_kind: plain
+                        optional: true
+                      command:
+                        type:
+                        - list
+                        - string
+                        description_kind: plain
+                        optional: true
+                      image:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      image_pull_policy:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      env:
+                        nesting_mode: set
+                        block:
+                          attributes:
+                            name:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            value:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                      resources:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            limits:
+                              type:
+                              - map
+                              - string
+                              description_kind: plain
+                              optional: true
+                            requests:
+                              type:
+                              - map
+                              - string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                      security_context:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            privileged:
+                              type: bool
+                              description_kind: plain
+                              optional: true
+                            read_only_root_file_system:
+                              type: bool
+                              description_kind: plain
+                              optional: true
+                            run_as_group:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                            run_as_non_root:
+                              type: bool
+                              description_kind: plain
+                              optional: true
+                            run_as_user:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                      volume_mounts:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            mount_path:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            name:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            read_only:
+                              type: bool
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                    description_kind: plain
+                  max_items: 10
+                metadata:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      labels:
+                        type:
+                        - map
+                        - string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+                volumes:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      empty_dir:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            medium:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            size_limit:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                        max_items: 1
+                      host_path:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            path:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                        max_items: 1
+                      secret:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            optional:
+                              type: bool
+                              description_kind: plain
+                              optional: true
+                            secret_name:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                        max_items: 1
+                    description_kind: plain
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    retry_strategy:
+      nesting_mode: list
+      block:
+        attributes:
+          attempts:
+            type: number
+            description_kind: plain
+            optional: true
+        block_types:
+          evaluate_on_exit:
+            nesting_mode: list
+            block:
+              attributes:
+                action:
+                  type: string
+                  description_kind: plain
+                  required: true
+                on_exit_code:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                on_reason:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                on_status_reason:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 5
+        description_kind: plain
+      max_items: 1
+    timeout:
+      nesting_mode: list
+      block:
+        attributes:
+          attempt_duration_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

@@ -1,0 +1,55 @@
+version: 1
+block:
+  attributes:
+    cluster_id:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    key_name:
+      type: string
+      description_kind: plain
+      optional: true
+    key_vault_id:
+      type: string
+      description_kind: plain
+      optional: true
+    key_version:
+      type: string
+      description_kind: plain
+      optional: true
+    managed_hsm_key_id:
+      type: string
+      description_kind: plain
+      optional: true
+    user_identity:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

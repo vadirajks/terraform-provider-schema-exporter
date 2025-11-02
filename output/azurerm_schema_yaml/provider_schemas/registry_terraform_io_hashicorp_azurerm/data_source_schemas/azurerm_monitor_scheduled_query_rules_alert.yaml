@@ -1,0 +1,105 @@
+version: 0
+block:
+  attributes:
+    action:
+      type:
+      - set
+      - - object
+        - action_group:
+          - set
+          - string
+          custom_webhook_payload: string
+          email_subject: string
+      description_kind: plain
+      computed: true
+    authorized_resource_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    data_source_id:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      computed: true
+    enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    frequency:
+      type: number
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    query:
+      type: string
+      description_kind: plain
+      computed: true
+    query_type:
+      type: string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    severity:
+      type: number
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    throttling:
+      type: number
+      description_kind: plain
+      computed: true
+    time_window:
+      type: number
+      description_kind: plain
+      computed: true
+    trigger:
+      type:
+      - set
+      - - object
+        - metric_trigger:
+          - set
+          - - object
+            - metric_column: string
+              metric_trigger_type: string
+              operator: string
+              threshold: number
+          operator: string
+          threshold: number
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

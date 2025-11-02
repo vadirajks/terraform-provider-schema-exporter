@@ -1,0 +1,152 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "mobile_network_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "pcc_rule": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "name": "string",
+              "precedence": "number",
+              "qos_policy": [
+                "list",
+                [
+                  "object",
+                  {
+                    "allocation_and_retention_priority_level": "number",
+                    "guaranteed_bit_rate": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "downlink": "string",
+                          "uplink": "string"
+                        }
+                      ]
+                    ],
+                    "maximum_bit_rate": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "downlink": "string",
+                          "uplink": "string"
+                        }
+                      ]
+                    ],
+                    "preemption_capability": "string",
+                    "preemption_vulnerability": "string",
+                    "qos_indicator": "number"
+                  }
+                ]
+              ],
+              "service_data_flow_template": [
+                "list",
+                [
+                  "object",
+                  {
+                    "direction": "string",
+                    "name": "string",
+                    "ports": [
+                      "list",
+                      "string"
+                    ],
+                    "protocol": [
+                      "list",
+                      "string"
+                    ],
+                    "remote_ip_list": [
+                      "list",
+                      "string"
+                    ]
+                  }
+                ]
+              ],
+              "traffic_control_enabled": "bool"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "service_precedence": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "service_qos_policy": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "allocation_and_retention_priority_level": "number",
+              "maximum_bit_rate": [
+                "list",
+                [
+                  "object",
+                  {
+                    "downlink": "string",
+                    "uplink": "string"
+                  }
+                ]
+              ],
+              "preemption_capability": "string",
+              "preemption_vulnerability": "string",
+              "qos_indicator": "number"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

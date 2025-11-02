@@ -1,0 +1,75 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "display_name": {
+        "type": "string",
+        "description": "A user-assigned name for this group, used only for display purposes.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "filter": {
+        "type": "string",
+        "description": "The filter used to determine which monitored resources belong to this group.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "is_cluster": {
+        "type": "bool",
+        "description": "If true, the members of this group are considered to be a cluster. The system can perform additional analysis on groups that are clusters.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "A unique identifier for this group. The format is \"projects/{project_id_or_number}/groups/{group_id}\".",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "parent_name": {
+        "type": "string",
+        "description": "The name of the group's parent, if it has one. The format is \"projects/{project_id_or_number}/groups/{group_id}\". For groups with no parent, parentName is the empty string, \"\".",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,68 @@
+version: 0
+block:
+  attributes:
+    data_string_comparison_behavior:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    time_series_insights_environment_id:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    key_property:
+      nesting_mode: set
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

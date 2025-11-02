@@ -1,0 +1,1300 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "sql": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "sql_version": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "cloudwatch_alarm": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "alarm_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "role_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "state_reason": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "state_value": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "cloudwatch_logs": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "batch_mode": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "log_group_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "role_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "cloudwatch_metric": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "metric_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "metric_namespace": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "metric_timestamp": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "metric_unit": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "metric_value": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "role_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "dynamodb": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "hash_key_field": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "hash_key_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "hash_key_value": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "operation": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "payload_field": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "range_key_field": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "range_key_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "range_key_value": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "role_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "table_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "dynamodbv2": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "role_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "put_item": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "table_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "elasticsearch": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "index": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "role_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "error_action": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "cloudwatch_alarm": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "alarm_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "state_reason": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "state_value": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "cloudwatch_logs": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "batch_mode": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "log_group_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "cloudwatch_metric": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "metric_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "metric_namespace": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "metric_timestamp": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "metric_unit": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "metric_value": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "dynamodb": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "hash_key_field": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "hash_key_type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "hash_key_value": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "operation": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "payload_field": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "range_key_field": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "range_key_type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "range_key_value": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "table_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "dynamodbv2": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "put_item": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "table_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "elasticsearch": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "endpoint": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "index": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "firehose": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "batch_mode": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "delivery_stream_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "separator": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "http": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "confirmation_url": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "url": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "http_header": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "value": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "iot_analytics": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "batch_mode": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "channel_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "iot_events": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "batch_mode": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "input_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "message_id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "kafka": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "client_properties": {
+                    "type": [
+                      "map",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "destination_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "key": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "partition": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "topic": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "header": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "value": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "kinesis": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "partition_key": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "stream_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "lambda": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "function_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "republish": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "qos": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "topic": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "s3": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "bucket_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "canned_acl": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "key": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "sns": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "message_format": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "target_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "sqs": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "queue_url": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "use_base64": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "step_functions": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "execution_name_prefix": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "state_machine_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "timestream": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "database_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "table_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "dimension": {
+                    "nesting_mode": "set",
+                    "block": {
+                      "attributes": {
+                        "name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "value": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1
+                  },
+                  "timestamp": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "unit": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "value": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "firehose": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "batch_mode": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delivery_stream_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "role_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "separator": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "http": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "confirmation_url": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "url": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "http_header": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "key": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "value": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "iot_analytics": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "batch_mode": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "channel_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "role_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "iot_events": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "batch_mode": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "input_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "message_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "role_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "kafka": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "client_properties": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "destination_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "key": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "partition": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "topic": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "header": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "key": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "value": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "kinesis": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "partition_key": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "role_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "stream_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "lambda": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "function_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "republish": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "qos": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "role_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "topic": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "s3": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "bucket_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "canned_acl": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "key": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "role_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "sns": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "message_format": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "role_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "target_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "sqs": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "queue_url": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "role_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "use_base64": {
+              "type": "bool",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "step_functions": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "execution_name_prefix": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "role_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "state_machine_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "timestream": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "database_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "role_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "table_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "dimension": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "value": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1
+            },
+            "timestamp": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "unit": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "value": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

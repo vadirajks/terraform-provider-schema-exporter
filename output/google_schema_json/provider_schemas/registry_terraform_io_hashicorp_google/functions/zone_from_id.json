@@ -1,0 +1,12 @@
+{
+  "description": "Takes a single string argument, which should be an id or self link of a resource. This function will either return the zone name from the input string or raise an error due to no zone being present in the string. The function uses the presence of \"zones/{{zone}}/\" in the input string to identify the zone name, e.g. when the function is passed the id \"projects/my-project/zones/us-central1-c/instances/my-instance\" as an argument it will return \"us-central1-c\".",
+  "summary": "Returns the zone name within the resource id or self link provided as an argument.",
+  "return_type": "string",
+  "parameters": [
+    {
+      "name": "id",
+      "description": "An id of a resource, or a self link. For example, both \"projects/my-project/zones/us-central1-c/instances/my-instance\" and \"https://www.googleapis.com/compute/v1/projects/my-project/zones/us-central1-c/instances/my-instance\" are valid inputs",
+      "type": "string"
+    }
+  ]
+}

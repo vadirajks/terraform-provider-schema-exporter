@@ -1,0 +1,17 @@
+data "google_privileged_access_manager_entitlement" "name" {
+  additional_notification_targets = ['list', ['object', {'admin_email_recipients': ['set', 'string'], 'requester_email_recipients': ['set', 'string']}]] (Computed)
+  approval_workflow = ['list', ['object', {'manual_approvals': ['list', ['object', {'require_approver_justification': 'bool', 'steps': ['list', ['object', {'approvals_needed': 'number', 'approver_email_recipients': ['set', 'string'], 'approvers': ['list', ['object', {'principals': ['set', 'string']}]]}]]}]]}]] (Computed)
+  create_time = string (Computed)
+  eligible_users = ['list', ['object', {'principals': ['set', 'string']}]] (Computed)
+  entitlement_id = string (Optional)
+  etag = string (Computed)
+  id = string (Optional, Computed)
+  location = string (Optional)
+  max_request_duration = string (Computed)
+  name = string (Computed)
+  parent = string (Optional)
+  privileged_access = ['list', ['object', {'gcp_iam_access': ['list', ['object', {'resource': 'string', 'resource_type': 'string', 'role_bindings': ['list', ['object', {'condition_expression': 'string', 'role': 'string'}]]}]]}]] (Computed)
+  requester_justification_config = ['list', ['object', {'not_mandatory': ['list', ['object', {}]], 'unstructured': ['list', ['object', {}]]}]] (Computed)
+  state = string (Computed)
+  update_time = string (Computed)
+}

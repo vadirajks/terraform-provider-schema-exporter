@@ -1,0 +1,67 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "accounts": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "api_type": "string",
+              "creation_time": "string",
+              "deletion_time": "string",
+              "id": "string",
+              "restorable_locations": [
+                "list",
+                [
+                  "object",
+                  {
+                    "creation_time": "string",
+                    "deletion_time": "string",
+                    "location": "string",
+                    "regional_database_account_instance_id": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

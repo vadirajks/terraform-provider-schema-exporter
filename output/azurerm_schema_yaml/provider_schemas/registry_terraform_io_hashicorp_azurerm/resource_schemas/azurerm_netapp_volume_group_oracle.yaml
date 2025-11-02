@@ -1,0 +1,215 @@
+version: 0
+block:
+  attributes:
+    account_name:
+      type: string
+      description_kind: plain
+      required: true
+    application_identifier:
+      type: string
+      description_kind: plain
+      required: true
+    group_description:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    volume:
+      nesting_mode: list
+      block:
+        attributes:
+          capacity_pool_id:
+            type: string
+            description_kind: plain
+            required: true
+          encryption_key_source:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          id:
+            type: string
+            description_kind: plain
+            computed: true
+          key_vault_private_endpoint_id:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          mount_ip_addresses:
+            type:
+            - list
+            - string
+            description_kind: plain
+            computed: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          network_features:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          protocols:
+            type:
+            - list
+            - string
+            description_kind: plain
+            required: true
+          proximity_placement_group_id:
+            type: string
+            description_kind: plain
+            optional: true
+          security_style:
+            type: string
+            description_kind: plain
+            required: true
+          service_level:
+            type: string
+            description_kind: plain
+            required: true
+          snapshot_directory_visible:
+            type: bool
+            description_kind: plain
+            required: true
+          storage_quota_in_gb:
+            type: number
+            description_kind: plain
+            required: true
+          subnet_id:
+            type: string
+            description_kind: plain
+            required: true
+          tags:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+          throughput_in_mibps:
+            type: number
+            description_kind: plain
+            required: true
+          volume_path:
+            type: string
+            description_kind: plain
+            required: true
+          volume_spec_name:
+            type: string
+            description_kind: plain
+            required: true
+          zone:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          data_protection_replication:
+            nesting_mode: list
+            block:
+              attributes:
+                endpoint_type:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                remote_volume_location:
+                  type: string
+                  description_kind: plain
+                  required: true
+                remote_volume_resource_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+                replication_frequency:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          data_protection_snapshot_policy:
+            nesting_mode: list
+            block:
+              attributes:
+                snapshot_policy_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          export_policy_rule:
+            nesting_mode: list
+            block:
+              attributes:
+                allowed_clients:
+                  type: string
+                  description_kind: plain
+                  required: true
+                nfsv3_enabled:
+                  type: bool
+                  description_kind: plain
+                  required: true
+                nfsv41_enabled:
+                  type: bool
+                  description_kind: plain
+                  required: true
+                root_access_enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                rule_index:
+                  type: number
+                  description_kind: plain
+                  required: true
+                unix_read_only:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                unix_read_write:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            min_items: 1
+            max_items: 5
+        description_kind: plain
+      min_items: 2
+      max_items: 12
+  description_kind: plain

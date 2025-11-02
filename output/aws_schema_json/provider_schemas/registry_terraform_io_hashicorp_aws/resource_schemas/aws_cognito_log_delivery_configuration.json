@@ -1,0 +1,81 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "user_pool_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "log_configurations": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "event_source": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "log_level": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "cloud_watch_logs_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "log_group_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "firehose_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "stream_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "s3_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "bucket_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

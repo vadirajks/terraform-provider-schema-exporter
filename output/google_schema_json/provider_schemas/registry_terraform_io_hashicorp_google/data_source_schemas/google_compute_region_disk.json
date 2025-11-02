@@ -1,0 +1,258 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "access_mode": {
+        "type": "string",
+        "description": "The access mode of the disk. For example: * READ_WRITE_SINGLE: The default AccessMode, means the disk can be attached to single instance in RW mode. * READ_WRITE_MANY: The AccessMode means the disk can be attached to multiple instances in RW mode. * READ_ONLY_SINGLE: The AccessMode means the disk can be attached to multiple instances in RO mode. The AccessMode is only valid for Hyperdisk disk types.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "async_primary_disk": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "disk": "string"
+            }
+          ]
+        ],
+        "description": "A nested object resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "create_snapshot_before_destroy": {
+        "type": "bool",
+        "description": "If set to true, a snapshot of the disk will be created before it is destroyed. If your disk is encrypted with customer managed encryption keys these will be reused for the snapshot creation. The name of the snapshot by default will be '{{disk-name}}-YYYYMMDD-HHmm'",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "create_snapshot_before_destroy_prefix": {
+        "type": "string",
+        "description": "This will set a custom name prefix for the snapshot that's created when the disk is deleted.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "creation_timestamp": {
+        "type": "string",
+        "description": "Creation timestamp in RFC3339 text format.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "An optional description of this resource. Provide this property when you create the resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "disk_encryption_key": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "kms_key_name": "string",
+              "raw_key": "string",
+              "rsa_encrypted_key": "string",
+              "sha256": "string"
+            }
+          ]
+        ],
+        "description": "Encrypts the disk using a customer-supplied encryption key. After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later (e.g. to create a disk snapshot or an image, or to attach the disk to a virtual machine). Customer-supplied encryption keys do not protect access to metadata of the disk. If you do not provide an encryption key when creating the disk, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "disk_id": {
+        "type": "string",
+        "description": "The unique identifier for the resource. This identifier is defined by the server.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "guest_os_features": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "type": "string"
+            }
+          ]
+        ],
+        "description": "A list of features to enable on the guest operating system. Applicable only for bootable disks.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "label_fingerprint": {
+        "type": "string",
+        "description": "The fingerprint used for optimistic locking of this resource.  Used internally during updates.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Labels to apply to this disk.  A list of key->value pairs. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "last_attach_timestamp": {
+        "type": "string",
+        "description": "Last attach timestamp in RFC3339 text format.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "last_detach_timestamp": {
+        "type": "string",
+        "description": "Last detach timestamp in RFC3339 text format.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "licenses": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "Any applicable license URI.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "physical_block_size_bytes": {
+        "type": "number",
+        "description": "Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. Currently supported sizes are 4096 and 16384, other sizes may be added in the future. If an unsupported value is requested, the error message will list the supported values for the caller's project.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "provisioned_iops": {
+        "type": "number",
+        "description": "Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle. Values must be between 10,000 and 120,000. For more details, see the Extreme persistent disk [documentation](https://cloud.google.com/compute/docs/disks/extreme-persistent-disk).",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "provisioned_throughput": {
+        "type": "number",
+        "description": "Indicates how much throughput to provision for the disk. This sets the number of throughput mb per second that the disk can handle. Values must be greater than or equal to 1.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "A reference to the region where the disk resides.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "replica_zones": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "URLs of the zones where the disk should be replicated to.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "self_link": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "size": {
+        "type": "number",
+        "description": "Size of the persistent disk, specified in GB. You can specify this field when creating a persistent disk using the sourceImage or sourceSnapshot parameter, or specify it alone to create an empty persistent disk. If you specify this field along with sourceImage or sourceSnapshot, the value of sizeGb must not be less than the size of the sourceImage or the size of the snapshot.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "snapshot": {
+        "type": "string",
+        "description": "The source snapshot used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values: * 'https://www.googleapis.com/compute/v1/projects/project/global/snapshots/snapshot' * 'projects/project/global/snapshots/snapshot' * 'global/snapshots/snapshot' * 'snapshot'",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "source_disk": {
+        "type": "string",
+        "description": "The source disk used to create this disk. You can provide this as a partial or full URL to the resource. For example, the following are valid values: * https://www.googleapis.com/compute/v1/projects/{project}/zones/{zone}/disks/{disk} * https://www.googleapis.com/compute/v1/projects/{project}/regions/{region}/disks/{disk} * projects/{project}/zones/{zone}/disks/{disk} * projects/{project}/regions/{region}/disks/{disk} * zones/{zone}/disks/{disk} * regions/{region}/disks/{disk}",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "source_disk_id": {
+        "type": "string",
+        "description": "The ID value of the disk used to create this image. This value may be used to determine whether the image was taken from the current or a previous instance of a given disk name.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "source_snapshot_encryption_key": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "raw_key": "string",
+              "sha256": "string"
+            }
+          ]
+        ],
+        "description": "The customer-supplied encryption key of the source snapshot. Required if the source snapshot is protected by a customer-supplied encryption key.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "source_snapshot_id": {
+        "type": "string",
+        "description": "The unique ID of the snapshot used to create this disk. This value identifies the exact snapshot that was used to create this persistent disk. For example, if you created the persistent disk from a snapshot that was later deleted and recreated under the same name, the source snapshot ID would identify the exact version of the snapshot that was used.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "type": {
+        "type": "string",
+        "description": "URL of the disk type resource describing which disk type to use to create the disk. Provide this when creating the disk.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "users": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "Links to the users of the disk (attached instances) in form: project/zones/zone/instances/instance",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

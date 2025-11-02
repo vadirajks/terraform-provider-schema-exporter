@@ -1,0 +1,349 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "alternative_domain_names": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "The alternate domain names of the distribution.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "arn": {
+        "type": "string",
+        "description": "The Amazon Resource Name (ARN) of the distribution.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "bundle_id": {
+        "type": "string",
+        "description": "The bundle ID to use for the distribution.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "certificate_name": {
+        "type": "string",
+        "description": "The name of the SSL/TLS certificate attached to the distribution, if any.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "created_at": {
+        "type": "string",
+        "description": "The timestamp when the distribution was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "domain_name": {
+        "type": "string",
+        "description": "The domain name of the distribution.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ip_address_type": {
+        "type": "string",
+        "description": "The IP address type of the distribution.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "is_enabled": {
+        "type": "bool",
+        "description": "Indicates whether the distribution is enabled.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "availability_zone": "string",
+              "region_name": "string"
+            }
+          ]
+        ],
+        "description": "An object that describes the location of the distribution, such as the AWS Region and Availability Zone.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the distribution.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "origin_public_dns": {
+        "type": "string",
+        "description": "The public DNS of the origin.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "resource_type": {
+        "type": "string",
+        "description": "The Lightsail resource type (e.g., Distribution).",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "status": {
+        "type": "string",
+        "description": "The status of the distribution.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "support_code": {
+        "type": "string",
+        "description": "The support code. Include this code in your email to support when you have questions about your Lightsail distribution. This code enables our support team to look up your Lightsail information more easily.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "cache_behavior": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "behavior": {
+              "type": "string",
+              "description": "The cache behavior for the specified path.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "path": {
+              "type": "string",
+              "description": "The path to a directory or file to cached, or not cache. Use an asterisk symbol to specify wildcard directories (path/to/assets/*), and file types (*.html, *jpg, *js). Directories and file paths are case-sensitive.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "An array of objects that describe the per-path cache behavior of the distribution.",
+          "description_kind": "plain"
+        }
+      },
+      "cache_behavior_settings": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "allowed_http_methods": {
+              "type": "string",
+              "description": "The HTTP methods that are processed and forwarded to the distribution's origin.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cached_http_methods": {
+              "type": "string",
+              "description": "The HTTP method responses that are cached by your distribution.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "default_ttl": {
+              "type": "number",
+              "description": "The default amount of time that objects stay in the distribution's cache before the distribution forwards another request to the origin to determine whether the content has been updated.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "maximum_ttl": {
+              "type": "number",
+              "description": "The maximum amount of time that objects stay in the distribution's cache before the distribution forwards another request to the origin to determine whether the object has been updated.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "minimum_ttl": {
+              "type": "number",
+              "description": "The minimum amount of time that objects stay in the distribution's cache before the distribution forwards another request to the origin to determine whether the object has been updated.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "forwarded_cookies": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "cookies_allow_list": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description": "The specific cookies to forward to your distribution's origin.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "option": {
+                    "type": "string",
+                    "description": "Specifies which cookies to forward to the distribution's origin for a cache behavior: all, none, or allow-list to forward only the cookies specified in the cookiesAllowList parameter.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "An object that describes the cookies that are forwarded to the origin. Your content is cached based on the cookies that are forwarded.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "forwarded_headers": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "headers_allow_list": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description": "The specific headers to forward to your distribution's origin.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "option": {
+                    "type": "string",
+                    "description": "The headers that you want your distribution to forward to your origin and base caching on.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "An object that describes the headers that are forwarded to the origin. Your content is cached based on the headers that are forwarded.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "forwarded_query_strings": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "option": {
+                    "type": "bool",
+                    "description": "Indicates whether the distribution forwards and caches based on query strings.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "query_strings_allowed_list": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description": "The specific query strings that the distribution forwards to the origin.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "An object that describes the query strings that are forwarded to the origin. Your content is cached based on the query strings that are forwarded.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "An object that describes the cache behavior settings of the distribution.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "default_cache_behavior": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "behavior": {
+              "type": "string",
+              "description": "The cache behavior of the distribution.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "An object that describes the default cache behavior of the distribution.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "origin": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "name": {
+              "type": "string",
+              "description": "The name of the origin resource.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "protocol_policy": {
+              "type": "string",
+              "description": "The protocol that your Amazon Lightsail distribution uses when establishing a connection with your origin to pull content.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "region_name": {
+              "type": "string",
+              "description": "The AWS Region name of the origin resource.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "resource_type": {
+              "type": "string",
+              "description": "The resource type of the origin resource (e.g., Instance).",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "description": "An object that describes the origin resource of the distribution, such as a Lightsail instance, bucket, or load balancer.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

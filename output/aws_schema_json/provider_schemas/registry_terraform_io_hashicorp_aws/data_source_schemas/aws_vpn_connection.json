@@ -1,0 +1,139 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "category": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "core_network_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "core_network_attachment_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "customer_gateway_configuration": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "customer_gateway_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "gateway_association_state": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "pre_shared_key_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "routes": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "destination_cidr_block": "string",
+              "source": "string",
+              "state": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "state": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "transit_gateway_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "type": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "vgw_telemetries": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "accepted_route_count": "number",
+              "last_status_change": "string",
+              "outside_ip_address": "string",
+              "status": "string",
+              "status_message": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "vpn_connection_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "vpn_gateway_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "filter": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "values": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

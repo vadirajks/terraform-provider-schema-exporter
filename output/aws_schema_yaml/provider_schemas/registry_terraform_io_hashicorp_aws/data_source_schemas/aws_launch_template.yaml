@@ -1,0 +1,396 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    block_device_mappings:
+      type:
+      - list
+      - - object
+        - device_name: string
+          ebs:
+          - list
+          - - object
+            - delete_on_termination: string
+              encrypted: string
+              iops: number
+              kms_key_id: string
+              snapshot_id: string
+              throughput: number
+              volume_initialization_rate: number
+              volume_size: number
+              volume_type: string
+          no_device: string
+          virtual_name: string
+      description_kind: plain
+      computed: true
+    capacity_reservation_specification:
+      type:
+      - list
+      - - object
+        - capacity_reservation_preference: string
+          capacity_reservation_target:
+          - list
+          - - object
+            - capacity_reservation_id: string
+              capacity_reservation_resource_group_arn: string
+      description_kind: plain
+      computed: true
+    cpu_options:
+      type:
+      - list
+      - - object
+        - amd_sev_snp: string
+          core_count: number
+          threads_per_core: number
+      description_kind: plain
+      computed: true
+    credit_specification:
+      type:
+      - list
+      - - object
+        - cpu_credits: string
+      description_kind: plain
+      computed: true
+    default_version:
+      type: number
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      computed: true
+    disable_api_stop:
+      type: bool
+      description_kind: plain
+      computed: true
+    disable_api_termination:
+      type: bool
+      description_kind: plain
+      computed: true
+    ebs_optimized:
+      type: string
+      description_kind: plain
+      computed: true
+    enclave_options:
+      type:
+      - list
+      - - object
+        - enabled: bool
+      description_kind: plain
+      computed: true
+    hibernation_options:
+      type:
+      - list
+      - - object
+        - configured: bool
+      description_kind: plain
+      computed: true
+    iam_instance_profile:
+      type:
+      - list
+      - - object
+        - arn: string
+          name: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    image_id:
+      type: string
+      description_kind: plain
+      computed: true
+    instance_initiated_shutdown_behavior:
+      type: string
+      description_kind: plain
+      computed: true
+    instance_market_options:
+      type:
+      - list
+      - - object
+        - market_type: string
+          spot_options:
+          - list
+          - - object
+            - block_duration_minutes: number
+              instance_interruption_behavior: string
+              max_price: string
+              spot_instance_type: string
+              valid_until: string
+      description_kind: plain
+      computed: true
+    instance_requirements:
+      type:
+      - list
+      - - object
+        - accelerator_count:
+          - list
+          - - object
+            - max: number
+              min: number
+          accelerator_manufacturers:
+          - set
+          - string
+          accelerator_names:
+          - set
+          - string
+          accelerator_total_memory_mib:
+          - list
+          - - object
+            - max: number
+              min: number
+          accelerator_types:
+          - set
+          - string
+          allowed_instance_types:
+          - set
+          - string
+          bare_metal: string
+          baseline_ebs_bandwidth_mbps:
+          - list
+          - - object
+            - max: number
+              min: number
+          burstable_performance: string
+          cpu_manufacturers:
+          - set
+          - string
+          excluded_instance_types:
+          - set
+          - string
+          instance_generations:
+          - set
+          - string
+          local_storage: string
+          local_storage_types:
+          - set
+          - string
+          max_spot_price_as_percentage_of_optimal_on_demand_price: number
+          memory_gib_per_vcpu:
+          - list
+          - - object
+            - max: number
+              min: number
+          memory_mib:
+          - list
+          - - object
+            - max: number
+              min: number
+          network_bandwidth_gbps:
+          - list
+          - - object
+            - max: number
+              min: number
+          network_interface_count:
+          - list
+          - - object
+            - max: number
+              min: number
+          on_demand_max_price_percentage_over_lowest_price: number
+          require_hibernate_support: bool
+          spot_max_price_percentage_over_lowest_price: number
+          total_local_storage_gb:
+          - list
+          - - object
+            - max: number
+              min: number
+          vcpu_count:
+          - list
+          - - object
+            - max: number
+              min: number
+      description_kind: plain
+      computed: true
+    instance_type:
+      type: string
+      description_kind: plain
+      computed: true
+    kernel_id:
+      type: string
+      description_kind: plain
+      computed: true
+    key_name:
+      type: string
+      description_kind: plain
+      computed: true
+    latest_version:
+      type: number
+      description_kind: plain
+      computed: true
+    license_specification:
+      type:
+      - list
+      - - object
+        - license_configuration_arn: string
+      description_kind: plain
+      computed: true
+    maintenance_options:
+      type:
+      - list
+      - - object
+        - auto_recovery: string
+      description_kind: plain
+      computed: true
+    metadata_options:
+      type:
+      - list
+      - - object
+        - http_endpoint: string
+          http_protocol_ipv6: string
+          http_put_response_hop_limit: number
+          http_tokens: string
+          instance_metadata_tags: string
+      description_kind: plain
+      computed: true
+    monitoring:
+      type:
+      - list
+      - - object
+        - enabled: bool
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    network_interfaces:
+      type:
+      - list
+      - - object
+        - associate_carrier_ip_address: string
+          associate_public_ip_address: string
+          connection_tracking_specification:
+          - list
+          - - object
+            - tcp_established_timeout: number
+              udp_stream_timeout: number
+              udp_timeout: number
+          delete_on_termination: string
+          description: string
+          device_index: number
+          interface_type: string
+          ipv4_address_count: number
+          ipv4_addresses:
+          - set
+          - string
+          ipv4_prefix_count: number
+          ipv4_prefixes:
+          - set
+          - string
+          ipv6_address_count: number
+          ipv6_addresses:
+          - set
+          - string
+          ipv6_prefix_count: number
+          ipv6_prefixes:
+          - set
+          - string
+          network_card_index: number
+          network_interface_id: string
+          primary_ipv6: string
+          private_ip_address: string
+          security_groups:
+          - set
+          - string
+          subnet_id: string
+      description_kind: plain
+      computed: true
+    placement:
+      type:
+      - list
+      - - object
+        - affinity: string
+          availability_zone: string
+          group_id: string
+          group_name: string
+          host_id: string
+          host_resource_group_arn: string
+          partition_number: number
+          spread_domain: string
+          tenancy: string
+      description_kind: plain
+      computed: true
+    private_dns_name_options:
+      type:
+      - list
+      - - object
+        - enable_resource_name_dns_a_record: bool
+          enable_resource_name_dns_aaaa_record: bool
+          hostname_type: string
+      description_kind: plain
+      computed: true
+    ram_disk_id:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    security_group_names:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    tag_specifications:
+      type:
+      - list
+      - - object
+        - resource_type: string
+          tags:
+          - map
+          - string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    user_data:
+      type: string
+      description_kind: plain
+      computed: true
+    vpc_security_group_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    filter:
+      nesting_mode: set
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          values:
+            type:
+            - set
+            - string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

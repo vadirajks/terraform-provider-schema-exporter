@@ -1,0 +1,72 @@
+version: 0
+block:
+  attributes:
+    data_disk:
+      type:
+      - list
+      - - object
+        - blob_uri: string
+          caching: string
+          lun: number
+          managed_disk_id: string
+          size_gb: number
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+    name_regex:
+      type: string
+      description_kind: plain
+      optional: true
+    os_disk:
+      type:
+      - list
+      - - object
+        - blob_uri: string
+          caching: string
+          managed_disk_id: string
+          os_state: string
+          os_type: string
+          size_gb: number
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    sort_descending:
+      type: bool
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    zone_resilient:
+      type: bool
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

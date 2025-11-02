@@ -1,0 +1,116 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "access_policy_object_ids": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "authentication_configuration": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "audience": "string",
+              "authority": "string",
+              "smart_proxy_enabled": "bool"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cors_configuration": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "allow_credentials": "bool",
+              "allowed_headers": [
+                "set",
+                "string"
+              ],
+              "allowed_methods": [
+                "list",
+                "string"
+              ],
+              "allowed_origins": [
+                "set",
+                "string"
+              ],
+              "max_age_in_seconds": "number"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cosmosdb_key_vault_key_versionless_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cosmosdb_throughput": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "kind": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

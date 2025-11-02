@@ -1,0 +1,328 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name of the IAP protected resource. Name can have below resources: * organizations/{organization_id} * folders/{folder_id} * projects/{project_id} * projects/{project_id}/iap_web * projects/{project_id}/iap_web/compute * projects/{project_id}/iap_web/compute-{region} * projects/{project_id}/iap_web/compute/services/{service_id} * projects/{project_id}/iap_web/compute-{region}/services/{service_id} * projects/{project_id}/iap_web/appengine-{app_id} * projects/{project_id}/iap_web/appengine-{app_id}/services/{service_id} * projects/{project_id}/iap_web/appengine-{app_id}/services/{service_id}/version/{version_id}",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "access_settings": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "identity_sources": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "Identity sources that IAP can use to authenticate the end user. Only one identity source can be configured. The possible values are: * 'WORKFORCE_IDENTITY_FEDERATION': Use external identities set up on Google Cloud Workforce Identity Federation. Possible values: [\"WORKFORCE_IDENTITY_FEDERATION\"]",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "allowed_domains_settings": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "domains": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "List of trusted domains.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "enable": {
+                    "type": "bool",
+                    "description": "Configuration for customers to opt in for the feature.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Settings to configure and enable allowed domains.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "cors_settings": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "allow_http_options": {
+                    "type": "bool",
+                    "description": "Configuration to allow HTTP OPTIONS calls to skip authorization. If undefined, IAP will not apply any special logic to OPTIONS requests.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Configuration to allow cross-origin requests via IAP.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "gcip_settings": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "login_page_uri": {
+                    "type": "string",
+                    "description": "Login page URI associated with the GCIP tenants. Typically, all resources within the same project share the same login page, though it could be overridden at the sub resource level.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "tenant_ids": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "GCIP tenant ids that are linked to the IAP resource. tenantIds could be a string beginning with a number character to indicate authenticating with GCIP tenant flow, or in the format of _ to indicate authenticating with GCIP agent flow. If agent flow is used, tenantIds should only contain one single element, while for tenant flow, tenantIds can contain multiple elements.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "GCIP claims and endpoint configurations for 3p identity providers. * Enabling gcipSetting significantly changes the way IAP authenticates users. Identity Platform does not support IAM, so IAP will not enforce any IAM policies for requests to your application.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "oauth_settings": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "login_hint": {
+                    "type": "string",
+                    "description": "Domain hint to send as hd=? parameter in OAuth request flow. Enables redirect to primary IDP by skipping Google's login screen. (https://developers.google.com/identity/protocols/OpenIDConnect#hd-param) Note: IAP does not verify that the id token's hd claim matches this value since access behavior is managed by IAM policies. * loginHint setting is not a replacement for access control. Always enforce an appropriate access policy if you want to restrict access to users outside your domain.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "programmatic_clients": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "List of client ids allowed to use IAP programmatically.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Settings to configure IAP's OAuth behavior.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "reauth_settings": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "max_age": {
+                    "type": "string",
+                    "description": "Reauth session lifetime, how long before a user has to reauthenticate again. A duration in seconds with up to nine fractional digits, ending with 's'. Example: \"3.5s\".",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "method": {
+                    "type": "string",
+                    "description": "Reauth method requested. The possible values are: * 'LOGIN': Prompts the user to log in again. * 'SECURE_KEY': User must use their secure key 2nd factor device. * 'ENROLLED_SECOND_FACTORS': User can use any enabled 2nd factor. Possible values: [\"LOGIN\", \"SECURE_KEY\", \"ENROLLED_SECOND_FACTORS\"]",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "policy_type": {
+                    "type": "string",
+                    "description": "How IAP determines the effective policy in cases of hierarchical policies. Policies are merged from higher in the hierarchy to lower in the hierarchy. The possible values are: * 'MINIMUM': This policy acts as a minimum to other policies, lower in the hierarchy. Effective policy may only be the same or stricter. * 'DEFAULT': This policy acts as a default if no other reauth policy is set. Possible values: [\"MINIMUM\", \"DEFAULT\"]",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Settings to configure reauthentication policies in IAP.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "workforce_identity_settings": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "workforce_pools": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "The workforce pool resources. Only one workforce pool is accepted.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "oauth2": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "client_id": {
+                          "type": "string",
+                          "description": "The OAuth 2.0 client ID registered in the workforce identity federation OAuth 2.0 Server.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "client_secret": {
+                          "type": "string",
+                          "description": "Input only. The OAuth 2.0 client secret created while registering the client ID.",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "sensitive": true
+                        },
+                        "client_secret_sha256": {
+                          "type": "string",
+                          "description": "Output only. SHA256 hash value for the client secret. This field is returned by IAP when the settings are retrieved.",
+                          "description_kind": "plain",
+                          "computed": true
+                        }
+                      },
+                      "description": "OAuth 2.0 settings for IAP to perform OIDC flow with workforce identity federation services.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "Settings to configure the workforce identity federation, including workforce pools and OAuth 2.0 settings.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Top level wrapper for all access related setting in IAP.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "application_settings": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "cookie_domain": {
+              "type": "string",
+              "description": "The Domain value to set for cookies generated by IAP. This value is not validated by the API, but will be ignored at runtime if invalid.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "access_denied_page_settings": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "access_denied_page_uri": {
+                    "type": "string",
+                    "description": "The URI to be redirected to when access is denied.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "generate_troubleshooting_uri": {
+                    "type": "bool",
+                    "description": "Whether to generate a troubleshooting URL on access denied events to this application.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "remediation_token_generation_enabled": {
+                    "type": "bool",
+                    "description": "Whether to generate remediation token on access denied events to this application.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Customization for Access Denied page. IAP allows customers to define a custom URI to use as the error page when access is denied to users. If IAP prevents access to this page, the default IAP error page will be displayed instead.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "attribute_propagation_settings": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enable": {
+                    "type": "bool",
+                    "description": "Whether the provided attribute propagation settings should be evaluated on user requests. If set to true, attributes returned from the expression will be propagated in the set output credentials.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "expression": {
+                    "type": "string",
+                    "description": "Raw string CEL expression. Must return a list of attributes. A maximum of 45 attributes can be selected. Expressions can select different attribute types from attributes: attributes.saml_attributes, attributes.iap_attributes.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "output_credentials": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Which output credentials attributes selected by the CEL expression should be propagated in. All attributes will be fully duplicated in each selected output credential. Possible values are: * 'HEADER': Propagate attributes in the headers with \"x-goog-iap-attr-\" prefix. * 'JWT': Propagate attributes in the JWT of the form: \"additional_claims\": { \"my_attribute\": [\"value1\", \"value2\"] } * 'RCTOKEN': Propagate attributes in the RCToken of the form: \" additional_claims\": { \"my_attribute\": [\"value1\", \"value2\"] } Possible values: [\"HEADER\", \"JWT\", \"RCTOKEN\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Settings to configure attribute propagation.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "csm_settings": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "rctoken_aud": {
+                    "type": "string",
+                    "description": "Audience claim set in the generated RCToken. This value is not validated by IAP.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Settings to configure IAP's behavior for a service mesh.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Top level wrapper for all application related settings in IAP.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

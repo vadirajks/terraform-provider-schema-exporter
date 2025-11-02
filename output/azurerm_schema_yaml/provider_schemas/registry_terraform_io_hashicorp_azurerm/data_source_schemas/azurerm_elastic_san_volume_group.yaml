@@ -1,0 +1,66 @@
+version: 0
+block:
+  attributes:
+    elastic_san_id:
+      type: string
+      description_kind: plain
+      required: true
+    encryption:
+      type:
+      - list
+      - - object
+        - current_versioned_key_expiration_timestamp: string
+          current_versioned_key_id: string
+          key_vault_key_id: string
+          last_key_rotation_timestamp: string
+          user_assigned_identity_id: string
+      description_kind: plain
+      computed: true
+    encryption_type:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    identity:
+      type:
+      - list
+      - - object
+        - identity_ids:
+          - list
+          - string
+          principal_id: string
+          tenant_id: string
+          type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    network_rule:
+      type:
+      - list
+      - - object
+        - action: string
+          subnet_id: string
+      description_kind: plain
+      computed: true
+    protocol_type:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

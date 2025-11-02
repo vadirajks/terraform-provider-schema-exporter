@@ -1,0 +1,475 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "account_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "frequency": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "monitor_arn_list": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "subscriber": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "address": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "threshold_expression": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "and": {
+              "nesting_mode": "set",
+              "block": {
+                "block_types": {
+                  "cost_category": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "match_options": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "values": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "dimension": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "match_options": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "values": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "tags": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "match_options": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "values": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "cost_category": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "key": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "match_options": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "values": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "dimension": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "key": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "match_options": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "values": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "not": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "cost_category": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "match_options": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "values": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "dimension": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "match_options": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "values": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "tags": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "match_options": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "values": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "or": {
+              "nesting_mode": "set",
+              "block": {
+                "block_types": {
+                  "cost_category": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "match_options": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "values": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "dimension": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "match_options": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "values": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "tags": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "match_options": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "values": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "tags": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "key": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "match_options": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "values": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

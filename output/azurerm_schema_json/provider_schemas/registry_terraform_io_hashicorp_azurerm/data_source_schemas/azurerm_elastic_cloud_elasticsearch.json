@@ -1,0 +1,135 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "elastic_cloud_deployment_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "elastic_cloud_email_address": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "elastic_cloud_sso_default_url": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "elastic_cloud_user_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "elasticsearch_service_url": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "kibana_service_url": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "kibana_sso_uri": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "monitoring_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "sku_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "logs": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "filtering_tag": {
+              "type": [
+                "list",
+                [
+                  "object",
+                  {
+                    "action": "string",
+                    "name": "string",
+                    "value": "string"
+                  }
+                ]
+              ],
+              "description_kind": "plain",
+              "computed": true
+            },
+            "send_activity_logs": {
+              "type": "bool",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "send_azuread_logs": {
+              "type": "bool",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "send_subscription_logs": {
+              "type": "bool",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

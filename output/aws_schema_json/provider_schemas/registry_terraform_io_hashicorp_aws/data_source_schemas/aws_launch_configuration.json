@@ -1,0 +1,157 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "associate_public_ip_address": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "ebs_block_device": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "delete_on_termination": "bool",
+              "device_name": "string",
+              "encrypted": "bool",
+              "iops": "number",
+              "no_device": "bool",
+              "snapshot_id": "string",
+              "throughput": "number",
+              "volume_size": "number",
+              "volume_type": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "ebs_optimized": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "enable_monitoring": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "ephemeral_block_device": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "device_name": "string",
+              "virtual_name": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "iam_instance_profile": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "image_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "instance_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "key_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "metadata_options": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "http_endpoint": "string",
+              "http_put_response_hop_limit": "number",
+              "http_tokens": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "placement_tenancy": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "root_block_device": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "delete_on_termination": "bool",
+              "encrypted": "bool",
+              "iops": "number",
+              "throughput": "number",
+              "volume_size": "number",
+              "volume_type": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "security_groups": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "spot_price": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "user_data": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

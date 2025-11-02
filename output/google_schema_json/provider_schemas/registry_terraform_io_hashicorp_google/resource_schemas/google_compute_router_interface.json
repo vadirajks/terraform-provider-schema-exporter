@@ -1,0 +1,105 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "interconnect_attachment": {
+        "type": "string",
+        "description": "The name or resource link to the VLAN interconnect for this interface. Changing this forces a new interface to be created. Only one of interconnect_attachment, subnetwork or vpn_tunnel can be specified.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "ip_range": {
+        "type": "string",
+        "description": "The IP address and range of the interface. The IP range must be in the RFC3927 link-local IP space. Changing this forces a new interface to be created.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ip_version": {
+        "type": "string",
+        "description": "IP version of this interface.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "A unique name for the interface, required by GCE. Changing this forces a new interface to be created.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "private_ip_address": {
+        "type": "string",
+        "description": "The regional private internal IP address that is used to establish BGP sessions to a VM instance acting as a third-party Router Appliance. Changing this forces a new interface to be created.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "project": {
+        "type": "string",
+        "description": "The ID of the project in which this interface's router belongs. If it is not provided, the provider project is used. Changing this forces a new interface to be created.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "redundant_interface": {
+        "type": "string",
+        "description": "The name of the interface that is redundant to this interface. Changing this forces a new interface to be created.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "The region this interface's router sits in. If not specified, the project region will be used. Changing this forces a new interface to be created.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "router": {
+        "type": "string",
+        "description": "The name of the router this interface will be attached to. Changing this forces a new interface to be created.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "subnetwork": {
+        "type": "string",
+        "description": "The URI of the subnetwork resource that this interface belongs to, which must be in the same region as the Cloud Router. Changing this forces a new interface to be created. Only one of subnetwork, interconnect_attachment or vpn_tunnel can be specified.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "vpn_tunnel": {
+        "type": "string",
+        "description": "The name or resource link to the VPN tunnel this interface will be linked to. Changing this forces a new interface to be created. Only one of vpn_tunnel, interconnect_attachment or subnetwork can be specified.",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

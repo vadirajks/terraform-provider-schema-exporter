@@ -1,0 +1,136 @@
+version: 0
+block:
+  attributes:
+    compute_count:
+      type: number
+      description_kind: plain
+      required: true
+    customer_contacts:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    database_server_type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    display_name:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    shape:
+      type: string
+      description_kind: plain
+      required: true
+    storage_count:
+      type: number
+      description_kind: plain
+      required: true
+    storage_server_type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    zones:
+      type:
+      - set
+      - string
+      description_kind: plain
+      required: true
+  block_types:
+    maintenance_window:
+      nesting_mode: list
+      block:
+        attributes:
+          days_of_week:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+            computed: true
+          hours_of_day:
+            type:
+            - list
+            - number
+            description_kind: plain
+            optional: true
+            computed: true
+          lead_time_in_weeks:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+          months:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+            computed: true
+          patching_mode:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          preference:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          weeks_of_month:
+            type:
+            - list
+            - number
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

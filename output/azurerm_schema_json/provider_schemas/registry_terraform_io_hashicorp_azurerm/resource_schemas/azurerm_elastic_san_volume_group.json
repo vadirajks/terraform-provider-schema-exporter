@@ -1,0 +1,148 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "elastic_san_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "encryption_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "protocol_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "encryption": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "current_versioned_key_expiration_timestamp": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "current_versioned_key_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "key_vault_key_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "last_key_rotation_timestamp": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "user_assigned_identity_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "identity": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "identity_ids": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "principal_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "tenant_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "network_rule": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "action": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "subnet_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

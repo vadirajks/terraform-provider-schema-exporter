@@ -1,0 +1,101 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "Creation time of this resource. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\".",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "dhcp_address_ranges": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "first_address": "string",
+              "last_address": "string"
+            }
+          ]
+        ],
+        "description": "DHCP address ranges.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "gateway_id": {
+        "type": "string",
+        "description": "The canonical identifier of the logical router that this subnet is attached to.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "gateway_ip": {
+        "type": "string",
+        "description": "The IP address of the gateway of this subnet. Must fall within the IP prefix defined above.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ip_cidr_range": {
+        "type": "string",
+        "description": "The IP address range of the subnet in CIDR format.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The ID of the subnet. For userDefined subnets, this name should be in the format of \"service-n\", where n ranges from 1 to 5.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "parent": {
+        "type": "string",
+        "description": "The resource name of the private cloud to create a new subnet in. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: projects/my-project/locations/us-west1-a/privateClouds/my-cloud",
+        "description_kind": "plain",
+        "required": true
+      },
+      "standard_config": {
+        "type": "bool",
+        "description": "Whether the NSX-T configuration in the backend follows the standard configuration supported by Google Cloud. If false, the subnet cannot be modified through Google Cloud, only through NSX-T directly.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "state": {
+        "type": "string",
+        "description": "State of the subnet.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "type": {
+        "type": "string",
+        "description": "The type of the subnet.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "uid": {
+        "type": "string",
+        "description": "System-generated unique identifier for the resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Last updated time of this resource. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\".",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "vlan_id": {
+        "type": "number",
+        "description": "VLAN ID of the VLAN on which the subnet is configured.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "glue_version": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "label_count": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "max_capacity": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "max_retries": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "number_of_workers": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "role_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "schema": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "data_type": "string",
+              "name": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "timeout": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "worker_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "input_record_tables": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "catalog_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "connection_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "database_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "table_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "parameters": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "transform_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "find_matches_parameters": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "accuracy_cost_trade_off": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "enforce_provided_labels": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "precision_recall_trade_off": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "primary_key_column_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

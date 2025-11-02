@@ -1,0 +1,30 @@
+resource "aws_subnet" "name" {
+  vpc_id = string (Required)
+  arn = string (Computed)
+  assign_ipv6_address_on_creation = bool (Optional)
+  availability_zone = string (Optional, Computed)
+  availability_zone_id = string (Optional, Computed)
+  cidr_block = string (Optional)
+  customer_owned_ipv4_pool = string (Optional)
+  enable_dns64 = bool (Optional)
+  enable_lni_at_device_index = number (Optional)
+  enable_resource_name_dns_a_record_on_launch = bool (Optional)
+  enable_resource_name_dns_aaaa_record_on_launch = bool (Optional)
+  id = string (Optional, Computed)
+  ipv6_cidr_block = string (Optional)
+  ipv6_cidr_block_association_id = string (Computed)
+  ipv6_native = bool (Optional)
+  map_customer_owned_ip_on_launch = bool (Optional)
+  map_public_ip_on_launch = bool (Optional)
+  outpost_arn = string (Optional)
+  owner_id = string (Computed)
+  private_dns_hostname_type_on_launch = string (Optional, Computed)
+  region = string (Optional, Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+
+  timeouts block "single" (Optional) {
+    create = string (Optional)
+    delete = string (Optional)
+  }
+}

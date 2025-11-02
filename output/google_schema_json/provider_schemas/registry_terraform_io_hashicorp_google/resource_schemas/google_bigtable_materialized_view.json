@@ -1,0 +1,75 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "deletion_protection": {
+        "type": "bool",
+        "description": "Set to true to make the MaterializedView protected against deletion.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "instance": {
+        "type": "string",
+        "description": "The name of the instance to create the materialized view within.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "materialized_view_id": {
+        "type": "string",
+        "description": "The unique name of the materialized view in the form '[_a-zA-Z0-9][-_.a-zA-Z0-9]*'.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The unique name of the requested materialized view. Values are of the form 'projects/<project>/instances/<instance>/materializedViews/<materializedViewId>'.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "query": {
+        "type": "string",
+        "description": "The materialized view's select query.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

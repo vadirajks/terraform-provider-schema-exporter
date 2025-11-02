@@ -1,0 +1,131 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "account_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "application_identifier": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "group_description": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "volume": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "capacity_pool_id": "string",
+              "data_protection_replication": [
+                "list",
+                [
+                  "object",
+                  {
+                    "endpoint_type": "string",
+                    "remote_volume_location": "string",
+                    "remote_volume_resource_id": "string",
+                    "replication_frequency": "string"
+                  }
+                ]
+              ],
+              "data_protection_snapshot_policy": [
+                "list",
+                [
+                  "object",
+                  {
+                    "snapshot_policy_id": "string"
+                  }
+                ]
+              ],
+              "export_policy_rule": [
+                "list",
+                [
+                  "object",
+                  {
+                    "allowed_clients": "string",
+                    "nfsv3_enabled": "bool",
+                    "nfsv41_enabled": "bool",
+                    "root_access_enabled": "bool",
+                    "rule_index": "number",
+                    "unix_read_only": "bool",
+                    "unix_read_write": "bool"
+                  }
+                ]
+              ],
+              "id": "string",
+              "mount_ip_addresses": [
+                "list",
+                "string"
+              ],
+              "name": "string",
+              "protocols": [
+                "list",
+                "string"
+              ],
+              "proximity_placement_group_id": "string",
+              "security_style": "string",
+              "service_level": "string",
+              "snapshot_directory_visible": "bool",
+              "storage_quota_in_gb": "number",
+              "subnet_id": "string",
+              "tags": [
+                "map",
+                "string"
+              ],
+              "throughput_in_mibps": "number",
+              "volume_path": "string",
+              "volume_spec_name": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

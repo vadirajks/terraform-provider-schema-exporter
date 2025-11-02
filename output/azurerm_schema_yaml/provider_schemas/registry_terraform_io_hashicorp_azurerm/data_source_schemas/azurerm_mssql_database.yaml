@@ -1,0 +1,95 @@
+version: 0
+block:
+  attributes:
+    collation:
+      type: string
+      description_kind: plain
+      computed: true
+    elastic_pool_id:
+      type: string
+      description_kind: plain
+      computed: true
+    enclave_type:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    identity:
+      type:
+      - list
+      - - object
+        - identity_ids:
+          - list
+          - string
+          type: string
+      description_kind: plain
+      computed: true
+    license_type:
+      type: string
+      description_kind: plain
+      computed: true
+    max_size_gb:
+      type: number
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    read_replica_count:
+      type: number
+      description_kind: plain
+      computed: true
+    read_scale:
+      type: bool
+      description_kind: plain
+      computed: true
+    server_id:
+      type: string
+      description_kind: plain
+      required: true
+    sku_name:
+      type: string
+      description_kind: plain
+      computed: true
+    storage_account_type:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    transparent_data_encryption_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    transparent_data_encryption_key_automatic_rotation_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    transparent_data_encryption_key_vault_key_id:
+      type: string
+      description_kind: plain
+      computed: true
+    zone_redundant:
+      type: bool
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

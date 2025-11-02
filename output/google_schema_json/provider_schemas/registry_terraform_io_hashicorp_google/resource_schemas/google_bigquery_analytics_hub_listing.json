@@ -1,0 +1,298 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "allow_only_metadata_sharing": {
+        "type": "bool",
+        "description": "If true, the listing is only available to get the resource metadata. Listing is non subscribable.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "categories": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "Categories of the listing. Up to two categories are allowed.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "commercial_info": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "cloud_marketplace": [
+                "list",
+                [
+                  "object",
+                  {
+                    "commercial_state": "string",
+                    "service": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "Commercial info contains the information about the commercial data products associated with the listing.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "data_exchange_id": {
+        "type": "string",
+        "description": "The ID of the data exchange. Must contain only Unicode letters, numbers (0-9), underscores (_). Should not use characters that require URL-escaping, or characters outside of ASCII, spaces.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "delete_commercial": {
+        "type": "bool",
+        "description": "If the listing is commercial then this field must be set to true, otherwise a failure is thrown. This acts as a safety guard to avoid deleting commercial listings accidentally.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "description": {
+        "type": "string",
+        "description": "Short description of the listing. The description must not contain Unicode non-characters and C0 and C1 control codes except tabs (HT), new lines (LF), carriage returns (CR), and page breaks (FF).",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "discovery_type": {
+        "type": "string",
+        "description": "Specifies the type of discovery on the discovery page. Cannot be set for a restricted listing. Note that this does not control the visibility of the exchange/listing which is defined by IAM permission. Possible values: [\"DISCOVERY_TYPE_PRIVATE\", \"DISCOVERY_TYPE_PUBLIC\"]",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "Human-readable display name of the listing. The display name must contain only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces ( ), ampersands (&) and can't start or end with spaces.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "documentation": {
+        "type": "string",
+        "description": "Documentation describing the listing.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "icon": {
+        "type": "string",
+        "description": "Base64 encoded image representing the listing.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "listing_id": {
+        "type": "string",
+        "description": "The ID of the listing. Must contain only Unicode letters, numbers (0-9), underscores (_). Should not use characters that require URL-escaping, or characters outside of ASCII, spaces.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The name of the location this data exchange listing.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "log_linked_dataset_query_user_email": {
+        "type": "bool",
+        "description": "If true, subscriber email logging is enabled and all queries on the linked dataset will log the email address of the querying user. Once enabled, this setting cannot be turned off.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name of the listing. e.g. \"projects/myproject/locations/US/dataExchanges/123/listings/456\"",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "primary_contact": {
+        "type": "string",
+        "description": "Email or URL of the primary point of contact of the listing.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "request_access": {
+        "type": "string",
+        "description": "Email or URL of the request access of the listing. Subscribers can use this reference to request access.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "state": {
+        "type": "string",
+        "description": "Current state of the listing.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "bigquery_dataset": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "dataset": {
+              "type": "string",
+              "description": "Resource name of the dataset source for this listing. e.g. projects/myproject/datasets/123",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "selected_resources": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "table": {
+                    "type": "string",
+                    "description": "Format: For table: projects/{projectId}/datasets/{datasetId}/tables/{tableId} Example:\"projects/test_project/datasets/test_dataset/tables/test_table\"",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Resource in this dataset that is selectively shared. This field is required for data clean room exchanges.",
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description": "Shared dataset i.e. BigQuery dataset source.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "data_provider": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "name": {
+              "type": "string",
+              "description": "Name of the data provider.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "primary_contact": {
+              "type": "string",
+              "description": "Email or URL of the data provider.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Details of the data provider who owns the source data.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "publisher": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "name": {
+              "type": "string",
+              "description": "Name of the listing publisher.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "primary_contact": {
+              "type": "string",
+              "description": "Email or URL of the listing publisher.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Details of the publisher who owns the listing and who can share the source data.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "pubsub_topic": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "data_affinity_regions": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description": "Region hint on where the data might be published. Data affinity regions are modifiable. See https://cloud.google.com/about/locations for full listing of possible Cloud regions.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "topic": {
+              "type": "string",
+              "description": "Resource name of the Pub/Sub topic source for this listing. e.g. projects/myproject/topics/topicId",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Pub/Sub topic source.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "restricted_export_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enabled": {
+              "type": "bool",
+              "description": "If true, enable restricted export.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "restrict_direct_table_access": {
+              "type": "bool",
+              "description": "If true, restrict direct table access(read api/tabledata.list) on linked table.",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "restrict_query_result": {
+              "type": "bool",
+              "description": "If true, restrict export of query result derived from restricted linked dataset table.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "If set, restricted export configuration will be propagated and enforced on the linked dataset.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

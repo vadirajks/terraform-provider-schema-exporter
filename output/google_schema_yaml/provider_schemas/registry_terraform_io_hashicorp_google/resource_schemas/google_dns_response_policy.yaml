@@ -1,0 +1,64 @@
+version: 0
+block:
+  attributes:
+    description:
+      type: string
+      description: The description of the response policy, such as 'My new response policy'.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    response_policy_name:
+      type: string
+      description: The user assigned name for this Response Policy, such as 'myresponsepolicy'.
+      description_kind: plain
+      required: true
+  block_types:
+    gke_clusters:
+      nesting_mode: list
+      block:
+        attributes:
+          gke_cluster_name:
+            type: string
+            description: The resource name of the cluster to bind this ManagedZone to. This should be specified in the format like 'projects/*/locations/*/clusters/*'
+            description_kind: plain
+            required: true
+        description: The list of Google Kubernetes Engine clusters that can see this zone.
+        description_kind: plain
+    networks:
+      nesting_mode: list
+      block:
+        attributes:
+          network_url:
+            type: string
+            description: The fully qualified URL of the VPC network to bind to. This should be formatted like 'https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}'
+            description_kind: plain
+            required: true
+        description: The list of network names specifying networks to which this policy is applied.
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,153 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "display_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "management_group_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "deprecated": true,
+        "optional": true
+      },
+      "metadata": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "parameters": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "policy_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "policy_definition_group": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "additional_metadata_resource_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "category": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "description": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "display_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "policy_definition_reference": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "parameter_values": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "policy_definition_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "policy_group_names": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "reference_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "version": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

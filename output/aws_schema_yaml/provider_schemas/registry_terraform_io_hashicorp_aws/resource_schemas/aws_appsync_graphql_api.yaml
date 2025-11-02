@@ -1,0 +1,247 @@
+version: 0
+block:
+  attributes:
+    api_type:
+      type: string
+      description_kind: plain
+      optional: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    authentication_type:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    introspection_config:
+      type: string
+      description_kind: plain
+      optional: true
+    merged_api_execution_role_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    query_depth_limit:
+      type: number
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    resolver_count_limit:
+      type: number
+      description_kind: plain
+      optional: true
+    schema:
+      type: string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    uris:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    visibility:
+      type: string
+      description_kind: plain
+      optional: true
+    xray_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+  block_types:
+    additional_authentication_provider:
+      nesting_mode: list
+      block:
+        attributes:
+          authentication_type:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          lambda_authorizer_config:
+            nesting_mode: list
+            block:
+              attributes:
+                authorizer_result_ttl_in_seconds:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                authorizer_uri:
+                  type: string
+                  description_kind: plain
+                  required: true
+                identity_validation_expression:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          openid_connect_config:
+            nesting_mode: list
+            block:
+              attributes:
+                auth_ttl:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                client_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                iat_ttl:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                issuer:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          user_pool_config:
+            nesting_mode: list
+            block:
+              attributes:
+                app_id_client_regex:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                aws_region:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                user_pool_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+    enhanced_metrics_config:
+      nesting_mode: list
+      block:
+        attributes:
+          data_source_level_metrics_behavior:
+            type: string
+            description_kind: plain
+            required: true
+          operation_level_metrics_config:
+            type: string
+            description_kind: plain
+            required: true
+          resolver_level_metrics_behavior:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    lambda_authorizer_config:
+      nesting_mode: list
+      block:
+        attributes:
+          authorizer_result_ttl_in_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+          authorizer_uri:
+            type: string
+            description_kind: plain
+            required: true
+          identity_validation_expression:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    log_config:
+      nesting_mode: list
+      block:
+        attributes:
+          cloudwatch_logs_role_arn:
+            type: string
+            description_kind: plain
+            required: true
+          exclude_verbose_content:
+            type: bool
+            description_kind: plain
+            optional: true
+          field_log_level:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    openid_connect_config:
+      nesting_mode: list
+      block:
+        attributes:
+          auth_ttl:
+            type: number
+            description_kind: plain
+            optional: true
+          client_id:
+            type: string
+            description_kind: plain
+            optional: true
+          iat_ttl:
+            type: number
+            description_kind: plain
+            optional: true
+          issuer:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    user_pool_config:
+      nesting_mode: list
+      block:
+        attributes:
+          app_id_client_regex:
+            type: string
+            description_kind: plain
+            optional: true
+          aws_region:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          default_action:
+            type: string
+            description_kind: plain
+            required: true
+          user_pool_id:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

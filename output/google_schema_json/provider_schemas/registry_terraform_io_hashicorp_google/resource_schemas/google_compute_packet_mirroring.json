@@ -1,0 +1,191 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "description": {
+        "type": "string",
+        "description": "A human-readable description of the rule.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the packet mirroring rule",
+        "description_kind": "plain",
+        "required": true
+      },
+      "priority": {
+        "type": "number",
+        "description": "Since only one rule can be active at a time, priority is used to break ties in the case of two rules that apply to the same instances.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "The Region in which the created address should reside. If it is not provided, the provider region is used.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "collector_ilb": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "url": {
+              "type": "string",
+              "description": "The URL of the forwarding rule.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "The Forwarding Rule resource (of type load_balancing_scheme=INTERNAL) that will be used as collector for mirrored traffic. The specified forwarding rule must have is_mirroring_collector set to true.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "filter": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "cidr_ranges": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "IP CIDR ranges that apply as a filter on the source (ingress) or destination (egress) IP in the IP header. Only IPv4 is supported.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "direction": {
+              "type": "string",
+              "description": "Direction of traffic to mirror. Default value: \"BOTH\" Possible values: [\"INGRESS\", \"EGRESS\", \"BOTH\"]",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "ip_protocols": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "Possible IP protocols including tcp, udp, icmp and esp",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "A filter for mirrored traffic.  If unset, all traffic is mirrored.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "mirrored_resources": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "tags": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "All instances with these tags will be mirrored.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "instances": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "url": {
+                    "type": "string",
+                    "description": "The URL of the instances where this rule should be active.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "All the listed instances will be mirrored.  Specify at most 50.",
+                "description_kind": "plain"
+              }
+            },
+            "subnetworks": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "url": {
+                    "type": "string",
+                    "description": "The URL of the subnetwork where this rule should be active.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "All instances in one of these subnetworks will be mirrored.",
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description": "A means of specifying which resources to mirror.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "network": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "url": {
+              "type": "string",
+              "description": "The full self_link URL of the network where this rule is active.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Specifies the mirrored VPC network. Only packets in this network will be mirrored. All mirrored VMs should have a NIC in the given network. All mirrored subnetworks should belong to the given network.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

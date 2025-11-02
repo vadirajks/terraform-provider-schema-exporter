@@ -1,0 +1,193 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "force_destroy": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "state": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "bytes_scanned_cutoff_per_query": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "enforce_workgroup_configuration": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "execution_role": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "publish_cloudwatch_metrics_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "requester_pays_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "engine_version": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "effective_engine_version": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "computed": true
+                  },
+                  "selected_engine_version": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "identity_center_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enable_identity_center": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "identity_center_instance_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "result_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "expected_bucket_owner": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "output_location": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "acl_configuration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "s3_acl_option": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "encryption_configuration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "encryption_option": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "kms_key_arn": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

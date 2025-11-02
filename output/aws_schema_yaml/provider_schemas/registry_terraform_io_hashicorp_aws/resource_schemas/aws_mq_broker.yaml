@@ -1,0 +1,274 @@
+version: 0
+block:
+  attributes:
+    apply_immediately:
+      type: bool
+      description_kind: plain
+      optional: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    authentication_strategy:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    auto_minor_version_upgrade:
+      type: bool
+      description_kind: plain
+      optional: true
+    broker_name:
+      type: string
+      description_kind: plain
+      required: true
+    data_replication_mode:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    data_replication_primary_broker_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    deployment_mode:
+      type: string
+      description_kind: plain
+      optional: true
+    engine_type:
+      type: string
+      description_kind: plain
+      required: true
+    engine_version:
+      type: string
+      description_kind: plain
+      required: true
+    host_instance_type:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instances:
+      type:
+      - list
+      - - object
+        - console_url: string
+          endpoints:
+          - list
+          - string
+          ip_address: string
+      description_kind: plain
+      computed: true
+    pending_data_replication_mode:
+      type: string
+      description_kind: plain
+      computed: true
+    publicly_accessible:
+      type: bool
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    security_groups:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    storage_type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    subnet_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          id:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          revision:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    encryption_options:
+      nesting_mode: list
+      block:
+        attributes:
+          kms_key_id:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          use_aws_owned_key:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    ldap_server_metadata:
+      nesting_mode: list
+      block:
+        attributes:
+          hosts:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          role_base:
+            type: string
+            description_kind: plain
+            optional: true
+          role_name:
+            type: string
+            description_kind: plain
+            optional: true
+          role_search_matching:
+            type: string
+            description_kind: plain
+            optional: true
+          role_search_subtree:
+            type: bool
+            description_kind: plain
+            optional: true
+          service_account_password:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          service_account_username:
+            type: string
+            description_kind: plain
+            optional: true
+          user_base:
+            type: string
+            description_kind: plain
+            optional: true
+          user_role_name:
+            type: string
+            description_kind: plain
+            optional: true
+          user_search_matching:
+            type: string
+            description_kind: plain
+            optional: true
+          user_search_subtree:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    logs:
+      nesting_mode: list
+      block:
+        attributes:
+          audit:
+            type: string
+            description_kind: plain
+            optional: true
+          general:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    maintenance_window_start_time:
+      nesting_mode: list
+      block:
+        attributes:
+          day_of_week:
+            type: string
+            description_kind: plain
+            required: true
+          time_of_day:
+            type: string
+            description_kind: plain
+            required: true
+          time_zone:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    user:
+      nesting_mode: set
+      block:
+        attributes:
+          console_access:
+            type: bool
+            description_kind: plain
+            optional: true
+          groups:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          password:
+            type: string
+            description_kind: plain
+            required: true
+            sensitive: true
+          replication_user:
+            type: bool
+            description_kind: plain
+            optional: true
+          username:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+  description_kind: plain

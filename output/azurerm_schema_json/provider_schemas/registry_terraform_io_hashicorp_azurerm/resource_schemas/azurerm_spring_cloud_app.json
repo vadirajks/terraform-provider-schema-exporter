@@ -1,0 +1,216 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "addon_json": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "fqdn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "https_only": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "is_public": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "public_endpoint_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "service_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tls_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "url": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "custom_persistent_disk": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "mount_options": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "mount_path": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "read_only_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "share_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "storage_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "identity": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "identity_ids": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "principal_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "tenant_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "ingress_settings": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "backend_protocol": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read_timeout_in_seconds": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "send_timeout_in_seconds": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "session_affinity": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "session_cookie_max_age": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "persistent_disk": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "mount_path": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "size_in_gb": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

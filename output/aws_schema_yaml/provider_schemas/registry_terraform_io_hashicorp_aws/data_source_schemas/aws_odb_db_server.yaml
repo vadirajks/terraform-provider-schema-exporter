@@ -1,0 +1,127 @@
+version: 0
+block:
+  attributes:
+    autonomous_virtual_machine_ids:
+      type:
+      - list
+      - string
+      description: The list of unique identifiers for the Autonomous VMs associated with this database server.
+      description_kind: plain
+      computed: true
+    autonomous_vm_cluster_ids:
+      type:
+      - list
+      - string
+      description: The OCID of the autonomous VM clusters that are associated with the database server.
+      description_kind: plain
+      computed: true
+    cloud_exadata_infrastructure_id:
+      type: string
+      description: The identifier of the database server to retrieve information about.
+      description_kind: plain
+      required: true
+    compute_model:
+      type: string
+      description: The compute model of the database server.
+      description_kind: plain
+      computed: true
+    cpu_core_count:
+      type: number
+      description: The number of CPU cores enabled on the database server.
+      description_kind: plain
+      computed: true
+    created_at:
+      type: string
+      description: The date and time when the database server was created.
+      description_kind: plain
+      computed: true
+    db_node_storage_size_in_gbs:
+      type: number
+      description: The allocated local node storage in GBs on the database server.
+      description_kind: plain
+      computed: true
+    db_server_patching_details:
+      type:
+      - list
+      - - object
+        - estimated_patch_duration: number
+          patching_status: string
+          time_patching_ended: string
+          time_patching_started: string
+      description: The scheduling details for the quarterly maintenance window. Patching and system updates take place during the maintenance window.
+      description_kind: plain
+      computed: true
+    display_name:
+      type: string
+      description: The display name of the database server.
+      description_kind: plain
+      computed: true
+    exadata_infrastructure_id:
+      type: string
+      description: The exadata infrastructure ID of the database server.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description: The identifier of the the database server.
+      description_kind: plain
+      required: true
+    max_cpu_count:
+      type: number
+      description: The total number of CPU cores available.
+      description_kind: plain
+      computed: true
+    max_db_node_storage_in_gbs:
+      type: number
+      description: The total local node storage available in GBs.
+      description_kind: plain
+      computed: true
+    max_memory_in_gbs:
+      type: number
+      description: The total memory available in GBs.
+      description_kind: plain
+      computed: true
+    memory_size_in_gbs:
+      type: number
+      description: The allocated memory in GBs on the database server.
+      description_kind: plain
+      computed: true
+    oci_resource_anchor_name:
+      type: string
+      description: The name of the OCI resource anchor.
+      description_kind: plain
+      computed: true
+    ocid:
+      type: string
+      description: The OCID of the database server to retrieve information about.
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    shape:
+      type: string
+      description: The shape of the database server. The shape determines the amount of CPU, storage, and memory resources available.
+      description_kind: plain
+      computed: true
+    status:
+      type: string
+      description: The status of the database server.
+      description_kind: plain
+      computed: true
+    status_reason:
+      type: string
+      description: Additional information about the current status of the database server.
+      description_kind: plain
+      computed: true
+    vm_cluster_ids:
+      type:
+      - list
+      - string
+      description: The OCID of the VM clusters that are associated with the database server.
+      description_kind: plain
+      computed: true
+  description_kind: plain

@@ -1,0 +1,85 @@
+version: 0
+block:
+  attributes:
+    availability_zones_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    backup_storage_customer_key_uri:
+      type: string
+      description_kind: plain
+      optional: true
+    base64_encoded_yaml_fragment:
+      type: string
+      description_kind: plain
+      optional: true
+    cassandra_cluster_id:
+      type: string
+      description_kind: plain
+      required: true
+    delegated_management_subnet_id:
+      type: string
+      description_kind: plain
+      required: true
+    disk_count:
+      type: number
+      description_kind: plain
+      optional: true
+    disk_sku:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    managed_disk_customer_key_uri:
+      type: string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    node_count:
+      type: number
+      description_kind: plain
+      optional: true
+    seed_node_ip_addresses:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    sku_name:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

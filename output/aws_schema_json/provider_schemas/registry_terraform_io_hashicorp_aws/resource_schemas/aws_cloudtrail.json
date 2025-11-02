@@ -1,0 +1,255 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cloud_watch_logs_group_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "cloud_watch_logs_role_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "enable_log_file_validation": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "enable_logging": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "home_region": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "include_global_service_events": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "is_multi_region_trail": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "is_organization_trail": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "kms_key_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "s3_bucket_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "s3_key_prefix": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "sns_topic_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "sns_topic_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "advanced_event_selector": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "field_selector": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "ends_with": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "equals": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "field": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "not_ends_with": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "not_equals": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "not_starts_with": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "starts_with": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "event_selector": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "exclude_management_event_sources": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "include_management_events": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read_write_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "data_resource": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "values": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 5
+      },
+      "insight_selector": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "insight_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

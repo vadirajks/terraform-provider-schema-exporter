@@ -1,0 +1,76 @@
+version: 0
+block:
+  attributes:
+    bundle_id:
+      type: string
+      description_kind: plain
+      computed: true
+    computer_name:
+      type: string
+      description_kind: plain
+      computed: true
+    directory_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ip_address:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    root_volume_encryption_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    state:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    user_name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    user_volume_encryption_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    volume_encryption_key:
+      type: string
+      description_kind: plain
+      computed: true
+    workspace_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    workspace_properties:
+      type:
+      - list
+      - - object
+        - compute_type_name: string
+          root_volume_size_gib: number
+          running_mode: string
+          running_mode_auto_stop_timeout_in_minutes: number
+          user_volume_size_gib: number
+      description_kind: plain
+      computed: true
+  description_kind: plain

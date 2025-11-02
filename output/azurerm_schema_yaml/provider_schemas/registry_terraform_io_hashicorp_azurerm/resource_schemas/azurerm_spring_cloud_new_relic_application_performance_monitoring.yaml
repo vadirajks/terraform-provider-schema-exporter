@@ -1,0 +1,82 @@
+version: 0
+block:
+  attributes:
+    agent_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    app_name:
+      type: string
+      description_kind: plain
+      required: true
+    app_server_port:
+      type: number
+      description_kind: plain
+      optional: true
+    audit_mode_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    auto_app_naming_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    auto_transaction_naming_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    custom_tracing_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    globally_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    license_key:
+      type: string
+      description_kind: plain
+      required: true
+      sensitive: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    spring_cloud_service_id:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

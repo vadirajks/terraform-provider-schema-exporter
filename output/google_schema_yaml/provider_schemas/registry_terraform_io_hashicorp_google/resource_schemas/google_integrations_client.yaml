@@ -1,0 +1,76 @@
+version: 0
+block:
+  attributes:
+    create_sample_integrations:
+      type: bool
+      description: Indicates if sample integrations should be created along with provisioning.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: Location in which client needs to be provisioned.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    run_as_service_account:
+      type: string
+      description: User input run-as service account, if empty, will bring up a new default service account.
+      description_kind: plain
+      deprecated: true
+      optional: true
+  block_types:
+    cloud_kms_config:
+      nesting_mode: list
+      block:
+        attributes:
+          key:
+            type: string
+            description: A Cloud KMS key is a named object containing one or more key versions, along with metadata for the key. A key exists on exactly one key ring tied to a specific location.
+            description_kind: plain
+            required: true
+          key_version:
+            type: string
+            description: Each version of a key contains key material used for encryption or signing. A key's version is represented by an integer, starting at 1. To decrypt data or verify a signature, you must use the same key version that was used to encrypt or sign the data.
+            description_kind: plain
+            optional: true
+          kms_location:
+            type: string
+            description: Location name of the key ring, e.g. "us-west1".
+            description_kind: plain
+            required: true
+          kms_project_id:
+            type: string
+            description: The Google Cloud project id of the project where the kms key stored. If empty, the kms key is stored at the same project as customer's project and ecrypted with CMEK, otherwise, the kms key is stored in the tenant project and encrypted with GMEK.
+            description_kind: plain
+            optional: true
+          kms_ring:
+            type: string
+            description: A key ring organizes keys in a specific Google Cloud location and allows you to manage access control on groups of keys. A key ring's name does not need to be unique across a Google Cloud project, but must be unique within a given location.
+            description_kind: plain
+            required: true
+        description: Cloud KMS config for AuthModule to encrypt/decrypt credentials.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

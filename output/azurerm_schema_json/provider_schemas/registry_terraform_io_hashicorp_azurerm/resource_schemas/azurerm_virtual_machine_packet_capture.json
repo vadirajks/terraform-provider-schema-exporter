@@ -1,0 +1,127 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "maximum_bytes_per_packet": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "maximum_bytes_per_session": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "maximum_capture_duration_in_seconds": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "network_watcher_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "virtual_machine_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "filter": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "local_ip_address": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "local_port": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "protocol": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "remote_ip_address": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "remote_port": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "storage_location": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "file_path": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "storage_account_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "storage_path": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

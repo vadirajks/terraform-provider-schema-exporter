@@ -1,0 +1,18 @@
+resource "aws_sagemaker_image_version" "name" {
+  base_image = string (Required)
+  image_name = string (Required)
+  aliases = ['set', 'string'] (Optional)
+  arn = string (Computed)
+  container_image = string (Computed)
+  horovod = bool (Optional)
+  id = string (Optional, Computed)
+  image_arn = string (Computed)
+  job_type = string (Optional)
+  ml_framework = string (Optional)
+  processor = string (Optional)
+  programming_lang = string (Optional)
+  region = string (Optional, Computed)
+  release_notes = string (Optional)
+  vendor_guidance = string (Optional)
+  version = number (Computed)
+}

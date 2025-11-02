@@ -1,0 +1,174 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "The timestamp when the resource was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "User-provided human-readable name to be used in user interfaces.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "effective_service_account": {
+        "type": "string",
+        "description": "Effective service account associated with ServiceInstance. This will be the service_account if specified. Otherwise, it will be an automatically created per-resource P4SA that also automatically has Fleet Workload. Identity bindings applied.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The labels to associate with this service instance. Labels may be used for filtering and billing tracking. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "Location of the resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Identifier. The name of the service instance.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "reconciling": {
+        "type": "bool",
+        "description": "Whether the service instance is currently reconciling. True if the current state of the resource does not match the intended state, and the system is working to reconcile them, whether or not the change was user initiated.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "requested_state": {
+        "type": "string",
+        "description": "The intended state to which the service instance is reconciling. Possible values: * 'CREATING' * 'ACTIVE' * 'DISCONNECTED' * 'DELETING' * 'STOPPING' * 'STOPPED' * 'STARTING' * 'UPDATING' * 'FAILED'",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "service_account": {
+        "type": "string",
+        "description": "Requested service account to associate with ServiceInstance.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "service_instance_id": {
+        "type": "string",
+        "description": "Id of the service instance.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "state": {
+        "type": "string",
+        "description": "The current state. Possible values: * 'CREATING' * 'ACTIVE' * 'DISCONNECTED' * 'DELETING' * 'STOPPING' * 'STOPPED' * 'STARTING' * 'UPDATING' * 'FAILED'",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "state_message": {
+        "type": "string",
+        "description": "A message explaining the current state.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "uid": {
+        "type": "string",
+        "description": "System generated unique identifier for this service instance, formatted as UUID4.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "The timestamp when the resource was most recently updated.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "gdce_cluster": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "gdce_cluster": {
+              "type": "string",
+              "description": "Gdce cluster resource id.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Gdce cluster information.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "spark_service_instance_config": {
+        "nesting_mode": "list",
+        "block": {
+          "description": "Spark-specific service instance configuration.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

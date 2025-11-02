@@ -1,0 +1,226 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "comment": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "created_at": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "data_set_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "finalized": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "force_destroy": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "updated_at": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "asset": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "created_at": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "updated_at": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "block_types": {
+            "create_s3_data_access_from_s3_bucket": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "access_point_alias": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "computed": true
+                  },
+                  "access_point_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "block_types": {
+                  "asset_source": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "bucket": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "key_prefixes": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "keys": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "kms_keys_to_grant": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "kms_key_arn": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          }
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "import_assets_from_s3": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "asset_source": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "bucket": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "import_assets_from_signed_url": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "filename": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours).",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

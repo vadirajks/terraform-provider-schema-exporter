@@ -1,0 +1,78 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    created_at:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    updated_at:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    action:
+      nesting_mode: list
+      block:
+        block_types:
+          export_revision_to_s3:
+            nesting_mode: list
+            block:
+              block_types:
+                encryption:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      kms_key_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      type:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                revision_destination:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      bucket:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      key_pattern:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                    description_kind: plain
+              description_kind: plain
+        description_kind: plain
+    event:
+      nesting_mode: list
+      block:
+        block_types:
+          revision_published:
+            nesting_mode: list
+            block:
+              attributes:
+                data_set_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+  description_kind: plain

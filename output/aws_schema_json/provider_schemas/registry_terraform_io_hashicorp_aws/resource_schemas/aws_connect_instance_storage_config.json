@@ -1,0 +1,164 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "association_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "instance_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "resource_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "storage_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "storage_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "kinesis_firehose_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "firehose_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "kinesis_stream_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "stream_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "kinesis_video_stream_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "prefix": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "retention_period_hours": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "encryption_config": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "encryption_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "key_id": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "s3_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "bucket_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "bucket_prefix": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "encryption_config": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "encryption_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "key_id": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

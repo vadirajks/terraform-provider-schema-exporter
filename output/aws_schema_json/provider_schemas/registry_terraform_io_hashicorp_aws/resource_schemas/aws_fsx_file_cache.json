@@ -1,0 +1,294 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "copy_tags_to_data_repository_associations": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "data_repository_association_ids": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "dns_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "file_cache_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "file_cache_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "file_cache_type_version": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "kms_key_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "network_interface_ids": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "owner_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "security_group_ids": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "storage_capacity": {
+        "type": "number",
+        "description_kind": "plain",
+        "required": true
+      },
+      "subnet_ids": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "vpc_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "data_repository_association": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "association_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "data_repository_path": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "data_repository_subdirectories": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "file_cache_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "file_cache_path": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "file_system_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "file_system_path": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "imported_file_chunk_size": {
+              "type": "number",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "resource_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "tags": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "block_types": {
+            "nfs": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "dns_ips": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "version": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 8
+      },
+      "lustre_configuration": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "deployment_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "log_configuration": {
+              "type": [
+                "set",
+                [
+                  "object",
+                  {
+                    "destination": "string",
+                    "level": "string"
+                  }
+                ]
+              ],
+              "description_kind": "plain",
+              "computed": true
+            },
+            "mount_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "per_unit_storage_throughput": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "weekly_maintenance_start_time": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "metadata_configuration": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "storage_capacity": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 8
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

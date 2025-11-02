@@ -1,0 +1,91 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The geographic location where the data store should reside. The value can only be one of \"global\", \"us\" and \"eu\".",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The unique full resource name of the aclConfig. Values are of the format 'projects/{project}/locations/{location}/aclConfig'.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "idp_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "idp_type": {
+              "type": "string",
+              "description": "Identity provider type. Possible values: [\"GSUITE\", \"THIRD_PARTY\"]",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "external_idp_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "workforce_pool_name": {
+                    "type": "string",
+                    "description": "Workforce pool name: \"locations/global/workforcePools/pool_id\"",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "External third party identity provider config.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Identity provider config.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

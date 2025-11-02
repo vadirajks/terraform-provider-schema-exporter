@@ -1,0 +1,175 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "cluster": {
+        "type": "string",
+        "description": "The name of the target Distributed Cloud Edge Cluster.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "The time when the node pool was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Labels associated with this resource. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location of the resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "machine_filter": {
+        "type": "string",
+        "description": "Only machines matching this filter will be allowed to join the node pool. The filtering language accepts strings like \"name=<name>\", and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name of the node pool.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "node_count": {
+        "type": "number",
+        "description": "The number of nodes in the pool.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "node_location": {
+        "type": "string",
+        "description": "Name of the Google Distributed Cloud Edge zone where this node pool will be created. For example: 'us-central1-edge-customer-a'.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "node_version": {
+        "type": "string",
+        "description": "The lowest release version among all worker nodes.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "The time when the node pool was last updated.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "local_disk_encryption": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "kms_key": {
+              "type": "string",
+              "description": "The Cloud KMS CryptoKey e.g. projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{cryptoKey} to use for protecting node local disks. If not specified, a Google-managed key will be used instead.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "kms_key_active_version": {
+              "type": "string",
+              "description": "The Cloud KMS CryptoKeyVersion currently in use for protecting node local disks. Only applicable if kmsKey is set.",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "kms_key_state": {
+              "type": "string",
+              "description": "Availability of the Cloud KMS CryptoKey. If not KEY_AVAILABLE, then nodes may go offline as they cannot access their local data. This can be caused by a lack of permissions to use the key, or if the key is disabled or deleted.",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "description": "Local disk encryption options. This field is only used when enabling CMEK support.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "node_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "labels": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description": "\"The Kubernetes node labels\"",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description": "Configuration for each node in the NodePool",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

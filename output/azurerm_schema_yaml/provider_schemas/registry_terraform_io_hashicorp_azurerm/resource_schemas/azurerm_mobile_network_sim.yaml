@@ -1,0 +1,94 @@
+version: 0
+block:
+  attributes:
+    authentication_key:
+      type: string
+      description_kind: plain
+      required: true
+      sensitive: true
+    device_type:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    integrated_circuit_card_identifier:
+      type: string
+      description_kind: plain
+      required: true
+    international_mobile_subscriber_identity:
+      type: string
+      description_kind: plain
+      required: true
+    mobile_network_sim_group_id:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    operator_key_code:
+      type: string
+      description_kind: plain
+      required: true
+      sensitive: true
+    sim_policy_id:
+      type: string
+      description_kind: plain
+      optional: true
+    sim_state:
+      type: string
+      description_kind: plain
+      computed: true
+    vendor_key_fingerprint:
+      type: string
+      description_kind: plain
+      computed: true
+    vendor_name:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    static_ip_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          attached_data_network_id:
+            type: string
+            description_kind: plain
+            required: true
+          slice_id:
+            type: string
+            description_kind: plain
+            required: true
+          static_ipv4_address:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,47 @@
+version: 0
+block:
+  attributes:
+    attachment_target:
+      type: string
+      description: The target that the firewall policy is attached to.
+      description_kind: plain
+      required: true
+    firewall_policy:
+      type: string
+      description: The firewall policy of the resource. This field can be updated to refer to a different Firewall Policy, which will create a new association from that new firewall policy with the flag to override the existing attachmentTarget's policy association. **Note** Due to potential risks with this operation it is *highly* recommended to use the 'create_before_destroy' life cycle option on your exisiting firewall policy so as to prevent a situation where your attachment target has no associated policy.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: The name for an association.
+      description_kind: plain
+      required: true
+    short_name:
+      type: string
+      description: The short name of the firewall policy of the association.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

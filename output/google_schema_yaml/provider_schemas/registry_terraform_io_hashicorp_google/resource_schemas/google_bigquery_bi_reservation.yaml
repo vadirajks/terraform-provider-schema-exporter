@@ -1,0 +1,73 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: LOCATION_DESCRIPTION
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The resource name of the singleton BI reservation. Reservation names have the form 'projects/{projectId}/locations/{locationId}/biReservation'.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    size:
+      type: number
+      description: Size of a reservation, in bytes.
+      description_kind: plain
+      optional: true
+    update_time:
+      type: string
+      description: 'The last update timestamp of a reservation. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".'
+      description_kind: plain
+      computed: true
+  block_types:
+    preferred_tables:
+      nesting_mode: list
+      block:
+        attributes:
+          dataset_id:
+            type: string
+            description: The ID of the dataset in the above project.
+            description_kind: plain
+            optional: true
+          project_id:
+            type: string
+            description: The assigned project ID of the project.
+            description_kind: plain
+            optional: true
+          table_id:
+            type: string
+            description: The ID of the table in the above dataset.
+            description_kind: plain
+            optional: true
+        description: Preferred tables to use BI capacity for.
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

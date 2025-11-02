@@ -1,0 +1,108 @@
+version: 0
+block:
+  attributes:
+    consumer_accept_list:
+      type:
+      - list
+      - string
+      description: Optional. Customer accept list represents the list of projects (id/number) on customer side that can privately connect to the service attachment. It is an optional field which the customers can provide during the instance creation. By default, the customer project associated with the Apigee organization will be included to the list.
+      description_kind: plain
+      optional: true
+      computed: true
+    description:
+      type: string
+      description: Description of the instance.
+      description_kind: plain
+      optional: true
+    disk_encryption_key_name:
+      type: string
+      description: 'Customer Managed Encryption Key (CMEK) used for disk and volume encryption. Required for Apigee paid subscriptions only. Use the following format: ''projects/([^/]+)/locations/([^/]+)/keyRings/([^/]+)/cryptoKeys/([^/]+)'''
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description: Display name of the instance.
+      description_kind: plain
+      optional: true
+    host:
+      type: string
+      description: Output only. Hostname or IP address of the exposed Apigee endpoint used by clients to connect to the service.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ip_range:
+      type: string
+      description: 'IP range represents the customer-provided CIDR block of length 22 that will be used for the Apigee instance creation. This optional range, if provided, should be freely available as part of larger named range the customer has allocated to the Service Networking peering. If this is not provided, Apigee will automatically request for any available /22 CIDR block from Service Networking. The customer should use this CIDR block for configuring their firewall needs to allow traffic from Apigee. Input format: "a.b.c.d/22"'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: Required. Compute Engine location where the instance resides.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: Resource ID of the instance.
+      description_kind: plain
+      required: true
+    org_id:
+      type: string
+      description: The Apigee Organization associated with the Apigee instance, in the format 'organizations/{{org_name}}'.
+      description_kind: plain
+      required: true
+    peering_cidr_range:
+      type: string
+      description: The size of the CIDR block range that will be reserved by the instance. For valid values, see [CidrRange](https://cloud.google.com/apigee/docs/reference/apis/apigee/rest/v1/organizations.instances#CidrRange) on the documentation.
+      description_kind: plain
+      optional: true
+      computed: true
+    port:
+      type: string
+      description: Output only. Port number of the exposed Apigee endpoint.
+      description_kind: plain
+      computed: true
+    service_attachment:
+      type: string
+      description: 'Output only. Resource name of the service attachment created for the instance in the format: projects/*/regions/*/serviceAttachments/* Apigee customers can privately forward traffic to this service attachment using the PSC endpoints.'
+      description_kind: plain
+      computed: true
+  block_types:
+    access_logging_config:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled:
+            type: bool
+            description: Boolean flag that specifies whether the customer access log feature is enabled.
+            description_kind: plain
+            required: true
+          filter:
+            type: string
+            description: 'Ship the access log entries that match the statusCode defined in the filter. The statusCode is the only expected/supported filter field. (Ex: statusCode) The filter will parse it to the Common Expression Language semantics for expression evaluation to build the filter condition. (Ex: "filter": statusCode >= 200 && statusCode < 300 )'
+            description_kind: plain
+            optional: true
+        description: Access logging configuration enables the access logging feature at the instance. Apigee customers can enable access logging to ship the access logs to their own project's cloud logging.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

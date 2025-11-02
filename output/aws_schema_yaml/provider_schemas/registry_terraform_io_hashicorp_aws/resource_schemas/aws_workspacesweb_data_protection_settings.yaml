@@ -1,0 +1,133 @@
+version: 0
+block:
+  attributes:
+    additional_encryption_context:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    associated_portal_arns:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    customer_managed_key:
+      type: string
+      description_kind: plain
+      optional: true
+    data_protection_settings_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    inline_redaction_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          global_confidence_level:
+            type: number
+            description_kind: plain
+            optional: true
+          global_enforced_urls:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          global_exempt_urls:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+        block_types:
+          inline_redaction_pattern:
+            nesting_mode: list
+            block:
+              attributes:
+                built_in_pattern_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                confidence_level:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                enforced_urls:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                exempt_urls:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                custom_pattern:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      keyword_regex:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      pattern_description:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      pattern_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      pattern_regex:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                redaction_place_holder:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      redaction_place_holder_text:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      redaction_place_holder_type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+              description_kind: plain
+        description_kind: plain
+  description_kind: plain

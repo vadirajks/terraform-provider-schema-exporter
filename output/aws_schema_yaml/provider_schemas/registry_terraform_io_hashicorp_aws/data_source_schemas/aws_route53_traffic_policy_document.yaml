@@ -1,0 +1,221 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    json:
+      type: string
+      description_kind: plain
+      computed: true
+    record_type:
+      type: string
+      description_kind: plain
+      optional: true
+    start_endpoint:
+      type: string
+      description_kind: plain
+      optional: true
+    start_rule:
+      type: string
+      description_kind: plain
+      optional: true
+    version:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    endpoint:
+      nesting_mode: set
+      block:
+        attributes:
+          id:
+            type: string
+            description_kind: plain
+            required: true
+          region:
+            type: string
+            description_kind: plain
+            optional: true
+          type:
+            type: string
+            description_kind: plain
+            optional: true
+          value:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    rule:
+      nesting_mode: set
+      block:
+        attributes:
+          id:
+            type: string
+            description_kind: plain
+            required: true
+          type:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          geo_proximity_location:
+            nesting_mode: set
+            block:
+              attributes:
+                bias:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                endpoint_reference:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                evaluate_target_health:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                health_check:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                latitude:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                longitude:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                region:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                rule_reference:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          items:
+            nesting_mode: set
+            block:
+              attributes:
+                endpoint_reference:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                health_check:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          location:
+            nesting_mode: set
+            block:
+              attributes:
+                continent:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                country:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                endpoint_reference:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                evaluate_target_health:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                health_check:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                is_default:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                rule_reference:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                subdivision:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          primary:
+            nesting_mode: list
+            block:
+              attributes:
+                endpoint_reference:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                evaluate_target_health:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                health_check:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                rule_reference:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          region:
+            nesting_mode: set
+            block:
+              attributes:
+                endpoint_reference:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                evaluate_target_health:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                health_check:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                region:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                rule_reference:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          secondary:
+            nesting_mode: list
+            block:
+              attributes:
+                endpoint_reference:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                evaluate_target_health:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                health_check:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                rule_reference:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+  description_kind: plain

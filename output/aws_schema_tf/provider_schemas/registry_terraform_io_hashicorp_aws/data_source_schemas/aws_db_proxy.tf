@@ -1,0 +1,17 @@
+data "aws_db_proxy" "name" {
+  name = string (Required)
+  arn = string (Computed)
+  auth = ['set', ['object', {'auth_scheme': 'string', 'client_password_auth_type': 'string', 'description': 'string', 'iam_auth': 'string', 'secret_arn': 'string', 'username': 'string'}]] (Computed)
+  debug_logging = bool (Computed)
+  default_auth_scheme = string (Computed)
+  endpoint = string (Computed)
+  engine_family = string (Computed)
+  id = string (Optional, Computed)
+  idle_client_timeout = number (Computed)
+  region = string (Optional, Computed)
+  require_tls = bool (Computed)
+  role_arn = string (Computed)
+  vpc_id = string (Computed)
+  vpc_security_group_ids = ['set', 'string'] (Computed)
+  vpc_subnet_ids = ['set', 'string'] (Computed)
+}

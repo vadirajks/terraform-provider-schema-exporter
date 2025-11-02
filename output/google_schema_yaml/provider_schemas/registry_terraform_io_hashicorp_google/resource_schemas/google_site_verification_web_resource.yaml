@@ -1,0 +1,58 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    owners:
+      type:
+      - list
+      - string
+      description: "The email addresses of all direct, verified owners of this exact property. Indirect owners \u2014 for example verified owners of the containing domain\u2014are not included in this list."
+      description_kind: plain
+      computed: true
+    verification_method:
+      type: string
+      description: 'The verification method for the Site Verification system to use to verify this site or domain. Possible values: ["ANALYTICS", "DNS_CNAME", "DNS_TXT", "FILE", "META", "TAG_MANAGER"]'
+      description_kind: plain
+      required: true
+    web_resource_id:
+      type: string
+      description: The string used to identify this web resource.
+      description_kind: plain
+      computed: true
+  block_types:
+    site:
+      nesting_mode: list
+      block:
+        attributes:
+          identifier:
+            type: string
+            description: The site identifier. If the type is set to SITE, the identifier is a URL. If the type is set to INET_DOMAIN, the identifier is a domain name.
+            description_kind: plain
+            required: true
+          type:
+            type: string
+            description: 'The type of resource to be verified. Possible values: ["INET_DOMAIN", "SITE"]'
+            description_kind: plain
+            required: true
+        description: Container for the address and type of a site for which a verification token will be verified.
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

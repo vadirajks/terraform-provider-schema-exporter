@@ -1,0 +1,181 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "constraint": {
+        "type": "string",
+        "description": "The name of the Constraint the Policy is configuring, for example, serviceuser.services.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "etag": {
+        "type": "string",
+        "description": "The etag of the organization policy. etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "org_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "The timestamp in RFC3339 UTC \"Zulu\" format, accurate to nanoseconds, representing when the variable was last updated. Example: \"2016-10-09T12:33:37.578138407Z\".",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "version": {
+        "type": "number",
+        "description": "Version of the Policy. Default version is 0.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "boolean_policy": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enforced": {
+              "type": "bool",
+              "description": "If true, then the Policy is enforced. If false, then any configuration is acceptable.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "A boolean policy is a constraint that is either enforced or not.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "list_policy": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "inherit_from_parent": {
+              "type": "bool",
+              "description": "If set to true, the values from the effective Policy of the parent resource are inherited, meaning the values set in this Policy are added to the values inherited up the hierarchy.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "suggested_value": {
+              "type": "string",
+              "description": "The Google Cloud Console will try to default to a configuration that matches the value specified in this field.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "block_types": {
+            "allow": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "all": {
+                    "type": "bool",
+                    "description": "The policy allows or denies all values.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "values": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description": "The policy can define specific values that are allowed or denied.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "One or the other must be set.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "deny": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "all": {
+                    "type": "bool",
+                    "description": "The policy allows or denies all values.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "values": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description": "The policy can define specific values that are allowed or denied.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "One or the other must be set.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "A policy that can define specific values that are allowed or denied for the given constraint. It can also be used to allow or deny all values.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "restore_policy": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "default": {
+              "type": "bool",
+              "description": "May only be set to true. If set, then the default Policy is restored.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "A restore policy is a constraint to restore the default policy.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

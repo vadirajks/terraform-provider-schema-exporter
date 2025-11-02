@@ -1,0 +1,51 @@
+version: 0
+block:
+  attributes:
+    etag:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    members:
+      type:
+      - set
+      - string
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    role:
+      type: string
+      description_kind: plain
+      required: true
+    web_backend_service:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    condition:
+      nesting_mode: list
+      block:
+        attributes:
+          description:
+            type: string
+            description_kind: plain
+            optional: true
+          expression:
+            type: string
+            description_kind: plain
+            required: true
+          title:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

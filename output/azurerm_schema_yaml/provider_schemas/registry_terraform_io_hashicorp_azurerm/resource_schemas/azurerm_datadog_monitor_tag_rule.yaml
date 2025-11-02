@@ -1,0 +1,96 @@
+version: 0
+block:
+  attributes:
+    datadog_monitor_id:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    log:
+      nesting_mode: list
+      block:
+        attributes:
+          aad_log_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          resource_log_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          subscription_log_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+        block_types:
+          filter:
+            nesting_mode: list
+            block:
+              attributes:
+                action:
+                  type: string
+                  description_kind: plain
+                  required: true
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+    metric:
+      nesting_mode: list
+      block:
+        block_types:
+          filter:
+            nesting_mode: list
+            block:
+              attributes:
+                action:
+                  type: string
+                  description_kind: plain
+                  required: true
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

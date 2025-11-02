@@ -1,0 +1,56 @@
+version: 0
+block:
+  attributes:
+    exchange_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    log_analytics_workspace_id:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    sharepoint_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    teams_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    tenant_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

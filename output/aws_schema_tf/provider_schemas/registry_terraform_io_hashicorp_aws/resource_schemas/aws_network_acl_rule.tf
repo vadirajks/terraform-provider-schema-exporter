@@ -1,0 +1,15 @@
+resource "aws_network_acl_rule" "name" {
+  network_acl_id = string (Required)
+  protocol = string (Required)
+  rule_action = string (Required)
+  rule_number = number (Required)
+  cidr_block = string (Optional)
+  egress = bool (Optional)
+  from_port = number (Optional)
+  icmp_code = number (Optional)
+  icmp_type = number (Optional)
+  id = string (Optional, Computed)
+  ipv6_cidr_block = string (Optional)
+  region = string (Optional, Computed)
+  to_port = number (Optional)
+}

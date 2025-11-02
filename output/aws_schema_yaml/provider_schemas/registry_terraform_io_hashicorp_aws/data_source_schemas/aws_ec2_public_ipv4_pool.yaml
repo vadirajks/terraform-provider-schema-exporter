@@ -1,0 +1,52 @@
+version: 0
+block:
+  attributes:
+    description:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    network_border_group:
+      type: string
+      description_kind: plain
+      computed: true
+    pool_address_ranges:
+      type:
+      - list
+      - - object
+        - address_count: number
+          available_address_count: number
+          first_address: string
+          last_address: string
+      description_kind: plain
+      computed: true
+    pool_id:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    total_address_count:
+      type: number
+      description_kind: plain
+      computed: true
+    total_available_address_count:
+      type: number
+      description_kind: plain
+      computed: true
+  description_kind: plain

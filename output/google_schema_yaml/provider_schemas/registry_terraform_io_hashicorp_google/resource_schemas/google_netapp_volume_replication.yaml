@@ -1,0 +1,229 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: 'Create time of the active directory. A timestamp in RFC3339 UTC "Zulu" format. Examples: "2023-06-22T09:13:01.617Z".'
+      description_kind: plain
+      computed: true
+    delete_destination_volume:
+      type: bool
+      description: A destination volume is created as part of replication creation. The destination volume will not became under Terraform management unless you import it manually. If you delete the replication, this volume will remain. Setting this parameter to true will delete the *current* destination volume when destroying the replication. If you reversed the replication direction, this will be your former source volume! For production use, it is recommended to keep this parameter false to avoid accidental volume deletion. Handle with care. Default is false.
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description: An description of this resource.
+      description_kind: plain
+      optional: true
+    destination_volume:
+      type: string
+      description: 'Full resource name of destination volume with format: ''projects/{{project}}/locations/{{location}}/volumes/{{volumeId}}'''
+      description_kind: plain
+      computed: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    force_stopping:
+      type: bool
+      description: Only replications with mirror_state=MIRRORED can be stopped. A replication in mirror_state=TRANSFERRING currently receives an update and stopping the update might be undesirable. Set this parameter to true to stop anyway. All data transferred to the destination will be discarded and content of destination volume will remain at the state of the last successful update. Default is false.
+      description_kind: plain
+      optional: true
+    healthy:
+      type: bool
+      description: 'Condition of the relationship. Can be one of the following: - true: The replication relationship is healthy. It has not missed the most recent scheduled transfer. - false: The replication relationship is not healthy. It has missed the most recent scheduled transfer.'
+      description_kind: plain
+      computed: true
+    hybrid_peering_details:
+      type:
+      - list
+      - - object
+        - command: string
+          command_expiry_time: string
+          passphrase: string
+          peer_cluster_name: string
+          peer_svm_name: string
+          peer_volume_name: string
+          subnet_ip: string
+      description: HybridPeeringDetails contains details about the hybrid peering.
+      description_kind: plain
+      computed: true
+    hybrid_replication_type:
+      type: string
+      description: Hybrid replication type.
+      description_kind: plain
+      computed: true
+    hybrid_replication_user_commands:
+      type:
+      - list
+      - - object
+        - commands:
+          - list
+          - string
+      description: Copy pastable snapmirror commands to be executed on onprem cluster by the customer.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Labels as key value pairs. Example: ''{ "owner": "Bob", "department": "finance", "purpose": "testing" }'' **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: Name of region for this resource. The resource needs to be created in the region of the destination volume.
+      description_kind: plain
+      required: true
+    mirror_state:
+      type: string
+      description: Indicates the state of the mirror between source and destination volumes. Depending on the amount of data in your source volume, PREPARING phase can take hours or days. mirrorState = MIRRORED indicates your baseline transfer ended and destination volume became accessible read-only. TRANSFERRING means a MIRRORED volume currently receives an update. Updated every 5 minutes.
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: The name of the replication. Needs to be unique per location.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    replication_enabled:
+      type: bool
+      description: 'Set to false to stop/break the mirror. Stopping the mirror makes the destination volume read-write and act independently from the source volume. Set to true to enable/resume the mirror. WARNING: Resuming a mirror overwrites any changes done to the destination volume with the content of the source volume.'
+      description_kind: plain
+      optional: true
+    replication_schedule:
+      type: string
+      description: 'Specifies the replication interval. Possible values: ["EVERY_10_MINUTES", "HOURLY", "DAILY"]'
+      description_kind: plain
+      required: true
+    role:
+      type: string
+      description: Reverting a replication can swap source and destination volume roles. This field indicates if the 'location' hosts the source or destination volume. For resume and revert and resume operations it is critical to understand which volume is the source volume, since it will overwrite changes done to the destination volume.
+      description_kind: plain
+      computed: true
+    source_volume:
+      type: string
+      description: 'Full resource name of source volume with format: ''projects/{{project}}/locations/{{location}}/volumes/{{volumeId}}'''
+      description_kind: plain
+      computed: true
+    state:
+      type: string
+      description: Indicates the state of replication resource. State of the mirror itself is indicated in mirrorState.
+      description_kind: plain
+      computed: true
+    state_details:
+      type: string
+      description: State details of the replication resource.
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    transfer_stats:
+      type:
+      - list
+      - - object
+        - lag_duration: string
+          last_transfer_bytes: string
+          last_transfer_duration: string
+          last_transfer_end_time: string
+          last_transfer_error: string
+          total_transfer_duration: string
+          transfer_bytes: string
+          update_time: string
+      description: Replication transfer statistics. All statistics are updated every 5 minutes.
+      description_kind: plain
+      computed: true
+    volume_name:
+      type: string
+      description: The name of the existing source volume.
+      description_kind: plain
+      required: true
+    wait_for_mirror:
+      type: bool
+      description: Replication resource state is independent of mirror_state. With enough data, it can take many hours for mirror_state to reach MIRRORED. If you want Terraform to wait for the mirror to finish on create/stop/resume operations, set this parameter to true. Default is false.
+      description_kind: plain
+      optional: true
+  block_types:
+    destination_volume_parameters:
+      nesting_mode: list
+      block:
+        attributes:
+          description:
+            type: string
+            description: Description for the destination volume.
+            description_kind: plain
+            optional: true
+          share_name:
+            type: string
+            description: Share name for destination volume. If not specified, name of source volume's share name will be used.
+            description_kind: plain
+            optional: true
+            computed: true
+          storage_pool:
+            type: string
+            description: 'Name of an existing storage pool for the destination volume with format: ''projects/{{project}}/locations/{{location}}/storagePools/{{poolId}}'''
+            description_kind: plain
+            required: true
+          volume_id:
+            type: string
+            description: Name for the destination volume to be created. If not specified, the name of the source volume will be used.
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          tiering_policy:
+            nesting_mode: list
+            block:
+              attributes:
+                cooling_threshold_days:
+                  type: number
+                  description: Optional. Time in days to mark the volume's data block as cold and make it eligible for tiering, can be range from 2-183. Default is 31.
+                  description_kind: plain
+                  optional: true
+                tier_action:
+                  type: string
+                  description: 'Optional. Flag indicating if the volume has tiering policy enable/pause. Default is PAUSED. Default value: "PAUSED" Possible values: ["ENABLED", "PAUSED"]'
+                  description_kind: plain
+                  optional: true
+              description: Tiering policy for the volume.
+              description_kind: plain
+            max_items: 1
+        description: Destination volume parameters.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

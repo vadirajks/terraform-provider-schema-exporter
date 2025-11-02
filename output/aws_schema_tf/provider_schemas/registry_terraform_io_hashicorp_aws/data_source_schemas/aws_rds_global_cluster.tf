@@ -1,0 +1,15 @@
+data "aws_rds_global_cluster" "name" {
+  identifier = string (Required)
+  arn = string (Computed)
+  database_name = string (Computed)
+  deletion_protection = bool (Computed)
+  endpoint = string (Computed)
+  engine = string (Computed)
+  engine_lifecycle_support = string (Computed)
+  engine_version = string (Computed)
+  members = ['list', ['object', {'db_cluster_arn': 'string', 'is_writer': 'bool'}]] (Computed)
+  region = string (Optional, Computed)
+  resource_id = string (Computed)
+  storage_encrypted = bool (Computed)
+  tags = ['map', 'string'] (Computed)
+}

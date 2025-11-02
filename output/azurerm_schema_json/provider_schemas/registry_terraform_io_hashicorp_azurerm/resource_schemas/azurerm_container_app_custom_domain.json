@@ -1,0 +1,66 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "certificate_binding_type": {
+        "type": "string",
+        "description": "The Binding type. Possible values include `Disabled` and `SniEnabled`.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "container_app_environment_certificate_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "container_app_environment_managed_certificate_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "container_app_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The hostname of the Certificate. Must be the CN or a named SAN in the certificate.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

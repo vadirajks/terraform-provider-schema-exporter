@@ -1,0 +1,1364 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "flow_status": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "kms_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "destination_flow_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "api_version": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "connector_profile_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "connector_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "destination_connector_properties": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "custom_connector": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "custom_properties": {
+                          "type": [
+                            "map",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "entity_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "id_field_names": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "write_operation_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "error_handling_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "bucket_name": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "bucket_prefix": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "fail_on_first_destination_error": {
+                                "type": "bool",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "customer_profiles": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "domain_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "object_type_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "event_bridge": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "error_handling_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "bucket_name": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "bucket_prefix": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "fail_on_first_destination_error": {
+                                "type": "bool",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "honeycode": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "error_handling_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "bucket_name": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "bucket_prefix": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "fail_on_first_destination_error": {
+                                "type": "bool",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "lookout_metrics": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "marketo": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "error_handling_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "bucket_name": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "bucket_prefix": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "fail_on_first_destination_error": {
+                                "type": "bool",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "redshift": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "bucket_prefix": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "intermediate_bucket_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "error_handling_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "bucket_name": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "bucket_prefix": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "fail_on_first_destination_error": {
+                                "type": "bool",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "s3": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "bucket_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "bucket_prefix": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        }
+                      },
+                      "block_types": {
+                        "s3_output_format_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "file_type": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "preserve_source_data_typing": {
+                                "type": "bool",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "computed": true
+                              }
+                            },
+                            "block_types": {
+                              "aggregation_config": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "aggregation_type": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true,
+                                      "computed": true
+                                    },
+                                    "target_file_size": {
+                                      "type": "number",
+                                      "description_kind": "plain",
+                                      "optional": true,
+                                      "computed": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              },
+                              "prefix_config": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "prefix_format": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "prefix_hierarchy": {
+                                      "type": [
+                                        "list",
+                                        "string"
+                                      ],
+                                      "description_kind": "plain",
+                                      "optional": true,
+                                      "computed": true
+                                    },
+                                    "prefix_type": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "salesforce": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "data_transfer_api": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "id_field_names": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "write_operation_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "error_handling_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "bucket_name": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "bucket_prefix": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "fail_on_first_destination_error": {
+                                "type": "bool",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "sapo_data": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "id_field_names": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "object_path": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "write_operation_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "error_handling_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "bucket_name": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "bucket_prefix": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "fail_on_first_destination_error": {
+                                "type": "bool",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "success_response_handling_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "bucket_name": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "bucket_prefix": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "snowflake": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "bucket_prefix": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "intermediate_bucket_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "error_handling_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "bucket_name": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "bucket_prefix": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "fail_on_first_destination_error": {
+                                "type": "bool",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "upsolver": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "bucket_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "bucket_prefix": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "s3_output_format_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "file_type": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "block_types": {
+                              "aggregation_config": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "aggregation_type": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              },
+                              "prefix_config": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "prefix_format": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "prefix_hierarchy": {
+                                      "type": [
+                                        "list",
+                                        "string"
+                                      ],
+                                      "description_kind": "plain",
+                                      "optional": true,
+                                      "computed": true
+                                    },
+                                    "prefix_type": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "required": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "min_items": 1,
+                                "max_items": 1
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "zendesk": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "id_field_names": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "write_operation_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "error_handling_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "bucket_name": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "bucket_prefix": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "fail_on_first_destination_error": {
+                                "type": "bool",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "metadata_catalog_config": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "glue_data_catalog": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "database_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "table_prefix": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "source_flow_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "api_version": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "connector_profile_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "connector_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "incremental_pull_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "datetime_type_field_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "source_connector_properties": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "amplitude": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "custom_connector": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "custom_properties": {
+                          "type": [
+                            "map",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "entity_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "datadog": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "dynatrace": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "google_analytics": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "infor_nexus": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "marketo": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "s3": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "bucket_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "bucket_prefix": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "s3_input_format_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "s3_input_file_type": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "salesforce": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "data_transfer_api": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "enable_dynamic_field_update": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "include_deleted_records": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "sapo_data": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "object_path": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "pagination_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "max_page_size": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "parallelism_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "max_page_size": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "service_now": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "singular": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "slack": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "trendmicro": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "veeva": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "document_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "include_all_versions": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "include_renditions": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "include_source_files": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "zendesk": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "object": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "task": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "destination_field": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "source_fields": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "task_properties": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "task_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "connector_operator": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "amplitude": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "custom_connector": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "datadog": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "dynatrace": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "google_analytics": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "infor_nexus": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "marketo": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "s3": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "salesforce": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "sapo_data": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "service_now": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "singular": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "slack": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "trendmicro": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "veeva": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "zendesk": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "trigger_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "trigger_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "trigger_properties": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "scheduled": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "data_pull_mode": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "first_execution_from": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "schedule_end_time": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "schedule_expression": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "schedule_offset": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "schedule_start_time": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "timezone": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

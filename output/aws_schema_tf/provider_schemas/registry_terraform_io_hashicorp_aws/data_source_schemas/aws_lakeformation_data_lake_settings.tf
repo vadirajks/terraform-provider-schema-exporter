@@ -1,0 +1,15 @@
+data "aws_lakeformation_data_lake_settings" "name" {
+  admins = ['set', 'string'] (Computed)
+  allow_external_data_filtering = bool (Computed)
+  allow_full_table_external_data_access = bool (Computed)
+  authorized_session_tag_value_list = ['list', 'string'] (Computed)
+  catalog_id = string (Optional)
+  create_database_default_permissions = ['list', ['object', {'permissions': ['set', 'string'], 'principal': 'string'}]] (Computed)
+  create_table_default_permissions = ['list', ['object', {'permissions': ['set', 'string'], 'principal': 'string'}]] (Computed)
+  external_data_filtering_allow_list = ['set', 'string'] (Computed)
+  id = string (Optional, Computed)
+  parameters = ['map', 'string'] (Computed)
+  read_only_admins = ['set', 'string'] (Computed)
+  region = string (Optional, Computed)
+  trusted_resource_owners = ['list', 'string'] (Computed)
+}

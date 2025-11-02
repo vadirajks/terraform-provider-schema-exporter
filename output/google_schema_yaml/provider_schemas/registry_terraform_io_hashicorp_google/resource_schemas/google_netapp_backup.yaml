@@ -1,0 +1,118 @@
+version: 0
+block:
+  attributes:
+    backup_region:
+      type: string
+      description: Region in which backup is stored.
+      description_kind: plain
+      computed: true
+    backup_type:
+      type: string
+      description: 'Type of backup, manually created or created by a backup policy. Possible Values : [TYPE_UNSPECIFIED, MANUAL, SCHEDULED]'
+      description_kind: plain
+      computed: true
+    chain_storage_bytes:
+      type: string
+      description: Backups of a volume build incrementally on top of each other. They form a "backup chain". Total size of all backups in a chain in bytes = baseline backup size + sum(incremental backup size)
+      description_kind: plain
+      computed: true
+    create_time:
+      type: string
+      description: 'Create time of the backup. A timestamp in RFC3339 UTC "Zulu" format. Examples: "2023-06-22T09:13:01.617Z".'
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: A description of the backup with 2048 characters or less. Requests with longer descriptions will be rejected.
+      description_kind: plain
+      optional: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Labels as key value pairs. Example: ''{ "owner": "Bob", "department": "finance", "purpose": "testing" }''. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: Location of the backup.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The resource name of the backup. Needs to be unique per location.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    source_snapshot:
+      type: string
+      description: 'If specified, backup will be created from the given snapshot. If not specified, there will be a new snapshot taken to initiate the backup creation. Format: ''projects/{{projectId}}/locations/{{location}}/volumes/{{volumename}}/snapshots/{{snapshotname}}'''''
+      description_kind: plain
+      optional: true
+    source_volume:
+      type: string
+      description: 'ID of volumes this backup belongs to. Format: ''projects/{{projects_id}}/locations/{{location}}/volumes/{{name}}'''''
+      description_kind: plain
+      optional: true
+    state:
+      type: string
+      description: 'The state of the Backup Vault. Possible Values : [STATE_UNSPECIFIED, CREATING, UPLOADING, READY, DELETING, ERROR, UPDATING]'
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    vault_name:
+      type: string
+      description: Name of the backup vault to store the backup in.
+      description_kind: plain
+      required: true
+    volume_region:
+      type: string
+      description: Region of the volume from which the backup was created.
+      description_kind: plain
+      computed: true
+    volume_usage_bytes:
+      type: string
+      description: Size of the file system when the backup was created. When creating a new volume from the backup, the volume capacity will have to be at least as big.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

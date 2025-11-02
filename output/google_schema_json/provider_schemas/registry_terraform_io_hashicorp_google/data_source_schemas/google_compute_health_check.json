@@ -1,0 +1,210 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "check_interval_sec": {
+        "type": "number",
+        "description": "How often (in seconds) to send a health check. The default value is 5 seconds.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "creation_timestamp": {
+        "type": "string",
+        "description": "Creation timestamp in RFC3339 text format.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "An optional description of this resource. Provide this property when you create the resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "grpc_health_check": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "grpc_service_name": "string",
+              "port": "number",
+              "port_name": "string",
+              "port_specification": "string"
+            }
+          ]
+        ],
+        "description": "A nested object resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "healthy_threshold": {
+        "type": "number",
+        "description": "A so-far unhealthy instance will be marked healthy after this many consecutive successes. The default value is 2.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "http2_health_check": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "host": "string",
+              "port": "number",
+              "port_name": "string",
+              "port_specification": "string",
+              "proxy_header": "string",
+              "request_path": "string",
+              "response": "string"
+            }
+          ]
+        ],
+        "description": "A nested object resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "http_health_check": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "host": "string",
+              "port": "number",
+              "port_name": "string",
+              "port_specification": "string",
+              "proxy_header": "string",
+              "request_path": "string",
+              "response": "string"
+            }
+          ]
+        ],
+        "description": "A nested object resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "https_health_check": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "host": "string",
+              "port": "number",
+              "port_name": "string",
+              "port_specification": "string",
+              "proxy_header": "string",
+              "request_path": "string",
+              "response": "string"
+            }
+          ]
+        ],
+        "description": "A nested object resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "log_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "enable": "bool"
+            }
+          ]
+        ],
+        "description": "Configure logging on this health check.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.  Specifically, the name must be 1-63 characters long and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "self_link": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "source_regions": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "The list of cloud regions from which health checks are performed. If any regions are specified, then exactly 3 regions should be specified. The region names must be valid names of Google Cloud regions. This can only be set for global health check. If this list is non-empty, then there are restrictions on what other health check fields are supported and what other resources can use this health check: * SSL, HTTP2, and GRPC protocols are not supported. * The TCP request field is not supported. * The proxyHeader field for HTTP, HTTPS, and TCP is not supported. * The checkIntervalSec field must be at least 30. * The health check cannot be used with BackendService nor with managed instance group auto-healing.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "ssl_health_check": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "port": "number",
+              "port_name": "string",
+              "port_specification": "string",
+              "proxy_header": "string",
+              "request": "string",
+              "response": "string"
+            }
+          ]
+        ],
+        "description": "A nested object resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tcp_health_check": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "port": "number",
+              "port_name": "string",
+              "port_specification": "string",
+              "proxy_header": "string",
+              "request": "string",
+              "response": "string"
+            }
+          ]
+        ],
+        "description": "A nested object resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "timeout_sec": {
+        "type": "number",
+        "description": "How long (in seconds) to wait before claiming failure. The default value is 5 seconds.  It is invalid for timeoutSec to have greater value than checkIntervalSec.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "type": {
+        "type": "string",
+        "description": "The type of the health check. One of HTTP, HTTPS, TCP, or SSL.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "unhealthy_threshold": {
+        "type": "number",
+        "description": "A so-far healthy instance will be marked unhealthy after this many consecutive failures. The default value is 2.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

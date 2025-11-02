@@ -1,0 +1,91 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "The timestamp at which these user creds were created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "database": {
+        "type": "string",
+        "description": "The Firestore database ID.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The ID to use for the user creds, which will become the final component of the user cred's resource name. This value should be 4-63 characters. Valid characters are /[a-z][0-9]-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "resource_identity": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "principal": "string"
+            }
+          ]
+        ],
+        "description": "Describes the Resource Identity principal.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "secure_password": {
+        "type": "string",
+        "description": "The plaintext server-generated password for the user creds.",
+        "description_kind": "plain",
+        "computed": true,
+        "sensitive": true
+      },
+      "state": {
+        "type": "string",
+        "description": "The state of the user creds.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "The timestamp at which these user creds were updated.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

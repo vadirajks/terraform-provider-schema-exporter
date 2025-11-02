@@ -1,0 +1,113 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: Output only. Time the watchlist was created.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: Optional. Description of the watchlist.
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description: Required. Display name of the watchlist. Note that it must be at least one character and less than 63 characters (https://google.aip.dev/148).
+      description_kind: plain
+      required: true
+    entity_count:
+      type:
+      - list
+      - - object
+        - asset: number
+          user: number
+      description: Count of different types of entities in the watchlist.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instance:
+      type: string
+      description: The unique identifier for the Chronicle instance, which is the same as the customer ID.
+      description_kind: plain
+      required: true
+    location:
+      type: string
+      description: The location of the resource. This is the geographical region where the Chronicle instance resides, such as "us" or "europe-west2".
+      description_kind: plain
+      required: true
+    multiplying_factor:
+      type: number
+      description: Optional. Weight applied to the risk score for entities in this watchlist. The default is 1.0 if it is not specified.
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: 'Identifier. Resource name of the watchlist. This unique identifier is generated using values provided for the URL parameters. Format: projects/{project}/locations/{location}/instances/{instance}/watchlists/{watchlist}'
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    update_time:
+      type: string
+      description: Output only. Time the watchlist was last updated.
+      description_kind: plain
+      computed: true
+    watchlist_id:
+      type: string
+      description: Optional. The ID to use for the watchlist, which will become the final component of the watchlist's resource name. This value should be 4-63 characters, and valid characters are /a-z-/.
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    entity_population_mechanism:
+      nesting_mode: list
+      block:
+        block_types:
+          manual:
+            nesting_mode: list
+            block:
+              description: Entities are added manually.
+              description_kind: plain
+            max_items: 1
+        description: Mechanism to populate entities in the watchlist.
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    watchlist_user_preferences:
+      nesting_mode: list
+      block:
+        attributes:
+          pinned:
+            type: bool
+            description: Optional. Whether the watchlist is pinned on the dashboard.
+            description_kind: plain
+            optional: true
+        description: A collection of user preferences for watchlist UI configuration.
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

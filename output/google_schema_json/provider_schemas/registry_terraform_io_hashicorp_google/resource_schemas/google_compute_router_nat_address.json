@@ -1,0 +1,82 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "drain_nat_ips": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description": "A list of URLs of the IP resources to be drained. These IPs must be valid static external IPs that have been assigned to the NAT.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "nat_ips": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description": "Self-links of NAT IPs to be used in a Nat service. Only valid if the referenced RouterNat natIpAllocateOption is set to MANUAL_ONLY.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where the NAT service reside.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "router": {
+        "type": "string",
+        "description": "The name of the Cloud Router in which the referenced NAT service is configured.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "router_nat": {
+        "type": "string",
+        "description": "The name of the Nat service in which this address will be configured.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

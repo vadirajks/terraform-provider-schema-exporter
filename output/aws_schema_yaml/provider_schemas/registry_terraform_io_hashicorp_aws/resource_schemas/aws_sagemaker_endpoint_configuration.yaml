@@ -1,0 +1,379 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kms_key_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name_prefix:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    async_inference_config:
+      nesting_mode: list
+      block:
+        block_types:
+          client_config:
+            nesting_mode: list
+            block:
+              attributes:
+                max_concurrent_invocations_per_instance:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          output_config:
+            nesting_mode: list
+            block:
+              attributes:
+                kms_key_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                s3_failure_path:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                s3_output_path:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                notification_config:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      error_topic:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      include_inference_response_in:
+                        type:
+                        - set
+                        - string
+                        description_kind: plain
+                        optional: true
+                      success_topic:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    data_capture_config:
+      nesting_mode: list
+      block:
+        attributes:
+          destination_s3_uri:
+            type: string
+            description_kind: plain
+            required: true
+          enable_capture:
+            type: bool
+            description_kind: plain
+            optional: true
+          initial_sampling_percentage:
+            type: number
+            description_kind: plain
+            required: true
+          kms_key_id:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          capture_content_type_header:
+            nesting_mode: list
+            block:
+              attributes:
+                csv_content_types:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                json_content_types:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          capture_options:
+            nesting_mode: list
+            block:
+              attributes:
+                capture_mode:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+            max_items: 2
+        description_kind: plain
+      max_items: 1
+    production_variants:
+      nesting_mode: list
+      block:
+        attributes:
+          accelerator_type:
+            type: string
+            description_kind: plain
+            optional: true
+          container_startup_health_check_timeout_in_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+          enable_ssm_access:
+            type: bool
+            description_kind: plain
+            optional: true
+          inference_ami_version:
+            type: string
+            description_kind: plain
+            optional: true
+          initial_instance_count:
+            type: number
+            description_kind: plain
+            optional: true
+          initial_variant_weight:
+            type: number
+            description_kind: plain
+            optional: true
+          instance_type:
+            type: string
+            description_kind: plain
+            optional: true
+          model_data_download_timeout_in_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+          model_name:
+            type: string
+            description_kind: plain
+            required: true
+          variant_name:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          volume_size_in_gb:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          core_dump_config:
+            nesting_mode: list
+            block:
+              attributes:
+                destination_s3_uri:
+                  type: string
+                  description_kind: plain
+                  required: true
+                kms_key_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          managed_instance_scaling:
+            nesting_mode: list
+            block:
+              attributes:
+                max_instance_count:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                min_instance_count:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                status:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          routing_config:
+            nesting_mode: list
+            block:
+              attributes:
+                routing_strategy:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          serverless_config:
+            nesting_mode: list
+            block:
+              attributes:
+                max_concurrency:
+                  type: number
+                  description_kind: plain
+                  required: true
+                memory_size_in_mb:
+                  type: number
+                  description_kind: plain
+                  required: true
+                provisioned_concurrency:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 10
+    shadow_production_variants:
+      nesting_mode: list
+      block:
+        attributes:
+          accelerator_type:
+            type: string
+            description_kind: plain
+            optional: true
+          container_startup_health_check_timeout_in_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+          enable_ssm_access:
+            type: bool
+            description_kind: plain
+            optional: true
+          inference_ami_version:
+            type: string
+            description_kind: plain
+            optional: true
+          initial_instance_count:
+            type: number
+            description_kind: plain
+            optional: true
+          initial_variant_weight:
+            type: number
+            description_kind: plain
+            optional: true
+          instance_type:
+            type: string
+            description_kind: plain
+            optional: true
+          model_data_download_timeout_in_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+          model_name:
+            type: string
+            description_kind: plain
+            required: true
+          variant_name:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          volume_size_in_gb:
+            type: number
+            description_kind: plain
+            optional: true
+        block_types:
+          core_dump_config:
+            nesting_mode: list
+            block:
+              attributes:
+                destination_s3_uri:
+                  type: string
+                  description_kind: plain
+                  required: true
+                kms_key_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          managed_instance_scaling:
+            nesting_mode: list
+            block:
+              attributes:
+                max_instance_count:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                min_instance_count:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                status:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          routing_config:
+            nesting_mode: list
+            block:
+              attributes:
+                routing_strategy:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          serverless_config:
+            nesting_mode: list
+            block:
+              attributes:
+                max_concurrency:
+                  type: number
+                  description_kind: plain
+                  required: true
+                memory_size_in_mb:
+                  type: number
+                  description_kind: plain
+                  required: true
+                provisioned_concurrency:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 10
+  description_kind: plain

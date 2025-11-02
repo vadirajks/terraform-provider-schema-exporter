@@ -1,0 +1,459 @@
+version: 1
+block:
+  attributes:
+    auto_scaling_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    capacity_reservation_group_id:
+      type: string
+      description_kind: plain
+      optional: true
+    eviction_policy:
+      type: string
+      description_kind: plain
+      optional: true
+    fips_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    gpu_driver:
+      type: string
+      description_kind: plain
+      optional: true
+    gpu_instance:
+      type: string
+      description_kind: plain
+      optional: true
+    host_encryption_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    host_group_id:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kubelet_disk_type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kubernetes_cluster_id:
+      type: string
+      description_kind: plain
+      required: true
+    max_count:
+      type: number
+      description_kind: plain
+      optional: true
+    max_pods:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    min_count:
+      type: number
+      description_kind: plain
+      optional: true
+    mode:
+      type: string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    node_count:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    node_labels:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    node_public_ip_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    node_public_ip_prefix_id:
+      type: string
+      description_kind: plain
+      optional: true
+    node_taints:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    orchestrator_version:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    os_disk_size_gb:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    os_disk_type:
+      type: string
+      description_kind: plain
+      optional: true
+    os_sku:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    os_type:
+      type: string
+      description_kind: plain
+      optional: true
+    pod_subnet_id:
+      type: string
+      description_kind: plain
+      optional: true
+    priority:
+      type: string
+      description_kind: plain
+      optional: true
+    proximity_placement_group_id:
+      type: string
+      description_kind: plain
+      optional: true
+    scale_down_mode:
+      type: string
+      description_kind: plain
+      optional: true
+    snapshot_id:
+      type: string
+      description_kind: plain
+      optional: true
+    spot_max_price:
+      type: number
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    temporary_name_for_rotation:
+      type: string
+      description_kind: plain
+      optional: true
+    ultra_ssd_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    vm_size:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    vnet_subnet_id:
+      type: string
+      description_kind: plain
+      optional: true
+    workload_runtime:
+      type: string
+      description_kind: plain
+      optional: true
+    zones:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    kubelet_config:
+      nesting_mode: list
+      block:
+        attributes:
+          allowed_unsafe_sysctls:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          container_log_max_line:
+            type: number
+            description_kind: plain
+            optional: true
+          container_log_max_size_mb:
+            type: number
+            description_kind: plain
+            optional: true
+          cpu_cfs_quota_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          cpu_cfs_quota_period:
+            type: string
+            description_kind: plain
+            optional: true
+          cpu_manager_policy:
+            type: string
+            description_kind: plain
+            optional: true
+          image_gc_high_threshold:
+            type: number
+            description_kind: plain
+            optional: true
+          image_gc_low_threshold:
+            type: number
+            description_kind: plain
+            optional: true
+          pod_max_pid:
+            type: number
+            description_kind: plain
+            optional: true
+          topology_manager_policy:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    linux_os_config:
+      nesting_mode: list
+      block:
+        attributes:
+          swap_file_size_mb:
+            type: number
+            description_kind: plain
+            optional: true
+          transparent_huge_page:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          transparent_huge_page_defrag:
+            type: string
+            description_kind: plain
+            optional: true
+          transparent_huge_page_enabled:
+            type: string
+            description_kind: plain
+            deprecated: true
+            optional: true
+            computed: true
+        block_types:
+          sysctl_config:
+            nesting_mode: list
+            block:
+              attributes:
+                fs_aio_max_nr:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                fs_file_max:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                fs_inotify_max_user_watches:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                fs_nr_open:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                kernel_threads_max:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_core_netdev_max_backlog:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_core_optmem_max:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_core_rmem_default:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_core_rmem_max:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_core_somaxconn:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_core_wmem_default:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_core_wmem_max:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_ipv4_ip_local_port_range_max:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_ipv4_ip_local_port_range_min:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_ipv4_neigh_default_gc_thresh1:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_ipv4_neigh_default_gc_thresh2:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_ipv4_neigh_default_gc_thresh3:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_ipv4_tcp_fin_timeout:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_ipv4_tcp_keepalive_intvl:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_ipv4_tcp_keepalive_probes:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_ipv4_tcp_keepalive_time:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_ipv4_tcp_max_syn_backlog:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_ipv4_tcp_max_tw_buckets:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_ipv4_tcp_tw_reuse:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                net_netfilter_nf_conntrack_buckets:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                net_netfilter_nf_conntrack_max:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                vm_max_map_count:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                vm_swappiness:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                vm_vfs_cache_pressure:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    node_network_profile:
+      nesting_mode: list
+      block:
+        attributes:
+          application_security_group_ids:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          node_public_ip_tags:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+        block_types:
+          allowed_host_ports:
+            nesting_mode: list
+            block:
+              attributes:
+                port_end:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                port_start:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                protocol:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    upgrade_settings:
+      nesting_mode: list
+      block:
+        attributes:
+          drain_timeout_in_minutes:
+            type: number
+            description_kind: plain
+            optional: true
+          max_surge:
+            type: string
+            description_kind: plain
+            required: true
+          node_soak_duration_in_minutes:
+            type: number
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    windows_profile:
+      nesting_mode: list
+      block:
+        attributes:
+          outbound_nat_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

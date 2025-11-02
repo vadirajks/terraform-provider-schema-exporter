@@ -1,0 +1,231 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "blockchain_node_id": {
+        "type": "string",
+        "description": "ID of the requesting object.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "blockchain_type": {
+        "type": "string",
+        "description": "User-provided key-value pairs Possible values: [\"ETHEREUM\"]",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "connection_info": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "endpoint_info": [
+                "list",
+                [
+                  "object",
+                  {
+                    "json_rpc_api_endpoint": "string",
+                    "websockets_api_endpoint": "string"
+                  }
+                ]
+              ],
+              "service_attachment": "string"
+            }
+          ]
+        ],
+        "description": "The connection information through which to interact with a blockchain node.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "The timestamp at which the blockchain node was first created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "User-provided key-value pairs **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "Location of Blockchain Node being created.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The fully qualified name of the blockchain node. e.g. projects/my-project/locations/us-central1/blockchainNodes/my-node.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "The timestamp at which the blockchain node was last updated.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "ethereum_details": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "additional_endpoints": {
+              "type": [
+                "list",
+                [
+                  "object",
+                  {
+                    "beacon_api_endpoint": "string",
+                    "beacon_prometheus_metrics_api_endpoint": "string",
+                    "execution_client_prometheus_metrics_api_endpoint": "string"
+                  }
+                ]
+              ],
+              "description": "User-provided key-value pairs",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "api_enable_admin": {
+              "type": "bool",
+              "description": "Enables JSON-RPC access to functions in the admin namespace. Defaults to false.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "api_enable_debug": {
+              "type": "bool",
+              "description": "Enables JSON-RPC access to functions in the debug namespace. Defaults to false.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "consensus_client": {
+              "type": "string",
+              "description": "The consensus client Possible values: [\"CONSENSUS_CLIENT_UNSPECIFIED\", \"LIGHTHOUSE\"]",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "execution_client": {
+              "type": "string",
+              "description": "The execution client Possible values: [\"EXECUTION_CLIENT_UNSPECIFIED\", \"GETH\", \"ERIGON\"]",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "network": {
+              "type": "string",
+              "description": "The Ethereum environment being accessed. Possible values: [\"MAINNET\", \"TESTNET_GOERLI_PRATER\", \"TESTNET_SEPOLIA\"]",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "node_type": {
+              "type": "string",
+              "description": "The type of Ethereum node. Possible values: [\"LIGHT\", \"FULL\", \"ARCHIVE\"]",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "geth_details": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "garbage_collection_mode": {
+                    "type": "string",
+                    "description": "Blockchain garbage collection modes. Only applicable when NodeType is FULL or ARCHIVE. Possible values: [\"FULL\", \"ARCHIVE\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "User-provided key-value pairs",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "validator_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "mev_relay_urls": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "URLs for MEV-relay services to use for block building. When set, a managed MEV-boost service is configured on the beacon client.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Configuration for validator-related parameters on the beacon client, and for any managed validator client.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "User-provided key-value pairs",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

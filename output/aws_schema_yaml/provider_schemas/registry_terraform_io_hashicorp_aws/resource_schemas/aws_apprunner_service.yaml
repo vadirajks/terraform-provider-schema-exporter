@@ -1,0 +1,305 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    auto_scaling_configuration_arn:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    service_id:
+      type: string
+      description_kind: plain
+      computed: true
+    service_name:
+      type: string
+      description_kind: plain
+      required: true
+    service_url:
+      type: string
+      description_kind: plain
+      computed: true
+    status:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    encryption_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          kms_key:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    health_check_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          healthy_threshold:
+            type: number
+            description_kind: plain
+            optional: true
+          interval:
+            type: number
+            description_kind: plain
+            optional: true
+          path:
+            type: string
+            description_kind: plain
+            optional: true
+          protocol:
+            type: string
+            description_kind: plain
+            optional: true
+          timeout:
+            type: number
+            description_kind: plain
+            optional: true
+          unhealthy_threshold:
+            type: number
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    instance_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          cpu:
+            type: string
+            description_kind: plain
+            optional: true
+          instance_role_arn:
+            type: string
+            description_kind: plain
+            optional: true
+          memory:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    network_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          ip_address_type:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          egress_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                egress_type:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                vpc_connector_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          ingress_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                is_publicly_accessible:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    observability_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          observability_configuration_arn:
+            type: string
+            description_kind: plain
+            optional: true
+          observability_enabled:
+            type: bool
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    source_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          auto_deployments_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+        block_types:
+          authentication_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                access_role_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                connection_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          code_repository:
+            nesting_mode: list
+            block:
+              attributes:
+                repository_url:
+                  type: string
+                  description_kind: plain
+                  required: true
+                source_directory:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              block_types:
+                code_configuration:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      configuration_source:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      code_configuration_values:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            build_command:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            port:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            runtime:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            runtime_environment_secrets:
+                              type:
+                              - map
+                              - string
+                              description_kind: plain
+                              optional: true
+                            runtime_environment_variables:
+                              type:
+                              - map
+                              - string
+                              description_kind: plain
+                              optional: true
+                            start_command:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                    description_kind: plain
+                  max_items: 1
+                source_code_version:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      value:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          image_repository:
+            nesting_mode: list
+            block:
+              attributes:
+                image_identifier:
+                  type: string
+                  description_kind: plain
+                  required: true
+                image_repository_type:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                image_configuration:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      port:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      runtime_environment_secrets:
+                        type:
+                        - map
+                        - string
+                        description_kind: plain
+                        optional: true
+                      runtime_environment_variables:
+                        type:
+                        - map
+                        - string
+                        description_kind: plain
+                        optional: true
+                      start_command:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+  description_kind: plain

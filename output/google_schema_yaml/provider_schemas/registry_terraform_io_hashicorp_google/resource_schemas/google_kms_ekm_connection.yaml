@@ -1,0 +1,143 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: 'Output only. The time at which the EkmConnection was created. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".'
+      description_kind: plain
+      computed: true
+    crypto_space_path:
+      type: string
+      description: 'Optional. Identifies the EKM Crypto Space that this EkmConnection maps to. Note: This field is required if KeyManagementMode is CLOUD_KMS.'
+      description_kind: plain
+      optional: true
+      computed: true
+    etag:
+      type: string
+      description: Optional. Etag of the currently stored EkmConnection.
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    key_management_mode:
+      type: string
+      description: 'Optional. Describes who can perform control plane operations on the EKM. If unset, this defaults to MANUAL Default value: "MANUAL" Possible values: ["MANUAL", "CLOUD_KMS"]'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: The location for the EkmConnection. A full list of valid locations can be found by running 'gcloud kms locations list'.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The resource name for the EkmConnection.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    service_resolvers:
+      nesting_mode: list
+      block:
+        attributes:
+          endpoint_filter:
+            type: string
+            description: Optional. The filter applied to the endpoints of the resolved service. If no filter is specified, all endpoints will be considered. An endpoint will be chosen arbitrarily from the filtered list for each request. For endpoint filter syntax and examples, see https://cloud.google.com/service-directory/docs/reference/rpc/google.cloud.servicedirectory.v1#resolveservicerequest.
+            description_kind: plain
+            optional: true
+            computed: true
+          hostname:
+            type: string
+            description: Required. The hostname of the EKM replica used at TLS and HTTP layers.
+            description_kind: plain
+            required: true
+          service_directory_service:
+            type: string
+            description: Required. The resource name of the Service Directory service pointing to an EKM replica, in the format projects/*/locations/*/namespaces/*/services/*
+            description_kind: plain
+            required: true
+        block_types:
+          server_certificates:
+            nesting_mode: list
+            block:
+              attributes:
+                issuer:
+                  type: string
+                  description: Output only. The issuer distinguished name in RFC 2253 format. Only present if parsed is true.
+                  description_kind: plain
+                  computed: true
+                not_after_time:
+                  type: string
+                  description: 'Output only. The certificate is not valid after this time. Only present if parsed is true. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".'
+                  description_kind: plain
+                  computed: true
+                not_before_time:
+                  type: string
+                  description: 'Output only. The certificate is not valid before this time. Only present if parsed is true. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".'
+                  description_kind: plain
+                  computed: true
+                parsed:
+                  type: bool
+                  description: Output only. True if the certificate was parsed successfully.
+                  description_kind: plain
+                  computed: true
+                raw_der:
+                  type: string
+                  description: Required. The raw certificate bytes in DER format. A base64-encoded string.
+                  description_kind: plain
+                  required: true
+                serial_number:
+                  type: string
+                  description: Output only. The certificate serial number as a hex string. Only present if parsed is true.
+                  description_kind: plain
+                  computed: true
+                sha256_fingerprint:
+                  type: string
+                  description: Output only. The SHA-256 certificate fingerprint as a hex string. Only present if parsed is true.
+                  description_kind: plain
+                  computed: true
+                subject:
+                  type: string
+                  description: Output only. The subject distinguished name in RFC 2253 format. Only present if parsed is true.
+                  description_kind: plain
+                  computed: true
+                subject_alternative_dns_names:
+                  type:
+                  - list
+                  - string
+                  description: Output only. The subject Alternative DNS names. Only present if parsed is true.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              description: Required. A list of leaf server certificates used to authenticate HTTPS connections to the EKM replica. Currently, a maximum of 10 Certificate is supported.
+              description_kind: plain
+            min_items: 1
+        description: A list of ServiceResolvers where the EKM can be reached. There should be one ServiceResolver per EKM replica. Currently, only a single ServiceResolver is supported
+        description_kind: plain
+      min_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,180 @@
+version: 0
+block:
+  attributes:
+    annotations:
+      type:
+      - map
+      - string
+      description: 'Annotations on the Bare Metal Node Pool. This field has the same restrictions as Kubernetes annotations. The total size of all keys and values combined is limited to 256k. Key can have 2 segments: prefix (optional) and name (required), separated by a slash (/). Prefix must be a DNS subdomain. Name must be 63 characters or less, begin and end with alphanumerics, with dashes (-), underscores (_), dots (.), and alphanumerics between. **Note**: This field is non-authoritative, and will only manage the annotations present in your configuration. Please refer to the field ''effective_annotations'' for all of the annotations present on the resource.'
+      description_kind: plain
+      optional: true
+    bare_metal_cluster:
+      type: string
+      description: The cluster this node pool belongs to.
+      description_kind: plain
+      required: true
+    create_time:
+      type: string
+      description: The time the cluster was created, in RFC3339 text format.
+      description_kind: plain
+      computed: true
+    delete_time:
+      type: string
+      description: The time the cluster was deleted, in RFC3339 text format.
+      description_kind: plain
+      computed: true
+    display_name:
+      type: string
+      description: The display name for the Bare Metal Node Pool.
+      description_kind: plain
+      optional: true
+    effective_annotations:
+      type:
+      - map
+      - string
+      description: All of annotations (key/value pairs) present on the resource in GCP, including the annotations configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    etag:
+      type: string
+      description: This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. Allows clients to perform consistent read-modify-writes through optimistic concurrency control.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: The location of the resource.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The bare metal node pool name.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    reconciling:
+      type: bool
+      description: If set, there are currently changes in flight to the Bare Metal User Cluster.
+      description_kind: plain
+      computed: true
+    state:
+      type: string
+      description: The current state of this cluster.
+      description_kind: plain
+      computed: true
+    status:
+      type:
+      - list
+      - - object
+        - conditions:
+          - list
+          - - object
+            - last_transition_time: string
+              message: string
+              reason: string
+              state: string
+              type: string
+          error_message: string
+      description: Specifies detailed node pool status.
+      description_kind: plain
+      computed: true
+    uid:
+      type: string
+      description: The unique identifier of the Bare Metal Node Pool.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: The time the cluster was last updated, in RFC3339 text format.
+      description_kind: plain
+      computed: true
+  block_types:
+    node_pool_config:
+      nesting_mode: list
+      block:
+        attributes:
+          labels:
+            type:
+            - map
+            - string
+            description: 'The map of Kubernetes labels (key/value pairs) to be applied to each node. These will added in addition to any default label(s) that Kubernetes may apply to the node. In case of conflict in label keys, the applied set may differ depending on the Kubernetes version -- it''s best to assume the behavior is undefined and conflicts should be avoided. For more information, including usage and the valid values, see: - http://kubernetes.io/v1.1/docs/user-guide/labels.html An object containing a list of "key": value pairs. For example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.'
+            description_kind: plain
+            optional: true
+            computed: true
+          operating_system:
+            type: string
+            description: 'Specifies the nodes operating system (default: LINUX).'
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          node_configs:
+            nesting_mode: list
+            block:
+              attributes:
+                labels:
+                  type:
+                  - map
+                  - string
+                  description: 'The map of Kubernetes labels (key/value pairs) to be applied to each node. These will added in addition to any default label(s) that Kubernetes may apply to the node. In case of conflict in label keys, the applied set may differ depending on the Kubernetes version -- it''s best to assume the behavior is undefined and conflicts should be avoided. For more information, including usage and the valid values, see: - http://kubernetes.io/v1.1/docs/user-guide/labels.html An object containing a list of "key": value pairs. For example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.'
+                  description_kind: plain
+                  optional: true
+                node_ip:
+                  type: string
+                  description: 'The default IPv4 address for SSH access and Kubernetes node. Example: 192.168.0.1'
+                  description_kind: plain
+                  optional: true
+              description: The list of machine addresses in the Bare Metal Node Pool.
+              description_kind: plain
+            min_items: 1
+          taints:
+            nesting_mode: list
+            block:
+              attributes:
+                effect:
+                  type: string
+                  description: 'Specifies the nodes operating system (default: LINUX). Possible values: ["EFFECT_UNSPECIFIED", "PREFER_NO_SCHEDULE", "NO_EXECUTE"]'
+                  description_kind: plain
+                  optional: true
+                key:
+                  type: string
+                  description: Key associated with the effect.
+                  description_kind: plain
+                  optional: true
+                value:
+                  type: string
+                  description: Value associated with the effect.
+                  description_kind: plain
+                  optional: true
+              description: The initial taints assigned to nodes of this node pool.
+              description_kind: plain
+        description: Node pool configuration.
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,700 @@
+version: 0
+block:
+  attributes:
+    beta_settings:
+      type:
+      - map
+      - string
+      description: Metadata settings that are supplied to this version to enable beta runtime features.
+      description_kind: plain
+      optional: true
+    default_expiration:
+      type: string
+      description: Duration that static files should be cached by web proxies and browsers. Only applicable if the corresponding StaticFilesHandler does not specify its own expiration time.
+      description_kind: plain
+      optional: true
+    delete_service_on_destroy:
+      type: bool
+      description: If set to 'true', the service will be deleted if it is the last version.
+      description_kind: plain
+      optional: true
+    env_variables:
+      type:
+      - map
+      - string
+      description: Environment variables available to the application.  As these are not returned in the API request, Terraform will not detect any changes made outside of the Terraform config.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    inbound_services:
+      type:
+      - set
+      - string
+      description: 'A list of the types of messages that this application is able to receive. Possible values: ["INBOUND_SERVICE_MAIL", "INBOUND_SERVICE_MAIL_BOUNCE", "INBOUND_SERVICE_XMPP_ERROR", "INBOUND_SERVICE_XMPP_MESSAGE", "INBOUND_SERVICE_XMPP_SUBSCRIBE", "INBOUND_SERVICE_XMPP_PRESENCE", "INBOUND_SERVICE_CHANNEL_PRESENCE", "INBOUND_SERVICE_WARMUP"]'
+      description_kind: plain
+      optional: true
+    instance_class:
+      type: string
+      description: 'Instance class that is used to run this version. Valid values are AutomaticScaling: F1, F2, F4, F4_1G ManualScaling: B1, B2, B4, B8, B4_1G Defaults to F1 for AutomaticScaling and B1 for ManualScaling.'
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: Full path to the Version resource in the API. Example, "v1".
+      description_kind: plain
+      computed: true
+    nobuild_files_regex:
+      type: string
+      description: Files that match this pattern will not be built into this version. Only applicable for Go runtimes.
+      description_kind: plain
+      optional: true
+    noop_on_destroy:
+      type: bool
+      description: If set to 'true', the application version will not be deleted.
+      description_kind: plain
+      optional: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    runtime:
+      type: string
+      description: Desired runtime. Example python27.
+      description_kind: plain
+      required: true
+    runtime_api_version:
+      type: string
+      description: The version of the API in the given runtime environment. Please see the app.yaml reference for valid values at 'https://cloud.google.com/appengine/docs/standard/<language>/config/appref'\ Substitute '<language>' with 'python', 'java', 'php', 'ruby', 'go' or 'nodejs'.
+      description_kind: plain
+      optional: true
+      computed: true
+    runtime_channel:
+      type: string
+      description: The channel of the runtime to use. Only available for some runtimes.
+      description_kind: plain
+      optional: true
+    runtime_main_executable_path:
+      type: string
+      description: The path or name of the app's main executable.
+      description_kind: plain
+      optional: true
+    service:
+      type: string
+      description: AppEngine service resource. Can contain numbers, letters, and hyphens.
+      description_kind: plain
+      required: true
+    service_account:
+      type: string
+      description: The identity that the deployed version will run as. Admin API will use the App Engine Appspot service account as default if this field is neither provided in app.yaml file nor through CLI flag.
+      description_kind: plain
+      optional: true
+      computed: true
+    serving_status:
+      type: string
+      description: 'Current serving status of this version. Only the versions with a SERVING status create instances and can be billed. Default value: "SERVING" Possible values: ["SERVING", "STOPPED"]'
+      description_kind: plain
+      optional: true
+    version_id:
+      type: string
+      description: Relative name of the version within the service. For example, 'v1'. Version names can contain only lowercase letters, numbers, or hyphens. Reserved names,"default", "latest", and any name with the prefix "ah-".
+      description_kind: plain
+      optional: true
+  block_types:
+    api_config:
+      nesting_mode: list
+      block:
+        attributes:
+          auth_fail_action:
+            type: string
+            description: 'Action to take when users access resources that require authentication. Default value: "AUTH_FAIL_ACTION_REDIRECT" Possible values: ["AUTH_FAIL_ACTION_REDIRECT", "AUTH_FAIL_ACTION_UNAUTHORIZED"]'
+            description_kind: plain
+            optional: true
+          login:
+            type: string
+            description: 'Level of login required to access this resource. Default value: "LOGIN_OPTIONAL" Possible values: ["LOGIN_OPTIONAL", "LOGIN_ADMIN", "LOGIN_REQUIRED"]'
+            description_kind: plain
+            optional: true
+          script:
+            type: string
+            description: Path to the script from the application root directory.
+            description_kind: plain
+            required: true
+          security_level:
+            type: string
+            description: 'Security (HTTPS) enforcement for this URL. Possible values: ["SECURE_DEFAULT", "SECURE_NEVER", "SECURE_OPTIONAL", "SECURE_ALWAYS"]'
+            description_kind: plain
+            optional: true
+          url:
+            type: string
+            description: URL to serve the endpoint at.
+            description_kind: plain
+            optional: true
+        description: Serving configuration for Google Cloud Endpoints.
+        description_kind: plain
+      max_items: 1
+    automatic_scaling:
+      nesting_mode: list
+      block:
+        attributes:
+          cool_down_period:
+            type: string
+            description: 'The time period that the Autoscaler should wait before it starts collecting information from a new instance. This prevents the autoscaler from collecting information when the instance is initializing, during which the collected usage would not be reliable. Default: 120s'
+            description_kind: plain
+            optional: true
+          max_concurrent_requests:
+            type: number
+            description: Number of concurrent requests an automatic scaling instance can accept before the scheduler spawns a new instance. Defaults to a runtime-specific value.
+            description_kind: plain
+            optional: true
+            computed: true
+          max_idle_instances:
+            type: number
+            description: Maximum number of idle instances that should be maintained for this version.
+            description_kind: plain
+            optional: true
+          max_pending_latency:
+            type: string
+            description: Maximum amount of time that a request should wait in the pending queue before starting a new instance to handle it.
+            description_kind: plain
+            optional: true
+          max_total_instances:
+            type: number
+            description: 'Maximum number of instances that should be started to handle requests for this version. Default: 20'
+            description_kind: plain
+            optional: true
+          min_idle_instances:
+            type: number
+            description: Minimum number of idle instances that should be maintained for this version. Only applicable for the default version of a service.
+            description_kind: plain
+            optional: true
+          min_pending_latency:
+            type: string
+            description: Minimum amount of time a request should wait in the pending queue before starting a new instance to handle it.
+            description_kind: plain
+            optional: true
+          min_total_instances:
+            type: number
+            description: 'Minimum number of running instances that should be maintained for this version. Default: 2'
+            description_kind: plain
+            optional: true
+        block_types:
+          cpu_utilization:
+            nesting_mode: list
+            block:
+              attributes:
+                aggregation_window_length:
+                  type: string
+                  description: Period of time over which CPU utilization is calculated.
+                  description_kind: plain
+                  optional: true
+                target_utilization:
+                  type: number
+                  description: Target CPU utilization ratio to maintain when scaling. Must be between 0 and 1.
+                  description_kind: plain
+                  required: true
+              description: Target scaling by CPU usage.
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+          disk_utilization:
+            nesting_mode: list
+            block:
+              attributes:
+                target_read_bytes_per_second:
+                  type: number
+                  description: Target bytes read per second.
+                  description_kind: plain
+                  optional: true
+                target_read_ops_per_second:
+                  type: number
+                  description: Target ops read per seconds.
+                  description_kind: plain
+                  optional: true
+                target_write_bytes_per_second:
+                  type: number
+                  description: Target bytes written per second.
+                  description_kind: plain
+                  optional: true
+                target_write_ops_per_second:
+                  type: number
+                  description: Target ops written per second.
+                  description_kind: plain
+                  optional: true
+              description: Target scaling by disk usage.
+              description_kind: plain
+            max_items: 1
+          network_utilization:
+            nesting_mode: list
+            block:
+              attributes:
+                target_received_bytes_per_second:
+                  type: number
+                  description: Target bytes received per second.
+                  description_kind: plain
+                  optional: true
+                target_received_packets_per_second:
+                  type: number
+                  description: Target packets received per second.
+                  description_kind: plain
+                  optional: true
+                target_sent_bytes_per_second:
+                  type: number
+                  description: Target bytes sent per second.
+                  description_kind: plain
+                  optional: true
+                target_sent_packets_per_second:
+                  type: number
+                  description: Target packets sent per second.
+                  description_kind: plain
+                  optional: true
+              description: Target scaling by network usage.
+              description_kind: plain
+            max_items: 1
+          request_utilization:
+            nesting_mode: list
+            block:
+              attributes:
+                target_concurrent_requests:
+                  type: number
+                  description: Target number of concurrent requests.
+                  description_kind: plain
+                  optional: true
+                target_request_count_per_second:
+                  type: string
+                  description: Target requests per second.
+                  description_kind: plain
+                  optional: true
+              description: Target scaling by request utilization.
+              description_kind: plain
+            max_items: 1
+        description: Automatic scaling is based on request rate, response latencies, and other application metrics.
+        description_kind: plain
+      max_items: 1
+    deployment:
+      nesting_mode: list
+      block:
+        block_types:
+          cloud_build_options:
+            nesting_mode: list
+            block:
+              attributes:
+                app_yaml_path:
+                  type: string
+                  description: Path to the yaml file used in deployment, used to determine runtime configuration details.
+                  description_kind: plain
+                  required: true
+                cloud_build_timeout:
+                  type: string
+                  description: 'The Cloud Build timeout used as part of any dependent builds performed by version creation. Defaults to 10 minutes. A duration in seconds with up to nine fractional digits, terminated by ''s''. Example: "3.5s".'
+                  description_kind: plain
+                  optional: true
+              description: Options for the build operations performed as a part of the version deployment. Only applicable when creating a version using source code directly.
+              description_kind: plain
+            max_items: 1
+          container:
+            nesting_mode: list
+            block:
+              attributes:
+                image:
+                  type: string
+                  description: 'URI to the hosted container image in Google Container Registry. The URI must be fully qualified and include a tag or digest. Examples: "gcr.io/my-project/image:tag" or "gcr.io/my-project/image@digest"'
+                  description_kind: plain
+                  required: true
+              description: The Docker image for the container that runs the version.
+              description_kind: plain
+            max_items: 1
+          files:
+            nesting_mode: set
+            block:
+              attributes:
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                sha1_sum:
+                  type: string
+                  description: SHA1 checksum of the file
+                  description_kind: plain
+                  optional: true
+                source_url:
+                  type: string
+                  description: Source URL
+                  description_kind: plain
+                  required: true
+              description: Manifest of the files stored in Google Cloud Storage that are included as part of this version. All files must be readable using the credentials supplied with this call.
+              description_kind: plain
+          zip:
+            nesting_mode: list
+            block:
+              attributes:
+                files_count:
+                  type: number
+                  description: files count
+                  description_kind: plain
+                  optional: true
+                source_url:
+                  type: string
+                  description: Source URL
+                  description_kind: plain
+                  required: true
+              description: Zip File
+              description_kind: plain
+            max_items: 1
+        description: Code and application artifacts that make up this version.
+        description_kind: plain
+      max_items: 1
+    endpoints_api_service:
+      nesting_mode: list
+      block:
+        attributes:
+          config_id:
+            type: string
+            description: Endpoints service configuration ID as specified by the Service Management API. For example "2016-09-19r1". By default, the rollout strategy for Endpoints is "FIXED". This means that Endpoints starts up with a particular configuration ID. When a new configuration is rolled out, Endpoints must be given the new configuration ID. The configId field is used to give the configuration ID and is required in this case. Endpoints also has a rollout strategy called "MANAGED". When using this, Endpoints fetches the latest configuration and does not need the configuration ID. In this case, configId must be omitted.
+            description_kind: plain
+            optional: true
+          disable_trace_sampling:
+            type: bool
+            description: Enable or disable trace sampling. By default, this is set to false for enabled.
+            description_kind: plain
+            optional: true
+          name:
+            type: string
+            description: Endpoints service name which is the name of the "service" resource in the Service Management API. For example "myapi.endpoints.myproject.cloud.goog"
+            description_kind: plain
+            required: true
+          rollout_strategy:
+            type: string
+            description: 'Endpoints rollout strategy. If FIXED, configId must be specified. If MANAGED, configId must be omitted. Default value: "FIXED" Possible values: ["FIXED", "MANAGED"]'
+            description_kind: plain
+            optional: true
+        description: Code and application artifacts that make up this version.
+        description_kind: plain
+      max_items: 1
+    entrypoint:
+      nesting_mode: list
+      block:
+        attributes:
+          shell:
+            type: string
+            description: The format should be a shell command that can be fed to bash -c.
+            description_kind: plain
+            required: true
+        description: The entrypoint for the application.
+        description_kind: plain
+      max_items: 1
+    flexible_runtime_settings:
+      nesting_mode: list
+      block:
+        attributes:
+          operating_system:
+            type: string
+            description: Operating System of the application runtime.
+            description_kind: plain
+            optional: true
+          runtime_version:
+            type: string
+            description: The runtime version of an App Engine flexible application.
+            description_kind: plain
+            optional: true
+        description: Runtime settings for App Engine flexible environment.
+        description_kind: plain
+      max_items: 1
+    handlers:
+      nesting_mode: list
+      block:
+        attributes:
+          auth_fail_action:
+            type: string
+            description: 'Actions to take when the user is not logged in. Possible values: ["AUTH_FAIL_ACTION_REDIRECT", "AUTH_FAIL_ACTION_UNAUTHORIZED"]'
+            description_kind: plain
+            optional: true
+          login:
+            type: string
+            description: 'Methods to restrict access to a URL based on login status. Possible values: ["LOGIN_OPTIONAL", "LOGIN_ADMIN", "LOGIN_REQUIRED"]'
+            description_kind: plain
+            optional: true
+          redirect_http_response_code:
+            type: string
+            description: '30x code to use when performing redirects for the secure field. Possible values: ["REDIRECT_HTTP_RESPONSE_CODE_301", "REDIRECT_HTTP_RESPONSE_CODE_302", "REDIRECT_HTTP_RESPONSE_CODE_303", "REDIRECT_HTTP_RESPONSE_CODE_307"]'
+            description_kind: plain
+            optional: true
+          security_level:
+            type: string
+            description: 'Security (HTTPS) enforcement for this URL. Possible values: ["SECURE_DEFAULT", "SECURE_NEVER", "SECURE_OPTIONAL", "SECURE_ALWAYS"]'
+            description_kind: plain
+            optional: true
+          url_regex:
+            type: string
+            description: URL prefix. Uses regular expression syntax, which means regexp special characters must be escaped, but should not contain groupings. All URLs that begin with this prefix are handled by this handler, using the portion of the URL after the prefix as part of the file path.
+            description_kind: plain
+            optional: true
+        block_types:
+          script:
+            nesting_mode: list
+            block:
+              attributes:
+                script_path:
+                  type: string
+                  description: Path to the script from the application root directory.
+                  description_kind: plain
+                  required: true
+              description: Executes a script to handle the requests that match this URL pattern. Only the auto value is supported for Node.js in the App Engine standard environment, for example "script:" "auto".
+              description_kind: plain
+            max_items: 1
+          static_files:
+            nesting_mode: list
+            block:
+              attributes:
+                application_readable:
+                  type: bool
+                  description: Whether files should also be uploaded as code data. By default, files declared in static file handlers are uploaded as static data and are only served to end users; they cannot be read by the application. If enabled, uploads are charged against both your code and static data storage resource quotas.
+                  description_kind: plain
+                  optional: true
+                expiration:
+                  type: string
+                  description: Time a static file served by this handler should be cached by web proxies and browsers. A duration in seconds with up to nine fractional digits, terminated by 's'. Example "3.5s". Default is '0s'
+                  description_kind: plain
+                  optional: true
+                http_headers:
+                  type:
+                  - map
+                  - string
+                  description: HTTP headers to use for all responses from these URLs. An object containing a list of "key:value" value pairs.".
+                  description_kind: plain
+                  optional: true
+                mime_type:
+                  type: string
+                  description: MIME type used to serve all files served by this handler. Defaults to file-specific MIME types, which are derived from each file's filename extension.
+                  description_kind: plain
+                  optional: true
+                path:
+                  type: string
+                  description: Path to the static files matched by the URL pattern, from the application root directory. The path can refer to text matched in groupings in the URL pattern.
+                  description_kind: plain
+                  optional: true
+                require_matching_file:
+                  type: bool
+                  description: Whether this handler should match the request if the file referenced by the handler does not exist.
+                  description_kind: plain
+                  optional: true
+                upload_path_regex:
+                  type: string
+                  description: Regular expression that matches the file paths for all files that should be referenced by this handler.
+                  description_kind: plain
+                  optional: true
+              description: Files served directly to the user for a given URL, such as images, CSS stylesheets, or JavaScript source files. Static file handlers describe which files in the application directory are static files, and which URLs serve them.
+              description_kind: plain
+            max_items: 1
+        description: An ordered list of URL-matching patterns that should be applied to incoming requests. The first matching URL handles the request and other request handlers are not attempted.
+        description_kind: plain
+    liveness_check:
+      nesting_mode: list
+      block:
+        attributes:
+          check_interval:
+            type: string
+            description: Interval between health checks.
+            description_kind: plain
+            optional: true
+          failure_threshold:
+            type: number
+            description: 'Number of consecutive failed checks required before considering the VM unhealthy. Default: 4.'
+            description_kind: plain
+            optional: true
+          host:
+            type: string
+            description: 'Host header to send when performing a HTTP Readiness check. Example: "myapp.appspot.com"'
+            description_kind: plain
+            optional: true
+          initial_delay:
+            type: string
+            description: 'The initial delay before starting to execute the checks. Default: "300s"'
+            description_kind: plain
+            optional: true
+          path:
+            type: string
+            description: The request path.
+            description_kind: plain
+            required: true
+          success_threshold:
+            type: number
+            description: 'Number of consecutive successful checks required before considering the VM healthy. Default: 2.'
+            description_kind: plain
+            optional: true
+          timeout:
+            type: string
+            description: 'Time before the check is considered failed. Default: "4s"'
+            description_kind: plain
+            optional: true
+        description: Health checking configuration for VM instances. Unhealthy instances are killed and replaced with new instances.
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    manual_scaling:
+      nesting_mode: list
+      block:
+        attributes:
+          instances:
+            type: number
+            description: Number of instances to assign to the service at the start. **Note:** When managing the number of instances at runtime through the App Engine Admin API or the (now deprecated) Python 2 Modules API set_num_instances() you must use 'lifecycle.ignore_changes = ["manual_scaling"[0].instances]' to prevent drift detection.
+            description_kind: plain
+            required: true
+        description: A service with manual scaling runs continuously, allowing you to perform complex initialization and rely on the state of its memory over time.
+        description_kind: plain
+      max_items: 1
+    network:
+      nesting_mode: list
+      block:
+        attributes:
+          forwarded_ports:
+            type:
+            - list
+            - string
+            description: List of ports, or port pairs, to forward from the virtual machine to the application container.
+            description_kind: plain
+            optional: true
+          instance_tag:
+            type: string
+            description: Tag to apply to the instance during creation.
+            description_kind: plain
+            optional: true
+          name:
+            type: string
+            description: Google Compute Engine network where the virtual machines are created. Specify the short name, not the resource path.
+            description_kind: plain
+            required: true
+          session_affinity:
+            type: bool
+            description: Enable session affinity.
+            description_kind: plain
+            optional: true
+          subnetwork:
+            type: string
+            description: Google Cloud Platform sub-network where the virtual machines are created. Specify the short name, not the resource path. If the network that the instance is being created in is a Legacy network, then the IP address is allocated from the IPv4Range. If the network that the instance is being created in is an auto Subnet Mode Network, then only network name should be specified (not the subnetworkName) and the IP address is created from the IPCidrRange of the subnetwork that exists in that zone for that network. If the network that the instance is being created in is a custom Subnet Mode Network, then the subnetworkName must be specified and the IP address is created from the IPCidrRange of the subnetwork. If specified, the subnetwork must exist in the same region as the App Engine flexible environment application.
+            description_kind: plain
+            optional: true
+        description: Extra network settings
+        description_kind: plain
+      max_items: 1
+    readiness_check:
+      nesting_mode: list
+      block:
+        attributes:
+          app_start_timeout:
+            type: string
+            description: 'A maximum time limit on application initialization, measured from moment the application successfully replies to a healthcheck until it is ready to serve traffic. Default: "300s"'
+            description_kind: plain
+            optional: true
+          check_interval:
+            type: string
+            description: 'Interval between health checks.  Default: "5s".'
+            description_kind: plain
+            optional: true
+          failure_threshold:
+            type: number
+            description: 'Number of consecutive failed checks required before removing traffic. Default: 2.'
+            description_kind: plain
+            optional: true
+          host:
+            type: string
+            description: 'Host header to send when performing a HTTP Readiness check. Example: "myapp.appspot.com"'
+            description_kind: plain
+            optional: true
+          path:
+            type: string
+            description: The request path.
+            description_kind: plain
+            required: true
+          success_threshold:
+            type: number
+            description: 'Number of consecutive successful checks required before receiving traffic. Default: 2.'
+            description_kind: plain
+            optional: true
+          timeout:
+            type: string
+            description: 'Time before the check is considered failed. Default: "4s"'
+            description_kind: plain
+            optional: true
+        description: Configures readiness health checking for instances. Unhealthy instances are not put into the backend traffic rotation.
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    resources:
+      nesting_mode: list
+      block:
+        attributes:
+          cpu:
+            type: number
+            description: Number of CPU cores needed.
+            description_kind: plain
+            optional: true
+          disk_gb:
+            type: number
+            description: Disk size (GB) needed.
+            description_kind: plain
+            optional: true
+          memory_gb:
+            type: number
+            description: Memory (GB) needed.
+            description_kind: plain
+            optional: true
+        block_types:
+          volumes:
+            nesting_mode: list
+            block:
+              attributes:
+                name:
+                  type: string
+                  description: Unique name for the volume.
+                  description_kind: plain
+                  required: true
+                size_gb:
+                  type: number
+                  description: Volume size in gigabytes.
+                  description_kind: plain
+                  required: true
+                volume_type:
+                  type: string
+                  description: Underlying volume type, e.g. 'tmpfs'.
+                  description_kind: plain
+                  required: true
+              description: List of ports, or port pairs, to forward from the virtual machine to the application container.
+              description_kind: plain
+        description: Machine resources for a version.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    vpc_access_connector:
+      nesting_mode: list
+      block:
+        attributes:
+          name:
+            type: string
+            description: Full Serverless VPC Access Connector name e.g. /projects/my-project/locations/us-central1/connectors/c1.
+            description_kind: plain
+            required: true
+        description: Enables VPC connectivity for standard apps.
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

@@ -1,0 +1,90 @@
+version: 0
+block:
+  attributes:
+    api_endpoint:
+      type: string
+      description_kind: plain
+      computed: true
+    api_id:
+      type: string
+      description_kind: plain
+      required: true
+    api_key_selection_expression:
+      type: string
+      description_kind: plain
+      computed: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    cors_configuration:
+      type:
+      - list
+      - - object
+        - allow_credentials: bool
+          allow_headers:
+          - set
+          - string
+          allow_methods:
+          - set
+          - string
+          allow_origins:
+          - set
+          - string
+          expose_headers:
+          - set
+          - string
+          max_age: number
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      computed: true
+    disable_execute_api_endpoint:
+      type: bool
+      description_kind: plain
+      computed: true
+    execution_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ip_address_type:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      computed: true
+    protocol_type:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    route_selection_expression:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    version:
+      type: string
+      description_kind: plain
+      computed: true
+  description_kind: plain

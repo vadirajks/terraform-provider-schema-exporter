@@ -1,0 +1,47 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    force_destroy:
+      type: bool
+      description: Delete user even if it has non-Terraform-managed IAM access keys, login profile or MFA devices
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    path:
+      type: string
+      description_kind: plain
+      optional: true
+    permissions_boundary:
+      type: string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    unique_id:
+      type: string
+      description_kind: plain
+      computed: true
+  description_kind: plain

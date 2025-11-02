@@ -1,0 +1,201 @@
+version: 1
+block:
+  attributes:
+    bucket:
+      type: string
+      description_kind: plain
+      required: true
+    expected_bucket_owner:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      deprecated: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    transition_default_minimum_object_size:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    rule:
+      nesting_mode: list
+      block:
+        attributes:
+          id:
+            type: string
+            description_kind: plain
+            required: true
+          prefix:
+            type: string
+            description_kind: plain
+            deprecated: true
+            optional: true
+            computed: true
+          status:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          abort_incomplete_multipart_upload:
+            nesting_mode: list
+            block:
+              attributes:
+                days_after_initiation:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          expiration:
+            nesting_mode: list
+            block:
+              attributes:
+                date:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                days:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                expired_object_delete_marker:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              description_kind: plain
+          filter:
+            nesting_mode: list
+            block:
+              attributes:
+                object_size_greater_than:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                object_size_less_than:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              block_types:
+                and:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      object_size_greater_than:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      object_size_less_than:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      prefix:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      tags:
+                        type:
+                        - map
+                        - string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                tag:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      key:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      value:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+              description_kind: plain
+          noncurrent_version_expiration:
+            nesting_mode: list
+            block:
+              attributes:
+                newer_noncurrent_versions:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                noncurrent_days:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          noncurrent_version_transition:
+            nesting_mode: set
+            block:
+              attributes:
+                newer_noncurrent_versions:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                noncurrent_days:
+                  type: number
+                  description_kind: plain
+                  required: true
+                storage_class:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          transition:
+            nesting_mode: set
+            block:
+              attributes:
+                date:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                days:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                storage_class:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,48 @@
+version: 0
+block:
+  attributes:
+    filter_by_category:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    filter_by_resource_groups:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    recommendations:
+      type:
+      - list
+      - - object
+        - category: string
+          description: string
+          impact: string
+          recommendation_name: string
+          recommendation_type_id: string
+          resource_name: string
+          resource_type: string
+          suppression_names:
+          - set
+          - string
+          updated_time: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

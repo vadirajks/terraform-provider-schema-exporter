@@ -1,0 +1,101 @@
+version: 1
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    deliver_cross_account_role:
+      type: string
+      description_kind: plain
+      optional: true
+    eni_id:
+      type: string
+      description_kind: plain
+      optional: true
+    iam_role_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    log_destination:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    log_destination_type:
+      type: string
+      description_kind: plain
+      optional: true
+    log_format:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    max_aggregation_interval:
+      type: number
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    subnet_id:
+      type: string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    traffic_type:
+      type: string
+      description_kind: plain
+      optional: true
+    transit_gateway_attachment_id:
+      type: string
+      description_kind: plain
+      optional: true
+    transit_gateway_id:
+      type: string
+      description_kind: plain
+      optional: true
+    vpc_id:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    destination_options:
+      nesting_mode: list
+      block:
+        attributes:
+          file_format:
+            type: string
+            description_kind: plain
+            optional: true
+          hive_compatible_partitions:
+            type: bool
+            description_kind: plain
+            optional: true
+          per_hour_partition:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

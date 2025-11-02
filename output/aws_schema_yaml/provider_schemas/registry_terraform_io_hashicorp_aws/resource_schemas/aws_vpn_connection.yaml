@@ -1,0 +1,416 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    core_network_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    core_network_attachment_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    customer_gateway_configuration:
+      type: string
+      description_kind: plain
+      computed: true
+      sensitive: true
+    customer_gateway_id:
+      type: string
+      description_kind: plain
+      required: true
+    enable_acceleration:
+      type: bool
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    local_ipv4_network_cidr:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    local_ipv6_network_cidr:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    outside_ip_address_type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    preshared_key_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    preshared_key_storage:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    remote_ipv4_network_cidr:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    remote_ipv6_network_cidr:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    routes:
+      type:
+      - set
+      - - object
+        - destination_cidr_block: string
+          source: string
+          state: string
+      description_kind: plain
+      computed: true
+    static_routes_only:
+      type: bool
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    transit_gateway_attachment_id:
+      type: string
+      description_kind: plain
+      computed: true
+    transit_gateway_id:
+      type: string
+      description_kind: plain
+      optional: true
+    transport_transit_gateway_attachment_id:
+      type: string
+      description_kind: plain
+      optional: true
+    tunnel1_address:
+      type: string
+      description_kind: plain
+      computed: true
+    tunnel1_bgp_asn:
+      type: string
+      description_kind: plain
+      computed: true
+    tunnel1_bgp_holdtime:
+      type: number
+      description_kind: plain
+      computed: true
+    tunnel1_cgw_inside_address:
+      type: string
+      description_kind: plain
+      computed: true
+    tunnel1_dpd_timeout_action:
+      type: string
+      description_kind: plain
+      optional: true
+    tunnel1_dpd_timeout_seconds:
+      type: number
+      description_kind: plain
+      optional: true
+    tunnel1_enable_tunnel_lifecycle_control:
+      type: bool
+      description_kind: plain
+      optional: true
+    tunnel1_ike_versions:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    tunnel1_inside_cidr:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    tunnel1_inside_ipv6_cidr:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    tunnel1_phase1_dh_group_numbers:
+      type:
+      - set
+      - number
+      description_kind: plain
+      optional: true
+    tunnel1_phase1_encryption_algorithms:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    tunnel1_phase1_integrity_algorithms:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    tunnel1_phase1_lifetime_seconds:
+      type: number
+      description_kind: plain
+      optional: true
+    tunnel1_phase2_dh_group_numbers:
+      type:
+      - set
+      - number
+      description_kind: plain
+      optional: true
+    tunnel1_phase2_encryption_algorithms:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    tunnel1_phase2_integrity_algorithms:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    tunnel1_phase2_lifetime_seconds:
+      type: number
+      description_kind: plain
+      optional: true
+    tunnel1_preshared_key:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+      sensitive: true
+    tunnel1_rekey_fuzz_percentage:
+      type: number
+      description_kind: plain
+      optional: true
+    tunnel1_rekey_margin_time_seconds:
+      type: number
+      description_kind: plain
+      optional: true
+    tunnel1_replay_window_size:
+      type: number
+      description_kind: plain
+      optional: true
+    tunnel1_startup_action:
+      type: string
+      description_kind: plain
+      optional: true
+    tunnel1_vgw_inside_address:
+      type: string
+      description_kind: plain
+      computed: true
+    tunnel2_address:
+      type: string
+      description_kind: plain
+      computed: true
+    tunnel2_bgp_asn:
+      type: string
+      description_kind: plain
+      computed: true
+    tunnel2_bgp_holdtime:
+      type: number
+      description_kind: plain
+      computed: true
+    tunnel2_cgw_inside_address:
+      type: string
+      description_kind: plain
+      computed: true
+    tunnel2_dpd_timeout_action:
+      type: string
+      description_kind: plain
+      optional: true
+    tunnel2_dpd_timeout_seconds:
+      type: number
+      description_kind: plain
+      optional: true
+    tunnel2_enable_tunnel_lifecycle_control:
+      type: bool
+      description_kind: plain
+      optional: true
+    tunnel2_ike_versions:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    tunnel2_inside_cidr:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    tunnel2_inside_ipv6_cidr:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    tunnel2_phase1_dh_group_numbers:
+      type:
+      - set
+      - number
+      description_kind: plain
+      optional: true
+    tunnel2_phase1_encryption_algorithms:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    tunnel2_phase1_integrity_algorithms:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    tunnel2_phase1_lifetime_seconds:
+      type: number
+      description_kind: plain
+      optional: true
+    tunnel2_phase2_dh_group_numbers:
+      type:
+      - set
+      - number
+      description_kind: plain
+      optional: true
+    tunnel2_phase2_encryption_algorithms:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    tunnel2_phase2_integrity_algorithms:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    tunnel2_phase2_lifetime_seconds:
+      type: number
+      description_kind: plain
+      optional: true
+    tunnel2_preshared_key:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+      sensitive: true
+    tunnel2_rekey_fuzz_percentage:
+      type: number
+      description_kind: plain
+      optional: true
+    tunnel2_rekey_margin_time_seconds:
+      type: number
+      description_kind: plain
+      optional: true
+    tunnel2_replay_window_size:
+      type: number
+      description_kind: plain
+      optional: true
+    tunnel2_startup_action:
+      type: string
+      description_kind: plain
+      optional: true
+    tunnel2_vgw_inside_address:
+      type: string
+      description_kind: plain
+      computed: true
+    tunnel_inside_ip_version:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    type:
+      type: string
+      description_kind: plain
+      required: true
+    vgw_telemetry:
+      type:
+      - set
+      - - object
+        - accepted_route_count: number
+          certificate_arn: string
+          last_status_change: string
+          outside_ip_address: string
+          status: string
+          status_message: string
+      description_kind: plain
+      computed: true
+    vpn_gateway_id:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    tunnel1_log_options:
+      nesting_mode: list
+      block:
+        block_types:
+          cloudwatch_log_options:
+            nesting_mode: list
+            block:
+              attributes:
+                log_enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                log_group_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                log_output_format:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    tunnel2_log_options:
+      nesting_mode: list
+      block:
+        block_types:
+          cloudwatch_log_options:
+            nesting_mode: list
+            block:
+              attributes:
+                log_enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                log_group_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                log_output_format:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

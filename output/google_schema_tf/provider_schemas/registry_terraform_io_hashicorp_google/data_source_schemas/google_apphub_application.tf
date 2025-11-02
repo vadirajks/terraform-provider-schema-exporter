@@ -1,0 +1,15 @@
+data "google_apphub_application" "name" {
+  application_id = string (Required)
+  location = string (Required)
+  project = string (Required)
+  attributes = ['list', ['object', {'business_owners': ['list', ['object', {'display_name': 'string', 'email': 'string'}]], 'criticality': ['list', ['object', {'type': 'string'}]], 'developer_owners': ['list', ['object', {'display_name': 'string', 'email': 'string'}]], 'environment': ['list', ['object', {'type': 'string'}]], 'operator_owners': ['list', ['object', {'display_name': 'string', 'email': 'string'}]]}]] (Computed)
+  create_time = string (Computed)
+  description = string (Computed)
+  display_name = string (Computed)
+  id = string (Optional, Computed)
+  name = string (Computed)
+  scope = ['list', ['object', {'type': 'string'}]] (Computed)
+  state = string (Computed)
+  uid = string (Computed)
+  update_time = string (Computed)
+}

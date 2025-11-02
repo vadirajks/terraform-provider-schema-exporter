@@ -1,0 +1,15 @@
+resource "aws_datasync_location_fsx_windows_file_system" "name" {
+  fsx_filesystem_arn = string (Required)
+  password = string (Required)
+  security_group_arns = ['set', 'string'] (Required)
+  user = string (Required)
+  arn = string (Computed)
+  creation_time = string (Computed)
+  domain = string (Optional)
+  id = string (Optional, Computed)
+  region = string (Optional, Computed)
+  subdirectory = string (Optional, Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+  uri = string (Computed)
+}

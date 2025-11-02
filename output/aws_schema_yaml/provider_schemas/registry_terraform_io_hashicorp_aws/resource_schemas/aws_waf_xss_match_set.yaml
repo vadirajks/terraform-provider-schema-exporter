@@ -1,0 +1,43 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    xss_match_tuples:
+      nesting_mode: set
+      block:
+        attributes:
+          text_transformation:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          field_to_match:
+            nesting_mode: list
+            block:
+              attributes:
+                data:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                type:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+  description_kind: plain

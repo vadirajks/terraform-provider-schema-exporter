@@ -1,0 +1,488 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cluster": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "auto_scaling_group_provider": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "auto_scaling_group_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "managed_draining": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "managed_termination_protection": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "block_types": {
+            "managed_scaling": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "instance_warmup_period": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "maximum_scaling_step_size": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "minimum_scaling_step_size": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "status": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "target_capacity": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "managed_instances_provider": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "infrastructure_role_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "propagate_tags": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "instance_launch_template": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "ec2_instance_profile_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "monitoring": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "instance_requirements": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "accelerator_manufacturers": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "accelerator_names": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "accelerator_types": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "allowed_instance_types": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "bare_metal": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "burstable_performance": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "cpu_manufacturers": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "excluded_instance_types": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "instance_generations": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "local_storage": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "local_storage_types": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "max_spot_price_as_percentage_of_optimal_on_demand_price": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "on_demand_max_price_percentage_over_lowest_price": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "require_hibernate_support": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "spot_max_price_percentage_over_lowest_price": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "accelerator_count": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "max": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "min": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "accelerator_total_memory_mib": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "max": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "min": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "baseline_ebs_bandwidth_mbps": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "max": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "min": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "memory_gib_per_vcpu": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "max": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "min": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "memory_mib": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "max": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "min": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        },
+                        "network_bandwidth_gbps": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "max": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "min": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "network_interface_count": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "max": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "min": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "total_local_storage_gb": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "max": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "min": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "vcpu_count": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "max": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "min": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "network_configuration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "security_groups": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "subnets": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  },
+                  "storage_configuration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "storage_size_gib": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

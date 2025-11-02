@@ -1,0 +1,31 @@
+resource "aws_eip" "name" {
+  address = string (Optional)
+  allocation_id = string (Computed)
+  arn = string (Computed)
+  associate_with_private_ip = string (Optional)
+  association_id = string (Computed)
+  carrier_ip = string (Computed)
+  customer_owned_ip = string (Computed)
+  customer_owned_ipv4_pool = string (Optional)
+  domain = string (Optional, Computed)
+  id = string (Optional, Computed)
+  instance = string (Optional, Computed)
+  ipam_pool_id = string (Optional, Computed)
+  network_border_group = string (Optional, Computed)
+  network_interface = string (Optional, Computed)
+  private_dns = string (Computed)
+  private_ip = string (Computed)
+  ptr_record = string (Computed)
+  public_dns = string (Computed)
+  public_ip = string (Computed)
+  public_ipv4_pool = string (Optional, Computed)
+  region = string (Optional, Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+
+  timeouts block "single" (Optional) {
+    delete = string (Optional)
+    read = string (Optional)
+    update = string (Optional)
+  }
+}

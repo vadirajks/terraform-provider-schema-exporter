@@ -1,0 +1,68 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    job_agent_id:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    job_target:
+      nesting_mode: set
+      block:
+        attributes:
+          database_name:
+            type: string
+            description_kind: plain
+            optional: true
+          elastic_pool_name:
+            type: string
+            description_kind: plain
+            optional: true
+          job_credential_id:
+            type: string
+            description_kind: plain
+            optional: true
+          membership_type:
+            type: string
+            description_kind: plain
+            optional: true
+          server_name:
+            type: string
+            description_kind: plain
+            required: true
+          type:
+            type: string
+            description_kind: plain
+            computed: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

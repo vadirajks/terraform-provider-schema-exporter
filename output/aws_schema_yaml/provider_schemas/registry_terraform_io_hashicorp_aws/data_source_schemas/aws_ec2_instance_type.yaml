@@ -1,0 +1,342 @@
+version: 0
+block:
+  attributes:
+    auto_recovery_supported:
+      type: bool
+      description_kind: plain
+      computed: true
+    bandwidth_weightings:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    bare_metal:
+      type: bool
+      description_kind: plain
+      computed: true
+    boot_modes:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    burstable_performance_supported:
+      type: bool
+      description_kind: plain
+      computed: true
+    current_generation:
+      type: bool
+      description_kind: plain
+      computed: true
+    dedicated_hosts_supported:
+      type: bool
+      description_kind: plain
+      computed: true
+    default_cores:
+      type: number
+      description_kind: plain
+      computed: true
+    default_network_card_index:
+      type: number
+      description_kind: plain
+      computed: true
+    default_threads_per_core:
+      type: number
+      description_kind: plain
+      computed: true
+    default_vcpus:
+      type: number
+      description_kind: plain
+      computed: true
+    ebs_encryption_support:
+      type: string
+      description_kind: plain
+      computed: true
+    ebs_nvme_support:
+      type: string
+      description_kind: plain
+      computed: true
+    ebs_optimized_support:
+      type: string
+      description_kind: plain
+      computed: true
+    ebs_performance_baseline_bandwidth:
+      type: number
+      description_kind: plain
+      computed: true
+    ebs_performance_baseline_iops:
+      type: number
+      description_kind: plain
+      computed: true
+    ebs_performance_baseline_throughput:
+      type: number
+      description_kind: plain
+      computed: true
+    ebs_performance_maximum_bandwidth:
+      type: number
+      description_kind: plain
+      computed: true
+    ebs_performance_maximum_iops:
+      type: number
+      description_kind: plain
+      computed: true
+    ebs_performance_maximum_throughput:
+      type: number
+      description_kind: plain
+      computed: true
+    efa_maximum_interfaces:
+      type: number
+      description_kind: plain
+      computed: true
+    efa_supported:
+      type: bool
+      description_kind: plain
+      computed: true
+    ena_srd_supported:
+      type: bool
+      description_kind: plain
+      computed: true
+    ena_support:
+      type: string
+      description_kind: plain
+      computed: true
+    encryption_in_transit_supported:
+      type: bool
+      description_kind: plain
+      computed: true
+    fpgas:
+      type:
+      - set
+      - - object
+        - count: number
+          manufacturer: string
+          memory_size: number
+          name: string
+      description_kind: plain
+      computed: true
+    free_tier_eligible:
+      type: bool
+      description_kind: plain
+      computed: true
+    gpus:
+      type:
+      - set
+      - - object
+        - count: number
+          manufacturer: string
+          memory_size: number
+          name: string
+      description_kind: plain
+      computed: true
+    hibernation_supported:
+      type: bool
+      description_kind: plain
+      computed: true
+    hypervisor:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    inference_accelerators:
+      type:
+      - set
+      - - object
+        - count: number
+          manufacturer: string
+          memory_size: number
+          name: string
+      description_kind: plain
+      computed: true
+    instance_disks:
+      type:
+      - set
+      - - object
+        - count: number
+          size: number
+          type: string
+      description_kind: plain
+      computed: true
+    instance_storage_supported:
+      type: bool
+      description_kind: plain
+      computed: true
+    instance_type:
+      type: string
+      description_kind: plain
+      required: true
+    ipv6_supported:
+      type: bool
+      description_kind: plain
+      computed: true
+    maximum_ipv4_addresses_per_interface:
+      type: number
+      description_kind: plain
+      computed: true
+    maximum_ipv6_addresses_per_interface:
+      type: number
+      description_kind: plain
+      computed: true
+    maximum_network_cards:
+      type: number
+      description_kind: plain
+      computed: true
+    maximum_network_interfaces:
+      type: number
+      description_kind: plain
+      computed: true
+    media_accelerators:
+      type:
+      - set
+      - - object
+        - count: number
+          manufacturer: string
+          memory_size: number
+          name: string
+      description_kind: plain
+      computed: true
+    memory_size:
+      type: number
+      description_kind: plain
+      computed: true
+    network_cards:
+      type:
+      - set
+      - - object
+        - baseline_bandwidth: number
+          index: number
+          maximum_interfaces: number
+          peak_bandwidth: number
+          performance: string
+      description_kind: plain
+      computed: true
+    network_performance:
+      type: string
+      description_kind: plain
+      computed: true
+    neuron_devices:
+      type:
+      - set
+      - - object
+        - core_count: number
+          core_version: number
+          count: number
+          memory_size: number
+          name: string
+      description_kind: plain
+      computed: true
+    nitro_enclaves_support:
+      type: string
+      description_kind: plain
+      computed: true
+    nitro_tpm_support:
+      type: string
+      description_kind: plain
+      computed: true
+    nitro_tpm_supported_versions:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    phc_support:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    supported_architectures:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    supported_cpu_features:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    supported_placement_strategies:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    supported_root_device_types:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    supported_usages_classes:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    supported_virtualization_types:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    sustained_clock_speed:
+      type: number
+      description_kind: plain
+      computed: true
+    total_fpga_memory:
+      type: number
+      description_kind: plain
+      computed: true
+    total_gpu_memory:
+      type: number
+      description_kind: plain
+      computed: true
+    total_inference_memory:
+      type: number
+      description_kind: plain
+      computed: true
+    total_instance_storage:
+      type: number
+      description_kind: plain
+      computed: true
+    total_media_memory:
+      type: number
+      description_kind: plain
+      computed: true
+    total_neuron_device_memory:
+      type: number
+      description_kind: plain
+      computed: true
+    valid_cores:
+      type:
+      - list
+      - number
+      description_kind: plain
+      computed: true
+    valid_threads_per_core:
+      type:
+      - list
+      - number
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

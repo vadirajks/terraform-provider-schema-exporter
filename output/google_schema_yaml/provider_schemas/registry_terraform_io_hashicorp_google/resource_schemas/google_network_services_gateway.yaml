@@ -1,0 +1,155 @@
+version: 0
+block:
+  attributes:
+    addresses:
+      type:
+      - list
+      - string
+      description: 'Zero or one IPv4 or IPv6 address on which the Gateway will receive the traffic. When no address is provided, an IP from the subnetwork is allocated. This field only applies to gateways of type ''SECURE_WEB_GATEWAY''. Gateways of type ''OPEN_MESH'' listen on 0.0.0.0 for IPv4 and :: for IPv6.'
+      description_kind: plain
+      optional: true
+      computed: true
+    certificate_urls:
+      type:
+      - list
+      - string
+      description: A fully-qualified Certificates URL reference. The proxy presents a Certificate (selected based on SNI) when establishing a TLS connection. This feature only applies to gateways of type 'SECURE_WEB_GATEWAY'.
+      description_kind: plain
+      optional: true
+    create_time:
+      type: string
+      description: The timestamp when the resource was created.
+      description_kind: plain
+      computed: true
+    delete_swg_autogen_router_on_destroy:
+      type: bool
+      description: When deleting a gateway of type 'SECURE_WEB_GATEWAY', this boolean option will also delete auto generated router by the gateway creation. If there is no other gateway of type 'SECURE_WEB_GATEWAY' remaining for that region and network it will be deleted.
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description: A free-text description of the resource. Max length 1024 characters.
+      description_kind: plain
+      optional: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    envoy_headers:
+      type: string
+      description: 'Determines if envoy will insert internal debug headers into upstream requests. Other Envoy headers may still be injected. By default, envoy will not insert any debug headers. Possible values: ["NONE", "DEBUG_HEADERS"]'
+      description_kind: plain
+      optional: true
+    gateway_security_policy:
+      type: string
+      description: 'A fully-qualified GatewaySecurityPolicy URL reference. Defines how a server should apply security policy to inbound (VM to Proxy) initiated connections. For example: ''projects/*/locations/*/gatewaySecurityPolicies/swg-policy''. This policy is specific to gateways of type ''SECURE_WEB_GATEWAY''.'
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ip_version:
+      type: string
+      description: 'The IP Version that will be used by this gateway. Possible values: ["IPV4", "IPV6"]'
+      description_kind: plain
+      optional: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Set of label tags associated with the Gateway resource. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: The location of the gateway. The default value is 'global'.
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: Name of the Gateway resource.
+      description_kind: plain
+      required: true
+    network:
+      type: string
+      description: 'The relative resource name identifying the VPC network that is using this configuration. For example: ''projects/*/global/networks/network-1''. Currently, this field is specific to gateways of type ''SECURE_WEB_GATEWAY''.'
+      description_kind: plain
+      optional: true
+    ports:
+      type:
+      - list
+      - number
+      description: 'One or more port numbers (1-65535), on which the Gateway will receive traffic. The proxy binds to the specified ports. Gateways of type ''SECURE_WEB_GATEWAY'' are limited to 1 port. Gateways of type ''OPEN_MESH'' listen on 0.0.0.0 for IPv4 and :: for IPv6 and support multiple ports.'
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    routing_mode:
+      type: string
+      description: 'The routing mode of the Gateway. This field is configurable only for gateways of type SECURE_WEB_GATEWAY. This field is required for gateways of type SECURE_WEB_GATEWAY. Possible values: ["NEXT_HOP_ROUTING_MODE", "EXPLICIT_ROUTING_MODE"]'
+      description_kind: plain
+      optional: true
+    scope:
+      type: string
+      description: Immutable. Scope determines how configuration across multiple Gateway instances are merged. The configuration for multiple Gateway instances with the same scope will be merged as presented as a single coniguration to the proxy/load balancer. Max length 64 characters. Scope should start with a letter and can only have letters, numbers, hyphens.
+      description_kind: plain
+      optional: true
+    self_link:
+      type: string
+      description: Server-defined URL of this resource.
+      description_kind: plain
+      computed: true
+    server_tls_policy:
+      type: string
+      description: A fully-qualified ServerTLSPolicy URL reference. Specifies how TLS traffic is terminated. If empty, TLS termination is disabled.
+      description_kind: plain
+      optional: true
+    subnetwork:
+      type: string
+      description: 'The relative resource name identifying the subnetwork in which this SWG is allocated. For example: projects/*/regions/us-central1/subnetworks/network-1. Currently, this field is specific to gateways of type ''SECURE_WEB_GATEWAY''.'
+      description_kind: plain
+      optional: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    type:
+      type: string
+      description: 'Immutable. The type of the customer managed gateway. Possible values: ["OPEN_MESH", "SECURE_WEB_GATEWAY"]'
+      description_kind: plain
+      required: true
+    update_time:
+      type: string
+      description: The timestamp when the resource was updated.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

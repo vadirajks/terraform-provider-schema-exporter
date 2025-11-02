@@ -1,0 +1,135 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "app_service_environment_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "is_xenon": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "kind": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "maximum_elastic_worker_count": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "maximum_number_of_workers": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "per_site_scaling": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "reserved": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "zone_redundant": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "sku": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "capacity": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "size": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "tier": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain",
+    "deprecated": true
+  }
+}

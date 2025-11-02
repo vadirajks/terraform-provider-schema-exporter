@@ -1,0 +1,47 @@
+version: 0
+block:
+  attributes:
+    enabled:
+      type: bool
+      description: Desired VPC Service Controls state service producer VPC network, as described at the top of this page.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    network:
+      type: string
+      description: The network that the consumer is using to connect with services.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description: The id of the Google Cloud project containing the consumer network.
+      description_kind: plain
+      optional: true
+    service:
+      type: string
+      description: The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is 'servicenetworking.googleapis.com'.
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

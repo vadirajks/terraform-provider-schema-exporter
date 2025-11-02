@@ -1,0 +1,15 @@
+data "google_artifact_registry_version" "name" {
+  location = string (Required)
+  package_name = string (Required)
+  repository_id = string (Required)
+  version_name = string (Required)
+  annotations = ['map', 'string'] (Computed)
+  create_time = string (Computed)
+  description = string (Computed)
+  id = string (Optional, Computed)
+  name = string (Computed)
+  project = string (Optional)
+  related_tags = ['list', ['object', {'name': 'string', 'version': 'string'}]] (Computed)
+  update_time = string (Computed)
+  view = string (Optional)
+}

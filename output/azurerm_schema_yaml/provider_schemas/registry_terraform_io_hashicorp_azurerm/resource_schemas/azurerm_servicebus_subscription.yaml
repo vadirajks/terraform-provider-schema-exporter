@@ -1,0 +1,105 @@
+version: 1
+block:
+  attributes:
+    auto_delete_on_idle:
+      type: string
+      description_kind: plain
+      optional: true
+    batched_operations_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    client_scoped_subscription_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    dead_lettering_on_filter_evaluation_error:
+      type: bool
+      description_kind: plain
+      optional: true
+    dead_lettering_on_message_expiration:
+      type: bool
+      description_kind: plain
+      optional: true
+    default_message_ttl:
+      type: string
+      description_kind: plain
+      optional: true
+    forward_dead_lettered_messages_to:
+      type: string
+      description_kind: plain
+      optional: true
+    forward_to:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    lock_duration:
+      type: string
+      description_kind: plain
+      optional: true
+    max_delivery_count:
+      type: number
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    requires_session:
+      type: bool
+      description_kind: plain
+      optional: true
+    status:
+      type: string
+      description_kind: plain
+      optional: true
+    topic_id:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    client_scoped_subscription:
+      nesting_mode: list
+      block:
+        attributes:
+          client_id:
+            type: string
+            description_kind: plain
+            optional: true
+          is_client_scoped_subscription_durable:
+            type: bool
+            description_kind: plain
+            computed: true
+          is_client_scoped_subscription_shareable:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

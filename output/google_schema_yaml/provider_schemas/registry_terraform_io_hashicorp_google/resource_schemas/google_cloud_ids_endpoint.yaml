@@ -1,0 +1,84 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: Creation timestamp in RFC 3339 text format.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: An optional description of the endpoint.
+      description_kind: plain
+      optional: true
+    endpoint_forwarding_rule:
+      type: string
+      description: URL of the endpoint's network address to which traffic is to be sent by Packet Mirroring.
+      description_kind: plain
+      computed: true
+    endpoint_ip:
+      type: string
+      description: Internal IP address of the endpoint's network entry point.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: The location for the endpoint.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: Name of the endpoint in the format projects/{project_id}/locations/{locationId}/endpoints/{endpointId}.
+      description_kind: plain
+      required: true
+    network:
+      type: string
+      description: Name of the VPC network that is connected to the IDS endpoint. This can either contain the VPC network name itself (like "src-net") or the full URL to the network (like "projects/{project_id}/global/networks/src-net").
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    severity:
+      type: string
+      description: 'The minimum alert severity level that is reported by the endpoint. Possible values: ["INFORMATIONAL", "LOW", "MEDIUM", "HIGH", "CRITICAL"]'
+      description_kind: plain
+      required: true
+    threat_exceptions:
+      type:
+      - list
+      - string
+      description: 'Configuration for threat IDs excluded from generating alerts. Limit: 99 IDs.'
+      description_kind: plain
+      optional: true
+    update_time:
+      type: string
+      description: Last update timestamp in RFC 3339 text format.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

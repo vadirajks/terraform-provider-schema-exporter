@@ -1,0 +1,73 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "Time of creation",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "A system-generated unique identifier for this Lien.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "origin": {
+        "type": "string",
+        "description": "A stable, user-visible/meaningful string identifying the origin of the Lien, intended to be inspected programmatically. Maximum length of 200 characters.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "parent": {
+        "type": "string",
+        "description": "A reference to the resource this Lien is attached to. The server will validate the parent against those for which Liens are supported. Since a variety of objects can have Liens against them, you must provide the type prefix (e.g. \"projects/my-project-name\").",
+        "description_kind": "plain",
+        "required": true
+      },
+      "reason": {
+        "type": "string",
+        "description": "Concise user-visible strings indicating why an action cannot be performed on a resource. Maximum length of 200 characters.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "restrictions": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "The types of operations which should be blocked as a result of this Lien. Each value should correspond to an IAM permission. The server will validate the permissions against those for which Liens are supported.  An empty list is meaningless and will be rejected. e.g. ['resourcemanager.projects.delete']",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

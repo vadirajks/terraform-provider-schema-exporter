@@ -1,0 +1,64 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "fqdn": {
+        "type": "string",
+        "description": "Fully qualified domain name of network endpoint. This can only be specified when network_endpoint_type of the NEG is INTERNET_FQDN_PORT.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "global_network_endpoint_group": {
+        "type": "string",
+        "description": "The global network endpoint group this endpoint is part of.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ip_address": {
+        "type": "string",
+        "description": "IPv4 address external endpoint.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "port": {
+        "type": "number",
+        "description": "Port number of the external endpoint.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

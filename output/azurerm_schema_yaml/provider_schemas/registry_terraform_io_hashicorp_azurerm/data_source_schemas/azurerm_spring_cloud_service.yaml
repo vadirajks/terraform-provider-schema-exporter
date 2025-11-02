@@ -1,0 +1,105 @@
+version: 0
+block:
+  attributes:
+    config_server_git_setting:
+      type:
+      - list
+      - - object
+        - http_basic_auth:
+          - list
+          - - object
+            - password: string
+              username: string
+          label: string
+          repository:
+          - list
+          - - object
+            - http_basic_auth:
+              - list
+              - - object
+                - password: string
+                  username: string
+              label: string
+              name: string
+              pattern:
+              - list
+              - string
+              search_paths:
+              - list
+              - string
+              ssh_auth:
+              - list
+              - - object
+                - host_key: string
+                  host_key_algorithm: string
+                  private_key: string
+                  strict_host_key_checking_enabled: bool
+              uri: string
+          search_paths:
+          - list
+          - string
+          ssh_auth:
+          - list
+          - - object
+            - host_key: string
+              host_key_algorithm: string
+              private_key: string
+              strict_host_key_checking_enabled: bool
+          uri: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    outbound_public_ip_addresses:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    required_network_traffic_rules:
+      type:
+      - list
+      - - object
+        - direction: string
+          fqdns:
+          - list
+          - string
+          ip_addresses:
+          - list
+          - string
+          port: number
+          protocol: string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

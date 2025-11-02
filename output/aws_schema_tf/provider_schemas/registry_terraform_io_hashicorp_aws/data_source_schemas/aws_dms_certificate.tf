@@ -1,0 +1,15 @@
+data "aws_dms_certificate" "name" {
+  certificate_id = string (Required)
+  certificate_arn = string (Computed)
+  certificate_creation_date = string (Computed)
+  certificate_owner = string (Computed)
+  certificate_pem = string (Computed)
+  certificate_wallet = string (Computed)
+  id = string (Optional, Computed)
+  key_length = number (Computed)
+  region = string (Optional, Computed)
+  signing_algorithm = string (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  valid_from_date = string (Computed)
+  valid_to_date = string (Computed)
+}

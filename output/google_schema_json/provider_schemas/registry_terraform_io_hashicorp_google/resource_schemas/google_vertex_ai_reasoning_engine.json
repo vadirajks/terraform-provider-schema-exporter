@@ -1,0 +1,232 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "The timestamp of when the Index was created in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "The description of the ReasoningEngine.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "The display name of the ReasoningEngine.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The generated name of the ReasoningEngine, in the format 'projects/{project}/locations/{location}/reasoningEngines/{reasoningEngine}'",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "The region of the reasoning engine. eg us-central1",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "The timestamp of when the Index was last updated in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "encryption_spec": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "kms_key_name": {
+              "type": "string",
+              "description": "Required. The Cloud KMS resource identifier of the customer managed encryption key used to protect a resource. Has the form: projects/my-project/locations/my-region/keyRings/my-kr/cryptoKeys/my-key. The key needs to be in the same region as where the compute resource is created.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Optional. Customer-managed encryption key spec for a ReasoningEngine. If set, this ReasoningEngine and all sub-resources of this ReasoningEngine will be secured by this key.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "spec": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "agent_framework": {
+              "type": "string",
+              "description": "Optional. The OSS agent framework used to develop the agent.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "class_methods": {
+              "type": "string",
+              "description": "Optional. Declarations for object class methods in OpenAPI specification format.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "service_account": {
+              "type": "string",
+              "description": "Optional. The service account that the Reasoning Engine artifact runs as. It should have \"roles/storage.objectViewer\" for reading the user project's Cloud Storage and \"roles/aiplatform.user\" for using Vertex extensions. If not specified, the Vertex AI Reasoning Engine service Agent in the project will be used.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "deployment_spec": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "env": {
+                    "nesting_mode": "set",
+                    "block": {
+                      "attributes": {
+                        "name": {
+                          "type": "string",
+                          "description": "The name of the environment variable. Must be a valid C identifier.",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "value": {
+                          "type": "string",
+                          "description": "Variables that reference a $(VAR_NAME) are expanded using the previous defined environment variables in the container and any service environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "Optional. Environment variables to be set with the Reasoning Engine deployment.",
+                      "description_kind": "plain"
+                    }
+                  },
+                  "secret_env": {
+                    "nesting_mode": "set",
+                    "block": {
+                      "attributes": {
+                        "name": {
+                          "type": "string",
+                          "description": "The name of the environment variable. Must be a valid C identifier.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "secret_ref": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "secret": {
+                                "type": "string",
+                                "description": "The name of the secret in Cloud Secret Manager. Format: {secret_name}.",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "version": {
+                                "type": "string",
+                                "description": "The Cloud Secret Manager secret version. Can be 'latest' for the latest version, an integer for a specific version, or a version alias.",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description": "Reference to a secret stored in the Cloud Secret Manager that will provide the value for this environment variable.",
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        }
+                      },
+                      "description": "Optional. Environment variables where the value is a secret in Cloud Secret Manager. To use this feature, add 'Secret Manager Secret Accessor' role (roles/secretmanager.secretAccessor) to AI Platform Reasoning Engine service Agent.",
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description": "Optional. The specification of a Reasoning Engine deployment.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "package_spec": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "dependency_files_gcs_uri": {
+                    "type": "string",
+                    "description": "Optional. The Cloud Storage URI of the dependency files in tar.gz format.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "pickle_object_gcs_uri": {
+                    "type": "string",
+                    "description": "Optional. The Cloud Storage URI of the pickled python object.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "python_version": {
+                    "type": "string",
+                    "description": "Optional. The Python version.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "requirements_gcs_uri": {
+                    "type": "string",
+                    "description": "Optional. The Cloud Storage URI of the requirements.txt file",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Optional. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through deploymentSpec.first_party_image_override, but keeping the field_behavior to avoid introducing breaking changes.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Optional. Configurations of the ReasoningEngine.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

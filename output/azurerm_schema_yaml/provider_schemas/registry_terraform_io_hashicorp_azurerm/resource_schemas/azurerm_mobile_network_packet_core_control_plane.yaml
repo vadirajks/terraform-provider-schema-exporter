@@ -1,0 +1,148 @@
+version: 0
+block:
+  attributes:
+    control_plane_access_ipv4_address:
+      type: string
+      description_kind: plain
+      optional: true
+    control_plane_access_ipv4_gateway:
+      type: string
+      description_kind: plain
+      optional: true
+    control_plane_access_ipv4_subnet:
+      type: string
+      description_kind: plain
+      optional: true
+    control_plane_access_name:
+      type: string
+      description_kind: plain
+      optional: true
+    core_network_technology:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    interoperability_settings_json:
+      type: string
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    site_ids:
+      type:
+      - list
+      - string
+      description_kind: plain
+      required: true
+    sku:
+      type: string
+      description_kind: plain
+      required: true
+    software_version:
+      type: string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    user_equipment_mtu_in_bytes:
+      type: number
+      description_kind: plain
+      optional: true
+  block_types:
+    identity:
+      nesting_mode: list
+      block:
+        attributes:
+          identity_ids:
+            type:
+            - set
+            - string
+            description_kind: plain
+            required: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    local_diagnostics_access:
+      nesting_mode: list
+      block:
+        attributes:
+          authentication_type:
+            type: string
+            description_kind: plain
+            required: true
+          https_server_certificate_url:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    platform:
+      nesting_mode: list
+      block:
+        attributes:
+          arc_kubernetes_cluster_id:
+            type: string
+            description_kind: plain
+            optional: true
+          custom_location_id:
+            type: string
+            description_kind: plain
+            optional: true
+          edge_device_id:
+            type: string
+            description_kind: plain
+            optional: true
+          stack_hci_cluster_id:
+            type: string
+            description_kind: plain
+            optional: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

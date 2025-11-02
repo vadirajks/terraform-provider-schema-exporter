@@ -1,0 +1,36 @@
+version: 0
+block:
+  attributes:
+    key_value_store_arn:
+      type: string
+      description: The Amazon Resource Name (ARN) of the Key Value Store.
+      description_kind: markdown
+      required: true
+    max_batch_size:
+      type: number
+      description: Maximum resource key values pairs that you wills update in a single API request. AWS has a default quota of 50 keys or a 3 MB payload, whichever is reached first
+      description_kind: markdown
+      optional: true
+      computed: true
+    total_size_in_bytes:
+      type: number
+      description: Total size of the Key Value Store in bytes.
+      description_kind: markdown
+      computed: true
+  block_types:
+    resource_key_value_pair:
+      nesting_mode: set
+      block:
+        attributes:
+          key:
+            type: string
+            description: The key to put.
+            description_kind: markdown
+            required: true
+          value:
+            type: string
+            description: The value to put.
+            description_kind: markdown
+            required: true
+        description_kind: plain
+  description_kind: plain

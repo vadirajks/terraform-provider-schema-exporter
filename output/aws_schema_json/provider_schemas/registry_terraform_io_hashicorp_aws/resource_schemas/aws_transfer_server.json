@@ -1,0 +1,295 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "certificate": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "directory_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "domain": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "endpoint": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "endpoint_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "force_destroy": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "function": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "host_key": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "sensitive": true
+      },
+      "host_key_fingerprint": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "identity_provider_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "invocation_role": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "logging_role": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "post_authentication_login_banner": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "sensitive": true
+      },
+      "pre_authentication_login_banner": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "sensitive": true
+      },
+      "protocols": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "security_policy_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "sftp_authentication_methods": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "structured_log_destinations": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description": "This is a set of arns of destinations that will receive structured logs from the transfer server",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "url": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "endpoint_details": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "address_allocation_ids": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "security_group_ids": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "subnet_ids": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "vpc_endpoint_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "vpc_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "protocol_details": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "as2_transports": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "passive_ip": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "set_stat_option": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "tls_session_resumption_mode": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "s3_storage_options": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "directory_listing_optimization": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "workflow_details": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "on_partial_upload": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "execution_role": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "workflow_id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "on_upload": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "execution_role": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "workflow_id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

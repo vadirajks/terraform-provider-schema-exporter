@@ -1,0 +1,480 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "checksum": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "create_version": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "created_date": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "last_updated_date": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "parent_intent_signature": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "sample_utterances": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "version": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "conclusion_statement": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "response_card": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "message": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "content": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "content_type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "group_number": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 15
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "confirmation_prompt": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "max_attempts": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "response_card": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "message": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "content": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "content_type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "group_number": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 15
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "dialog_code_hook": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "message_version": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "uri": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "follow_up_prompt": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "prompt": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "max_attempts": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "response_card": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "message": {
+                    "nesting_mode": "set",
+                    "block": {
+                      "attributes": {
+                        "content": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "content_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "group_number": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 15
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "rejection_statement": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "response_card": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "message": {
+                    "nesting_mode": "set",
+                    "block": {
+                      "attributes": {
+                        "content": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "content_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "group_number": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 15
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "fulfillment_activity": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "code_hook": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "message_version": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "uri": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "rejection_statement": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "response_card": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "message": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "content": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "content_type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "group_number": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 15
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "slot": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "description": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "priority": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "response_card": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "sample_utterances": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "slot_constraint": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "slot_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "slot_type_version": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "value_elicitation_prompt": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "max_attempts": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "response_card": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "message": {
+                    "nesting_mode": "set",
+                    "block": {
+                      "attributes": {
+                        "content": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "content_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "group_number": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 15
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 100
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

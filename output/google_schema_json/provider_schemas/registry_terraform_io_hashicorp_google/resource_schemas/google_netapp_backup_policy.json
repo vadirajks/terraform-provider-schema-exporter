@@ -1,0 +1,132 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "assigned_volume_count": {
+        "type": "number",
+        "description": "The total number of volumes assigned by this backup policy.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "Create time of the backup policy. A timestamp in RFC3339 UTC \"Zulu\" format. Examples: \"2023-06-22T09:13:01.617Z\".",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "daily_backup_limit": {
+        "type": "number",
+        "description": "Number of daily backups to keep. Note that the minimum daily backup limit is 2.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "description": {
+        "type": "string",
+        "description": "An optional description of this resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "enabled": {
+        "type": "bool",
+        "description": "If enabled, make backups automatically according to the schedules. This will be applied to all volumes that have this policy attached and enforced on volume level.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Labels as key value pairs. Example: '{ \"owner\": \"Bob\", \"department\": \"finance\", \"purpose\": \"testing\" }'. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "Name of the region for the policy to apply to.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "monthly_backup_limit": {
+        "type": "number",
+        "description": "Number of monthly backups to keep. Note that the sum of daily, weekly and monthly backups should be greater than 1.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the backup policy. Needs to be unique per location.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "state": {
+        "type": "string",
+        "description": "The state of the backup policy.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "weekly_backup_limit": {
+        "type": "number",
+        "description": "Number of weekly backups to keep. Note that the sum of daily, weekly and monthly backups should be greater than 1.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

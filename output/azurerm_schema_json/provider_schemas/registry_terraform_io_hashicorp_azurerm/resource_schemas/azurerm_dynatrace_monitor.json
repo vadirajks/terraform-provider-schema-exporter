@@ -1,0 +1,189 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "marketplace_subscription": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "monitoring_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "environment_properties": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "environment_info": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "environment_id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "identity": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "principal_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "tenant_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "plan": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "billing_cycle": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "effective_date": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "plan": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "usage_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "user": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "country": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "email": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "first_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "last_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "phone_number": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

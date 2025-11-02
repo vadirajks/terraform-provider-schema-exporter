@@ -1,0 +1,60 @@
+version: 0
+block:
+  attributes:
+    cloud_exadata_infrastructure_name:
+      type: string
+      description_kind: plain
+      required: true
+    db_servers:
+      type:
+      - list
+      - - object
+        - autonomous_virtual_machine_ds:
+          - list
+          - string
+          autonomous_vm_cluster_ids:
+          - list
+          - string
+          compartment_id: string
+          compute_model: string
+          cpu_core_count: number
+          db_node_ids:
+          - list
+          - string
+          db_node_storage_size_in_gbs: number
+          display_name: string
+          exadata_infrastructure_id: string
+          lifecycle_details: string
+          lifecycle_state: string
+          max_cpu_count: number
+          max_db_node_storage_in_gbs: number
+          max_memory_in_gbs: number
+          memory_size_in_gbs: number
+          ocid: string
+          shape: string
+          time_created: string
+          vm_cluster_ids:
+          - list
+          - string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,6 @@
+data "google_certificate_manager_certificates" "name" {
+  certificates = ['list', ['object', {'description': 'string', 'effective_labels': ['map', 'string'], 'labels': ['map', 'string'], 'location': 'string', 'managed': ['list', ['object', {'authorization_attempt_info': ['list', ['object', {'details': 'string', 'domain': 'string', 'failure_reason': 'string', 'state': 'string'}]], 'dns_authorizations': ['list', 'string'], 'domains': ['list', 'string'], 'issuance_config': 'string', 'provisioning_issue': ['list', ['object', {'details': 'string', 'reason': 'string'}]], 'state': 'string'}]], 'name': 'string', 'project': 'string', 'san_dnsnames': ['list', 'string'], 'scope': 'string', 'terraform_labels': ['map', 'string']}]] (Computed)
+  filter = string (Optional)
+  id = string (Optional, Computed)
+  region = string (Optional)
+}

@@ -1,0 +1,904 @@
+version: 0
+block:
+  attributes:
+    baseline:
+      type: bool
+      description: Output only. Indicates that this revision has been successfully rolled out in this zone and new VMs will be assigned OS policies from this revision. For a given OS policy assignment, there is only one revision with a value of 'true' for this field.
+      description_kind: plain
+      computed: true
+    deleted:
+      type: bool
+      description: Output only. Indicates that this revision deletes the OS policy assignment.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: OS policy assignment description. Length of the description is limited to 1024 characters.
+      description_kind: plain
+      optional: true
+    etag:
+      type: string
+      description: The etag for this OS policy assignment. If this is provided on update, it must match the server's etag.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: The location for the resource
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: Resource name.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description: The project for the resource
+      description_kind: plain
+      optional: true
+      computed: true
+    reconciling:
+      type: bool
+      description: 'Output only. Indicates that reconciliation is in progress for the revision. This value is ''true'' when the ''rollout_state'' is one of: * IN_PROGRESS * CANCELLING'
+      description_kind: plain
+      computed: true
+    revision_create_time:
+      type: string
+      description: Output only. The timestamp that the revision was created.
+      description_kind: plain
+      computed: true
+    revision_id:
+      type: string
+      description: Output only. The assignment revision ID A new revision is committed whenever a rollout is triggered for a OS policy assignment
+      description_kind: plain
+      computed: true
+    rollout_state:
+      type: string
+      description: Output only. OS policy assignment rollout state
+      description_kind: plain
+      computed: true
+    skip_await_rollout:
+      type: bool
+      description: Set to true to skip awaiting rollout during resource creation and update.
+      description_kind: plain
+      optional: true
+    uid:
+      type: string
+      description: Output only. Server generated unique id for the OS policy assignment resource.
+      description_kind: plain
+      computed: true
+  block_types:
+    instance_filter:
+      nesting_mode: list
+      block:
+        attributes:
+          all:
+            type: bool
+            description: Target all VMs in the project. If true, no other criteria is permitted.
+            description_kind: plain
+            optional: true
+        block_types:
+          exclusion_labels:
+            nesting_mode: list
+            block:
+              attributes:
+                labels:
+                  type:
+                  - map
+                  - string
+                  description: Labels are identified by key/value pairs in this map. A VM should contain all the key/value pairs specified in this map to be selected.
+                  description_kind: plain
+                  optional: true
+              description: List of label sets used for VM exclusion. If the list has more than one label set, the VM is excluded if any of the label sets are applicable for the VM.
+              description_kind: plain
+          inclusion_labels:
+            nesting_mode: list
+            block:
+              attributes:
+                labels:
+                  type:
+                  - map
+                  - string
+                  description: Labels are identified by key/value pairs in this map. A VM should contain all the key/value pairs specified in this map to be selected.
+                  description_kind: plain
+                  optional: true
+              description: List of label sets used for VM inclusion. If the list has more than one 'LabelSet', the VM is included if any of the label sets are applicable for the VM.
+              description_kind: plain
+          inventories:
+            nesting_mode: list
+            block:
+              attributes:
+                os_short_name:
+                  type: string
+                  description: The OS short name
+                  description_kind: plain
+                  required: true
+                os_version:
+                  type: string
+                  description: The OS version Prefix matches are supported if asterisk(*) is provided as the last character. For example, to match all versions with a major version of '7', specify the following value for this field '7.*' An empty string matches all OS versions.
+                  description_kind: plain
+                  optional: true
+              description: List of inventories to select VMs. A VM is selected if its inventory data matches at least one of the following inventories.
+              description_kind: plain
+        description: Filter to select VMs.
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    os_policies:
+      nesting_mode: list
+      block:
+        attributes:
+          allow_no_resource_group_match:
+            type: bool
+            description: This flag determines the OS policy compliance status when none of the resource groups within the policy are applicable for a VM. Set this value to 'true' if the policy needs to be reported as compliant even if the policy has nothing to validate or enforce.
+            description_kind: plain
+            optional: true
+          description:
+            type: string
+            description: Policy description. Length of the description is limited to 1024 characters.
+            description_kind: plain
+            optional: true
+          id:
+            type: string
+            description: 'The id of the OS policy with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the assignment.'
+            description_kind: plain
+            required: true
+          mode:
+            type: string
+            description: 'Policy mode Possible values: ["MODE_UNSPECIFIED", "VALIDATION", "ENFORCEMENT"]'
+            description_kind: plain
+            required: true
+        block_types:
+          resource_groups:
+            nesting_mode: list
+            block:
+              block_types:
+                inventory_filters:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      os_short_name:
+                        type: string
+                        description: The OS short name
+                        description_kind: plain
+                        required: true
+                      os_version:
+                        type: string
+                        description: The OS version Prefix matches are supported if asterisk(*) is provided as the last character. For example, to match all versions with a major version of '7', specify the following value for this field '7.*' An empty string matches all OS versions.
+                        description_kind: plain
+                        optional: true
+                    description: 'List of inventory filters for the resource group. The resources in this resource group are applied to the target VM if it satisfies at least one of the following inventory filters. For example, to apply this resource group to VMs running either ''RHEL'' or ''CentOS'' operating systems, specify 2 items for the list with following values: inventory_filters[0].os_short_name=''rhel'' and inventory_filters[1].os_short_name=''centos'' If the list is empty, this resource group will be applied to the target VM unconditionally.'
+                    description_kind: plain
+                resources:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      id:
+                        type: string
+                        description: 'The id of the resource with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the OS policy.'
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      exec:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            enforce:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  args:
+                                    type:
+                                    - list
+                                    - string
+                                    description: Optional arguments to pass to the source during execution.
+                                    description_kind: plain
+                                    optional: true
+                                  interpreter:
+                                    type: string
+                                    description: 'The script interpreter to use. Possible values: ["INTERPRETER_UNSPECIFIED", "NONE", "SHELL", "POWERSHELL"]'
+                                    description_kind: plain
+                                    required: true
+                                  output_file_path:
+                                    type: string
+                                    description: Only recorded for enforce Exec. Path to an output file (that is created by this Exec) whose content will be recorded in OSPolicyResourceCompliance after a successful run. Absence or failure to read this file will result in this ExecResource being non-compliant. Output file size is limited to 100K bytes.
+                                    description_kind: plain
+                                    optional: true
+                                  script:
+                                    type: string
+                                    description: An inline script. The size of the script is limited to 1024 characters.
+                                    description_kind: plain
+                                    optional: true
+                                block_types:
+                                  file:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        allow_insecure:
+                                          type: bool
+                                          description: 'Defaults to false. When false, files are subject to validations based on the file type: Remote: A checksum must be specified. Cloud Storage: An object generation number must be specified.'
+                                          description_kind: plain
+                                          optional: true
+                                        local_path:
+                                          type: string
+                                          description: A local path within the VM to use.
+                                          description_kind: plain
+                                          optional: true
+                                      block_types:
+                                        gcs:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              bucket:
+                                                type: string
+                                                description: Bucket of the Cloud Storage object.
+                                                description_kind: plain
+                                                required: true
+                                              generation:
+                                                type: number
+                                                description: Generation number of the Cloud Storage object.
+                                                description_kind: plain
+                                                optional: true
+                                              object:
+                                                type: string
+                                                description: Name of the Cloud Storage object.
+                                                description_kind: plain
+                                                required: true
+                                            description: A Cloud Storage object.
+                                            description_kind: plain
+                                          max_items: 1
+                                        remote:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              sha256_checksum:
+                                                type: string
+                                                description: SHA256 checksum of the remote file.
+                                                description_kind: plain
+                                                optional: true
+                                              uri:
+                                                type: string
+                                                description: URI from which to fetch the object. It should contain both the protocol and path following the format '{protocol}://{location}'.
+                                                description_kind: plain
+                                                required: true
+                                            description: A generic remote file.
+                                            description_kind: plain
+                                          max_items: 1
+                                      description: A remote or local file.
+                                      description_kind: plain
+                                    max_items: 1
+                                description: What to run to bring this resource into the desired state. An exit code of 100 indicates "success", any other exit code indicates a failure running enforce.
+                                description_kind: plain
+                              max_items: 1
+                            validate:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  args:
+                                    type:
+                                    - list
+                                    - string
+                                    description: Optional arguments to pass to the source during execution.
+                                    description_kind: plain
+                                    optional: true
+                                  interpreter:
+                                    type: string
+                                    description: 'The script interpreter to use. Possible values: ["INTERPRETER_UNSPECIFIED", "NONE", "SHELL", "POWERSHELL"]'
+                                    description_kind: plain
+                                    required: true
+                                  output_file_path:
+                                    type: string
+                                    description: Only recorded for enforce Exec. Path to an output file (that is created by this Exec) whose content will be recorded in OSPolicyResourceCompliance after a successful run. Absence or failure to read this file will result in this ExecResource being non-compliant. Output file size is limited to 100K bytes.
+                                    description_kind: plain
+                                    optional: true
+                                  script:
+                                    type: string
+                                    description: An inline script. The size of the script is limited to 1024 characters.
+                                    description_kind: plain
+                                    optional: true
+                                block_types:
+                                  file:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        allow_insecure:
+                                          type: bool
+                                          description: 'Defaults to false. When false, files are subject to validations based on the file type: Remote: A checksum must be specified. Cloud Storage: An object generation number must be specified.'
+                                          description_kind: plain
+                                          optional: true
+                                        local_path:
+                                          type: string
+                                          description: A local path within the VM to use.
+                                          description_kind: plain
+                                          optional: true
+                                      block_types:
+                                        gcs:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              bucket:
+                                                type: string
+                                                description: Bucket of the Cloud Storage object.
+                                                description_kind: plain
+                                                required: true
+                                              generation:
+                                                type: number
+                                                description: Generation number of the Cloud Storage object.
+                                                description_kind: plain
+                                                optional: true
+                                              object:
+                                                type: string
+                                                description: Name of the Cloud Storage object.
+                                                description_kind: plain
+                                                required: true
+                                            description: A Cloud Storage object.
+                                            description_kind: plain
+                                          max_items: 1
+                                        remote:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              sha256_checksum:
+                                                type: string
+                                                description: SHA256 checksum of the remote file.
+                                                description_kind: plain
+                                                optional: true
+                                              uri:
+                                                type: string
+                                                description: URI from which to fetch the object. It should contain both the protocol and path following the format '{protocol}://{location}'.
+                                                description_kind: plain
+                                                required: true
+                                            description: A generic remote file.
+                                            description_kind: plain
+                                          max_items: 1
+                                      description: A remote or local file.
+                                      description_kind: plain
+                                    max_items: 1
+                                description: What to run to validate this resource is in the desired state. An exit code of 100 indicates "in desired state", and exit code of 101 indicates "not in desired state". Any other exit code indicates a failure running validate.
+                                description_kind: plain
+                              min_items: 1
+                              max_items: 1
+                          description: Exec resource
+                          description_kind: plain
+                        max_items: 1
+                      file:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            content:
+                              type: string
+                              description: A a file with this content. The size of the content is limited to 1024 characters.
+                              description_kind: plain
+                              optional: true
+                            path:
+                              type: string
+                              description: The absolute path of the file within the VM.
+                              description_kind: plain
+                              required: true
+                            permissions:
+                              type: string
+                              description: 'Consists of three octal digits which represent, in order, the permissions of the owner, group, and other users for the file (similarly to the numeric mode used in the linux chmod utility). Each digit represents a three bit number with the 4 bit corresponding to the read permissions, the 2 bit corresponds to the write bit, and the one bit corresponds to the execute permission. Default behavior is 755. Below are some examples of permissions and their associated values: read, write, and execute: 7 read and execute: 5 read and write: 6 read only: 4'
+                              description_kind: plain
+                              computed: true
+                            state:
+                              type: string
+                              description: 'Desired state of the file. Possible values: ["DESIRED_STATE_UNSPECIFIED", "PRESENT", "ABSENT", "CONTENTS_MATCH"]'
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            file:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  allow_insecure:
+                                    type: bool
+                                    description: 'Defaults to false. When false, files are subject to validations based on the file type: Remote: A checksum must be specified. Cloud Storage: An object generation number must be specified.'
+                                    description_kind: plain
+                                    optional: true
+                                  local_path:
+                                    type: string
+                                    description: A local path within the VM to use.
+                                    description_kind: plain
+                                    optional: true
+                                block_types:
+                                  gcs:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        bucket:
+                                          type: string
+                                          description: Bucket of the Cloud Storage object.
+                                          description_kind: plain
+                                          required: true
+                                        generation:
+                                          type: number
+                                          description: Generation number of the Cloud Storage object.
+                                          description_kind: plain
+                                          optional: true
+                                        object:
+                                          type: string
+                                          description: Name of the Cloud Storage object.
+                                          description_kind: plain
+                                          required: true
+                                      description: A Cloud Storage object.
+                                      description_kind: plain
+                                    max_items: 1
+                                  remote:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        sha256_checksum:
+                                          type: string
+                                          description: SHA256 checksum of the remote file.
+                                          description_kind: plain
+                                          optional: true
+                                        uri:
+                                          type: string
+                                          description: URI from which to fetch the object. It should contain both the protocol and path following the format '{protocol}://{location}'.
+                                          description_kind: plain
+                                          required: true
+                                      description: A generic remote file.
+                                      description_kind: plain
+                                    max_items: 1
+                                description: A remote or local source.
+                                description_kind: plain
+                              max_items: 1
+                          description: File resource
+                          description_kind: plain
+                        max_items: 1
+                      pkg:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            desired_state:
+                              type: string
+                              description: 'The desired state the agent should maintain for this package. Possible values: ["DESIRED_STATE_UNSPECIFIED", "INSTALLED", "REMOVED"]'
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            apt:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  name:
+                                    type: string
+                                    description: Package name.
+                                    description_kind: plain
+                                    required: true
+                                description: A package managed by Apt.
+                                description_kind: plain
+                              max_items: 1
+                            deb:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  pull_deps:
+                                    type: bool
+                                    description: 'Whether dependencies should also be installed. - install when false: ''dpkg -i package'' - install when true: ''apt-get update && apt-get -y install package.deb'''
+                                    description_kind: plain
+                                    optional: true
+                                block_types:
+                                  source:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        allow_insecure:
+                                          type: bool
+                                          description: 'Defaults to false. When false, files are subject to validations based on the file type: Remote: A checksum must be specified. Cloud Storage: An object generation number must be specified.'
+                                          description_kind: plain
+                                          optional: true
+                                        local_path:
+                                          type: string
+                                          description: A local path within the VM to use.
+                                          description_kind: plain
+                                          optional: true
+                                      block_types:
+                                        gcs:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              bucket:
+                                                type: string
+                                                description: Bucket of the Cloud Storage object.
+                                                description_kind: plain
+                                                required: true
+                                              generation:
+                                                type: number
+                                                description: Generation number of the Cloud Storage object.
+                                                description_kind: plain
+                                                optional: true
+                                              object:
+                                                type: string
+                                                description: Name of the Cloud Storage object.
+                                                description_kind: plain
+                                                required: true
+                                            description: A Cloud Storage object.
+                                            description_kind: plain
+                                          max_items: 1
+                                        remote:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              sha256_checksum:
+                                                type: string
+                                                description: SHA256 checksum of the remote file.
+                                                description_kind: plain
+                                                optional: true
+                                              uri:
+                                                type: string
+                                                description: URI from which to fetch the object. It should contain both the protocol and path following the format '{protocol}://{location}'.
+                                                description_kind: plain
+                                                required: true
+                                            description: A generic remote file.
+                                            description_kind: plain
+                                          max_items: 1
+                                      description: A deb package.
+                                      description_kind: plain
+                                    min_items: 1
+                                    max_items: 1
+                                description: A deb package file.
+                                description_kind: plain
+                              max_items: 1
+                            googet:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  name:
+                                    type: string
+                                    description: Package name.
+                                    description_kind: plain
+                                    required: true
+                                description: A package managed by GooGet.
+                                description_kind: plain
+                              max_items: 1
+                            msi:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  properties:
+                                    type:
+                                    - list
+                                    - string
+                                    description: Additional properties to use during installation. This should be in the format of Property=Setting. Appended to the defaults of 'ACTION=INSTALL REBOOT=ReallySuppress'.
+                                    description_kind: plain
+                                    optional: true
+                                block_types:
+                                  source:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        allow_insecure:
+                                          type: bool
+                                          description: 'Defaults to false. When false, files are subject to validations based on the file type: Remote: A checksum must be specified. Cloud Storage: An object generation number must be specified.'
+                                          description_kind: plain
+                                          optional: true
+                                        local_path:
+                                          type: string
+                                          description: A local path within the VM to use.
+                                          description_kind: plain
+                                          optional: true
+                                      block_types:
+                                        gcs:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              bucket:
+                                                type: string
+                                                description: Bucket of the Cloud Storage object.
+                                                description_kind: plain
+                                                required: true
+                                              generation:
+                                                type: number
+                                                description: Generation number of the Cloud Storage object.
+                                                description_kind: plain
+                                                optional: true
+                                              object:
+                                                type: string
+                                                description: Name of the Cloud Storage object.
+                                                description_kind: plain
+                                                required: true
+                                            description: A Cloud Storage object.
+                                            description_kind: plain
+                                          max_items: 1
+                                        remote:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              sha256_checksum:
+                                                type: string
+                                                description: SHA256 checksum of the remote file.
+                                                description_kind: plain
+                                                optional: true
+                                              uri:
+                                                type: string
+                                                description: URI from which to fetch the object. It should contain both the protocol and path following the format '{protocol}://{location}'.
+                                                description_kind: plain
+                                                required: true
+                                            description: A generic remote file.
+                                            description_kind: plain
+                                          max_items: 1
+                                      description: The MSI package.
+                                      description_kind: plain
+                                    min_items: 1
+                                    max_items: 1
+                                description: An MSI package.
+                                description_kind: plain
+                              max_items: 1
+                            rpm:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  pull_deps:
+                                    type: bool
+                                    description: 'Whether dependencies should also be installed. - install when false: ''rpm --upgrade --replacepkgs package.rpm'' - install when true: ''yum -y install package.rpm'' or ''zypper -y install package.rpm'''
+                                    description_kind: plain
+                                    optional: true
+                                block_types:
+                                  source:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        allow_insecure:
+                                          type: bool
+                                          description: 'Defaults to false. When false, files are subject to validations based on the file type: Remote: A checksum must be specified. Cloud Storage: An object generation number must be specified.'
+                                          description_kind: plain
+                                          optional: true
+                                        local_path:
+                                          type: string
+                                          description: A local path within the VM to use.
+                                          description_kind: plain
+                                          optional: true
+                                      block_types:
+                                        gcs:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              bucket:
+                                                type: string
+                                                description: Bucket of the Cloud Storage object.
+                                                description_kind: plain
+                                                required: true
+                                              generation:
+                                                type: number
+                                                description: Generation number of the Cloud Storage object.
+                                                description_kind: plain
+                                                optional: true
+                                              object:
+                                                type: string
+                                                description: Name of the Cloud Storage object.
+                                                description_kind: plain
+                                                required: true
+                                            description: A Cloud Storage object.
+                                            description_kind: plain
+                                          max_items: 1
+                                        remote:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              sha256_checksum:
+                                                type: string
+                                                description: SHA256 checksum of the remote file.
+                                                description_kind: plain
+                                                optional: true
+                                              uri:
+                                                type: string
+                                                description: URI from which to fetch the object. It should contain both the protocol and path following the format '{protocol}://{location}'.
+                                                description_kind: plain
+                                                required: true
+                                            description: A generic remote file.
+                                            description_kind: plain
+                                          max_items: 1
+                                      description: An rpm package.
+                                      description_kind: plain
+                                    min_items: 1
+                                    max_items: 1
+                                description: An rpm package file.
+                                description_kind: plain
+                              max_items: 1
+                            yum:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  name:
+                                    type: string
+                                    description: Package name.
+                                    description_kind: plain
+                                    required: true
+                                description: A package managed by YUM.
+                                description_kind: plain
+                              max_items: 1
+                            zypper:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  name:
+                                    type: string
+                                    description: Package name.
+                                    description_kind: plain
+                                    required: true
+                                description: A package managed by Zypper.
+                                description_kind: plain
+                              max_items: 1
+                          description: Package resource
+                          description_kind: plain
+                        max_items: 1
+                      repository:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            apt:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  archive_type:
+                                    type: string
+                                    description: 'Type of archive files in this repository. Possible values: ["ARCHIVE_TYPE_UNSPECIFIED", "DEB", "DEB_SRC"]'
+                                    description_kind: plain
+                                    required: true
+                                  components:
+                                    type:
+                                    - list
+                                    - string
+                                    description: List of components for this repository. Must contain at least one item.
+                                    description_kind: plain
+                                    required: true
+                                  distribution:
+                                    type: string
+                                    description: Distribution of this repository.
+                                    description_kind: plain
+                                    required: true
+                                  gpg_key:
+                                    type: string
+                                    description: URI of the key file for this repository. The agent maintains a keyring at '/etc/apt/trusted.gpg.d/osconfig_agent_managed.gpg'.
+                                    description_kind: plain
+                                    optional: true
+                                  uri:
+                                    type: string
+                                    description: URI for this repository.
+                                    description_kind: plain
+                                    required: true
+                                description: An Apt Repository.
+                                description_kind: plain
+                              max_items: 1
+                            goo:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  name:
+                                    type: string
+                                    description: The name of the repository.
+                                    description_kind: plain
+                                    required: true
+                                  url:
+                                    type: string
+                                    description: The url of the repository.
+                                    description_kind: plain
+                                    required: true
+                                description: A Goo Repository.
+                                description_kind: plain
+                              max_items: 1
+                            yum:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  base_url:
+                                    type: string
+                                    description: The location of the repository directory.
+                                    description_kind: plain
+                                    required: true
+                                  display_name:
+                                    type: string
+                                    description: The display name of the repository.
+                                    description_kind: plain
+                                    optional: true
+                                  gpg_keys:
+                                    type:
+                                    - list
+                                    - string
+                                    description: URIs of GPG keys.
+                                    description_kind: plain
+                                    optional: true
+                                  id:
+                                    type: string
+                                    description: A one word, unique name for this repository. This is the 'repo id' in the yum config file and also the 'display_name' if 'display_name' is omitted. This id is also used as the unique identifier when checking for resource conflicts.
+                                    description_kind: plain
+                                    required: true
+                                description: A Yum Repository.
+                                description_kind: plain
+                              max_items: 1
+                            zypper:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  base_url:
+                                    type: string
+                                    description: The location of the repository directory.
+                                    description_kind: plain
+                                    required: true
+                                  display_name:
+                                    type: string
+                                    description: The display name of the repository.
+                                    description_kind: plain
+                                    optional: true
+                                  gpg_keys:
+                                    type:
+                                    - list
+                                    - string
+                                    description: URIs of GPG keys.
+                                    description_kind: plain
+                                    optional: true
+                                  id:
+                                    type: string
+                                    description: A one word, unique name for this repository. This is the 'repo id' in the zypper config file and also the 'display_name' if 'display_name' is omitted. This id is also used as the unique identifier when checking for GuestPolicy conflicts.
+                                    description_kind: plain
+                                    required: true
+                                description: A Zypper Repository.
+                                description_kind: plain
+                              max_items: 1
+                          description: Package repository resource
+                          description_kind: plain
+                        max_items: 1
+                    description: List of resources configured for this resource group. The resources are executed in the exact order specified here.
+                    description_kind: plain
+                  min_items: 1
+              description: List of resource groups for the policy. For a particular VM, resource groups are evaluated in the order specified and the first resource group that is applicable is selected and the rest are ignored. If none of the resource groups are applicable for a VM, the VM is considered to be non-compliant w.r.t this policy. This behavior can be toggled by the flag 'allow_no_resource_group_match'
+              description_kind: plain
+            min_items: 1
+        description: List of OS policies to be applied to the VMs.
+        description_kind: plain
+      min_items: 1
+    rollout:
+      nesting_mode: list
+      block:
+        attributes:
+          min_wait_duration:
+            type: string
+            description: This determines the minimum duration of time to wait after the configuration changes are applied through the current rollout. A VM continues to count towards the 'disruption_budget' at least until this duration of time has passed after configuration changes are applied.
+            description_kind: plain
+            required: true
+        block_types:
+          disruption_budget:
+            nesting_mode: list
+            block:
+              attributes:
+                fixed:
+                  type: number
+                  description: Specifies a fixed value.
+                  description_kind: plain
+                  optional: true
+                percent:
+                  type: number
+                  description: Specifies the relative value defined as a percentage, which will be multiplied by a reference value.
+                  description_kind: plain
+                  optional: true
+              description: The maximum number (or percentage) of VMs per zone to disrupt at any given moment.
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description: 'Rollout to deploy the OS policy assignment. A rollout is triggered in the following situations: 1) OSPolicyAssignment is created. 2) OSPolicyAssignment is updated and the update contains changes to one of the following fields: - instance_filter - os_policies 3) OSPolicyAssignment is deleted.'
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

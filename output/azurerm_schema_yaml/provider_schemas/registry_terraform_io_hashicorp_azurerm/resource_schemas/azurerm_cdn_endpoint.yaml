@@ -1,0 +1,711 @@
+version: 1
+block:
+  attributes:
+    content_types_to_compress:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    fqdn:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    is_compression_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    is_http_allowed:
+      type: bool
+      description_kind: plain
+      optional: true
+    is_https_allowed:
+      type: bool
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    optimization_type:
+      type: string
+      description_kind: plain
+      optional: true
+    origin_host_header:
+      type: string
+      description_kind: plain
+      optional: true
+    origin_path:
+      type: string
+      description_kind: plain
+      optional: true
+    probe_path:
+      type: string
+      description_kind: plain
+      optional: true
+    profile_name:
+      type: string
+      description_kind: plain
+      required: true
+    querystring_caching_behaviour:
+      type: string
+      description_kind: plain
+      optional: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    delivery_rule:
+      nesting_mode: list
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          order:
+            type: number
+            description_kind: plain
+            required: true
+        block_types:
+          cache_expiration_action:
+            nesting_mode: list
+            block:
+              attributes:
+                behavior:
+                  type: string
+                  description_kind: plain
+                  required: true
+                duration:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          cache_key_query_string_action:
+            nesting_mode: list
+            block:
+              attributes:
+                behavior:
+                  type: string
+                  description_kind: plain
+                  required: true
+                parameters:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          cookies_condition:
+            nesting_mode: list
+            block:
+              attributes:
+                match_values:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                negate_condition:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                operator:
+                  type: string
+                  description_kind: plain
+                  required: true
+                selector:
+                  type: string
+                  description_kind: plain
+                  required: true
+                transforms:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          device_condition:
+            nesting_mode: list
+            block:
+              attributes:
+                match_values:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  required: true
+                negate_condition:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                operator:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          http_version_condition:
+            nesting_mode: list
+            block:
+              attributes:
+                match_values:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  required: true
+                negate_condition:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                operator:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          modify_request_header_action:
+            nesting_mode: list
+            block:
+              attributes:
+                action:
+                  type: string
+                  description_kind: plain
+                  required: true
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          modify_response_header_action:
+            nesting_mode: list
+            block:
+              attributes:
+                action:
+                  type: string
+                  description_kind: plain
+                  required: true
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          post_arg_condition:
+            nesting_mode: list
+            block:
+              attributes:
+                match_values:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                negate_condition:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                operator:
+                  type: string
+                  description_kind: plain
+                  required: true
+                selector:
+                  type: string
+                  description_kind: plain
+                  required: true
+                transforms:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          query_string_condition:
+            nesting_mode: list
+            block:
+              attributes:
+                match_values:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                negate_condition:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                operator:
+                  type: string
+                  description_kind: plain
+                  required: true
+                transforms:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          remote_address_condition:
+            nesting_mode: list
+            block:
+              attributes:
+                match_values:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                negate_condition:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                operator:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          request_body_condition:
+            nesting_mode: list
+            block:
+              attributes:
+                match_values:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                negate_condition:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                operator:
+                  type: string
+                  description_kind: plain
+                  required: true
+                transforms:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          request_header_condition:
+            nesting_mode: list
+            block:
+              attributes:
+                match_values:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                negate_condition:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                operator:
+                  type: string
+                  description_kind: plain
+                  required: true
+                selector:
+                  type: string
+                  description_kind: plain
+                  required: true
+                transforms:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          request_method_condition:
+            nesting_mode: list
+            block:
+              attributes:
+                match_values:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  required: true
+                negate_condition:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                operator:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          request_scheme_condition:
+            nesting_mode: list
+            block:
+              attributes:
+                match_values:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  required: true
+                negate_condition:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                operator:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          request_uri_condition:
+            nesting_mode: list
+            block:
+              attributes:
+                match_values:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                negate_condition:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                operator:
+                  type: string
+                  description_kind: plain
+                  required: true
+                transforms:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          url_file_extension_condition:
+            nesting_mode: list
+            block:
+              attributes:
+                match_values:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                negate_condition:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                operator:
+                  type: string
+                  description_kind: plain
+                  required: true
+                transforms:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          url_file_name_condition:
+            nesting_mode: list
+            block:
+              attributes:
+                match_values:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                negate_condition:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                operator:
+                  type: string
+                  description_kind: plain
+                  required: true
+                transforms:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          url_path_condition:
+            nesting_mode: list
+            block:
+              attributes:
+                match_values:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                negate_condition:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                operator:
+                  type: string
+                  description_kind: plain
+                  required: true
+                transforms:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          url_redirect_action:
+            nesting_mode: list
+            block:
+              attributes:
+                fragment:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                hostname:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                path:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                protocol:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                query_string:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                redirect_type:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          url_rewrite_action:
+            nesting_mode: list
+            block:
+              attributes:
+                destination:
+                  type: string
+                  description_kind: plain
+                  required: true
+                preserve_unmatched_path:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                source_pattern:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+    geo_filter:
+      nesting_mode: list
+      block:
+        attributes:
+          action:
+            type: string
+            description_kind: plain
+            required: true
+          country_codes:
+            type:
+            - list
+            - string
+            description_kind: plain
+            required: true
+          relative_path:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    global_delivery_rule:
+      nesting_mode: list
+      block:
+        block_types:
+          cache_expiration_action:
+            nesting_mode: list
+            block:
+              attributes:
+                behavior:
+                  type: string
+                  description_kind: plain
+                  required: true
+                duration:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          cache_key_query_string_action:
+            nesting_mode: list
+            block:
+              attributes:
+                behavior:
+                  type: string
+                  description_kind: plain
+                  required: true
+                parameters:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          modify_request_header_action:
+            nesting_mode: list
+            block:
+              attributes:
+                action:
+                  type: string
+                  description_kind: plain
+                  required: true
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          modify_response_header_action:
+            nesting_mode: list
+            block:
+              attributes:
+                action:
+                  type: string
+                  description_kind: plain
+                  required: true
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          url_redirect_action:
+            nesting_mode: list
+            block:
+              attributes:
+                fragment:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                hostname:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                path:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                protocol:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                query_string:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                redirect_type:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          url_rewrite_action:
+            nesting_mode: list
+            block:
+              attributes:
+                destination:
+                  type: string
+                  description_kind: plain
+                  required: true
+                preserve_unmatched_path:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                source_pattern:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    origin:
+      nesting_mode: set
+      block:
+        attributes:
+          host_name:
+            type: string
+            description_kind: plain
+            required: true
+          http_port:
+            type: number
+            description_kind: plain
+            optional: true
+          https_port:
+            type: number
+            description_kind: plain
+            optional: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

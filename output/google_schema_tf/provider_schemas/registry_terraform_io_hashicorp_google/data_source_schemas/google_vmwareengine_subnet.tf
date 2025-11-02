@@ -1,0 +1,16 @@
+data "google_vmwareengine_subnet" "name" {
+  name = string (Required)
+  parent = string (Required)
+  create_time = string (Computed)
+  dhcp_address_ranges = ['list', ['object', {'first_address': 'string', 'last_address': 'string'}]] (Computed)
+  gateway_id = string (Computed)
+  gateway_ip = string (Computed)
+  id = string (Optional, Computed)
+  ip_cidr_range = string (Computed)
+  standard_config = bool (Computed)
+  state = string (Computed)
+  type = string (Computed)
+  uid = string (Computed)
+  update_time = string (Computed)
+  vlan_id = number (Computed)
+}

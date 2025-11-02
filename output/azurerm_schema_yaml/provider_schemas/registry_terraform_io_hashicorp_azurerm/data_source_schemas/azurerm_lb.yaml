@@ -1,0 +1,67 @@
+version: 0
+block:
+  attributes:
+    frontend_ip_configuration:
+      type:
+      - list
+      - - object
+        - id: string
+          name: string
+          private_ip_address: string
+          private_ip_address_allocation: string
+          private_ip_address_version: string
+          public_ip_address_id: string
+          subnet_id: string
+          zones:
+          - list
+          - string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    private_ip_address:
+      type: string
+      description_kind: plain
+      computed: true
+    private_ip_addresses:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    sku:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

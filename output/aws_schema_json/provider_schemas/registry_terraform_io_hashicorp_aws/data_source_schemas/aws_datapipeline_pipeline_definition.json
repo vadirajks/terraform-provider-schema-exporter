@@ -1,0 +1,94 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "parameter_object": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "attribute": [
+                "set",
+                [
+                  "object",
+                  {
+                    "key": "string",
+                    "string_value": "string"
+                  }
+                ]
+              ],
+              "id": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "pipeline_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "pipeline_object": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "field": [
+                "set",
+                [
+                  "object",
+                  {
+                    "key": "string",
+                    "ref_value": "string",
+                    "string_value": "string"
+                  }
+                ]
+              ],
+              "id": "string",
+              "name": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "parameter_value": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "string_value": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

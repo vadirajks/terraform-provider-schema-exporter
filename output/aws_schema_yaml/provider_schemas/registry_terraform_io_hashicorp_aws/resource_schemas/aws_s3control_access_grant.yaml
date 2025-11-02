@@ -1,0 +1,78 @@
+version: 0
+block:
+  attributes:
+    access_grant_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    access_grant_id:
+      type: string
+      description_kind: plain
+      computed: true
+    access_grants_location_id:
+      type: string
+      description_kind: plain
+      required: true
+    account_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    grant_scope:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+    permission:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    s3_prefix_type:
+      type: string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    access_grants_location_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          s3_sub_prefix:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    grantee:
+      nesting_mode: list
+      block:
+        attributes:
+          grantee_identifier:
+            type: string
+            description_kind: plain
+            required: true
+          grantee_type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+  description_kind: plain

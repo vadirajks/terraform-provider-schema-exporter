@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "description": {
+        "type": "string",
+        "description": "The description specified for the model when it was created.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "One or more labels that you can add, to organize your models. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name specified for the model.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "online_prediction_console_logging": {
+        "type": "bool",
+        "description": "If true, online prediction nodes send stderr and stdout streams to Stackdriver Logging",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "online_prediction_logging": {
+        "type": "bool",
+        "description": "If true, online prediction access logs are sent to StackDriver Logging.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "regions": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "The list of regions where the model is going to be deployed. Currently only one region per model is supported",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "default_version": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "name": {
+              "type": "string",
+              "description": "The name specified for the version when it was created.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "The default version of the model. This version will be used to handle prediction requests that do not specify a version.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain",
+    "deprecated": true
+  }
+}

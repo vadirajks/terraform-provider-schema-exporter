@@ -1,0 +1,110 @@
+version: 0
+block:
+  attributes:
+    additional_code_repositories:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    default_code_repository:
+      type: string
+      description_kind: plain
+      optional: true
+    direct_internet_access:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instance_type:
+      type: string
+      description_kind: plain
+      required: true
+    kms_key_id:
+      type: string
+      description_kind: plain
+      optional: true
+    lifecycle_config_name:
+      type: string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    network_interface_id:
+      type: string
+      description_kind: plain
+      computed: true
+    platform_identifier:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    role_arn:
+      type: string
+      description_kind: plain
+      required: true
+    root_access:
+      type: string
+      description_kind: plain
+      optional: true
+    security_groups:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    subnet_id:
+      type: string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    url:
+      type: string
+      description_kind: plain
+      computed: true
+    volume_size:
+      type: number
+      description_kind: plain
+      optional: true
+  block_types:
+    instance_metadata_service_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          minimum_instance_metadata_service_version:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

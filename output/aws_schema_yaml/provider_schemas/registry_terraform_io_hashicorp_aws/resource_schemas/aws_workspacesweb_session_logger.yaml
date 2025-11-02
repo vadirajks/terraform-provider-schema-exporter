@@ -1,0 +1,94 @@
+version: 0
+block:
+  attributes:
+    additional_encryption_context:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    associated_portal_arns:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    customer_managed_key:
+      type: string
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    session_logger_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    event_filter:
+      nesting_mode: list
+      block:
+        attributes:
+          include:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+        block_types:
+          all:
+            nesting_mode: list
+            block:
+              description_kind: plain
+        description_kind: plain
+    log_configuration:
+      nesting_mode: list
+      block:
+        block_types:
+          s3:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket:
+                  type: string
+                  description_kind: plain
+                  required: true
+                bucket_owner:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                folder_structure:
+                  type: string
+                  description_kind: plain
+                  required: true
+                key_prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                log_file_format:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+  description_kind: plain

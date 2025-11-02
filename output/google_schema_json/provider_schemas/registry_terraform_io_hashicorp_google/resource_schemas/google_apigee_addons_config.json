@@ -1,0 +1,147 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "org": {
+        "type": "string",
+        "description": "Name of the Apigee organization.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "addons_config": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "advanced_api_ops_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enabled": {
+                    "type": "bool",
+                    "description": "Flag that specifies whether the Advanced API Ops add-on is enabled.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Configuration for the Advanced API Ops add-on.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "api_security_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enabled": {
+                    "type": "bool",
+                    "description": "Flag that specifies whether the API security add-on is enabled.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "expires_at": {
+                    "type": "string",
+                    "description": "Time at which the API Security add-on expires in in milliseconds since epoch. If unspecified, the add-on will never expire.",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "description": "Configuration for the API Security add-on.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "connectors_platform_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enabled": {
+                    "type": "bool",
+                    "description": "Flag that specifies whether the Connectors Platform add-on is enabled.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "expires_at": {
+                    "type": "string",
+                    "description": "Time at which the Connectors Platform add-on expires in milliseconds since epoch. If unspecified, the add-on will never expire.",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "description": "Configuration for the Monetization add-on.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "integration_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enabled": {
+                    "type": "bool",
+                    "description": "Flag that specifies whether the Integration add-on is enabled.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Configuration for the Integration add-on.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "monetization_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enabled": {
+                    "type": "bool",
+                    "description": "Flag that specifies whether the Monetization add-on is enabled.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Configuration for the Monetization add-on.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Addon configurations of the Apigee organization.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

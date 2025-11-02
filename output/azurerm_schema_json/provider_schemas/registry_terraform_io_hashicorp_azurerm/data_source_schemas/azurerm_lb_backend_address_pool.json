@@ -1,0 +1,102 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "backend_address": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "inbound_nat_rule_port_mapping": [
+                "list",
+                [
+                  "object",
+                  {
+                    "backend_port": "number",
+                    "frontend_port": "number",
+                    "inbound_nat_rule_name": "string"
+                  }
+                ]
+              ],
+              "ip_address": "string",
+              "name": "string",
+              "virtual_network_id": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "backend_ip_configurations": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "id": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "inbound_nat_rules": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "load_balancing_rules": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "loadbalancer_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "outbound_rules": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

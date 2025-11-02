@@ -1,0 +1,16 @@
+data "aws_kinesis_stream" "name" {
+  name = string (Required)
+  arn = string (Computed)
+  closed_shards = ['set', 'string'] (Computed)
+  creation_timestamp = number (Computed)
+  encryption_type = string (Computed)
+  id = string (Optional, Computed)
+  kms_key_id = string (Computed)
+  open_shards = ['set', 'string'] (Computed)
+  region = string (Optional, Computed)
+  retention_period = number (Computed)
+  shard_level_metrics = ['set', 'string'] (Computed)
+  status = string (Computed)
+  stream_mode_details = ['list', ['object', {'stream_mode': 'string'}]] (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+}

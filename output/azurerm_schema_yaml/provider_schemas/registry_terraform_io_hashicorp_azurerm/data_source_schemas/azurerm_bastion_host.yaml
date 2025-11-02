@@ -1,0 +1,88 @@
+version: 0
+block:
+  attributes:
+    copy_paste_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    dns_name:
+      type: string
+      description_kind: plain
+      computed: true
+    file_copy_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ip_configuration:
+      type:
+      - list
+      - - object
+        - name: string
+          public_ip_address_id: string
+          subnet_id: string
+      description_kind: plain
+      computed: true
+    ip_connect_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    scale_units:
+      type: number
+      description_kind: plain
+      computed: true
+    session_recording_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    shareable_link_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    sku:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    tunneling_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    zones:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

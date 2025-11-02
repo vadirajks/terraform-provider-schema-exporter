@@ -1,0 +1,109 @@
+version: 0
+block:
+  attributes:
+    display_name:
+      type: string
+      description: Human friendly display name.
+      description_kind: plain
+      required: true
+    enabled:
+      type: bool
+      description: If this config allows users to sign in with the provider.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: The name of the InboundSamlConfig resource. Must start with 'saml.' and can only have alphanumeric characters, hyphens, underscores or periods. The part after 'saml.' must also start with a lowercase letter, end with an alphanumeric character, and have at least 2 characters.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    idp_config:
+      nesting_mode: list
+      block:
+        attributes:
+          idp_entity_id:
+            type: string
+            description: Unique identifier for all SAML entities
+            description_kind: plain
+            required: true
+          sign_request:
+            type: bool
+            description: Indicates if outbounding SAMLRequest should be signed.
+            description_kind: plain
+            optional: true
+          sso_url:
+            type: string
+            description: URL to send Authentication request to.
+            description_kind: plain
+            required: true
+        block_types:
+          idp_certificates:
+            nesting_mode: list
+            block:
+              attributes:
+                x509_certificate:
+                  type: string
+                  description: The IdP's x509 certificate.
+                  description_kind: plain
+                  optional: true
+              description: The IdP's certificate data to verify the signature in the SAMLResponse issued by the IDP.
+              description_kind: plain
+            min_items: 1
+        description: SAML IdP configuration when the project acts as the relying party
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    sp_config:
+      nesting_mode: list
+      block:
+        attributes:
+          callback_uri:
+            type: string
+            description: Callback URI where responses from IDP are handled. Must start with 'https://'.
+            description_kind: plain
+            optional: true
+          sp_certificates:
+            type:
+            - list
+            - - object
+              - x509_certificate: string
+            description: The IDP's certificate data to verify the signature in the SAMLResponse issued by the IDP.
+            description_kind: plain
+            computed: true
+          sp_entity_id:
+            type: string
+            description: Unique identifier for all SAML entities.
+            description_kind: plain
+            optional: true
+        description: SAML SP (Service Provider) configuration when the project acts as the relying party to receive and accept an authentication assertion issued by a SAML identity provider.
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

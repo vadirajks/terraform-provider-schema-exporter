@@ -1,0 +1,747 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+    is_terminal:
+      type: bool
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    rule_name:
+      type: string
+      description_kind: plain
+      required: true
+    rule_order:
+      type: number
+      description_kind: plain
+      required: true
+    rule_status:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    actions:
+      nesting_mode: set
+      block:
+        attributes:
+          type:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          finding_fields_update:
+            nesting_mode: list
+            block:
+              attributes:
+                confidence:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                criticality:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                types:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                user_defined_fields:
+                  type:
+                  - map
+                  - string
+                  description_kind: plain
+                  optional: true
+                verification_state:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                note:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      text:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      updated_by:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                related_findings:
+                  nesting_mode: set
+                  block:
+                    attributes:
+                      id:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      product_arn:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                severity:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      label:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      product:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                workflow:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      status:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+              description_kind: plain
+        description_kind: plain
+    criteria:
+      nesting_mode: list
+      block:
+        block_types:
+          aws_account_id:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          aws_account_name:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          company_name:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          compliance_associated_standards_id:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          compliance_security_control_id:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          compliance_status:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          confidence:
+            nesting_mode: set
+            block:
+              attributes:
+                eq:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                gt:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                gte:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                lt:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                lte:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          created_at:
+            nesting_mode: set
+            block:
+              attributes:
+                end:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                start:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                date_range:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      unit:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      value:
+                        type: number
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+              description_kind: plain
+          criticality:
+            nesting_mode: set
+            block:
+              attributes:
+                eq:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                gt:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                gte:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                lt:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                lte:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          description:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          first_observed_at:
+            nesting_mode: set
+            block:
+              attributes:
+                end:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                start:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                date_range:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      unit:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      value:
+                        type: number
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+              description_kind: plain
+          generator_id:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          id:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          last_observed_at:
+            nesting_mode: set
+            block:
+              attributes:
+                end:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                start:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                date_range:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      unit:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      value:
+                        type: number
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+              description_kind: plain
+          note_text:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          note_updated_at:
+            nesting_mode: set
+            block:
+              attributes:
+                end:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                start:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                date_range:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      unit:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      value:
+                        type: number
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+              description_kind: plain
+          note_updated_by:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          product_arn:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          product_name:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          record_state:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          related_findings_id:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          related_findings_product_arn:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          resource_application_arn:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          resource_application_name:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          resource_details_other:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                key:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          resource_id:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          resource_partition:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          resource_region:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          resource_tags:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                key:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          resource_type:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          severity_label:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          source_url:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          title:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          type:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          updated_at:
+            nesting_mode: set
+            block:
+              attributes:
+                end:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                start:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                date_range:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      unit:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      value:
+                        type: number
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+              description_kind: plain
+          user_defined_fields:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                key:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          verification_state:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          workflow_status:
+            nesting_mode: set
+            block:
+              attributes:
+                comparison:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+  description_kind: plain

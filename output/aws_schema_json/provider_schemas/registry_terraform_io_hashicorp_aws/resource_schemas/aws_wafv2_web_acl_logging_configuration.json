@@ -1,0 +1,157 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "log_destination_configs": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description": "AWS Kinesis Firehose Delivery Stream ARNs",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "resource_arn": {
+        "type": "string",
+        "description": "AWS WebACL ARN",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "logging_filter": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "default_behavior": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "filter": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "behavior": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "requirement": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "condition": {
+                    "nesting_mode": "set",
+                    "block": {
+                      "block_types": {
+                        "action_condition": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "action": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "label_name_condition": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "label_name": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "redacted_fields": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "method": {
+              "nesting_mode": "list",
+              "block": {
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "query_string": {
+              "nesting_mode": "list",
+              "block": {
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "single_header": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "uri_path": {
+              "nesting_mode": "list",
+              "block": {
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Parts of the request to exclude from logs",
+          "description_kind": "plain"
+        },
+        "max_items": 100
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "custom_support_level": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "full_resource_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "permissions": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "api_disabled": "bool",
+              "custom_support_level": "string",
+              "name": "string",
+              "stage": "string",
+              "title": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "stages": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

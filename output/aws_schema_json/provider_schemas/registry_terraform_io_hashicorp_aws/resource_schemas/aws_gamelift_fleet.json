@@ -1,0 +1,242 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "build_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "build_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "ec2_instance_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "fleet_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "instance_role_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "log_paths": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "metric_groups": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "new_game_session_protection_policy": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "operating_system": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "script_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "script_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "certificate_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "certificate_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "ec2_inbound_permission": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "from_port": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "ip_range": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "protocol": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "to_port": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 50
+      },
+      "resource_creation_limit_policy": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "new_game_sessions_per_creator": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "policy_period_in_minutes": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "runtime_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "game_session_activation_timeout_seconds": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "max_concurrent_game_session_activations": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "server_process": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "concurrent_executions": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "launch_path": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "parameters": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 50
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

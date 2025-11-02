@@ -1,0 +1,129 @@
+version: 0
+block:
+  attributes:
+    accepter:
+      type:
+      - map
+      - bool
+      description_kind: plain
+      computed: true
+    cidr_block:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    cidr_block_set:
+      type:
+      - list
+      - - object
+        - cidr_block: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ipv6_cidr_block_set:
+      type:
+      - list
+      - - object
+        - ipv6_cidr_block: string
+      description_kind: plain
+      computed: true
+    owner_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    peer_cidr_block:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    peer_cidr_block_set:
+      type:
+      - list
+      - - object
+        - cidr_block: string
+      description_kind: plain
+      computed: true
+    peer_ipv6_cidr_block_set:
+      type:
+      - list
+      - - object
+        - ipv6_cidr_block: string
+      description_kind: plain
+      computed: true
+    peer_owner_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    peer_region:
+      type: string
+      description_kind: plain
+      computed: true
+    peer_vpc_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description_kind: plain
+      deprecated: true
+      computed: true
+    requester:
+      type:
+      - map
+      - bool
+      description_kind: plain
+      computed: true
+    requester_region:
+      type: string
+      description_kind: plain
+      computed: true
+    status:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    vpc_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    filter:
+      nesting_mode: set
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          values:
+            type:
+            - set
+            - string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

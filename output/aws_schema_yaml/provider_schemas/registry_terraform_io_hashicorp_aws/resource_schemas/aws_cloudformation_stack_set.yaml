@@ -1,0 +1,148 @@
+version: 0
+block:
+  attributes:
+    administration_role_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    call_as:
+      type: string
+      description_kind: plain
+      optional: true
+    capabilities:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    execution_role_name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    parameters:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    permission_model:
+      type: string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    stack_set_id:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    template_body:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    template_url:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    auto_deployment:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          retain_stacks_on_account_removal:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    managed_execution:
+      nesting_mode: list
+      block:
+        attributes:
+          active:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    operation_preferences:
+      nesting_mode: list
+      block:
+        attributes:
+          failure_tolerance_count:
+            type: number
+            description_kind: plain
+            optional: true
+          failure_tolerance_percentage:
+            type: number
+            description_kind: plain
+            optional: true
+          max_concurrent_count:
+            type: number
+            description_kind: plain
+            optional: true
+          max_concurrent_percentage:
+            type: number
+            description_kind: plain
+            optional: true
+          region_concurrency_type:
+            type: string
+            description_kind: plain
+            optional: true
+          region_order:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

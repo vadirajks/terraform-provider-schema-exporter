@@ -1,0 +1,138 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "custom_parameters": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "machine_learning_workspace_id": "string",
+              "nat_gateway_name": "string",
+              "no_public_ip": "bool",
+              "private_subnet_name": "string",
+              "public_ip_name": "string",
+              "public_subnet_name": "string",
+              "storage_account_name": "string",
+              "storage_account_sku_name": "string",
+              "virtual_network_id": "string",
+              "vnet_address_prefix": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "enhanced_security_compliance": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "automatic_cluster_update_enabled": "bool",
+              "compliance_security_profile_enabled": "bool",
+              "compliance_security_profile_standards": [
+                "set",
+                "string"
+              ],
+              "enhanced_security_monitoring_enabled": "bool"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "managed_disk_identity": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "principal_id": "string",
+              "tenant_id": "string",
+              "type": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "sku": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "storage_account_identity": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "principal_id": "string",
+              "tenant_id": "string",
+              "type": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "workspace_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "workspace_url": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

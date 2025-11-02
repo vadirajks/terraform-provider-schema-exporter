@@ -1,0 +1,75 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    endpoint:
+      type:
+      - list
+      - - object
+        - address: string
+          port: number
+          vpc_endpoint:
+          - list
+          - - object
+            - network_interface:
+              - list
+              - - object
+                - availability_zone: string
+                  network_interface_id: string
+                  private_ip_address: string
+                  subnet_id: string
+              vpc_endpoint_id: string
+              vpc_id: string
+      description_kind: plain
+      computed: true
+    enhanced_vpc_routing:
+      type: bool
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    namespace_name:
+      type: string
+      description_kind: plain
+      computed: true
+    publicly_accessible:
+      type: bool
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    security_group_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    subnet_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    track_name:
+      type: string
+      description_kind: plain
+      computed: true
+    workgroup_id:
+      type: string
+      description_kind: plain
+      computed: true
+    workgroup_name:
+      type: string
+      description_kind: plain
+      required: true
+  description_kind: plain

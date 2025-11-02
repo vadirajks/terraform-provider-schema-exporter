@@ -1,0 +1,73 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: The timestamp at which this profile was created.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: Description of the security profile.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: Name of the security profile v2 resource, in the format 'organizations/{{org_name}}/securityProfilesV2/{{profile_id}}'.
+      description_kind: plain
+      computed: true
+    org_id:
+      type: string
+      description: The Apigee Organization associated with the Apigee Security Profile V2, in the format 'organizations/{{org_name}}'.
+      description_kind: plain
+      required: true
+    profile_id:
+      type: string
+      description: Resource ID of the security profile.
+      description_kind: plain
+      required: true
+    update_time:
+      type: string
+      description: The timestamp at which this profile was most recently updated.
+      description_kind: plain
+      computed: true
+  block_types:
+    profile_assessment_configs:
+      nesting_mode: set
+      block:
+        attributes:
+          assessment:
+            type: string
+            description_kind: plain
+            required: true
+          weight:
+            type: string
+            description: 'The weight of the assessment. Possible values: ["MINOR", "MODERATE", "MAJOR"]'
+            description_kind: plain
+            required: true
+        description: A map of the assessment name and the assessment config.
+        description_kind: plain
+      min_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

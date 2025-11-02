@@ -1,0 +1,135 @@
+version: 0
+block:
+  attributes:
+    backup_config_info:
+      type:
+      - list
+      - - object
+        - backup_appliance_backup_config:
+          - list
+          - - object
+            - application_name: string
+              backup_appliance_id: string
+              backup_appliance_name: string
+              host_name: string
+              sla_id: string
+              slp_name: string
+              slt_name: string
+          gcp_backup_config:
+          - list
+          - - object
+            - backup_plan: string
+              backup_plan_association: string
+              backup_plan_description: string
+              backup_plan_rules:
+              - list
+              - string
+          last_backup_error:
+          - map
+          - string
+          last_backup_state: string
+          last_successful_backup_consistency_time: string
+      description: Details of how the resource is configured for backup.
+      description_kind: plain
+      computed: true
+    backup_count:
+      type: string
+      description: Number of backups in the data source.
+      description_kind: plain
+      computed: true
+    backup_vault_id:
+      type: string
+      description_kind: plain
+      required: true
+    config_state:
+      type: string
+      description: The backup configuration state.
+      description_kind: plain
+      computed: true
+    create_time:
+      type: string
+      description: The time when the instance was created.
+      description_kind: plain
+      computed: true
+    data_source_backup_appliance_application:
+      type:
+      - list
+      - - object
+        - appliance_id: string
+          application_id: string
+          application_name: string
+          backup_appliance: string
+          host_id: string
+          hostname: string
+          type: string
+      description: The backed up resource is a backup appliance application.
+      description_kind: plain
+      computed: true
+    data_source_gcp_resource:
+      type:
+      - list
+      - - object
+        - compute_instance_data_source_properties:
+          - list
+          - - object
+            - description: string
+              machine_type: string
+              name: string
+              total_disk_count: string
+              total_disk_size_gb: string
+          gcp_resourcename: string
+          location: string
+          type: string
+      description: The backed up resource is a Google Cloud resource. The word 'DataSource' was included in the names to indicate that this is the representation of the Google Cloud resource used within the DataSource object.
+      description_kind: plain
+      computed: true
+    data_source_id:
+      type: string
+      description_kind: plain
+      required: true
+    etag:
+      type: string
+      description: Server specified ETag for the ManagementServer resource to prevent simultaneous updates from overwiting each other.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: Resource labels to represent user provided metadata.
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: Name of the datasource to create. It must have the format "projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}". '{datasource}' cannot be changed after creation. It must be between 3-63 characters long and must be unique within the backup vault.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      required: true
+    state:
+      type: string
+      description: The DataSource resource instance state.
+      description_kind: plain
+      computed: true
+    total_stored_bytes:
+      type: string
+      description: The number of bytes (metadata and data) stored in this datasource.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: The time when the instance was updated.
+      description_kind: plain
+      computed: true
+  description_kind: plain

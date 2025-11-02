@@ -1,0 +1,55 @@
+version: 0
+block:
+  attributes:
+    allowed_subnets:
+      type:
+      - list
+      - - object
+        - allow_public_ip: string
+          lab_subnet_name: string
+          resource_id: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    lab_name:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    subnet_overrides:
+      type:
+      - list
+      - - object
+        - lab_subnet_name: string
+          resource_id: string
+          use_in_vm_creation_permission: string
+          use_public_ip_address_permission: string
+          virtual_network_pool_name: string
+      description_kind: plain
+      computed: true
+    unique_identifier:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

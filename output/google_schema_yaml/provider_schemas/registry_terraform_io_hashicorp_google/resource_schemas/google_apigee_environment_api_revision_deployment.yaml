@@ -1,0 +1,75 @@
+version: 0
+block:
+  attributes:
+    api:
+      type: string
+      description: Apigee API proxy name.
+      description_kind: plain
+      required: true
+    basepaths:
+      type:
+      - list
+      - string
+      description: Basepaths associated with the deployed proxy.
+      description_kind: plain
+      computed: true
+    deploy_start_time:
+      type: string
+      description: RFC3339 timestamp when deployment started.
+      description_kind: plain
+      computed: true
+    environment:
+      type: string
+      description: Apigee environment name.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    org_id:
+      type: string
+      description: Apigee organization ID.
+      description_kind: plain
+      required: true
+    override:
+      type: bool
+      description: If true, replaces other deployed revisions of this proxy in the environment.
+      description_kind: plain
+      optional: true
+    revision:
+      type: number
+      description: API proxy revision number to deploy.
+      description_kind: plain
+      required: true
+    sequenced_rollout:
+      type: bool
+      description: If true, enables sequenced rollout for safe traffic switching.
+      description_kind: plain
+      optional: true
+    service_account:
+      type: string
+      description: Optional service account the deployed proxy runs as.
+      description_kind: plain
+      optional: true
+    state:
+      type: string
+      description: Deployment state reported by Apigee.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

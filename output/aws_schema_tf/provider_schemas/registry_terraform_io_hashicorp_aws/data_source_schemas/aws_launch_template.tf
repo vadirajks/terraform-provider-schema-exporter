@@ -1,0 +1,48 @@
+data "aws_launch_template" "name" {
+  arn = string (Computed)
+  block_device_mappings = ['list', ['object', {'device_name': 'string', 'ebs': ['list', ['object', {'delete_on_termination': 'string', 'encrypted': 'string', 'iops': 'number', 'kms_key_id': 'string', 'snapshot_id': 'string', 'throughput': 'number', 'volume_initialization_rate': 'number', 'volume_size': 'number', 'volume_type': 'string'}]], 'no_device': 'string', 'virtual_name': 'string'}]] (Computed)
+  capacity_reservation_specification = ['list', ['object', {'capacity_reservation_preference': 'string', 'capacity_reservation_target': ['list', ['object', {'capacity_reservation_id': 'string', 'capacity_reservation_resource_group_arn': 'string'}]]}]] (Computed)
+  cpu_options = ['list', ['object', {'amd_sev_snp': 'string', 'core_count': 'number', 'threads_per_core': 'number'}]] (Computed)
+  credit_specification = ['list', ['object', {'cpu_credits': 'string'}]] (Computed)
+  default_version = number (Computed)
+  description = string (Computed)
+  disable_api_stop = bool (Computed)
+  disable_api_termination = bool (Computed)
+  ebs_optimized = string (Computed)
+  enclave_options = ['list', ['object', {'enabled': 'bool'}]] (Computed)
+  hibernation_options = ['list', ['object', {'configured': 'bool'}]] (Computed)
+  iam_instance_profile = ['list', ['object', {'arn': 'string', 'name': 'string'}]] (Computed)
+  id = string (Optional, Computed)
+  image_id = string (Computed)
+  instance_initiated_shutdown_behavior = string (Computed)
+  instance_market_options = ['list', ['object', {'market_type': 'string', 'spot_options': ['list', ['object', {'block_duration_minutes': 'number', 'instance_interruption_behavior': 'string', 'max_price': 'string', 'spot_instance_type': 'string', 'valid_until': 'string'}]]}]] (Computed)
+  instance_requirements = ['list', ['object', {'accelerator_count': ['list', ['object', {'max': 'number', 'min': 'number'}]], 'accelerator_manufacturers': ['set', 'string'], 'accelerator_names': ['set', 'string'], 'accelerator_total_memory_mib': ['list', ['object', {'max': 'number', 'min': 'number'}]], 'accelerator_types': ['set', 'string'], 'allowed_instance_types': ['set', 'string'], 'bare_metal': 'string', 'baseline_ebs_bandwidth_mbps': ['list', ['object', {'max': 'number', 'min': 'number'}]], 'burstable_performance': 'string', 'cpu_manufacturers': ['set', 'string'], 'excluded_instance_types': ['set', 'string'], 'instance_generations': ['set', 'string'], 'local_storage': 'string', 'local_storage_types': ['set', 'string'], 'max_spot_price_as_percentage_of_optimal_on_demand_price': 'number', 'memory_gib_per_vcpu': ['list', ['object', {'max': 'number', 'min': 'number'}]], 'memory_mib': ['list', ['object', {'max': 'number', 'min': 'number'}]], 'network_bandwidth_gbps': ['list', ['object', {'max': 'number', 'min': 'number'}]], 'network_interface_count': ['list', ['object', {'max': 'number', 'min': 'number'}]], 'on_demand_max_price_percentage_over_lowest_price': 'number', 'require_hibernate_support': 'bool', 'spot_max_price_percentage_over_lowest_price': 'number', 'total_local_storage_gb': ['list', ['object', {'max': 'number', 'min': 'number'}]], 'vcpu_count': ['list', ['object', {'max': 'number', 'min': 'number'}]]}]] (Computed)
+  instance_type = string (Computed)
+  kernel_id = string (Computed)
+  key_name = string (Computed)
+  latest_version = number (Computed)
+  license_specification = ['list', ['object', {'license_configuration_arn': 'string'}]] (Computed)
+  maintenance_options = ['list', ['object', {'auto_recovery': 'string'}]] (Computed)
+  metadata_options = ['list', ['object', {'http_endpoint': 'string', 'http_protocol_ipv6': 'string', 'http_put_response_hop_limit': 'number', 'http_tokens': 'string', 'instance_metadata_tags': 'string'}]] (Computed)
+  monitoring = ['list', ['object', {'enabled': 'bool'}]] (Computed)
+  name = string (Optional, Computed)
+  network_interfaces = ['list', ['object', {'associate_carrier_ip_address': 'string', 'associate_public_ip_address': 'string', 'connection_tracking_specification': ['list', ['object', {'tcp_established_timeout': 'number', 'udp_stream_timeout': 'number', 'udp_timeout': 'number'}]], 'delete_on_termination': 'string', 'description': 'string', 'device_index': 'number', 'interface_type': 'string', 'ipv4_address_count': 'number', 'ipv4_addresses': ['set', 'string'], 'ipv4_prefix_count': 'number', 'ipv4_prefixes': ['set', 'string'], 'ipv6_address_count': 'number', 'ipv6_addresses': ['set', 'string'], 'ipv6_prefix_count': 'number', 'ipv6_prefixes': ['set', 'string'], 'network_card_index': 'number', 'network_interface_id': 'string', 'primary_ipv6': 'string', 'private_ip_address': 'string', 'security_groups': ['set', 'string'], 'subnet_id': 'string'}]] (Computed)
+  placement = ['list', ['object', {'affinity': 'string', 'availability_zone': 'string', 'group_id': 'string', 'group_name': 'string', 'host_id': 'string', 'host_resource_group_arn': 'string', 'partition_number': 'number', 'spread_domain': 'string', 'tenancy': 'string'}]] (Computed)
+  private_dns_name_options = ['list', ['object', {'enable_resource_name_dns_a_record': 'bool', 'enable_resource_name_dns_aaaa_record': 'bool', 'hostname_type': 'string'}]] (Computed)
+  ram_disk_id = string (Computed)
+  region = string (Optional, Computed)
+  security_group_names = ['set', 'string'] (Computed)
+  tag_specifications = ['list', ['object', {'resource_type': 'string', 'tags': ['map', 'string']}]] (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  user_data = string (Computed)
+  vpc_security_group_ids = ['set', 'string'] (Computed)
+
+  filter block "set" (Optional) {
+    name = string (Required)
+    values = ['set', 'string'] (Required)
+  }
+
+  timeouts block "single" (Optional) {
+    read = string (Optional)
+  }
+}

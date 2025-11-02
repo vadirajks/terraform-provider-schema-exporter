@@ -1,0 +1,127 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "custom_rdp_properties": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "friendly_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "load_balancer_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "maximum_sessions_allowed": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "personal_desktop_assignment_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "preferred_app_group_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "scheduled_agent_updates": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "enabled": "bool",
+              "schedule": [
+                "list",
+                [
+                  "object",
+                  {
+                    "day_of_week": "string",
+                    "hour_of_day": "number"
+                  }
+                ]
+              ],
+              "timezone": "string",
+              "use_session_host_timezone": "bool"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "start_vm_on_connect": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "type": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "validate_environment": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

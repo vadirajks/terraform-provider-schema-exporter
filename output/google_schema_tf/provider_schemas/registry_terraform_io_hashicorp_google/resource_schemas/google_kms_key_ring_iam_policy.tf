@@ -1,0 +1,6 @@
+resource "google_kms_key_ring_iam_policy" "name" {
+  key_ring_id = string (Required)
+  policy_data = string (Required)
+  etag = string (Computed)
+  id = string (Optional, Computed)
+}

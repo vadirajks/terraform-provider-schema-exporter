@@ -1,0 +1,92 @@
+version: 0
+block:
+  attributes:
+    customer_managed_key:
+      type:
+      - list
+      - - object
+        - key_vault_key_id: string
+          user_assigned_identity_id: string
+      description_kind: plain
+      computed: true
+    default_database:
+      type:
+      - list
+      - - object
+        - access_keys_authentication_enabled: bool
+          client_protocol: string
+          clustering_policy: string
+          eviction_policy: string
+          geo_replication_group_name: string
+          geo_replication_linked_database_ids:
+          - set
+          - string
+          module:
+          - list
+          - - object
+            - args: string
+              name: string
+              version: string
+          port: number
+          primary_access_key: string
+          secondary_access_key: string
+      description_kind: plain
+      computed: true
+    high_availability_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    hostname:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    identity:
+      type:
+      - list
+      - - object
+        - identity_ids:
+          - list
+          - string
+          principal_id: string
+          tenant_id: string
+          type: string
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    sku_name:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

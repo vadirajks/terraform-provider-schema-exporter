@@ -1,0 +1,250 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    aws_account_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    column_groups:
+      type:
+      - list
+      - - object
+        - geo_spatial_column_group:
+          - list
+          - - object
+            - columns:
+              - list
+              - string
+              country_code: string
+              name: string
+      description_kind: plain
+      computed: true
+    column_level_permission_rules:
+      type:
+      - list
+      - - object
+        - column_names:
+          - list
+          - string
+          principals:
+          - list
+          - string
+      description_kind: plain
+      computed: true
+    data_set_id:
+      type: string
+      description_kind: plain
+      required: true
+    data_set_usage_configuration:
+      type:
+      - list
+      - - object
+        - disable_use_as_direct_query_source: bool
+          disable_use_as_imported_source: bool
+      description_kind: plain
+      computed: true
+    field_folders:
+      type:
+      - set
+      - - object
+        - columns:
+          - list
+          - string
+          description: string
+          field_folders_id: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    import_mode:
+      type: string
+      description_kind: plain
+      computed: true
+    logical_table_map:
+      type:
+      - set
+      - - object
+        - alias: string
+          data_transforms:
+          - list
+          - - object
+            - cast_column_type_operation:
+              - list
+              - - object
+                - column_name: string
+                  format: string
+                  new_column_type: string
+              create_columns_operation:
+              - list
+              - - object
+                - columns:
+                  - list
+                  - - object
+                    - column_id: string
+                      column_name: string
+                      expression: string
+              filter_operation:
+              - list
+              - - object
+                - condition_expression: string
+              project_operation:
+              - list
+              - - object
+                - projected_columns:
+                  - list
+                  - string
+              rename_column_operation:
+              - list
+              - - object
+                - column_name: string
+                  new_column_name: string
+              tag_column_operation:
+              - list
+              - - object
+                - column_name: string
+                  tags:
+                  - list
+                  - - object
+                    - column_description:
+                      - list
+                      - - object
+                        - text: string
+                      column_geographic_role: string
+              untag_column_operation:
+              - list
+              - - object
+                - column_name: string
+                  tag_names:
+                  - list
+                  - string
+          logical_table_map_id: string
+          source:
+          - list
+          - - object
+            - data_set_arn: string
+              join_instruction:
+              - list
+              - - object
+                - left_join_key_properties:
+                  - list
+                  - - object
+                    - unique_key: bool
+                  left_operand: string
+                  on_clause: string
+                  right_join_key_properties:
+                  - list
+                  - - object
+                    - unique_key: bool
+                  right_operand: string
+                  type: string
+              physical_table_id: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      computed: true
+    permissions:
+      type:
+      - list
+      - - object
+        - actions:
+          - set
+          - string
+          principal: string
+      description_kind: plain
+      computed: true
+    physical_table_map:
+      type:
+      - set
+      - - object
+        - custom_sql:
+          - list
+          - - object
+            - columns:
+              - list
+              - - object
+                - name: string
+                  type: string
+              data_source_arn: string
+              name: string
+              sql_query: string
+          physical_table_map_id: string
+          relational_table:
+          - list
+          - - object
+            - catalog: string
+              data_source_arn: string
+              input_columns:
+              - list
+              - - object
+                - name: string
+                  type: string
+              name: string
+              schema: string
+          s3_source:
+          - list
+          - - object
+            - data_source_arn: string
+              input_columns:
+              - list
+              - - object
+                - name: string
+                  type: string
+              upload_settings:
+              - list
+              - - object
+                - contains_header: bool
+                  delimiter: string
+                  format: string
+                  start_from_row: number
+                  text_qualifier: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    row_level_permission_data_set:
+      type:
+      - list
+      - - object
+        - arn: string
+          format_version: string
+          namespace: string
+          permission_policy: string
+          status: string
+      description_kind: plain
+      computed: true
+    row_level_permission_tag_configuration:
+      type:
+      - list
+      - - object
+        - status: string
+          tag_rules:
+          - list
+          - - object
+            - column_name: string
+              match_all_value: string
+              tag_key: string
+              tag_multi_value_delimiter: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  description_kind: plain

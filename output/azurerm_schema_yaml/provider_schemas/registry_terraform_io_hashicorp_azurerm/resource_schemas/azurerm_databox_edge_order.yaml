@@ -1,0 +1,145 @@
+version: 1
+block:
+  attributes:
+    device_name:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    return_tracking:
+      type:
+      - set
+      - - object
+        - carrier_name: string
+          serial_number: string
+          tracking_id: string
+          tracking_url: string
+      description_kind: plain
+      computed: true
+    serial_number:
+      type: string
+      description_kind: plain
+      computed: true
+    shipment_history:
+      type:
+      - set
+      - - object
+        - additional_details:
+          - map
+          - string
+          comments: string
+          last_update: string
+      description_kind: plain
+      computed: true
+    shipment_tracking:
+      type:
+      - set
+      - - object
+        - carrier_name: string
+          serial_number: string
+          tracking_id: string
+          tracking_url: string
+      description_kind: plain
+      computed: true
+    status:
+      type:
+      - list
+      - - object
+        - additional_details:
+          - map
+          - string
+          comments: string
+          info: string
+          last_update: string
+      description_kind: plain
+      computed: true
+  block_types:
+    contact:
+      nesting_mode: list
+      block:
+        attributes:
+          company_name:
+            type: string
+            description_kind: plain
+            required: true
+          emails:
+            type:
+            - set
+            - string
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          phone_number:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    shipment_address:
+      nesting_mode: list
+      block:
+        attributes:
+          address:
+            type:
+            - list
+            - string
+            description_kind: plain
+            required: true
+          city:
+            type: string
+            description_kind: plain
+            required: true
+          country:
+            type: string
+            description_kind: plain
+            required: true
+          postal_code:
+            type: string
+            description_kind: plain
+            required: true
+          state:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

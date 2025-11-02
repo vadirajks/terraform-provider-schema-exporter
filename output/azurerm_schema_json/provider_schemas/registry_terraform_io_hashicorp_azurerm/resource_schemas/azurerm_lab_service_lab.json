@@ -1,0 +1,338 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "lab_plan_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "title": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "auto_shutdown": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "disconnect_delay": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "idle_delay": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "no_connect_delay": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "shutdown_on_idle": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "connection_setting": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "client_rdp_access": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "client_ssh_access": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "network": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "load_balancer_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "public_ip_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "subnet_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "roster": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "active_directory_group_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "lms_instance": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "lti_client_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "lti_context_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "lti_roster_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "security": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "open_access_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "required": true
+            },
+            "registration_code": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "virtual_machine": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "additional_capability_gpu_drivers_installed": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "create_option": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "shared_password_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "usage_quota": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "admin_user": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "password": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true,
+                    "sensitive": true
+                  },
+                  "username": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "image_reference": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "offer": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "publisher": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "sku": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "version": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "non_admin_user": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "password": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true,
+                    "sensitive": true
+                  },
+                  "username": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "sku": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "capacity": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain",
+    "deprecated": true
+  }
+}

@@ -1,0 +1,14 @@
+resource "google_apigee_environment_iam_binding" "name" {
+  env_id = string (Required)
+  members = ['set', 'string'] (Required)
+  org_id = string (Required)
+  role = string (Required)
+  etag = string (Computed)
+  id = string (Optional, Computed)
+
+  condition block "list" (Optional) {
+    expression = string (Required)
+    title = string (Required)
+    description = string (Optional)
+  }
+}

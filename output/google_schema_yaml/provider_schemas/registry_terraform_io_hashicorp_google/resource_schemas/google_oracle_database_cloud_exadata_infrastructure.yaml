@@ -1,0 +1,308 @@
+version: 0
+block:
+  attributes:
+    cloud_exadata_infrastructure_id:
+      type: string
+      description: The ID of the Exadata Infrastructure to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.
+      description_kind: plain
+      required: true
+    create_time:
+      type: string
+      description: The date and time that the Exadata Infrastructure was created.
+      description_kind: plain
+      computed: true
+    deletion_protection:
+      type: bool
+      description: Whether or not to allow Terraform to destroy the instance. Unless this field is set to false in Terraform state, a terraform destroy or terraform apply that would delete the instance will fail.
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description: User friendly name for this resource.
+      description_kind: plain
+      optional: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    entitlement_id:
+      type: string
+      description: Entitlement ID of the private offer against which this infrastructure resource is provisioned.
+      description_kind: plain
+      computed: true
+    gcp_oracle_zone:
+      type: string
+      description: GCP location where Oracle Exadata is hosted.
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Labels or tags associated with the resource. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: Resource ID segment making up resource 'name'. See documentation for resource type 'oracledatabase.googleapis.com/DbServer'.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: 'Identifier. The name of the Exadata Infrastructure resource with the following format: projects/{project}/locations/{region}/cloudExadataInfrastructures/{cloud_exadata_infrastructure}'
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+  block_types:
+    properties:
+      nesting_mode: list
+      block:
+        attributes:
+          activated_storage_count:
+            type: number
+            description: The requested number of additional storage servers activated for the Exadata Infrastructure.
+            description_kind: plain
+            computed: true
+          additional_storage_count:
+            type: number
+            description: The requested number of additional storage servers for the Exadata Infrastructure.
+            description_kind: plain
+            computed: true
+          available_storage_size_gb:
+            type: number
+            description: The available storage can be allocated to the Exadata Infrastructure resource, in gigabytes (GB).
+            description_kind: plain
+            computed: true
+          compute_count:
+            type: number
+            description: The number of compute servers for the Exadata Infrastructure.
+            description_kind: plain
+            optional: true
+          cpu_count:
+            type: number
+            description: The number of enabled CPU cores.
+            description_kind: plain
+            computed: true
+          data_storage_size_tb:
+            type: number
+            description: Size, in terabytes, of the DATA disk group.
+            description_kind: plain
+            computed: true
+          db_node_storage_size_gb:
+            type: number
+            description: The local node storage allocated in GBs.
+            description_kind: plain
+            computed: true
+          db_server_version:
+            type: string
+            description: The software version of the database servers (dom0) in the Exadata Infrastructure.
+            description_kind: plain
+            computed: true
+          max_cpu_count:
+            type: number
+            description: The total number of CPU cores available.
+            description_kind: plain
+            computed: true
+          max_data_storage_tb:
+            type: number
+            description: The total available DATA disk group size.
+            description_kind: plain
+            computed: true
+          max_db_node_storage_size_gb:
+            type: number
+            description: The total local node storage available in GBs.
+            description_kind: plain
+            computed: true
+          max_memory_gb:
+            type: number
+            description: The total memory available in GBs.
+            description_kind: plain
+            computed: true
+          memory_size_gb:
+            type: number
+            description: The memory allocated in GBs.
+            description_kind: plain
+            computed: true
+          monthly_db_server_version:
+            type: string
+            description: 'The monthly software version of the database servers (dom0) in the Exadata Infrastructure. Example: 20.1.15'
+            description_kind: plain
+            computed: true
+          monthly_storage_server_version:
+            type: string
+            description: 'The monthly software version of the storage servers (cells) in the Exadata Infrastructure. Example: 20.1.15'
+            description_kind: plain
+            computed: true
+          next_maintenance_run_id:
+            type: string
+            description: The OCID of the next maintenance run.
+            description_kind: plain
+            computed: true
+          next_maintenance_run_time:
+            type: string
+            description: The time when the next maintenance run will occur.
+            description_kind: plain
+            computed: true
+          next_security_maintenance_run_time:
+            type: string
+            description: The time when the next security maintenance run will occur.
+            description_kind: plain
+            computed: true
+          oci_url:
+            type: string
+            description: Deep link to the OCI console to view this resource.
+            description_kind: plain
+            computed: true
+          ocid:
+            type: string
+            description: OCID of created infra. https://docs.oracle.com/en-us/iaas/Content/General/Concepts/identifiers.htm#Oracle
+            description_kind: plain
+            computed: true
+          shape:
+            type: string
+            description: The shape of the Exadata Infrastructure. The shape determines the amount of CPU, storage, and memory resources allocated to the instance.
+            description_kind: plain
+            required: true
+          state:
+            type: string
+            description: 'The current lifecycle state of the Exadata Infrastructure. Possible values: STATE_UNSPECIFIED PROVISIONING AVAILABLE UPDATING TERMINATING TERMINATED FAILED MAINTENANCE_IN_PROGRESS'
+            description_kind: plain
+            computed: true
+          storage_count:
+            type: number
+            description: The number of Cloud Exadata storage servers for the Exadata Infrastructure.
+            description_kind: plain
+            optional: true
+          storage_server_version:
+            type: string
+            description: The software version of the storage servers (cells) in the Exadata Infrastructure.
+            description_kind: plain
+            computed: true
+          total_storage_size_gb:
+            type: number
+            description: The total storage allocated to the Exadata Infrastructure resource, in gigabytes (GB).
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          customer_contacts:
+            nesting_mode: list
+            block:
+              attributes:
+                email:
+                  type: string
+                  description: The email address used by Oracle to send notifications regarding databases and infrastructure.
+                  description_kind: plain
+                  required: true
+              description: The list of customer contacts.
+              description_kind: plain
+          maintenance_window:
+            nesting_mode: list
+            block:
+              attributes:
+                custom_action_timeout_mins:
+                  type: number
+                  description: Determines the amount of time the system will wait before the start of each database server patching operation. Custom action timeout is in minutes and valid value is between 15 to 120 (inclusive).
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                days_of_week:
+                  type:
+                  - list
+                  - string
+                  description: Days during the week when maintenance should be performed.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                hours_of_day:
+                  type:
+                  - list
+                  - number
+                  description: 'The window of hours during the day when maintenance should be performed. The window is a 4 hour slot. Valid values are: 0 - represents time slot 0:00 - 3:59 UTC 4 - represents time slot 4:00 - 7:59 UTC 8 - represents time slot 8:00 - 11:59 UTC 12 - represents time slot 12:00 - 15:59 UTC 16 - represents time slot 16:00 - 19:59 UTC 20 - represents time slot 20:00 - 23:59 UTC'
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                is_custom_action_timeout_enabled:
+                  type: bool
+                  description: If true, enables the configuration of a custom action timeout (waiting period) between database server patching operations.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                lead_time_week:
+                  type: number
+                  description: Lead time window allows user to set a lead time to prepare for a down time. The lead time is in weeks and valid value is between 1 to 4.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                months:
+                  type:
+                  - list
+                  - string
+                  description: Months during the year when maintenance should be performed.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                patching_mode:
+                  type: string
+                  description: 'Cloud CloudExadataInfrastructure node patching method, either "ROLLING" or "NONROLLING". Default value is ROLLING. Possible values: PATCHING_MODE_UNSPECIFIED ROLLING NON_ROLLING'
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                preference:
+                  type: string
+                  description: 'The maintenance window scheduling preference. Possible values: MAINTENANCE_WINDOW_PREFERENCE_UNSPECIFIED CUSTOM_PREFERENCE NO_PREFERENCE'
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                weeks_of_month:
+                  type:
+                  - list
+                  - number
+                  description: Weeks during the month when maintenance should be performed. Weeks start on the 1st, 8th, 15th, and 22nd days of the month, and have a duration of 7 days. Weeks start and end based on calendar dates, not days of the week.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              description: Maintenance window as defined by Oracle. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/datatypes/MaintenanceWindow
+              description_kind: plain
+            max_items: 1
+        description: Various properties of Exadata Infrastructure.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

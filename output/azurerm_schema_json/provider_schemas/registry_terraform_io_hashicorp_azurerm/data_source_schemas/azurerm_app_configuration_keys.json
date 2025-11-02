@@ -1,0 +1,68 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "configuration_store_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "items": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "content_type": "string",
+              "etag": "string",
+              "key": "string",
+              "label": "string",
+              "locked": "bool",
+              "tags": [
+                "map",
+                "string"
+              ],
+              "type": "string",
+              "value": "string",
+              "vault_key_reference": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "key": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "label": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

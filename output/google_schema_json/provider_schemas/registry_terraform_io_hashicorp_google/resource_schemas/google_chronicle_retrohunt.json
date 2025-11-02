@@ -1,0 +1,121 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "execution_interval": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "end_time": "string",
+              "start_time": "string"
+            }
+          ]
+        ],
+        "description": "Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "instance": {
+        "type": "string",
+        "description": "The unique identifier for the Chronicle instance, which is the same as the customer ID.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location of the resource. This is the geographical region where the Chronicle instance resides, such as \"us\" or \"europe-west2\".",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name of the retrohunt. Retrohunt is the child of a rule revision. {rule} in the format below is structured as {rule_id@revision_id}. Format: projects/{project}/locations/{location}/instances/{instance}/rules/{rule}/retrohunts/{retrohunt}",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "progress_percentage": {
+        "type": "number",
+        "description": "Output only. Percent progress of the retrohunt towards completion, from 0.00 to 100.00.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "retrohunt": {
+        "type": "string",
+        "description": "The retrohunt ID of the Retrohunt. A retrohunt is an execution of a Rule over a time range in the past.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "rule": {
+        "type": "string",
+        "description": "The Rule ID of the rule.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "state": {
+        "type": "string",
+        "description": "Output only. The state of the retrohunt. Possible values: RUNNING DONE CANCELLED FAILED",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "process_interval": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "end_time": {
+              "type": "string",
+              "description": "Exclusive end of the interval.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "start_time": {
+              "type": "string",
+              "description": "Inclusive start of the interval.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

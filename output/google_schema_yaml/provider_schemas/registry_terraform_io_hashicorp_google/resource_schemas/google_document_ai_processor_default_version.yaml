@@ -1,0 +1,33 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    processor:
+      type: string
+      description: The processor to set the version on.
+      description_kind: plain
+      required: true
+    version:
+      type: string
+      description: The version to set. Using 'stable' or 'rc' will cause the API to return the latest version in that release channel. Apply 'lifecycle.ignore_changes' to the 'version' field to suppress this diff.
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

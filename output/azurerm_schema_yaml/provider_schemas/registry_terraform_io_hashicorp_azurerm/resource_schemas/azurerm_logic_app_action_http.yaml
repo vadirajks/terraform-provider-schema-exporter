@@ -1,0 +1,76 @@
+version: 0
+block:
+  attributes:
+    body:
+      type: string
+      description_kind: plain
+      optional: true
+    headers:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    logic_app_id:
+      type: string
+      description_kind: plain
+      required: true
+    method:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    queries:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    uri:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    run_after:
+      nesting_mode: set
+      block:
+        attributes:
+          action_name:
+            type: string
+            description_kind: plain
+            required: true
+          action_result:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

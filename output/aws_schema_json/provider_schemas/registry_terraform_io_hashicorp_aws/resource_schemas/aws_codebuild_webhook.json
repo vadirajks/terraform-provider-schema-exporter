@@ -1,0 +1,137 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "branch_filter": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "build_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "manual_creation": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "payload_url": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "secret": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true,
+        "sensitive": true
+      },
+      "url": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "filter_group": {
+        "nesting_mode": "set",
+        "block": {
+          "block_types": {
+            "filter": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "exclude_matched_pattern": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "pattern": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "pull_request_build_policy": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "approver_roles": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "requires_comment_approval": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "scope_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "domain": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "scope": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

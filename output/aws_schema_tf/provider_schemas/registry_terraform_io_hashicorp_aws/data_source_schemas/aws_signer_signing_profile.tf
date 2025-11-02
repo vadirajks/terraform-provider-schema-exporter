@@ -1,0 +1,16 @@
+data "aws_signer_signing_profile" "name" {
+  name = string (Required)
+  arn = string (Computed)
+  id = string (Optional, Computed)
+  platform_display_name = string (Computed)
+  platform_id = string (Computed)
+  region = string (Optional, Computed)
+  revocation_record = ['list', ['object', {'revocation_effective_from': 'string', 'revoked_at': 'string', 'revoked_by': 'string'}]] (Computed)
+  signature_validity_period = ['list', ['object', {'type': 'string', 'value': 'number'}]] (Computed)
+  signing_material = ['list', ['object', {'certificate_arn': 'string'}]] (Computed)
+  signing_parameters = ['map', 'string'] (Computed)
+  status = string (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  version = string (Computed)
+  version_arn = string (Computed)
+}

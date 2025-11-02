@@ -1,0 +1,89 @@
+version: 1
+block:
+  attributes:
+    api_try_out_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    gateway_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    https_only_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instance_count:
+      type: number
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    public_network_access_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    spring_cloud_service_id:
+      type: string
+      description_kind: plain
+      required: true
+    url:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    sso:
+      nesting_mode: list
+      block:
+        attributes:
+          client_id:
+            type: string
+            description_kind: plain
+            optional: true
+          client_secret:
+            type: string
+            description_kind: plain
+            optional: true
+          issuer_uri:
+            type: string
+            description_kind: plain
+            optional: true
+          scope:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

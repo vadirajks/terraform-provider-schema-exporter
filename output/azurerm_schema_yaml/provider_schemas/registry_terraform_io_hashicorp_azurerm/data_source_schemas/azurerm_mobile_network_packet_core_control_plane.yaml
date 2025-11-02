@@ -1,0 +1,108 @@
+version: 0
+block:
+  attributes:
+    control_plane_access_ipv4_address:
+      type: string
+      description_kind: plain
+      computed: true
+    control_plane_access_ipv4_gateway:
+      type: string
+      description_kind: plain
+      computed: true
+    control_plane_access_ipv4_subnet:
+      type: string
+      description_kind: plain
+      computed: true
+    control_plane_access_name:
+      type: string
+      description_kind: plain
+      computed: true
+    core_network_technology:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    identity:
+      type:
+      - list
+      - - object
+        - identity_ids:
+          - list
+          - string
+          type: string
+      description_kind: plain
+      computed: true
+    interoperability_settings_json:
+      type: string
+      description_kind: plain
+      computed: true
+    local_diagnostics_access:
+      type:
+      - list
+      - - object
+        - authentication_type: string
+          https_server_certificate_url: string
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    platform:
+      type:
+      - list
+      - - object
+        - arc_kubernetes_cluster_id: string
+          custom_location_id: string
+          edge_device_id: string
+          stack_hci_cluster_id: string
+          type: string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    site_ids:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    sku:
+      type: string
+      description_kind: plain
+      computed: true
+    software_version:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    user_equipment_mtu_in_bytes:
+      type: number
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

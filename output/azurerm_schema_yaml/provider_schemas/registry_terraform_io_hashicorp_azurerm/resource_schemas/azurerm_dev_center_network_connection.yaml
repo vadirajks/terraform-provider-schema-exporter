@@ -1,0 +1,74 @@
+version: 0
+block:
+  attributes:
+    domain_join_type:
+      type: string
+      description_kind: plain
+      required: true
+    domain_name:
+      type: string
+      description_kind: plain
+      optional: true
+    domain_password:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+    domain_username:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    organization_unit:
+      type: string
+      description_kind: plain
+      optional: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    subnet_id:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

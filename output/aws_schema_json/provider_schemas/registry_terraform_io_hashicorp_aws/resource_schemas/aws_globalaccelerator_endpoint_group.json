@@ -1,0 +1,135 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "endpoint_group_region": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "health_check_interval_seconds": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "health_check_path": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "health_check_port": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "health_check_protocol": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "listener_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "threshold_count": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "traffic_dial_percentage": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "endpoint_configuration": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "attachment_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "client_ip_preservation_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "endpoint_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "weight": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "port_override": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "endpoint_port": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "listener_port": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 10
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

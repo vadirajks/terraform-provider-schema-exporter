@@ -1,0 +1,547 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "Output only. The time at which this CertificateTemplate was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "Optional. A human-readable description of scenarios this template is intended for.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Optional. Labels with user-defined metadata. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location for the resource",
+        "description_kind": "plain",
+        "required": true
+      },
+      "maximum_lifetime": {
+        "type": "string",
+        "description": "Optional. The maximum lifetime allowed for all issued certificates that use this template. If the issuing CaPool's IssuancePolicy specifies a maximum lifetime the minimum of the two durations will be the maximum lifetime for issued. Note that if the issuing CertificateAuthority expires before a Certificate's requested maximum_lifetime, the effective lifetime will be explicitly truncated to match it.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name for this CertificateTemplate in the format 'projects/*/locations/*/certificateTemplates/*'.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Output only. The time at which this CertificateTemplate was updated.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "identity_constraints": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "allow_subject_alt_names_passthrough": {
+              "type": "bool",
+              "description": "Required. If this is true, the SubjectAltNames extension may be copied from a certificate request into the signed certificate. Otherwise, the requested SubjectAltNames will be discarded.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "allow_subject_passthrough": {
+              "type": "bool",
+              "description": "Required. If this is true, the Subject field may be copied from a certificate request into the signed certificate. Otherwise, the requested Subject will be discarded.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "cel_expression": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "description": {
+                    "type": "string",
+                    "description": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "expression": {
+                    "type": "string",
+                    "description": "Textual representation of an expression in Common Expression Language syntax.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "location": {
+                    "type": "string",
+                    "description": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Optional. A CEL expression that may be used to validate the resolved X.509 Subject and/or Subject Alternative Name before a certificate is signed. To see the full allowed syntax and some examples, see https://cloud.google.com/certificate-authority-service/docs/using-cel",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Optional. Describes constraints on identities that may be appear in Certificates issued using this template. If this is omitted, then this template will not add restrictions on a certificate's identity.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "passthrough_extensions": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "known_extensions": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "Optional. A set of named X.509 extensions. Will be combined with additional_extensions to determine the full set of X.509 extensions.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "additional_extensions": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "object_id_path": {
+                    "type": [
+                      "list",
+                      "number"
+                    ],
+                    "description": "Required. The parts of an OID path. The most significant parts of the path come first.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Optional. A set of ObjectIds identifying custom X.509 extensions. Will be combined with known_extensions to determine the full set of X.509 extensions.",
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description": "Optional. Describes the set of X.509 extensions that may appear in a Certificate issued using this CertificateTemplate. If a certificate request sets extensions that don't appear in the passthrough_extensions, those extensions will be dropped. If the issuing CaPool's IssuancePolicy defines baseline_values that don't appear here, the certificate issuance request will fail. If this is omitted, then this template will not add restrictions on a certificate's X.509 extensions. These constraints do not apply to X.509 extensions set in this CertificateTemplate's predefined_values.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "predefined_values": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "aia_ocsp_servers": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "Optional. Describes Online Certificate Status Protocol (OCSP) endpoint addresses that appear in the \"Authority Information Access\" extension in the certificate.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "additional_extensions": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "critical": {
+                    "type": "bool",
+                    "description": "Optional. Indicates whether or not this extension is critical (i.e., if the client does not know how to handle this extension, the client should consider this to be an error).",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "value": {
+                    "type": "string",
+                    "description": "Required. The value of this X.509 extension.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "object_id": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "object_id_path": {
+                          "type": [
+                            "list",
+                            "number"
+                          ],
+                          "description": "Required. The parts of an OID path. The most significant parts of the path come first.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "Required. The OID for this X.509 extension.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  }
+                },
+                "description": "Optional. Describes custom X.509 extensions.",
+                "description_kind": "plain"
+              }
+            },
+            "ca_options": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "is_ca": {
+                    "type": "bool",
+                    "description": "Optional. Refers to the \"CA\" X.509 extension, which is a boolean value. When this value is true, the \"CA\" in Basic Constraints extension will be set to true.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "max_issuer_path_length": {
+                    "type": "number",
+                    "description": "Optional. Refers to the \"path length constraint\" in Basic Constraints extension. For a CA certificate, this value describes the depth of subordinate CA certificates that are allowed. If this value is less than 0, the request will fail.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "null_ca": {
+                    "type": "bool",
+                    "description": "Optional. When true, the \"CA\" in Basic Constraints extension will be set to null and omitted from the CA certificate. If both 'is_ca' and 'null_ca' are unset, the \"CA\" in Basic Constraints extension will be set to false. Note that the behavior when 'is_ca = false' for this resource is different from the behavior in the Certificate Authority, Certificate and CaPool resources.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "zero_max_issuer_path_length": {
+                    "type": "bool",
+                    "description": "Optional. When true, the \"path length constraint\" in Basic Constraints extension will be set to 0. if both 'max_issuer_path_length' and 'zero_max_issuer_path_length' are unset, the max path length will be omitted from the CA certificate.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Optional. Describes options in this X509Parameters that are relevant in a CA certificate.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "key_usage": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "base_key_usage": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "cert_sign": {
+                          "type": "bool",
+                          "description": "The key may be used to sign certificates.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "content_commitment": {
+                          "type": "bool",
+                          "description": "The key may be used for cryptographic commitments. Note that this may also be referred to as \"non-repudiation\".",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "crl_sign": {
+                          "type": "bool",
+                          "description": "The key may be used sign certificate revocation lists.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "data_encipherment": {
+                          "type": "bool",
+                          "description": "The key may be used to encipher data.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "decipher_only": {
+                          "type": "bool",
+                          "description": "The key may be used to decipher only.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "digital_signature": {
+                          "type": "bool",
+                          "description": "The key may be used for digital signatures.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "encipher_only": {
+                          "type": "bool",
+                          "description": "The key may be used to encipher only.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "key_agreement": {
+                          "type": "bool",
+                          "description": "The key may be used in a key agreement protocol.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "key_encipherment": {
+                          "type": "bool",
+                          "description": "The key may be used to encipher other keys.",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "Describes high-level ways in which a key may be used.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "extended_key_usage": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "client_auth": {
+                          "type": "bool",
+                          "description": "Corresponds to OID 1.3.6.1.5.5.7.3.2. Officially described as \"TLS WWW client authentication\", though regularly used for non-WWW TLS.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "code_signing": {
+                          "type": "bool",
+                          "description": "Corresponds to OID 1.3.6.1.5.5.7.3.3. Officially described as \"Signing of downloadable executable code client authentication\".",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "email_protection": {
+                          "type": "bool",
+                          "description": "Corresponds to OID 1.3.6.1.5.5.7.3.4. Officially described as \"Email protection\".",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "ocsp_signing": {
+                          "type": "bool",
+                          "description": "Corresponds to OID 1.3.6.1.5.5.7.3.9. Officially described as \"Signing OCSP responses\".",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "server_auth": {
+                          "type": "bool",
+                          "description": "Corresponds to OID 1.3.6.1.5.5.7.3.1. Officially described as \"TLS WWW server authentication\", though regularly used for non-WWW TLS.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "time_stamping": {
+                          "type": "bool",
+                          "description": "Corresponds to OID 1.3.6.1.5.5.7.3.8. Officially described as \"Binding the hash of an object to a time\".",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "Detailed scenarios in which a key may be used.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "unknown_extended_key_usages": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "object_id_path": {
+                          "type": [
+                            "list",
+                            "number"
+                          ],
+                          "description": "Required. The parts of an OID path. The most significant parts of the path come first.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "Used to describe extended key usages that are not listed in the KeyUsage.ExtendedKeyUsageOptions message.",
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description": "Optional. Indicates the intended use for keys that correspond to a certificate.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "name_constraints": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "critical": {
+                    "type": "bool",
+                    "description": "Indicates whether or not the name constraints are marked critical.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "excluded_dns_names": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Contains excluded DNS names. Any DNS name that can be constructed by simply adding zero or more labels to the left-hand side of the name satisfies the name constraint. For example, 'example.com', 'www.example.com', 'www.sub.example.com' would satisfy 'example.com' while 'example1.com' does not.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "excluded_email_addresses": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Contains the excluded email addresses. The value can be a particular email address, a hostname to indicate all email addresses on that host or a domain with a leading period (e.g. '.example.com') to indicate all email addresses in that domain.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "excluded_ip_ranges": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Contains the excluded IP ranges. For IPv4 addresses, the ranges are expressed using CIDR notation as specified in RFC 4632. For IPv6 addresses, the ranges are expressed in similar encoding as IPv4 addresses.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "excluded_uris": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Contains the excluded URIs that apply to the host part of the name. The value can be a hostname or a domain with a leading period (like '.example.com')",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "permitted_dns_names": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Contains permitted DNS names. Any DNS name that can be constructed by simply adding zero or more labels to the left-hand side of the name satisfies the name constraint. For example, 'example.com', 'www.example.com', 'www.sub.example.com' would satisfy 'example.com' while 'example1.com' does not.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "permitted_email_addresses": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Contains the permitted email addresses. The value can be a particular email address, a hostname to indicate all email addresses on that host or a domain with a leading period (e.g. '.example.com') to indicate all email addresses in that domain.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "permitted_ip_ranges": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Contains the permitted IP ranges. For IPv4 addresses, the ranges are expressed using CIDR notation as specified in RFC 4632. For IPv6 addresses, the ranges are expressed in similar encoding as IPv4 addresses.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "permitted_uris": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Contains the permitted URIs that apply to the host part of the name. The value can be a hostname or a domain with a leading period (like '.example.com')",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Describes the X.509 name constraints extension.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "policy_ids": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "object_id_path": {
+                    "type": [
+                      "list",
+                      "number"
+                    ],
+                    "description": "Required. The parts of an OID path. The most significant parts of the path come first.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Optional. Describes the X.509 certificate policy object identifiers, per https://tools.ietf.org/html/rfc5280#section-4.2.1.4.",
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description": "Optional. A set of X.509 values that will be applied to all issued certificates that use this template. If the certificate request includes conflicting values for the same properties, they will be overwritten by the values defined here. If the issuing CaPool's IssuancePolicy defines conflicting baseline_values for the same properties, the certificate issuance request will fail.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

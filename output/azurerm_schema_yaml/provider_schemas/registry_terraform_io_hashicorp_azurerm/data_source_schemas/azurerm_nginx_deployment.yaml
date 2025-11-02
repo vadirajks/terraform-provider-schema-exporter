@@ -1,0 +1,159 @@
+version: 0
+block:
+  attributes:
+    auto_scale_profile:
+      type:
+      - list
+      - - object
+        - max_capacity: number
+          min_capacity: number
+          name: string
+      description_kind: plain
+      computed: true
+    automatic_upgrade_channel:
+      type: string
+      description_kind: plain
+      computed: true
+    capacity:
+      type: number
+      description_kind: plain
+      computed: true
+    dataplane_api_endpoint:
+      type: string
+      description_kind: plain
+      computed: true
+    diagnose_support_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    email:
+      type: string
+      description_kind: plain
+      computed: true
+    frontend_private:
+      type:
+      - list
+      - - object
+        - allocation_method: string
+          ip_address: string
+          subnet_id: string
+      description_kind: plain
+      computed: true
+    frontend_public:
+      type:
+      - list
+      - - object
+        - ip_address:
+          - list
+          - string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    identity:
+      type:
+      - list
+      - - object
+        - identity_ids:
+          - list
+          - string
+          principal_id: string
+          tenant_id: string
+          type: string
+      description_kind: plain
+      computed: true
+    ip_address:
+      type: string
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    logging_storage_account:
+      type:
+      - list
+      - - object
+        - container_name: string
+          name: string
+      description_kind: plain
+      deprecated: true
+      computed: true
+    managed_resource_group:
+      type: string
+      description_kind: plain
+      deprecated: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    network_interface:
+      type:
+      - list
+      - - object
+        - subnet_id: string
+      description_kind: plain
+      computed: true
+    nginx_version:
+      type: string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    sku:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    web_application_firewall:
+      type:
+      - list
+      - - object
+        - activation_state_enabled: bool
+          status:
+          - list
+          - - object
+            - attack_signatures_package:
+              - list
+              - - object
+                - revision_datetime: string
+                  version: string
+              bot_signatures_package:
+              - list
+              - - object
+                - revision_datetime: string
+                  version: string
+              component_versions:
+              - list
+              - - object
+                - waf_engine_version: string
+                  waf_nginx_version: string
+              threat_campaigns_package:
+              - list
+              - - object
+                - revision_datetime: string
+                  version: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

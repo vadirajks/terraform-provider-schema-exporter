@@ -1,0 +1,244 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "api_management_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "protocol": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "title": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "url": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "credentials": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "certificate": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "header": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "query": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "authorization": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "parameter": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "scheme": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "proxy": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "password": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "sensitive": true
+            },
+            "url": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "username": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "service_fabric_cluster": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "client_certificate_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "client_certificate_thumbprint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "management_endpoints": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "max_partition_resolution_retries": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "server_certificate_thumbprints": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "server_x509_name": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "issuer_certificate_thumbprint": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "tls": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "validate_certificate_chain": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "validate_certificate_name": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

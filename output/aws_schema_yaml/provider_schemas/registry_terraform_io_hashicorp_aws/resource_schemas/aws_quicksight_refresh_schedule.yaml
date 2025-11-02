@@ -1,0 +1,80 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    aws_account_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    data_set_id:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    schedule_id:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    schedule:
+      nesting_mode: list
+      block:
+        attributes:
+          refresh_type:
+            type: string
+            description_kind: plain
+            required: true
+          start_after_date_time:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          schedule_frequency:
+            nesting_mode: list
+            block:
+              attributes:
+                interval:
+                  type: string
+                  description_kind: plain
+                  required: true
+                time_of_the_day:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                timezone:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              block_types:
+                refresh_on_day:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      day_of_month:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      day_of_week:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+              description_kind: plain
+        description_kind: plain
+  description_kind: plain

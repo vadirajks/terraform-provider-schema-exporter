@@ -1,0 +1,17 @@
+data "google_gke_hub_membership_binding" "name" {
+  location = string (Required)
+  membership_binding_id = string (Required)
+  membership_id = string (Required)
+  create_time = string (Computed)
+  delete_time = string (Computed)
+  effective_labels = ['map', 'string'] (Computed)
+  id = string (Optional, Computed)
+  labels = ['map', 'string'] (Computed)
+  name = string (Computed)
+  project = string (Optional)
+  scope = string (Computed)
+  state = ['list', ['object', {'code': 'string'}]] (Computed)
+  terraform_labels = ['map', 'string'] (Computed)
+  uid = string (Computed)
+  update_time = string (Computed)
+}

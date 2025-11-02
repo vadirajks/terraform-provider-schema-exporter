@@ -1,0 +1,119 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    collaboration_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    collaboration_creator_account_id:
+      type: string
+      description_kind: plain
+      computed: true
+    collaboration_creator_display_name:
+      type: string
+      description_kind: plain
+      computed: true
+    collaboration_id:
+      type: string
+      description_kind: plain
+      required: true
+    collaboration_name:
+      type: string
+      description_kind: plain
+      computed: true
+    create_time:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+    member_abilities:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    query_log_status:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    status:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    default_result_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          role_arn:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          output_configuration:
+            nesting_mode: list
+            block:
+              block_types:
+                s3:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      bucket:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      key_prefix:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      result_format:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+              description_kind: plain
+        description_kind: plain
+    payment_configuration:
+      nesting_mode: list
+      block:
+        block_types:
+          query_compute:
+            nesting_mode: list
+            block:
+              attributes:
+                is_responsible:
+                  type: bool
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+  description_kind: plain

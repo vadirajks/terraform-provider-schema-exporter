@@ -1,0 +1,92 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    availability_zone_id:
+      type: string
+      description_kind: plain
+      computed: true
+    availability_zone_name:
+      type: string
+      description_kind: plain
+      computed: true
+    creation_token:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    dns_name:
+      type: string
+      description_kind: plain
+      computed: true
+    encrypted:
+      type: bool
+      description_kind: plain
+      computed: true
+    file_system_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kms_key_id:
+      type: string
+      description_kind: plain
+      computed: true
+    lifecycle_policy:
+      type:
+      - list
+      - - object
+        - transition_to_archive: string
+          transition_to_ia: string
+          transition_to_primary_storage_class: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      computed: true
+    performance_mode:
+      type: string
+      description_kind: plain
+      computed: true
+    protection:
+      type:
+      - list
+      - - object
+        - replication_overwrite: string
+      description_kind: plain
+      computed: true
+    provisioned_throughput_in_mibps:
+      type: number
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    size_in_bytes:
+      type: number
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    throughput_mode:
+      type: string
+      description_kind: plain
+      computed: true
+  description_kind: plain

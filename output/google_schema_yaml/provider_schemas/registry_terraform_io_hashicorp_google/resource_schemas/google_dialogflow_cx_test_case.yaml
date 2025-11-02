@@ -1,0 +1,294 @@
+version: 0
+block:
+  attributes:
+    creation_time:
+      type: string
+      description: When the test was created. A timestamp in RFC3339 text format.
+      description_kind: plain
+      computed: true
+    display_name:
+      type: string
+      description: The human-readable name of the test case, unique within the agent. Limit of 200 characters.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    last_test_result:
+      type:
+      - list
+      - - object
+        - conversation_turns:
+          - list
+          - - object
+            - user_input:
+              - list
+              - - object
+                - enable_sentiment_analysis: bool
+                  injected_parameters: string
+                  input:
+                  - list
+                  - - object
+                    - dtmf:
+                      - list
+                      - - object
+                        - digits: string
+                          finish_digit: string
+                      event:
+                      - list
+                      - - object
+                        - event: string
+                      language_code: string
+                      text:
+                      - list
+                      - - object
+                        - text: string
+                  is_webhook_enabled: bool
+              virtual_agent_output:
+              - list
+              - - object
+                - current_page:
+                  - list
+                  - - object
+                    - display_name: string
+                      name: string
+                  differences:
+                  - list
+                  - - object
+                    - description: string
+                      type: string
+                  session_parameters: string
+                  status:
+                  - list
+                  - - object
+                    - code: number
+                      details: string
+                      message: string
+                  text_responses:
+                  - list
+                  - - object
+                    - text:
+                      - list
+                      - string
+                  triggered_intent:
+                  - list
+                  - - object
+                    - display_name: string
+                      name: string
+          environment: string
+          name: string
+          test_result: string
+          test_time: string
+      description: The latest test result.
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: 'The unique identifier of the test case. Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/testCases/<TestCase ID>.'
+      description_kind: plain
+      computed: true
+    notes:
+      type: string
+      description: Additional freeform notes about the test case. Limit of 400 characters.
+      description_kind: plain
+      optional: true
+    parent:
+      type: string
+      description: 'The agent to create the test case for. Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>.'
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - list
+      - string
+      description: Tags are short descriptions that users may apply to test cases for organizational and filtering purposes. Each tag should start with "#" and has a limit of 30 characters
+      description_kind: plain
+      optional: true
+  block_types:
+    test_case_conversation_turns:
+      nesting_mode: list
+      block:
+        block_types:
+          user_input:
+            nesting_mode: list
+            block:
+              attributes:
+                enable_sentiment_analysis:
+                  type: bool
+                  description: Whether sentiment analysis is enabled.
+                  description_kind: plain
+                  optional: true
+                injected_parameters:
+                  type: string
+                  description: Parameters that need to be injected into the conversation during intent detection.
+                  description_kind: plain
+                  optional: true
+                is_webhook_enabled:
+                  type: bool
+                  description: If webhooks should be allowed to trigger in response to the user utterance. Often if parameters are injected, webhooks should not be enabled.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                input:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      language_code:
+                        type: string
+                        description: The language of the input. See [Language Support](https://cloud.google.com/dialogflow/cx/docs/reference/language) for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language.
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      dtmf:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            digits:
+                              type: string
+                              description: The dtmf digits.
+                              description_kind: plain
+                              optional: true
+                            finish_digit:
+                              type: string
+                              description: The finish digit (if any).
+                              description_kind: plain
+                              optional: true
+                          description: The DTMF event to be handled.
+                          description_kind: plain
+                        max_items: 1
+                      event:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            event:
+                              type: string
+                              description: Name of the event.
+                              description_kind: plain
+                              required: true
+                          description: The event to be triggered.
+                          description_kind: plain
+                        max_items: 1
+                      text:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            text:
+                              type: string
+                              description: The natural language text to be processed. Text length must not exceed 256 characters.
+                              description_kind: plain
+                              required: true
+                          description: The natural language text to be processed.
+                          description_kind: plain
+                        max_items: 1
+                    description: User input. Supports text input, event input, dtmf input in the test case.
+                    description_kind: plain
+                  max_items: 1
+              description: The user input.
+              description_kind: plain
+            max_items: 1
+          virtual_agent_output:
+            nesting_mode: list
+            block:
+              attributes:
+                session_parameters:
+                  type: string
+                  description: The session parameters available to the bot at this point.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                current_page:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      display_name:
+                        type: string
+                        description: The human-readable name of the page, unique within the flow.
+                        description_kind: plain
+                        computed: true
+                      name:
+                        type: string
+                        description: 'The unique identifier of the page. Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/flows/<Flow ID>/pages/<Page ID>.'
+                        description_kind: plain
+                        optional: true
+                    description: The [Page](https://cloud.google.com/dialogflow/cx/docs/reference/rest/v3/projects.locations.agents.flows.pages#Page) on which the utterance was spoken.
+                    description_kind: plain
+                  max_items: 1
+                text_responses:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      text:
+                        type:
+                        - list
+                        - string
+                        description: A collection of text responses.
+                        description_kind: plain
+                        optional: true
+                    description: The text responses from the agent for the turn.
+                    description_kind: plain
+                triggered_intent:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      display_name:
+                        type: string
+                        description: The human-readable name of the intent, unique within the agent.
+                        description_kind: plain
+                        computed: true
+                      name:
+                        type: string
+                        description: 'The unique identifier of the intent. Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/intents/<Intent ID>.'
+                        description_kind: plain
+                        optional: true
+                    description: The [Intent](https://cloud.google.com/dialogflow/cx/docs/reference/rest/v3/projects.locations.agents.intents#Intent) that triggered the response.
+                    description_kind: plain
+                  max_items: 1
+              description: The virtual agent output.
+              description_kind: plain
+            max_items: 1
+        description: The conversation turns uttered when the test case was created, in chronological order. These include the canonical set of agent utterances that should occur when the agent is working properly.
+        description_kind: plain
+    test_config:
+      nesting_mode: list
+      block:
+        attributes:
+          flow:
+            type: string
+            description: 'Flow name to start the test case with. Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/flows/<Flow ID>. Only one of flow and page should be set to indicate the starting point of the test case. If neither is set, the test case will start with start page on the default start flow.'
+            description_kind: plain
+            optional: true
+          page:
+            type: string
+            description: 'The page to start the test case with. Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/flows/<Flow ID>/pages/<Page ID>. Only one of flow and page should be set to indicate the starting point of the test case. If neither is set, the test case will start with start page on the default start flow.'
+            description_kind: plain
+            optional: true
+          tracking_parameters:
+            type:
+            - list
+            - string
+            description: Session parameters to be compared when calculating differences.
+            description_kind: plain
+            optional: true
+        description: Config for the test case.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

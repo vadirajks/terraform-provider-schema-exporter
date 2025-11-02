@@ -1,0 +1,83 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    language:
+      type: string
+      description_kind: plain
+      optional: true
+    python_script:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    scala_code:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    dag_edge:
+      nesting_mode: list
+      block:
+        attributes:
+          source:
+            type: string
+            description_kind: plain
+            required: true
+          target:
+            type: string
+            description_kind: plain
+            required: true
+          target_parameter:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+    dag_node:
+      nesting_mode: list
+      block:
+        attributes:
+          id:
+            type: string
+            description_kind: plain
+            required: true
+          line_number:
+            type: number
+            description_kind: plain
+            optional: true
+          node_type:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          args:
+            nesting_mode: list
+            block:
+              attributes:
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                param:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+        description_kind: plain
+      min_items: 1
+  description_kind: plain

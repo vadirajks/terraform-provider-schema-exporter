@@ -1,0 +1,183 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "cpu_overcommit_type": {
+        "type": "string",
+        "description": "CPU overcommit. Default value: \"NONE\" Possible values: [\"ENABLED\", \"NONE\"]",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "creation_timestamp": {
+        "type": "string",
+        "description": "Creation timestamp in RFC3339 text format.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "An optional textual description of the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "node_affinity_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Labels to use for node affinity, which will be used in instance scheduling.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "node_type": {
+        "type": "string",
+        "description": "Node type to use for nodes group that are created from this template. Only one of nodeTypeFlexibility and nodeType can be specified.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where nodes using the node template will be created. If it is not provided, the provider region is used.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "self_link": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "accelerators": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "accelerator_count": {
+              "type": "number",
+              "description": "The number of the guest accelerator cards exposed to this node template.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "accelerator_type": {
+              "type": "string",
+              "description": "Full or partial URL of the accelerator type resource to expose to this node template.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "List of the type and count of accelerator cards attached to the node template",
+          "description_kind": "plain"
+        }
+      },
+      "disks": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "disk_count": {
+              "type": "number",
+              "description": "Specifies the number of such disks.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "disk_size_gb": {
+              "type": "number",
+              "description": "Specifies the size of the disk in base-2 GB.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "disk_type": {
+              "type": "string",
+              "description": "Specifies the desired disk type on the node. This disk type must be a local storage type (e.g.: local-ssd). Note that for nodeTemplates, this should be the name of the disk type and not its URL.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "List of the type, size and count of disks attached to the node template",
+          "description_kind": "plain"
+        }
+      },
+      "node_type_flexibility": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "cpus": {
+              "type": "string",
+              "description": "Number of virtual CPUs to use.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "local_ssd": {
+              "type": "string",
+              "description": "Use local SSD",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "memory": {
+              "type": "string",
+              "description": "Physical memory available to the node, defined in MB.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Flexible properties for the desired node type. Node groups that use this node template will create nodes of a type that matches these properties. Only one of nodeTypeFlexibility and nodeType can be specified.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "server_binding": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "type": {
+              "type": "string",
+              "description": "Type of server binding policy. If 'RESTART_NODE_ON_ANY_SERVER', nodes using this template will restart on any physical server following a maintenance event. If 'RESTART_NODE_ON_MINIMAL_SERVER', nodes using this template will restart on the same physical server following a maintenance event, instead of being live migrated to or restarted on a new physical server. This option may be useful if you are using software licenses tied to the underlying server characteristics such as physical sockets or cores, to avoid the need for additional licenses when maintenance occurs. However, VMs on such nodes will experience outages while maintenance is applied. Possible values: [\"RESTART_NODE_ON_ANY_SERVER\", \"RESTART_NODE_ON_MINIMAL_SERVERS\"]",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "The server binding policy for nodes using this template. Determines where the nodes should restart following a maintenance event.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

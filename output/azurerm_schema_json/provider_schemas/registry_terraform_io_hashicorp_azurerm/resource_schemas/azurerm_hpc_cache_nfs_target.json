@@ -1,0 +1,110 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "cache_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "target_host_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "usage_model": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "verification_timer_in_seconds": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "write_back_timer_in_seconds": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "namespace_junction": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "access_policy_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "namespace_path": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "nfs_export": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "target_path": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 10
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain",
+    "deprecated": true
+  }
+}

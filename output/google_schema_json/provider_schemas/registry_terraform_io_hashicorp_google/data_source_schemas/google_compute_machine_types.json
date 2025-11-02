@@ -1,0 +1,74 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "filter": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "machine_types": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "accelerators": [
+                "list",
+                [
+                  "object",
+                  {
+                    "guest_accelerator_count": "number",
+                    "guest_accelerator_type": "string"
+                  }
+                ]
+              ],
+              "deprecated": [
+                "set",
+                [
+                  "object",
+                  {
+                    "replacement": "string",
+                    "state": "string"
+                  }
+                ]
+              ],
+              "description": "string",
+              "guest_cpus": "number",
+              "is_shared_cpus": "bool",
+              "maximum_persistent_disks": "number",
+              "maximum_persistent_disks_size_gb": "number",
+              "memory_mb": "number",
+              "name": "string",
+              "self_link": "string"
+            }
+          ]
+        ],
+        "description": "The list of machine types",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description": "Project ID for this request.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "zone": {
+        "type": "string",
+        "description": "The name of the zone for this request.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

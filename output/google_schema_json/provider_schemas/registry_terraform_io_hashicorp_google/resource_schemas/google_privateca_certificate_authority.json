@@ -1,0 +1,767 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "access_urls": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "ca_certificate_access_url": "string",
+              "crl_access_urls": [
+                "list",
+                "string"
+              ]
+            }
+          ]
+        ],
+        "description": "URLs for accessing content published by this CA, such as the CA certificate and CRLs.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "certificate_authority_id": {
+        "type": "string",
+        "description": "The user provided Resource ID for this Certificate Authority.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "The time at which this CertificateAuthority was created. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\".",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "deletion_protection": {
+        "type": "bool",
+        "description": "Whether Terraform will be prevented from destroying the CertificateAuthority. When the field is set to true or unset in Terraform state, a 'terraform apply' or 'terraform destroy' that would delete the CertificateAuthority will fail. When the field is set to false, deleting the CertificateAuthority is allowed.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "desired_state": {
+        "type": "string",
+        "description": "Desired state of the CertificateAuthority. Set this field to 'STAGED' to create a 'STAGED' root CA. Possible values: ENABLED, DISABLED, STAGED.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "gcs_bucket": {
+        "type": "string",
+        "description": "The name of a Cloud Storage bucket where this CertificateAuthority will publish content, such as the CA certificate and CRLs. This must be a bucket name, without any prefixes (such as 'gs://') or suffixes (such as '.googleapis.com'). For example, to use a bucket named my-bucket, you would simply specify 'my-bucket'. If not specified, a managed bucket will be created.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ignore_active_certificates_on_deletion": {
+        "type": "bool",
+        "description": "This field allows the CA to be deleted even if the CA has active certs. Active certs include both unrevoked and unexpired certs. Use with care. Defaults to 'false'.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Labels with user-defined metadata. An object containing a list of \"key\": value pairs. Example: { \"name\": \"wrench\", \"mass\": \"1.3kg\", \"count\": \"3\" }. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "lifetime": {
+        "type": "string",
+        "description": "The desired lifetime of the CA certificate. Used to create the \"notBeforeTime\" and \"notAfterTime\" fields inside an X.509 certificate. A duration in seconds with up to nine fractional digits, terminated by 's'. Example: \"3.5s\".",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "Location of the CertificateAuthority. A full list of valid locations can be found by running 'gcloud privateca locations list'.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name for this CertificateAuthority in the format projects/*/locations/*/certificateAuthorities/*.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "pem_ca_certificate": {
+        "type": "string",
+        "description": "The signed CA certificate issued from the subordinated CA's CSR. This is needed when activating the subordiante CA with a third party issuer.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "pem_ca_certificates": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "This CertificateAuthority's certificate chain, including the current CertificateAuthority's certificate. Ordered such that the root issuer is the final element (consistent with RFC 5246). For a self-signed CA, this will only list the current CertificateAuthority's certificate.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "pool": {
+        "type": "string",
+        "description": "The name of the CaPool this Certificate Authority belongs to.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "skip_grace_period": {
+        "type": "bool",
+        "description": "If this flag is set, the Certificate Authority will be deleted as soon as possible without a 30-day grace period where undeletion would have been allowed. If you proceed, there will be no way to recover this CA. Use with care. Defaults to 'false'.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "state": {
+        "type": "string",
+        "description": "The State for this CertificateAuthority.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "type": {
+        "type": "string",
+        "description": "The Type of this CertificateAuthority. ~> **Note:** For 'SUBORDINATE' Certificate Authorities, they need to be activated before they can issue certificates. Default value: \"SELF_SIGNED\" Possible values: [\"SELF_SIGNED\", \"SUBORDINATE\"]",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "The time at which this CertificateAuthority was updated. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\".",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "config": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "subject_config": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "subject": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "common_name": {
+                          "type": "string",
+                          "description": "The common name of the distinguished name.",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "country_code": {
+                          "type": "string",
+                          "description": "The country code of the subject.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "locality": {
+                          "type": "string",
+                          "description": "The locality or city of the subject.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "organization": {
+                          "type": "string",
+                          "description": "The organization of the subject.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "organizational_unit": {
+                          "type": "string",
+                          "description": "The organizational unit of the subject.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "postal_code": {
+                          "type": "string",
+                          "description": "The postal code of the subject.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "province": {
+                          "type": "string",
+                          "description": "The province, territory, or regional state of the subject.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "street_address": {
+                          "type": "string",
+                          "description": "The street address of the subject.",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "Contains distinguished name fields such as the location and organization.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  },
+                  "subject_alt_name": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "dns_names": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description": "Contains only valid, fully-qualified host names.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "email_addresses": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description": "Contains only valid RFC 2822 E-mail addresses.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "ip_addresses": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description": "Contains only valid 32-bit IPv4 addresses or RFC 4291 IPv6 addresses.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "uris": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description": "Contains only valid RFC 3986 URIs.",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "The subject alternative name fields.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "Specifies some of the values in a certificate that are related to the subject.",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "subject_key_id": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "key_id": {
+                    "type": "string",
+                    "description": "The value of the KeyId in lowercase hexadecimal.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "When specified this provides a custom SKI to be used in the certificate. This should only be used to maintain a SKI of an existing CA originally created outside CA service, which was not generated using method (1) described in RFC 5280 section 4.2.1.2..",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "x509_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "aia_ocsp_servers": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Describes Online Certificate Status Protocol (OCSP) endpoint addresses that appear in the \"Authority Information Access\" extension in the certificate.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "additional_extensions": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "critical": {
+                          "type": "bool",
+                          "description": "Indicates whether or not this extension is critical (i.e., if the client does not know how to handle this extension, the client should consider this to be an error).",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "value": {
+                          "type": "string",
+                          "description": "The value of this X.509 extension. A base64-encoded string.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "object_id": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "object_id_path": {
+                                "type": [
+                                  "list",
+                                  "number"
+                                ],
+                                "description": "An ObjectId specifies an object identifier (OID). These provide context and describe types in ASN.1 messages.",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description": "Describes values that are relevant in a CA certificate.",
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        }
+                      },
+                      "description": "Specifies an X.509 extension, which may be used in different parts of X.509 objects like certificates, CSRs, and CRLs.",
+                      "description_kind": "plain"
+                    }
+                  },
+                  "ca_options": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "is_ca": {
+                          "type": "bool",
+                          "description": "When true, the \"CA\" in Basic Constraints extension will be set to true.",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "max_issuer_path_length": {
+                          "type": "number",
+                          "description": "Refers to the \"path length constraint\" in Basic Constraints extension. For a CA certificate, this value describes the depth of subordinate CA certificates that are allowed. If this value is less than 0, the request will fail. Setting the value to 0 requires setting 'zero_max_issuer_path_length = true'.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "non_ca": {
+                          "type": "bool",
+                          "description": "When true, the \"CA\" in Basic Constraints extension will be set to false. If both 'is_ca' and 'non_ca' are unset, the extension will be omitted from the CA certificate.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "zero_max_issuer_path_length": {
+                          "type": "bool",
+                          "description": "When true, the \"path length constraint\" in Basic Constraints extension will be set to 0. If both 'max_issuer_path_length' and 'zero_max_issuer_path_length' are unset, the max path length will be omitted from the CA certificate.",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "Describes values that are relevant in a CA certificate.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  },
+                  "key_usage": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "block_types": {
+                        "base_key_usage": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "cert_sign": {
+                                "type": "bool",
+                                "description": "The key may be used to sign certificates.",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "content_commitment": {
+                                "type": "bool",
+                                "description": "The key may be used for cryptographic commitments. Note that this may also be referred to as \"non-repudiation\".",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "crl_sign": {
+                                "type": "bool",
+                                "description": "The key may be used sign certificate revocation lists.",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "data_encipherment": {
+                                "type": "bool",
+                                "description": "The key may be used to encipher data.",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "decipher_only": {
+                                "type": "bool",
+                                "description": "The key may be used to decipher only.",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "digital_signature": {
+                                "type": "bool",
+                                "description": "The key may be used for digital signatures.",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "encipher_only": {
+                                "type": "bool",
+                                "description": "The key may be used to encipher only.",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "key_agreement": {
+                                "type": "bool",
+                                "description": "The key may be used in a key agreement protocol.",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "key_encipherment": {
+                                "type": "bool",
+                                "description": "The key may be used to encipher other keys.",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description": "Describes high-level ways in which a key may be used.",
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        },
+                        "extended_key_usage": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "client_auth": {
+                                "type": "bool",
+                                "description": "Corresponds to OID 1.3.6.1.5.5.7.3.2. Officially described as \"TLS WWW client authentication\", though regularly used for non-WWW TLS.",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "code_signing": {
+                                "type": "bool",
+                                "description": "Corresponds to OID 1.3.6.1.5.5.7.3.3. Officially described as \"Signing of downloadable executable code client authentication\".",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "email_protection": {
+                                "type": "bool",
+                                "description": "Corresponds to OID 1.3.6.1.5.5.7.3.4. Officially described as \"Email protection\".",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "ocsp_signing": {
+                                "type": "bool",
+                                "description": "Corresponds to OID 1.3.6.1.5.5.7.3.9. Officially described as \"Signing OCSP responses\".",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "server_auth": {
+                                "type": "bool",
+                                "description": "Corresponds to OID 1.3.6.1.5.5.7.3.1. Officially described as \"TLS WWW server authentication\", though regularly used for non-WWW TLS.",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "time_stamping": {
+                                "type": "bool",
+                                "description": "Corresponds to OID 1.3.6.1.5.5.7.3.8. Officially described as \"Binding the hash of an object to a time\".",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description": "Describes high-level ways in which a key may be used.",
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        },
+                        "unknown_extended_key_usages": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "object_id_path": {
+                                "type": [
+                                  "list",
+                                  "number"
+                                ],
+                                "description": "An ObjectId specifies an object identifier (OID). These provide context and describe types in ASN.1 messages.",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description": "An ObjectId specifies an object identifier (OID). These provide context and describe types in ASN.1 messages.",
+                            "description_kind": "plain"
+                          }
+                        }
+                      },
+                      "description": "Indicates the intended use for keys that correspond to a certificate.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  },
+                  "name_constraints": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "critical": {
+                          "type": "bool",
+                          "description": "Indicates whether or not the name constraints are marked critical.",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "excluded_dns_names": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description": "Contains excluded DNS names. Any DNS name that can be constructed by simply adding zero or more labels to the left-hand side of the name satisfies the name constraint. For example, 'example.com', 'www.example.com', 'www.sub.example.com' would satisfy 'example.com' while 'example1.com' does not.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "excluded_email_addresses": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description": "Contains the excluded email addresses. The value can be a particular email address, a hostname to indicate all email addresses on that host or a domain with a leading period (e.g. '.example.com') to indicate all email addresses in that domain.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "excluded_ip_ranges": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description": "Contains the excluded IP ranges. For IPv4 addresses, the ranges are expressed using CIDR notation as specified in RFC 4632. For IPv6 addresses, the ranges are expressed in similar encoding as IPv4 addresses.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "excluded_uris": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description": "Contains the excluded URIs that apply to the host part of the name. The value can be a hostname or a domain with a leading period (like '.example.com')",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "permitted_dns_names": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description": "Contains permitted DNS names. Any DNS name that can be constructed by simply adding zero or more labels to the left-hand side of the name satisfies the name constraint. For example, 'example.com', 'www.example.com', 'www.sub.example.com' would satisfy 'example.com' while 'example1.com' does not.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "permitted_email_addresses": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description": "Contains the permitted email addresses. The value can be a particular email address, a hostname to indicate all email addresses on that host or a domain with a leading period (e.g. '.example.com') to indicate all email addresses in that domain.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "permitted_ip_ranges": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description": "Contains the permitted IP ranges. For IPv4 addresses, the ranges are expressed using CIDR notation as specified in RFC 4632. For IPv6 addresses, the ranges are expressed in similar encoding as IPv4 addresses.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "permitted_uris": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description": "Contains the permitted URIs that apply to the host part of the name. The value can be a hostname or a domain with a leading period (like '.example.com')",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "Describes the X.509 name constraints extension.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "policy_ids": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "object_id_path": {
+                          "type": [
+                            "list",
+                            "number"
+                          ],
+                          "description": "An ObjectId specifies an object identifier (OID). These provide context and describe types in ASN.1 messages.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "Describes the X.509 certificate policy object identifiers, per https://tools.ietf.org/html/rfc5280#section-4.2.1.4.",
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description": "Describes how some of the technical X.509 fields in a certificate should be populated.",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description": "The config used to create a self-signed X.509 certificate or CSR.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "key_spec": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "algorithm": {
+              "type": "string",
+              "description": "The algorithm to use for creating a managed Cloud KMS key for a for a simplified experience. All managed keys will be have their ProtectionLevel as HSM. Possible values: [\"SIGN_HASH_ALGORITHM_UNSPECIFIED\", \"RSA_PSS_2048_SHA256\", \"RSA_PSS_3072_SHA256\", \"RSA_PSS_4096_SHA256\", \"RSA_PKCS1_2048_SHA256\", \"RSA_PKCS1_3072_SHA256\", \"RSA_PKCS1_4096_SHA256\", \"EC_P256_SHA256\", \"EC_P384_SHA384\"]",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_kms_key_version": {
+              "type": "string",
+              "description": "The resource name for an existing Cloud KMS CryptoKeyVersion in the format 'projects/*/locations/*/keyRings/*/cryptoKeys/*/cryptoKeyVersions/*'.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Used when issuing certificates for this CertificateAuthority. If this CertificateAuthority is a self-signed CertificateAuthority, this key is also used to sign the self-signed CA certificate. Otherwise, it is used to sign a CSR.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "subordinate_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "certificate_authority": {
+              "type": "string",
+              "description": "This can refer to a CertificateAuthority that was used to create a subordinate CertificateAuthority. This field is used for information and usability purposes only. The resource name is in the format 'projects/*/locations/*/caPools/*/certificateAuthorities/*'.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "pem_issuer_chain": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "pem_certificates": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Expected to be in leaf-to-root order according to RFC 5246.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Contains the PEM certificate chain for the issuers of this CertificateAuthority, but not pem certificate for this CA itself.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "If this is a subordinate CertificateAuthority, this field will be set with the subordinate configuration, which describes its issuers.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "user_defined_access_urls": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "aia_issuing_certificate_urls": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "A list of URLs where this CertificateAuthority's CA certificate is published that is specified by users.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "crl_access_urls": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "A list of URLs where this CertificateAuthority's CRLs are published that is specified by users.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Custom URLs for accessing content published by this CA, such as the CA certificate and CRLs, that can be specified by users.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

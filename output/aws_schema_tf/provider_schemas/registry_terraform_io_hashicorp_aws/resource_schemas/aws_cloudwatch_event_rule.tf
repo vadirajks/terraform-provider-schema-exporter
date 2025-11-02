@@ -1,0 +1,17 @@
+resource "aws_cloudwatch_event_rule" "name" {
+  arn = string (Computed)
+  description = string (Optional)
+  event_bus_name = string (Optional)
+  event_pattern = string (Optional)
+  force_destroy = bool (Optional)
+  id = string (Optional, Computed)
+  is_enabled = bool (Optional)
+  name = string (Optional, Computed)
+  name_prefix = string (Optional, Computed)
+  region = string (Optional, Computed)
+  role_arn = string (Optional)
+  schedule_expression = string (Optional)
+  state = string (Optional)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+}

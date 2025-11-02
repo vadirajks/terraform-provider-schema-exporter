@@ -1,0 +1,89 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: 'Creation timestamp of a Certificate Map. Timestamp is in RFC3339 UTC "Zulu" format, accurate to nanoseconds with up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".'
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: A human-readable description of the resource.
+      description_kind: plain
+      optional: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    gclb_targets:
+      type:
+      - list
+      - - object
+        - ip_configs:
+          - list
+          - - object
+            - ip_address: string
+              ports:
+              - list
+              - number
+          target_https_proxy: string
+          target_ssl_proxy: string
+      description: A list of target proxies that use this Certificate Map
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Set of labels associated with a Certificate Map resource. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: A user-defined name of the Certificate Map. Certificate Map names must be unique globally and match the pattern 'projects/*/locations/*/certificateMaps/*'.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: 'Update timestamp of a Certificate Map. Timestamp is in RFC3339 UTC "Zulu" format, accurate to nanoseconds with up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".'
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,102 @@
+version: 0
+block:
+  attributes:
+    base_model_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    creation_time:
+      type: string
+      description_kind: plain
+      computed: true
+    hyperparameters:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+    job_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    job_name:
+      type: string
+      description_kind: plain
+      computed: true
+    job_tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    model_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    model_id:
+      type: string
+      description_kind: plain
+      required: true
+    model_kms_key_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    model_name:
+      type: string
+      description_kind: plain
+      computed: true
+    model_tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    output_data_config:
+      type:
+      - list
+      - - object
+        - s3_uri: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    training_data_config:
+      type:
+      - list
+      - - object
+        - s3_uri: string
+      description_kind: plain
+      computed: true
+    training_metrics:
+      type:
+      - list
+      - - object
+        - training_loss: number
+      description_kind: plain
+      computed: true
+    validation_data_config:
+      type:
+      - list
+      - - object
+        - validator:
+          - list
+          - - object
+            - s3_uri: string
+      description_kind: plain
+      computed: true
+    validation_metrics:
+      type:
+      - list
+      - - object
+        - validation_loss: number
+      description_kind: plain
+      computed: true
+  description_kind: plain

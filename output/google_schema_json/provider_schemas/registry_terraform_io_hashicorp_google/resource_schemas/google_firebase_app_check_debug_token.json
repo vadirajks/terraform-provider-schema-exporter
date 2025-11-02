@@ -1,0 +1,70 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "app_id": {
+        "type": "string",
+        "description": "The ID of a [Web App](https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects.webApps#WebApp.FIELDS.app_id), [Apple App](https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects.iosApps#IosApp.FIELDS.app_id), or [Android App](https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects.androidApps#AndroidApp.FIELDS.app_id)",
+        "description_kind": "plain",
+        "required": true
+      },
+      "debug_token_id": {
+        "type": "string",
+        "description": "The last segment of the resource name of the debug token.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "A human readable display name used to identify this debug token.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "token": {
+        "type": "string",
+        "description": "The secret token itself. Must be provided during creation, and must be a UUID4, case insensitive. You may use a method of your choice such as random/random_uuid to generate the token. This field is immutable once set, and cannot be updated. You can, however, delete this debug token to revoke it. For security reasons, this field will never be populated in any response.",
+        "description_kind": "plain",
+        "required": true,
+        "sensitive": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,116 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: Time the repository was created in UTC.
+      description_kind: plain
+      computed: true
+    deletion_policy:
+      type: string
+      description: 'The deletion policy for the repository. Setting ''ABANDON'' allows the resource to be abandoned, rather than deleted. Setting ''DELETE'' deletes the resource and all its contents. Setting ''PREVENT'' prevents the resource from accidental deletion by erroring out during plan. Default is ''PREVENT''.  Possible values are: * DELETE * PREVENT * ABANDON'
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description: Description of the repository, which cannot exceed 500 characters.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instance:
+      type: string
+      description: The name of the instance in which the repository is hosted.
+      description_kind: plain
+      required: true
+    location:
+      type: string
+      description: The location for the Repository.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The resource name for the Repository.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    repository_id:
+      type: string
+      description: The ID for the Repository.
+      description_kind: plain
+      required: true
+    uid:
+      type: string
+      description: Unique identifier of the repository.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: Time the repository was updated in UTC.
+      description_kind: plain
+      computed: true
+    uris:
+      type:
+      - list
+      - - object
+        - api: string
+          git_https: string
+          html: string
+      description: URIs for the repository.
+      description_kind: plain
+      computed: true
+  block_types:
+    initial_config:
+      nesting_mode: list
+      block:
+        attributes:
+          default_branch:
+            type: string
+            description: Default branch name of the repository.
+            description_kind: plain
+            optional: true
+          gitignores:
+            type:
+            - list
+            - string
+            description: List of gitignore template names user can choose from. Valid values can be viewed at https://cloud.google.com/secure-source-manager/docs/reference/rest/v1/projects.locations.repositories#initialconfig.
+            description_kind: plain
+            optional: true
+          license:
+            type: string
+            description: License template name user can choose from. Valid values can be viewed at https://cloud.google.com/secure-source-manager/docs/reference/rest/v1/projects.locations.repositories#initialconfig.
+            description_kind: plain
+            optional: true
+          readme:
+            type: string
+            description: README template name. Valid values can be viewed at https://cloud.google.com/secure-source-manager/docs/reference/rest/v1/projects.locations.repositories#initialconfig.
+            description_kind: plain
+            optional: true
+        description: Initial configurations for the repository.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

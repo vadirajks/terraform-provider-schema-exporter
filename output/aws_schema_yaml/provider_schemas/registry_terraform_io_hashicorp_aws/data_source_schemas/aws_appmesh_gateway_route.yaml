@@ -1,0 +1,221 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    created_date:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    last_updated_date:
+      type: string
+      description_kind: plain
+      computed: true
+    mesh_name:
+      type: string
+      description_kind: plain
+      required: true
+    mesh_owner:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_owner:
+      type: string
+      description_kind: plain
+      computed: true
+    spec:
+      type:
+      - list
+      - - object
+        - grpc_route:
+          - list
+          - - object
+            - action:
+              - list
+              - - object
+                - target:
+                  - list
+                  - - object
+                    - port: number
+                      virtual_service:
+                      - list
+                      - - object
+                        - virtual_service_name: string
+              match:
+              - list
+              - - object
+                - port: number
+                  service_name: string
+          http2_route:
+          - list
+          - - object
+            - action:
+              - list
+              - - object
+                - rewrite:
+                  - list
+                  - - object
+                    - hostname:
+                      - list
+                      - - object
+                        - default_target_hostname: string
+                      path:
+                      - list
+                      - - object
+                        - exact: string
+                      prefix:
+                      - list
+                      - - object
+                        - default_prefix: string
+                          value: string
+                  target:
+                  - list
+                  - - object
+                    - port: number
+                      virtual_service:
+                      - list
+                      - - object
+                        - virtual_service_name: string
+              match:
+              - list
+              - - object
+                - header:
+                  - set
+                  - - object
+                    - invert: bool
+                      match:
+                      - list
+                      - - object
+                        - exact: string
+                          prefix: string
+                          range:
+                          - list
+                          - - object
+                            - end: number
+                              start: number
+                          regex: string
+                          suffix: string
+                      name: string
+                  hostname:
+                  - list
+                  - - object
+                    - exact: string
+                      suffix: string
+                  path:
+                  - list
+                  - - object
+                    - exact: string
+                      regex: string
+                  port: number
+                  prefix: string
+                  query_parameter:
+                  - set
+                  - - object
+                    - match:
+                      - list
+                      - - object
+                        - exact: string
+                      name: string
+          http_route:
+          - list
+          - - object
+            - action:
+              - list
+              - - object
+                - rewrite:
+                  - list
+                  - - object
+                    - hostname:
+                      - list
+                      - - object
+                        - default_target_hostname: string
+                      path:
+                      - list
+                      - - object
+                        - exact: string
+                      prefix:
+                      - list
+                      - - object
+                        - default_prefix: string
+                          value: string
+                  target:
+                  - list
+                  - - object
+                    - port: number
+                      virtual_service:
+                      - list
+                      - - object
+                        - virtual_service_name: string
+              match:
+              - list
+              - - object
+                - header:
+                  - set
+                  - - object
+                    - invert: bool
+                      match:
+                      - list
+                      - - object
+                        - exact: string
+                          prefix: string
+                          range:
+                          - list
+                          - - object
+                            - end: number
+                              start: number
+                          regex: string
+                          suffix: string
+                      name: string
+                  hostname:
+                  - list
+                  - - object
+                    - exact: string
+                      suffix: string
+                  path:
+                  - list
+                  - - object
+                    - exact: string
+                      regex: string
+                  port: number
+                  prefix: string
+                  query_parameter:
+                  - set
+                  - - object
+                    - match:
+                      - list
+                      - - object
+                        - exact: string
+                      name: string
+          priority: number
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    virtual_gateway_name:
+      type: string
+      description_kind: plain
+      required: true
+  description_kind: plain

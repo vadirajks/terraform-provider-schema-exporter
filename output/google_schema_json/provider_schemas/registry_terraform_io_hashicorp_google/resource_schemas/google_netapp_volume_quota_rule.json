@@ -1,0 +1,132 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "Create time of the quota rule. A timestamp in RFC3339 UTC \"Zulu\" format. Examples: \"2023-06-22T09:13:01.617Z\".",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "Description for the quota rule.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "disk_limit_mib": {
+        "type": "number",
+        "description": "The maximum allowed capacity in MiB.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Labels as key value pairs of the quota rule. Example: '{ \"owner\": \"Bob\", \"department\": \"finance\", \"purpose\": \"testing\" }'. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "Loction of the quotaRule. QuotaRules are child resources of volumes and live in the same location.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name of the quotaRule.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "state": {
+        "type": "string",
+        "description": "The state of the quota rule. Possible Values : [STATE_UNSPECIFIED, CREATING, UPDATING, READY, DELETING, ERROR]",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "state_details": {
+        "type": "string",
+        "description": "State details of the quota rule",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "target": {
+        "type": "string",
+        "description": "The quota rule applies to the specified user or group. Valid targets for volumes with NFS protocol enabled: - UNIX UID for individual user quota - UNIX GID for individual group quota Valid targets for volumes with SMB protocol enabled: - Windows SID for individual user quota Leave empty for default quotas",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "type": {
+        "type": "string",
+        "description": "Types of Quota Rule. Possible values: [\"INDIVIDUAL_USER_QUOTA\", \"INDIVIDUAL_GROUP_QUOTA\", \"DEFAULT_USER_QUOTA\", \"DEFAULT_GROUP_QUOTA\"]",
+        "description_kind": "plain",
+        "required": true
+      },
+      "volume_name": {
+        "type": "string",
+        "description": "Name of the volume to create the quotaRule in.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

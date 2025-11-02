@@ -1,0 +1,17 @@
+data "google_compute_reservation" "name" {
+  name = string (Required)
+  zone = string (Required)
+  commitment = string (Computed)
+  creation_timestamp = string (Computed)
+  delete_after_duration = ['list', ['object', {'nanos': 'number', 'seconds': 'string'}]] (Computed)
+  delete_at_time = string (Computed)
+  description = string (Computed)
+  id = string (Optional, Computed)
+  project = string (Optional)
+  reservation_sharing_policy = ['list', ['object', {'service_share_type': 'string'}]] (Computed)
+  self_link = string (Computed)
+  share_settings = ['list', ['object', {'project_map': ['set', ['object', {'id': 'string', 'project_id': 'string'}]], 'share_type': 'string'}]] (Computed)
+  specific_reservation = ['list', ['object', {'count': 'number', 'in_use_count': 'number', 'instance_properties': ['list', ['object', {'guest_accelerators': ['list', ['object', {'accelerator_count': 'number', 'accelerator_type': 'string'}]], 'local_ssds': ['list', ['object', {'disk_size_gb': 'number', 'interface': 'string'}]], 'machine_type': 'string', 'min_cpu_platform': 'string'}]], 'source_instance_template': 'string'}]] (Computed)
+  specific_reservation_required = bool (Computed)
+  status = string (Computed)
+}

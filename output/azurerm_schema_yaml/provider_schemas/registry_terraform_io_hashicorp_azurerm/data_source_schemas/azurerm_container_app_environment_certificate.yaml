@@ -1,0 +1,60 @@
+version: 0
+block:
+  attributes:
+    container_app_environment_id:
+      type: string
+      description: The Container App Managed Environment ID to configure this Certificate on.
+      description_kind: plain
+      required: true
+    expiration_date:
+      type: string
+      description: The expiration date for the Certificate.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    issue_date:
+      type: string
+      description: The date of issue for the Certificate.
+      description_kind: plain
+      computed: true
+    issuer:
+      type: string
+      description: The Certificate Issuer.
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: The name of the Container Apps Certificate.
+      description_kind: plain
+      required: true
+    subject_name:
+      type: string
+      description: The Subject Name for the Certificate.
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    thumbprint:
+      type: string
+      description: The Thumbprint of the Certificate.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

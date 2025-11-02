@@ -1,0 +1,153 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "agent_arns": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "required": true
+      },
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "authentication_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "block_size": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "kerberos_keytab": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "kerberos_keytab_base64": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "kerberos_krb5_conf": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "kerberos_krb5_conf_base64": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "kerberos_principal": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "kms_key_provider_uri": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "replication_factor": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "simple_user": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "subdirectory": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "uri": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "name_node": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "hostname": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "port": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "qop_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "data_transfer_protection": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "rpc_protection": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

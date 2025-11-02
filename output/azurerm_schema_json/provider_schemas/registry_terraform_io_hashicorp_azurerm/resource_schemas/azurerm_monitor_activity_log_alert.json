@@ -1,0 +1,305 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "scopes": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "action": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "action_group_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "webhook_properties": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "criteria": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "caller": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "category": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "level": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "levels": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "operation_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "recommendation_category": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "recommendation_impact": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "recommendation_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "resource_group": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "resource_groups": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "resource_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "resource_ids": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "resource_provider": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "resource_providers": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "resource_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "resource_types": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "status": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "statuses": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "sub_status": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "sub_statuses": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "resource_health": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "current": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "previous": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "reason": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "service_health": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "events": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "locations": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "services": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

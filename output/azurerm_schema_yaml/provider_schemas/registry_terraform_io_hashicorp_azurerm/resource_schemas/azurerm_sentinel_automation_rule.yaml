@@ -1,0 +1,137 @@
+version: 1
+block:
+  attributes:
+    condition_json:
+      type: string
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description_kind: plain
+      required: true
+    enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    expiration:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    log_analytics_workspace_id:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    order:
+      type: number
+      description_kind: plain
+      required: true
+    triggers_on:
+      type: string
+      description_kind: plain
+      optional: true
+    triggers_when:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    action_incident:
+      nesting_mode: list
+      block:
+        attributes:
+          classification:
+            type: string
+            description_kind: plain
+            optional: true
+          classification_comment:
+            type: string
+            description_kind: plain
+            optional: true
+          labels:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          order:
+            type: number
+            description_kind: plain
+            required: true
+          owner_id:
+            type: string
+            description_kind: plain
+            optional: true
+          severity:
+            type: string
+            description_kind: plain
+            optional: true
+          status:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    action_incident_task:
+      nesting_mode: list
+      block:
+        attributes:
+          description:
+            type: string
+            description_kind: plain
+            optional: true
+          order:
+            type: number
+            description_kind: plain
+            required: true
+          title:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    action_playbook:
+      nesting_mode: list
+      block:
+        attributes:
+          logic_app_id:
+            type: string
+            description_kind: plain
+            required: true
+          order:
+            type: number
+            description_kind: plain
+            required: true
+          tenant_id:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

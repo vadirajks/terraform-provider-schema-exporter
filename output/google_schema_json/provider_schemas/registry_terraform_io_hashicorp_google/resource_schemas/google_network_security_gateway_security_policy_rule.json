@@ -1,0 +1,123 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "application_matcher": {
+        "type": "string",
+        "description": "CEL expression for matching on L7/application level criteria.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "basic_profile": {
+        "type": "string",
+        "description": "Profile which tells what the primitive action should be. Possible values are: * ALLOW * DENY. Possible values: [\"BASIC_PROFILE_UNSPECIFIED\", \"ALLOW\", \"DENY\"]",
+        "description_kind": "plain",
+        "required": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "The timestamp when the resource was created. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\"",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "Free-text description of the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "enabled": {
+        "type": "bool",
+        "description": "Whether the rule is enforced.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "gateway_security_policy": {
+        "type": "string",
+        "description": "The name of the gatewat security policy this rule belongs to.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location of the gateway security policy.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the resource. ame is the full resource name so projects/{project}/locations/{location}/gatewaySecurityPolicies/{gateway_security_policy}/rules/{rule} rule should match the pattern: (^a-z?$).",
+        "description_kind": "plain",
+        "required": true
+      },
+      "priority": {
+        "type": "number",
+        "description": "Priority of the rule. Lower number corresponds to higher precedence.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "self_link": {
+        "type": "string",
+        "description": "Server-defined URL of this resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "session_matcher": {
+        "type": "string",
+        "description": "CEL expression for matching on session criteria.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tls_inspection_enabled": {
+        "type": "bool",
+        "description": "Flag to enable TLS inspection of traffic matching on. Can only be true if the parent GatewaySecurityPolicy references a TLSInspectionConfig.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "The timestamp when the resource was updated. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\".",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

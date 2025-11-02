@@ -1,0 +1,89 @@
+version: 0
+block:
+  attributes:
+    allow_forwarded_traffic:
+      type: bool
+      description_kind: plain
+      optional: true
+    allow_gateway_transit:
+      type: bool
+      description_kind: plain
+      optional: true
+    allow_virtual_network_access:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    local_subnet_names:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    only_ipv6_peering_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    peer_complete_virtual_networks_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    remote_subnet_names:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    remote_virtual_network_id:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    triggers:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    use_remote_gateways:
+      type: bool
+      description_kind: plain
+      optional: true
+    virtual_network_name:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

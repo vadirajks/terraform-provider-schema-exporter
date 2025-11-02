@@ -1,0 +1,161 @@
+version: 0
+block:
+  attributes:
+    application_insights_id:
+      type: string
+      description_kind: plain
+      required: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    frequency:
+      type: number
+      description_kind: plain
+      optional: true
+    geo_locations:
+      type:
+      - list
+      - string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    retry_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    synthetic_monitor_id:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    timeout:
+      type: number
+      description_kind: plain
+      optional: true
+  block_types:
+    request:
+      nesting_mode: list
+      block:
+        attributes:
+          body:
+            type: string
+            description_kind: plain
+            optional: true
+          follow_redirects_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          http_verb:
+            type: string
+            description_kind: plain
+            optional: true
+          parse_dependent_requests_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          url:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          header:
+            nesting_mode: list
+            block:
+              attributes:
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    validation_rules:
+      nesting_mode: list
+      block:
+        attributes:
+          expected_status_code:
+            type: number
+            description_kind: plain
+            optional: true
+          ssl_cert_remaining_lifetime:
+            type: number
+            description_kind: plain
+            optional: true
+          ssl_check_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+        block_types:
+          content:
+            nesting_mode: list
+            block:
+              attributes:
+                content_match:
+                  type: string
+                  description_kind: plain
+                  required: true
+                ignore_case:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                pass_if_text_found:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

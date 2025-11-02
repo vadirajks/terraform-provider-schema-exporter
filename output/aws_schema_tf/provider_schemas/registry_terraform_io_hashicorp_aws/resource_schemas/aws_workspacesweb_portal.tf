@@ -1,0 +1,32 @@
+resource "aws_workspacesweb_portal" "name" {
+  additional_encryption_context = ['map', 'string'] (Optional)
+  authentication_type = string (Optional, Computed)
+  browser_settings_arn = string (Optional, Computed)
+  browser_type = string (Computed)
+  creation_date = string (Computed)
+  customer_managed_key = string (Optional)
+  data_protection_settings_arn = string (Computed)
+  display_name = string (Optional, Computed)
+  instance_type = string (Optional, Computed)
+  ip_access_settings_arn = string (Computed)
+  max_concurrent_sessions = number (Optional, Computed)
+  network_settings_arn = string (Computed)
+  portal_arn = string (Computed)
+  portal_endpoint = string (Computed)
+  portal_status = string (Computed)
+  region = string (Optional, Computed)
+  renderer_type = string (Computed)
+  session_logger_arn = string (Computed)
+  status_reason = string (Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Computed)
+  trust_store_arn = string (Computed)
+  user_access_logging_settings_arn = string (Computed)
+  user_settings_arn = string (Computed)
+
+  timeouts block "single" (Optional) {
+    create = string (Optional)
+    delete = string (Optional)
+    update = string (Optional)
+  }
+}

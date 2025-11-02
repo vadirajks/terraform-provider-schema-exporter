@@ -1,0 +1,58 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "backup_id": {
+        "type": "number",
+        "description": "The identifier for this backup run. Unique only for a specific Cloud SQL instance. If left empty and multiple backups exist for the instance, most_recent must be set to true.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "instance": {
+        "type": "string",
+        "description": "Name of the database instance.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "location": {
+        "type": "string",
+        "description": "Location of the backups.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "most_recent": {
+        "type": "bool",
+        "description": "Toggles use of the most recent backup run if multiple backups exist for a Cloud SQL instance.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "project": {
+        "type": "string",
+        "description": "Project ID of the project that contains the instance.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "start_time": {
+        "type": "string",
+        "description": "The time the backup operation actually started in UTC timezone in RFC 3339 format, for example 2012-11-15T16:19:00.094Z.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "status": {
+        "type": "string",
+        "description": "The status of this run.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

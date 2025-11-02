@@ -1,0 +1,40 @@
+version: 0
+block:
+  attributes:
+    group:
+      type: string
+      description: The name of the Group to get memberships from.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    memberships:
+      type:
+      - list
+      - - object
+        - create_ignore_already_exists: bool
+          create_time: string
+          group: string
+          name: string
+          preferred_member_key:
+          - list
+          - - object
+            - id: string
+              namespace: string
+          roles:
+          - set
+          - - object
+            - expiry_detail:
+              - list
+              - - object
+                - expire_time: string
+              name: string
+          type: string
+          update_time: string
+      description: List of Cloud Identity group memberships.
+      description_kind: plain
+      computed: true
+  description_kind: plain

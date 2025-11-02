@@ -1,0 +1,184 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "json": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "minified_json": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "override_json": {
+        "type": "string",
+        "description_kind": "plain",
+        "deprecated": true,
+        "optional": true
+      },
+      "override_policy_documents": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "policy_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "source_json": {
+        "type": "string",
+        "description_kind": "plain",
+        "deprecated": true,
+        "optional": true
+      },
+      "source_policy_documents": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "version": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "statement": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "actions": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "effect": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "not_actions": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "not_resources": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "resources": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "sid": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "condition": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "test": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "values": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "variable": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "not_principals": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "identifiers": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "principals": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "identifiers": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

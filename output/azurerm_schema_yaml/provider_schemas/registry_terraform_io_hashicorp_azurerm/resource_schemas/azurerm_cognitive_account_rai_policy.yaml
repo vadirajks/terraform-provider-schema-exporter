@@ -1,0 +1,79 @@
+version: 0
+block:
+  attributes:
+    base_policy_name:
+      type: string
+      description_kind: plain
+      required: true
+    cognitive_account_id:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    mode:
+      type: string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    content_filter:
+      nesting_mode: list
+      block:
+        attributes:
+          block_enabled:
+            type: bool
+            description_kind: plain
+            required: true
+          filter_enabled:
+            type: bool
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          severity_threshold:
+            type: string
+            description_kind: plain
+            required: true
+          source:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

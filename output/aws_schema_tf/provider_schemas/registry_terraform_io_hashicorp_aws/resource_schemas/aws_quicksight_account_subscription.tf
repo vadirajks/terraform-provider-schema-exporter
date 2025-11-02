@@ -1,0 +1,30 @@
+resource "aws_quicksight_account_subscription" "name" {
+  account_name = string (Required)
+  authentication_method = string (Required)
+  edition = string (Required)
+  notification_email = string (Required)
+  account_subscription_status = string (Computed)
+  active_directory_name = string (Optional)
+  admin_group = ['list', 'string'] (Optional)
+  admin_pro_group = ['list', 'string'] (Optional)
+  author_group = ['list', 'string'] (Optional)
+  author_pro_group = ['list', 'string'] (Optional)
+  aws_account_id = string (Optional, Computed)
+  contact_number = string (Optional)
+  directory_id = string (Optional)
+  email_address = string (Optional)
+  first_name = string (Optional)
+  iam_identity_center_instance_arn = string (Optional)
+  id = string (Optional, Computed)
+  last_name = string (Optional)
+  reader_group = ['list', 'string'] (Optional)
+  reader_pro_group = ['list', 'string'] (Optional)
+  realm = string (Optional)
+  region = string (Optional, Computed)
+
+  timeouts block "single" (Optional) {
+    create = string (Optional)
+    delete = string (Optional)
+    read = string (Optional)
+  }
+}

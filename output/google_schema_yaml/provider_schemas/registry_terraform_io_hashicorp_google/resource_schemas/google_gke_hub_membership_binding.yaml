@@ -1,0 +1,106 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: Time the MembershipBinding was created in UTC.
+      description_kind: plain
+      computed: true
+    delete_time:
+      type: string
+      description: Time the MembershipBinding was deleted in UTC.
+      description_kind: plain
+      computed: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Labels for this Membership binding. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: Location of the membership
+      description_kind: plain
+      required: true
+    membership_binding_id:
+      type: string
+      description: The client-provided identifier of the membership binding.
+      description_kind: plain
+      required: true
+    membership_id:
+      type: string
+      description: Id of the membership
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The resource name for the membershipbinding itself
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    scope:
+      type: string
+      description: A Workspace resource name in the format 'projects/*/locations/*/scopes/*'.
+      description_kind: plain
+      required: true
+    state:
+      type:
+      - list
+      - - object
+        - code: string
+      description: State of the membership binding resource.
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    uid:
+      type: string
+      description: Google-generated UUID for this resource.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: Time the MembershipBinding was updated in UTC.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

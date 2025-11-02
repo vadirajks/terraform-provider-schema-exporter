@@ -1,0 +1,54 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    dispatch_rules:
+      nesting_mode: list
+      block:
+        attributes:
+          domain:
+            type: string
+            description: 'Domain name to match against. The wildcard "*" is supported if specified before a period: "*.". Defaults to matching all domains: "*".'
+            description_kind: plain
+            optional: true
+          path:
+            type: string
+            description: Pathname within the host. Must start with a "/". A single "*" can be included at the end of the path. The sum of the lengths of the domain and path may not exceed 100 characters.
+            description_kind: plain
+            required: true
+          service:
+            type: string
+            description: Pathname within the host. Must start with a "/". A single "*" can be included at the end of the path. The sum of the lengths of the domain and path may not exceed 100 characters.
+            description_kind: plain
+            required: true
+        description: Rules to match an HTTP request and dispatch that request to a service.
+        description_kind: plain
+      min_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

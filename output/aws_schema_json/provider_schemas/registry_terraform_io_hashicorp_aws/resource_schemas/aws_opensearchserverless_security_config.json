@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "config_version": {
+        "type": "string",
+        "description": "Version of the configuration.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "Description of the security configuration.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the policy.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "type": {
+        "type": "string",
+        "description": "Type of configuration. Must be `saml`.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "saml_options": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "group_attribute": {
+              "type": "string",
+              "description": "Group attribute for this SAML integration.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "metadata": {
+              "type": "string",
+              "description": "The XML IdP metadata file generated from your identity provider.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "session_timeout": {
+              "type": "number",
+              "description": "Session timeout, in minutes. Minimum is 5 minutes and maximum is 720 minutes (12 hours). Default is 60 minutes.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "user_attribute": {
+              "type": "string",
+              "description": "User attribute for this SAML integration.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

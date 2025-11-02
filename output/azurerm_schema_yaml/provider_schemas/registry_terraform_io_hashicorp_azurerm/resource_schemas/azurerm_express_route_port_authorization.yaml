@@ -1,0 +1,48 @@
+version: 0
+block:
+  attributes:
+    authorization_key:
+      type: string
+      description_kind: plain
+      computed: true
+      sensitive: true
+    authorization_use_status:
+      type: string
+      description_kind: plain
+      computed: true
+    express_route_port_name:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

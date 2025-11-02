@@ -1,0 +1,59 @@
+version: 0
+block:
+  attributes:
+    description:
+      type: string
+      description: Entry group description, which can consist of several sentences or paragraphs that describe entry group contents.
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description: A short name to identify the entry group, for example, "analytics data - jan 2011".
+      description_kind: plain
+      optional: true
+    entry_group_id:
+      type: string
+      description: The id of the entry group to create. The id must begin with a letter or underscore, contain only English letters, numbers and underscores, and be at most 64 characters.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: 'The resource name of the entry group in URL format. Example: projects/{project}/locations/{location}/entryGroups/{entryGroupId}'
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: EntryGroup location region.
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

@@ -1,0 +1,27 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    project:
+      type: string
+      description: Project ID of the project for which to list tiers.
+      description_kind: plain
+      optional: true
+      computed: true
+    tiers:
+      type:
+      - list
+      - - object
+        - disk_quota: number
+          ram: number
+          region:
+          - list
+          - string
+          tier: string
+      description_kind: plain
+      computed: true
+  description_kind: plain

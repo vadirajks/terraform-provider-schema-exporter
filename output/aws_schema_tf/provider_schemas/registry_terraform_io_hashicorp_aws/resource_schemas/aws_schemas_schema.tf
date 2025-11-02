@@ -1,0 +1,15 @@
+resource "aws_schemas_schema" "name" {
+  content = string (Required)
+  name = string (Required)
+  registry_name = string (Required)
+  type = string (Required)
+  arn = string (Computed)
+  description = string (Optional)
+  id = string (Optional, Computed)
+  last_modified = string (Computed)
+  region = string (Optional, Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+  version = string (Computed)
+  version_created_date = string (Computed)
+}

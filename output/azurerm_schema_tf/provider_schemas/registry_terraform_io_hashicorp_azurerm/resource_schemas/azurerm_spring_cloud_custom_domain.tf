@@ -1,0 +1,14 @@
+resource "azurerm_spring_cloud_custom_domain" "name" {
+  name = string (Required)
+  spring_cloud_app_id = string (Required)
+  certificate_name = string (Optional)
+  id = string (Optional, Computed)
+  thumbprint = string (Optional)
+
+  timeouts block "single" (Optional) {
+    create = string (Optional)
+    delete = string (Optional)
+    read = string (Optional)
+    update = string (Optional)
+  }
+}

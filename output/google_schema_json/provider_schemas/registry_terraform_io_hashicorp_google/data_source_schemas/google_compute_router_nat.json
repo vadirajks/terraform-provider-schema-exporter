@@ -1,0 +1,248 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "auto_network_tier": {
+        "type": "string",
+        "description": "The network tier to use when automatically reserving NAT IP addresses. Must be one of: PREMIUM, STANDARD. If not specified, then the current project-level default tier is used. Possible values: [\"PREMIUM\", \"STANDARD\"]",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "drain_nat_ips": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description": "A list of URLs of the IP resources to be drained. These IPs must be valid static external IPs that have been assigned to the NAT.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "enable_dynamic_port_allocation": {
+        "type": "bool",
+        "description": "Enable Dynamic Port Allocation. If minPortsPerVm is set, minPortsPerVm must be set to a power of two greater than or equal to 32. If minPortsPerVm is not set, a minimum of 32 ports will be allocated to a VM from this NAT config. If maxPortsPerVm is set, maxPortsPerVm must be set to a power of two greater than minPortsPerVm. If maxPortsPerVm is not set, a maximum of 65536 ports will be allocated to a VM from this NAT config. Mutually exclusive with enableEndpointIndependentMapping.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "enable_endpoint_independent_mapping": {
+        "type": "bool",
+        "description": "Enable endpoint independent mapping. For more information see the [official documentation](https://cloud.google.com/nat/docs/overview#specs-rfcs).",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "endpoint_types": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "Specifies the endpoint Types supported by the NAT Gateway. Supported values include: 'ENDPOINT_TYPE_VM', 'ENDPOINT_TYPE_SWG', 'ENDPOINT_TYPE_MANAGED_PROXY_LB'.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "icmp_idle_timeout_sec": {
+        "type": "number",
+        "description": "Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "initial_nat_ips": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description": "Self-links of NAT IPs to be used as initial value for creation alongside a RouterNatAddress resource. Conflicts with natIps and drainNatIps. Only valid if natIpAllocateOption is set to MANUAL_ONLY.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "log_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "enable": "bool",
+              "filter": "string"
+            }
+          ]
+        ],
+        "description": "Configuration for logging on NAT",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "max_ports_per_vm": {
+        "type": "number",
+        "description": "Maximum number of ports allocated to a VM from this NAT. This field can only be set when enableDynamicPortAllocation is enabled.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "min_ports_per_vm": {
+        "type": "number",
+        "description": "Minimum number of ports allocated to a VM from this NAT. Defaults to 64 for static port allocation and 32 dynamic port allocation if not set.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the NAT service. The name must be 1-63 characters long and comply with RFC1035.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "nat64_subnetwork": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "name": "string"
+            }
+          ]
+        ],
+        "description": "One or more subnetwork NAT configurations whose traffic should be translated by NAT64 Gateway. Only used if 'source_subnetwork_ip_ranges_to_nat64' is set to 'LIST_OF_IPV6_SUBNETWORKS'",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "nat_ip_allocate_option": {
+        "type": "string",
+        "description": "How external IPs should be allocated for this NAT. Valid values are 'AUTO_ONLY' for only allowing NAT IPs allocated by Google Cloud Platform, or 'MANUAL_ONLY' for only user-allocated NAT IP addresses. Possible values: [\"MANUAL_ONLY\", \"AUTO_ONLY\"]",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "nat_ips": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description": "Self-links of NAT IPs. Only valid if natIpAllocateOption is set to MANUAL_ONLY. If this field is used alongside with a count created list of address resources 'google_compute_address.foobar.*.self_link', the access level resource for the address resource must have a 'lifecycle' block with 'create_before_destroy = true' so the number of resources can be increased/decreased without triggering the 'resourceInUseByAnotherResource' error.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where the router and NAT reside.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "router": {
+        "type": "string",
+        "description": "The name of the Cloud Router in which this NAT will be configured.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "rules": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "action": [
+                "list",
+                [
+                  "object",
+                  {
+                    "source_nat_active_ips": [
+                      "set",
+                      "string"
+                    ],
+                    "source_nat_active_ranges": [
+                      "set",
+                      "string"
+                    ],
+                    "source_nat_drain_ips": [
+                      "set",
+                      "string"
+                    ],
+                    "source_nat_drain_ranges": [
+                      "set",
+                      "string"
+                    ]
+                  }
+                ]
+              ],
+              "description": "string",
+              "match": "string",
+              "rule_number": "number"
+            }
+          ]
+        ],
+        "description": "A list of rules associated with this NAT.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "source_subnetwork_ip_ranges_to_nat": {
+        "type": "string",
+        "description": "How NAT should be configured per Subnetwork. If 'ALL_SUBNETWORKS_ALL_IP_RANGES', all of the IP ranges in every Subnetwork are allowed to Nat. If 'ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES', all of the primary IP ranges in every Subnetwork are allowed to Nat. 'LIST_OF_SUBNETWORKS': A list of Subnetworks are allowed to Nat (specified in the field subnetwork below). Note that if this field contains ALL_SUBNETWORKS_ALL_IP_RANGES or ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES, then there should not be any other RouterNat section in any Router for this network in this region. Possible values: [\"ALL_SUBNETWORKS_ALL_IP_RANGES\", \"ALL_SUBNETWORKS_ALL_PRIMARY_IP_RANGES\", \"LIST_OF_SUBNETWORKS\"]",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "source_subnetwork_ip_ranges_to_nat64": {
+        "type": "string",
+        "description": "Specify the Nat option for NAT64, which can take one of the following values: ALL_IPV6_SUBNETWORKS: All of the IP ranges in every Subnetwork are allowed to Nat. LIST_OF_IPV6_SUBNETWORKS: A list of Subnetworks are allowed to Nat (specified in the field nat64Subnetwork below). Note that if this field contains NAT64_ALL_V6_SUBNETWORKS no other Router.Nat section in this region can also enable NAT64 for any Subnetworks in this network. Other Router.Nat sections can still be present to enable NAT44 only. Possible values: [\"ALL_IPV6_SUBNETWORKS\", \"LIST_OF_IPV6_SUBNETWORKS\"]",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "subnetwork": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "name": "string",
+              "secondary_ip_range_names": [
+                "set",
+                "string"
+              ],
+              "source_ip_ranges_to_nat": [
+                "set",
+                "string"
+              ]
+            }
+          ]
+        ],
+        "description": "One or more subnetwork NAT configurations. Only used if 'source_subnetwork_ip_ranges_to_nat' is set to 'LIST_OF_SUBNETWORKS'",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tcp_established_idle_timeout_sec": {
+        "type": "number",
+        "description": "Timeout (in seconds) for TCP established connections. Defaults to 1200s if not set.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tcp_time_wait_timeout_sec": {
+        "type": "number",
+        "description": "Timeout (in seconds) for TCP connections that are in TIME_WAIT state. Defaults to 120s if not set.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tcp_transitory_idle_timeout_sec": {
+        "type": "number",
+        "description": "Timeout (in seconds) for TCP transitory connections. Defaults to 30s if not set.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "type": {
+        "type": "string",
+        "description": "Indicates whether this NAT is used for public or private IP translation. If unspecified, it defaults to PUBLIC. If 'PUBLIC' NAT used for public IP translation. If 'PRIVATE' NAT used for private IP translation. Default value: \"PUBLIC\" Possible values: [\"PUBLIC\", \"PRIVATE\"]",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "udp_idle_timeout_sec": {
+        "type": "number",
+        "description": "Timeout (in seconds) for UDP connections. Defaults to 30s if not set.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

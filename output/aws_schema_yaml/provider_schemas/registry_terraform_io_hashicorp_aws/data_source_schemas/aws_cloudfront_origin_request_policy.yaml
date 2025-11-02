@@ -1,0 +1,63 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    comment:
+      type: string
+      description_kind: plain
+      computed: true
+    cookies_config:
+      type:
+      - list
+      - - object
+        - cookie_behavior: string
+          cookies:
+          - list
+          - - object
+            - items:
+              - set
+              - string
+      description_kind: plain
+      computed: true
+    etag:
+      type: string
+      description_kind: plain
+      computed: true
+    headers_config:
+      type:
+      - list
+      - - object
+        - header_behavior: string
+          headers:
+          - list
+          - - object
+            - items:
+              - set
+              - string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+    query_strings_config:
+      type:
+      - list
+      - - object
+        - query_string_behavior: string
+          query_strings:
+          - list
+          - - object
+            - items:
+              - set
+              - string
+      description_kind: plain
+      computed: true
+  description_kind: plain

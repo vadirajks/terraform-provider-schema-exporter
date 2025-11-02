@@ -1,0 +1,59 @@
+version: 0
+block:
+  attributes:
+    assignee:
+      type: string
+      description: The resource which will use the reservation. E.g. projects/myproject, folders/123, organizations/456.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    job_type:
+      type: string
+      description: 'Types of job, which could be specified when using the reservation. Possible values: JOB_TYPE_UNSPECIFIED, PIPELINE, QUERY, CONTINUOUS'
+      description_kind: plain
+      required: true
+    location:
+      type: string
+      description: The location for the resource
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: Output only. The resource name of the assignment.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    reservation:
+      type: string
+      description: The reservation for the resource
+      description_kind: plain
+      required: true
+    state:
+      type: string
+      description: 'Assignment will remain in PENDING state if no active capacity commitment is present. It will become ACTIVE when some capacity commitment becomes active. Possible values: STATE_UNSPECIFIED, PENDING, ACTIVE'
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

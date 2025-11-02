@@ -1,0 +1,125 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "activated": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "annotations": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "data_factory_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "end_time": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "frequency": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "interval": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "pipeline_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "schedule": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "days_of_month": [
+                "list",
+                "number"
+              ],
+              "days_of_week": [
+                "list",
+                "string"
+              ],
+              "hours": [
+                "list",
+                "number"
+              ],
+              "minutes": [
+                "list",
+                "number"
+              ],
+              "monthly": [
+                "list",
+                [
+                  "object",
+                  {
+                    "week": "number",
+                    "weekday": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "start_time": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "time_zone": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

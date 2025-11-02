@@ -1,0 +1,94 @@
+version: 0
+block:
+  attributes:
+    client_protocol:
+      type: string
+      description_kind: plain
+      optional: true
+    cluster_id:
+      type: string
+      description_kind: plain
+      required: true
+    clustering_policy:
+      type: string
+      description_kind: plain
+      optional: true
+    eviction_policy:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    linked_database_group_nickname:
+      type: string
+      description_kind: plain
+      optional: true
+    linked_database_id:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+    port:
+      type: number
+      description_kind: plain
+      optional: true
+    primary_access_key:
+      type: string
+      description_kind: plain
+      computed: true
+      sensitive: true
+    secondary_access_key:
+      type: string
+      description_kind: plain
+      computed: true
+      sensitive: true
+  block_types:
+    module:
+      nesting_mode: list
+      block:
+        attributes:
+          args:
+            type: string
+            description_kind: plain
+            optional: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          version:
+            type: string
+            description_kind: plain
+            computed: true
+        description_kind: plain
+      max_items: 4
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

@@ -1,0 +1,96 @@
+version: 0
+block:
+  attributes:
+    always_serve_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    geo_mappings:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    priority:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    profile_id:
+      type: string
+      description_kind: plain
+      required: true
+    target_resource_id:
+      type: string
+      description_kind: plain
+      required: true
+    weight:
+      type: number
+      description_kind: plain
+      optional: true
+  block_types:
+    custom_header:
+      nesting_mode: list
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          value:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    subnet:
+      nesting_mode: list
+      block:
+        attributes:
+          first:
+            type: string
+            description_kind: plain
+            required: true
+          last:
+            type: string
+            description_kind: plain
+            optional: true
+          scope:
+            type: number
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

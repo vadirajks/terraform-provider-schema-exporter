@@ -1,0 +1,509 @@
+version: 0
+block:
+  attributes:
+    app_service_plan_id:
+      type: string
+      description_kind: plain
+      required: true
+    app_settings:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    client_cert_mode:
+      type: string
+      description_kind: plain
+      optional: true
+    custom_domain_verification_id:
+      type: string
+      description_kind: plain
+      computed: true
+    daily_memory_time_quota:
+      type: number
+      description_kind: plain
+      optional: true
+    default_hostname:
+      type: string
+      description_kind: plain
+      computed: true
+    enable_builtin_logging:
+      type: bool
+      description_kind: plain
+      optional: true
+    enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    https_only:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    key_vault_reference_identity_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kind:
+      type: string
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    os_type:
+      type: string
+      description_kind: plain
+      optional: true
+    outbound_ip_addresses:
+      type: string
+      description_kind: plain
+      computed: true
+    possible_outbound_ip_addresses:
+      type: string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    site_credential:
+      type:
+      - list
+      - - object
+        - password: string
+          username: string
+      description_kind: plain
+      computed: true
+    storage_account_access_key:
+      type: string
+      description_kind: plain
+      required: true
+      sensitive: true
+    storage_account_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    version:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    auth_settings:
+      nesting_mode: list
+      block:
+        attributes:
+          additional_login_params:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+          allowed_external_redirect_urls:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          default_provider:
+            type: string
+            description_kind: plain
+            optional: true
+          enabled:
+            type: bool
+            description_kind: plain
+            required: true
+          issuer:
+            type: string
+            description_kind: plain
+            optional: true
+          runtime_version:
+            type: string
+            description_kind: plain
+            optional: true
+          token_refresh_extension_hours:
+            type: number
+            description_kind: plain
+            optional: true
+          token_store_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          unauthenticated_client_action:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          active_directory:
+            nesting_mode: list
+            block:
+              attributes:
+                allowed_audiences:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                client_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+                client_secret:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  sensitive: true
+              description_kind: plain
+            max_items: 1
+          facebook:
+            nesting_mode: list
+            block:
+              attributes:
+                app_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+                app_secret:
+                  type: string
+                  description_kind: plain
+                  required: true
+                  sensitive: true
+                oauth_scopes:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          google:
+            nesting_mode: list
+            block:
+              attributes:
+                client_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+                client_secret:
+                  type: string
+                  description_kind: plain
+                  required: true
+                  sensitive: true
+                oauth_scopes:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          microsoft:
+            nesting_mode: list
+            block:
+              attributes:
+                client_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+                client_secret:
+                  type: string
+                  description_kind: plain
+                  required: true
+                  sensitive: true
+                oauth_scopes:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          twitter:
+            nesting_mode: list
+            block:
+              attributes:
+                consumer_key:
+                  type: string
+                  description_kind: plain
+                  required: true
+                consumer_secret:
+                  type: string
+                  description_kind: plain
+                  required: true
+                  sensitive: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    connection_string:
+      nesting_mode: set
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+          value:
+            type: string
+            description_kind: plain
+            required: true
+            sensitive: true
+        description_kind: plain
+    identity:
+      nesting_mode: list
+      block:
+        attributes:
+          identity_ids:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          principal_id:
+            type: string
+            description_kind: plain
+            computed: true
+          tenant_id:
+            type: string
+            description_kind: plain
+            computed: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    site_config:
+      nesting_mode: list
+      block:
+        attributes:
+          always_on:
+            type: bool
+            description_kind: plain
+            optional: true
+          app_scale_limit:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+          auto_swap_slot_name:
+            type: string
+            description_kind: plain
+            optional: true
+          dotnet_framework_version:
+            type: string
+            description_kind: plain
+            optional: true
+          elastic_instance_minimum:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+          ftps_state:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          health_check_path:
+            type: string
+            description_kind: plain
+            optional: true
+          http2_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          ip_restriction:
+            type:
+            - list
+            - - object
+              - action: string
+                headers:
+                - list
+                - - object
+                  - x_azure_fdid:
+                    - set
+                    - string
+                    x_fd_health_probe:
+                    - set
+                    - string
+                    x_forwarded_for:
+                    - set
+                    - string
+                    x_forwarded_host:
+                    - set
+                    - string
+                ip_address: string
+                name: string
+                priority: number
+                service_tag: string
+                virtual_network_subnet_id: string
+            description_kind: plain
+            optional: true
+            computed: true
+          java_version:
+            type: string
+            description_kind: plain
+            optional: true
+          linux_fx_version:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          min_tls_version:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          pre_warmed_instance_count:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+          runtime_scale_monitoring_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          scm_ip_restriction:
+            type:
+            - list
+            - - object
+              - action: string
+                headers:
+                - list
+                - - object
+                  - x_azure_fdid:
+                    - set
+                    - string
+                    x_fd_health_probe:
+                    - set
+                    - string
+                    x_forwarded_for:
+                    - set
+                    - string
+                    x_forwarded_host:
+                    - set
+                    - string
+                ip_address: string
+                name: string
+                priority: number
+                service_tag: string
+                virtual_network_subnet_id: string
+            description_kind: plain
+            optional: true
+            computed: true
+          scm_type:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          scm_use_main_ip_restriction:
+            type: bool
+            description_kind: plain
+            optional: true
+          use_32_bit_worker_process:
+            type: bool
+            description_kind: plain
+            optional: true
+          vnet_route_all_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+            computed: true
+          websockets_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+        block_types:
+          cors:
+            nesting_mode: list
+            block:
+              attributes:
+                allowed_origins:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  required: true
+                support_credentials:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    source_control:
+      nesting_mode: list
+      block:
+        attributes:
+          branch:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          manual_integration:
+            type: bool
+            description_kind: plain
+            optional: true
+            computed: true
+          repo_url:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          rollback_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+            computed: true
+          use_mercurial:
+            type: bool
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

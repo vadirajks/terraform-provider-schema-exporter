@@ -1,0 +1,154 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "configuration": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "bgp_configurations": [
+                "list",
+                [
+                  "object",
+                  {
+                    "core_network_address": "string",
+                    "core_network_asn": "number",
+                    "peer_address": "string",
+                    "peer_asn": "number"
+                  }
+                ]
+              ],
+              "core_network_address": "string",
+              "inside_cidr_blocks": [
+                "set",
+                "string"
+              ],
+              "peer_address": "string",
+              "protocol": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "connect_attachment_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "connect_peer_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "core_network_address": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "core_network_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "created_at": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "edge_location": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "inside_cidr_blocks": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "peer_address": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "state": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "subnet_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "bgp_options": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "peer_asn": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

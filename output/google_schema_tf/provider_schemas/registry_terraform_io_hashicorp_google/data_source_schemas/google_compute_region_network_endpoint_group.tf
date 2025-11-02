@@ -1,0 +1,16 @@
+data "google_compute_region_network_endpoint_group" "name" {
+  app_engine = ['list', ['object', {'service': 'string', 'url_mask': 'string', 'version': 'string'}]] (Computed)
+  cloud_function = ['list', ['object', {'function': 'string', 'url_mask': 'string'}]] (Computed)
+  cloud_run = ['list', ['object', {'service': 'string', 'tag': 'string', 'url_mask': 'string'}]] (Computed)
+  description = string (Computed)
+  id = string (Optional, Computed)
+  name = string (Optional)
+  network = string (Computed)
+  network_endpoint_type = string (Computed)
+  project = string (Optional)
+  psc_data = ['list', ['object', {'producer_port': 'string'}]] (Computed)
+  psc_target_service = string (Computed)
+  region = string (Optional)
+  self_link = string (Optional)
+  subnetwork = string (Computed)
+}

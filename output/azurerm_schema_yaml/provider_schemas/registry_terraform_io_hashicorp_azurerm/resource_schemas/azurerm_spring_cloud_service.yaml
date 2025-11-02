@@ -1,0 +1,334 @@
+version: 1
+block:
+  attributes:
+    build_agent_pool_size:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    log_stream_public_endpoint_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    managed_environment_id:
+      type: string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    outbound_public_ip_addresses:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    required_network_traffic_rules:
+      type:
+      - list
+      - - object
+        - direction: string
+          fqdns:
+          - list
+          - string
+          ip_addresses:
+          - list
+          - string
+          port: number
+          protocol: string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    service_registry_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    service_registry_id:
+      type: string
+      description_kind: plain
+      computed: true
+    sku_name:
+      type: string
+      description_kind: plain
+      optional: true
+    sku_tier:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    zone_redundant:
+      type: bool
+      description_kind: plain
+      optional: true
+  block_types:
+    config_server_git_setting:
+      nesting_mode: list
+      block:
+        attributes:
+          label:
+            type: string
+            description_kind: plain
+            optional: true
+          search_paths:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          uri:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          http_basic_auth:
+            nesting_mode: list
+            block:
+              attributes:
+                password:
+                  type: string
+                  description_kind: plain
+                  required: true
+                  sensitive: true
+                username:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          repository:
+            nesting_mode: list
+            block:
+              attributes:
+                label:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                pattern:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                search_paths:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                uri:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                http_basic_auth:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      password:
+                        type: string
+                        description_kind: plain
+                        required: true
+                        sensitive: true
+                      username:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 1
+                ssh_auth:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      host_key:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                        sensitive: true
+                      host_key_algorithm:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      private_key:
+                        type: string
+                        description_kind: plain
+                        required: true
+                        sensitive: true
+                      strict_host_key_checking_enabled:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+          ssh_auth:
+            nesting_mode: list
+            block:
+              attributes:
+                host_key:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  sensitive: true
+                host_key_algorithm:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                private_key:
+                  type: string
+                  description_kind: plain
+                  required: true
+                  sensitive: true
+                strict_host_key_checking_enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    container_registry:
+      nesting_mode: list
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          password:
+            type: string
+            description_kind: plain
+            required: true
+            sensitive: true
+          server:
+            type: string
+            description_kind: plain
+            required: true
+          username:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    default_build_service:
+      nesting_mode: list
+      block:
+        attributes:
+          container_registry_name:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    marketplace:
+      nesting_mode: list
+      block:
+        attributes:
+          plan:
+            type: string
+            description_kind: plain
+            required: true
+          product:
+            type: string
+            description_kind: plain
+            required: true
+          publisher:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    network:
+      nesting_mode: list
+      block:
+        attributes:
+          app_network_resource_group:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          app_subnet_id:
+            type: string
+            description_kind: plain
+            required: true
+          cidr_ranges:
+            type:
+            - list
+            - string
+            description_kind: plain
+            required: true
+          outbound_type:
+            type: string
+            description_kind: plain
+            optional: true
+          read_timeout_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+          service_runtime_network_resource_group:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          service_runtime_subnet_id:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    trace:
+      nesting_mode: list
+      block:
+        attributes:
+          connection_string:
+            type: string
+            description_kind: plain
+            optional: true
+          sample_rate:
+            type: number
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

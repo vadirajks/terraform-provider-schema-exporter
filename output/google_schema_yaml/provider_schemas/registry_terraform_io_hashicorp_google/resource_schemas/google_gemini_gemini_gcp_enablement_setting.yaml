@@ -1,0 +1,94 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: Create time stamp.
+      description_kind: plain
+      computed: true
+    disable_web_grounding:
+      type: bool
+      description: Whether web grounding should be disabled.
+      description_kind: plain
+      deprecated: true
+      optional: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    enable_customer_data_sharing:
+      type: bool
+      description: Whether customer data sharing should be enabled.
+      description_kind: plain
+      optional: true
+    gemini_gcp_enablement_setting_id:
+      type: string
+      description: Id of the Gemini Gcp Enablement setting.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Labels as key value pairs. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: Resource ID segment making up resource 'name'. It identifies the resource within its parent collection as described in https://google.aip.dev/122.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: Identifier. Name of the resource. Format:projects/{project}/locations/{location}/geminiGcpEnablementSettings/{geminiGcpEnablementSetting}
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: Update time stamp.
+      description_kind: plain
+      computed: true
+    web_grounding_type:
+      type: string
+      description: 'Web grounding type. Possible values: GROUNDING_WITH_GOOGLE_SEARCH WEB_GROUNDING_FOR_ENTERPRISE'
+      description_kind: plain
+      optional: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

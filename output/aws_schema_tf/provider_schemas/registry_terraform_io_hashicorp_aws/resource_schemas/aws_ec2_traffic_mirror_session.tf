@@ -1,0 +1,15 @@
+resource "aws_ec2_traffic_mirror_session" "name" {
+  network_interface_id = string (Required)
+  session_number = number (Required)
+  traffic_mirror_filter_id = string (Required)
+  traffic_mirror_target_id = string (Required)
+  arn = string (Computed)
+  description = string (Optional)
+  id = string (Optional, Computed)
+  owner_id = string (Computed)
+  packet_length = number (Optional, Computed)
+  region = string (Optional, Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+  virtual_network_id = number (Optional, Computed)
+}

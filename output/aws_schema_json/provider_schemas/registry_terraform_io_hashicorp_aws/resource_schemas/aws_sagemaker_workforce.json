@@ -1,0 +1,172 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "subdomain": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "workforce_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "cognito_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "client_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "user_pool": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "oidc_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "authentication_request_extra_params": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "authorization_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "client_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "client_secret": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true,
+              "sensitive": true
+            },
+            "issuer": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "jwks_uri": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "logout_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "scope": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "token_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "user_info_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "source_ip_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "cidrs": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "workforce_vpc_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "security_group_ids": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "subnets": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "vpc_endpoint_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "vpc_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

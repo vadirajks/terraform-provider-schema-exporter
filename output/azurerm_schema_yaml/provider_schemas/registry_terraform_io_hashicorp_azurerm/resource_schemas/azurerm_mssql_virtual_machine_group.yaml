@@ -1,0 +1,97 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    sql_image_offer:
+      type: string
+      description_kind: plain
+      required: true
+    sql_image_sku:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    wsfc_domain_profile:
+      nesting_mode: list
+      block:
+        attributes:
+          cluster_bootstrap_account_name:
+            type: string
+            description_kind: plain
+            optional: true
+          cluster_operator_account_name:
+            type: string
+            description_kind: plain
+            optional: true
+          cluster_subnet_type:
+            type: string
+            description_kind: plain
+            required: true
+          fqdn:
+            type: string
+            description_kind: plain
+            required: true
+          organizational_unit_path:
+            type: string
+            description_kind: plain
+            optional: true
+          sql_service_account_name:
+            type: string
+            description_kind: plain
+            optional: true
+          storage_account_primary_key:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          storage_account_url:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+  description_kind: plain

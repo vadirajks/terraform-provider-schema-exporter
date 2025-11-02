@@ -1,0 +1,36 @@
+version: 0
+block:
+  attributes:
+    catalog_id:
+      type: string
+      description_kind: plain
+      required: true
+    data_catalog_encryption_settings:
+      type:
+      - list
+      - - object
+        - connection_password_encryption:
+          - list
+          - - object
+            - aws_kms_key_id: string
+              return_connection_password_encrypted: bool
+          encryption_at_rest:
+          - list
+          - - object
+            - catalog_encryption_mode: string
+              catalog_encryption_service_role: string
+              sse_aws_kms_key_id: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+  description_kind: plain

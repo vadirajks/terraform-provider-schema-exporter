@@ -1,0 +1,74 @@
+version: 0
+block:
+  attributes:
+    access_tier:
+      type: string
+      description_kind: plain
+      optional: true
+    agent_arns:
+      type:
+      - set
+      - string
+      description_kind: plain
+      required: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    authentication_type:
+      type: string
+      description_kind: plain
+      required: true
+    blob_type:
+      type: string
+      description_kind: plain
+      optional: true
+    container_url:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    subdirectory:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    uri:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    sas_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          token:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

@@ -1,0 +1,218 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "minimal_action": {
+        "type": "string",
+        "description": "The minimal action to perform on the instance during an update. Default is 'NONE'. Possible values are: * REPLACE * RESTART * REFRESH * NONE",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "most_disruptive_allowed_action": {
+        "type": "string",
+        "description": "The most disruptive action to perform on the instance during an update. Default is 'REPLACE'. Possible values are: * REPLACE * RESTART * REFRESH * NONE",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name for this per-instance config and its corresponding instance.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where the containing instance group manager is located",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region_instance_group_manager": {
+        "type": "string",
+        "description": "The region instance group manager this instance config is part of.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "remove_instance_on_destroy": {
+        "type": "bool",
+        "description": "When true, deleting this config will immediately remove the underlying instance. When false, deleting this config will use the behavior as determined by remove_instance_on_destroy.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "remove_instance_state_on_destroy": {
+        "type": "bool",
+        "description": "When true, deleting this config will immediately remove any specified state from the underlying instance. When false, deleting this config will *not* immediately remove any state from the underlying instance. State will be removed on the next instance recreation or update.",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "preserved_state": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "metadata": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description": "Preserved metadata defined for this instance. This is a list of key->value pairs.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "disk": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "delete_rule": {
+                    "type": "string",
+                    "description": "A value that prescribes what should happen to the stateful disk when the VM instance is deleted. The available options are 'NEVER' and 'ON_PERMANENT_INSTANCE_DELETION'. 'NEVER' - detach the disk when the VM is deleted, but do not delete the disk. 'ON_PERMANENT_INSTANCE_DELETION' will delete the stateful disk when the VM is permanently deleted from the instance group. Default value: \"NEVER\" Possible values: [\"NEVER\", \"ON_PERMANENT_INSTANCE_DELETION\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "device_name": {
+                    "type": "string",
+                    "description": "A unique device name that is reflected into the /dev/ tree of a Linux operating system running within the instance.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "mode": {
+                    "type": "string",
+                    "description": "The mode of the disk. Default value: \"READ_WRITE\" Possible values: [\"READ_ONLY\", \"READ_WRITE\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "source": {
+                    "type": "string",
+                    "description": "The URI of an existing persistent disk to attach under the specified device-name in the format 'projects/project-id/zones/zone/disks/disk-name'.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Stateful disks for the instance.",
+                "description_kind": "plain"
+              }
+            },
+            "external_ip": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "auto_delete": {
+                    "type": "string",
+                    "description": "These stateful IPs will never be released during autohealing, update or VM instance recreate operations. This flag is used to configure if the IP reservation should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted. Default value: \"NEVER\" Possible values: [\"NEVER\", \"ON_PERMANENT_INSTANCE_DELETION\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "interface_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "ip_address": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "address": {
+                          "type": "string",
+                          "description": "The URL of the reservation for this IP address.",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "Ip address representation",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "Preserved external IPs defined for this instance. This map is keyed with the name of the network interface.",
+                "description_kind": "plain"
+              }
+            },
+            "internal_ip": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "auto_delete": {
+                    "type": "string",
+                    "description": "These stateful IPs will never be released during autohealing, update or VM instance recreate operations. This flag is used to configure if the IP reservation should be deleted after it is no longer used by the group, e.g. when the given instance or the whole group is deleted. Default value: \"NEVER\" Possible values: [\"NEVER\", \"ON_PERMANENT_INSTANCE_DELETION\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "interface_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "ip_address": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "address": {
+                          "type": "string",
+                          "description": "The URL of the reservation for this IP address.",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "Ip address representation",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "Preserved internal IPs defined for this instance. This map is keyed with the name of the network interface.",
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description": "The preserved state for this instance.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

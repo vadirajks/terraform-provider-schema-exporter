@@ -1,0 +1,658 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "annotations": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Annotations to allow client tools to store small amount of arbitrary data. This is distinct from labels. https://google.aip.dev/128 An object containing a list of \"key\": value pairs. Example: { \"name\": \"wrench\", \"mass\": \"1.3kg\", \"count\": \"3\" }. **Note**: This field is non-authoritative, and will only manage the annotations present in your configuration. Please refer to the field 'effective_annotations' for all of the annotations present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "backup_source": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "backup_name": "string"
+            }
+          ]
+        ],
+        "description": "Cluster created from backup.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cluster_id": {
+        "type": "string",
+        "description": "The ID of the alloydb cluster.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "cluster_type": {
+        "type": "string",
+        "description": "The type of cluster. If not set, defaults to PRIMARY. Default value: \"PRIMARY\" Possible values: [\"PRIMARY\", \"SECONDARY\"]",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "continuous_backup_info": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "earliest_restorable_time": "string",
+              "enabled_time": "string",
+              "encryption_info": [
+                "list",
+                [
+                  "object",
+                  {
+                    "encryption_type": "string",
+                    "kms_key_versions": [
+                      "list",
+                      "string"
+                    ]
+                  }
+                ]
+              ],
+              "schedule": [
+                "list",
+                "string"
+              ]
+            }
+          ]
+        ],
+        "description": "ContinuousBackupInfo describes the continuous backup properties of a cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "database_version": {
+        "type": "string",
+        "description": "The database engine major version. This is an optional field and it's populated at the Cluster creation time. Note: Changing this field to a higer version results in upgrading the AlloyDB cluster which is an irreversible change.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "deletion_policy": {
+        "type": "string",
+        "description": "Policy to determine if the cluster should be deleted forcefully. Deleting a cluster forcefully, deletes the cluster and all its associated instances within the cluster. Deleting a Secondary cluster with a secondary instance REQUIRES setting deletion_policy = \"FORCE\" otherwise an error is returned. This is needed as there is no support to delete just the secondary instance, and the only way to delete secondary instance is to delete the associated secondary cluster forcefully which also deletes the secondary instance. Possible values: DEFAULT, FORCE",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "deletion_protection": {
+        "type": "bool",
+        "description": "Whether Terraform will be prevented from destroying the cluster. When the field is set to true or unset in Terraform state, a 'terraform apply' or 'terraform destroy' that would delete the cluster will fail. When the field is set to false, deleting the cluster is allowed.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "User-settable and human-readable display name for the Cluster.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "effective_annotations": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of annotations (key/value pairs) present on the resource in GCP, including the annotations configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "encryption_info": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "encryption_type": "string",
+              "kms_key_versions": [
+                "list",
+                "string"
+              ]
+            }
+          ]
+        ],
+        "description": "EncryptionInfo describes the encryption information of a cluster or a backup.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "etag": {
+        "type": "string",
+        "description": "For Resource freshness validation (https://google.aip.dev/154)",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "User-defined labels for the alloydb cluster. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location where the alloydb cluster should reside.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "migration_source": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "host_port": "string",
+              "reference_id": "string",
+              "source_type": "string"
+            }
+          ]
+        ],
+        "description": "Cluster created via DMS migration.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the cluster resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "reconciling": {
+        "type": "bool",
+        "description": "Output only. Reconciling (https://google.aip.dev/128#reconciliation). Set to true if the current state of Cluster does not match the user's intended state, and the service is actively updating the resource to reconcile them. This can happen due to user-triggered updates or system actions like failover or maintenance.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "skip_await_major_version_upgrade": {
+        "type": "bool",
+        "description": "Set to true to skip awaiting on the major version upgrade of the cluster. Possible values: true, false Default value: \"true\"",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "state": {
+        "type": "string",
+        "description": "Output only. The current serving state of the cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "subscription_type": {
+        "type": "string",
+        "description": "The subscrition type of cluster. Possible values: [\"TRIAL\", \"STANDARD\"]",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "trial_metadata": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "end_time": "string",
+              "grace_end_time": "string",
+              "start_time": "string",
+              "upgrade_time": "string"
+            }
+          ]
+        ],
+        "description": "Contains information and all metadata related to TRIAL clusters.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "uid": {
+        "type": "string",
+        "description": "The system-generated UID of the resource.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "automated_backup_policy": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "backup_window": {
+              "type": "string",
+              "description": "The length of the time window during which a backup can be taken. If a backup does not succeed within this time window, it will be canceled and considered failed. The backup window must be at least 5 minutes long. There is no upper bound on the window. If not set, it will default to 1 hour. A duration in seconds with up to nine fractional digits, terminated by 's'. Example: \"3.5s\".",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "enabled": {
+              "type": "bool",
+              "description": "Whether automated backups are enabled.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "labels": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description": "Labels to apply to backups created using this configuration.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "location": {
+              "type": "string",
+              "description": "The location where the backup will be stored. Currently, the only supported option is to store the backup in the same region as the cluster.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "block_types": {
+            "encryption_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "kms_key_name": {
+                    "type": "string",
+                    "description": "The fully-qualified resource name of the KMS key. Each Cloud KMS key is regionalized and has the following format: projects/[PROJECT]/locations/[REGION]/keyRings/[RING]/cryptoKeys/[KEY_NAME].",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "EncryptionConfig describes the encryption config of a cluster or a backup that is encrypted with a CMEK (customer-managed encryption key).",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "quantity_based_retention": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "count": {
+                    "type": "number",
+                    "description": "The number of backups to retain.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Quantity-based Backup retention policy to retain recent backups. Conflicts with 'time_based_retention', both can't be set together.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "time_based_retention": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "retention_period": {
+                    "type": "string",
+                    "description": "The retention period. A duration in seconds with up to nine fractional digits, terminated by 's'. Example: \"3.5s\".",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Time-based Backup retention policy. Conflicts with 'quantity_based_retention', both can't be set together.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "weekly_schedule": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "days_of_week": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "The days of the week to perform a backup. At least one day of the week must be provided. Possible values: [\"MONDAY\", \"TUESDAY\", \"WEDNESDAY\", \"THURSDAY\", \"FRIDAY\", \"SATURDAY\", \"SUNDAY\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "start_times": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "hours": {
+                          "type": "number",
+                          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "minutes": {
+                          "type": "number",
+                          "description": "Minutes of hour of day. Currently, only the value 0 is supported.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "nanos": {
+                          "type": "number",
+                          "description": "Fractions of seconds in nanoseconds. Currently, only the value 0 is supported.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "seconds": {
+                          "type": "number",
+                          "description": "Seconds of minutes of the time. Currently, only the value 0 is supported.",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "The times during the day to start a backup. At least one start time must be provided. The start times are assumed to be in UTC and to be an exact hour (e.g., 04:00:00).",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1
+                  }
+                },
+                "description": "Weekly schedule for the Backup.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "The automated backup policy for this cluster. AutomatedBackupPolicy is disabled by default.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "continuous_backup_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enabled": {
+              "type": "bool",
+              "description": "Whether continuous backup recovery is enabled. If not set, defaults to true.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "recovery_window_days": {
+              "type": "number",
+              "description": "The numbers of days that are eligible to restore from using PITR. To support the entire recovery window, backups and logs are retained for one day more than the recovery window. If not set, defaults to 14 days.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "block_types": {
+            "encryption_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "kms_key_name": {
+                    "type": "string",
+                    "description": "The fully-qualified resource name of the KMS key. Each Cloud KMS key is regionalized and has the following format: projects/[PROJECT]/locations/[REGION]/keyRings/[RING]/cryptoKeys/[KEY_NAME].",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "EncryptionConfig describes the encryption config of a cluster or a backup that is encrypted with a CMEK (customer-managed encryption key).",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "The continuous backup config for this cluster. If no policy is provided then the default policy will be used. The default policy takes one backup a day and retains backups for 14 days.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "encryption_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "kms_key_name": {
+              "type": "string",
+              "description": "The fully-qualified resource name of the KMS key. Each Cloud KMS key is regionalized and has the following format: projects/[PROJECT]/locations/[REGION]/keyRings/[RING]/cryptoKeys/[KEY_NAME].",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "EncryptionConfig describes the encryption config of a cluster or a backup that is encrypted with a CMEK (customer-managed encryption key).",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "initial_user": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "password": {
+              "type": "string",
+              "description": "The initial password for the user.",
+              "description_kind": "plain",
+              "required": true,
+              "sensitive": true
+            },
+            "user": {
+              "type": "string",
+              "description": "The database username.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Initial user to setup during cluster creation.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "maintenance_update_policy": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "maintenance_windows": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "day": {
+                    "type": "string",
+                    "description": "Preferred day of the week for maintenance, e.g. MONDAY, TUESDAY, etc. Possible values: [\"MONDAY\", \"TUESDAY\", \"WEDNESDAY\", \"THURSDAY\", \"FRIDAY\", \"SATURDAY\", \"SUNDAY\"]",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "start_time": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "hours": {
+                          "type": "number",
+                          "description": "Hours of day in 24 hour format. Should be from 0 to 23.",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "minutes": {
+                          "type": "number",
+                          "description": "Minutes of hour of day. Currently, only the value 0 is supported.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "nanos": {
+                          "type": "number",
+                          "description": "Fractions of seconds in nanoseconds. Currently, only the value 0 is supported.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "seconds": {
+                          "type": "number",
+                          "description": "Seconds of minutes of the time. Currently, only the value 0 is supported.",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "Preferred time to start the maintenance operation on the specified day. Maintenance will start within 1 hour of this time.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  }
+                },
+                "description": "Preferred windows to perform maintenance. Currently limited to 1.",
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description": "MaintenanceUpdatePolicy defines the policy for system updates.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "network_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "allocated_ip_range": {
+              "type": "string",
+              "description": "The name of the allocated IP range for the private IP AlloyDB cluster. For example: \"google-managed-services-default\". If set, the instance IPs for this cluster will be created in the allocated range.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "network": {
+              "type": "string",
+              "description": "The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: \"projects/{projectNumber}/global/networks/{network_id}\".",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Metadata related to network configuration.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "psc_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "psc_enabled": {
+              "type": "bool",
+              "description": "Create an instance that allows connections from Private Service Connect endpoints to the instance.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "service_owned_project_number": {
+              "type": "number",
+              "description": "The project number that needs to be allowlisted on the network attachment to enable outbound connectivity, if the network attachment is configured to ACCEPT_MANUAL connections. In case the network attachment is configured to ACCEPT_AUTOMATIC, this project number does not need to be allowlisted explicitly.",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "description": "Configuration for Private Service Connect (PSC) for the cluster.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "restore_backup_source": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "backup_name": {
+              "type": "string",
+              "description": "The name of the backup that this cluster is restored from.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "The source when restoring from a backup. Conflicts with 'restore_continuous_backup_source', both can't be set together.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "restore_continuous_backup_source": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "cluster": {
+              "type": "string",
+              "description": "The name of the source cluster that this cluster is restored from.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "point_in_time": {
+              "type": "string",
+              "description": "The point in time that this cluster is restored to, in RFC 3339 format.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "The source when restoring via point in time recovery (PITR). Conflicts with 'restore_backup_source', both can't be set together.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "secondary_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "primary_cluster_name": {
+              "type": "string",
+              "description": "Name of the primary cluster must be in the format 'projects/{project}/locations/{location}/clusters/{cluster_id}'",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Configuration of the secondary cluster for Cross Region Replication. This should be set if and only if the cluster is of type SECONDARY.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

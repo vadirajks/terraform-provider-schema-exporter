@@ -1,0 +1,121 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    aws_account_id:
+      type: string
+      description_kind: plain
+      computed: true
+    cloud_hsm_cluster_id:
+      type: string
+      description_kind: plain
+      computed: true
+    creation_date:
+      type: string
+      description_kind: plain
+      computed: true
+    custom_key_store_id:
+      type: string
+      description_kind: plain
+      computed: true
+    customer_master_key_spec:
+      type: string
+      description_kind: plain
+      computed: true
+    deletion_date:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      computed: true
+    enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    expiration_model:
+      type: string
+      description_kind: plain
+      computed: true
+    grant_tokens:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    key_id:
+      type: string
+      description_kind: plain
+      required: true
+    key_manager:
+      type: string
+      description_kind: plain
+      computed: true
+    key_spec:
+      type: string
+      description_kind: plain
+      computed: true
+    key_state:
+      type: string
+      description_kind: plain
+      computed: true
+    key_usage:
+      type: string
+      description_kind: plain
+      computed: true
+    multi_region:
+      type: bool
+      description_kind: plain
+      computed: true
+    multi_region_configuration:
+      type:
+      - list
+      - - object
+        - multi_region_key_type: string
+          primary_key:
+          - list
+          - - object
+            - arn: string
+              region: string
+          replica_keys:
+          - list
+          - - object
+            - arn: string
+              region: string
+      description_kind: plain
+      computed: true
+    origin:
+      type: string
+      description_kind: plain
+      computed: true
+    pending_deletion_window_in_days:
+      type: number
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    valid_to:
+      type: string
+      description_kind: plain
+      computed: true
+    xks_key_configuration:
+      type:
+      - list
+      - - object
+        - id: string
+      description_kind: plain
+      computed: true
+  description_kind: plain

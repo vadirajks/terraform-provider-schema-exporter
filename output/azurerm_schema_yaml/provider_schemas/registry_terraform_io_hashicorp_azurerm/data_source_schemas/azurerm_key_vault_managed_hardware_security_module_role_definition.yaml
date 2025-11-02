@@ -1,0 +1,67 @@
+version: 0
+block:
+  attributes:
+    assignable_scopes:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    managed_hsm_id:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    permission:
+      type:
+      - list
+      - - object
+        - actions:
+          - list
+          - string
+          data_actions:
+          - list
+          - string
+          not_actions:
+          - list
+          - string
+          not_data_actions:
+          - list
+          - string
+      description_kind: plain
+      computed: true
+    resource_manager_id:
+      type: string
+      description_kind: plain
+      computed: true
+    role_name:
+      type: string
+      description_kind: plain
+      computed: true
+    role_type:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

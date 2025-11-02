@@ -1,0 +1,125 @@
+version: 0
+block:
+  attributes:
+    config_file:
+      type: string
+      description_kind: plain
+      optional: true
+    enable_health_check:
+      type: bool
+      description_kind: plain
+      optional: true
+    end_of_life_date:
+      type: string
+      description_kind: plain
+      optional: true
+    exclude_from_latest:
+      type: bool
+      description_kind: plain
+      optional: true
+    gallery_application_id:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    package_file:
+      type: string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    manage_action:
+      nesting_mode: list
+      block:
+        attributes:
+          install:
+            type: string
+            description_kind: plain
+            required: true
+          remove:
+            type: string
+            description_kind: plain
+            required: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    source:
+      nesting_mode: list
+      block:
+        attributes:
+          default_configuration_link:
+            type: string
+            description_kind: plain
+            optional: true
+          media_link:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    target_region:
+      nesting_mode: list
+      block:
+        attributes:
+          exclude_from_latest:
+            type: bool
+            description_kind: plain
+            optional: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          regional_replica_count:
+            type: number
+            description_kind: plain
+            required: true
+          storage_account_type:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

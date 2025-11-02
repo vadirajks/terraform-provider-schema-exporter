@@ -1,0 +1,16 @@
+data "google_kms_crypto_key" "name" {
+  key_ring = string (Required)
+  name = string (Required)
+  crypto_key_backend = string (Computed)
+  destroy_scheduled_duration = string (Computed)
+  effective_labels = ['map', 'string'] (Computed)
+  id = string (Optional, Computed)
+  import_only = bool (Computed)
+  labels = ['map', 'string'] (Computed)
+  primary = ['list', ['object', {'name': 'string', 'state': 'string'}]] (Computed)
+  purpose = string (Computed)
+  rotation_period = string (Computed)
+  skip_initial_version_creation = bool (Computed)
+  terraform_labels = ['map', 'string'] (Computed)
+  version_template = ['list', ['object', {'algorithm': 'string', 'protection_level': 'string'}]] (Computed)
+}

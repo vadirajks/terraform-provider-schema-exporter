@@ -1,0 +1,814 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "connection_profile_id": {
+        "type": "string",
+        "description": "The ID of the connection profile.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "Output only. The timestamp when the resource was created. A timestamp in RFC3339 UTC 'Zulu' format, accurate to nanoseconds. Example: '2014-10-02T15:01:23.045123456Z'.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "dbprovider": {
+        "type": "string",
+        "description": "The database provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "The connection profile display name.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "error": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "code": "number",
+              "details": [
+                "list",
+                [
+                  "map",
+                  "string"
+                ]
+              ],
+              "message": "string"
+            }
+          ]
+        ],
+        "description": "Output only. The error details in case of state FAILED.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The resource labels for connection profile to use to annotate any related underlying resources such as Compute Engine VMs. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location where the connection profile should reside.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of this connection profile resource in the form of projects/{project}/locations/{location}/connectionProfiles/{connectionProfile}.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "state": {
+        "type": "string",
+        "description": "The current connection profile state.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "alloydb": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "cluster_id": {
+              "type": "string",
+              "description": "Required. The AlloyDB cluster ID that this connection profile is associated with.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "settings": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "labels": {
+                    "type": [
+                      "map",
+                      "string"
+                    ],
+                    "description": "Labels for the AlloyDB cluster created by DMS.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "vpc_network": {
+                    "type": "string",
+                    "description": "Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: 'projects/{project_number}/global/networks/{network_id}'. This is required to create a cluster.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "initial_user": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "password": {
+                          "type": "string",
+                          "description": "The initial password for the user.",
+                          "description_kind": "plain",
+                          "required": true,
+                          "sensitive": true
+                        },
+                        "password_set": {
+                          "type": "bool",
+                          "description": "Output only. Indicates if the initialUser.password field has been set.",
+                          "description_kind": "plain",
+                          "computed": true
+                        },
+                        "user": {
+                          "type": "string",
+                          "description": "The database username.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "Required. Input only. Initial user to setup during cluster creation.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  },
+                  "primary_instance_settings": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "database_flags": {
+                          "type": [
+                            "map",
+                            "string"
+                          ],
+                          "description": "Database flags to pass to AlloyDB when DMS is creating the AlloyDB cluster and instances. See the AlloyDB documentation for how these can be used.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "id": {
+                          "type": "string",
+                          "description": "The database username.",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "labels": {
+                          "type": [
+                            "map",
+                            "string"
+                          ],
+                          "description": "Labels for the AlloyDB primary instance created by DMS.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "private_ip": {
+                          "type": "string",
+                          "description": "Output only. The private IP address for the Instance. This is the connection endpoint for an end-user application.",
+                          "description_kind": "plain",
+                          "computed": true
+                        }
+                      },
+                      "block_types": {
+                        "machine_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "cpu_count": {
+                                "type": "number",
+                                "description": "The number of CPU's in the VM instance.",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description": "Configuration for the machines that host the underlying database engine.",
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        }
+                      },
+                      "description": "Settings for the cluster's primary instance",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "Immutable. Metadata used to create the destination AlloyDB cluster.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Specifies required connection parameters, and the parameters required to create an AlloyDB destination cluster.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "cloudsql": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "cloud_sql_id": {
+              "type": "string",
+              "description": "Output only. The Cloud SQL instance ID that this connection profile is associated with.",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "private_ip": {
+              "type": "string",
+              "description": "Output only. The Cloud SQL database instance's private IP.",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "public_ip": {
+              "type": "string",
+              "description": "Output only. The Cloud SQL database instance's public IP.",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "block_types": {
+            "settings": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "activation_policy": {
+                    "type": "string",
+                    "description": "The activation policy specifies when the instance is activated; it is applicable only when the instance state is 'RUNNABLE'. Possible values: [\"ALWAYS\", \"NEVER\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "auto_storage_increase": {
+                    "type": "bool",
+                    "description": "If you enable this setting, Cloud SQL checks your available storage every 30 seconds. If the available storage falls below a threshold size, Cloud SQL automatically adds additional storage capacity. If the available storage repeatedly falls below the threshold size, Cloud SQL continues to add storage until it reaches the maximum of 30 TB.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "cmek_key_name": {
+                    "type": "string",
+                    "description": "The KMS key name used for the csql instance.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "collation": {
+                    "type": "string",
+                    "description": "The Cloud SQL default instance level collation.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "data_disk_size_gb": {
+                    "type": "string",
+                    "description": "The storage capacity available to the database, in GB. The minimum (and default) size is 10GB.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "data_disk_type": {
+                    "type": "string",
+                    "description": "The type of storage. Possible values: [\"PD_SSD\", \"PD_HDD\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "database_flags": {
+                    "type": [
+                      "map",
+                      "string"
+                    ],
+                    "description": "The database flags passed to the Cloud SQL instance at startup.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "database_version": {
+                    "type": "string",
+                    "description": "The database engine type and version. Currently supported values located at https://cloud.google.com/database-migration/docs/reference/rest/v1/projects.locations.connectionProfiles#sqldatabaseversion",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "edition": {
+                    "type": "string",
+                    "description": "The edition of the given Cloud SQL instance. Possible values: [\"ENTERPRISE\", \"ENTERPRISE_PLUS\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "root_password": {
+                    "type": "string",
+                    "description": "Input only. Initial root password.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "root_password_set": {
+                    "type": "bool",
+                    "description": "Output only. Indicates If this connection profile root password is stored.",
+                    "description_kind": "plain",
+                    "computed": true
+                  },
+                  "source_id": {
+                    "type": "string",
+                    "description": "The Database Migration Service source connection profile ID, in the format: projects/my_project_name/locations/us-central1/connectionProfiles/connection_profile_ID",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "storage_auto_resize_limit": {
+                    "type": "string",
+                    "description": "The maximum size to which storage capacity can be automatically increased. The default value is 0, which specifies that there is no limit.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "tier": {
+                    "type": "string",
+                    "description": "The tier (or machine type) for this instance, for example: db-n1-standard-1 (MySQL instances) or db-custom-1-3840 (PostgreSQL instances). For more information, see https://cloud.google.com/sql/docs/mysql/instance-settings",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "user_labels": {
+                    "type": [
+                      "map",
+                      "string"
+                    ],
+                    "description": "The resource labels for a Cloud SQL instance to use to annotate any related underlying resources such as Compute Engine VMs.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "zone": {
+                    "type": "string",
+                    "description": "The Google Cloud Platform zone where your Cloud SQL datdabse instance is located.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "ip_config": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "enable_ipv4": {
+                          "type": "bool",
+                          "description": "Whether the instance should be assigned an IPv4 address or not.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "private_network": {
+                          "type": "string",
+                          "description": "The resource link for the VPC network from which the Cloud SQL instance is accessible for private IP. For example, projects/myProject/global/networks/default. This setting can be updated, but it cannot be removed after it is set.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "require_ssl": {
+                          "type": "bool",
+                          "description": "Whether SSL connections over IP should be enforced or not.",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "authorized_networks": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "expire_time": {
+                                "type": "string",
+                                "description": "The time when this access control entry expires in RFC 3339 format.",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "label": {
+                                "type": "string",
+                                "description": "A label to identify this entry.",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "ttl": {
+                                "type": "string",
+                                "description": "Input only. The time-to-leave of this access control entry.",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "The allowlisted value for the access control list.",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description": "The list of external networks that are allowed to connect to the instance using the IP.",
+                            "description_kind": "plain"
+                          }
+                        }
+                      },
+                      "description": "The settings for IP Management. This allows to enable or disable the instance IP and manage which external networks can connect to the instance. The IPv4 address cannot be disabled.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "Immutable. Metadata used to create the destination Cloud SQL database.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Specifies required connection parameters, and, optionally, the parameters required to create a Cloud SQL destination database instance.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "mysql": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "cloud_sql_id": {
+              "type": "string",
+              "description": "If the source is a Cloud SQL database, use this field to provide the Cloud SQL instance ID of the source.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "host": {
+              "type": "string",
+              "description": "The IP or hostname of the source MySQL database.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "password": {
+              "type": "string",
+              "description": "Input only. The password for the user that Database Migration Service will be using to connect to the database. This field is not returned on request, and the value is encrypted when stored in Database Migration Service.",
+              "description_kind": "plain",
+              "optional": true,
+              "sensitive": true
+            },
+            "password_set": {
+              "type": "bool",
+              "description": "Output only. Indicates If this connection profile password is stored.",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "port": {
+              "type": "number",
+              "description": "The network port of the source MySQL database.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "username": {
+              "type": "string",
+              "description": "The username that Database Migration Service will use to connect to the database. The value is encrypted when stored in Database Migration Service.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "ssl": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "ca_certificate": {
+                    "type": "string",
+                    "description": "Input only. The x509 PEM-encoded certificate of the CA that signed the source database server's certificate. The replica will use this certificate to verify it's connecting to the right host.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "client_certificate": {
+                    "type": "string",
+                    "description": "Input only. The x509 PEM-encoded certificate that will be used by the replica to authenticate against the source database server. If this field is used then the 'clientKey' field is mandatory",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "client_key": {
+                    "type": "string",
+                    "description": "Input only. The unencrypted PKCS#1 or PKCS#8 PEM-encoded private key associated with the Client Certificate. If this field is used then the 'clientCertificate' field is mandatory.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "The current connection profile state. Possible values: [\"SERVER_ONLY\", \"SERVER_CLIENT\", \"REQUIRED\", \"NONE\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "SSL configuration for the destination to connect to the source database.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Specifies connection parameters required specifically for MySQL databases.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "oracle": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "database_service": {
+              "type": "string",
+              "description": "Required. Database service for the Oracle connection.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "host": {
+              "type": "string",
+              "description": "Required. The IP or hostname of the source Oracle database.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "password": {
+              "type": "string",
+              "description": "Required. Input only. The password for the user that Database Migration Service will be using to connect to the database. This field is not returned on request, and the value is encrypted when stored in Database Migration Service.",
+              "description_kind": "plain",
+              "required": true,
+              "sensitive": true
+            },
+            "password_set": {
+              "type": "bool",
+              "description": "Output only. Indicates If this connection profile password is stored.",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "port": {
+              "type": "number",
+              "description": "Required. The network port of the source Oracle database.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "username": {
+              "type": "string",
+              "description": "Required. The username that Database Migration Service will use to connect to the database. The value is encrypted when stored in Database Migration Service.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "forward_ssh_connectivity": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "hostname": {
+                    "type": "string",
+                    "description": "Required. Hostname for the SSH tunnel.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "password": {
+                    "type": "string",
+                    "description": "Input only. SSH password. Only one of 'password' and 'private_key' can be configured.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "port": {
+                    "type": "number",
+                    "description": "Port for the SSH tunnel, default value is 22.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "private_key": {
+                    "type": "string",
+                    "description": "Input only. SSH private key. Only one of 'password' and 'private_key' can be configured.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "Required. Username for the SSH tunnel.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "SSL configuration for the destination to connect to the source database.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "private_connectivity": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "private_connection": {
+                    "type": "string",
+                    "description": "Required. The resource name (URI) of the private connection.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Configuration for using a private network to communicate with the source database",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "ssl": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "ca_certificate": {
+                    "type": "string",
+                    "description": "Input only. The x509 PEM-encoded certificate of the CA that signed the source database server's certificate. The replica will use this certificate to verify it's connecting to the right host.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "client_certificate": {
+                    "type": "string",
+                    "description": "Input only. The x509 PEM-encoded certificate that will be used by the replica to authenticate against the source database server. If this field is used then the 'clientKey' field is mandatory",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "client_key": {
+                    "type": "string",
+                    "description": "Input only. The unencrypted PKCS#1 or PKCS#8 PEM-encoded private key associated with the Client Certificate. If this field is used then the 'clientCertificate' field is mandatory.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "The current connection profile state.",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "description": "SSL configuration for the destination to connect to the source database.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "static_service_ip_connectivity": {
+              "nesting_mode": "list",
+              "block": {
+                "description": "This object has no nested fields. Static IP address connectivity configured on service project.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Specifies connection parameters required specifically for Oracle databases.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "postgresql": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "alloydb_cluster_id": {
+              "type": "string",
+              "description": "If the connected database is an AlloyDB instance, use this field to provide the AlloyDB cluster ID.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_sql_id": {
+              "type": "string",
+              "description": "If the source is a Cloud SQL database, use this field to provide the Cloud SQL instance ID of the source.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "host": {
+              "type": "string",
+              "description": "The IP or hostname of the source MySQL database.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "network_architecture": {
+              "type": "string",
+              "description": "Output only. If the source is a Cloud SQL database, this field indicates the network architecture it's associated with.",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "password": {
+              "type": "string",
+              "description": "Input only. The password for the user that Database Migration Service will be using to connect to the database. This field is not returned on request, and the value is encrypted when stored in Database Migration Service.",
+              "description_kind": "plain",
+              "optional": true,
+              "sensitive": true
+            },
+            "password_set": {
+              "type": "bool",
+              "description": "Output only. Indicates If this connection profile password is stored.",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "port": {
+              "type": "number",
+              "description": "The network port of the source MySQL database.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "username": {
+              "type": "string",
+              "description": "The username that Database Migration Service will use to connect to the database. The value is encrypted when stored in Database Migration Service.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "ssl": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "ca_certificate": {
+                    "type": "string",
+                    "description": "Input only. The x509 PEM-encoded certificate of the CA that signed the source database server's certificate. The replica will use this certificate to verify it's connecting to the right host.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "client_certificate": {
+                    "type": "string",
+                    "description": "Input only. The x509 PEM-encoded certificate that will be used by the replica to authenticate against the source database server. If this field is used then the 'clientKey' field is mandatory",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "client_key": {
+                    "type": "string",
+                    "description": "Input only. The unencrypted PKCS#1 or PKCS#8 PEM-encoded private key associated with the Client Certificate. If this field is used then the 'clientCertificate' field is mandatory.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "The current connection profile state. Possible values: [\"SERVER_ONLY\", \"SERVER_CLIENT\", \"REQUIRED\", \"NONE\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "SSL configuration for the destination to connect to the source database.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Specifies connection parameters required specifically for PostgreSQL databases.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

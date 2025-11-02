@@ -1,0 +1,76 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "fingerprint": {
+        "type": "string",
+        "description": "The fingerprint used for optimistic locking of this resource.  Used internally during updates.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "zone": {
+        "type": "string",
+        "description": "A reference to the zone where the machine resides.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "metadata": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "items": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description": "A metadata key/value items map. The total size of all keys and values must be less than 512KB",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "The metadata key/value pairs assigned to all the instances in the corresponding scope.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

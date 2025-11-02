@@ -1,0 +1,259 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "associate_public_ip_address": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ebs_optimized": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "enable_monitoring": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "iam_instance_profile": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "image_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "instance_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "key_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name_prefix": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "placement_tenancy": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "security_groups": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "spot_price": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "user_data": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "user_data_base64": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "ebs_block_device": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "delete_on_termination": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "device_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "encrypted": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "iops": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "no_device": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "snapshot_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "throughput": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "volume_size": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "volume_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "ephemeral_block_device": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "device_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "no_device": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "virtual_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "metadata_options": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "http_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "http_put_response_hop_limit": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "http_tokens": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "root_block_device": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "delete_on_termination": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "encrypted": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "iops": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "throughput": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "volume_size": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "volume_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

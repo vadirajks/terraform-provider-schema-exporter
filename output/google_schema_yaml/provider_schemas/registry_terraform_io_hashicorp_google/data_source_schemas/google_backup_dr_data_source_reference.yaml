@@ -1,0 +1,63 @@
+version: 0
+block:
+  attributes:
+    backup_config_state:
+      type: string
+      description: The state of the backup config for the data source.
+      description_kind: plain
+      computed: true
+    backup_count:
+      type: number
+      description: The number of backups for the data source.
+      description_kind: plain
+      computed: true
+    data_source:
+      type: string
+      description: The underlying data source resource.
+      description_kind: plain
+      computed: true
+    data_source_reference_id:
+      type: string
+      description: The `id` of the data source reference.
+      description_kind: plain
+      required: true
+    gcp_resource_name:
+      type: string
+      description: The GCP resource name for the data source.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    last_backup_state:
+      type: string
+      description: The state of the last backup.
+      description_kind: plain
+      computed: true
+    last_successful_backup_time:
+      type: string
+      description: The last time a successful backup was made.
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description: The location of the data source reference.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description: The ID of the project in which the resource belongs.
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_type:
+      type: string
+      description_kind: plain
+      computed: true
+  description_kind: plain

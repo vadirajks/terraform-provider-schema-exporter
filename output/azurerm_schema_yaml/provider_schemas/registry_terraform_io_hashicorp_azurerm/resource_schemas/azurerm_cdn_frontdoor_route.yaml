@@ -1,0 +1,119 @@
+version: 0
+block:
+  attributes:
+    cdn_frontdoor_custom_domain_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    cdn_frontdoor_endpoint_id:
+      type: string
+      description_kind: plain
+      required: true
+    cdn_frontdoor_origin_group_id:
+      type: string
+      description_kind: plain
+      required: true
+    cdn_frontdoor_origin_ids:
+      type:
+      - list
+      - string
+      description_kind: plain
+      required: true
+    cdn_frontdoor_origin_path:
+      type: string
+      description_kind: plain
+      optional: true
+    cdn_frontdoor_rule_set_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    forwarding_protocol:
+      type: string
+      description_kind: plain
+      optional: true
+    https_redirect_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    link_to_default_domain:
+      type: bool
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    patterns_to_match:
+      type:
+      - list
+      - string
+      description_kind: plain
+      required: true
+    supported_protocols:
+      type:
+      - set
+      - string
+      description_kind: plain
+      required: true
+  block_types:
+    cache:
+      nesting_mode: list
+      block:
+        attributes:
+          compression_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          content_types_to_compress:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          query_string_caching_behavior:
+            type: string
+            description_kind: plain
+            optional: true
+          query_strings:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

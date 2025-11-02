@@ -1,0 +1,85 @@
+version: 0
+block:
+  attributes:
+    actions_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    alarm_actions:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    alarm_description:
+      type: string
+      description_kind: plain
+      optional: true
+    alarm_name:
+      type: string
+      description_kind: plain
+      required: true
+    alarm_rule:
+      type: string
+      description_kind: plain
+      required: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    insufficient_data_actions:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    ok_actions:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    actions_suppressor:
+      nesting_mode: list
+      block:
+        attributes:
+          alarm:
+            type: string
+            description_kind: plain
+            required: true
+          extension_period:
+            type: number
+            description_kind: plain
+            required: true
+          wait_period:
+            type: number
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

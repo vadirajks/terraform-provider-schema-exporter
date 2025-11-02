@@ -1,0 +1,341 @@
+version: 0
+block:
+  attributes:
+    avatar_uri:
+      type: string
+      description: The URI of the agent's avatar. Avatars are used throughout the Dialogflow console and in the self-hosted Web Demo integration.
+      description_kind: plain
+      optional: true
+    default_language_code:
+      type: string
+      description: The default language of the agent as a language tag. [See Language Support](https://cloud.google.com/dialogflow/cx/docs/reference/language) for a list of the currently supported language codes. This field cannot be updated after creation.
+      description_kind: plain
+      required: true
+    delete_chat_engine_on_destroy:
+      type: bool
+      description: 'If set to ''true'', Terraform will delete the chat engine associated with the agent when the agent is destroyed. Otherwise, the chat engine will persist. This virtual field addresses a critical dependency chain: ''agent'' -> ''engine'' -> ''data store''. The chat engine is automatically provisioned when a data store is linked to the agent, meaning Terraform doesn''t have direct control over its lifecycle as a managed resource. This creates a problem when both the agent and data store are managed by Terraform and need to be destroyed. Without delete_chat_engine_on_destroy set to true, the data store''s deletion would fail because the unmanaged chat engine would still be using it. This setting ensures that the entire dependency chain can be properly torn down. See ''mmv1/templates/terraform/examples/dialogflowcx_tool_data_store.tf.tmpl'' as an example. Data store can be linked to an agent through the ''knowledgeConnectorSettings'' field of a [flow](https://cloud.google.com/dialogflow/cx/docs/reference/rest/v3/projects.locations.agents.flows#resource:-flow) or a [page](https://cloud.google.com/dialogflow/cx/docs/reference/rest/v3/projects.locations.agents.flows.pages#resource:-page) or the ''dataStoreSpec'' field of a [tool](https://cloud.google.com/dialogflow/cx/docs/reference/rest/v3/projects.locations.agents.tools#resource:-tool). The ID of the implicitly created engine is stored in the ''genAppBuilderSettings'' field of the [agent](https://cloud.google.com/dialogflow/cx/docs/reference/rest/v3/projects.locations.agents#resource:-agent).'
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description: The description of this agent. The maximum length is 500 characters. If exceeded, the request is rejected.
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description: The human-readable name of the agent, unique within the location.
+      description_kind: plain
+      required: true
+    enable_multi_language_training:
+      type: bool
+      description: Enable training multi-lingual models for this agent. These models will be trained on all the languages supported by the agent.
+      description_kind: plain
+      optional: true
+    enable_spell_correction:
+      type: bool
+      description: Indicates if automatic spell correction is enabled in detect intent requests.
+      description_kind: plain
+      optional: true
+    enable_stackdriver_logging:
+      type: bool
+      description: Determines whether this agent should log conversation queries.
+      description_kind: plain
+      deprecated: true
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: The name of the location this agent is located in. ~> **Note:** The first time you are deploying an Agent in your project you must configure location settings. This is a one time step but at the moment you can only [configure location settings](https://cloud.google.com/dialogflow/cx/docs/concept/region#location-settings) via the Dialogflow CX console. Another options is to use global location so you don't need to manually configure location settings.
+      description_kind: plain
+      required: true
+    locked:
+      type: bool
+      description: Indicates whether the agent is locked for changes. If the agent is locked, modifications to the agent will be rejected except for [agents.restore][].
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: The unique identifier of the agent.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    satisfies_pzi:
+      type: bool
+      description: A read only boolean field reflecting Zone Isolation status of the agent.
+      description_kind: plain
+      computed: true
+    satisfies_pzs:
+      type: bool
+      description: A read only boolean field reflecting Zone Separation status of the agent.
+      description_kind: plain
+      computed: true
+    security_settings:
+      type: string
+      description: 'Name of the SecuritySettings reference for the agent. Format: projects/<Project ID>/locations/<Location ID>/securitySettings/<Security Settings ID>.'
+      description_kind: plain
+      optional: true
+    start_flow:
+      type: string
+      description: 'Name of the start flow in this agent. A start flow will be automatically created when the agent is created, and can only be deleted by deleting the agent. Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/flows/<Flow ID>.'
+      description_kind: plain
+      computed: true
+    start_playbook:
+      type: string
+      description: 'Name of the start playbook in this agent. A start playbook will be automatically created when the agent is created, and can only be deleted by deleting the agent. Format: **projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/playbooks/<PlaybookID>**. Currently only the default playbook with id "00000000-0000-0000-0000-000000000000" is allowed.'
+      description_kind: plain
+      optional: true
+    supported_language_codes:
+      type:
+      - list
+      - string
+      description: The list of all languages supported by this agent (except for the default_language_code).
+      description_kind: plain
+      optional: true
+    time_zone:
+      type: string
+      description: The time zone of this agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris.
+      description_kind: plain
+      required: true
+  block_types:
+    advanced_settings:
+      nesting_mode: list
+      block:
+        block_types:
+          audio_export_gcs_destination:
+            nesting_mode: list
+            block:
+              attributes:
+                uri:
+                  type: string
+                  description: 'The Google Cloud Storage URI for the exported objects. Whether a full object name, or just a prefix, its usage depends on the Dialogflow operation. Format: gs://bucket/object-name-or-prefix'
+                  description_kind: plain
+                  optional: true
+              description: 'If present, incoming audio is exported by Dialogflow to the configured Google Cloud Storage destination. Exposed at the following levels: * Agent level * Flow level'
+              description_kind: plain
+            max_items: 1
+          dtmf_settings:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description: If true, incoming audio is processed for DTMF (dual tone multi frequency) events. For example, if the caller presses a button on their telephone keypad and DTMF processing is enabled, Dialogflow will detect the event (e.g. a "3" was pressed) in the incoming audio and pass the event to the bot to drive business logic (e.g. when 3 is pressed, return the account balance).
+                  description_kind: plain
+                  optional: true
+                finish_digit:
+                  type: string
+                  description: The digit that terminates a DTMF digit sequence.
+                  description_kind: plain
+                  optional: true
+                max_digits:
+                  type: number
+                  description: Max length of DTMF digits.
+                  description_kind: plain
+                  optional: true
+              description: 'Define behaviors for DTMF (dual tone multi frequency). DTMF settings does not override each other. DTMF settings set at different levels define DTMF detections running in parallel. Exposed at the following levels: * Agent level * Flow level * Page level * Parameter level'
+              description_kind: plain
+            max_items: 1
+          logging_settings:
+            nesting_mode: list
+            block:
+              attributes:
+                enable_consent_based_redaction:
+                  type: bool
+                  description: Enables consent-based end-user input redaction, if true, a pre-defined session parameter **$session.params.conversation-redaction** will be used to determine if the utterance should be redacted.
+                  description_kind: plain
+                  optional: true
+                enable_interaction_logging:
+                  type: bool
+                  description: Enables DF Interaction logging.
+                  description_kind: plain
+                  optional: true
+                enable_stackdriver_logging:
+                  type: bool
+                  description: Enables Google Cloud Logging.
+                  description_kind: plain
+                  optional: true
+              description: 'Settings for logging. Settings for Dialogflow History, Contact Center messages, StackDriver logs, and speech logging. Exposed at the following levels: * Agent level'
+              description_kind: plain
+            max_items: 1
+          speech_settings:
+            nesting_mode: list
+            block:
+              attributes:
+                endpointer_sensitivity:
+                  type: number
+                  description: Sensitivity of the speech model that detects the end of speech. Scale from 0 to 100.
+                  description_kind: plain
+                  optional: true
+                models:
+                  type:
+                  - map
+                  - string
+                  description: 'Mapping from language to Speech-to-Text model. The mapped Speech-to-Text model will be selected for requests from its corresponding language. For more information, see [Speech models](https://cloud.google.com/dialogflow/cx/docs/concept/speech-models). An object containing a list of **"key": value** pairs. Example: **{ "name": "wrench", "mass": "1.3kg", "count": "3" }**.'
+                  description_kind: plain
+                  optional: true
+                no_speech_timeout:
+                  type: string
+                  description: 'Timeout before detecting no speech. A duration in seconds with up to nine fractional digits, ending with ''s''. Example: "3.5s".'
+                  description_kind: plain
+                  optional: true
+                use_timeout_based_endpointing:
+                  type: bool
+                  description: Use timeout based endpointing, interpreting endpointer sensitivity as seconds of timeout value.
+                  description_kind: plain
+                  optional: true
+              description: 'Settings for speech to text detection. Exposed at the following levels: * Agent level * Flow level * Page level * Parameter level'
+              description_kind: plain
+            max_items: 1
+        description: 'Hierarchical advanced settings for this agent. The settings exposed at the lower level overrides the settings exposed at the higher level. Hierarchy: Agent->Flow->Page->Fulfillment/Parameter.'
+        description_kind: plain
+      max_items: 1
+    answer_feedback_settings:
+      nesting_mode: list
+      block:
+        attributes:
+          enable_answer_feedback:
+            type: bool
+            description: If enabled, end users will be able to provide [answer feedback](https://cloud.google.com/dialogflow/cx/docs/reference/rest/v3/projects.locations.agents.sessions/submitAnswerFeedback#body.AnswerFeedback) to Dialogflow responses. Feature works only if interaction logging is enabled in the Dialogflow agent.
+            description_kind: plain
+            optional: true
+        description: Answer feedback collection settings.
+        description_kind: plain
+      max_items: 1
+    client_certificate_settings:
+      nesting_mode: list
+      block:
+        attributes:
+          passphrase:
+            type: string
+            description: 'The name of the SecretManager secret version resource storing the passphrase. ''passphrase'' should be left unset if the private key is not encrypted. Format: **projects/{project}/secrets/{secret}/versions/{version}**'
+            description_kind: plain
+            optional: true
+          private_key:
+            type: string
+            description: 'The name of the SecretManager secret version resource storing the private key encoded in PEM format. Format: **projects/{project}/secrets/{secret}/versions/{version}**'
+            description_kind: plain
+            required: true
+          ssl_certificate:
+            type: string
+            description: The ssl certificate encoded in PEM format. This string must include the begin header and end footer lines.
+            description_kind: plain
+            required: true
+        description: Settings for custom client certificates.
+        description_kind: plain
+      max_items: 1
+    gen_app_builder_settings:
+      nesting_mode: list
+      block:
+        attributes:
+          engine:
+            type: string
+            description: 'The full name of the Gen App Builder engine related to this agent if there is one. Format: projects/{Project ID}/locations/{Location ID}/collections/{Collection ID}/engines/{Engine ID}'
+            description_kind: plain
+            required: true
+        description: Gen App Builder-related agent-level settings.
+        description_kind: plain
+      max_items: 1
+    git_integration_settings:
+      nesting_mode: list
+      block:
+        block_types:
+          github_settings:
+            nesting_mode: list
+            block:
+              attributes:
+                access_token:
+                  type: string
+                  description: The access token used to authenticate the access to the GitHub repository.
+                  description_kind: plain
+                  optional: true
+                  sensitive: true
+                branches:
+                  type:
+                  - list
+                  - string
+                  description: A list of branches configured to be used from Dialogflow.
+                  description_kind: plain
+                  optional: true
+                display_name:
+                  type: string
+                  description: The unique repository display name for the GitHub repository.
+                  description_kind: plain
+                  optional: true
+                repository_uri:
+                  type: string
+                  description: The GitHub repository URI related to the agent.
+                  description_kind: plain
+                  optional: true
+                tracking_branch:
+                  type: string
+                  description: The branch of the GitHub repository tracked for this agent.
+                  description_kind: plain
+                  optional: true
+              description: Settings of integration with GitHub.
+              description_kind: plain
+            max_items: 1
+        description: Git integration settings for this agent.
+        description_kind: plain
+      max_items: 1
+    personalization_settings:
+      nesting_mode: list
+      block:
+        attributes:
+          default_end_user_metadata:
+            type: string
+            description: 'Default end user metadata, used when processing DetectIntent requests. Recommended to be filled as a template instead of hard-coded value, for example { "age": "$session.params.age" }. The data will be merged with the [QueryParameters.end_user_metadata](https://cloud.google.com/dialogflow/cx/docs/reference/rest/v3/QueryParameters#FIELDS.end_user_metadata) in [DetectIntentRequest.query_params](https://cloud.google.com/dialogflow/cx/docs/reference/rest/v3/projects.locations.agents.sessions/detectIntent#body.request_body.FIELDS.query_params) during query processing. This field uses JSON data as a string. The value provided must be a valid JSON representation documented in [Struct](https://protobuf.dev/reference/protobuf/google.protobuf/#struct).'
+            description_kind: plain
+            optional: true
+        description: Settings for end user personalization.
+        description_kind: plain
+      max_items: 1
+    speech_to_text_settings:
+      nesting_mode: list
+      block:
+        attributes:
+          enable_speech_adaptation:
+            type: bool
+            description: Whether to use speech adaptation for speech recognition.
+            description_kind: plain
+            optional: true
+        description: Settings related to speech recognition.
+        description_kind: plain
+      max_items: 1
+    text_to_speech_settings:
+      nesting_mode: list
+      block:
+        attributes:
+          synthesize_speech_configs:
+            type: string
+            description: 'Configuration of how speech should be synthesized, mapping from [language](https://cloud.google.com/dialogflow/cx/docs/reference/language) to [SynthesizeSpeechConfig](https://cloud.google.com/dialogflow/cx/docs/reference/rest/v3/projects.locations.agents#synthesizespeechconfig). These settings affect: * The phone gateway synthesize configuration set via Agent.text_to_speech_settings. * How speech is synthesized when invoking session APIs. ''Agent.text_to_speech_settings'' only applies if ''OutputAudioConfig.synthesize_speech_config'' is not specified.'
+            description_kind: plain
+            optional: true
+        description: Settings related to speech synthesizing.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

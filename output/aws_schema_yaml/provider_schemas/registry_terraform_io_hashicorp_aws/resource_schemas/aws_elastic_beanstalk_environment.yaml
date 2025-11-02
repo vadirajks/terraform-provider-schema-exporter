@@ -1,0 +1,156 @@
+version: 1
+block:
+  attributes:
+    all_settings:
+      type:
+      - set
+      - - object
+        - name: string
+          namespace: string
+          resource: string
+          value: string
+      description_kind: plain
+      computed: true
+    application:
+      type: string
+      description_kind: plain
+      required: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    autoscaling_groups:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    cname:
+      type: string
+      description_kind: plain
+      computed: true
+    cname_prefix:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    endpoint_url:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instances:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    launch_configurations:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    load_balancers:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    platform_arn:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    poll_interval:
+      type: string
+      description_kind: plain
+      optional: true
+    queues:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    solution_stack_name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    template_name:
+      type: string
+      description_kind: plain
+      optional: true
+    tier:
+      type: string
+      description_kind: plain
+      optional: true
+    triggers:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    version_label:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    wait_for_ready_timeout:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    setting:
+      nesting_mode: set
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          namespace:
+            type: string
+            description_kind: plain
+            required: true
+          resource:
+            type: string
+            description_kind: plain
+            optional: true
+          value:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+  description_kind: plain

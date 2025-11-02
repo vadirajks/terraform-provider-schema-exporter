@@ -1,0 +1,498 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "annotations": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Allows clients to store small amounts of arbitrary data. **Note**: This field is non-authoritative, and will only manage the annotations present in your configuration. Please refer to the field 'effective_annotations' for all of the annotations present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "Output only. Server assigned timestamp for when the connection was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "disabled": {
+        "type": "bool",
+        "description": "If disabled is set to true, functionality is disabled for this connection. Repository based API methods and webhooks processing for repositories in this connection will be disabled.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "effective_annotations": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of annotations (key/value pairs) present on the resource in GCP, including the annotations configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "etag": {
+        "type": "string",
+        "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "installation_state": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "action_uri": "string",
+              "message": "string",
+              "stage": "string"
+            }
+          ]
+        ],
+        "description": "Output only. Installation state of the Connection.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location for the resource",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Immutable. The resource name of the connection.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "reconciling": {
+        "type": "bool",
+        "description": "Output only. Set to true when the connection is being set up or updated in the background.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Output only. Server assigned timestamp for when the connection was updated.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "bitbucket_cloud_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "webhook_secret_secret_version": {
+              "type": "string",
+              "description": "Required. Immutable. SecretManager resource containing the webhook secret used to verify webhook events, formatted as 'projects/*/secrets/*/versions/*'.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "workspace": {
+              "type": "string",
+              "description": "The Bitbucket Cloud Workspace ID to be connected to Google Cloud Platform.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "authorizer_credential": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "user_token_secret_version": {
+                    "type": "string",
+                    "description": "Required. A SecretManager resource containing the user token that authorizes the Cloud Build connection. Format: 'projects/*/secrets/*/versions/*'.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "Output only. The username associated to this token.",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "description": "Required. An access token with the 'webhook', 'repository', 'repository:admin' and 'pullrequest' scope access. It can be either a workspace, project or repository access token. It's recommended to use a system account to generate these credentials.",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "read_authorizer_credential": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "user_token_secret_version": {
+                    "type": "string",
+                    "description": "Required. A SecretManager resource containing the user token that authorizes the Cloud Build connection. Format: 'projects/*/secrets/*/versions/*'.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "Output only. The username associated to this token.",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "description": "Required. An access token with the 'repository' access. It can be either a workspace, project or repository access token. It's recommended to use a system account to generate the credentials.",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description": "Configuration for connections to Bitbucket Cloud.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "bitbucket_data_center_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "host_uri": {
+              "type": "string",
+              "description": "The URI of the Bitbucket Data Center host this connection is for.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "server_version": {
+              "type": "string",
+              "description": "Output only. Version of the Bitbucket Data Center running on the 'host_uri'.",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "ssl_ca": {
+              "type": "string",
+              "description": "SSL certificate to use for requests to the Bitbucket Data Center.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "webhook_secret_secret_version": {
+              "type": "string",
+              "description": "Required. Immutable. SecretManager resource containing the webhook secret used to verify webhook events, formatted as 'projects/*/secrets/*/versions/*'.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "authorizer_credential": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "user_token_secret_version": {
+                    "type": "string",
+                    "description": "Required. A SecretManager resource containing the user token that authorizes the Cloud Build connection. Format: 'projects/*/secrets/*/versions/*'.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "Output only. The username associated to this token.",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "description": "Required. A http access token with the 'REPO_ADMIN' scope access.",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "read_authorizer_credential": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "user_token_secret_version": {
+                    "type": "string",
+                    "description": "Required. A SecretManager resource containing the user token that authorizes the Cloud Build connection. Format: 'projects/*/secrets/*/versions/*'.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "Output only. The username associated to this token.",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "description": "Required. A http access token with the 'REPO_READ' access.",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "service_directory_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "service": {
+                    "type": "string",
+                    "description": "Required. The Service Directory service name. Format: projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Configuration for using Service Directory to privately connect to a Bitbucket Data Center. This should only be set if the Bitbucket Data Center is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the Bitbucket Data Center will be made over the public internet.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Configuration for connections to Bitbucket Data Center.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "github_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "app_installation_id": {
+              "type": "number",
+              "description": "GitHub App installation id.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "authorizer_credential": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "oauth_token_secret_version": {
+                    "type": "string",
+                    "description": "A SecretManager resource containing the OAuth token that authorizes the Cloud Build connection. Format: 'projects/*/secrets/*/versions/*'.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "Output only. The username associated to this token.",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "description": "OAuth credential of the account that authorized the Cloud Build GitHub App. It is recommended to use a robot account instead of a human user account. The OAuth token must be tied to the Cloud Build GitHub App.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Configuration for connections to github.com.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "github_enterprise_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "app_id": {
+              "type": "number",
+              "description": "Id of the GitHub App created from the manifest.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "app_installation_id": {
+              "type": "number",
+              "description": "ID of the installation of the GitHub App.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "app_slug": {
+              "type": "string",
+              "description": "The URL-friendly name of the GitHub App.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "host_uri": {
+              "type": "string",
+              "description": "Required. The URI of the GitHub Enterprise host this connection is for.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "private_key_secret_version": {
+              "type": "string",
+              "description": "SecretManager resource containing the private key of the GitHub App, formatted as 'projects/*/secrets/*/versions/*'.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "ssl_ca": {
+              "type": "string",
+              "description": "SSL certificate to use for requests to GitHub Enterprise.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "webhook_secret_secret_version": {
+              "type": "string",
+              "description": "SecretManager resource containing the webhook secret of the GitHub App, formatted as 'projects/*/secrets/*/versions/*'.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "service_directory_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "service": {
+                    "type": "string",
+                    "description": "Required. The Service Directory service name. Format: projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Configuration for using Service Directory to privately connect to a GitHub Enterprise server. This should only be set if the GitHub Enterprise server is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the GitHub Enterprise server will be made over the public internet.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Configuration for connections to an instance of GitHub Enterprise.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "gitlab_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "host_uri": {
+              "type": "string",
+              "description": "The URI of the GitLab Enterprise host this connection is for. If not specified, the default value is https://gitlab.com.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "server_version": {
+              "type": "string",
+              "description": "Output only. Version of the GitLab Enterprise server running on the 'host_uri'.",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "ssl_ca": {
+              "type": "string",
+              "description": "SSL certificate to use for requests to GitLab Enterprise.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "webhook_secret_secret_version": {
+              "type": "string",
+              "description": "Required. Immutable. SecretManager resource containing the webhook secret of a GitLab Enterprise project, formatted as 'projects/*/secrets/*/versions/*'.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "authorizer_credential": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "user_token_secret_version": {
+                    "type": "string",
+                    "description": "Required. A SecretManager resource containing the user token that authorizes the Cloud Build connection. Format: 'projects/*/secrets/*/versions/*'.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "Output only. The username associated to this token.",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "description": "Required. A GitLab personal access token with the 'api' scope access.",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "read_authorizer_credential": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "user_token_secret_version": {
+                    "type": "string",
+                    "description": "Required. A SecretManager resource containing the user token that authorizes the Cloud Build connection. Format: 'projects/*/secrets/*/versions/*'.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "username": {
+                    "type": "string",
+                    "description": "Output only. The username associated to this token.",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "description": "Required. A GitLab personal access token with the minimum 'read_api' scope access.",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "service_directory_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "service": {
+                    "type": "string",
+                    "description": "Required. The Service Directory service name. Format: projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Configuration for using Service Directory to privately connect to a GitLab Enterprise server. This should only be set if the GitLab Enterprise server is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the GitLab Enterprise server will be made over the public internet.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Configuration for connections to gitlab.com or an instance of GitLab Enterprise.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

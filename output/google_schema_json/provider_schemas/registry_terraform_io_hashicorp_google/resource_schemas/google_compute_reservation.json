@@ -1,0 +1,275 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "commitment": {
+        "type": "string",
+        "description": "Full or partial URL to a parent commitment. This field displays for reservations that are tied to a commitment.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "creation_timestamp": {
+        "type": "string",
+        "description": "Creation timestamp in RFC3339 text format.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "delete_at_time": {
+        "type": "string",
+        "description": "Absolute time in future when the reservation will be auto-deleted by Compute Engine. Timestamp is represented in RFC3339 text format. Cannot be used with delete_after_duration.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "An optional description of this resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "self_link": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "specific_reservation_required": {
+        "type": "bool",
+        "description": "When set to true, only VMs that target this reservation by name can consume this reservation. Otherwise, it can be consumed by VMs with affinity for any reservation. Defaults to false.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "status": {
+        "type": "string",
+        "description": "The status of the reservation.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "zone": {
+        "type": "string",
+        "description": "The zone where the reservation is made.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "delete_after_duration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "nanos": {
+              "type": "number",
+              "description": "Number of nanoseconds for the auto-delete duration.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "seconds": {
+              "type": "string",
+              "description": "Number of seconds for the auto-delete duration.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Duration after which the reservation will be auto-deleted by Compute Engine. Cannot be used with delete_at_time.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "reservation_sharing_policy": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "service_share_type": {
+              "type": "string",
+              "description": "Sharing config for all Google Cloud services. Possible values: [\"ALLOW_ALL\", \"DISALLOW_ALL\"]",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description": "Sharing policy for reservations with Google Cloud managed services.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "share_settings": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "share_type": {
+              "type": "string",
+              "description": "Type of sharing for this shared-reservation Possible values: [\"LOCAL\", \"SPECIFIC_PROJECTS\"]",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "block_types": {
+            "project_map": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "project_id": {
+                    "type": "string",
+                    "description": "The project id/number, should be same as the key of this project config in the project map.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "A map of project number and project config. This is only valid when shareType's value is SPECIFIC_PROJECTS.",
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description": "The share setting for reservations.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "specific_reservation": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "count": {
+              "type": "number",
+              "description": "The number of resources that are allocated.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "in_use_count": {
+              "type": "number",
+              "description": "How many instances are in use.",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "source_instance_template": {
+              "type": "string",
+              "description": "Specifies the instance template to create the reservation. If you use this field, you must exclude the instanceProperties field.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "instance_properties": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "machine_type": {
+                    "type": "string",
+                    "description": "The name of the machine type to reserve.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "min_cpu_platform": {
+                    "type": "string",
+                    "description": "The minimum CPU platform for the reservation. For example, '\"Intel Skylake\"'. See the CPU platform availability reference](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform#availablezones) for information on available CPU platforms.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  }
+                },
+                "block_types": {
+                  "guest_accelerators": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "accelerator_count": {
+                          "type": "number",
+                          "description": "The number of the guest accelerator cards exposed to this instance.",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "accelerator_type": {
+                          "type": "string",
+                          "description": "The full or partial URL of the accelerator type to attach to this instance. For example: 'projects/my-project/zones/us-central1-c/acceleratorTypes/nvidia-tesla-p100' If you are creating an instance template, specify only the accelerator name.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "Guest accelerator type and count.",
+                      "description_kind": "plain"
+                    }
+                  },
+                  "local_ssds": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "disk_size_gb": {
+                          "type": "number",
+                          "description": "The size of the disk in base-2 GB.",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "interface": {
+                          "type": "string",
+                          "description": "The disk interface to use for attaching this disk. Default value: \"SCSI\" Possible values: [\"SCSI\", \"NVME\"]",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "The amount of local ssd to reserve with each instance. This reserves disks of type 'local-ssd'.",
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description": "The instance properties for the reservation.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Reservation for instances with specific machine shapes.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

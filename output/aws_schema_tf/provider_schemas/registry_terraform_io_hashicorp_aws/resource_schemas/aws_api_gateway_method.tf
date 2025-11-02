@@ -1,0 +1,15 @@
+resource "aws_api_gateway_method" "name" {
+  authorization = string (Required)
+  http_method = string (Required)
+  resource_id = string (Required)
+  rest_api_id = string (Required)
+  api_key_required = bool (Optional)
+  authorization_scopes = ['set', 'string'] (Optional)
+  authorizer_id = string (Optional)
+  id = string (Optional, Computed)
+  operation_name = string (Optional)
+  region = string (Optional, Computed)
+  request_models = ['map', 'string'] (Optional)
+  request_parameters = ['map', 'bool'] (Optional)
+  request_validator_id = string (Optional)
+}

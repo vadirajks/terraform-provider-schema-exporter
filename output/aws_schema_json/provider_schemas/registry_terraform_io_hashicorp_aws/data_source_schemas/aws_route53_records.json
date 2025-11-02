@@ -1,0 +1,87 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "name_regex": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "resource_record_sets": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "alias_target": [
+                "object",
+                {
+                  "dns_name": "string",
+                  "evaluate_target_health": "bool",
+                  "hosted_zone_id": "string"
+                }
+              ],
+              "cidr_routing_config": [
+                "object",
+                {
+                  "collection_id": "string",
+                  "location_name": "string"
+                }
+              ],
+              "failover": "string",
+              "geolocation": [
+                "object",
+                {
+                  "continent_code": "string",
+                  "country_code": "string",
+                  "subdivision_code": "string"
+                }
+              ],
+              "geoproximity_location": [
+                "object",
+                {
+                  "aws_region": "string",
+                  "bias": "number",
+                  "coordinates": [
+                    "object",
+                    {
+                      "latitude": "string",
+                      "longitude": "string"
+                    }
+                  ],
+                  "local_zone_group": "string"
+                }
+              ],
+              "health_check_id": "string",
+              "multi_value_answer": "bool",
+              "name": "string",
+              "region": "string",
+              "resource_records": [
+                "list",
+                [
+                  "object",
+                  {
+                    "value": "string"
+                  }
+                ]
+              ],
+              "set_identifier": "string",
+              "traffic_policy_instance_id": "string",
+              "ttl": "number",
+              "type": "string",
+              "weight": "number"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "zone_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "capacity_commitment_id": {
+        "type": "string",
+        "description": "The optional capacity commitment ID. Capacity commitment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dashes. The first and last character cannot be a dash. Max length is 64 characters. NOTE: this ID won't be kept if the capacity commitment is split or merged.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "commitment_end_time": {
+        "type": "string",
+        "description": "The start of the current commitment period. It is applicable only for ACTIVE capacity commitments.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "commitment_start_time": {
+        "type": "string",
+        "description": "The start of the current commitment period. It is applicable only for ACTIVE capacity commitments.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "edition": {
+        "type": "string",
+        "description": "The edition type. Valid values are STANDARD, ENTERPRISE, ENTERPRISE_PLUS",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "enforce_single_admin_project_per_org": {
+        "type": "string",
+        "description": "If true, fail the request if another project in the organization has a capacity commitment.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The geographic location where the transfer config should reside. Examples: US, EU, asia-northeast1. The default value is US.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name of the capacity commitment, e.g., projects/myproject/locations/US/capacityCommitments/123",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "plan": {
+        "type": "string",
+        "description": "Capacity commitment plan. Valid values are at https://cloud.google.com/bigquery/docs/reference/reservations/rpc/google.cloud.bigquery.reservation.v1#commitmentplan",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "renewal_plan": {
+        "type": "string",
+        "description": "The plan this capacity commitment is converted to after commitmentEndTime passes. Once the plan is changed, committed period is extended according to commitment plan. Only applicable for some commitment plans.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "slot_count": {
+        "type": "number",
+        "description": "Number of slots in this commitment.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "state": {
+        "type": "string",
+        "description": "State of the commitment",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,67 @@
+version: 1
+block:
+  attributes:
+    default_action:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ip_rules:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    namespace_id:
+      type: string
+      description_kind: plain
+      required: true
+    public_network_access_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    trusted_services_allowed:
+      type: bool
+      description_kind: plain
+      optional: true
+  block_types:
+    network_rules:
+      nesting_mode: set
+      block:
+        attributes:
+          ignore_missing_vnet_service_endpoint:
+            type: bool
+            description_kind: plain
+            optional: true
+          subnet_id:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

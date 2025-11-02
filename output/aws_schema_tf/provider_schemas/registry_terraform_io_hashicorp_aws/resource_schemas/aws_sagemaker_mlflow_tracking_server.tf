@@ -1,0 +1,15 @@
+resource "aws_sagemaker_mlflow_tracking_server" "name" {
+  artifact_store_uri = string (Required)
+  role_arn = string (Required)
+  tracking_server_name = string (Required)
+  arn = string (Computed)
+  automatic_model_registration = bool (Optional)
+  id = string (Optional, Computed)
+  mlflow_version = string (Optional, Computed)
+  region = string (Optional, Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+  tracking_server_size = string (Optional)
+  tracking_server_url = string (Computed)
+  weekly_maintenance_window_start = string (Optional, Computed)
+}

@@ -1,0 +1,34 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    key_handles:
+      type:
+      - list
+      - - object
+        - kms_key: string
+          name: string
+          resource_type_selector: string
+      description: A list of all the retrieved key handles
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description: 'The canonical id for the location. For example: "us-east1".'
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description: Project ID of the project.
+      description_kind: plain
+      optional: true
+    resource_type_selector:
+      type: string
+      description: 'The resource_type_selector argument is used to add a filter query parameter that limits which key handles are retrieved by the data source: ?filter=resource_type_selector="{{resource_type_selector}}". Example values: * resource_type_selector="{SERVICE}.googleapis.com/{TYPE}". [See the documentation about using filters](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyHandles/list)'
+      description_kind: plain
+      required: true
+  description_kind: plain

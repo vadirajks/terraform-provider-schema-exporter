@@ -1,0 +1,15 @@
+resource "aws_detective_member" "name" {
+  account_id = string (Required)
+  email_address = string (Required)
+  graph_arn = string (Required)
+  administrator_id = string (Computed)
+  disable_email_notification = bool (Optional)
+  disabled_reason = string (Computed)
+  id = string (Optional, Computed)
+  invited_time = string (Computed)
+  message = string (Optional)
+  region = string (Optional, Computed)
+  status = string (Computed)
+  updated_time = string (Computed)
+  volume_usage_in_bytes = string (Computed)
+}

@@ -1,0 +1,90 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "contact_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "stage": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "duration_in_minutes": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "target": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "channel_target_info": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "contact_channel_id": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "retry_interval_in_minutes": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "contact_target_info": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "contact_id": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "is_essential": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

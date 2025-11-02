@@ -1,0 +1,108 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: Time the firewall endpoint was created in UTC.
+      description_kind: plain
+      computed: true
+    disabled:
+      type: bool
+      description: Whether the association is disabled. True indicates that traffic will not be intercepted. ~> **Note:** The API will reject the request if this value is set to true when creating the resource, otherwise on an update the association can be disabled.
+      description_kind: plain
+      optional: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    firewall_endpoint:
+      type: string
+      description: The URL of the firewall endpoint that is being associated.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'A map of key/value label pairs to assign to the resource. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: The location (zone) of the firewall endpoint association.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The name of the firewall endpoint association resource.
+      description_kind: plain
+      required: true
+    network:
+      type: string
+      description: The URL of the network that is being associated.
+      description_kind: plain
+      required: true
+    parent:
+      type: string
+      description: 'The name of the parent this firewall endpoint association belongs to. Format: projects/{project_id}.'
+      description_kind: plain
+      optional: true
+    reconciling:
+      type: bool
+      description: Whether reconciling is in progress, recommended per https://google.aip.dev/128.
+      description_kind: plain
+      computed: true
+    self_link:
+      type: string
+      description: Server-defined URL of this resource.
+      description_kind: plain
+      computed: true
+    state:
+      type: string
+      description: The current state of the endpoint.
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    tls_inspection_policy:
+      type: string
+      description: The URL of the TlsInspectionPolicy that is being associated.
+      description_kind: plain
+      optional: true
+    update_time:
+      type: string
+      description: Time the firewall endpoint was updated in UTC.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,40 @@
+version: 0
+block:
+  attributes:
+    data_source_references:
+      type:
+      - list
+      - - object
+        - backup_config_state: string
+          backup_count: number
+          data_source: string
+          gcp_resource_name: string
+          last_backup_state: string
+          last_successful_backup_time: string
+          name: string
+          resource_type: string
+      description: A list of the data source references found.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: The location to list the data source references from.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description: The ID of the project in which the resource belongs.
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_type:
+      type: string
+      description: The resource type to get the data source references for. Examples include, "compute.googleapis.com/Instance", "sqladmin.googleapis.com/Instance".
+      description_kind: plain
+      required: true
+  description_kind: plain

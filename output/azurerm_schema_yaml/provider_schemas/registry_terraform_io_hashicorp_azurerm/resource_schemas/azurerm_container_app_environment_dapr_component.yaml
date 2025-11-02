@@ -1,0 +1,114 @@
+version: 0
+block:
+  attributes:
+    component_type:
+      type: string
+      description: The Dapr Component Type. For example `state.azure.blobstorage`.
+      description_kind: plain
+      required: true
+    container_app_environment_id:
+      type: string
+      description: The Container App Managed Environment ID to configure this Dapr component on.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ignore_errors:
+      type: bool
+      description: Should the Dapr sidecar to continue initialisation if the component fails to load. Defaults to `false`
+      description_kind: plain
+      optional: true
+    init_timeout:
+      type: string
+      description: The component initialisation timeout in ISO8601 format. e.g. `5s`, `2h`, `1m`. Defaults to `5s`.
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: The name for this Dapr Component.
+      description_kind: plain
+      required: true
+    scopes:
+      type:
+      - list
+      - string
+      description: A list of scopes to which this component applies. e.g. a Container App's `dapr.app_id` value.
+      description_kind: plain
+      optional: true
+    version:
+      type: string
+      description: The version of the component.
+      description_kind: plain
+      required: true
+  block_types:
+    metadata:
+      nesting_mode: list
+      block:
+        attributes:
+          name:
+            type: string
+            description: The name of the Metadata configuration item.
+            description_kind: plain
+            required: true
+          secret_name:
+            type: string
+            description: The name of a secret specified in the `secrets` block that contains the value for this metadata configuration item.
+            description_kind: plain
+            optional: true
+          value:
+            type: string
+            description: The value for this metadata configuration item.
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    secret:
+      nesting_mode: set
+      block:
+        attributes:
+          identity:
+            type: string
+            description: The identity to use for accessing key vault reference.
+            description_kind: plain
+            optional: true
+          key_vault_secret_id:
+            type: string
+            description: The Key Vault Secret ID. Could be either one of `id` or `versionless_id`.
+            description_kind: plain
+            optional: true
+          name:
+            type: string
+            description: The secret name.
+            description_kind: plain
+            required: true
+          value:
+            type: string
+            description: The value for this secret.
+            description_kind: plain
+            optional: true
+            sensitive: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

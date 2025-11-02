@@ -1,0 +1,162 @@
+version: 0
+block:
+  attributes:
+    authorized_network:
+      type: string
+      description: The full name of the GCE network to connect the instance to.  If not provided, 'default' will be used.
+      description_kind: plain
+      computed: true
+    create_time:
+      type: string
+      description: Creation timestamp in RFC3339 text format.
+      description_kind: plain
+      computed: true
+    deletion_protection:
+      type: bool
+      description: Whether Terraform will be prevented from destroying the instance. When a 'terraform destroy' or 'terraform apply' would delete the instance, the command will fail if this field is not set to false in Terraform state. When the field is set to true or unset in Terraform state, a 'terraform apply' or 'terraform destroy' that would delete the instance will fail. When the field is set to false, deleting the instance is allowed.
+      description_kind: plain
+      computed: true
+    discovery_endpoint:
+      type: string
+      description: Endpoint for Discovery API
+      description_kind: plain
+      computed: true
+    display_name:
+      type: string
+      description: A user-visible name for the instance.
+      description_kind: plain
+      computed: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Resource labels to represent user-provided metadata. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      computed: true
+    maintenance_policy:
+      type:
+      - list
+      - - object
+        - create_time: string
+          description: string
+          update_time: string
+          weekly_maintenance_window:
+          - list
+          - - object
+            - day: string
+              duration: string
+              start_time:
+              - list
+              - - object
+                - hours: number
+                  minutes: number
+                  nanos: number
+                  seconds: number
+      description: Maintenance policy for an instance.
+      description_kind: plain
+      computed: true
+    maintenance_schedule:
+      type:
+      - list
+      - - object
+        - end_time: string
+          schedule_deadline_time: string
+          start_time: string
+      description: Output only. Published maintenance schedule.
+      description_kind: plain
+      computed: true
+    memcache_full_version:
+      type: string
+      description: The full version of memcached server running on this instance.
+      description_kind: plain
+      computed: true
+    memcache_nodes:
+      type:
+      - list
+      - - object
+        - host: string
+          node_id: string
+          port: number
+          state: string
+          zone: string
+      description: Additional information about the instance state, if available.
+      description_kind: plain
+      computed: true
+    memcache_parameters:
+      type:
+      - list
+      - - object
+        - id: string
+          params:
+          - map
+          - string
+      description: User-specified parameters for this memcache instance.
+      description_kind: plain
+      computed: true
+    memcache_version:
+      type: string
+      description: 'The major version of Memcached software. If not provided, latest supported version will be used. Currently the latest supported major version is MEMCACHE_1_5. The minor version will be automatically determined by our system based on the latest supported minor version. Default value: "MEMCACHE_1_5" Possible values: ["MEMCACHE_1_5", "MEMCACHE_1_6_15"]'
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: The resource name of the instance.
+      description_kind: plain
+      required: true
+    node_config:
+      type:
+      - list
+      - - object
+        - cpu_count: number
+          memory_size_mb: number
+      description: Configuration for memcache nodes.
+      description_kind: plain
+      computed: true
+    node_count:
+      type: number
+      description: Number of nodes in the memcache instance.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: The region of the Memcache instance. If it is not provided, the provider region is used.
+      description_kind: plain
+      optional: true
+    reserved_ip_range_id:
+      type:
+      - list
+      - string
+      description: Contains the name of allocated IP address ranges associated with the private service access connection for example, "test-default" associated with IP range 10.0.0.0/29.
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    zones:
+      type:
+      - set
+      - string
+      description: Zones where memcache nodes should be provisioned.  If not provided, all zones will be used.
+      description_kind: plain
+      computed: true
+  description_kind: plain

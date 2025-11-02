@@ -1,0 +1,68 @@
+version: 0
+block:
+  attributes:
+    arc_setting_id:
+      type: string
+      description_kind: plain
+      required: true
+    auto_upgrade_minor_version_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    automatic_upgrade_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    protected_settings:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+    publisher:
+      type: string
+      description_kind: plain
+      required: true
+    settings:
+      type: string
+      description_kind: plain
+      optional: true
+    type:
+      type: string
+      description_kind: plain
+      required: true
+    type_handler_version:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

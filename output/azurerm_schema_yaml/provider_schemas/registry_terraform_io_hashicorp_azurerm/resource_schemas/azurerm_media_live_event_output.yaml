@@ -1,0 +1,65 @@
+version: 1
+block:
+  attributes:
+    archive_window_duration:
+      type: string
+      description_kind: plain
+      required: true
+    asset_name:
+      type: string
+      description_kind: plain
+      required: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    hls_fragments_per_ts_segment:
+      type: number
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    live_event_id:
+      type: string
+      description_kind: plain
+      required: true
+    manifest_name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    output_snap_time_in_seconds:
+      type: number
+      description_kind: plain
+      optional: true
+    rewind_window_duration:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

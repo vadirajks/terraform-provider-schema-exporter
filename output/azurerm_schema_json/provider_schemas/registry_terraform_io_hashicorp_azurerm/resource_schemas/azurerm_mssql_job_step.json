@@ -1,0 +1,128 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "initial_retry_interval_seconds": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "job_credential_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "job_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "job_step_index": {
+        "type": "number",
+        "description_kind": "plain",
+        "required": true
+      },
+      "job_target_group_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "maximum_retry_interval_seconds": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "retry_attempts": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "retry_interval_backoff_multiplier": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "sql_script": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "timeout_seconds": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "output_target": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "job_credential_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "mssql_database_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "schema_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "table_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

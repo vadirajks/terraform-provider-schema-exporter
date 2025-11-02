@@ -1,0 +1,23 @@
+version: 0
+block:
+  attributes:
+    odb_networks:
+      type:
+      - list
+      - - object
+        - arn: string
+          display_name: string
+          id: string
+          oci_network_anchor_id: string
+          oci_vcn_id: string
+          oci_vcn_url: string
+      description: List of odb networks returns basic information about odb networks.
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+  description_kind: plain

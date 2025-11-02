@@ -1,0 +1,86 @@
+version: 0
+block:
+  attributes:
+    base_policy_id:
+      type: string
+      description_kind: plain
+      computed: true
+    child_policies:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    dns:
+      type:
+      - list
+      - - object
+        - network_rule_fqdn_enabled: bool
+          proxy_enabled: bool
+          servers:
+          - list
+          - string
+      description_kind: plain
+      computed: true
+    firewalls:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    rule_collection_groups:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    threat_intelligence_allowlist:
+      type:
+      - list
+      - - object
+        - fqdns:
+          - list
+          - string
+          ip_addresses:
+          - list
+          - string
+      description_kind: plain
+      computed: true
+    threat_intelligence_mode:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

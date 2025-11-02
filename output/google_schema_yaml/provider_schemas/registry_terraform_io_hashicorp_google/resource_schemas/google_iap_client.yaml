@@ -1,0 +1,45 @@
+version: 0
+block:
+  attributes:
+    brand:
+      type: string
+      description: Identifier of the brand to which this client is attached to. The format is 'projects/{project_number}/brands/{brand_id}'.
+      description_kind: plain
+      required: true
+    client_id:
+      type: string
+      description: Output only. Unique identifier of the OAuth client.
+      description_kind: plain
+      computed: true
+    display_name:
+      type: string
+      description: Human-friendly name given to the OAuth client.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    secret:
+      type: string
+      description: Output only. Client secret of the OAuth client.
+      description_kind: plain
+      computed: true
+      sensitive: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

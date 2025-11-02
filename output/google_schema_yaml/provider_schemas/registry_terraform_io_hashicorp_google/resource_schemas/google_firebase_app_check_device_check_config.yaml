@@ -1,0 +1,64 @@
+version: 0
+block:
+  attributes:
+    app_id:
+      type: string
+      description: The ID of an [Apple App](https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects.iosApps#IosApp.FIELDS.app_id).
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    key_id:
+      type: string
+      description: The key identifier of a private key enabled with DeviceCheck, created in your Apple Developer account.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The relative resource name of the DeviceCheck configuration object
+      description_kind: plain
+      computed: true
+    private_key:
+      type: string
+      description: The contents of the private key (.p8) file associated with the key specified by keyId.
+      description_kind: plain
+      required: true
+      sensitive: true
+    private_key_set:
+      type: bool
+      description: Whether the privateKey field was previously set. Since App Check will never return the privateKey field, this field is the only way to find out whether it was previously set.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    token_ttl:
+      type: string
+      description: 'Specifies the duration for which App Check tokens exchanged from DeviceCheck artifacts will be valid. If unset, a default value of 1 hour is assumed. Must be between 30 minutes and 7 days, inclusive. A duration in seconds with up to nine fractional digits, ending with ''s''. Example: "3.5s".'
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

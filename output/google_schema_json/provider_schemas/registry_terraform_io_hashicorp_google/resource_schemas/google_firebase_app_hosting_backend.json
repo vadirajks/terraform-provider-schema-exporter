@@ -1,0 +1,218 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "annotations": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. **Note**: This field is non-authoritative, and will only manage the annotations present in your configuration. Please refer to the field 'effective_annotations' for all of the annotations present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "app_id": {
+        "type": "string",
+        "description": "The [ID of a Web App](https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects.webApps#WebApp.FIELDS.app_id) associated with the backend.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "backend_id": {
+        "type": "string",
+        "description": "Id of the backend. Also used as the service ID for Cloud Run, and as part of the default domain name.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "Time at which the backend was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "delete_time": {
+        "type": "string",
+        "description": "Time at which the backend was deleted.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "Human-readable name. 63 character limit.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "effective_annotations": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of annotations (key/value pairs) present on the resource in GCP, including the annotations configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "environment": {
+        "type": "string",
+        "description": "The environment name of the backend, used to load environment variables from environment specific configuration.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "etag": {
+        "type": "string",
+        "description": "Server-computed checksum based on other values; may be sent on update or delete to ensure operation is done on expected resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Unstructured key value map that can be used to organize and categorize objects. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The canonical IDs of a Google Cloud location such as \"us-east1\".",
+        "description_kind": "plain",
+        "required": true
+      },
+      "managed_resources": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "run_service": [
+                "list",
+                [
+                  "object",
+                  {
+                    "service": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "A list of the resources managed by this backend.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Identifier. The resource name of the backend. Format: 'projects/{project}/locations/{locationId}/backends/{backendId}'.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "service_account": {
+        "type": "string",
+        "description": "The name of the service account used for Cloud Build and Cloud Run. Should have the role roles/firebaseapphosting.computeRunner or equivalent permissions.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "serving_locality": {
+        "type": "string",
+        "description": "Immutable. Specifies how App Hosting will serve the content for this backend. It will either be contained to a single region (REGIONAL_STRICT) or allowed to use App Hosting's global-replicated serving infrastructure (GLOBAL_ACCESS). Possible values: [\"REGIONAL_STRICT\", \"GLOBAL_ACCESS\"]",
+        "description_kind": "plain",
+        "required": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "uid": {
+        "type": "string",
+        "description": "System-assigned, unique identifier.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Time at which the backend was last updated.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "uri": {
+        "type": "string",
+        "description": "The primary URI to communicate with the backend.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "codebase": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "repository": {
+              "type": "string",
+              "description": "The resource name for the Developer Connect ['gitRepositoryLink'](https://cloud.google.com/developer-connect/docs/api/reference/rest/v1/projects.locations.connections.gitRepositoryLinks) connected to this backend, in the format: projects/{project}/locations/{location}/connections/{connection}/gitRepositoryLinks/{repositoryLink}",
+              "description_kind": "plain",
+              "required": true
+            },
+            "root_directory": {
+              "type": "string",
+              "description": "If 'repository' is provided, the directory relative to the root of the repository to use as the root for the deployed web app.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "The connection to an external source repository to watch for event-driven updates to the backend.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,86 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    enabled:
+      type: bool
+      description_kind: plain
+      required: true
+    etag:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+    last_modified_time:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    staging_distribution_dns_names:
+      nesting_mode: list
+      block:
+        attributes:
+          items:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          quantity:
+            type: number
+            description_kind: plain
+            required: true
+        description_kind: plain
+    traffic_config:
+      nesting_mode: list
+      block:
+        attributes:
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          single_header_config:
+            nesting_mode: list
+            block:
+              attributes:
+                header:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          single_weight_config:
+            nesting_mode: list
+            block:
+              attributes:
+                weight:
+                  type: number
+                  description_kind: plain
+                  required: true
+              block_types:
+                session_stickiness_config:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      idle_ttl:
+                        type: number
+                        description_kind: plain
+                        required: true
+                      maximum_ttl:
+                        type: number
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+              description_kind: plain
+        description_kind: plain
+  description_kind: plain

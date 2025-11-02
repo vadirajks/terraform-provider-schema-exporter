@@ -1,0 +1,18 @@
+data "aws_apigatewayv2_api" "name" {
+  api_id = string (Required)
+  api_endpoint = string (Computed)
+  api_key_selection_expression = string (Computed)
+  arn = string (Computed)
+  cors_configuration = ['list', ['object', {'allow_credentials': 'bool', 'allow_headers': ['set', 'string'], 'allow_methods': ['set', 'string'], 'allow_origins': ['set', 'string'], 'expose_headers': ['set', 'string'], 'max_age': 'number'}]] (Computed)
+  description = string (Computed)
+  disable_execute_api_endpoint = bool (Computed)
+  execution_arn = string (Computed)
+  id = string (Optional, Computed)
+  ip_address_type = string (Computed)
+  name = string (Computed)
+  protocol_type = string (Computed)
+  region = string (Optional, Computed)
+  route_selection_expression = string (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  version = string (Computed)
+}

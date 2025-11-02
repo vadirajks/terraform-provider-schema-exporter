@@ -1,0 +1,52 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "deletion_policy": {
+        "type": "string",
+        "description": "The deletion policy for the shared VPC service. Setting ABANDON allows the resource to be abandoned rather than deleted. Possible values are: \"ABANDON\".",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "host_project": {
+        "type": "string",
+        "description": "The ID of a host project to associate.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "service_project": {
+        "type": "string",
+        "description": "The ID of the project that will serve as a Shared VPC service project.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,233 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    dead_letter_queue_url:
+      type: string
+      description_kind: plain
+      optional: true
+    default_encryption_key:
+      type: string
+      description_kind: plain
+      optional: true
+    default_expiration_days:
+      type: number
+      description_kind: plain
+      required: true
+    domain_name:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    matching:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled:
+            type: bool
+            description_kind: plain
+            required: true
+        block_types:
+          auto_merging:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  required: true
+                min_allowed_confidence_score_for_merging:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              block_types:
+                conflict_resolution:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      conflict_resolving_model:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      source_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+                consolidation:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      matching_attributes_list:
+                        type:
+                        - list
+                        - - list
+                          - string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          exporting_config:
+            nesting_mode: list
+            block:
+              block_types:
+                s3_exporting:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      s3_bucket_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      s3_key_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          job_schedule:
+            nesting_mode: list
+            block:
+              attributes:
+                day_of_the_week:
+                  type: string
+                  description_kind: plain
+                  required: true
+                time:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    rule_based_matching:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled:
+            type: bool
+            description_kind: plain
+            required: true
+          max_allowed_rule_level_for_matching:
+            type: number
+            description_kind: plain
+            optional: true
+          max_allowed_rule_level_for_merging:
+            type: number
+            description_kind: plain
+            optional: true
+          status:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          attribute_types_selector:
+            nesting_mode: list
+            block:
+              attributes:
+                address:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                attribute_matching_model:
+                  type: string
+                  description_kind: plain
+                  required: true
+                email_address:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                phone_number:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          conflict_resolution:
+            nesting_mode: list
+            block:
+              attributes:
+                conflict_resolving_model:
+                  type: string
+                  description_kind: plain
+                  required: true
+                source_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          exporting_config:
+            nesting_mode: list
+            block:
+              block_types:
+                s3_exporting:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      s3_bucket_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      s3_key_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          matching_rules:
+            nesting_mode: set
+            block:
+              attributes:
+                rule:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

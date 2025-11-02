@@ -1,0 +1,47 @@
+version: 0
+block:
+  attributes:
+    catalog_adogit:
+      type:
+      - list
+      - - object
+        - branch: string
+          key_vault_key_url: string
+          path: string
+          uri: string
+      description_kind: plain
+      computed: true
+    catalog_github:
+      type:
+      - list
+      - - object
+        - branch: string
+          key_vault_key_url: string
+          path: string
+          uri: string
+      description_kind: plain
+      computed: true
+    dev_center_id:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

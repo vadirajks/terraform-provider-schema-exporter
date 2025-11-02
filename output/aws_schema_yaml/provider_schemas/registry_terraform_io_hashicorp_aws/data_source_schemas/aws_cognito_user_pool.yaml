@@ -1,0 +1,199 @@
+version: 0
+block:
+  attributes:
+    account_recovery_setting:
+      type:
+      - list
+      - - object
+        - recovery_mechanism:
+          - list
+          - - object
+            - name: string
+              priority: number
+      description_kind: plain
+      computed: true
+    admin_create_user_config:
+      type:
+      - list
+      - - object
+        - allow_admin_create_user_only: bool
+          invite_message_template:
+          - list
+          - - object
+            - email_message: string
+              email_subject: string
+              sms_message: string
+          unused_account_validity_days: number
+      description_kind: plain
+      computed: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    auto_verified_attributes:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    creation_date:
+      type: string
+      description_kind: plain
+      computed: true
+    custom_domain:
+      type: string
+      description_kind: plain
+      computed: true
+    deletion_protection:
+      type: string
+      description_kind: plain
+      computed: true
+    device_configuration:
+      type:
+      - list
+      - - object
+        - challenge_required_on_new_device: bool
+          device_only_remembered_on_user_prompt: bool
+      description_kind: plain
+      computed: true
+    domain:
+      type: string
+      description_kind: plain
+      computed: true
+    email_configuration:
+      type:
+      - list
+      - - object
+        - configuration_set: string
+          email_sending_account: string
+          from: string
+          reply_to_email_address: string
+          source_arn: string
+      description_kind: plain
+      computed: true
+    estimated_number_of_users:
+      type: number
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+    lambda_config:
+      type:
+      - list
+      - - object
+        - create_auth_challenge: string
+          custom_email_sender:
+          - list
+          - - object
+            - lambda_arn: string
+              lambda_version: string
+          custom_message: string
+          custom_sms_sender:
+          - list
+          - - object
+            - lambda_arn: string
+              lambda_version: string
+          define_auth_challenge: string
+          kms_key_id: string
+          post_authentication: string
+          post_confirmation: string
+          pre_authentication: string
+          pre_sign_up: string
+          pre_token_generation: string
+          pre_token_generation_config:
+          - list
+          - - object
+            - lambda_arn: string
+              lambda_version: string
+          user_migration: string
+          verify_auth_challenge_response: string
+      description_kind: plain
+      computed: true
+    last_modified_date:
+      type: string
+      description_kind: plain
+      computed: true
+    mfa_configuration:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    schema_attributes:
+      type:
+      - list
+      - - object
+        - attribute_data_type: string
+          developer_only_attribute: bool
+          mutable: bool
+          name: string
+          number_attribute_constraints:
+          - list
+          - - object
+            - max_value: string
+              min_value: string
+          required: bool
+          string_attribute_constraints:
+          - list
+          - - object
+            - max_length: string
+              min_length: string
+      description_kind: plain
+      computed: true
+    sms_authentication_message:
+      type: string
+      description_kind: plain
+      computed: true
+    sms_configuration_failure:
+      type: string
+      description_kind: plain
+      computed: true
+    sms_verification_message:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    user_pool_add_ons:
+      type:
+      - list
+      - - object
+        - advanced_security_additional_flows:
+          - list
+          - - object
+            - custom_auth_mode: string
+          advanced_security_mode: string
+      description_kind: plain
+      computed: true
+    user_pool_id:
+      type: string
+      description_kind: plain
+      required: true
+    user_pool_tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      deprecated: true
+      computed: true
+    username_attributes:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+  description_kind: plain

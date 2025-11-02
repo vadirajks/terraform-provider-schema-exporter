@@ -1,0 +1,88 @@
+version: 0
+block:
+  attributes:
+    custom_domain_verification_id:
+      type: string
+      description: The ID of the Custom Domain Verification for this Container App Environment.
+      description_kind: plain
+      computed: true
+    default_domain:
+      type: string
+      description: The default publicly resolvable name of this Container App Environment
+      description_kind: plain
+      computed: true
+    docker_bridge_cidr:
+      type: string
+      description: The network addressing in which the Container Apps in this Container App Environment will reside in CIDR notation.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    infrastructure_subnet_id:
+      type: string
+      description: The existing Subnet in use by the Container Apps Control Plane.
+      description_kind: plain
+      computed: true
+    internal_load_balancer_enabled:
+      type: bool
+      description: Does the Container Environment operate in Internal Load Balancing Mode?
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    log_analytics_workspace_name:
+      type: string
+      description: The name of the Log Analytics Workspace this Container Apps Managed Environment is linked to.
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: The name of the Container Apps Managed Environment.
+      description_kind: plain
+      required: true
+    platform_reserved_cidr:
+      type: string
+      description: The IP range, in CIDR notation, that is reserved for environment infrastructure IP addresses.
+      description_kind: plain
+      computed: true
+    platform_reserved_dns_ip_address:
+      type: string
+      description: The IP address from the IP range defined by `platform_reserved_cidr` that is reserved for the internal DNS server.
+      description_kind: plain
+      computed: true
+    public_network_access:
+      type: string
+      description: The public network access setting for this Container App Environment.
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    static_ip_address:
+      type: string
+      description: The Static IP Address of the Environment.
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

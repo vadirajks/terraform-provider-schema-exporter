@@ -1,0 +1,62 @@
+version: 0
+block:
+  attributes:
+    cidrs:
+      type:
+      - list
+      - string
+      description: List of CIDRs that this group applies to.
+      description_kind: plain
+      optional: true
+    fqdns:
+      type:
+      - list
+      - string
+      description: List of FQDNs that this group applies to.
+      description_kind: plain
+      optional: true
+    group_name:
+      type: string
+      description: Unique tunnel destination group name.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: Full resource name.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: The region of the tunnel group. Must be the same as the network resources in the group.
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,175 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "certificate_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "certificate_body": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "certificate_chain": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "certificate_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "certificate_private_key": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "sensitive": true
+      },
+      "certificate_upload_date": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cloudfront_domain_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cloudfront_zone_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "domain_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "domain_name_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ownership_verification_certificate_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "policy": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "regional_certificate_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "regional_certificate_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "regional_domain_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "regional_zone_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "security_policy": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "endpoint_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "ip_address_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "types": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "mutual_tls_authentication": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "truststore_uri": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "truststore_version": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

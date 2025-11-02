@@ -1,0 +1,32 @@
+resource "google_network_services_gateway" "name" {
+  name = string (Required)
+  ports = ['list', 'number'] (Required)
+  type = string (Required)
+  addresses = ['list', 'string'] (Optional, Computed)
+  certificate_urls = ['list', 'string'] (Optional)
+  create_time = string (Computed)
+  delete_swg_autogen_router_on_destroy = bool (Optional)
+  description = string (Optional)
+  effective_labels = ['map', 'string'] (Computed)
+  envoy_headers = string (Optional)
+  gateway_security_policy = string (Optional)
+  id = string (Optional, Computed)
+  ip_version = string (Optional)
+  labels = ['map', 'string'] (Optional)
+  location = string (Optional)
+  network = string (Optional)
+  project = string (Optional, Computed)
+  routing_mode = string (Optional)
+  scope = string (Optional)
+  self_link = string (Computed)
+  server_tls_policy = string (Optional)
+  subnetwork = string (Optional)
+  terraform_labels = ['map', 'string'] (Computed)
+  update_time = string (Computed)
+
+  timeouts block "single" (Optional) {
+    create = string (Optional)
+    delete = string (Optional)
+    update = string (Optional)
+  }
+}

@@ -1,0 +1,57 @@
+version: 0
+block:
+  attributes:
+    default_duration:
+      type: string
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    item_search_key:
+      type: string
+      description_kind: plain
+      required: true
+    labels:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    log_analytics_workspace_id:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,58 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "access_policy_id": {
+        "type": "string",
+        "description": "The name of the Access Policy this resource belongs to.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "etag": {
+        "type": "string",
+        "description": "The perimeter etag is internally used to prevent overwriting the list of perimeter resources on PATCH calls. It is retrieved from the same GET perimeter API call that's used to get the current list of resources. The resource to add or remove is merged into that list and then this etag is sent with the PATCH call along with the updated resource list.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "perimeter_name": {
+        "type": "string",
+        "description": "The name of the Service Perimeter to add this resource to.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource": {
+        "type": "string",
+        "description": "A GCP resource that is inside of the service perimeter. Currently only projects are allowed. Format: projects/{project_number}",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

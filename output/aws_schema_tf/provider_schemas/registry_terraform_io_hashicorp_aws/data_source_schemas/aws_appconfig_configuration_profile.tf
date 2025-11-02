@@ -1,0 +1,15 @@
+data "aws_appconfig_configuration_profile" "name" {
+  application_id = string (Required)
+  configuration_profile_id = string (Required)
+  arn = string (Computed)
+  description = string (Computed)
+  id = string (Optional, Computed)
+  kms_key_identifier = string (Computed)
+  location_uri = string (Computed)
+  name = string (Computed)
+  region = string (Optional, Computed)
+  retrieval_role_arn = string (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  type = string (Computed)
+  validator = ['set', ['object', {'content': 'string', 'type': 'string'}]] (Computed)
+}

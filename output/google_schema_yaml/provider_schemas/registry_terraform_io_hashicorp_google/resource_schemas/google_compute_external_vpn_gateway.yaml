@@ -1,0 +1,98 @@
+version: 0
+block:
+  attributes:
+    description:
+      type: string
+      description: An optional description of this resource.
+      description_kind: plain
+      optional: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    label_fingerprint:
+      type: string
+      description: The fingerprint used for optimistic locking of this resource.  Used internally during updates.
+      description_kind: plain
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Labels for the external VPN gateway resource. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.  Specifically, the name must be 1-63 characters long and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    redundancy_type:
+      type: string
+      description: 'Indicates the redundancy type of this external VPN gateway Possible values: ["FOUR_IPS_REDUNDANCY", "SINGLE_IP_INTERNALLY_REDUNDANT", "TWO_IPS_REDUNDANCY"]'
+      description_kind: plain
+      optional: true
+    self_link:
+      type: string
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+  block_types:
+    interface:
+      nesting_mode: list
+      block:
+        attributes:
+          id:
+            type: number
+            description: The numeric ID for this interface. Allowed values are based on the redundancy type of this external VPN gateway * '0 - SINGLE_IP_INTERNALLY_REDUNDANT' * '0, 1 - TWO_IPS_REDUNDANCY' * '0, 1, 2, 3 - FOUR_IPS_REDUNDANCY'
+            description_kind: plain
+            optional: true
+          ip_address:
+            type: string
+            description: IP address of the interface in the external VPN gateway. Only IPv4 is supported. This IP address can be either from your on-premise gateway or another Cloud provider's VPN gateway, it cannot be an IP address from Google Compute Engine.
+            description_kind: plain
+            optional: true
+          ipv6_address:
+            type: string
+            description: IPv6 address of the interface in the external VPN gateway. This IPv6 address can be either from your on-premise gateway or another Cloud provider's VPN gateway, it cannot be an IP address from Google Compute Engine. Must specify an IPv6 address (not IPV4-mapped) using any format described in RFC 4291 (e.g. 2001:db8:0:0:2d9:51:0:0). The output format is RFC 5952 format (e.g. 2001:db8::2d9:51:0:0).
+            description_kind: plain
+            optional: true
+        description: A list of interfaces on this external VPN gateway.
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

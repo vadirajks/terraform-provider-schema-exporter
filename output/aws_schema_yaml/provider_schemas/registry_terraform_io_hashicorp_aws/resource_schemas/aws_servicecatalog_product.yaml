@@ -1,0 +1,138 @@
+version: 0
+block:
+  attributes:
+    accept_language:
+      type: string
+      description_kind: plain
+      optional: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    created_time:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    distributor:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    has_default_path:
+      type: bool
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    owner:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    status:
+      type: string
+      description_kind: plain
+      computed: true
+    support_description:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    support_email:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    support_url:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    type:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    provisioning_artifact_parameters:
+      nesting_mode: list
+      block:
+        attributes:
+          description:
+            type: string
+            description_kind: plain
+            optional: true
+          disable_template_validation:
+            type: bool
+            description_kind: plain
+            optional: true
+          name:
+            type: string
+            description_kind: plain
+            optional: true
+          template_physical_id:
+            type: string
+            description_kind: plain
+            optional: true
+          template_url:
+            type: string
+            description_kind: plain
+            optional: true
+          type:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

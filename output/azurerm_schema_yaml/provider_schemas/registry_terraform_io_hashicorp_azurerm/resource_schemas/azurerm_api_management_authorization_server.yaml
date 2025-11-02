@@ -1,0 +1,126 @@
+version: 0
+block:
+  attributes:
+    api_management_name:
+      type: string
+      description_kind: plain
+      required: true
+    authorization_endpoint:
+      type: string
+      description_kind: plain
+      required: true
+    authorization_methods:
+      type:
+      - set
+      - string
+      description_kind: plain
+      required: true
+    bearer_token_sending_methods:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    client_authentication_method:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    client_id:
+      type: string
+      description_kind: plain
+      required: true
+    client_registration_endpoint:
+      type: string
+      description_kind: plain
+      required: true
+    client_secret:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+    default_scope:
+      type: string
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description_kind: plain
+      required: true
+    grant_types:
+      type:
+      - set
+      - string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_owner_password:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+    resource_owner_username:
+      type: string
+      description_kind: plain
+      optional: true
+    support_state:
+      type: bool
+      description_kind: plain
+      optional: true
+    token_endpoint:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    token_body_parameter:
+      nesting_mode: list
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          value:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+  description_kind: plain

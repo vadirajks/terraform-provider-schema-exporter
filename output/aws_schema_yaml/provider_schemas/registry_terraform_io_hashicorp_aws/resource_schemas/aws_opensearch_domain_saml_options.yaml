@@ -1,0 +1,79 @@
+version: 0
+block:
+  attributes:
+    domain_name:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    saml_options:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          master_backend_role:
+            type: string
+            description_kind: plain
+            optional: true
+          master_user_name:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          roles_key:
+            type: string
+            description_kind: plain
+            optional: true
+          session_timeout_minutes:
+            type: number
+            description_kind: plain
+            optional: true
+          subject_key:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          idp:
+            nesting_mode: list
+            block:
+              attributes:
+                entity_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+                metadata_content:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

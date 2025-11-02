@@ -1,0 +1,359 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    managed_zone:
+      type: string
+      description: The name of the zone in which this record set will reside.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The DNS name this record set will apply to.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description: The ID of the project in which the resource belongs. If it is not provided, the provider project is used.
+      description_kind: plain
+      optional: true
+      computed: true
+    rrdatas:
+      type:
+      - list
+      - string
+      description: The string data for the records in this record set whose meaning depends on the DNS type. For TXT record, if the string data contains spaces, add surrounding \" if you don't want your string to get split on spaces. To specify a single record value longer than 255 characters such as a TXT record for DKIM, add \"\" inside the Terraform configuration string (e.g. "first255characters\"\"morecharacters").
+      description_kind: plain
+      optional: true
+    ttl:
+      type: number
+      description: The time-to-live of this record set (seconds).
+      description_kind: plain
+      optional: true
+    type:
+      type: string
+      description: The DNS record set type.
+      description_kind: plain
+      required: true
+  block_types:
+    routing_policy:
+      nesting_mode: list
+      block:
+        attributes:
+          enable_geo_fencing:
+            type: bool
+            description: Specifies whether to enable fencing for geo queries.
+            description_kind: plain
+            optional: true
+          health_check:
+            type: string
+            description: Specifies the health check.
+            description_kind: plain
+            optional: true
+        block_types:
+          geo:
+            nesting_mode: list
+            block:
+              attributes:
+                location:
+                  type: string
+                  description: The location name defined in Google Cloud.
+                  description_kind: plain
+                  required: true
+                rrdatas:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                health_checked_targets:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      external_endpoints:
+                        type:
+                        - list
+                        - string
+                        description: The Internet IP addresses to be health checked.
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      internal_load_balancers:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            ip_address:
+                              type: string
+                              description: The frontend IP address of the load balancer.
+                              description_kind: plain
+                              required: true
+                            ip_protocol:
+                              type: string
+                              description: 'The configured IP protocol of the load balancer. This value is case-sensitive. Possible values: ["tcp", "udp"]'
+                              description_kind: plain
+                              required: true
+                            load_balancer_type:
+                              type: string
+                              description: 'The type of load balancer. This value is case-sensitive. Possible values: ["regionalL4ilb", "regionalL7ilb", "globalL7ilb"]'
+                              description_kind: plain
+                              optional: true
+                            network_url:
+                              type: string
+                              description: The fully qualified url of the network in which the load balancer belongs. This should be formatted like `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`.
+                              description_kind: plain
+                              required: true
+                            port:
+                              type: string
+                              description: The configured port of the load balancer.
+                              description_kind: plain
+                              required: true
+                            project:
+                              type: string
+                              description: The ID of the project in which the load balancer belongs.
+                              description_kind: plain
+                              required: true
+                            region:
+                              type: string
+                              description: The region of the load balancer. Only needed for regional load balancers.
+                              description_kind: plain
+                              optional: true
+                          description: The list of internal load balancers to health check.
+                          description_kind: plain
+                    description: For A and AAAA types only. The list of targets to be health checked. These can be specified along with `rrdatas` within this item.
+                    description_kind: plain
+                  max_items: 1
+              description: The configuration for Geo location based routing policy.
+              description_kind: plain
+          primary_backup:
+            nesting_mode: list
+            block:
+              attributes:
+                enable_geo_fencing_for_backups:
+                  type: bool
+                  description: Specifies whether to enable fencing for backup geo queries.
+                  description_kind: plain
+                  optional: true
+                trickle_ratio:
+                  type: number
+                  description: Specifies the percentage of traffic to send to the backup targets even when the primary targets are healthy.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                backup_geo:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      location:
+                        type: string
+                        description: The location name defined in Google Cloud.
+                        description_kind: plain
+                        required: true
+                      rrdatas:
+                        type:
+                        - list
+                        - string
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      health_checked_targets:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            external_endpoints:
+                              type:
+                              - list
+                              - string
+                              description: The Internet IP addresses to be health checked.
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            internal_load_balancers:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  ip_address:
+                                    type: string
+                                    description: The frontend IP address of the load balancer.
+                                    description_kind: plain
+                                    required: true
+                                  ip_protocol:
+                                    type: string
+                                    description: 'The configured IP protocol of the load balancer. This value is case-sensitive. Possible values: ["tcp", "udp"]'
+                                    description_kind: plain
+                                    required: true
+                                  load_balancer_type:
+                                    type: string
+                                    description: 'The type of load balancer. This value is case-sensitive. Possible values: ["regionalL4ilb", "regionalL7ilb", "globalL7ilb"]'
+                                    description_kind: plain
+                                    optional: true
+                                  network_url:
+                                    type: string
+                                    description: The fully qualified url of the network in which the load balancer belongs. This should be formatted like `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`.
+                                    description_kind: plain
+                                    required: true
+                                  port:
+                                    type: string
+                                    description: The configured port of the load balancer.
+                                    description_kind: plain
+                                    required: true
+                                  project:
+                                    type: string
+                                    description: The ID of the project in which the load balancer belongs.
+                                    description_kind: plain
+                                    required: true
+                                  region:
+                                    type: string
+                                    description: The region of the load balancer. Only needed for regional load balancers.
+                                    description_kind: plain
+                                    optional: true
+                                description: The list of internal load balancers to health check.
+                                description_kind: plain
+                          description: For A and AAAA types only. The list of targets to be health checked. These can be specified along with `rrdatas` within this item.
+                          description_kind: plain
+                        max_items: 1
+                    description: The backup geo targets, which provide a regional failover policy for the otherwise global primary targets.
+                    description_kind: plain
+                  min_items: 1
+                primary:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      external_endpoints:
+                        type:
+                        - list
+                        - string
+                        description: The Internet IP addresses to be health checked.
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      internal_load_balancers:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            ip_address:
+                              type: string
+                              description: The frontend IP address of the load balancer.
+                              description_kind: plain
+                              required: true
+                            ip_protocol:
+                              type: string
+                              description: 'The configured IP protocol of the load balancer. This value is case-sensitive. Possible values: ["tcp", "udp"]'
+                              description_kind: plain
+                              required: true
+                            load_balancer_type:
+                              type: string
+                              description: 'The type of load balancer. This value is case-sensitive. Possible values: ["regionalL4ilb", "regionalL7ilb", "globalL7ilb"]'
+                              description_kind: plain
+                              optional: true
+                            network_url:
+                              type: string
+                              description: The fully qualified url of the network in which the load balancer belongs. This should be formatted like `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`.
+                              description_kind: plain
+                              required: true
+                            port:
+                              type: string
+                              description: The configured port of the load balancer.
+                              description_kind: plain
+                              required: true
+                            project:
+                              type: string
+                              description: The ID of the project in which the load balancer belongs.
+                              description_kind: plain
+                              required: true
+                            region:
+                              type: string
+                              description: The region of the load balancer. Only needed for regional load balancers.
+                              description_kind: plain
+                              optional: true
+                          description: The list of internal load balancers to health check.
+                          description_kind: plain
+                    description: The list of global primary targets to be health checked.
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description: The configuration for a failover policy with global to regional failover. Queries are responded to with the global primary targets, but if none of the primary targets are healthy, then we fallback to a regional failover policy.
+              description_kind: plain
+            max_items: 1
+          wrr:
+            nesting_mode: list
+            block:
+              attributes:
+                rrdatas:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                weight:
+                  type: number
+                  description: The ratio of traffic routed to the target.
+                  description_kind: plain
+                  required: true
+              block_types:
+                health_checked_targets:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      external_endpoints:
+                        type:
+                        - list
+                        - string
+                        description: The Internet IP addresses to be health checked.
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      internal_load_balancers:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            ip_address:
+                              type: string
+                              description: The frontend IP address of the load balancer.
+                              description_kind: plain
+                              required: true
+                            ip_protocol:
+                              type: string
+                              description: 'The configured IP protocol of the load balancer. This value is case-sensitive. Possible values: ["tcp", "udp"]'
+                              description_kind: plain
+                              required: true
+                            load_balancer_type:
+                              type: string
+                              description: 'The type of load balancer. This value is case-sensitive. Possible values: ["regionalL4ilb", "regionalL7ilb", "globalL7ilb"]'
+                              description_kind: plain
+                              optional: true
+                            network_url:
+                              type: string
+                              description: The fully qualified url of the network in which the load balancer belongs. This should be formatted like `https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}`.
+                              description_kind: plain
+                              required: true
+                            port:
+                              type: string
+                              description: The configured port of the load balancer.
+                              description_kind: plain
+                              required: true
+                            project:
+                              type: string
+                              description: The ID of the project in which the load balancer belongs.
+                              description_kind: plain
+                              required: true
+                            region:
+                              type: string
+                              description: The region of the load balancer. Only needed for regional load balancers.
+                              description_kind: plain
+                              optional: true
+                          description: The list of internal load balancers to health check.
+                          description_kind: plain
+                    description: The list of targets to be health checked. Note that if DNSSEC is enabled for this zone, only one of `rrdatas` or `health_checked_targets` can be set.
+                    description_kind: plain
+                  max_items: 1
+              description: The configuration for Weighted Round Robin based routing policy.
+              description_kind: plain
+        description: The configuration for steering traffic based on query. You can specify either Weighted Round Robin(WRR) type or Geolocation(GEO) type.
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

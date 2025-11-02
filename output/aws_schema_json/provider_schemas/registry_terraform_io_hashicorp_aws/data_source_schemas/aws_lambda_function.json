@@ -1,0 +1,274 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "architectures": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "code_sha256": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "code_signing_config_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "dead_letter_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "target_arn": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "environment": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "variables": [
+                "map",
+                "string"
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "ephemeral_storage": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "size": "number"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "file_system_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "arn": "string",
+              "local_mount_path": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "function_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "handler": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "image_uri": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "invoke_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "kms_key_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "last_modified": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "layers": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "logging_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "application_log_level": "string",
+              "log_format": "string",
+              "log_group": "string",
+              "system_log_level": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "memory_size": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "qualified_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "qualified_invoke_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "qualifier": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "reserved_concurrent_executions": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "role": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "runtime": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "signing_job_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "signing_profile_version_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "source_code_hash": {
+        "type": "string",
+        "description_kind": "plain",
+        "deprecated": true,
+        "computed": true
+      },
+      "source_code_size": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "source_kms_key_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "timeout": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tracing_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "mode": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "version": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "vpc_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "ipv6_allowed_for_dual_stack": "bool",
+              "security_group_ids": [
+                "set",
+                "string"
+              ],
+              "subnet_ids": [
+                "set",
+                "string"
+              ],
+              "vpc_id": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

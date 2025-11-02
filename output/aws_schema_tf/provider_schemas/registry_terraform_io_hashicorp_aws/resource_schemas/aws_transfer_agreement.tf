@@ -1,0 +1,15 @@
+resource "aws_transfer_agreement" "name" {
+  access_role = string (Required)
+  base_directory = string (Required)
+  local_profile_id = string (Required)
+  partner_profile_id = string (Required)
+  server_id = string (Required)
+  agreement_id = string (Computed)
+  arn = string (Computed)
+  description = string (Optional)
+  id = string (Optional, Computed)
+  region = string (Optional, Computed)
+  status = string (Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+}

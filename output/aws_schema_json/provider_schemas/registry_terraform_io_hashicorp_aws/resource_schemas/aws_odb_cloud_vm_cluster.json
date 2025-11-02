@@ -1,0 +1,374 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cloud_exadata_infrastructure_id": {
+        "type": "string",
+        "description": "The unique identifier of the Exadata infrastructure for this VM cluster. Changing this will create a new resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "cluster_name": {
+        "type": "string",
+        "description": "The name of the Grid Infrastructure (GI) cluster. Changing this will create a new resource.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "compute_model": {
+        "type": "string",
+        "description": "The compute model used when the instance is created or cloned \u2014 either ECPU or OCPU. ECPU is a virtualized compute unit; OCPU is a physical processor core with hyper-threading.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cpu_core_count": {
+        "type": "number",
+        "description": "The number of CPU cores to enable on the VM cluster. Changing this will create a new resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "created_at": {
+        "type": "string",
+        "description": "The timestamp when the VM cluster was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "data_storage_size_in_tbs": {
+        "type": "number",
+        "description": "The size of the data disk group, in terabytes (TBs), to allocate for the VM cluster. Changing this will create a new resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "db_node_storage_size_in_gbs": {
+        "type": "number",
+        "description": "The amount of local node storage, in gigabytes (GBs), to allocate for the VM cluster. Changing this will create a new resource.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "db_servers": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description": "The list of database servers for the VM cluster. Changing this will create a new resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "disk_redundancy": {
+        "type": "string",
+        "description": "The type of redundancy for the VM cluster: NORMAL (2-way) or HIGH (3-way).",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "A user-friendly name for the VM cluster. This member is required. Changing this will create a new resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "domain": {
+        "type": "string",
+        "description": "The domain name associated with the VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "gi_version": {
+        "type": "string",
+        "description": "A valid software version of Oracle Grid Infrastructure (GI). To get the list of valid values, use the ListGiVersions operation and specify the shape of the Exadata infrastructure. Example: 19.0.0.0 This member is required. Changing this will create a new resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "gi_version_computed": {
+        "type": "string",
+        "description": "A complete software version of Oracle Grid Infrastructure (GI).",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "hostname_prefix": {
+        "type": "string",
+        "description": "The host name prefix for the VM cluster. Constraints: - Can't be \"localhost\" or \"hostname\". - Can't contain \"-version\". - The maximum length of the combined hostname and domain is 63 characters. - The hostname must be unique within the subnet. This member is required. Changing this will create a new resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "hostname_prefix_computed": {
+        "type": "string",
+        "description": "The host name for the VM cluster. Constraints: - Can't be \"localhost\" or \"hostname\". - Can't contain \"-version\". - The maximum length of the combined hostname and domain is 63 characters. - The hostname must be unique within the subnet. This member is required. Changing this will create a new resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "iorm_config_cache": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "db_plans": [
+                "list",
+                [
+                  "object",
+                  {
+                    "db_name": "string",
+                    "flash_cache_limit": "string",
+                    "share": "number"
+                  }
+                ]
+              ],
+              "lifecycle_details": "string",
+              "lifecycle_state": "string",
+              "objective": "string"
+            }
+          ]
+        ],
+        "description": "The Exadata IORM (I/O Resource Manager) configuration cache details for the VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "is_local_backup_enabled": {
+        "type": "bool",
+        "description": "Specifies whether to enable database backups to local Exadata storage for the VM cluster. Changing this will create a new resource.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "is_sparse_diskgroup_enabled": {
+        "type": "bool",
+        "description": "Specifies whether to create a sparse disk group for the VM cluster. Changing this will create a new resource.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "last_update_history_entry_id": {
+        "type": "string",
+        "description": "The OCID of the most recent maintenance update history entry.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "license_model": {
+        "type": "string",
+        "description": "The Oracle license model to apply to the VM cluster. Default: LICENSE_INCLUDED. Changing this will create a new resource.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "listener_port": {
+        "type": "number",
+        "description": "The listener port number configured on the VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "memory_size_in_gbs": {
+        "type": "number",
+        "description": "The amount of memory, in gigabytes (GBs), to allocate for the VM cluster. Changing this will create a new resource.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "node_count": {
+        "type": "number",
+        "description": "The total number of nodes in the VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "oci_resource_anchor_name": {
+        "type": "string",
+        "description": "The name of the OCI resource anchor associated with the VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "oci_url": {
+        "type": "string",
+        "description": "The HTTPS link to the VM cluster resource in OCI.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "ocid": {
+        "type": "string",
+        "description": "The OCID (Oracle Cloud Identifier) of the VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "odb_network_id": {
+        "type": "string",
+        "description": "The unique identifier of the ODB network for the VM cluster. This member is required. Changing this will create a new resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "percent_progress": {
+        "type": "number",
+        "description": "The percentage of progress made on the current operation for the VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "scan_dns_name": {
+        "type": "string",
+        "description": "The fully qualified domain name (FQDN) for the SCAN IP addresses associated with the VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "scan_dns_record_id": {
+        "type": "string",
+        "description": "The OCID of the DNS record for the SCAN IPs linked to the VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "scan_ip_ids": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "The list of OCIDs for SCAN IP addresses associated with the VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "scan_listener_port_tcp": {
+        "type": "number",
+        "description": "The port number for TCP connections to the single client access name (SCAN) listener. Valid values: 1024\u20138999 with the following exceptions: 2484 , 6100 , 6200 , 7060, 7070 , 7085 , and 7879Default: 1521. Changing this will create a new resource.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "shape": {
+        "type": "string",
+        "description": "The hardware model name of the Exadata infrastructure running the VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "ssh_public_keys": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description": "The public key portion of one or more key pairs used for SSH access to the VM cluster. This member is required. Changing this will create a new resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "status": {
+        "type": "string",
+        "description": "The current lifecycle status of the VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "status_reason": {
+        "type": "string",
+        "description": "Additional information regarding the current status of the VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "storage_size_in_gbs": {
+        "type": "number",
+        "description": "The local node storage allocated to the VM cluster, in gigabytes (GB).",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "system_version": {
+        "type": "string",
+        "description": "The operating system version of the image chosen for the VM cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "timezone": {
+        "type": "string",
+        "description": "The configured time zone of the VM cluster. Changing this will create a new resource.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "vip_ids": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "The virtual IP (VIP) addresses assigned to the VM cluster. CRS assigns one VIP per node for failover support.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "data_collection_options": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "is_diagnostics_events_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "required": true
+            },
+            "is_health_monitoring_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "required": true
+            },
+            "is_incident_logs_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "The set of preferences for the various diagnostic collection options for the VM cluster. Changing this will create a new resource.",
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours).",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours).",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

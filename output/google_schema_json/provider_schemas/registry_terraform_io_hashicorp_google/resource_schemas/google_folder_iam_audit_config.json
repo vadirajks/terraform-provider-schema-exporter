@@ -1,0 +1,58 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "etag": {
+        "type": "string",
+        "description": "The etag of iam policy",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "folder": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "service": {
+        "type": "string",
+        "description": "Service which will be enabled for audit logging. The special value allServices covers all services.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "audit_log_config": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "exempted_members": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description": "Identities that do not cause logging for this type of permission. Each entry can have one of the following values:user:{emailid}: An email address that represents a specific Google account. For example, alice@gmail.com or joe@example.com. serviceAccount:{emailid}: An email address that represents a service account. For example, my-other-app@appspot.gserviceaccount.com. group:{emailid}: An email address that represents a Google group. For example, admins@example.com. domain:{domain}: A G Suite domain (primary, instead of alias) name that represents all the users of that domain. For example, google.com or example.com.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "log_type": {
+              "type": "string",
+              "description": "Permission type for which logging is to be configured. Must be one of DATA_READ, DATA_WRITE, or ADMIN_READ.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "The configuration for logging of each type of permission. This can be specified multiple times.",
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,275 @@
+version: 0
+block:
+  attributes:
+    annotations:
+      type:
+      - map
+      - string
+      description: 'Optional. Annotations on the cluster. This field has the same restrictions as Kubernetes annotations. The total size of all keys and values combined is limited to 256k. Key can have 2 segments: prefix (optional) and name (required), separated by a slash (/). Prefix must be a DNS subdomain. Name must be 63 characters or less, begin and end with alphanumerics, with dashes (-), underscores (_), dots (.), and alphanumerics between. **Note**: This field is non-authoritative, and will only manage the annotations present in your configuration. Please refer to the field ''effective_annotations'' for all of the annotations present on the resource.'
+      description_kind: plain
+      optional: true
+    cluster_region:
+      type: string
+      description: Output only. The region where this cluster runs. For EKS clusters, this is an AWS region. For AKS clusters, this is an Azure region.
+      description_kind: plain
+      computed: true
+    create_time:
+      type: string
+      description: Output only. The time at which this cluster was created.
+      description_kind: plain
+      computed: true
+    deletion_policy:
+      type: string
+      description: 'Policy to determine what flags to send on delete. Possible values: DELETE, DELETE_IGNORE_ERRORS'
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description: A human readable description of this attached cluster. Cannot be longer than 255 UTF-8 encoded bytes.
+      description_kind: plain
+      optional: true
+    distribution:
+      type: string
+      description: 'The Kubernetes distribution of the underlying attached cluster. Supported values: "eks", "aks", "generic". The generic distribution provides the ability to register or migrate any CNCF conformant cluster.'
+      description_kind: plain
+      required: true
+    effective_annotations:
+      type:
+      - map
+      - string
+      description: All of annotations (key/value pairs) present on the resource in GCP, including the annotations configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    errors:
+      type:
+      - list
+      - - object
+        - message: string
+      description: A set of errors found in the cluster.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kubernetes_version:
+      type: string
+      description: The Kubernetes version of the cluster.
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description: The location for the resource
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The name of this resource.
+      description_kind: plain
+      required: true
+    platform_version:
+      type: string
+      description: The platform version for the cluster (e.g. '1.23.0-gke.1').
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    reconciling:
+      type: bool
+      description: If set, there are currently changes in flight to the cluster.
+      description_kind: plain
+      computed: true
+    state:
+      type: string
+      description: 'The current state of the cluster. Possible values: STATE_UNSPECIFIED, PROVISIONING, RUNNING, RECONCILING, STOPPING, ERROR, DEGRADED'
+      description_kind: plain
+      computed: true
+    uid:
+      type: string
+      description: A globally unique identifier for the cluster.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: The time at which this cluster was last updated.
+      description_kind: plain
+      computed: true
+    workload_identity_config:
+      type:
+      - list
+      - - object
+        - identity_provider: string
+          issuer_uri: string
+          workload_pool: string
+      description: Workload Identity settings.
+      description_kind: plain
+      computed: true
+  block_types:
+    authorization:
+      nesting_mode: list
+      block:
+        attributes:
+          admin_groups:
+            type:
+            - list
+            - string
+            description: Groups that can perform operations as a cluster admin. A managed ClusterRoleBinding will be created to grant the 'cluster-admin' ClusterRole to the groups. Up to ten admin groups can be provided. For more info on RBAC, see https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles
+            description_kind: plain
+            optional: true
+          admin_users:
+            type:
+            - list
+            - string
+            description: Users that can perform operations as a cluster admin. A managed ClusterRoleBinding will be created to grant the 'cluster-admin' ClusterRole to the users. Up to ten admin users can be provided. For more info on RBAC, see https://kubernetes.io/docs/reference/access-authn-authz/rbac/#user-facing-roles
+            description_kind: plain
+            optional: true
+        description: Configuration related to the cluster RBAC settings.
+        description_kind: plain
+      max_items: 1
+    binary_authorization:
+      nesting_mode: list
+      block:
+        attributes:
+          evaluation_mode:
+            type: string
+            description: 'Configure Binary Authorization evaluation mode. Possible values: ["DISABLED", "PROJECT_SINGLETON_POLICY_ENFORCE"]'
+            description_kind: plain
+            optional: true
+        description: Binary Authorization configuration.
+        description_kind: plain
+      max_items: 1
+    fleet:
+      nesting_mode: list
+      block:
+        attributes:
+          membership:
+            type: string
+            description: The name of the managed Hub Membership resource associated to this cluster. Membership names are formatted as projects/<project-number>/locations/global/membership/<cluster-id>.
+            description_kind: plain
+            computed: true
+          project:
+            type: string
+            description: The number of the Fleet host project where this cluster will be registered.
+            description_kind: plain
+            required: true
+        description: Fleet configuration.
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    logging_config:
+      nesting_mode: list
+      block:
+        block_types:
+          component_config:
+            nesting_mode: list
+            block:
+              attributes:
+                enable_components:
+                  type:
+                  - list
+                  - string
+                  description: 'The components to be enabled. Possible values: ["SYSTEM_COMPONENTS", "WORKLOADS"]'
+                  description_kind: plain
+                  optional: true
+              description: The configuration of the logging components
+              description_kind: plain
+            max_items: 1
+        description: Logging configuration.
+        description_kind: plain
+      max_items: 1
+    monitoring_config:
+      nesting_mode: list
+      block:
+        block_types:
+          managed_prometheus_config:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description: Enable Managed Collection.
+                  description_kind: plain
+                  optional: true
+              description: Enable Google Cloud Managed Service for Prometheus in the cluster.
+              description_kind: plain
+            max_items: 1
+        description: Monitoring configuration.
+        description_kind: plain
+      max_items: 1
+    oidc_config:
+      nesting_mode: list
+      block:
+        attributes:
+          issuer_url:
+            type: string
+            description: A JSON Web Token (JWT) issuer URI. 'issuer' must start with 'https://'
+            description_kind: plain
+            required: true
+          jwks:
+            type: string
+            description: OIDC verification keys in JWKS format (RFC 7517).
+            description_kind: plain
+            optional: true
+        description: OIDC discovery information of the target cluster. Kubernetes Service Account (KSA) tokens are JWT tokens signed by the cluster API server. This fields indicates how GCP services validate KSA tokens in order to allow system workloads (such as GKE Connect and telemetry agents) to authenticate back to GCP. Both clusters with public and private issuer URLs are supported. Clusters with public issuers only need to specify the 'issuer_url' field while clusters with private issuers need to provide both 'issuer_url' and 'jwks'.
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    proxy_config:
+      nesting_mode: list
+      block:
+        block_types:
+          kubernetes_secret:
+            nesting_mode: list
+            block:
+              attributes:
+                name:
+                  type: string
+                  description: Name of the kubernetes secret containing the proxy config.
+                  description_kind: plain
+                  required: true
+                namespace:
+                  type: string
+                  description: Namespace of the kubernetes secret containing the proxy config.
+                  description_kind: plain
+                  required: true
+              description: The Kubernetes Secret resource that contains the HTTP(S) proxy configuration.
+              description_kind: plain
+            max_items: 1
+        description: Support for proxy configuration.
+        description_kind: plain
+      max_items: 1
+    security_posture_config:
+      nesting_mode: list
+      block:
+        attributes:
+          vulnerability_mode:
+            type: string
+            description: 'Sets the mode of the Kubernetes security posture API''s workload vulnerability scanning. Possible values: ["VULNERABILITY_DISABLED", "VULNERABILITY_ENTERPRISE"]'
+            description_kind: plain
+            required: true
+        description: Enable/Disable Security Posture API features for the cluster.
+        description_kind: plain
+        deprecated: true
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

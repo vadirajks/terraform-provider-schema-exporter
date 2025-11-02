@@ -1,0 +1,15 @@
+data "google_artifact_registry_docker_image" "name" {
+  image_name = string (Required)
+  location = string (Required)
+  repository_id = string (Required)
+  build_time = string (Computed)
+  id = string (Optional, Computed)
+  image_size_bytes = string (Computed)
+  media_type = string (Computed)
+  name = string (Computed)
+  project = string (Optional)
+  self_link = string (Computed)
+  tags = ['list', 'string'] (Computed)
+  update_time = string (Computed)
+  upload_time = string (Computed)
+}

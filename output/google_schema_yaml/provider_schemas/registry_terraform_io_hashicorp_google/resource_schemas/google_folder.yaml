@@ -1,0 +1,85 @@
+version: 0
+block:
+  attributes:
+    configured_capabilities:
+      type:
+      - list
+      - string
+      description: A list of capabilities that are configured for this folder.
+      description_kind: plain
+      computed: true
+    create_time:
+      type: string
+      description: 'Timestamp when the Folder was created. Assigned by the server. A timestamp in RFC3339 UTC "Zulu" format, accurate to nanoseconds. Example: "2014-10-02T15:01:23.045123456Z".'
+      description_kind: plain
+      computed: true
+    deletion_protection:
+      type: bool
+      description: When the field is set to true or unset in Terraform state, a terraform apply or terraform destroy that would delete the instance will fail. When the field is set to false, deleting the instance is allowed.
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description: The folder's display name. A folder's display name must be unique amongst its siblings, e.g. no two folders with the same parent can share the same display name. The display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be no longer than 30 characters.
+      description_kind: plain
+      required: true
+    folder_id:
+      type: string
+      description: The folder id from the name "folders/{folder_id}"
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    lifecycle_state:
+      type: string
+      description: The lifecycle state of the folder such as ACTIVE or DELETE_REQUESTED.
+      description_kind: plain
+      computed: true
+    management_project:
+      type: string
+      description: The Management Project associated with the folder's configured capabilities.
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: The resource name of the Folder. Its format is folders/{folder_id}.
+      description_kind: plain
+      computed: true
+    parent:
+      type: string
+      description: The resource name of the parent Folder or Organization. Must be of the form folders/{folder_id} or organizations/{org_id}.
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description: A map of resource manager tags. Resource manager tag keys and values have the same definition as resource manager tags. Keys must be in the format tagKeys/{tag_key_id}, and values are in the format tagValues/456. The field is ignored when empty. This field is only set at create time and modifying this field after creation will trigger recreation. To apply tags to an existing resource, see the google_tags_tag_value resource.
+      description_kind: plain
+      optional: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

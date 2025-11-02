@@ -1,0 +1,15 @@
+data "aws_outposts_outpost" "name" {
+  arn = string (Optional, Computed)
+  availability_zone = string (Computed)
+  availability_zone_id = string (Computed)
+  description = string (Computed)
+  id = string (Optional, Computed)
+  lifecycle_status = string (Computed)
+  name = string (Optional, Computed)
+  owner_id = string (Optional)
+  region = string (Optional, Computed)
+  site_arn = string (Computed)
+  site_id = string (Computed)
+  supported_hardware_type = string (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+}

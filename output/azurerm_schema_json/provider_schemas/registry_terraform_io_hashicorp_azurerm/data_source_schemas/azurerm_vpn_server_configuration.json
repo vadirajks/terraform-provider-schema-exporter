@@ -1,0 +1,174 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "azure_active_directory_authentication": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "audience": "string",
+              "issuer": "string",
+              "tenant": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "client_revoked_certificate": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "name": "string",
+              "thumbprint": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "client_root_certificate": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "name": "string",
+              "public_cert_data": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ipsec_policy": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "dh_group": "string",
+              "ike_encryption": "string",
+              "ike_integrity": "string",
+              "ipsec_encryption": "string",
+              "ipsec_integrity": "string",
+              "pfs_group": "string",
+              "sa_data_size_kilobytes": "number",
+              "sa_lifetime_seconds": "number"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "radius": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "client_root_certificate": [
+                "set",
+                [
+                  "object",
+                  {
+                    "name": "string",
+                    "thumbprint": "string"
+                  }
+                ]
+              ],
+              "server": [
+                "list",
+                [
+                  "object",
+                  {
+                    "address": "string",
+                    "score": "number",
+                    "secret": "string"
+                  }
+                ]
+              ],
+              "server_root_certificate": [
+                "set",
+                [
+                  "object",
+                  {
+                    "name": "string",
+                    "public_cert_data": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "vpn_authentication_types": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "vpn_protocols": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

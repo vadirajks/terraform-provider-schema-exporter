@@ -1,0 +1,227 @@
+version: 0
+block:
+  attributes:
+    apply_immediately:
+      type: bool
+      description_kind: plain
+      optional: true
+      computed: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    auto_minor_version_upgrade:
+      type: string
+      description_kind: plain
+      optional: true
+    availability_zone:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    az_mode:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    cache_nodes:
+      type:
+      - list
+      - - object
+        - address: string
+          availability_zone: string
+          id: string
+          outpost_arn: string
+          port: number
+      description_kind: plain
+      computed: true
+    cluster_address:
+      type: string
+      description_kind: plain
+      computed: true
+    cluster_id:
+      type: string
+      description_kind: plain
+      required: true
+    configuration_endpoint:
+      type: string
+      description_kind: plain
+      computed: true
+    engine:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    engine_version:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    engine_version_actual:
+      type: string
+      description_kind: plain
+      computed: true
+    final_snapshot_identifier:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ip_discovery:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    maintenance_window:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    network_type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    node_type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    notification_topic_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    num_cache_nodes:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    outpost_mode:
+      type: string
+      description_kind: plain
+      optional: true
+    parameter_group_name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    port:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    preferred_availability_zones:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    preferred_outpost_arn:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    replication_group_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    security_group_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    snapshot_arns:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    snapshot_name:
+      type: string
+      description_kind: plain
+      optional: true
+    snapshot_retention_limit:
+      type: number
+      description_kind: plain
+      optional: true
+    snapshot_window:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    subnet_group_name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    transit_encryption_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    log_delivery_configuration:
+      nesting_mode: set
+      block:
+        attributes:
+          destination:
+            type: string
+            description_kind: plain
+            required: true
+          destination_type:
+            type: string
+            description_kind: plain
+            required: true
+          log_format:
+            type: string
+            description_kind: plain
+            required: true
+          log_type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 2
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

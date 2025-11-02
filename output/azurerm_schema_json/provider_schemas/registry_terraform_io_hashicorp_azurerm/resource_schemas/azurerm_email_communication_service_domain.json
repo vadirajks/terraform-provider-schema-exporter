@@ -1,0 +1,154 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "domain_management": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "email_service_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "from_sender_domain": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "mail_from_sender_domain": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "user_engagement_tracking_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "verification_records": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "dkim": [
+                "list",
+                [
+                  "object",
+                  {
+                    "name": "string",
+                    "ttl": "number",
+                    "type": "string",
+                    "value": "string"
+                  }
+                ]
+              ],
+              "dkim2": [
+                "list",
+                [
+                  "object",
+                  {
+                    "name": "string",
+                    "ttl": "number",
+                    "type": "string",
+                    "value": "string"
+                  }
+                ]
+              ],
+              "dmarc": [
+                "list",
+                [
+                  "object",
+                  {
+                    "name": "string",
+                    "ttl": "number",
+                    "type": "string",
+                    "value": "string"
+                  }
+                ]
+              ],
+              "domain": [
+                "list",
+                [
+                  "object",
+                  {
+                    "name": "string",
+                    "ttl": "number",
+                    "type": "string",
+                    "value": "string"
+                  }
+                ]
+              ],
+              "spf": [
+                "list",
+                [
+                  "object",
+                  {
+                    "name": "string",
+                    "ttl": "number",
+                    "type": "string",
+                    "value": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

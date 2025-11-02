@@ -1,0 +1,111 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "display_name": {
+        "type": "string",
+        "description": "Name used for UI elements listing this Service.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The full resource name for this service. The syntax is: projects/[PROJECT_ID]/services/[SERVICE_ID].",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "service_id": {
+        "type": "string",
+        "description": "An optional service ID to use. If not given, the server will generate a service ID.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "telemetry": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "resource_name": "string"
+            }
+          ]
+        ],
+        "description": "Configuration for how to query telemetry on a Service.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "user_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Labels which have been used to annotate the service. Label keys must start with a letter. Label keys and values may contain lowercase letters, numbers, underscores, and dashes. Label keys and values have a maximum length of 63 characters, and must be less than 128 bytes in size. Up to 64 label entries may be stored. For labels which do not have a semantic value, the empty string may be supplied for the label value.",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "basic_service": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "service_labels": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description": "Labels that specify the resource that emits the monitoring data which is used for SLO reporting of this 'Service'.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "service_type": {
+              "type": "string",
+              "description": "The type of service that this basic service defines, e.g. APP_ENGINE service type",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "A well-known service type, defined by its service type and service labels. Valid values of service types and services labels are described at https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

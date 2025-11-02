@@ -1,0 +1,554 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "app_service_plan_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "app_settings": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "bundle_version": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "client_affinity_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "client_certificate_mode": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "custom_domain_verification_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "default_hostname": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "ftp_publish_basic_authentication_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "https_only": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "kind": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "outbound_ip_addresses": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "possible_outbound_ip_addresses": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "public_network_access": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "scm_publish_basic_authentication_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "site_credential": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "password": "string",
+              "username": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "storage_account_access_key": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true,
+        "sensitive": true
+      },
+      "storage_account_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "storage_account_share_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "use_extension_bundle": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "version": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "virtual_network_subnet_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "vnet_content_share_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "connection_string": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "value": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true,
+              "sensitive": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "identity": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "identity_ids": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "principal_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "tenant_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "site_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "always_on": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "app_scale_limit": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "auto_swap_slot_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "dotnet_framework_version": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "elastic_instance_minimum": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "ftps_state": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "health_check_path": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "http2_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "linux_fx_version": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "min_tls_version": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "pre_warmed_instance_count": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "public_network_access_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "deprecated": true,
+              "optional": true,
+              "computed": true
+            },
+            "runtime_scale_monitoring_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "scm_min_tls_version": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "scm_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "scm_use_main_ip_restriction": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "use_32_bit_worker_process": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "vnet_route_all_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "websockets_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "cors": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "allowed_origins": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description": "Specifies a list of origins that should be allowed to make cross-origin calls.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "support_credentials": {
+                    "type": "bool",
+                    "description": "Are credentials allowed in CORS requests? Defaults to `false`.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "ip_restriction": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "action": {
+                    "type": "string",
+                    "description": "The action to take. Possible values are `Allow` or `Deny`.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "The description of the IP restriction rule.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "headers": {
+                    "type": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "x_azure_fdid": [
+                            "list",
+                            "string"
+                          ],
+                          "x_fd_health_probe": [
+                            "list",
+                            "string"
+                          ],
+                          "x_forwarded_for": [
+                            "list",
+                            "string"
+                          ],
+                          "x_forwarded_host": [
+                            "list",
+                            "string"
+                          ]
+                        }
+                      ]
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "ip_address": {
+                    "type": "string",
+                    "description": "The CIDR notation of the IP or IP Range to match. For example: `10.0.0.0/24` or `192.168.10.1/32` or `fe80::/64` or `13.107.6.152/31,13.107.128.0/22`",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The name which should be used for this `ip_restriction`.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "priority": {
+                    "type": "number",
+                    "description": "The priority value of this `ip_restriction`.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "service_tag": {
+                    "type": "string",
+                    "description": "The Service Tag used for this IP Restriction.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "virtual_network_subnet_id": {
+                    "type": "string",
+                    "description": "The Virtual Network Subnet ID used for this IP Restriction.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "scm_ip_restriction": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "action": {
+                    "type": "string",
+                    "description": "The action to take. Possible values are `Allow` or `Deny`.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "The description of the IP restriction rule.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "headers": {
+                    "type": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "x_azure_fdid": [
+                            "list",
+                            "string"
+                          ],
+                          "x_fd_health_probe": [
+                            "list",
+                            "string"
+                          ],
+                          "x_forwarded_for": [
+                            "list",
+                            "string"
+                          ],
+                          "x_forwarded_host": [
+                            "list",
+                            "string"
+                          ]
+                        }
+                      ]
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "ip_address": {
+                    "type": "string",
+                    "description": "The CIDR notation of the IP or IP Range to match. For example: `10.0.0.0/24` or `192.168.10.1/32` or `fe80::/64` or `13.107.6.152/31,13.107.128.0/22`",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "The name which should be used for this `ip_restriction`.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "priority": {
+                    "type": "number",
+                    "description": "The priority value of this `ip_restriction`.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "service_tag": {
+                    "type": "string",
+                    "description": "The Service Tag used for this IP Restriction.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "virtual_network_subnet_id": {
+                    "type": "string",
+                    "description": "The Virtual Network Subnet ID used for this IP Restriction.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

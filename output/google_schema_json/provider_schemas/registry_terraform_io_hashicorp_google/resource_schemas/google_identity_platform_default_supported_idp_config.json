@@ -1,0 +1,75 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "client_id": {
+        "type": "string",
+        "description": "OAuth client ID",
+        "description_kind": "plain",
+        "required": true
+      },
+      "client_secret": {
+        "type": "string",
+        "description": "OAuth client secret",
+        "description_kind": "plain",
+        "required": true
+      },
+      "enabled": {
+        "type": "bool",
+        "description": "If this IDP allows the user to sign in",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "idp_id": {
+        "type": "string",
+        "description": "ID of the IDP. Possible values include: * 'apple.com' * 'facebook.com' * 'gc.apple.com' * 'github.com' * 'google.com' * 'linkedin.com' * 'microsoft.com' * 'playgames.google.com' * 'twitter.com' * 'yahoo.com'",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the DefaultSupportedIdpConfig resource",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,252 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "container_recipe_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "date_created": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "distribution_configuration_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "enhanced_image_metadata_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "execution_role": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "image_recipe_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "infrastructure_configuration_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "os_version": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "output_resources": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "amis": [
+                "set",
+                [
+                  "object",
+                  {
+                    "account_id": "string",
+                    "description": "string",
+                    "image": "string",
+                    "name": "string",
+                    "region": "string"
+                  }
+                ]
+              ],
+              "containers": [
+                "set",
+                [
+                  "object",
+                  {
+                    "image_uris": [
+                      "set",
+                      "string"
+                    ],
+                    "region": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "platform": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "version": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "image_scanning_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "image_scanning_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "ecr_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "container_tags": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "repository_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "image_tests_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "image_tests_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "timeout_minutes": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "workflow": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "on_failure": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "parallel_group": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "workflow_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "parameter": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "value": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "display_name": {
+        "type": "string",
+        "description": "Specifies the client-specified AgentPool description.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The ID of the agent pool to create. The agentPoolId must meet the following requirements: * Length of 128 characters or less. * Not start with the string goog. * Start with a lowercase ASCII character, followed by: * Zero or more: lowercase Latin alphabet characters, numerals, hyphens (-), periods (.), underscores (_), or tildes (~). * One or more numerals or lowercase ASCII characters. As expressed by the regular expression: ^(?!goog)[a-z]([a-z0-9-._~]*[a-z0-9])?$.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "state": {
+        "type": "string",
+        "description": "Specifies the state of the AgentPool.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "bandwidth_limit": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "limit_mbps": {
+              "type": "string",
+              "description": "Bandwidth rate in megabytes per second, distributed across all the agents in the pool.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Specifies the bandwidth limit details. If this field is unspecified, the default value is set as 'No Limit'.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

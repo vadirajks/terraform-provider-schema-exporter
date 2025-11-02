@@ -1,0 +1,16 @@
+data "google_gke_hub_feature" "name" {
+  location = string (Required)
+  name = string (Required)
+  create_time = string (Computed)
+  delete_time = string (Computed)
+  effective_labels = ['map', 'string'] (Computed)
+  fleet_default_member_config = ['list', ['object', {'configmanagement': ['list', ['object', {'config_sync': ['list', ['object', {'enabled': 'bool', 'git': ['list', ['object', {'gcp_service_account_email': 'string', 'https_proxy': 'string', 'policy_dir': 'string', 'secret_type': 'string', 'sync_branch': 'string', 'sync_repo': 'string', 'sync_rev': 'string', 'sync_wait_secs': 'string'}]], 'metrics_gcp_service_account_email': 'string', 'oci': ['list', ['object', {'gcp_service_account_email': 'string', 'policy_dir': 'string', 'secret_type': 'string', 'sync_repo': 'string', 'sync_wait_secs': 'string', 'version': 'string'}]], 'prevent_drift': 'bool', 'source_format': 'string'}]], 'management': 'string', 'version': 'string'}]], 'mesh': ['list', ['object', {'management': 'string'}]], 'policycontroller': ['list', ['object', {'policy_controller_hub_config': ['list', ['object', {'audit_interval_seconds': 'number', 'constraint_violation_limit': 'number', 'deployment_configs': ['set', ['object', {'component': 'string', 'container_resources': ['list', ['object', {'limits': ['list', ['object', {'cpu': 'string', 'memory': 'string'}]], 'requests': ['list', ['object', {'cpu': 'string', 'memory': 'string'}]]}]], 'pod_affinity': 'string', 'pod_toleration': ['list', ['object', {'effect': 'string', 'key': 'string', 'operator': 'string', 'value': 'string'}]], 'replica_count': 'number'}]], 'exemptable_namespaces': ['list', 'string'], 'install_spec': 'string', 'log_denies_enabled': 'bool', 'monitoring': ['list', ['object', {'backends': ['list', 'string']}]], 'mutation_enabled': 'bool', 'policy_content': ['list', ['object', {'bundles': ['set', ['object', {'bundle': 'string', 'exempted_namespaces': ['list', 'string']}]], 'template_library': ['list', ['object', {'installation': 'string'}]]}]], 'referential_rules_enabled': 'bool'}]], 'version': 'string'}]]}]] (Computed)
+  id = string (Optional, Computed)
+  labels = ['map', 'string'] (Computed)
+  project = string (Optional)
+  resource_state = ['list', ['object', {'has_resources': 'bool', 'state': 'string'}]] (Computed)
+  spec = ['list', ['object', {'clusterupgrade': ['list', ['object', {'gke_upgrade_overrides': ['list', ['object', {'post_conditions': ['list', ['object', {'soaking': 'string'}]], 'upgrade': ['list', ['object', {'name': 'string', 'version': 'string'}]]}]], 'post_conditions': ['list', ['object', {'soaking': 'string'}]], 'upstream_fleets': ['list', 'string']}]], 'fleetobservability': ['list', ['object', {'logging_config': ['list', ['object', {'default_config': ['list', ['object', {'mode': 'string'}]], 'fleet_scope_logs_config': ['list', ['object', {'mode': 'string'}]]}]]}]], 'multiclusteringress': ['list', ['object', {'config_membership': 'string'}]], 'rbacrolebindingactuation': ['list', ['object', {'allowed_custom_roles': ['list', 'string']}]]}]] (Computed)
+  state = ['list', ['object', {'state': ['list', ['object', {'code': 'string', 'description': 'string', 'update_time': 'string'}]]}]] (Computed)
+  terraform_labels = ['map', 'string'] (Computed)
+  update_time = string (Computed)
+}

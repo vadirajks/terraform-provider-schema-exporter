@@ -1,0 +1,6 @@
+data "google_network_management_connectivity_tests" "name" {
+  connectivity_tests = ['list', ['object', {'bypass_firewall_checks': 'bool', 'description': 'string', 'destination': ['list', ['object', {'cloud_sql_instance': 'string', 'forwarding_rule': 'string', 'fqdn': 'string', 'gke_master_cluster': 'string', 'instance': 'string', 'ip_address': 'string', 'network': 'string', 'port': 'number', 'project_id': 'string', 'redis_cluster': 'string', 'redis_instance': 'string'}]], 'effective_labels': ['map', 'string'], 'labels': ['map', 'string'], 'name': 'string', 'project': 'string', 'protocol': 'string', 'related_projects': ['list', 'string'], 'round_trip': 'bool', 'source': ['list', ['object', {'app_engine_version': ['list', ['object', {'uri': 'string'}]], 'cloud_function': ['list', ['object', {'uri': 'string'}]], 'cloud_run_revision': ['list', ['object', {'uri': 'string'}]], 'cloud_sql_instance': 'string', 'gke_master_cluster': 'string', 'instance': 'string', 'ip_address': 'string', 'network': 'string', 'network_type': 'string', 'port': 'number', 'project_id': 'string'}]], 'terraform_labels': ['map', 'string']}]] (Computed)
+  filter = string (Optional)
+  id = string (Optional, Computed)
+  project = string (Optional, Computed)
+}

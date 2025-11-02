@@ -1,0 +1,222 @@
+version: 0
+block:
+  attributes:
+    annotations:
+      type:
+      - map
+      - string
+      description: 'Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. **Note**: This field is non-authoritative, and will only manage the annotations present in your configuration. Please refer to the field ''effective_annotations'' for all of the annotations present on the resource.'
+      description_kind: plain
+      optional: true
+    backend:
+      type: string
+      description: The ID of the Backend that this Build applies to
+      description_kind: plain
+      required: true
+    build_id:
+      type: string
+      description: The user-specified ID of the build being created.
+      description_kind: plain
+      required: true
+    build_logs_uri:
+      type: string
+      description: The location of the [Cloud Build logs](https://cloud.google.com/build/docs/view-build-results) for the build process.
+      description_kind: plain
+      computed: true
+    create_time:
+      type: string
+      description: Time at which the build was created.
+      description_kind: plain
+      computed: true
+    display_name:
+      type: string
+      description: Human-readable name. 63 character limit.
+      description_kind: plain
+      optional: true
+    effective_annotations:
+      type:
+      - map
+      - string
+      description: All of annotations (key/value pairs) present on the resource in GCP, including the annotations configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    environment:
+      type: string
+      description: The environment name of the backend when this build was created.
+      description_kind: plain
+      computed: true
+    error:
+      type:
+      - list
+      - - object
+        - code: number
+          details:
+          - list
+          - - map
+            - string
+          message: string
+      description: 'The ''Status'' type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each ''Status'' message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).'
+      description_kind: plain
+      computed: true
+    error_source:
+      type: string
+      description: 'The source of the error for the build, if in a ''FAILED'' state. Possible values: CLOUD_BUILD CLOUD_RUN'
+      description_kind: plain
+      computed: true
+    etag:
+      type: string
+      description: Server-computed checksum based on other values; may be sent on update or delete to ensure operation is done on expected resource.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    image:
+      type: string
+      description: The Artifact Registry [container image](https://cloud.google.com/artifact-registry/docs/reference/rest/v1/projects.locations.repositories.dockerImages) URI, used by the Cloud Run ['revision'](https://cloud.google.com/run/docs/reference/rest/v2/projects.locations.services.revisions) for this build.
+      description_kind: plain
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Unstructured key value map that can be used to organize and categorize objects. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: The location of the Backend that this Build applies to
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: 'Identifier. The resource name of the build. Format: ''projects/{project}/locations/{locationId}/backends/{backendId}/builds/{buildId}''.'
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    state:
+      type: string
+      description: 'The state of the build. Possible values: BUILDING BUILT DEPLOYING READY FAILED'
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    uid:
+      type: string
+      description: System-assigned, unique identifier.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: Time at which the build was last updated.
+      description_kind: plain
+      computed: true
+  block_types:
+    source:
+      nesting_mode: list
+      block:
+        block_types:
+          codebase:
+            nesting_mode: list
+            block:
+              attributes:
+                author:
+                  type:
+                  - list
+                  - - object
+                    - display_name: string
+                      email: string
+                      image_uri: string
+                  description: Version control metadata for a user associated with a resolved codebase. Currently assumes a Git user.
+                  description_kind: plain
+                  computed: true
+                branch:
+                  type: string
+                  description: The branch in the codebase to build from, using the latest commit.
+                  description_kind: plain
+                  optional: true
+                commit:
+                  type: string
+                  description: The commit in the codebase to build from.
+                  description_kind: plain
+                  optional: true
+                commit_message:
+                  type: string
+                  description: The message of a codebase change.
+                  description_kind: plain
+                  computed: true
+                commit_time:
+                  type: string
+                  description: The time the change was made.
+                  description_kind: plain
+                  computed: true
+                display_name:
+                  type: string
+                  description: The human-friendly name to use for this Codebase when displaying a build. We use the first eight characters of the SHA-1 hash for GitHub.com.
+                  description_kind: plain
+                  computed: true
+                hash:
+                  type: string
+                  description: The full SHA-1 hash of a Git commit, if available.
+                  description_kind: plain
+                  computed: true
+                uri:
+                  type: string
+                  description: A URI linking to the codebase on an hosting provider's website. May not be valid if the commit has been rebased or force-pushed out of existence in the linked repository.
+                  description_kind: plain
+                  computed: true
+              description: A codebase source, representing the state of the codebase that the build will be created at.
+              description_kind: plain
+            max_items: 1
+          container:
+            nesting_mode: list
+            block:
+              attributes:
+                image:
+                  type: string
+                  description: A URI representing a container for the backend to use.
+                  description_kind: plain
+                  required: true
+              description: The URI of an Artifact Registry [container image](https://cloud.google.com/artifact-registry/docs/reference/rest/v1/projects.locations.repositories.dockerImages) to use as the build source.
+              description_kind: plain
+            max_items: 1
+        description: The source for the build.
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

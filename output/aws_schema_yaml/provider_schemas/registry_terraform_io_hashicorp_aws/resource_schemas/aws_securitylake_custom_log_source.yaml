@@ -1,0 +1,74 @@
+version: 0
+block:
+  attributes:
+    attributes:
+      type:
+      - list
+      - - object
+        - crawler_arn: string
+          database_arn: string
+          table_arn: string
+      description_kind: plain
+      computed: true
+    event_classes:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+    provider_details:
+      type:
+      - list
+      - - object
+        - location: string
+          role_arn: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    source_name:
+      type: string
+      description_kind: plain
+      required: true
+    source_version:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    configuration:
+      nesting_mode: list
+      block:
+        block_types:
+          crawler_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          provider_identity:
+            nesting_mode: list
+            block:
+              attributes:
+                external_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+                principal:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+  description_kind: plain

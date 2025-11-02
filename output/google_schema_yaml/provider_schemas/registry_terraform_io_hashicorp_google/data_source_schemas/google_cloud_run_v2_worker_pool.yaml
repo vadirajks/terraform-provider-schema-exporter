@@ -1,0 +1,391 @@
+version: 0
+block:
+  attributes:
+    annotations:
+      type:
+      - map
+      - string
+      description: 'Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run API v2 does not support annotations with ''run.googleapis.com'', ''cloud.googleapis.com'', ''serving.knative.dev'', or ''autoscaling.knative.dev'' namespaces, and they will be rejected in new resources. All system annotations in v1 now have a corresponding field in v2 WorkerPool. This field follows Kubernetes annotations'' namespacing, limits, and rules. **Note**: This field is non-authoritative, and will only manage the annotations present in your configuration. Please refer to the field ''effective_annotations'' for all of the annotations present on the resource.'
+      description_kind: plain
+      computed: true
+    binary_authorization:
+      type:
+      - list
+      - - object
+        - breakglass_justification: string
+          policy: string
+          use_default: bool
+      description: Settings for the Binary Authorization feature.
+      description_kind: plain
+      computed: true
+    client:
+      type: string
+      description: Arbitrary identifier for the API client.
+      description_kind: plain
+      computed: true
+    client_version:
+      type: string
+      description: Arbitrary version identifier for the API client.
+      description_kind: plain
+      computed: true
+    conditions:
+      type:
+      - list
+      - - object
+        - execution_reason: string
+          last_transition_time: string
+          message: string
+          reason: string
+          revision_reason: string
+          severity: string
+          state: string
+          type: string
+      description: The Conditions of all other associated sub-resources. They contain additional diagnostics information in case the WorkerPool does not reach its Serving state. See comments in reconciling for additional information on reconciliation process in Cloud Run.
+      description_kind: plain
+      computed: true
+    create_time:
+      type: string
+      description: The creation time.
+      description_kind: plain
+      computed: true
+    creator:
+      type: string
+      description: Email address of the authenticated creator.
+      description_kind: plain
+      computed: true
+    custom_audiences:
+      type:
+      - list
+      - string
+      description: One or more custom audiences that you want this worker pool to support. Specify each custom audience as the full URL in a string. The custom audiences are encoded in the token and used to authenticate requests. For more information, see https://cloud.google.com/run/docs/configuring/custom-audiences.
+      description_kind: plain
+      computed: true
+    delete_time:
+      type: string
+      description: The deletion time.
+      description_kind: plain
+      computed: true
+    deletion_protection:
+      type: bool
+      description: Whether Terraform will be prevented from destroying the service. Defaults to true. When a'terraform destroy' or 'terraform apply' would delete the service, the command will fail if this field is not set to false in Terraform state. When the field is set to true or unset in Terraform state, a 'terraform apply' or 'terraform destroy' that would delete the WorkerPool will fail. When the field is set to false, deleting the WorkerPool is allowed.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: User-provided description of the WorkerPool. This field currently has a 512-character limit.
+      description_kind: plain
+      computed: true
+    effective_annotations:
+      type:
+      - map
+      - string
+      description: All of annotations (key/value pairs) present on the resource in GCP, including the annotations configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    etag:
+      type: string
+      description: A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
+      description_kind: plain
+      computed: true
+    expire_time:
+      type: string
+      description: For a deleted resource, the time after which it will be permanently deleted.
+      description_kind: plain
+      computed: true
+    generation:
+      type: string
+      description: A number that monotonically increases every time the user modifies the desired state. Please note that unlike v1, this is an int64 value. As with most Google APIs, its JSON representation will be a string instead of an integer.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instance_split_statuses:
+      type:
+      - list
+      - - object
+        - percent: number
+          revision: string
+          type: string
+      description: Detailed status information for corresponding instance splits. See comments in reconciling for additional information on reconciliation process in Cloud Run.
+      description_kind: plain
+      computed: true
+    instance_splits:
+      type:
+      - list
+      - - object
+        - percent: number
+          revision: string
+          type: string
+      description: Specifies how to distribute instances over a collection of Revisions belonging to the WorkerPool. If instance split is empty or not provided, defaults to 100% instances assigned to the latest Ready Revision.
+      description_kind: plain
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google''s billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels. Cloud Run API v2 does not support labels with  ''run.googleapis.com'', ''cloud.googleapis.com'', ''serving.knative.dev'', or ''autoscaling.knative.dev'' namespaces, and they will be rejected. All system labels in v1 now have a corresponding field in v2 WorkerPool. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      computed: true
+    last_modifier:
+      type: string
+      description: Email address of the last authenticated modifier.
+      description_kind: plain
+      computed: true
+    latest_created_revision:
+      type: string
+      description: Name of the last created revision. See comments in reconciling for additional information on reconciliation process in Cloud Run.
+      description_kind: plain
+      computed: true
+    latest_ready_revision:
+      type: string
+      description: Name of the latest revision that is serving traffic. See comments in reconciling for additional information on reconciliation process in Cloud Run.
+      description_kind: plain
+      computed: true
+    launch_stage:
+      type: string
+      description: 'The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/products#product-launch-stages). Cloud Run supports ALPHA, BETA, and GA. If no value is specified, GA is assumed. Set the launch stage to a preview stage on input to allow use of preview features in that stage. On read (or output), describes whether the resource uses preview features. For example, if ALPHA is provided as input, but only BETA and GA-level features are used, this field will be BETA on output. Possible values: ["UNIMPLEMENTED", "PRELAUNCH", "EARLY_ACCESS", "ALPHA", "BETA", "GA", "DEPRECATED"]'
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description: The location of the cloud run worker pool
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: Name of the WorkerPool.
+      description_kind: plain
+      required: true
+    observed_generation:
+      type: string
+      description: The generation of this WorkerPool currently serving traffic. See comments in reconciling for additional information on reconciliation process in Cloud Run. Please note that unlike v1, this is an int64 value. As with most Google APIs, its JSON representation will be a string instead of an integer.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+    reconciling:
+      type: bool
+      description: 'Returns true if the WorkerPool is currently being acted upon by the system to bring it into the desired state. When a new WorkerPool is created, or an existing one is updated, Cloud Run will asynchronously perform all necessary steps to bring the WorkerPool to the desired serving state. This process is called reconciliation. While reconciliation is in process, observedGeneration, latest_ready_revison, trafficStatuses, and uri will have transient values that might mismatch the intended state: Once reconciliation is over (and this field is false), there are two possible outcomes: reconciliation succeeded and the serving state matches the WorkerPool, or there was an error, and reconciliation failed. This state can be found in terminalCondition.state. If reconciliation succeeded, the following fields will match: traffic and trafficStatuses, observedGeneration and generation, latestReadyRevision and latestCreatedRevision. If reconciliation failed, trafficStatuses, observedGeneration, and latestReadyRevision will have the state of the last serving revision, or empty for newly created WorkerPools. Additional information on the failure can be found in terminalCondition and conditions.'
+      description_kind: plain
+      computed: true
+    scaling:
+      type:
+      - list
+      - - object
+        - manual_instance_count: number
+          max_instance_count: number
+          min_instance_count: number
+          scaling_mode: string
+      description: Scaling settings that apply to the worker pool.
+      description_kind: plain
+      computed: true
+    template:
+      type:
+      - list
+      - - object
+        - annotations:
+          - map
+          - string
+          containers:
+          - list
+          - - object
+            - args:
+              - list
+              - string
+              command:
+              - list
+              - string
+              env:
+              - set
+              - - object
+                - name: string
+                  value: string
+                  value_source:
+                  - list
+                  - - object
+                    - secret_key_ref:
+                      - list
+                      - - object
+                        - secret: string
+                          version: string
+              image: string
+              liveness_probe:
+              - list
+              - - object
+                - failure_threshold: number
+                  grpc:
+                  - list
+                  - - object
+                    - port: number
+                      service: string
+                  http_get:
+                  - list
+                  - - object
+                    - http_headers:
+                      - list
+                      - - object
+                        - port: number
+                          value: string
+                      path: string
+                      port: number
+                  initial_delay_seconds: number
+                  period_seconds: number
+                  tcp_socket:
+                  - list
+                  - - object
+                    - port: number
+                  timeout_seconds: number
+              name: string
+              resources:
+              - list
+              - - object
+                - limits:
+                  - map
+                  - string
+              startup_probe:
+              - list
+              - - object
+                - failure_threshold: number
+                  grpc:
+                  - list
+                  - - object
+                    - port: number
+                      service: string
+                  http_get:
+                  - list
+                  - - object
+                    - http_headers:
+                      - list
+                      - - object
+                        - port: number
+                          value: string
+                      path: string
+                      port: number
+                  initial_delay_seconds: number
+                  period_seconds: number
+                  tcp_socket:
+                  - list
+                  - - object
+                    - port: number
+                  timeout_seconds: number
+              volume_mounts:
+              - list
+              - - object
+                - mount_path: string
+                  name: string
+                  sub_path: string
+              working_dir: string
+          encryption_key: string
+          encryption_key_revocation_action: string
+          encryption_key_shutdown_duration: string
+          gpu_zonal_redundancy_disabled: bool
+          labels:
+          - map
+          - string
+          node_selector:
+          - list
+          - - object
+            - accelerator: string
+          revision: string
+          service_account: string
+          volumes:
+          - list
+          - - object
+            - cloud_sql_instance:
+              - list
+              - - object
+                - instances:
+                  - set
+                  - string
+              empty_dir:
+              - list
+              - - object
+                - medium: string
+                  size_limit: string
+              gcs:
+              - list
+              - - object
+                - bucket: string
+                  mount_options:
+                  - list
+                  - string
+                  read_only: bool
+              name: string
+              nfs:
+              - list
+              - - object
+                - path: string
+                  read_only: bool
+                  server: string
+              secret:
+              - list
+              - - object
+                - default_mode: number
+                  items:
+                  - list
+                  - - object
+                    - mode: number
+                      path: string
+                      version: string
+                  secret: string
+          vpc_access:
+          - list
+          - - object
+            - connector: string
+              egress: string
+              network_interfaces:
+              - list
+              - - object
+                - network: string
+                  subnetwork: string
+                  tags:
+                  - list
+                  - string
+      description: The template used to create revisions for this WorkerPool.
+      description_kind: plain
+      computed: true
+    terminal_condition:
+      type:
+      - list
+      - - object
+        - execution_reason: string
+          last_transition_time: string
+          message: string
+          reason: string
+          revision_reason: string
+          severity: string
+          state: string
+          type: string
+      description: The Condition of this WorkerPool, containing its readiness status, and detailed error information in case it did not reach a serving state. See comments in reconciling for additional information on reconciliation process in Cloud Run.
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    uid:
+      type: string
+      description: Server assigned unique identifier for the trigger. The value is a UUID4 string and guaranteed to remain unchanged until the resource is deleted.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: The last-modified time.
+      description_kind: plain
+      computed: true
+  description_kind: plain

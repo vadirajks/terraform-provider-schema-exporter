@@ -1,0 +1,25 @@
+data "azurerm_container_app" "name" {
+  name = string (Required)
+  resource_group_name = string (Required)
+  container_app_environment_id = string (Computed)
+  custom_domain_verification_id = string (Computed)
+  dapr = ['list', ['object', {'app_id': 'string', 'app_port': 'number', 'app_protocol': 'string'}]] (Computed)
+  id = string (Optional, Computed)
+  identity = ['list', ['object', {'identity_ids': ['list', 'string'], 'principal_id': 'string', 'tenant_id': 'string', 'type': 'string'}]] (Computed)
+  ingress = ['list', ['object', {'allow_insecure_connections': 'bool', 'client_certificate_mode': 'string', 'cors': ['list', ['object', {'allow_credentials_enabled': 'bool', 'allowed_headers': ['list', 'string'], 'allowed_methods': ['list', 'string'], 'allowed_origins': ['list', 'string'], 'exposed_headers': ['list', 'string'], 'max_age_in_seconds': 'number'}]], 'custom_domain': ['list', ['object', {'certificate_binding_type': 'string', 'certificate_id': 'string', 'name': 'string'}]], 'exposed_port': 'number', 'external_enabled': 'bool', 'fqdn': 'string', 'ip_security_restriction': ['list', ['object', {'action': 'string', 'description': 'string', 'ip_address_range': 'string', 'name': 'string'}]], 'target_port': 'number', 'traffic_weight': ['list', ['object', {'label': 'string', 'latest_revision': 'bool', 'percentage': 'number', 'revision_suffix': 'string'}]], 'transport': 'string'}]] (Computed)
+  latest_revision_fqdn = string (Computed)
+  latest_revision_name = string (Computed)
+  location = string (Computed)
+  max_inactive_revisions = number (Computed)
+  outbound_ip_addresses = ['list', 'string'] (Computed)
+  registry = ['list', ['object', {'identity': 'string', 'password_secret_name': 'string', 'server': 'string', 'username': 'string'}]] (Computed)
+  revision_mode = string (Computed)
+  secret = ['set', ['object', {'identity': 'string', 'key_vault_secret_id': 'string', 'name': 'string', 'value': 'string'}]] (Computed)
+  tags = ['map', 'string'] (Computed)
+  template = ['list', ['object', {'azure_queue_scale_rule': ['list', ['object', {'authentication': ['list', ['object', {'secret_name': 'string', 'trigger_parameter': 'string'}]], 'name': 'string', 'queue_length': 'number', 'queue_name': 'string'}]], 'container': ['list', ['object', {'args': ['list', 'string'], 'command': ['list', 'string'], 'cpu': 'number', 'env': ['list', ['object', {'name': 'string', 'secret_name': 'string', 'value': 'string'}]], 'ephemeral_storage': 'string', 'image': 'string', 'liveness_probe': ['list', ['object', {'failure_count_threshold': 'number', 'header': ['list', ['object', {'name': 'string', 'value': 'string'}]], 'host': 'string', 'initial_delay': 'number', 'interval_seconds': 'number', 'path': 'string', 'port': 'number', 'termination_grace_period_seconds': 'number', 'timeout': 'number', 'transport': 'string'}]], 'memory': 'string', 'name': 'string', 'readiness_probe': ['list', ['object', {'failure_count_threshold': 'number', 'header': ['list', ['object', {'name': 'string', 'value': 'string'}]], 'host': 'string', 'initial_delay': 'number', 'interval_seconds': 'number', 'path': 'string', 'port': 'number', 'success_count_threshold': 'number', 'timeout': 'number', 'transport': 'string'}]], 'startup_probe': ['list', ['object', {'failure_count_threshold': 'number', 'header': ['list', ['object', {'name': 'string', 'value': 'string'}]], 'host': 'string', 'initial_delay': 'number', 'interval_seconds': 'number', 'path': 'string', 'port': 'number', 'termination_grace_period_seconds': 'number', 'timeout': 'number', 'transport': 'string'}]], 'volume_mounts': ['list', ['object', {'name': 'string', 'path': 'string', 'sub_path': 'string'}]]}]], 'custom_scale_rule': ['list', ['object', {'authentication': ['list', ['object', {'secret_name': 'string', 'trigger_parameter': 'string'}]], 'custom_rule_type': 'string', 'metadata': ['map', 'string'], 'name': 'string'}]], 'http_scale_rule': ['list', ['object', {'authentication': ['list', ['object', {'secret_name': 'string', 'trigger_parameter': 'string'}]], 'concurrent_requests': 'string', 'name': 'string'}]], 'init_container': ['list', ['object', {'args': ['list', 'string'], 'command': ['list', 'string'], 'cpu': 'number', 'env': ['list', ['object', {'name': 'string', 'secret_name': 'string', 'value': 'string'}]], 'ephemeral_storage': 'string', 'image': 'string', 'memory': 'string', 'name': 'string', 'volume_mounts': ['list', ['object', {'name': 'string', 'path': 'string', 'sub_path': 'string'}]]}]], 'max_replicas': 'number', 'min_replicas': 'number', 'revision_suffix': 'string', 'tcp_scale_rule': ['list', ['object', {'authentication': ['list', ['object', {'secret_name': 'string', 'trigger_parameter': 'string'}]], 'concurrent_requests': 'string', 'name': 'string'}]], 'termination_grace_period_seconds': 'number', 'volume': ['list', ['object', {'mount_options': 'string', 'name': 'string', 'storage_name': 'string', 'storage_type': 'string'}]]}]] (Computed)
+  workload_profile_name = string (Computed)
+
+  timeouts block "single" (Optional) {
+    read = string (Optional)
+  }
+}

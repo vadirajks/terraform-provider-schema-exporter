@@ -1,0 +1,88 @@
+version: 0
+block:
+  attributes:
+    bucket:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    filter:
+      nesting_mode: list
+      block:
+        attributes:
+          prefix:
+            type: string
+            description_kind: plain
+            optional: true
+          tags:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    storage_class_analysis:
+      nesting_mode: list
+      block:
+        block_types:
+          data_export:
+            nesting_mode: list
+            block:
+              attributes:
+                output_schema_version:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                destination:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      s3_bucket_destination:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            bucket_account_id:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            bucket_arn:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            format:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            prefix:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        min_items: 1
+                        max_items: 1
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

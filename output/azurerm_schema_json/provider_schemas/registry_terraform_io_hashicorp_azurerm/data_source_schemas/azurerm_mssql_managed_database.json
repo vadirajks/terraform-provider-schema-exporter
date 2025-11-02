@@ -1,0 +1,85 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "long_term_retention_policy": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "immutable_backups_enabled": "bool",
+              "monthly_retention": "string",
+              "week_of_year": "number",
+              "weekly_retention": "string",
+              "yearly_retention": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "managed_instance_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "managed_instance_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "point_in_time_restore": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "restore_point_in_time": "string",
+              "source_database_id": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "short_term_retention_days": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

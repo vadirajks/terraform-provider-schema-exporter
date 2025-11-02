@@ -1,0 +1,70 @@
+version: 0
+block:
+  attributes:
+    bucket:
+      type: string
+      description_kind: plain
+      optional: true
+    comment:
+      type: string
+      description_kind: plain
+      optional: true
+    expected_bucket_owner:
+      type: string
+      description_kind: plain
+      optional: true
+    force_destroy:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    properties:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    workgroup:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    acl_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          s3_acl_option:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    encryption_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          encryption_option:
+            type: string
+            description_kind: plain
+            required: true
+          kms_key:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

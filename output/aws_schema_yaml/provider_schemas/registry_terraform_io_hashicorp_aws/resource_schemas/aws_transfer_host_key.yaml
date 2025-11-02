@@ -1,0 +1,53 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    host_key_body:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+    host_key_body_wo:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+      write_only: true
+    host_key_fingerprint:
+      type: string
+      description_kind: plain
+      computed: true
+    host_key_id:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    server_id:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+  description_kind: plain

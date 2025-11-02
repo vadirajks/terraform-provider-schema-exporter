@@ -1,0 +1,59 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_ignore_already_exists": {
+        "type": "bool",
+        "description": "If set to true, skip repository creation if a repository with the same name already exists.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Resource name of the repository, of the form '{{repo}}'. The repo name may contain slashes. eg, 'name/with/slash'",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "pubsub_configs": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "message_format": "string",
+              "service_account_email": "string",
+              "topic": "string"
+            }
+          ]
+        ],
+        "description": "How this repository publishes a change in the repository through Cloud Pub/Sub. Keyed by the topic names.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "size": {
+        "type": "number",
+        "description": "The disk usage of the repo, in bytes.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "url": {
+        "type": "string",
+        "description": "URL to clone the repository from Google Cloud Source Repositories.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

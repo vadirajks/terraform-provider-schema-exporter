@@ -1,0 +1,32 @@
+version: 0
+block:
+  attributes:
+    databases:
+      type:
+      - list
+      - - object
+        - charset: string
+          collation: string
+          deletion_policy: string
+          instance: string
+          name: string
+          project: string
+          self_link: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instance:
+      type: string
+      description: The name of the Cloud SQL database instance in which the database belongs.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description: Project ID of the project that contains the instance.
+      description_kind: plain
+      optional: true
+  description_kind: plain

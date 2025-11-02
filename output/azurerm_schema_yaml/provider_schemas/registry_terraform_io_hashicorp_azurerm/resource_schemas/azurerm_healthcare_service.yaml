@@ -1,0 +1,143 @@
+version: 0
+block:
+  attributes:
+    access_policy_object_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    configuration_export_storage_account_name:
+      type: string
+      description_kind: plain
+      optional: true
+    cosmosdb_key_vault_key_versionless_id:
+      type: string
+      description_kind: plain
+      optional: true
+    cosmosdb_throughput:
+      type: number
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kind:
+      type: string
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    public_network_access_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    authentication_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          audience:
+            type: string
+            description_kind: plain
+            optional: true
+          authority:
+            type: string
+            description_kind: plain
+            optional: true
+          smart_proxy_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    cors_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          allow_credentials:
+            type: bool
+            description_kind: plain
+            optional: true
+          allowed_headers:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          allowed_methods:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          allowed_origins:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          max_age_in_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    identity:
+      nesting_mode: list
+      block:
+        attributes:
+          principal_id:
+            type: string
+            description_kind: plain
+            computed: true
+          tenant_id:
+            type: string
+            description_kind: plain
+            computed: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

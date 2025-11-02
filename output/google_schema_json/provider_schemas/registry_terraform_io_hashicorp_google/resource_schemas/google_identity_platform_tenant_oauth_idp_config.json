@@ -1,0 +1,87 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "client_id": {
+        "type": "string",
+        "description": "The client id of an OAuth client.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "client_secret": {
+        "type": "string",
+        "description": "The client secret of the OAuth client, to enable OIDC code flow.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "Human friendly display name.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "enabled": {
+        "type": "bool",
+        "description": "If this config allows users to sign in with the provider.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "issuer": {
+        "type": "string",
+        "description": "For OIDC Idps, the issuer identifier.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the OauthIdpConfig. Must start with 'oidc.'.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tenant": {
+        "type": "string",
+        "description": "The name of the tenant where this OIDC IDP configuration resource exists",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

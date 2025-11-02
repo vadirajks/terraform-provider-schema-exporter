@@ -1,0 +1,32 @@
+version: 0
+block:
+  attributes:
+    group:
+      type: string
+      description: The name of the Group to get memberships from.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    memberships:
+      type:
+      - list
+      - - object
+        - member: string
+          preferred_member_key:
+          - list
+          - - object
+            - id: string
+              namespace: string
+          relation_type: string
+          roles:
+          - set
+          - - object
+            - role: string
+      description: List of Cloud Identity group memberships.
+      description_kind: plain
+      computed: true
+  description_kind: plain

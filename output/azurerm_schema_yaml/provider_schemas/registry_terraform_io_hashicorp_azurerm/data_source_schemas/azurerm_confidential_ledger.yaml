@@ -1,0 +1,66 @@
+version: 0
+block:
+  attributes:
+    azuread_based_service_principal:
+      type:
+      - list
+      - - object
+        - ledger_role_name: string
+          principal_id: string
+          tenant_id: string
+      description_kind: plain
+      computed: true
+    certificate_based_security_principal:
+      type:
+      - list
+      - - object
+        - ledger_role_name: string
+          pem_public_key: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    identity_service_endpoint:
+      type: string
+      description_kind: plain
+      computed: true
+    ledger_endpoint:
+      type: string
+      description_kind: plain
+      computed: true
+    ledger_type:
+      type: string
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

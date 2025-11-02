@@ -1,0 +1,215 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "zone_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "resource_record_set": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "failover": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "health_check_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "multi_value_answer": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "region": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "set_identifier": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "traffic_policy_instance_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "ttl": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "weight": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "alias_target": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "dns_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "evaluate_target_health": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "hosted_zone_id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "cidr_routing_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "collection_id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "location_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "geolocation": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "continent_code": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "country_code": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "subdivision_code": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "geoproximity_location": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "aws_region": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "bias": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "local_zone_group": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "coordinates": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "latitude": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "longitude": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "resource_records": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "value": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours).",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description": "A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as \"30s\" or \"2h45m\". Valid time units are \"s\" (seconds), \"m\" (minutes), \"h\" (hours).",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

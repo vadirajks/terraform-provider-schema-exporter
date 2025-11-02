@@ -1,0 +1,129 @@
+version: 0
+block:
+  attributes:
+    administrator_login:
+      type: string
+      description_kind: plain
+      required: true
+    administrator_login_password:
+      type: string
+      description_kind: plain
+      required: true
+      sensitive: true
+    collation:
+      type: string
+      description_kind: plain
+      optional: true
+    dns_zone_partner_id:
+      type: string
+      description_kind: plain
+      optional: true
+    fqdn:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    license_type:
+      type: string
+      description_kind: plain
+      required: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    minimum_tls_version:
+      type: string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    proxy_override:
+      type: string
+      description_kind: plain
+      optional: true
+    public_data_endpoint_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    sku_name:
+      type: string
+      description_kind: plain
+      required: true
+    storage_account_type:
+      type: string
+      description_kind: plain
+      optional: true
+    storage_size_in_gb:
+      type: number
+      description_kind: plain
+      required: true
+    subnet_id:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    timezone_id:
+      type: string
+      description_kind: plain
+      optional: true
+    vcores:
+      type: number
+      description_kind: plain
+      required: true
+  block_types:
+    identity:
+      nesting_mode: list
+      block:
+        attributes:
+          principal_id:
+            type: string
+            description_kind: plain
+            computed: true
+          tenant_id:
+            type: string
+            description_kind: plain
+            computed: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

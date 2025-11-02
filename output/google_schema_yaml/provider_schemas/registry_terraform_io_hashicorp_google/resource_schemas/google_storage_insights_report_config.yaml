@@ -1,0 +1,184 @@
+version: 0
+block:
+  attributes:
+    display_name:
+      type: string
+      description: The editable display name of the inventory report configuration. Has a limit of 256 characters. Can be empty.
+      description_kind: plain
+      optional: true
+    force_destroy:
+      type: bool
+      description: If set, all the inventory report details associated with this report configuration are deleted.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: The location of the ReportConfig. The source and destination buckets specified in the ReportConfig must be in the same location.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The UUID of the inventory report configuration.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    csv_options:
+      nesting_mode: list
+      block:
+        attributes:
+          delimiter:
+            type: string
+            description: The delimiter used to separate the fields in the inventory report CSV file.
+            description_kind: plain
+            optional: true
+          header_required:
+            type: bool
+            description: The boolean that indicates whether or not headers are included in the inventory report CSV file.
+            description_kind: plain
+            optional: true
+          record_separator:
+            type: string
+            description: The character used to separate the records in the inventory report CSV file.
+            description_kind: plain
+            optional: true
+        description: Options for configuring the format of the inventory report CSV file.
+        description_kind: plain
+      max_items: 1
+    frequency_options:
+      nesting_mode: list
+      block:
+        attributes:
+          frequency:
+            type: string
+            description: 'The frequency in which inventory reports are generated. Values are DAILY or WEEKLY. Possible values: ["DAILY", "WEEKLY"]'
+            description_kind: plain
+            required: true
+        block_types:
+          end_date:
+            nesting_mode: list
+            block:
+              attributes:
+                day:
+                  type: number
+                  description: The day of the month to stop generating inventory reports.
+                  description_kind: plain
+                  required: true
+                month:
+                  type: number
+                  description: The month to stop generating inventory reports.
+                  description_kind: plain
+                  required: true
+                year:
+                  type: number
+                  description: The year to stop generating inventory reports
+                  description_kind: plain
+                  required: true
+              description: 'The date to stop generating inventory reports. For example, {"day": 15, "month": 9, "year": 2022}.'
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+          start_date:
+            nesting_mode: list
+            block:
+              attributes:
+                day:
+                  type: number
+                  description: The day of the month to start generating inventory reports.
+                  description_kind: plain
+                  required: true
+                month:
+                  type: number
+                  description: The month to start generating inventory reports.
+                  description_kind: plain
+                  required: true
+                year:
+                  type: number
+                  description: The year to start generating inventory reports
+                  description_kind: plain
+                  required: true
+              description: 'The date to start generating inventory reports. For example, {"day": 15, "month": 8, "year": 2022}.'
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description: Options for configuring how inventory reports are generated.
+        description_kind: plain
+      max_items: 1
+    object_metadata_report_options:
+      nesting_mode: list
+      block:
+        attributes:
+          metadata_fields:
+            type:
+            - list
+            - string
+            description: The metadata fields included in an inventory report.
+            description_kind: plain
+            required: true
+        block_types:
+          storage_destination_options:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket:
+                  type: string
+                  description: The destination bucket that stores the generated inventory reports.
+                  description_kind: plain
+                  required: true
+                destination_path:
+                  type: string
+                  description: The path within the destination bucket to store generated inventory reports.
+                  description_kind: plain
+                  optional: true
+              description: Options for where the inventory reports are stored.
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+          storage_filters:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket:
+                  type: string
+                  description: The filter to use when specifying which bucket to generate inventory reports for.
+                  description_kind: plain
+                  optional: true
+              description: A nested object resource.
+              description_kind: plain
+            max_items: 1
+        description: Options for including metadata in an inventory report.
+        description_kind: plain
+      max_items: 1
+    parquet_options:
+      nesting_mode: list
+      block:
+        description: An option for outputting inventory reports as parquet files.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

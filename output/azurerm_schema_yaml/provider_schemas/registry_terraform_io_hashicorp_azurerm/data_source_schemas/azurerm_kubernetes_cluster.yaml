@@ -1,0 +1,348 @@
+version: 0
+block:
+  attributes:
+    aci_connector_linux:
+      type:
+      - list
+      - - object
+        - subnet_name: string
+      description_kind: plain
+      computed: true
+    agent_pool_profile:
+      type:
+      - list
+      - - object
+        - auto_scaling_enabled: bool
+          count: number
+          max_count: number
+          max_pods: number
+          min_count: number
+          name: string
+          node_labels:
+          - map
+          - string
+          node_public_ip_enabled: bool
+          node_public_ip_prefix_id: string
+          node_taints:
+          - list
+          - string
+          orchestrator_version: string
+          os_disk_size_gb: number
+          os_type: string
+          tags:
+          - map
+          - string
+          type: string
+          upgrade_settings:
+          - list
+          - - object
+            - drain_timeout_in_minutes: number
+              max_surge: string
+              node_soak_duration_in_minutes: number
+          vm_size: string
+          vnet_subnet_id: string
+          zones:
+          - list
+          - string
+      description_kind: plain
+      computed: true
+    api_server_authorized_ip_ranges:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    azure_active_directory_role_based_access_control:
+      type:
+      - list
+      - - object
+        - admin_group_object_ids:
+          - list
+          - string
+          azure_rbac_enabled: bool
+          tenant_id: string
+      description_kind: plain
+      computed: true
+    azure_policy_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    current_kubernetes_version:
+      type: string
+      description_kind: plain
+      computed: true
+    disk_encryption_set_id:
+      type: string
+      description_kind: plain
+      computed: true
+    dns_prefix:
+      type: string
+      description_kind: plain
+      computed: true
+    fqdn:
+      type: string
+      description_kind: plain
+      computed: true
+    http_application_routing_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    http_application_routing_zone_name:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    identity:
+      type:
+      - list
+      - - object
+        - identity_ids:
+          - list
+          - string
+          principal_id: string
+          tenant_id: string
+          type: string
+      description_kind: plain
+      computed: true
+    ingress_application_gateway:
+      type:
+      - list
+      - - object
+        - effective_gateway_id: string
+          gateway_id: string
+          gateway_name: string
+          ingress_application_gateway_identity:
+          - list
+          - - object
+            - client_id: string
+              object_id: string
+              user_assigned_identity_id: string
+          subnet_cidr: string
+          subnet_id: string
+      description_kind: plain
+      computed: true
+    key_management_service:
+      type:
+      - list
+      - - object
+        - key_vault_key_id: string
+          key_vault_network_access: string
+      description_kind: plain
+      computed: true
+    key_vault_secrets_provider:
+      type:
+      - list
+      - - object
+        - secret_identity:
+          - list
+          - - object
+            - client_id: string
+              object_id: string
+              user_assigned_identity_id: string
+          secret_rotation_enabled: bool
+          secret_rotation_interval: string
+      description_kind: plain
+      computed: true
+    kube_admin_config:
+      type:
+      - list
+      - - object
+        - client_certificate: string
+          client_key: string
+          cluster_ca_certificate: string
+          host: string
+          password: string
+          username: string
+      description_kind: plain
+      computed: true
+      sensitive: true
+    kube_admin_config_raw:
+      type: string
+      description_kind: plain
+      computed: true
+      sensitive: true
+    kube_config:
+      type:
+      - list
+      - - object
+        - client_certificate: string
+          client_key: string
+          cluster_ca_certificate: string
+          host: string
+          password: string
+          username: string
+      description_kind: plain
+      computed: true
+      sensitive: true
+    kube_config_raw:
+      type: string
+      description_kind: plain
+      computed: true
+      sensitive: true
+    kubelet_identity:
+      type:
+      - list
+      - - object
+        - client_id: string
+          object_id: string
+          user_assigned_identity_id: string
+      description_kind: plain
+      computed: true
+    kubernetes_version:
+      type: string
+      description_kind: plain
+      computed: true
+    linux_profile:
+      type:
+      - list
+      - - object
+        - admin_username: string
+          ssh_key:
+          - list
+          - - object
+            - key_data: string
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    microsoft_defender:
+      type:
+      - list
+      - - object
+        - log_analytics_workspace_id: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    network_profile:
+      type:
+      - list
+      - - object
+        - dns_service_ip: string
+          docker_bridge_cidr: string
+          load_balancer_sku: string
+          network_plugin: string
+          network_policy: string
+          pod_cidr: string
+          service_cidr: string
+      description_kind: plain
+      computed: true
+    node_resource_group:
+      type: string
+      description_kind: plain
+      computed: true
+    node_resource_group_id:
+      type: string
+      description_kind: plain
+      computed: true
+    oidc_issuer_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    oidc_issuer_url:
+      type: string
+      description_kind: plain
+      computed: true
+    oms_agent:
+      type:
+      - list
+      - - object
+        - log_analytics_workspace_id: string
+          msi_auth_for_monitoring_enabled: bool
+          oms_agent_identity:
+          - list
+          - - object
+            - client_id: string
+              object_id: string
+              user_assigned_identity_id: string
+      description_kind: plain
+      computed: true
+    open_service_mesh_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    private_cluster_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    private_fqdn:
+      type: string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    role_based_access_control_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    service_mesh_profile:
+      type:
+      - list
+      - - object
+        - certificate_authority:
+          - list
+          - - object
+            - cert_chain_object_name: string
+              cert_object_name: string
+              key_object_name: string
+              key_vault_id: string
+              root_cert_object_name: string
+          external_ingress_gateway_enabled: bool
+          internal_ingress_gateway_enabled: bool
+          mode: string
+          revisions:
+          - list
+          - string
+      description_kind: plain
+      computed: true
+    service_principal:
+      type:
+      - list
+      - - object
+        - client_id: string
+      description_kind: plain
+      computed: true
+    storage_profile:
+      type:
+      - list
+      - - object
+        - blob_driver_enabled: bool
+          disk_driver_enabled: bool
+          file_driver_enabled: bool
+          snapshot_controller_enabled: bool
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    windows_profile:
+      type:
+      - list
+      - - object
+        - admin_username: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

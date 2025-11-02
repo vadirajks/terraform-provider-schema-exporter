@@ -1,0 +1,294 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    delete_all_policy_resources:
+      type: bool
+      description_kind: plain
+      optional: true
+    delete_unused_fm_managed_resources:
+      type: bool
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    exclude_resource_tags:
+      type: bool
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    policy_update_token:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    remediation_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    resource_set_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_tag_logical_operator:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    resource_type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_type_list:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    exclude_map:
+      nesting_mode: list
+      block:
+        attributes:
+          account:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          orgunit:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    include_map:
+      nesting_mode: list
+      block:
+        attributes:
+          account:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          orgunit:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    security_service_policy_data:
+      nesting_mode: list
+      block:
+        attributes:
+          managed_service_data:
+            type: string
+            description_kind: plain
+            optional: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          policy_option:
+            nesting_mode: list
+            block:
+              block_types:
+                network_acl_common_policy:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      network_acl_entry_set:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            force_remediate_for_first_entries:
+                              type: bool
+                              description_kind: plain
+                              required: true
+                            force_remediate_for_last_entries:
+                              type: bool
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            first_entry:
+                              nesting_mode: set
+                              block:
+                                attributes:
+                                  cidr_block:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  egress:
+                                    type: bool
+                                    description_kind: plain
+                                    required: true
+                                  ipv6_cidr_block:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  protocol:
+                                    type: string
+                                    description_kind: plain
+                                    required: true
+                                  rule_action:
+                                    type: string
+                                    description_kind: plain
+                                    required: true
+                                block_types:
+                                  icmp_type_code:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        code:
+                                          type: number
+                                          description_kind: plain
+                                          optional: true
+                                        type:
+                                          type: number
+                                          description_kind: plain
+                                          optional: true
+                                      description_kind: plain
+                                  port_range:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        from:
+                                          type: number
+                                          description_kind: plain
+                                          optional: true
+                                        to:
+                                          type: number
+                                          description_kind: plain
+                                          optional: true
+                                      description_kind: plain
+                                description_kind: plain
+                            last_entry:
+                              nesting_mode: set
+                              block:
+                                attributes:
+                                  cidr_block:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  egress:
+                                    type: bool
+                                    description_kind: plain
+                                    required: true
+                                  ipv6_cidr_block:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  protocol:
+                                    type: string
+                                    description_kind: plain
+                                    required: true
+                                  rule_action:
+                                    type: string
+                                    description_kind: plain
+                                    required: true
+                                block_types:
+                                  icmp_type_code:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        code:
+                                          type: number
+                                          description_kind: plain
+                                          optional: true
+                                        type:
+                                          type: number
+                                          description_kind: plain
+                                          optional: true
+                                      description_kind: plain
+                                  port_range:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        from:
+                                          type: number
+                                          description_kind: plain
+                                          optional: true
+                                        to:
+                                          type: number
+                                          description_kind: plain
+                                          optional: true
+                                      description_kind: plain
+                                description_kind: plain
+                          description_kind: plain
+                        max_items: 1
+                    description_kind: plain
+                  max_items: 1
+                network_firewall_policy:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      firewall_deployment_model:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+                third_party_firewall_policy:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      firewall_deployment_model:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+  description_kind: plain

@@ -1,0 +1,705 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "created_date": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "last_updated_date": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "mesh_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "mesh_owner": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "resource_owner": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "virtual_gateway_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "spec": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "priority": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "grpc_route": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "action": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "block_types": {
+                        "target": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "port": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "block_types": {
+                              "virtual_service": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "virtual_service_name": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "required": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "min_items": 1,
+                                "max_items": 1
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  },
+                  "match": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "port": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "service_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "http2_route": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "action": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "block_types": {
+                        "rewrite": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "block_types": {
+                              "hostname": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "default_target_hostname": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "required": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              },
+                              "path": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "exact": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "required": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              },
+                              "prefix": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "default_prefix": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "value": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "target": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "port": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "block_types": {
+                              "virtual_service": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "virtual_service_name": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "required": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "min_items": 1,
+                                "max_items": 1
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  },
+                  "match": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "port": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "prefix": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "header": {
+                          "nesting_mode": "set",
+                          "block": {
+                            "attributes": {
+                              "invert": {
+                                "type": "bool",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "name": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "block_types": {
+                              "match": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "exact": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "prefix": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "regex": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "suffix": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    }
+                                  },
+                                  "block_types": {
+                                    "range": {
+                                      "nesting_mode": "list",
+                                      "block": {
+                                        "attributes": {
+                                          "end": {
+                                            "type": "number",
+                                            "description_kind": "plain",
+                                            "required": true
+                                          },
+                                          "start": {
+                                            "type": "number",
+                                            "description_kind": "plain",
+                                            "required": true
+                                          }
+                                        },
+                                        "description_kind": "plain"
+                                      },
+                                      "max_items": 1
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 10
+                        },
+                        "hostname": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "exact": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "suffix": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "path": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "exact": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "regex": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "query_parameter": {
+                          "nesting_mode": "set",
+                          "block": {
+                            "attributes": {
+                              "name": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "block_types": {
+                              "match": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "exact": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 10
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "http_route": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "action": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "block_types": {
+                        "rewrite": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "block_types": {
+                              "hostname": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "default_target_hostname": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "required": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              },
+                              "path": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "exact": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "required": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              },
+                              "prefix": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "default_prefix": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "value": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "target": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "port": {
+                                "type": "number",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "block_types": {
+                              "virtual_service": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "virtual_service_name": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "required": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "min_items": 1,
+                                "max_items": 1
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  },
+                  "match": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "port": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "prefix": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "header": {
+                          "nesting_mode": "set",
+                          "block": {
+                            "attributes": {
+                              "invert": {
+                                "type": "bool",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "name": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "block_types": {
+                              "match": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "exact": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "prefix": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "regex": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "suffix": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    }
+                                  },
+                                  "block_types": {
+                                    "range": {
+                                      "nesting_mode": "list",
+                                      "block": {
+                                        "attributes": {
+                                          "end": {
+                                            "type": "number",
+                                            "description_kind": "plain",
+                                            "required": true
+                                          },
+                                          "start": {
+                                            "type": "number",
+                                            "description_kind": "plain",
+                                            "required": true
+                                          }
+                                        },
+                                        "description_kind": "plain"
+                                      },
+                                      "max_items": 1
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 10
+                        },
+                        "hostname": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "exact": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "suffix": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "path": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "exact": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "regex": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "query_parameter": {
+                          "nesting_mode": "set",
+                          "block": {
+                            "attributes": {
+                              "name": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "block_types": {
+                              "match": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "exact": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 10
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "bucket": {
+        "type": "string",
+        "description": "The name of the bucket.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "domain": {
+        "type": "string",
+        "description": "The domain associated with the entity.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "email": {
+        "type": "string",
+        "description": "The email address associated with the entity.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "entity": {
+        "type": "string",
+        "description": "The entity holding the permission, in one of the following forms: user-userId user-email group-groupId group-email domain-domain project-team-projectId allUsers allAuthenticatedUsers Examples: The user liz@example.com would be user-liz@example.com. The group example@googlegroups.com would be group-example@googlegroups.com. To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "role": {
+        "type": "string",
+        "description": "The access permission for the entity. Possible values: [\"OWNER\", \"READER\", \"WRITER\"]",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

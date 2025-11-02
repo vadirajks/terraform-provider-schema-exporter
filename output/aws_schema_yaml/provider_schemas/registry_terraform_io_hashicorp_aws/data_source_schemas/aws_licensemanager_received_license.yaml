@@ -1,0 +1,115 @@
+version: 0
+block:
+  attributes:
+    beneficiary:
+      type: string
+      description_kind: plain
+      computed: true
+    consumption_configuration:
+      type:
+      - list
+      - - object
+        - borrow_configuration:
+          - list
+          - - object
+            - allow_early_check_in: bool
+              max_time_to_live_in_minutes: number
+          provisional_configuration:
+          - list
+          - - object
+            - max_time_to_live_in_minutes: number
+          renew_type: string
+      description_kind: plain
+      computed: true
+    create_time:
+      type: string
+      description_kind: plain
+      computed: true
+    entitlements:
+      type:
+      - set
+      - - object
+        - allow_check_in: bool
+          max_count: number
+          name: string
+          overage: bool
+          unit: string
+          value: string
+      description_kind: plain
+      computed: true
+    home_region:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    issuer:
+      type:
+      - list
+      - - object
+        - key_fingerprint: string
+          name: string
+          sign_key: string
+      description_kind: plain
+      computed: true
+    license_arn:
+      type: string
+      description_kind: plain
+      required: true
+    license_metadata:
+      type:
+      - set
+      - - object
+        - name: string
+          value: string
+      description_kind: plain
+      computed: true
+    license_name:
+      type: string
+      description_kind: plain
+      computed: true
+    product_name:
+      type: string
+      description_kind: plain
+      computed: true
+    product_sku:
+      type: string
+      description_kind: plain
+      computed: true
+    received_metadata:
+      type:
+      - list
+      - - object
+        - allowed_operations:
+          - set
+          - string
+          received_status: string
+          received_status_reason: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    status:
+      type: string
+      description_kind: plain
+      computed: true
+    validity:
+      type:
+      - list
+      - - object
+        - begin: string
+          end: string
+      description_kind: plain
+      computed: true
+    version:
+      type: string
+      description_kind: plain
+      computed: true
+  description_kind: plain

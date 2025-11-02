@@ -1,0 +1,78 @@
+version: 0
+block:
+  attributes:
+    autoscaling_policy:
+      type: string
+      description_kind: plain
+      optional: true
+    bid_price:
+      type: string
+      description_kind: plain
+      optional: true
+    cluster_id:
+      type: string
+      description_kind: plain
+      required: true
+    configurations_json:
+      type: string
+      description_kind: plain
+      optional: true
+    ebs_optimized:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instance_count:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    instance_type:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    running_instance_count:
+      type: number
+      description_kind: plain
+      computed: true
+    status:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    ebs_config:
+      nesting_mode: set
+      block:
+        attributes:
+          iops:
+            type: number
+            description_kind: plain
+            optional: true
+          size:
+            type: number
+            description_kind: plain
+            required: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+          volumes_per_instance:
+            type: number
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

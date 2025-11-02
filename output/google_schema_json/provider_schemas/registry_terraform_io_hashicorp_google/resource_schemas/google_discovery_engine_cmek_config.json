@@ -1,0 +1,120 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "cmek_config_id": {
+        "type": "string",
+        "description": "The unique id of the cmek config.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "is_default": {
+        "type": "bool",
+        "description": "The default CmekConfig for the Customer.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "kms_key": {
+        "type": "string",
+        "description": "KMS key resource name which will be used to encrypt resources 'projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}'.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "kms_key_version": {
+        "type": "string",
+        "description": "KMS key version resource name which will be used to encrypt resources '<kms_key>/cryptoKeyVersions/{keyVersion}'.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "last_rotation_timestamp_micros": {
+        "type": "number",
+        "description": "The timestamp of the last key rotation.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The geographic location where the CMEK config should reside. The value can only be one of \"us\" and \"eu\".",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The unique full resource name of the cmek config. Values are of the format 'projects/{project}/locations/{location}/cmekConfigs/{cmek_config_id}'. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "notebooklm_state": {
+        "type": "string",
+        "description": "Whether the NotebookLM Corpus is ready to be used.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "set_default": {
+        "type": "bool",
+        "description": "Set the following CmekConfig as the default to be used for child resources if one is not specified. The default value is true.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "state": {
+        "type": "string",
+        "description": "The state of the CmekConfig.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "single_region_keys": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "kms_key": {
+              "type": "string",
+              "description": "Single-regional kms key resource name which will be used to encrypt resources 'projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}'.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Single-regional CMEKs that are required for some VAIS features.",
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

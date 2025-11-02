@@ -1,0 +1,257 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    bypass_snaplock_enterprise_retention:
+      type: bool
+      description_kind: plain
+      optional: true
+    copy_tags_to_backups:
+      type: bool
+      description_kind: plain
+      optional: true
+    file_system_id:
+      type: string
+      description_kind: plain
+      computed: true
+    final_backup_tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    flexcache_endpoint_type:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    junction_path:
+      type: string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    ontap_volume_type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    security_style:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    size_in_bytes:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    size_in_megabytes:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    skip_final_backup:
+      type: bool
+      description_kind: plain
+      optional: true
+    snapshot_policy:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    storage_efficiency_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    storage_virtual_machine_id:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    uuid:
+      type: string
+      description_kind: plain
+      computed: true
+    volume_style:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    volume_type:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    aggregate_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          aggregates:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+            computed: true
+          constituents_per_aggregate:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+          total_constituents:
+            type: number
+            description_kind: plain
+            computed: true
+        description_kind: plain
+      max_items: 1
+    snaplock_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          audit_log_volume:
+            type: bool
+            description_kind: plain
+            optional: true
+          privileged_delete:
+            type: string
+            description_kind: plain
+            optional: true
+          snaplock_type:
+            type: string
+            description_kind: plain
+            required: true
+          volume_append_mode_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+        block_types:
+          autocommit_period:
+            nesting_mode: list
+            block:
+              attributes:
+                type:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                value:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          retention_period:
+            nesting_mode: list
+            block:
+              block_types:
+                default_retention:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      type:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      value:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+                maximum_retention:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      type:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      value:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+                minimum_retention:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      type:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      value:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    tiering_policy:
+      nesting_mode: list
+      block:
+        attributes:
+          cooling_period:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+          name:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

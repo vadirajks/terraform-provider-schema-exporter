@@ -1,0 +1,15 @@
+data "aws_route53_resolver_firewall_rule_group" "name" {
+  firewall_rule_group_id = string (Required)
+  arn = string (Computed)
+  creation_time = string (Computed)
+  creator_request_id = string (Computed)
+  id = string (Optional, Computed)
+  modification_time = string (Computed)
+  name = string (Computed)
+  owner_id = string (Computed)
+  region = string (Optional, Computed)
+  rule_count = number (Computed)
+  share_status = string (Computed)
+  status = string (Computed)
+  status_message = string (Computed)
+}

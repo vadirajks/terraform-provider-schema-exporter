@@ -1,0 +1,79 @@
+version: 0
+block:
+  attributes:
+    app_service_environment_id:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    is_xenon:
+      type: bool
+      description_kind: plain
+      computed: true
+    kind:
+      type: string
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    maximum_elastic_worker_count:
+      type: number
+      description_kind: plain
+      computed: true
+    maximum_number_of_workers:
+      type: number
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    per_site_scaling:
+      type: bool
+      description_kind: plain
+      computed: true
+    reserved:
+      type: bool
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    sku:
+      type:
+      - list
+      - - object
+        - capacity: number
+          size: string
+          tier: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    zone_redundant:
+      type: bool
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

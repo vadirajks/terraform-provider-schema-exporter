@@ -1,0 +1,111 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "author": {
+        "type": "string",
+        "description": "Output only. The user who created the data access label.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "Output only. The time at which the data access label was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "data_access_label_id": {
+        "type": "string",
+        "description": "Required. The ID to use for the data access label, which will become the label's display name and the final component of the label's resource name. The maximum number of characters should be 63. Regex pattern is as per AIP: https://google.aip.dev/122#resource-id-segments",
+        "description_kind": "plain",
+        "required": true
+      },
+      "description": {
+        "type": "string",
+        "description": "Optional. A description of the data access label for a human reader.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "Output only. The short name displayed for the label as it appears on event data. This is same as data access label id.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "instance": {
+        "type": "string",
+        "description": "The unique identifier for the Chronicle instance, which is the same as the customer ID.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "last_editor": {
+        "type": "string",
+        "description": "Output only. The user who last updated the data access label.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location of the resource. This is the geographical region where the Chronicle instance resides, such as \"us\" or \"europe-west2\".",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The unique resource name of the data access label. This unique identifier is generated using values provided for the URL parameters. Format: projects/{project}/locations/{location}/instances/{instance}/dataAccessLabels/{data_access_label_id}",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "udm_query": {
+        "type": "string",
+        "description": "A UDM query over event data.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Output only. The time at which the data access label was last updated.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

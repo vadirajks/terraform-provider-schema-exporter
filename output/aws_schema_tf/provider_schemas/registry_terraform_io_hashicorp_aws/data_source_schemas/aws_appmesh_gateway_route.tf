@@ -1,0 +1,14 @@
+data "aws_appmesh_gateway_route" "name" {
+  mesh_name = string (Required)
+  name = string (Required)
+  virtual_gateway_name = string (Required)
+  arn = string (Computed)
+  created_date = string (Computed)
+  id = string (Optional, Computed)
+  last_updated_date = string (Computed)
+  mesh_owner = string (Optional, Computed)
+  region = string (Optional, Computed)
+  resource_owner = string (Computed)
+  spec = ['list', ['object', {'grpc_route': ['list', ['object', {'action': ['list', ['object', {'target': ['list', ['object', {'port': 'number', 'virtual_service': ['list', ['object', {'virtual_service_name': 'string'}]]}]]}]], 'match': ['list', ['object', {'port': 'number', 'service_name': 'string'}]]}]], 'http2_route': ['list', ['object', {'action': ['list', ['object', {'rewrite': ['list', ['object', {'hostname': ['list', ['object', {'default_target_hostname': 'string'}]], 'path': ['list', ['object', {'exact': 'string'}]], 'prefix': ['list', ['object', {'default_prefix': 'string', 'value': 'string'}]]}]], 'target': ['list', ['object', {'port': 'number', 'virtual_service': ['list', ['object', {'virtual_service_name': 'string'}]]}]]}]], 'match': ['list', ['object', {'header': ['set', ['object', {'invert': 'bool', 'match': ['list', ['object', {'exact': 'string', 'prefix': 'string', 'range': ['list', ['object', {'end': 'number', 'start': 'number'}]], 'regex': 'string', 'suffix': 'string'}]], 'name': 'string'}]], 'hostname': ['list', ['object', {'exact': 'string', 'suffix': 'string'}]], 'path': ['list', ['object', {'exact': 'string', 'regex': 'string'}]], 'port': 'number', 'prefix': 'string', 'query_parameter': ['set', ['object', {'match': ['list', ['object', {'exact': 'string'}]], 'name': 'string'}]]}]]}]], 'http_route': ['list', ['object', {'action': ['list', ['object', {'rewrite': ['list', ['object', {'hostname': ['list', ['object', {'default_target_hostname': 'string'}]], 'path': ['list', ['object', {'exact': 'string'}]], 'prefix': ['list', ['object', {'default_prefix': 'string', 'value': 'string'}]]}]], 'target': ['list', ['object', {'port': 'number', 'virtual_service': ['list', ['object', {'virtual_service_name': 'string'}]]}]]}]], 'match': ['list', ['object', {'header': ['set', ['object', {'invert': 'bool', 'match': ['list', ['object', {'exact': 'string', 'prefix': 'string', 'range': ['list', ['object', {'end': 'number', 'start': 'number'}]], 'regex': 'string', 'suffix': 'string'}]], 'name': 'string'}]], 'hostname': ['list', ['object', {'exact': 'string', 'suffix': 'string'}]], 'path': ['list', ['object', {'exact': 'string', 'regex': 'string'}]], 'port': 'number', 'prefix': 'string', 'query_parameter': ['set', ['object', {'match': ['list', ['object', {'exact': 'string'}]], 'name': 'string'}]]}]]}]], 'priority': 'number'}]] (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+}

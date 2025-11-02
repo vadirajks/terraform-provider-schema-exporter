@@ -1,0 +1,123 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: Time the TlsRoute was created in UTC.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: A free-text description of the resource. Max length 1024 characters.
+      description_kind: plain
+      optional: true
+    gateways:
+      type:
+      - list
+      - string
+      description: 'Gateways defines a list of gateways this TlsRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: projects/*/locations/global/gateways/<gateway_name>'
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    meshes:
+      type:
+      - list
+      - string
+      description: 'Meshes defines a list of meshes this TlsRoute is attached to, as one of the routing rules to route the requests served by the mesh. Each mesh reference should match the pattern: projects/*/locations/global/meshes/<mesh_name> The attached Mesh should be of a type SIDECAR'
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: Name of the TlsRoute resource.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    self_link:
+      type: string
+      description: Server-defined URL of this resource.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: Time the TlsRoute was updated in UTC.
+      description_kind: plain
+      computed: true
+  block_types:
+    rules:
+      nesting_mode: list
+      block:
+        block_types:
+          action:
+            nesting_mode: list
+            block:
+              block_types:
+                destinations:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      service_name:
+                        type: string
+                        description: The URL of a BackendService to route traffic to.
+                        description_kind: plain
+                        optional: true
+                      weight:
+                        type: number
+                        description: Specifies the proportion of requests forwarded to the backend referenced by the serviceName field.
+                        description_kind: plain
+                        optional: true
+                    description: The destination to which traffic should be forwarded.
+                    description_kind: plain
+              description: Required. A detailed rule defining how to route traffic.
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+          matches:
+            nesting_mode: list
+            block:
+              attributes:
+                alpn:
+                  type:
+                  - list
+                  - string
+                  description: 'ALPN (Application-Layer Protocol Negotiation) to match against. Examples: "http/1.1", "h2". At least one of sniHost and alpn is required. Up to 5 alpns across all matches can be set.'
+                  description_kind: plain
+                  optional: true
+                sni_host:
+                  type:
+                  - list
+                  - string
+                  description: SNI (server name indicator) to match against. SNI will be matched against all wildcard domains, i.e. www.example.com will be first matched against www.example.com, then *.example.com, then *.com. Partial wildcards are not supported, and values like *w.example.com are invalid. At least one of sniHost and alpn is required. Up to 5 sni hosts across all matches can be set.
+                  description_kind: plain
+                  optional: true
+              description: Matches define the predicate used to match requests to a given action.
+              description_kind: plain
+            min_items: 1
+        description: Rules that define how traffic is routed and handled.
+        description_kind: plain
+      min_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,216 @@
+version: 0
+block:
+  attributes:
+    architecture:
+      type: string
+      description_kind: plain
+      computed: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    boot_mode:
+      type: string
+      description_kind: plain
+      computed: true
+    deprecation_time:
+      type: string
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    ena_support:
+      type: bool
+      description_kind: plain
+      computed: true
+    hypervisor:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    image_location:
+      type: string
+      description_kind: plain
+      computed: true
+    image_owner_alias:
+      type: string
+      description_kind: plain
+      computed: true
+    image_type:
+      type: string
+      description_kind: plain
+      computed: true
+    imds_support:
+      type: string
+      description_kind: plain
+      computed: true
+    kernel_id:
+      type: string
+      description_kind: plain
+      computed: true
+    last_launched_time:
+      type: string
+      description_kind: plain
+      computed: true
+    manage_ebs_snapshots:
+      type: bool
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    owner_id:
+      type: string
+      description_kind: plain
+      computed: true
+    platform:
+      type: string
+      description_kind: plain
+      computed: true
+    platform_details:
+      type: string
+      description_kind: plain
+      computed: true
+    public:
+      type: bool
+      description_kind: plain
+      computed: true
+    ramdisk_id:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    root_device_name:
+      type: string
+      description_kind: plain
+      computed: true
+    root_snapshot_id:
+      type: string
+      description_kind: plain
+      computed: true
+    snapshot_without_reboot:
+      type: bool
+      description_kind: plain
+      optional: true
+    source_instance_id:
+      type: string
+      description_kind: plain
+      required: true
+    sriov_net_support:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    tpm_support:
+      type: string
+      description_kind: plain
+      computed: true
+    uefi_data:
+      type: string
+      description_kind: plain
+      computed: true
+    usage_operation:
+      type: string
+      description_kind: plain
+      computed: true
+    virtualization_type:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    ebs_block_device:
+      nesting_mode: set
+      block:
+        attributes:
+          delete_on_termination:
+            type: bool
+            description_kind: plain
+            computed: true
+          device_name:
+            type: string
+            description_kind: plain
+            computed: true
+          encrypted:
+            type: bool
+            description_kind: plain
+            computed: true
+          iops:
+            type: number
+            description_kind: plain
+            computed: true
+          outpost_arn:
+            type: string
+            description_kind: plain
+            computed: true
+          snapshot_id:
+            type: string
+            description_kind: plain
+            computed: true
+          throughput:
+            type: number
+            description_kind: plain
+            computed: true
+          volume_size:
+            type: number
+            description_kind: plain
+            computed: true
+          volume_type:
+            type: string
+            description_kind: plain
+            computed: true
+        description_kind: plain
+    ephemeral_block_device:
+      nesting_mode: set
+      block:
+        attributes:
+          device_name:
+            type: string
+            description_kind: plain
+            computed: true
+          virtual_name:
+            type: string
+            description_kind: plain
+            computed: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

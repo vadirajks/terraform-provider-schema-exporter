@@ -1,0 +1,437 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "architectures": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "code_sha256": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "code_signing_config_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "filename": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "function_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "handler": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "image_uri": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "invoke_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "kms_key_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "last_modified": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "layers": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "memory_size": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "package_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "publish": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "qualified_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "qualified_invoke_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "replace_security_groups_on_destroy": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "replacement_security_group_ids": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "reserved_concurrent_executions": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "role": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "runtime": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "s3_bucket": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "s3_key": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "s3_object_version": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "signing_job_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "signing_profile_version_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "skip_destroy": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "source_code_hash": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "source_code_size": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "source_kms_key_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "timeout": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "version": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "dead_letter_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "target_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "environment": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "variables": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "ephemeral_storage": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "size": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "file_system_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "local_mount_path": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "image_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "command": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "entry_point": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "working_directory": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "logging_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "application_log_level": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "log_format": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "log_group": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "system_log_level": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "snap_start": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "apply_on": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "optimization_status": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "tracing_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "mode": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "vpc_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "ipv6_allowed_for_dual_stack": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "security_group_ids": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "subnet_ids": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "vpc_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

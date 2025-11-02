@@ -1,0 +1,32 @@
+resource "aws_ssm_document" "name" {
+  content = string (Required)
+  document_type = string (Required)
+  name = string (Required)
+  arn = string (Computed)
+  created_date = string (Computed)
+  default_version = string (Computed)
+  description = string (Computed)
+  document_format = string (Optional)
+  document_version = string (Computed)
+  hash = string (Computed)
+  hash_type = string (Computed)
+  id = string (Optional, Computed)
+  latest_version = string (Computed)
+  owner = string (Computed)
+  parameter = ['list', ['object', {'default_value': 'string', 'description': 'string', 'name': 'string', 'type': 'string'}]] (Computed)
+  permissions = ['map', 'string'] (Optional)
+  platform_types = ['list', 'string'] (Computed)
+  region = string (Optional, Computed)
+  schema_version = string (Computed)
+  status = string (Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+  target_type = string (Optional)
+  version_name = string (Optional)
+
+  attachments_source block "list" (Optional) {
+    key = string (Required)
+    values = ['list', 'string'] (Required)
+    name = string (Optional)
+  }
+}

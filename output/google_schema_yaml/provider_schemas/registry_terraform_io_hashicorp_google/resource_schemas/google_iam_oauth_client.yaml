@@ -1,0 +1,103 @@
+version: 0
+block:
+  attributes:
+    allowed_grant_types:
+      type:
+      - list
+      - string
+      description: Required. The list of OAuth grant types is allowed for the OauthClient.
+      description_kind: plain
+      required: true
+    allowed_redirect_uris:
+      type:
+      - list
+      - string
+      description: Required. The list of redirect uris that is allowed to redirect back when authorization process is completed.
+      description_kind: plain
+      required: true
+    allowed_scopes:
+      type:
+      - list
+      - string
+      description: 'Required. The list of scopes that the OauthClient is allowed to request during OAuth flows. The following scopes are supported: * ''https://www.googleapis.com/auth/cloud-platform'': See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account. * ''openid'': The OAuth client can associate you with your personal information on Google Cloud. * ''email'': The OAuth client can read a federated identity''s email address. * ''groups'': The OAuth client can read a federated identity''s groups.'
+      description_kind: plain
+      required: true
+    client_id:
+      type: string
+      description: Output only. The system-generated OauthClient id.
+      description_kind: plain
+      computed: true
+    client_type:
+      type: string
+      description: 'Immutable. The type of OauthClient. Either public or private. For private clients, the client secret can be managed using the dedicated OauthClientCredential resource. Possible values: CLIENT_TYPE_UNSPECIFIED PUBLIC_CLIENT CONFIDENTIAL_CLIENT'
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description: A user-specified description of the OauthClient. Cannot exceed 256 characters.
+      description_kind: plain
+      optional: true
+    disabled:
+      type: bool
+      description: Whether the OauthClient is disabled. You cannot use a disabled OAuth client.
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description: A user-specified display name of the OauthClient. Cannot exceed 32 characters.
+      description_kind: plain
+      optional: true
+    expire_time:
+      type: string
+      description: Time after which the OauthClient will be permanently purged and cannot be recovered.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: Resource ID segment making up resource 'name'. It identifies the resource within its parent collection as described in https://google.aip.dev/122.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: Immutable. Identifier. The resource name of the OauthClient. Format:'projects/{project}/locations/{location}/oauthClients/{oauth_client}'.
+      description_kind: plain
+      computed: true
+    oauth_client_id:
+      type: string
+      description: Required. The ID to use for the OauthClient, which becomes the final component of the resource name. This value should be a string of 6 to 63 lowercase letters, digits, or hyphens. It must start with a letter, and cannot have a trailing hyphen. The prefix 'gcp-' is reserved for use by Google, and may not be specified.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    state:
+      type: string
+      description: 'The state of the OauthClient. Possible values: STATE_UNSPECIFIED ACTIVE DELETED'
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

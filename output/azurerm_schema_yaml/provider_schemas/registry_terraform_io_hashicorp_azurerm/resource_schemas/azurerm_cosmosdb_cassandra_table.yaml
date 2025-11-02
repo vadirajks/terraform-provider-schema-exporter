@@ -1,0 +1,107 @@
+version: 0
+block:
+  attributes:
+    analytical_storage_ttl:
+      type: number
+      description_kind: plain
+      optional: true
+    cassandra_keyspace_id:
+      type: string
+      description_kind: plain
+      required: true
+    default_ttl:
+      type: number
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    throughput:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    autoscale_settings:
+      nesting_mode: list
+      block:
+        attributes:
+          max_throughput:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    schema:
+      nesting_mode: list
+      block:
+        block_types:
+          cluster_key:
+            nesting_mode: list
+            block:
+              attributes:
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                order_by:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          column:
+            nesting_mode: list
+            block:
+              attributes:
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                type:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+          partition_key:
+            nesting_mode: list
+            block:
+              attributes:
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,53 @@
+version: 0
+block:
+  attributes:
+    fqdn:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+    record:
+      type:
+      - set
+      - - object
+        - exchange: string
+          preference: number
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    ttl:
+      type: number
+      description_kind: plain
+      computed: true
+    zone_name:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

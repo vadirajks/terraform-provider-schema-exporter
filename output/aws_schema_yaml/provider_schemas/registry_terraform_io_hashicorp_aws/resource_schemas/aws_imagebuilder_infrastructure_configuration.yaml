@@ -1,0 +1,144 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    date_created:
+      type: string
+      description_kind: plain
+      computed: true
+    date_updated:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instance_profile_name:
+      type: string
+      description_kind: plain
+      required: true
+    instance_types:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    key_pair:
+      type: string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    security_group_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    sns_topic_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    subnet_id:
+      type: string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    terminate_instance_on_failure:
+      type: bool
+      description_kind: plain
+      optional: true
+  block_types:
+    instance_metadata_options:
+      nesting_mode: list
+      block:
+        attributes:
+          http_put_response_hop_limit:
+            type: number
+            description_kind: plain
+            optional: true
+          http_tokens:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    logging:
+      nesting_mode: list
+      block:
+        block_types:
+          s3_logs:
+            nesting_mode: list
+            block:
+              attributes:
+                s3_bucket_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                s3_key_prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    placement:
+      nesting_mode: list
+      block:
+        attributes:
+          availability_zone:
+            type: string
+            description_kind: plain
+            optional: true
+          host_id:
+            type: string
+            description_kind: plain
+            optional: true
+          host_resource_group_arn:
+            type: string
+            description_kind: plain
+            optional: true
+          tenancy:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

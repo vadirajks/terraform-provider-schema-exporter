@@ -1,0 +1,102 @@
+version: 0
+block:
+  attributes:
+    dns_proxy_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+      computed: true
+    dns_servers:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    firewall_policy_id:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ip_configuration:
+      type:
+      - list
+      - - object
+        - name: string
+          private_ip_address: string
+          public_ip_address_id: string
+          subnet_id: string
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    management_ip_configuration:
+      type:
+      - list
+      - - object
+        - name: string
+          private_ip_address: string
+          public_ip_address_id: string
+          subnet_id: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    sku_name:
+      type: string
+      description_kind: plain
+      computed: true
+    sku_tier:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    threat_intel_mode:
+      type: string
+      description_kind: plain
+      computed: true
+    virtual_hub:
+      type:
+      - list
+      - - object
+        - private_ip_address: string
+          public_ip_addresses:
+          - list
+          - string
+          public_ip_count: number
+          virtual_hub_id: string
+      description_kind: plain
+      computed: true
+    zones:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

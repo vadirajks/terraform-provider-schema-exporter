@@ -1,0 +1,15 @@
+data "google_vmwareengine_network_policy" "name" {
+  location = string (Required)
+  name = string (Required)
+  create_time = string (Computed)
+  description = string (Computed)
+  edge_services_cidr = string (Computed)
+  external_ip = ['list', ['object', {'enabled': 'bool', 'state': 'string'}]] (Computed)
+  id = string (Optional, Computed)
+  internet_access = ['list', ['object', {'enabled': 'bool', 'state': 'string'}]] (Computed)
+  project = string (Optional)
+  uid = string (Computed)
+  update_time = string (Computed)
+  vmware_engine_network = string (Computed)
+  vmware_engine_network_canonical = string (Computed)
+}

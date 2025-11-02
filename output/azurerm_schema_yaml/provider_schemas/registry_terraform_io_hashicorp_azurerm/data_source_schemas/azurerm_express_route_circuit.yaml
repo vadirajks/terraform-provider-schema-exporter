@@ -1,0 +1,69 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    peerings:
+      type:
+      - list
+      - - object
+        - azure_asn: number
+          peer_asn: number
+          peering_type: string
+          primary_peer_address_prefix: string
+          secondary_peer_address_prefix: string
+          shared_key: string
+          vlan_id: number
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    service_key:
+      type: string
+      description_kind: plain
+      computed: true
+    service_provider_properties:
+      type:
+      - list
+      - - object
+        - bandwidth_in_mbps: number
+          peering_location: string
+          service_provider_name: string
+      description_kind: plain
+      computed: true
+    service_provider_provisioning_state:
+      type: string
+      description_kind: plain
+      computed: true
+    sku:
+      type:
+      - list
+      - - object
+        - family: string
+          tier: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

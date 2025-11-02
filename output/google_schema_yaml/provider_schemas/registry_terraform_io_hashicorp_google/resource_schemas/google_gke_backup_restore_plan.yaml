@@ -1,0 +1,370 @@
+version: 0
+block:
+  attributes:
+    backup_plan:
+      type: string
+      description: A reference to the BackupPlan from which Backups may be used as the source for Restores created via this RestorePlan.
+      description_kind: plain
+      required: true
+    cluster:
+      type: string
+      description: The source cluster from which Restores will be created via this RestorePlan.
+      description_kind: plain
+      required: true
+    description:
+      type: string
+      description: User specified descriptive string for this RestorePlan.
+      description_kind: plain
+      optional: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Description: A set of custom labels supplied by the user. A list of key->value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: The region of the Restore Plan.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The full name of the BackupPlan Resource.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    state:
+      type: string
+      description: The State of the RestorePlan.
+      description_kind: plain
+      computed: true
+    state_reason:
+      type: string
+      description: Detailed description of why RestorePlan is in its current state.
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    uid:
+      type: string
+      description: Server generated, unique identifier of UUID format.
+      description_kind: plain
+      computed: true
+  block_types:
+    restore_config:
+      nesting_mode: list
+      block:
+        attributes:
+          all_namespaces:
+            type: bool
+            description: If True, restore all namespaced resources in the Backup. Setting this field to False will result in an error.
+            description_kind: plain
+            optional: true
+          cluster_resource_conflict_policy:
+            type: string
+            description: 'Defines the behavior for handling the situation where cluster-scoped resources being restored already exist in the target cluster. This MUST be set to a value other than ''CLUSTER_RESOURCE_CONFLICT_POLICY_UNSPECIFIED'' if ''clusterResourceRestoreScope'' is anyting other than ''noGroupKinds''. See https://cloud.google.com/kubernetes-engine/docs/add-on/backup-for-gke/reference/rest/v1/RestoreConfig#clusterresourceconflictpolicy for more information on each policy option. Possible values: ["USE_EXISTING_VERSION", "USE_BACKUP_VERSION"]'
+            description_kind: plain
+            optional: true
+          namespaced_resource_restore_mode:
+            type: string
+            description: 'Defines the behavior for handling the situation where sets of namespaced resources being restored already exist in the target cluster. This MUST be set to a value other than ''NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED'' if the ''namespacedResourceRestoreScope'' is anything other than ''noNamespaces''. See https://cloud.google.com/kubernetes-engine/docs/add-on/backup-for-gke/reference/rest/v1/RestoreConfig#namespacedresourcerestoremode for more information on each mode. Possible values: ["DELETE_AND_RESTORE", "FAIL_ON_CONFLICT", "MERGE_SKIP_ON_CONFLICT", "MERGE_REPLACE_VOLUME_ON_CONFLICT", "MERGE_REPLACE_ON_CONFLICT"]'
+            description_kind: plain
+            optional: true
+          no_namespaces:
+            type: bool
+            description: Do not restore any namespaced resources if set to "True". Specifying this field to "False" is not allowed.
+            description_kind: plain
+            optional: true
+          volume_data_restore_policy:
+            type: string
+            description: 'Specifies the mechanism to be used to restore volume data. This should be set to a value other than ''NAMESPACED_RESOURCE_RESTORE_MODE_UNSPECIFIED'' if the ''namespacedResourceRestoreScope'' is anything other than ''noNamespaces''. If not specified, it will be treated as ''NO_VOLUME_DATA_RESTORATION''. See https://cloud.google.com/kubernetes-engine/docs/add-on/backup-for-gke/reference/rest/v1/RestoreConfig#VolumeDataRestorePolicy for more information on each policy option. Possible values: ["RESTORE_VOLUME_DATA_FROM_BACKUP", "REUSE_VOLUME_HANDLE_FROM_BACKUP", "NO_VOLUME_DATA_RESTORATION"]'
+            description_kind: plain
+            optional: true
+        block_types:
+          cluster_resource_restore_scope:
+            nesting_mode: list
+            block:
+              attributes:
+                all_group_kinds:
+                  type: bool
+                  description: If True, all valid cluster-scoped resources will be restored. Mutually exclusive to any other field in 'clusterResourceRestoreScope'.
+                  description_kind: plain
+                  optional: true
+                no_group_kinds:
+                  type: bool
+                  description: If True, no cluster-scoped resources will be restored. Mutually exclusive to any other field in 'clusterResourceRestoreScope'.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                excluded_group_kinds:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      resource_group:
+                        type: string
+                        description: API Group string of a Kubernetes resource, e.g. "apiextensions.k8s.io", "storage.k8s.io", etc. Use empty string for core group.
+                        description_kind: plain
+                        optional: true
+                      resource_kind:
+                        type: string
+                        description: Kind of a Kubernetes resource, e.g. "CustomResourceDefinition", "StorageClass", etc.
+                        description_kind: plain
+                        optional: true
+                    description: A list of cluster-scoped resource group kinds to NOT restore from the backup. If specified, all valid cluster-scoped resources will be restored except for those specified in the list. Mutually exclusive to any other field in 'clusterResourceRestoreScope'.
+                    description_kind: plain
+                selected_group_kinds:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      resource_group:
+                        type: string
+                        description: API Group string of a Kubernetes resource, e.g. "apiextensions.k8s.io", "storage.k8s.io", etc. Use empty string for core group.
+                        description_kind: plain
+                        optional: true
+                      resource_kind:
+                        type: string
+                        description: Kind of a Kubernetes resource, e.g. "CustomResourceDefinition", "StorageClass", etc.
+                        description_kind: plain
+                        optional: true
+                    description: A list of cluster-scoped resource group kinds to restore from the backup. If specified, only the selected resources will be restored. Mutually exclusive to any other field in the 'clusterResourceRestoreScope'.
+                    description_kind: plain
+              description: Identifies the cluster-scoped resources to restore from the Backup.
+              description_kind: plain
+            max_items: 1
+          excluded_namespaces:
+            nesting_mode: list
+            block:
+              attributes:
+                namespaces:
+                  type:
+                  - list
+                  - string
+                  description: A list of Kubernetes Namespaces.
+                  description_kind: plain
+                  required: true
+              description: A list of selected namespaces excluded from restoration. All namespaces except those in this list will be restored.
+              description_kind: plain
+            max_items: 1
+          restore_order:
+            nesting_mode: list
+            block:
+              block_types:
+                group_kind_dependencies:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      requiring:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            resource_group:
+                              type: string
+                              description: API Group of a Kubernetes resource, e.g. "apiextensions.k8s.io", "storage.k8s.io", etc. Use empty string for core group.
+                              description_kind: plain
+                              optional: true
+                            resource_kind:
+                              type: string
+                              description: Kind of a Kubernetes resource, e.g. "CustomResourceDefinition", "StorageClass", etc.
+                              description_kind: plain
+                              optional: true
+                          description: The requiring group kind requires that the satisfying group kind be restored first.
+                          description_kind: plain
+                        min_items: 1
+                        max_items: 1
+                      satisfying:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            resource_group:
+                              type: string
+                              description: API Group of a Kubernetes resource, e.g. "apiextensions.k8s.io", "storage.k8s.io", etc. Use empty string for core group.
+                              description_kind: plain
+                              optional: true
+                            resource_kind:
+                              type: string
+                              description: Kind of a Kubernetes resource, e.g. "CustomResourceDefinition", "StorageClass", etc.
+                              description_kind: plain
+                              optional: true
+                          description: The satisfying group kind must be restored first in order to satisfy the dependency.
+                          description_kind: plain
+                        min_items: 1
+                        max_items: 1
+                    description: A list of group kind dependency pairs that is used by Backup for GKE to generate a group kind restore order.
+                    description_kind: plain
+                  min_items: 1
+              description: It contains custom ordering to use on a Restore.
+              description_kind: plain
+            max_items: 1
+          selected_applications:
+            nesting_mode: list
+            block:
+              block_types:
+                namespaced_names:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      name:
+                        type: string
+                        description: The name of a Kubernetes Resource.
+                        description_kind: plain
+                        required: true
+                      namespace:
+                        type: string
+                        description: The namespace of a Kubernetes Resource.
+                        description_kind: plain
+                        required: true
+                    description: A list of namespaced Kubernetes resources.
+                    description_kind: plain
+                  min_items: 1
+              description: A list of selected ProtectedApplications to restore. The listed ProtectedApplications and all the resources to which they refer will be restored.
+              description_kind: plain
+            max_items: 1
+          selected_namespaces:
+            nesting_mode: list
+            block:
+              attributes:
+                namespaces:
+                  type:
+                  - list
+                  - string
+                  description: A list of Kubernetes Namespaces.
+                  description_kind: plain
+                  required: true
+              description: A list of selected namespaces to restore from the Backup. The listed Namespaces and all resources contained in them will be restored.
+              description_kind: plain
+            max_items: 1
+          transformation_rules:
+            nesting_mode: list
+            block:
+              attributes:
+                description:
+                  type: string
+                  description: The description is a user specified string description of the transformation rule.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                field_actions:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      from_path:
+                        type: string
+                        description: A string containing a JSON Pointer value that references the location in the target document to move the value from.
+                        description_kind: plain
+                        optional: true
+                      op:
+                        type: string
+                        description: 'Specifies the operation to perform. Possible values: ["REMOVE", "MOVE", "COPY", "ADD", "TEST", "REPLACE"]'
+                        description_kind: plain
+                        required: true
+                      path:
+                        type: string
+                        description: A string containing a JSON-Pointer value that references a location within the target document where the operation is performed.
+                        description_kind: plain
+                        optional: true
+                      value:
+                        type: string
+                        description: A string that specifies the desired value in string format to use for transformation.
+                        description_kind: plain
+                        optional: true
+                    description: A list of transformation rule actions to take against candidate resources. Actions are executed in order defined - this order matters, as they could potentially interfere with each other and the first operation could affect the outcome of the second operation.
+                    description_kind: plain
+                  min_items: 1
+                resource_filter:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      json_path:
+                        type: string
+                        description: This is a JSONPath expression that matches specific fields of candidate resources and it operates as a filtering parameter (resources that are not matched with this expression will not be candidates for transformation).
+                        description_kind: plain
+                        optional: true
+                      namespaces:
+                        type:
+                        - list
+                        - string
+                        description: (Filtering parameter) Any resource subject to transformation must be contained within one of the listed Kubernetes Namespace in the Backup. If this field is not provided, no namespace filtering will be performed (all resources in all Namespaces, including all cluster-scoped resources, will be candidates for transformation). To mix cluster-scoped and namespaced resources in the same rule, use an empty string ("") as one of the target namespaces.
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      group_kinds:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            resource_group:
+                              type: string
+                              description: API Group string of a Kubernetes resource, e.g. "apiextensions.k8s.io", "storage.k8s.io", etc. Use empty string for core group.
+                              description_kind: plain
+                              optional: true
+                            resource_kind:
+                              type: string
+                              description: Kind of a Kubernetes resource, e.g. "CustomResourceDefinition", "StorageClass", etc.
+                              description_kind: plain
+                              optional: true
+                          description: (Filtering parameter) Any resource subject to transformation must belong to one of the listed "types". If this field is not provided, no type filtering will be performed (all resources of all types matching previous filtering parameters will be candidates for transformation).
+                          description_kind: plain
+                    description: This field is used to specify a set of fields that should be used to determine which resources in backup should be acted upon by the supplied transformation rule actions, and this will ensure that only specific resources are affected by transformation rule actions.
+                    description_kind: plain
+                  max_items: 1
+              description: A list of transformation rules to be applied against Kubernetes resources as they are selected for restoration from a Backup. Rules are executed in order defined - this order matters, as changes made by a rule may impact the filtering logic of subsequent rules. An empty list means no transformation will occur.
+              description_kind: plain
+          volume_data_restore_policy_bindings:
+            nesting_mode: list
+            block:
+              attributes:
+                policy:
+                  type: string
+                  description: 'Specifies the mechanism to be used to restore this volume data. See https://cloud.google.com/kubernetes-engine/docs/add-on/backup-for-gke/reference/rest/v1/RestoreConfig#VolumeDataRestorePolicy for more information on each policy option. Possible values: ["RESTORE_VOLUME_DATA_FROM_BACKUP", "REUSE_VOLUME_HANDLE_FROM_BACKUP", "NO_VOLUME_DATA_RESTORATION"]'
+                  description_kind: plain
+                  required: true
+                volume_type:
+                  type: string
+                  description: 'The volume type, as determined by the PVC''s bound PV, to apply the policy to. Possible values: ["GCE_PERSISTENT_DISK"]'
+                  description_kind: plain
+                  required: true
+              description: A table that binds volumes by their scope to a restore policy. Bindings must have a unique scope. Any volumes not scoped in the bindings are subject to the policy defined in volume_data_restore_policy.
+              description_kind: plain
+        description: Defines the configuration of Restores created via this RestorePlan.
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

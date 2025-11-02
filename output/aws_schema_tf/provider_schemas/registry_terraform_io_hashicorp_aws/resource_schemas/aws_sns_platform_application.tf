@@ -1,0 +1,18 @@
+resource "aws_sns_platform_application" "name" {
+  name = string (Required)
+  platform = string (Required)
+  platform_credential = string (Required)
+  apple_platform_bundle_id = string (Optional)
+  apple_platform_team_id = string (Optional)
+  arn = string (Computed)
+  event_delivery_failure_topic_arn = string (Optional)
+  event_endpoint_created_topic_arn = string (Optional)
+  event_endpoint_deleted_topic_arn = string (Optional)
+  event_endpoint_updated_topic_arn = string (Optional)
+  failure_feedback_role_arn = string (Optional)
+  id = string (Optional, Computed)
+  platform_principal = string (Optional)
+  region = string (Optional, Computed)
+  success_feedback_role_arn = string (Optional)
+  success_feedback_sample_rate = string (Optional)
+}

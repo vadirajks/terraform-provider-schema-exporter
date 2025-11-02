@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "custom_https_provisioning_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "required": true
+      },
+      "frontend_endpoint_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "custom_https_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "azure_key_vault_certificate_secret_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "azure_key_vault_certificate_secret_version": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "azure_key_vault_certificate_vault_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "certificate_source": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "minimum_tls_version": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "provisioning_state": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "provisioning_substate": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "availability_zone": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "blueprint_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "bundle_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "cpu_count": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "created_at": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ip_address_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "ipv6_addresses": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "is_static_ip": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "key_pair_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "private_ip_address": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "public_ip_address": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "ram_size": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "user_data": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "username": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "add_on": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "snapshot_time": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "status": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

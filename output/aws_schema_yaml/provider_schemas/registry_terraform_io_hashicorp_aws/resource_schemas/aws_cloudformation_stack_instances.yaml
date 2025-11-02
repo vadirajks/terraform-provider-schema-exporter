@@ -1,0 +1,147 @@
+version: 0
+block:
+  attributes:
+    accounts:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    call_as:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    parameter_overrides:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    regions:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    retain_stacks:
+      type: bool
+      description_kind: plain
+      optional: true
+    stack_instance_summaries:
+      type:
+      - list
+      - - object
+        - account_id: string
+          detailed_status: string
+          drift_status: string
+          organizational_unit_id: string
+          region: string
+          stack_id: string
+          stack_set_id: string
+          status: string
+          status_reason: string
+      description: List of stack instances created from an organizational unit deployment target. This will only be populated when `deployment_targets` is set.
+      description_kind: plain
+      computed: true
+    stack_set_id:
+      type: string
+      description_kind: plain
+      computed: true
+    stack_set_name:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    deployment_targets:
+      nesting_mode: list
+      block:
+        attributes:
+          account_filter_type:
+            type: string
+            description_kind: plain
+            optional: true
+          accounts:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          accounts_url:
+            type: string
+            description_kind: plain
+            optional: true
+          organizational_unit_ids:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    operation_preferences:
+      nesting_mode: list
+      block:
+        attributes:
+          concurrency_mode:
+            type: string
+            description_kind: plain
+            optional: true
+          failure_tolerance_count:
+            type: number
+            description_kind: plain
+            optional: true
+          failure_tolerance_percentage:
+            type: number
+            description_kind: plain
+            optional: true
+          max_concurrent_count:
+            type: number
+            description_kind: plain
+            optional: true
+          max_concurrent_percentage:
+            type: number
+            description_kind: plain
+            optional: true
+          region_concurrency_type:
+            type: string
+            description_kind: plain
+            optional: true
+          region_order:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

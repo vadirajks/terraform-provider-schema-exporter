@@ -1,0 +1,107 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "catalog": {
+        "type": "string",
+        "description": "The parent catalog.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "Output only. The creation time of the database. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\".",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "delete_time": {
+        "type": "string",
+        "description": "Output only. The deletion time of the database. Only set after the database is deleted. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\".",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "expire_time": {
+        "type": "string",
+        "description": "Output only. The time when this database is considered expired. Only set after the database is deleted. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\".",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the database.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "type": {
+        "type": "string",
+        "description": "The database type.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Output only. The last modification time of the database. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\".",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "hive_options": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "location_uri": {
+              "type": "string",
+              "description": "Cloud Storage folder URI where the database data is stored, starting with \"gs://\".",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "parameters": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description": "Stores user supplied Hive database parameters. An object containing a list of\"key\": value pairs. Example: { \"name\": \"wrench\", \"mass\": \"1.3kg\", \"count\": \"3\" }.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Options of a Hive database.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "databases": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "partner_server": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "id": "string",
+              "location": "string",
+              "role": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "read_write_endpoint_failover_policy": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "grace_minutes": "number",
+              "mode": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "readonly_endpoint_failover_policy_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "server_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,15 @@
+data "aws_api_gateway_authorizer" "name" {
+  authorizer_id = string (Required)
+  rest_api_id = string (Required)
+  arn = string (Computed)
+  authorizer_credentials = string (Computed)
+  authorizer_result_ttl_in_seconds = number (Computed)
+  authorizer_uri = string (Computed)
+  id = string (Optional, Computed)
+  identity_source = string (Computed)
+  identity_validation_expression = string (Computed)
+  name = string (Computed)
+  provider_arns = ['list', 'string'] (Computed)
+  region = string (Optional, Computed)
+  type = string (Computed)
+}

@@ -1,0 +1,102 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "fqdn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "https_only": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "identity": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "identity_ids": [
+                "list",
+                "string"
+              ],
+              "principal_id": "string",
+              "tenant_id": "string",
+              "type": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "is_public": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "persistent_disk": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "mount_path": "string",
+              "size_in_gb": "number"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "service_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tls_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "url": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,162 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    base_capacity:
+      type: number
+      description_kind: plain
+      required: true
+    compute_type:
+      type: string
+      description_kind: plain
+      required: true
+    created:
+      type: string
+      description_kind: plain
+      computed: true
+    environment_type:
+      type: string
+      description_kind: plain
+      required: true
+    fleet_service_role:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+    image_id:
+      type: string
+      description_kind: plain
+      optional: true
+    last_modified:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    overflow_behavior:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    status:
+      type:
+      - set
+      - - object
+        - context: string
+          message: string
+          status_code: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    compute_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          disk:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+          instance_type:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          machine_type:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          memory:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+          vcpu:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    scaling_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          desired_capacity:
+            type: number
+            description_kind: plain
+            computed: true
+          max_capacity:
+            type: number
+            description_kind: plain
+            optional: true
+          scaling_type:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          target_tracking_scaling_configs:
+            nesting_mode: list
+            block:
+              attributes:
+                metric_type:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                target_value:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+        description_kind: plain
+      max_items: 1
+    vpc_config:
+      nesting_mode: list
+      block:
+        attributes:
+          security_group_ids:
+            type:
+            - set
+            - string
+            description_kind: plain
+            required: true
+          subnets:
+            type:
+            - set
+            - string
+            description_kind: plain
+            required: true
+          vpc_id:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,231 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "Time the security profile was created in UTC.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "An optional description of the security profile. The Max length is 512 characters.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "etag": {
+        "type": "string",
+        "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "A map of key/value label pairs to assign to the resource. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location of the security profile. The default value is 'global'.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the security profile resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "parent": {
+        "type": "string",
+        "description": "The name of the parent this security profile belongs to. Format: organizations/{organization_id}.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "self_link": {
+        "type": "string",
+        "description": "Server-defined URL of this resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "type": {
+        "type": "string",
+        "description": "The type of security profile. Possible values: [\"THREAT_PREVENTION\", \"URL_FILTERING\", \"CUSTOM_MIRRORING\", \"CUSTOM_INTERCEPT\"]",
+        "description_kind": "plain",
+        "required": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Time the security profile was updated in UTC.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "custom_intercept_profile": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "intercept_endpoint_group": {
+              "type": "string",
+              "description": "The Intercept Endpoint Group to which matching traffic should be intercepted. Format: projects/{project_id}/locations/global/interceptEndpointGroups/{endpoint_group_id}",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "The configuration for defining the Intercept Endpoint Group used to intercept traffic to third-party firewall appliances.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "custom_mirroring_profile": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "mirroring_endpoint_group": {
+              "type": "string",
+              "description": "The Mirroring Endpoint Group to which matching traffic should be mirrored. Format: projects/{project_id}/locations/global/mirroringEndpointGroups/{endpoint_group_id}",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "The configuration for defining the Mirroring Endpoint Group used to mirror traffic to third-party collectors.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "threat_prevention_profile": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "antivirus_overrides": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "action": {
+                    "type": "string",
+                    "description": "Threat action override. For some threat types, only a subset of actions applies. Possible values: [\"ALERT\", \"ALLOW\", \"DEFAULT_ACTION\", \"DENY\"]",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "protocol": {
+                    "type": "string",
+                    "description": "Required protocol to match. Possible values: [\"SMTP\", \"SMB\", \"POP3\", \"IMAP\", \"HTTP2\", \"HTTP\", \"FTP\"]",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Defines what action to take for antivirus threats per protocol.",
+                "description_kind": "plain"
+              }
+            },
+            "severity_overrides": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "action": {
+                    "type": "string",
+                    "description": "Threat action override. Possible values: [\"ALERT\", \"ALLOW\", \"DEFAULT_ACTION\", \"DENY\"]",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "severity": {
+                    "type": "string",
+                    "description": "Severity level to match. Possible values: [\"CRITICAL\", \"HIGH\", \"INFORMATIONAL\", \"LOW\", \"MEDIUM\"]",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "The configuration for overriding threats actions by severity match.",
+                "description_kind": "plain"
+              }
+            },
+            "threat_overrides": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "action": {
+                    "type": "string",
+                    "description": "Threat action. Possible values: [\"ALERT\", \"ALLOW\", \"DEFAULT_ACTION\", \"DENY\"]",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "threat_id": {
+                    "type": "string",
+                    "description": "Vendor-specific ID of a threat to override.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "Type of threat.",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "description": "The configuration for overriding threats actions by threat id match. If a threat is matched both by configuration provided in severity overrides and threat overrides, the threat overrides action is applied.",
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description": "The threat prevention configuration for the security profile.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

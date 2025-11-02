@@ -1,0 +1,114 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    thing_group_indexing_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          thing_group_indexing_mode:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          custom_field:
+            nesting_mode: set
+            block:
+              attributes:
+                name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                type:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          managed_field:
+            nesting_mode: set
+            block:
+              attributes:
+                name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                type:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+        description_kind: plain
+      max_items: 1
+    thing_indexing_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          device_defender_indexing_mode:
+            type: string
+            description_kind: plain
+            optional: true
+          named_shadow_indexing_mode:
+            type: string
+            description_kind: plain
+            optional: true
+          thing_connectivity_indexing_mode:
+            type: string
+            description_kind: plain
+            optional: true
+          thing_indexing_mode:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          custom_field:
+            nesting_mode: set
+            block:
+              attributes:
+                name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                type:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          filter:
+            nesting_mode: list
+            block:
+              attributes:
+                named_shadow_names:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          managed_field:
+            nesting_mode: set
+            block:
+              attributes:
+                name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                type:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

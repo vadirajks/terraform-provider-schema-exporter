@@ -1,0 +1,124 @@
+version: 0
+block:
+  attributes:
+    credential_name:
+      type: string
+      description_kind: plain
+      optional: true
+    data_factory_id:
+      type: string
+      description_kind: plain
+      required: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    edition:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    license_type:
+      type: string
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    max_parallel_executions_per_node:
+      type: number
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    node_size:
+      type: string
+      description_kind: plain
+      required: true
+    number_of_nodes:
+      type: number
+      description_kind: plain
+      optional: true
+  block_types:
+    catalog_info:
+      nesting_mode: list
+      block:
+        attributes:
+          administrator_login:
+            type: string
+            description_kind: plain
+            optional: true
+          administrator_password:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          pricing_tier:
+            type: string
+            description_kind: plain
+            optional: true
+          server_endpoint:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    custom_setup_script:
+      nesting_mode: list
+      block:
+        attributes:
+          blob_container_uri:
+            type: string
+            description_kind: plain
+            required: true
+          sas_token:
+            type: string
+            description_kind: plain
+            required: true
+            sensitive: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    vnet_integration:
+      nesting_mode: list
+      block:
+        attributes:
+          subnet_name:
+            type: string
+            description_kind: plain
+            required: true
+          vnet_id:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain
+  deprecated: true

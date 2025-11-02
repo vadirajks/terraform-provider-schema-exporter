@@ -1,0 +1,143 @@
+version: 0
+block:
+  attributes:
+    access_keys_authentication_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    capacity:
+      type: number
+      description_kind: plain
+      computed: true
+    family:
+      type: string
+      description_kind: plain
+      computed: true
+    hostname:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    minimum_tls_version:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    non_ssl_port_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    patch_schedule:
+      type:
+      - list
+      - - object
+        - day_of_week: string
+          maintenance_window: string
+          start_hour_utc: number
+      description_kind: plain
+      computed: true
+    port:
+      type: number
+      description_kind: plain
+      computed: true
+    primary_access_key:
+      type: string
+      description_kind: plain
+      computed: true
+      sensitive: true
+    primary_connection_string:
+      type: string
+      description_kind: plain
+      computed: true
+      sensitive: true
+    private_static_ip_address:
+      type: string
+      description_kind: plain
+      computed: true
+    redis_configuration:
+      type:
+      - list
+      - - object
+        - active_directory_authentication_enabled: bool
+          aof_backup_enabled: bool
+          aof_storage_connection_string_0: string
+          aof_storage_connection_string_1: string
+          authentication_enabled: bool
+          data_persistence_authentication_method: string
+          maxclients: number
+          maxfragmentationmemory_reserved: number
+          maxmemory_delta: number
+          maxmemory_policy: string
+          maxmemory_reserved: number
+          notify_keyspace_events: string
+          rdb_backup_enabled: bool
+          rdb_backup_frequency: number
+          rdb_backup_max_snapshot_count: number
+          rdb_storage_connection_string: string
+          storage_account_subscription_id: string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    secondary_access_key:
+      type: string
+      description_kind: plain
+      computed: true
+      sensitive: true
+    secondary_connection_string:
+      type: string
+      description_kind: plain
+      computed: true
+      sensitive: true
+    shard_count:
+      type: number
+      description_kind: plain
+      computed: true
+    sku_name:
+      type: string
+      description_kind: plain
+      computed: true
+    ssl_port:
+      type: number
+      description_kind: plain
+      computed: true
+    subnet_id:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    zones:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

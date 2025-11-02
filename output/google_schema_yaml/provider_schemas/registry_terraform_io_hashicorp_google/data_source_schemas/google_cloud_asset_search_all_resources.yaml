@@ -1,0 +1,53 @@
+version: 0
+block:
+  attributes:
+    asset_types:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    query:
+      type: string
+      description_kind: plain
+      optional: true
+    results:
+      type:
+      - list
+      - - object
+        - asset_type: string
+          create_time: string
+          description: string
+          display_name: string
+          folders:
+          - list
+          - string
+          kms_keys:
+          - list
+          - string
+          labels:
+          - map
+          - string
+          location: string
+          name: string
+          network_tags:
+          - list
+          - string
+          organization: string
+          parent_asset_type: string
+          parent_full_resource_name: string
+          project: string
+          state: string
+          update_time: string
+      description_kind: plain
+      computed: true
+    scope:
+      type: string
+      description_kind: plain
+      required: true
+  description_kind: plain

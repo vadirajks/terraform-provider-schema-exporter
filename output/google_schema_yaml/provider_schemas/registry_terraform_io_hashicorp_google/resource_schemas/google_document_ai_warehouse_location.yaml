@@ -1,0 +1,53 @@
+version: 0
+block:
+  attributes:
+    access_control_mode:
+      type: string
+      description: 'The access control mode for accessing the customer data. Possible values: ["ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_GCI", "ACL_MODE_DOCUMENT_LEVEL_ACCESS_CONTROL_BYOID", "ACL_MODE_UNIVERSAL_ACCESS"]'
+      description_kind: plain
+      required: true
+    database_type:
+      type: string
+      description: 'The type of database used to store customer data. Possible values: ["DB_INFRA_SPANNER", "DB_CLOUD_SQL_POSTGRES"]'
+      description_kind: plain
+      required: true
+    document_creator_default_role:
+      type: string
+      description: 'The default role for the person who create a document. Possible values: ["DOCUMENT_ADMIN", "DOCUMENT_EDITOR", "DOCUMENT_VIEWER"]'
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kms_key:
+      type: string
+      description: The KMS key used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the kmsKey is left empty, no encryption will be enforced.
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: The location in which the instance is to be provisioned. It takes the form projects/{projectNumber}/locations/{location}.
+      description_kind: plain
+      required: true
+    project_number:
+      type: string
+      description: The unique identifier of the project.
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

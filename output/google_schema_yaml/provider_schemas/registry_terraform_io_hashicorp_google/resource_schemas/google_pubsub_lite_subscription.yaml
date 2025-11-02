@@ -1,0 +1,64 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: Name of the subscription.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: The region of the pubsub lite topic.
+      description_kind: plain
+      optional: true
+    topic:
+      type: string
+      description: A reference to a Topic resource.
+      description_kind: plain
+      required: true
+    zone:
+      type: string
+      description: The zone of the pubsub lite topic.
+      description_kind: plain
+      optional: true
+  block_types:
+    delivery_config:
+      nesting_mode: list
+      block:
+        attributes:
+          delivery_requirement:
+            type: string
+            description: 'When this subscription should send messages to subscribers relative to messages persistence in storage. Possible values: ["DELIVER_IMMEDIATELY", "DELIVER_AFTER_STORED", "DELIVERY_REQUIREMENT_UNSPECIFIED"]'
+            description_kind: plain
+            required: true
+        description: The settings for this subscription's message delivery.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

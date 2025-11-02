@@ -1,0 +1,173 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "api_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "channel_namespace_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "code_handlers": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "handler_configs": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "on_publish": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "behavior": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "integration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "data_source_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "lambda_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "invoke_type": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          }
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "on_subscribe": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "behavior": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "integration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "data_source_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "lambda_config": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "invoke_type": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          }
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "publish_auth_mode": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "auth_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "subscribe_auth_mode": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "auth_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

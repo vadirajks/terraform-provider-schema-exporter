@@ -1,0 +1,484 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "authorization_mode": {
+        "type": "string",
+        "description": "Optional. The authorization mode of the Redis cluster. If not provided, auth feature is disabled for the cluster. Default value: \"AUTH_MODE_DISABLED\" Possible values: [\"AUTH_MODE_UNSPECIFIED\", \"AUTH_MODE_IAM_AUTH\", \"AUTH_MODE_DISABLED\"]",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "automated_backup_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "fixed_frequency_schedule": [
+                "list",
+                [
+                  "object",
+                  {
+                    "start_time": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "hours": "number"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "retention": "string"
+            }
+          ]
+        ],
+        "description": "The automated backup config for a instance.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "available_maintenance_versions": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "This field is used to determine the available maintenance versions for the self service update.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "backup_collection": {
+        "type": "string",
+        "description": "The backup collection full resource name. Example: projects/{project}/locations/{location}/backupCollections/{collection}",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "The timestamp associated with the cluster creation request. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\".",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cross_cluster_replication_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "cluster_role": "string",
+              "membership": [
+                "list",
+                [
+                  "object",
+                  {
+                    "primary_cluster": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "cluster": "string",
+                          "uid": "string"
+                        }
+                      ]
+                    ],
+                    "secondary_clusters": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "cluster": "string",
+                          "uid": "string"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "primary_cluster": [
+                "list",
+                [
+                  "object",
+                  {
+                    "cluster": "string",
+                    "uid": "string"
+                  }
+                ]
+              ],
+              "secondary_clusters": [
+                "list",
+                [
+                  "object",
+                  {
+                    "cluster": "string",
+                    "uid": "string"
+                  }
+                ]
+              ],
+              "update_time": "string"
+            }
+          ]
+        ],
+        "description": "Cross cluster replication config",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "deletion_protection_enabled": {
+        "type": "bool",
+        "description": "Optional. Indicates if the cluster is deletion protected or not. If the value if set to true, any delete cluster operation will fail. Default value is true.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "discovery_endpoints": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "address": "string",
+              "port": "number",
+              "psc_config": [
+                "list",
+                [
+                  "object",
+                  {
+                    "network": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "Output only. Endpoints created on each given network, for Redis clients to connect to the cluster. Currently only one endpoint is supported.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "effective_maintenance_version": {
+        "type": "string",
+        "description": "This field represents the actual maintenance version of the cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "gcs_source": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "uris": [
+                "set",
+                "string"
+              ]
+            }
+          ]
+        ],
+        "description": "Backups stored in Cloud Storage buckets. The Cloud Storage buckets need to be the same region as the clusters.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "kms_key": {
+        "type": "string",
+        "description": "The KMS key used to encrypt the at-rest data of the cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "maintenance_policy": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "create_time": "string",
+              "update_time": "string",
+              "weekly_maintenance_window": [
+                "list",
+                [
+                  "object",
+                  {
+                    "day": "string",
+                    "duration": "string",
+                    "start_time": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "hours": "number",
+                          "minutes": "number",
+                          "nanos": "number",
+                          "seconds": "number"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "Maintenance policy for a cluster",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "maintenance_schedule": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "end_time": "string",
+              "schedule_deadline_time": "string",
+              "start_time": "string"
+            }
+          ]
+        ],
+        "description": "Upcoming maintenance schedule.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "maintenance_version": {
+        "type": "string",
+        "description": "This field can be used to trigger self service update to indicate the desired maintenance version. The input to this field can be determined by the available_maintenance_versions field. *Note*: This field can only be specified when updating an existing cluster to a newer version. Downgrades are currently not supported!",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "managed_backup_source": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "backup": "string"
+            }
+          ]
+        ],
+        "description": "Backups that generated and managed by memorystore.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "managed_server_ca": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "ca_certs": [
+                "list",
+                [
+                  "object",
+                  {
+                    "certificates": [
+                      "list",
+                      "string"
+                    ]
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "Cluster's Certificate Authority. This field will only be populated if Redis Cluster's transit_encryption_mode is TRANSIT_ENCRYPTION_MODE_SERVER_AUTHENTICATION",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Unique name of the resource in this scope including project and location using the form: projects/{projectId}/locations/{locationId}/clusters/{clusterId}",
+        "description_kind": "plain",
+        "required": true
+      },
+      "node_type": {
+        "type": "string",
+        "description": "The nodeType for the Redis cluster. If not provided, REDIS_HIGHMEM_MEDIUM will be used as default Possible values: [\"REDIS_SHARED_CORE_NANO\", \"REDIS_HIGHMEM_MEDIUM\", \"REDIS_HIGHMEM_XLARGE\", \"REDIS_STANDARD_SMALL\"]",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "persistence_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "aof_config": [
+                "list",
+                [
+                  "object",
+                  {
+                    "append_fsync": "string"
+                  }
+                ]
+              ],
+              "mode": "string",
+              "rdb_config": [
+                "list",
+                [
+                  "object",
+                  {
+                    "rdb_snapshot_period": "string",
+                    "rdb_snapshot_start_time": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "Persistence config (RDB, AOF) for the cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "precise_size_gb": {
+        "type": "number",
+        "description": "Output only. Redis memory precise size in GB for the entire cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "psc_configs": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "network": "string"
+            }
+          ]
+        ],
+        "description": "Required. Each PscConfig configures the consumer network where two network addresses will be designated to the cluster for client access. Currently, only one PscConfig is supported.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "psc_connections": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "address": "string",
+              "forwarding_rule": "string",
+              "network": "string",
+              "project_id": "string",
+              "psc_connection_id": "string"
+            }
+          ]
+        ],
+        "description": "Output only. PSC connections for discovery of the cluster topology and accessing the cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "psc_service_attachments": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "connection_type": "string",
+              "service_attachment": "string"
+            }
+          ]
+        ],
+        "description": "Service attachment details to configure Psc connections.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "redis_configs": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Configure Redis Cluster behavior using a subset of native Redis configuration parameters. Please check Memorystore documentation for the list of supported parameters: https://cloud.google.com/memorystore/docs/cluster/supported-instance-configurations",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "The name of the region of the Redis cluster.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "replica_count": {
+        "type": "number",
+        "description": "Optional. The number of replica nodes per shard.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "shard_count": {
+        "type": "number",
+        "description": "Required. Number of shards for the Redis cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "size_gb": {
+        "type": "number",
+        "description": "Output only. Redis memory size in GB for the entire cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "state": {
+        "type": "string",
+        "description": "The current state of this cluster. Can be CREATING, READY, UPDATING, DELETING and SUSPENDED",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "state_info": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "update_info": [
+                "list",
+                [
+                  "object",
+                  {
+                    "target_replica_count": "number",
+                    "target_shard_count": "number"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "Output only. Additional information about the current state of the cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "transit_encryption_mode": {
+        "type": "string",
+        "description": "Optional. The in-transit encryption for the Redis cluster. If not provided, encryption is disabled for the cluster. Default value: \"TRANSIT_ENCRYPTION_MODE_DISABLED\" Possible values: [\"TRANSIT_ENCRYPTION_MODE_UNSPECIFIED\", \"TRANSIT_ENCRYPTION_MODE_DISABLED\", \"TRANSIT_ENCRYPTION_MODE_SERVER_AUTHENTICATION\"]",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "uid": {
+        "type": "string",
+        "description": "System assigned, unique identifier for the cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "zone_distribution_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "mode": "string",
+              "zone": "string"
+            }
+          ]
+        ],
+        "description": "Immutable. Zone distribution config for Memorystore Redis cluster.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

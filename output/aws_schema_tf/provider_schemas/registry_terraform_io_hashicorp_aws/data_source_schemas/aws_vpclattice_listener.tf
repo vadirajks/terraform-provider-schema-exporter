@@ -1,0 +1,17 @@
+data "aws_vpclattice_listener" "name" {
+  listener_identifier = string (Required)
+  service_identifier = string (Required)
+  arn = string (Computed)
+  created_at = string (Computed)
+  default_action = ['list', ['object', {'fixed_response': ['list', ['object', {'status_code': 'number'}]], 'forward': ['list', ['object', {'target_groups': ['list', ['object', {'target_group_identifier': 'string', 'weight': 'number'}]]}]]}]] (Computed)
+  id = string (Optional, Computed)
+  last_updated_at = string (Computed)
+  listener_id = string (Computed)
+  name = string (Computed)
+  port = number (Computed)
+  protocol = string (Computed)
+  region = string (Optional, Computed)
+  service_arn = string (Computed)
+  service_id = string (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+}

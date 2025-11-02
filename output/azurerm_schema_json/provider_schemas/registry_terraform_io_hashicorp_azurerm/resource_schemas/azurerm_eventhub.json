@@ -1,0 +1,183 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "message_retention": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "namespace_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "namespace_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "deprecated": true,
+        "optional": true,
+        "computed": true
+      },
+      "partition_count": {
+        "type": "number",
+        "description_kind": "plain",
+        "required": true
+      },
+      "partition_ids": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "deprecated": true,
+        "optional": true,
+        "computed": true
+      },
+      "status": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "capture_description": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "required": true
+            },
+            "encoding": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "interval_in_seconds": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "size_limit_in_bytes": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "skip_empty_archives": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "destination": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "archive_name_format": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "blob_container_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "storage_account_id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "retention_description": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "cleanup_policy": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "retention_time_in_hours": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "tombstone_retention_time_in_hours": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

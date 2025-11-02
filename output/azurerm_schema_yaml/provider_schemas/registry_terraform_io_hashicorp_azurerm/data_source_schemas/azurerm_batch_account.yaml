@@ -1,0 +1,74 @@
+version: 0
+block:
+  attributes:
+    account_endpoint:
+      type: string
+      description_kind: plain
+      computed: true
+    encryption:
+      type:
+      - list
+      - - object
+        - key_vault_key_id: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    key_vault_reference:
+      type:
+      - list
+      - - object
+        - id: string
+          url: string
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    pool_allocation_mode:
+      type: string
+      description_kind: plain
+      computed: true
+    primary_access_key:
+      type: string
+      description_kind: plain
+      computed: true
+      sensitive: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    secondary_access_key:
+      type: string
+      description_kind: plain
+      computed: true
+      sensitive: true
+    storage_account_id:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

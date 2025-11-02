@@ -1,0 +1,85 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    owner_id:
+      type: string
+      description_kind: plain
+      computed: true
+    propagating_vgws:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    route:
+      type:
+      - set
+      - - object
+        - carrier_gateway_id: string
+          cidr_block: string
+          core_network_arn: string
+          destination_prefix_list_id: string
+          egress_only_gateway_id: string
+          gateway_id: string
+          ipv6_cidr_block: string
+          local_gateway_id: string
+          nat_gateway_id: string
+          network_interface_id: string
+          transit_gateway_id: string
+          vpc_endpoint_id: string
+          vpc_peering_connection_id: string
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    vpc_id:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

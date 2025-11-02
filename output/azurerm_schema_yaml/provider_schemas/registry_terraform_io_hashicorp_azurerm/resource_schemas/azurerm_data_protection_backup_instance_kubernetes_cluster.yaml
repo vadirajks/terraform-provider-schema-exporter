@@ -1,0 +1,95 @@
+version: 0
+block:
+  attributes:
+    backup_policy_id:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kubernetes_cluster_id:
+      type: string
+      description_kind: plain
+      required: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    snapshot_resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    vault_id:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    backup_datasource_parameters:
+      nesting_mode: list
+      block:
+        attributes:
+          cluster_scoped_resources_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          excluded_namespaces:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          excluded_resource_types:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          included_namespaces:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          included_resource_types:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          label_selectors:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          volume_snapshot_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

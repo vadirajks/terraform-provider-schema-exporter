@@ -1,0 +1,102 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "cdn_endpoint_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "host_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "cdn_managed_https": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "certificate_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "protocol_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "tls_version": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "user_managed_https": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "key_vault_secret_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "tls_version": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

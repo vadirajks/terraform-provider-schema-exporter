@@ -1,0 +1,15 @@
+resource "aws_transfer_certificate" "name" {
+  certificate = string (Required)
+  usage = string (Required)
+  active_date = string (Computed)
+  arn = string (Computed)
+  certificate_chain = string (Optional)
+  certificate_id = string (Computed)
+  description = string (Optional)
+  id = string (Optional, Computed)
+  inactive_date = string (Computed)
+  private_key = string (Optional)
+  region = string (Optional, Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+}

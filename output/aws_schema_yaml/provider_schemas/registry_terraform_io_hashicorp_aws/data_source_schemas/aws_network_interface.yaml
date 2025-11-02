@@ -1,0 +1,137 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    association:
+      type:
+      - list
+      - - object
+        - allocation_id: string
+          association_id: string
+          carrier_ip: string
+          customer_owned_ip: string
+          ip_owner_id: string
+          public_dns_name: string
+          public_ip: string
+      description_kind: plain
+      computed: true
+    attachment:
+      type:
+      - list
+      - - object
+        - attachment_id: string
+          device_index: number
+          instance_id: string
+          instance_owner_id: string
+          network_card_index: number
+      description_kind: plain
+      computed: true
+    availability_zone:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    interface_type:
+      type: string
+      description_kind: plain
+      computed: true
+    ipv6_addresses:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    mac_address:
+      type: string
+      description_kind: plain
+      computed: true
+    outpost_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    owner_id:
+      type: string
+      description_kind: plain
+      computed: true
+    private_dns_name:
+      type: string
+      description_kind: plain
+      computed: true
+    private_ip:
+      type: string
+      description_kind: plain
+      computed: true
+    private_ips:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    requester_id:
+      type: string
+      description_kind: plain
+      computed: true
+    security_groups:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    subnet_id:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    vpc_id:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    filter:
+      nesting_mode: set
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          values:
+            type:
+            - set
+            - string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

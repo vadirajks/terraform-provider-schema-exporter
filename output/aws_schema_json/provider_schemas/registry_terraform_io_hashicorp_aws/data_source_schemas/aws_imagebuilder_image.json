@@ -1,0 +1,168 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "build_version_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "container_recipe_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "date_created": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "distribution_configuration_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "enhanced_image_metadata_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "image_recipe_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "image_scanning_configuration": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "ecr_configuration": [
+                "list",
+                [
+                  "object",
+                  {
+                    "container_tags": [
+                      "set",
+                      "string"
+                    ],
+                    "repository_name": "string"
+                  }
+                ]
+              ],
+              "image_scanning_enabled": "bool"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "image_tests_configuration": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "image_tests_enabled": "bool",
+              "timeout_minutes": "number"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "infrastructure_configuration_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "os_version": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "output_resources": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "amis": [
+                "set",
+                [
+                  "object",
+                  {
+                    "account_id": "string",
+                    "description": "string",
+                    "image": "string",
+                    "name": "string",
+                    "region": "string"
+                  }
+                ]
+              ],
+              "containers": [
+                "set",
+                [
+                  "object",
+                  {
+                    "image_uris": [
+                      "set",
+                      "string"
+                    ],
+                    "region": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "platform": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "version": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

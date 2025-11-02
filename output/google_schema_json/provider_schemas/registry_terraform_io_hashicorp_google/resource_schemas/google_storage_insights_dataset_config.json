@@ -1,0 +1,302 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "The UTC time at which the DatasetConfig was created. This is auto-populated.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "dataset_config_id": {
+        "type": "string",
+        "description": "The user-defined ID of the DatasetConfig",
+        "description_kind": "plain",
+        "required": true
+      },
+      "dataset_config_state": {
+        "type": "string",
+        "description": "State of the DatasetConfig.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "An optional user-provided description for the dataset configuration with a maximum length of 256 characters.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "include_newly_created_buckets": {
+        "type": "bool",
+        "description": "If set to true, the request includes all the newly created buckets in the dataset that meet the inclusion and exclusion rules.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "link": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "dataset": "string",
+              "linked": "bool"
+            }
+          ]
+        ],
+        "description": "Details of the linked DatasetConfig.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "link_dataset": {
+        "type": "bool",
+        "description": "A boolean terraform only flag to link/unlink dataset. Setting this field to true while creation will automatically link the created dataset as an additional functionality. -> **Note** A dataset config resource can only be destroyed once it is unlinked, so users must set this field to false to unlink the dataset and destroy the dataset config resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location of the DatasetConfig.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The full canonical resource name of the DatasetConfig (e.g., projects/P/locations/L/datasetConfigs/ID).",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "organization_number": {
+        "type": "string",
+        "description": "Organization resource ID that the source projects should belong to. Projects that do not belong to the provided organization are not considered when creating the dataset.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "organization_scope": {
+        "type": "bool",
+        "description": "Defines the options for providing a source organization for the DatasetConfig.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "retention_period_days": {
+        "type": "number",
+        "description": "Number of days of history that must be retained.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "uid": {
+        "type": "string",
+        "description": "System generated unique identifier for the resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "The UTC time at which the DatasetConfig was updated. This is auto-populated.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "exclude_cloud_storage_buckets": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "cloud_storage_buckets": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "bucket_name": {
+                    "type": "string",
+                    "description": "The list of cloud storage bucket names to exclude in the DatasetConfig. Exactly one of the bucket_name and bucket_prefix_regex should be specified.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "bucket_prefix_regex": {
+                    "type": "string",
+                    "description": "The list of regex patterns for bucket names matching the regex. Regex should follow the syntax specified in google/re2 on GitHub. Exactly one of the bucket_name and bucket_prefix_regex should be specified.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "The list of cloud storage buckets/bucket prefix regexes to exclude in the DatasetConfig.",
+                "description_kind": "plain"
+              },
+              "min_items": 1
+            }
+          },
+          "description": "Defined the options for excluding cloud storage buckets for the DatasetConfig.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "exclude_cloud_storage_locations": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "locations": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "The list of cloud storage locations to exclude in the DatasetConfig.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Defines the options for excluding cloud storage locations for the DatasetConfig.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "identity": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "name": {
+              "type": "string",
+              "description": "Name of the identity.",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "type": {
+              "type": "string",
+              "description": "Type of identity to use for the DatasetConfig. Possible values: [\"IDENTITY_TYPE_PER_CONFIG\", \"IDENTITY_TYPE_PER_PROJECT\"]",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Identity used by DatasetConfig.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "include_cloud_storage_buckets": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "cloud_storage_buckets": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "bucket_name": {
+                    "type": "string",
+                    "description": "The list of cloud storage bucket names to include in the DatasetConfig. Exactly one of the bucket_name and bucket_prefix_regex should be specified.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "bucket_prefix_regex": {
+                    "type": "string",
+                    "description": "The list of regex patterns for bucket names matching the regex. Regex should follow the syntax specified in google/re2 on GitHub. Exactly one of the bucket_name and bucket_prefix_regex should be specified.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "The list of cloud storage buckets/bucket prefix regexes to include in the DatasetConfig.",
+                "description_kind": "plain"
+              },
+              "min_items": 1
+            }
+          },
+          "description": "Defines the options for including cloud storage buckets for the DatasetConfig.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "include_cloud_storage_locations": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "locations": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "The list of cloud storage locations to include in the DatasetConfig.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Defines the options for including cloud storage locations for the DatasetConfig.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "source_folders": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "folder_numbers": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "The list of folder numbers to include in the DatasetConfig.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Defines the options for providing source folders for the DatasetConfig.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "source_projects": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "project_numbers": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "The list of project numbers to include in the DatasetConfig.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Defines the options for providing source projects for the DatasetConfig.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

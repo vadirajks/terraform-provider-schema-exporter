@@ -1,0 +1,94 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    caller_reference:
+      type: string
+      description_kind: plain
+      computed: true
+    comment:
+      type: string
+      description_kind: plain
+      optional: true
+    etag:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    content_type_profile_config:
+      nesting_mode: list
+      block:
+        attributes:
+          forward_when_content_type_is_unknown:
+            type: bool
+            description_kind: plain
+            required: true
+        block_types:
+          content_type_profiles:
+            nesting_mode: list
+            block:
+              block_types:
+                items:
+                  nesting_mode: set
+                  block:
+                    attributes:
+                      content_type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      format:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      profile_id:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  min_items: 1
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    query_arg_profile_config:
+      nesting_mode: list
+      block:
+        attributes:
+          forward_when_query_arg_profile_is_unknown:
+            type: bool
+            description_kind: plain
+            required: true
+        block_types:
+          query_arg_profiles:
+            nesting_mode: list
+            block:
+              block_types:
+                items:
+                  nesting_mode: set
+                  block:
+                    attributes:
+                      profile_id:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      query_arg:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+  description_kind: plain

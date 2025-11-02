@@ -1,0 +1,113 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    virtual_hub_id:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    rule:
+      nesting_mode: list
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          next_step_if_matched:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          action:
+            nesting_mode: list
+            block:
+              attributes:
+                type:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                parameter:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      as_path:
+                        type:
+                        - list
+                        - string
+                        description_kind: plain
+                        optional: true
+                      community:
+                        type:
+                        - list
+                        - string
+                        description_kind: plain
+                        optional: true
+                      route_prefix:
+                        type:
+                        - list
+                        - string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+              description_kind: plain
+          match_criterion:
+            nesting_mode: list
+            block:
+              attributes:
+                as_path:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                community:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                match_condition:
+                  type: string
+                  description_kind: plain
+                  required: true
+                route_prefix:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

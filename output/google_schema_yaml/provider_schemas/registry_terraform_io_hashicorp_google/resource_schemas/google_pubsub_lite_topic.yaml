@@ -1,0 +1,106 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: Name of the topic.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: The region of the pubsub lite topic.
+      description_kind: plain
+      optional: true
+    zone:
+      type: string
+      description: The zone of the pubsub lite topic.
+      description_kind: plain
+      optional: true
+  block_types:
+    partition_config:
+      nesting_mode: list
+      block:
+        attributes:
+          count:
+            type: number
+            description: The number of partitions in the topic. Must be at least 1.
+            description_kind: plain
+            required: true
+        block_types:
+          capacity:
+            nesting_mode: list
+            block:
+              attributes:
+                publish_mib_per_sec:
+                  type: number
+                  description: Subscribe throughput capacity per partition in MiB/s. Must be >= 4 and <= 16.
+                  description_kind: plain
+                  required: true
+                subscribe_mib_per_sec:
+                  type: number
+                  description: Publish throughput capacity per partition in MiB/s. Must be >= 4 and <= 16.
+                  description_kind: plain
+                  required: true
+              description: The capacity configuration.
+              description_kind: plain
+            max_items: 1
+        description: The settings for this topic's partitions.
+        description_kind: plain
+      max_items: 1
+    reservation_config:
+      nesting_mode: list
+      block:
+        attributes:
+          throughput_reservation:
+            type: string
+            description: The Reservation to use for this topic's throughput capacity.
+            description_kind: plain
+            optional: true
+        description: The settings for this topic's Reservation usage.
+        description_kind: plain
+      max_items: 1
+    retention_config:
+      nesting_mode: list
+      block:
+        attributes:
+          per_partition_bytes:
+            type: string
+            description: The provisioned storage, in bytes, per partition. If the number of bytes stored in any of the topic's partitions grows beyond this value, older messages will be dropped to make room for newer ones, regardless of the value of period.
+            description_kind: plain
+            required: true
+          period:
+            type: string
+            description: 'How long a published message is retained. If unset, messages will be retained as long as the bytes retained for each partition is below perPartitionBytes. A duration in seconds with up to nine fractional digits, terminated by ''s''. Example: "3.5s".'
+            description_kind: plain
+            optional: true
+        description: The settings for a topic's message retention.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

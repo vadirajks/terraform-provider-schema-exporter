@@ -1,0 +1,124 @@
+version: 0
+block:
+  attributes:
+    agent_version:
+      type: string
+      description_kind: plain
+      computed: true
+    arc_agent_auto_upgrade_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    arc_agent_desired_version:
+      type: string
+      description_kind: plain
+      optional: true
+    distribution:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    infrastructure:
+      type: string
+      description_kind: plain
+      computed: true
+    kubernetes_version:
+      type: string
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    offering:
+      type: string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    total_core_count:
+      type: number
+      description_kind: plain
+      computed: true
+    total_node_count:
+      type: number
+      description_kind: plain
+      computed: true
+  block_types:
+    azure_active_directory:
+      nesting_mode: list
+      block:
+        attributes:
+          admin_group_object_ids:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          azure_rbac_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          tenant_id:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    identity:
+      nesting_mode: list
+      block:
+        attributes:
+          principal_id:
+            type: string
+            description_kind: plain
+            computed: true
+          tenant_id:
+            type: string
+            description_kind: plain
+            computed: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

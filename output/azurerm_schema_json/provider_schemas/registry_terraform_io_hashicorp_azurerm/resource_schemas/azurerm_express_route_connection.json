@@ -1,0 +1,139 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "authorization_key": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "enable_internet_security": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "express_route_circuit_peering_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "express_route_gateway_bypass_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "express_route_gateway_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "private_link_fast_path_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "deprecated": true,
+        "optional": true
+      },
+      "routing_weight": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "routing": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "associated_route_table_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "inbound_route_map_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "outbound_route_map_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "propagated_route_table": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "labels": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "route_table_ids": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

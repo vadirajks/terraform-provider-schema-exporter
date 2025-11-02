@@ -1,0 +1,16 @@
+data "google_compute_backend_bucket" "name" {
+  name = string (Required)
+  bucket_name = string (Computed)
+  cdn_policy = ['list', ['object', {'bypass_cache_on_request_headers': ['list', ['object', {'header_name': 'string'}]], 'cache_key_policy': ['list', ['object', {'include_http_headers': ['list', 'string'], 'query_string_whitelist': ['list', 'string']}]], 'cache_mode': 'string', 'client_ttl': 'number', 'default_ttl': 'number', 'max_ttl': 'number', 'negative_caching': 'bool', 'negative_caching_policy': ['list', ['object', {'code': 'number', 'ttl': 'number'}]], 'request_coalescing': 'bool', 'serve_while_stale': 'number', 'signed_url_cache_max_age_sec': 'number'}]] (Computed)
+  compression_mode = string (Computed)
+  creation_timestamp = string (Computed)
+  custom_response_headers = ['list', 'string'] (Computed)
+  description = string (Computed)
+  edge_security_policy = string (Computed)
+  enable_cdn = bool (Computed)
+  id = string (Optional, Computed)
+  load_balancing_scheme = string (Computed)
+  params = ['list', ['object', {'resource_manager_tags': ['map', 'string']}]] (Computed)
+  project = string (Optional)
+  self_link = string (Computed)
+}

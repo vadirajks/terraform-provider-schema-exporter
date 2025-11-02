@@ -1,0 +1,16 @@
+resource "aws_cloud9_environment_ec2" "name" {
+  image_id = string (Required)
+  instance_type = string (Required)
+  name = string (Required)
+  arn = string (Computed)
+  automatic_stop_time_minutes = number (Optional)
+  connection_type = string (Optional)
+  description = string (Optional)
+  id = string (Optional, Computed)
+  owner_arn = string (Optional, Computed)
+  region = string (Optional, Computed)
+  subnet_id = string (Optional)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+  type = string (Computed)
+}

@@ -1,0 +1,114 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    directory_user_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    hierarchy_group_id:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instance_id:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    password:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    routing_profile_id:
+      type: string
+      description_kind: plain
+      required: true
+    security_profile_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    user_id:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    identity_info:
+      nesting_mode: list
+      block:
+        attributes:
+          email:
+            type: string
+            description_kind: plain
+            optional: true
+          first_name:
+            type: string
+            description_kind: plain
+            optional: true
+          last_name:
+            type: string
+            description_kind: plain
+            optional: true
+          secondary_email:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    phone_config:
+      nesting_mode: list
+      block:
+        attributes:
+          after_contact_work_time_limit:
+            type: number
+            description_kind: plain
+            optional: true
+          auto_accept:
+            type: bool
+            description_kind: plain
+            optional: true
+          desk_phone_number:
+            type: string
+            description_kind: plain
+            optional: true
+          phone_type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+  description_kind: plain

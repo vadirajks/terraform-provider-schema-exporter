@@ -1,0 +1,100 @@
+version: 0
+block:
+  attributes:
+    associated_networks:
+      type:
+      - list
+      - string
+      description: 'List of networks that are associated with this endpoint in the local zone. This is a projection of the FirewallEndpointAssociations pointing at this endpoint. A network will only appear in this list after traffic routing is fully configured. Format: projects/{project}/global/networks/{name}.'
+      description_kind: plain
+      computed: true
+    billing_project_id:
+      type: string
+      description: Project to bill on endpoint uptime usage.
+      description_kind: plain
+      required: true
+    create_time:
+      type: string
+      description: Time the firewall endpoint was created in UTC.
+      description_kind: plain
+      computed: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'A map of key/value label pairs to assign to the resource. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: The location (zone) of the firewall endpoint.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The name of the firewall endpoint resource.
+      description_kind: plain
+      required: true
+    parent:
+      type: string
+      description: 'The name of the parent this firewall endpoint belongs to. Format: organizations/{organization_id}.'
+      description_kind: plain
+      required: true
+    reconciling:
+      type: bool
+      description: Whether reconciling is in progress, recommended per https://google.aip.dev/128.
+      description_kind: plain
+      computed: true
+    self_link:
+      type: string
+      description: Server-defined URL of this resource.
+      description_kind: plain
+      computed: true
+    state:
+      type: string
+      description: The current state of the endpoint.
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: Time the firewall endpoint was updated in UTC.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

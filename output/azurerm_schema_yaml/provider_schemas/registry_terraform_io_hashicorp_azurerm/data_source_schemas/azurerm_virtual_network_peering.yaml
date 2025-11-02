@@ -1,0 +1,55 @@
+version: 0
+block:
+  attributes:
+    allow_forwarded_traffic:
+      type: bool
+      description_kind: plain
+      computed: true
+    allow_gateway_transit:
+      type: bool
+      description_kind: plain
+      computed: true
+    allow_virtual_network_access:
+      type: bool
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    only_ipv6_peering_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    peer_complete_virtual_networks_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    remote_virtual_network_id:
+      type: string
+      description_kind: plain
+      computed: true
+    use_remote_gateways:
+      type: bool
+      description_kind: plain
+      computed: true
+    virtual_network_id:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,54 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    required_tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    resources:
+      type:
+      - list
+      - - object
+        - id: string
+          location: string
+          name: string
+          resource_group_name: string
+          tags:
+          - map
+          - string
+          type: string
+      description_kind: plain
+      computed: true
+    type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,187 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kms_key_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    job_template_data:
+      nesting_mode: list
+      block:
+        attributes:
+          execution_role_arn:
+            type: string
+            description_kind: plain
+            required: true
+          job_tags:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+          release_label:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          configuration_overrides:
+            nesting_mode: list
+            block:
+              block_types:
+                application_configuration:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      classification:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      properties:
+                        type:
+                        - map
+                        - string
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      configurations:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            classification:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            properties:
+                              type:
+                              - map
+                              - string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 100
+                    description_kind: plain
+                  max_items: 100
+                monitoring_configuration:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      persistent_app_ui:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      cloud_watch_monitoring_configuration:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            log_group_name:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            log_stream_name_prefix:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                      s3_monitoring_configuration:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            log_uri:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                        max_items: 1
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          job_driver:
+            nesting_mode: list
+            block:
+              block_types:
+                spark_sql_job_driver:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      entry_point:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      spark_sql_parameters:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+                spark_submit_job_driver:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      entry_point:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      entry_point_arguments:
+                        type:
+                        - set
+                        - string
+                        description_kind: plain
+                        optional: true
+                      spark_submit_parameters:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

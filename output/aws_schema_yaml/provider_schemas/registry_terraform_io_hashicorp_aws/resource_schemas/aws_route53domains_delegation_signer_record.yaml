@@ -1,0 +1,49 @@
+version: 0
+block:
+  attributes:
+    dnssec_key_id:
+      type: string
+      description_kind: plain
+      computed: true
+    domain_name:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    signing_attributes:
+      nesting_mode: list
+      block:
+        attributes:
+          algorithm:
+            type: number
+            description_kind: plain
+            required: true
+          flags:
+            type: number
+            description_kind: plain
+            required: true
+          public_key:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,120 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "deletion_protection": {
+        "type": "string",
+        "description": "A field to make the authorized view protected against data loss i.e. when set to PROTECTED, deleting the authorized view, the table containing the authorized view, and the instance containing the authorized view would be prohibited. If not provided, currently deletion protection will be set to UNPROTECTED as it is the API default value. Note this field configs the deletion protection provided by the API in the backend, and should not be confused with Terraform-side deletion protection.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "instance_name": {
+        "type": "string",
+        "description": "The name of the Bigtable instance in which the authorized view belongs.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the authorized view. Must be 1-50 characters and must only contain hyphens, underscores, periods, letters and numbers.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description": "The ID of the project in which the resource belongs. If it is not provided, the provider project is used.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "table_name": {
+        "type": "string",
+        "description": "The name of the Bigtable table in which the authorized view belongs.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "subset_view": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "row_prefixes": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description": "Base64-encoded row prefixes to be included in the authorized view. To provide access to all rows, include the empty string as a prefix (\"\").",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "family_subsets": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "family_name": {
+                    "type": "string",
+                    "description": "Name of the column family to be included in the authorized view.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "qualifier_prefixes": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description": "Base64-encoded prefixes for qualifiers of the column family to be included in the authorized view. Every qualifier starting with one of these prefixes is included in the authorized view. To provide access to all qualifiers, include the empty string as a prefix (\"\").",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "qualifiers": {
+                    "type": [
+                      "set",
+                      "string"
+                    ],
+                    "description": "Base64-encoded individual exact column qualifiers of the column family to be included in the authorized view.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Subsets of column families to be included in the authorized view.",
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description": "An AuthorizedView permitting access to an explicit subset of a Table.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

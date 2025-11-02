@@ -1,0 +1,275 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "confidence": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "created_by": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "created_on": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "defanged": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "display_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "extension": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "external_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "external_last_updated_time_utc": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "guid": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "indicator_type": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "language": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "last_updated_time_utc": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "object_marking_refs": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "parsed_pattern": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "pattern_type_key": "string",
+              "pattern_type_values": [
+                "list",
+                [
+                  "object",
+                  {
+                    "value": "string",
+                    "value_type": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "pattern": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "pattern_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "pattern_version": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "revoked": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "source": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "threat_types": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "validate_from_utc": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "validate_until_utc": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "workspace_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "external_reference": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "description": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "hashes": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "id": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "source_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "url": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "granular_marking": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "language": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "marking_ref": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "selectors": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "kill_chain_phase": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "commitment": {
+        "type": "string",
+        "description": "Full or partial URL to a parent commitment. This field displays for reservations that are tied to a commitment.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "creation_timestamp": {
+        "type": "string",
+        "description": "Creation timestamp in RFC3339 text format.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "delete_after_duration": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "nanos": "number",
+              "seconds": "string"
+            }
+          ]
+        ],
+        "description": "Duration after which the reservation will be auto-deleted by Compute Engine. Cannot be used with delete_at_time.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "delete_at_time": {
+        "type": "string",
+        "description": "Absolute time in future when the reservation will be auto-deleted by Compute Engine. Timestamp is represented in RFC3339 text format. Cannot be used with delete_after_duration.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "An optional description of this resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "reservation_sharing_policy": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "service_share_type": "string"
+            }
+          ]
+        ],
+        "description": "Sharing policy for reservations with Google Cloud managed services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "self_link": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "share_settings": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "project_map": [
+                "set",
+                [
+                  "object",
+                  {
+                    "id": "string",
+                    "project_id": "string"
+                  }
+                ]
+              ],
+              "share_type": "string"
+            }
+          ]
+        ],
+        "description": "The share setting for reservations.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "specific_reservation": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "count": "number",
+              "in_use_count": "number",
+              "instance_properties": [
+                "list",
+                [
+                  "object",
+                  {
+                    "guest_accelerators": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "accelerator_count": "number",
+                          "accelerator_type": "string"
+                        }
+                      ]
+                    ],
+                    "local_ssds": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "disk_size_gb": "number",
+                          "interface": "string"
+                        }
+                      ]
+                    ],
+                    "machine_type": "string",
+                    "min_cpu_platform": "string"
+                  }
+                ]
+              ],
+              "source_instance_template": "string"
+            }
+          ]
+        ],
+        "description": "Reservation for instances with specific machine shapes.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "specific_reservation_required": {
+        "type": "bool",
+        "description": "When set to true, only VMs that target this reservation by name can consume this reservation. Otherwise, it can be consumed by VMs with affinity for any reservation. Defaults to false.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "status": {
+        "type": "string",
+        "description": "The status of the reservation.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "zone": {
+        "type": "string",
+        "description": "The zone where the reservation is made.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

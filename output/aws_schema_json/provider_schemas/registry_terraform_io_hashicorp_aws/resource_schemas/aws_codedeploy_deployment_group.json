@@ -1,0 +1,438 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "app_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "autoscaling_groups": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "compute_platform": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "deployment_config_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "deployment_group_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "deployment_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "outdated_instances_strategy": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "service_role_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "termination_hook_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "alarm_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "alarms": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "ignore_poll_alarm_failure": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "auto_rollback_configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "events": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "blue_green_deployment_config": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "deployment_ready_option": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "action_on_timeout": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "wait_time_in_minutes": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "green_fleet_provisioning_option": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "action": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "terminate_blue_instances_on_deployment_success": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "action": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "termination_wait_time_in_minutes": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "deployment_style": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "deployment_option": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "deployment_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "ec2_tag_filter": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "key": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "value": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "ec2_tag_set": {
+        "nesting_mode": "set",
+        "block": {
+          "block_types": {
+            "ec2_tag_filter": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "key": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "value": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "ecs_service": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "cluster_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "service_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "load_balancer_info": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "elb_info": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "target_group_info": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "target_group_pair_info": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "prod_traffic_route": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "listener_arns": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  },
+                  "target_group": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 2
+                  },
+                  "test_traffic_route": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "listener_arns": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "on_premises_instance_tag_filter": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "key": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "value": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "trigger_configuration": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "trigger_events": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "trigger_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "trigger_target_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

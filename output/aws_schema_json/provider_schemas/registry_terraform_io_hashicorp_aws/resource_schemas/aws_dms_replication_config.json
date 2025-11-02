@@ -1,0 +1,178 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "replication_config_identifier": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "replication_settings": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "replication_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_identifier": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "source_endpoint_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "start_replication": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "supplemental_settings": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "table_mappings": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "target_endpoint_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "compute_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "availability_zone": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "dns_name_servers": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "kms_key_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "max_capacity_units": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "min_capacity_units": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "multi_az": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "preferred_maintenance_window": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "replication_subnet_group_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "vpc_security_group_ids": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

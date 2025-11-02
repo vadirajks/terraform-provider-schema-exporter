@@ -1,0 +1,31 @@
+resource "aws_sqs_queue" "name" {
+  arn = string (Computed)
+  content_based_deduplication = bool (Optional)
+  deduplication_scope = string (Optional, Computed)
+  delay_seconds = number (Optional)
+  fifo_queue = bool (Optional)
+  fifo_throughput_limit = string (Optional, Computed)
+  id = string (Optional, Computed)
+  kms_data_key_reuse_period_seconds = number (Optional, Computed)
+  kms_master_key_id = string (Optional)
+  max_message_size = number (Optional)
+  message_retention_seconds = number (Optional)
+  name = string (Optional, Computed)
+  name_prefix = string (Optional, Computed)
+  policy = string (Optional, Computed)
+  receive_wait_time_seconds = number (Optional)
+  redrive_allow_policy = string (Optional, Computed)
+  redrive_policy = string (Optional, Computed)
+  region = string (Optional, Computed)
+  sqs_managed_sse_enabled = bool (Optional, Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+  url = string (Computed)
+  visibility_timeout_seconds = number (Optional)
+
+  timeouts block "single" (Optional) {
+    create = string (Optional)
+    delete = string (Optional)
+    update = string (Optional)
+  }
+}

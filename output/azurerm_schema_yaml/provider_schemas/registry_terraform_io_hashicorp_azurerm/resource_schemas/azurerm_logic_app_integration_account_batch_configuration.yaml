@@ -1,0 +1,140 @@
+version: 0
+block:
+  attributes:
+    batch_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    integration_account_name:
+      type: string
+      description_kind: plain
+      required: true
+    metadata:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    release_criteria:
+      nesting_mode: list
+      block:
+        attributes:
+          batch_size:
+            type: number
+            description_kind: plain
+            optional: true
+          message_count:
+            type: number
+            description_kind: plain
+            optional: true
+        block_types:
+          recurrence:
+            nesting_mode: list
+            block:
+              attributes:
+                end_time:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                frequency:
+                  type: string
+                  description_kind: plain
+                  required: true
+                interval:
+                  type: number
+                  description_kind: plain
+                  required: true
+                start_time:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                time_zone:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                schedule:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      hours:
+                        type:
+                        - set
+                        - number
+                        description_kind: plain
+                        optional: true
+                      minutes:
+                        type:
+                        - set
+                        - number
+                        description_kind: plain
+                        optional: true
+                      month_days:
+                        type:
+                        - set
+                        - number
+                        description_kind: plain
+                        optional: true
+                      week_days:
+                        type:
+                        - set
+                        - string
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      monthly:
+                        nesting_mode: set
+                        block:
+                          attributes:
+                            week:
+                              type: number
+                              description_kind: plain
+                              required: true
+                            weekday:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

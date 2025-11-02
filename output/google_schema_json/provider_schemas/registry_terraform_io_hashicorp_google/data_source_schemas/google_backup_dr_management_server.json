@@ -1,0 +1,73 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location for the management server (management console)",
+        "description_kind": "plain",
+        "required": true
+      },
+      "management_uri": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "api": "string",
+              "web_ui": "string"
+            }
+          ]
+        ],
+        "description": "The management console URI",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of management server (management console)",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "networks": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "network": "string",
+              "peering_mode": "string"
+            }
+          ]
+        ],
+        "description": "Network details to create management server (management console).",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "oauth2_client_id": {
+        "type": "string",
+        "description": "The oauth2ClientId of management console.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "type": {
+        "type": "string",
+        "description": "The type of management server (management console). Default value: \"BACKUP_RESTORE\" Possible values: [\"BACKUP_RESTORE\"]",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

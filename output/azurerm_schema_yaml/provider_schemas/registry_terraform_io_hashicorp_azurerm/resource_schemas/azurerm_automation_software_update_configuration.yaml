@@ -1,0 +1,297 @@
+version: 0
+block:
+  attributes:
+    automation_account_id:
+      type: string
+      description_kind: plain
+      required: true
+    duration:
+      type: string
+      description_kind: plain
+      optional: true
+    error_code:
+      type: string
+      description_kind: plain
+      computed: true
+    error_message:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    non_azure_computer_names:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    virtual_machine_ids:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    linux:
+      nesting_mode: list
+      block:
+        attributes:
+          classifications_included:
+            type:
+            - list
+            - string
+            description_kind: plain
+            required: true
+          excluded_packages:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          included_packages:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          reboot:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    post_task:
+      nesting_mode: list
+      block:
+        attributes:
+          parameters:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+          source:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    pre_task:
+      nesting_mode: list
+      block:
+        attributes:
+          parameters:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+          source:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    schedule:
+      nesting_mode: list
+      block:
+        attributes:
+          advanced_month_days:
+            type:
+            - list
+            - number
+            description_kind: plain
+            optional: true
+          advanced_week_days:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          creation_time:
+            type: string
+            description_kind: plain
+            computed: true
+          description:
+            type: string
+            description_kind: plain
+            optional: true
+          expiry_time:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          expiry_time_offset_minutes:
+            type: number
+            description_kind: plain
+            optional: true
+          frequency:
+            type: string
+            description_kind: plain
+            required: true
+          interval:
+            type: number
+            description_kind: plain
+            optional: true
+          is_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          last_modified_time:
+            type: string
+            description_kind: plain
+            computed: true
+          next_run:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          next_run_offset_minutes:
+            type: number
+            description_kind: plain
+            optional: true
+          start_time:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          start_time_offset_minutes:
+            type: number
+            description_kind: plain
+            optional: true
+          time_zone:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          monthly_occurrence:
+            nesting_mode: list
+            block:
+              attributes:
+                day:
+                  type: string
+                  description_kind: plain
+                  required: true
+                occurrence:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    target:
+      nesting_mode: list
+      block:
+        block_types:
+          azure_query:
+            nesting_mode: list
+            block:
+              attributes:
+                locations:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                scope:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                tag_filter:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                tags:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      tag:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      values:
+                        type:
+                        - list
+                        - string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+              description_kind: plain
+          non_azure_query:
+            nesting_mode: list
+            block:
+              attributes:
+                function_alias:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                workspace_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    windows:
+      nesting_mode: list
+      block:
+        attributes:
+          classifications_included:
+            type:
+            - list
+            - string
+            description_kind: plain
+            required: true
+          excluded_knowledge_base_numbers:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          included_knowledge_base_numbers:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          reboot:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain
+  deprecated: true

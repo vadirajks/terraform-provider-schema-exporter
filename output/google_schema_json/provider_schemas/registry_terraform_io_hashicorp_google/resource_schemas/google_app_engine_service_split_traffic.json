@@ -1,0 +1,83 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "migrate_traffic": {
+        "type": "bool",
+        "description": "If set to true traffic will be migrated to this version.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "service": {
+        "type": "string",
+        "description": "The name of the service these settings apply to.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "split": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "allocations": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description": "Mapping from version IDs within the service to fractional (0.000, 1] allocations of traffic for that version. Each version can be specified only once, but some versions in the service may not have any traffic allocation. Services that have traffic allocated cannot be deleted until either the service is deleted or their traffic allocation is removed. Allocations must sum to 1. Up to two decimal place precision is supported for IP-based splits and up to three decimal places is supported for cookie-based splits.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "shard_by": {
+              "type": "string",
+              "description": "Mechanism used to determine which version a request is sent to. The traffic selection algorithm will be stable for either type until allocations are changed. Possible values: [\"UNSPECIFIED\", \"COOKIE\", \"IP\", \"RANDOM\"]",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Mapping that defines fractional HTTP traffic diversion to different versions within the service.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

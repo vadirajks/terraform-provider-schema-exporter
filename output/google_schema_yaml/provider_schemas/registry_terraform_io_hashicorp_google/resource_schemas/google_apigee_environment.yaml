@@ -1,0 +1,139 @@
+version: 0
+block:
+  attributes:
+    api_proxy_type:
+      type: string
+      description: 'Optional. API Proxy type supported by the environment. The type can be set when creating the Environment and cannot be changed. Possible values: ["API_PROXY_TYPE_UNSPECIFIED", "PROGRAMMABLE", "CONFIGURABLE"]'
+      description_kind: plain
+      optional: true
+      computed: true
+    deployment_type:
+      type: string
+      description: 'Optional. Deployment type supported by the environment. The deployment type can be set when creating the environment and cannot be changed. When you enable archive deployment, you will be prevented from performing a subset of actions within the environment, including: Managing the deployment of API proxy or shared flow revisions; Creating, updating, or deleting resource files; Creating, updating, or deleting target servers. Possible values: ["DEPLOYMENT_TYPE_UNSPECIFIED", "PROXY", "ARCHIVE"]'
+      description_kind: plain
+      optional: true
+      computed: true
+    description:
+      type: string
+      description: Description of the environment.
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description: Display name of the environment.
+      description_kind: plain
+      optional: true
+    forward_proxy_uri:
+      type: string
+      description: Optional. URI of the forward proxy to be applied to the runtime instances in this environment. Must be in the format of {scheme}://{hostname}:{port}. Note that the scheme must be one of "http" or "https", and the port must be supplied.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: The resource ID of the environment.
+      description_kind: plain
+      required: true
+    org_id:
+      type: string
+      description: The Apigee Organization associated with the Apigee environment, in the format 'organizations/{{org_name}}'.
+      description_kind: plain
+      required: true
+    type:
+      type: string
+      description: 'Types that can be selected for an Environment. Each of the types are limited by capability and capacity. Refer to Apigee''s public documentation to understand about each of these types in details. An Apigee org can support heterogeneous Environments. Possible values: ["ENVIRONMENT_TYPE_UNSPECIFIED", "BASE", "INTERMEDIATE", "COMPREHENSIVE"]'
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    client_ip_resolution_config:
+      nesting_mode: list
+      block:
+        block_types:
+          header_index_algorithm:
+            nesting_mode: list
+            block:
+              attributes:
+                ip_header_index:
+                  type: number
+                  description: The index of the ip in the header. Positive indices 0, 1, 2, 3 chooses indices from the left (first ips). Negative indices -1, -2, -3 chooses indices from the right (last ips).
+                  description_kind: plain
+                  required: true
+                ip_header_name:
+                  type: string
+                  description: The name of the header to extract the client ip from. We are currently only supporting the X-Forwarded-For header.
+                  description_kind: plain
+                  required: true
+              description: Resolves the client ip based on a custom header.
+              description_kind: plain
+            max_items: 1
+        description: 'The algorithm to resolve IP. This will affect Analytics, API Security, and other features that use the client ip. To remove a client ip resolution config, update the field to an empty value. Example: ''{ "clientIpResolutionConfig" = {} }'' For more information, see: https://cloud.google.com/apigee/docs/api-platform/system-administration/client-ip-resolution'
+        description_kind: plain
+      max_items: 1
+    node_config:
+      nesting_mode: list
+      block:
+        attributes:
+          current_aggregate_node_count:
+            type: string
+            description: The current total number of gateway nodes that each environment currently has across all instances.
+            description_kind: plain
+            computed: true
+          max_node_count:
+            type: string
+            description: The maximum total number of gateway nodes that the is reserved for all instances that has the specified environment. If not specified, the default is determined by the recommended maximum number of nodes for that gateway.
+            description_kind: plain
+            optional: true
+          min_node_count:
+            type: string
+            description: The minimum total number of gateway nodes that the is reserved for all instances that has the specified environment. If not specified, the default is determined by the recommended minimum number of nodes for that gateway.
+            description_kind: plain
+            optional: true
+        description: NodeConfig for setting the min/max number of nodes associated with the environment.
+        description_kind: plain
+      max_items: 1
+    properties:
+      nesting_mode: list
+      block:
+        block_types:
+          property:
+            nesting_mode: list
+            block:
+              attributes:
+                name:
+                  type: string
+                  description: The property key.
+                  description_kind: plain
+                  optional: true
+                value:
+                  type: string
+                  description: The property value.
+                  description_kind: plain
+                  optional: true
+              description: List of all properties in the object.
+              description_kind: plain
+        description: Key-value pairs that may be used for customizing the environment.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

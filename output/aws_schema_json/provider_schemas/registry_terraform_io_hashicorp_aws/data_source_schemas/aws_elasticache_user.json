@@ -1,0 +1,75 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "access_string": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "engine": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "no_password_required": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "passwords": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "sensitive": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "user_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "user_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "authentication_mode": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "password_count": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

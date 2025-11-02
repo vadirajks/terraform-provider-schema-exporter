@@ -1,0 +1,91 @@
+version: 0
+block:
+  attributes:
+    bucket:
+      type: string
+      description_kind: plain
+      required: true
+    expected_bucket_owner:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    target_bucket:
+      type: string
+      description_kind: plain
+      required: true
+    target_prefix:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    target_grant:
+      nesting_mode: set
+      block:
+        attributes:
+          permission:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          grantee:
+            nesting_mode: list
+            block:
+              attributes:
+                display_name:
+                  type: string
+                  description_kind: plain
+                  deprecated: true
+                  computed: true
+                email_address:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                type:
+                  type: string
+                  description_kind: plain
+                  required: true
+                uri:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+    target_object_key_format:
+      nesting_mode: list
+      block:
+        block_types:
+          partitioned_prefix:
+            nesting_mode: list
+            block:
+              attributes:
+                partition_date_source:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          simple_prefix:
+            nesting_mode: list
+            block:
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

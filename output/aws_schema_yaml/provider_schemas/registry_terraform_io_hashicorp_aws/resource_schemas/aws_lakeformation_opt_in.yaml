@@ -1,0 +1,210 @@
+version: 0
+block:
+  attributes:
+    last_modified:
+      type: string
+      description_kind: plain
+      computed: true
+    last_updated_by:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    condition:
+      nesting_mode: list
+      block:
+        attributes:
+          expression:
+            type: string
+            description_kind: plain
+            computed: true
+        description_kind: plain
+    principal:
+      nesting_mode: list
+      block:
+        attributes:
+          data_lake_principal_identifier:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    resource_data:
+      nesting_mode: list
+      block:
+        block_types:
+          catalog:
+            nesting_mode: list
+            block:
+              attributes:
+                id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          data_cells_filter:
+            nesting_mode: list
+            block:
+              attributes:
+                database_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                table_catalog_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                table_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          data_location:
+            nesting_mode: list
+            block:
+              attributes:
+                catalog_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                resource_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          database:
+            nesting_mode: list
+            block:
+              attributes:
+                catalog_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          lf_tag:
+            nesting_mode: list
+            block:
+              attributes:
+                catalog_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                key:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          lf_tag_expression:
+            nesting_mode: list
+            block:
+              attributes:
+                catalog_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          lf_tag_policy:
+            nesting_mode: list
+            block:
+              attributes:
+                catalog_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                expression:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                expression_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                resource_type:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          table:
+            nesting_mode: list
+            block:
+              attributes:
+                catalog_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                database_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                wildcard:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          table_with_columns:
+            nesting_mode: list
+            block:
+              attributes:
+                catalog_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                column_names:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                database_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                column_wildcard:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      excluded_column_names:
+                        type:
+                        - set
+                        - string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+              description_kind: plain
+        description_kind: plain
+  description_kind: plain

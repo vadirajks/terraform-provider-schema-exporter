@@ -1,0 +1,146 @@
+version: 0
+block:
+  attributes:
+    cache_size:
+      type: number
+      description_kind: plain
+      optional: true
+    compute_isolation_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    dynamic_executor_allocation_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    max_executors:
+      type: number
+      description_kind: plain
+      optional: true
+    min_executors:
+      type: number
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    node_count:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    node_size:
+      type: string
+      description_kind: plain
+      required: true
+    node_size_family:
+      type: string
+      description_kind: plain
+      required: true
+    session_level_packages_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    spark_events_folder:
+      type: string
+      description_kind: plain
+      optional: true
+    spark_log_folder:
+      type: string
+      description_kind: plain
+      optional: true
+    spark_version:
+      type: string
+      description_kind: plain
+      required: true
+    synapse_workspace_id:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    auto_pause:
+      nesting_mode: list
+      block:
+        attributes:
+          delay_in_minutes:
+            type: number
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    auto_scale:
+      nesting_mode: list
+      block:
+        attributes:
+          max_node_count:
+            type: number
+            description_kind: plain
+            required: true
+          min_node_count:
+            type: number
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    library_requirement:
+      nesting_mode: list
+      block:
+        attributes:
+          content:
+            type: string
+            description_kind: plain
+            required: true
+          filename:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    spark_config:
+      nesting_mode: list
+      block:
+        attributes:
+          content:
+            type: string
+            description_kind: plain
+            required: true
+          filename:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

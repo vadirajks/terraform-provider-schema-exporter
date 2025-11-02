@@ -1,0 +1,52 @@
+version: 0
+block:
+  attributes:
+    deleted:
+      type: bool
+      description: The current deleted state of the role.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: A human-readable description for the role.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: The name of the role in the format projects/{{project}}/roles/{{role_id}}. Like id, this field can be used as a reference in other resources such as IAM role bindings.
+      description_kind: plain
+      computed: true
+    permissions:
+      type:
+      - set
+      - string
+      description: The names of the permissions this role grants when bound in an IAM policy. At least one permission must be specified.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description: The project that the service account will be created in. Defaults to the provider project configuration.
+      description_kind: plain
+      optional: true
+      computed: true
+    role_id:
+      type: string
+      description: The camel case role id to use for this role. Cannot contain - characters.
+      description_kind: plain
+      required: true
+    stage:
+      type: string
+      description: The current launch stage of the role. Defaults to GA.
+      description_kind: plain
+      optional: true
+    title:
+      type: string
+      description: A human-readable title for the role.
+      description_kind: plain
+      required: true
+  description_kind: plain

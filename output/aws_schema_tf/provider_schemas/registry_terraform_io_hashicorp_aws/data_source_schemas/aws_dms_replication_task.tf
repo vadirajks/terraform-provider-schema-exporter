@@ -1,0 +1,17 @@
+data "aws_dms_replication_task" "name" {
+  replication_task_id = string (Required)
+  cdc_start_position = string (Computed)
+  cdc_start_time = string (Computed)
+  id = string (Optional, Computed)
+  migration_type = string (Computed)
+  region = string (Optional, Computed)
+  replication_instance_arn = string (Computed)
+  replication_task_arn = string (Computed)
+  replication_task_settings = string (Computed)
+  source_endpoint_arn = string (Computed)
+  start_replication_task = bool (Computed)
+  status = string (Computed)
+  table_mappings = string (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  target_endpoint_arn = string (Computed)
+}

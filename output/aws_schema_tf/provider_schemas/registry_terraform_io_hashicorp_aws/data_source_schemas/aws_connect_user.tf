@@ -1,0 +1,15 @@
+data "aws_connect_user" "name" {
+  instance_id = string (Required)
+  arn = string (Computed)
+  directory_user_id = string (Computed)
+  hierarchy_group_id = string (Computed)
+  id = string (Optional, Computed)
+  identity_info = ['list', ['object', {'email': 'string', 'first_name': 'string', 'last_name': 'string', 'secondary_email': 'string'}]] (Computed)
+  name = string (Optional, Computed)
+  phone_config = ['list', ['object', {'after_contact_work_time_limit': 'number', 'auto_accept': 'bool', 'desk_phone_number': 'string', 'phone_type': 'string'}]] (Computed)
+  region = string (Optional, Computed)
+  routing_profile_id = string (Computed)
+  security_profile_ids = ['set', 'string'] (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  user_id = string (Optional, Computed)
+}

@@ -1,0 +1,66 @@
+version: 0
+block:
+  attributes:
+    action_plan_instructions:
+      type: string
+      description_kind: plain
+      computed: true
+    action_plan_title:
+      type: string
+      description_kind: plain
+      computed: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    control_mapping_sources:
+      type:
+      - list
+      - - object
+        - source_description: string
+          source_frequency: string
+          source_id: string
+          source_keyword:
+          - list
+          - - object
+            - keyword_input_type: string
+              keyword_value: string
+          source_name: string
+          source_set_up_option: string
+          source_type: string
+          troubleshooting_text: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    testing_information:
+      type: string
+      description_kind: plain
+      computed: true
+    type:
+      type: string
+      description_kind: plain
+      required: true
+  description_kind: plain

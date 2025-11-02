@@ -1,0 +1,157 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "The timestamp when the resource was created. See https://google.aip.dev/148#timestamps.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "intercept_endpoint_group": {
+        "type": "string",
+        "description": "The endpoint group that this association is connected to, for example: 'projects/123456789/locations/global/interceptEndpointGroups/my-eg'. See https://google.aip.dev/124.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "intercept_endpoint_group_association_id": {
+        "type": "string",
+        "description": "The ID to use for the new association, which will become the final component of the endpoint group's resource name. If not provided, the server will generate a unique ID.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Labels are key/value pairs that help to organize and filter resources. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The cloud location of the association, currently restricted to 'global'.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "locations": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "location": "string",
+              "state": "string"
+            }
+          ]
+        ],
+        "description": "The list of locations where the association is configured. This information is retrieved from the linked endpoint group.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "locations_details": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "location": "string",
+              "state": "string"
+            }
+          ]
+        ],
+        "description": "The list of locations where the association is present. This information is retrieved from the linked endpoint group, and not configured as part of the association itself.",
+        "description_kind": "plain",
+        "deprecated": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name of this endpoint group association, for example: 'projects/123456789/locations/global/interceptEndpointGroupAssociations/my-eg-association'. See https://google.aip.dev/122 for more details.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "network": {
+        "type": "string",
+        "description": "The VPC network that is associated. for example: 'projects/123456789/global/networks/my-network'. See https://google.aip.dev/124.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "reconciling": {
+        "type": "bool",
+        "description": "The current state of the resource does not match the user's intended state, and the system is working to reconcile them. This part of the normal operation (e.g. adding a new location to the target deployment group). See https://google.aip.dev/128.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "state": {
+        "type": "string",
+        "description": "Current state of the endpoint group association. Possible values: STATE_UNSPECIFIED ACTIVE CREATING DELETING CLOSED OUT_OF_SYNC DELETE_FAILED",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "The timestamp when the resource was most recently updated. See https://google.aip.dev/148#timestamps.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

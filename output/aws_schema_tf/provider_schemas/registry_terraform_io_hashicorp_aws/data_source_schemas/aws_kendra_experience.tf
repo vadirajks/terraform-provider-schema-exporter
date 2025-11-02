@@ -1,0 +1,16 @@
+data "aws_kendra_experience" "name" {
+  experience_id = string (Required)
+  index_id = string (Required)
+  arn = string (Computed)
+  configuration = ['list', ['object', {'content_source_configuration': ['list', ['object', {'data_source_ids': ['set', 'string'], 'direct_put_content': 'bool', 'faq_ids': ['set', 'string']}]], 'user_identity_configuration': ['list', ['object', {'identity_attribute_name': 'string'}]]}]] (Computed)
+  created_at = string (Computed)
+  description = string (Computed)
+  endpoints = ['set', ['object', {'endpoint': 'string', 'endpoint_type': 'string'}]] (Computed)
+  error_message = string (Computed)
+  id = string (Optional, Computed)
+  name = string (Computed)
+  region = string (Optional, Computed)
+  role_arn = string (Computed)
+  status = string (Computed)
+  updated_at = string (Computed)
+}

@@ -1,0 +1,78 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "Time the AccessPolicy was created in UTC.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Resource name of the AccessPolicy. Format: '{{policy_id}}'",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "parent": {
+        "type": "string",
+        "description": "The parent of this AccessPolicy in the Cloud Resource Hierarchy. Format: 'organizations/{{organization_id}}'",
+        "description_kind": "plain",
+        "required": true
+      },
+      "scopes": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "Folder or project on which this policy is applicable. Format: 'folders/{{folder_id}}' or 'projects/{{project_number}}'",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "title": {
+        "type": "string",
+        "description": "Human readable title. Does not affect behavior.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Time the AccessPolicy was updated in UTC.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

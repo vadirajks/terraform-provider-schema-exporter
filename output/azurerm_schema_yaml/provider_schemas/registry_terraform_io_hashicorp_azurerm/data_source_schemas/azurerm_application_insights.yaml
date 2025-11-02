@@ -1,0 +1,62 @@
+version: 0
+block:
+  attributes:
+    app_id:
+      type: string
+      description_kind: plain
+      computed: true
+    application_type:
+      type: string
+      description_kind: plain
+      computed: true
+    connection_string:
+      type: string
+      description_kind: plain
+      computed: true
+      sensitive: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instrumentation_key:
+      type: string
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    retention_in_days:
+      type: number
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    workspace_id:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

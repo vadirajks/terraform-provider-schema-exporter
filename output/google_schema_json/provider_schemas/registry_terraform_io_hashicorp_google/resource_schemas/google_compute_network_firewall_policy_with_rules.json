@@ -1,0 +1,452 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "creation_timestamp": {
+        "type": "string",
+        "description": "Creation timestamp in RFC3339 text format.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "An optional description of this resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "fingerprint": {
+        "type": "string",
+        "description": "Fingerprint of the resource. This field is used internally during updates of this resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "User-provided name of the Network firewall policy. The name should be unique in the project in which the firewall policy is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])? which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "network_firewall_policy_id": {
+        "type": "string",
+        "description": "The unique identifier for the resource. This identifier is defined by the server.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "policy_type": {
+        "type": "string",
+        "description": "Policy type is used to determine which resources (networks) the policy can be associated with. A policy can be associated with a network only if the network has the matching policyType in its network profile. Different policy types may support some of the Firewall Rules features. Possible values: [\"VPC_POLICY\"]",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "predefined_rules": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "action": "string",
+              "description": "string",
+              "direction": "string",
+              "disabled": "bool",
+              "enable_logging": "bool",
+              "match": [
+                "list",
+                [
+                  "object",
+                  {
+                    "dest_address_groups": [
+                      "list",
+                      "string"
+                    ],
+                    "dest_fqdns": [
+                      "list",
+                      "string"
+                    ],
+                    "dest_ip_ranges": [
+                      "list",
+                      "string"
+                    ],
+                    "dest_region_codes": [
+                      "list",
+                      "string"
+                    ],
+                    "dest_threat_intelligences": [
+                      "list",
+                      "string"
+                    ],
+                    "layer4_config": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "ip_protocol": "string",
+                          "ports": [
+                            "list",
+                            "string"
+                          ]
+                        }
+                      ]
+                    ],
+                    "src_address_groups": [
+                      "list",
+                      "string"
+                    ],
+                    "src_fqdns": [
+                      "list",
+                      "string"
+                    ],
+                    "src_ip_ranges": [
+                      "list",
+                      "string"
+                    ],
+                    "src_region_codes": [
+                      "list",
+                      "string"
+                    ],
+                    "src_secure_tag": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "name": "string",
+                          "state": "string"
+                        }
+                      ]
+                    ],
+                    "src_threat_intelligences": [
+                      "list",
+                      "string"
+                    ]
+                  }
+                ]
+              ],
+              "priority": "number",
+              "rule_name": "string",
+              "security_profile_group": "string",
+              "target_secure_tag": [
+                "list",
+                [
+                  "object",
+                  {
+                    "name": "string",
+                    "state": "string"
+                  }
+                ]
+              ],
+              "target_service_accounts": [
+                "list",
+                "string"
+              ],
+              "tls_inspect": "bool"
+            }
+          ]
+        ],
+        "description": "A list of firewall policy pre-defined rules.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "rule_tuple_count": {
+        "type": "number",
+        "description": "Total count of all firewall policy rule tuples. A firewall policy can not exceed a set number of tuples.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "self_link": {
+        "type": "string",
+        "description": "Server-defined URL for the resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "self_link_with_id": {
+        "type": "string",
+        "description": "Server-defined URL for this resource with the resource id.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "rule": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "action": {
+              "type": "string",
+              "description": "The Action to perform when the client connection triggers the rule. Can currently be either \"allow\", \"deny\", \"apply_security_profile_group\" or \"goto_next\".",
+              "description_kind": "plain",
+              "required": true
+            },
+            "description": {
+              "type": "string",
+              "description": "A description of the rule.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "direction": {
+              "type": "string",
+              "description": "The direction in which this rule applies. If unspecified an INGRESS rule is created. Possible values: [\"INGRESS\", \"EGRESS\"]",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "disabled": {
+              "type": "bool",
+              "description": "Denotes whether the firewall policy rule is disabled. When set to true, the firewall policy rule is not enforced and traffic behaves as if it did not exist. If this is unspecified, the firewall policy rule will be enabled.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "enable_logging": {
+              "type": "bool",
+              "description": "Denotes whether to enable logging for a particular rule. If logging is enabled, logs will be exported to the configured export destination in Stackdriver.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "priority": {
+              "type": "number",
+              "description": "An integer indicating the priority of a rule in the list. The priority must be a value between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the highest priority and 2147483647 is the lowest priority.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "rule_name": {
+              "type": "string",
+              "description": "An optional name for the rule. This field is not a unique identifier and can be updated.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "security_profile_group": {
+              "type": "string",
+              "description": "A fully-qualified URL of a SecurityProfile resource instance. Example: https://networksecurity.googleapis.com/v1/projects/{project}/locations/{location}/securityProfileGroups/my-security-profile-group Must be specified if action is 'apply_security_profile_group'.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "target_service_accounts": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "A list of service accounts indicating the sets of instances that are applied with this rule.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "tls_inspect": {
+              "type": "bool",
+              "description": "Boolean flag indicating if the traffic should be TLS decrypted. It can be set only if action = 'apply_security_profile_group' and cannot be set for other actions.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "match": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "dest_address_groups": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Address groups which should be matched against the traffic destination. Maximum number of destination address groups is 10.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "dest_fqdns": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Fully Qualified Domain Name (FQDN) which should be matched against traffic destination. Maximum number of destination fqdn allowed is 100.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "dest_ip_ranges": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Destination IP address range in CIDR format. Required for EGRESS rules.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "dest_region_codes": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Region codes whose IP addresses will be used to match for destination of traffic. Should be specified as 2 letter country code defined as per ISO 3166 alpha-2 country codes. ex.\"US\" Maximum number of destination region codes allowed is 5000.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "dest_threat_intelligences": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Names of Network Threat Intelligence lists. The IPs in these lists will be matched against traffic destination.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "src_address_groups": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Address groups which should be matched against the traffic source. Maximum number of source address groups is 10.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "src_fqdns": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Fully Qualified Domain Name (FQDN) which should be matched against traffic source. Maximum number of source fqdn allowed is 100.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "src_ip_ranges": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Source IP address range in CIDR format. Required for INGRESS rules.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "src_region_codes": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Region codes whose IP addresses will be used to match for source of traffic. Should be specified as 2 letter country code defined as per ISO 3166 alpha-2 country codes. ex.\"US\" Maximum number of source region codes allowed is 5000.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "src_threat_intelligences": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Names of Network Threat Intelligence lists. The IPs in these lists will be matched against traffic source.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "layer4_config": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "ip_protocol": {
+                          "type": "string",
+                          "description": "The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp), or the IP protocol number.",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "ports": {
+                          "type": [
+                            "list",
+                            "string"
+                          ],
+                          "description": "An optional list of ports to which this rule applies. This field is only applicable for UDP or TCP protocol. Each entry must be either an integer or a range. If not specified, this rule applies to connections through any port. Example inputs include: [\"22\"], [\"80\",\"443\"], and [\"12345-12349\"].",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "Pairs of IP protocols and ports that the rule should match.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1
+                  },
+                  "src_secure_tag": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "name": {
+                          "type": "string",
+                          "description": "Name of the secure tag, created with TagManager's TagValue API. @pattern tagValues/[0-9]+",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "state": {
+                          "type": "string",
+                          "description": "[Output Only] State of the secure tag, either 'EFFECTIVE' or 'INEFFECTIVE'. A secure tag is 'INEFFECTIVE' when it is deleted or its network is deleted.",
+                          "description_kind": "plain",
+                          "computed": true
+                        }
+                      },
+                      "description": "List of secure tag values, which should be matched at the source of the traffic. For INGRESS rule, if all the <code>srcSecureTag</code> are INEFFECTIVE, and there is no <code>srcIpRange</code>, this rule will be ignored. Maximum number of source tag values allowed is 256.",
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description": "A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding 'action' is enforced.",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "target_secure_tag": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "name": {
+                    "type": "string",
+                    "description": "Name of the secure tag, created with TagManager's TagValue API. @pattern tagValues/[0-9]+",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "state": {
+                    "type": "string",
+                    "description": "[Output Only] State of the secure tag, either 'EFFECTIVE' or 'INEFFECTIVE'. A secure tag is 'INEFFECTIVE' when it is deleted or its network is deleted.",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "description": "A list of secure tags that controls which instances the firewall rule applies to. If <code>targetSecureTag</code> are specified, then the firewall rule applies only to instances in the VPC network that have one of those EFFECTIVE secure tags, if all the target_secure_tag are in INEFFECTIVE state, then this rule will be ignored. <code>targetSecureTag</code> may not be set at the same time as <code>targetServiceAccounts</code>. If neither <code>targetServiceAccounts</code> nor <code>targetSecureTag</code> are specified, the firewall rule applies to all instances on the specified network. Maximum number of target label tags allowed is 256.",
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description": "A list of firewall policy rules.",
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "arn_suffix": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "connection_termination": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "deregistration_delay": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "health_check": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "enabled": "bool",
+              "healthy_threshold": "number",
+              "interval": "number",
+              "matcher": "string",
+              "path": "string",
+              "port": "string",
+              "protocol": "string",
+              "timeout": "number",
+              "unhealthy_threshold": "number"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "lambda_multi_value_headers_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "load_balancer_arns": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "load_balancing_algorithm_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "load_balancing_anomaly_mitigation": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "load_balancing_cross_zone_enabled": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "port": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "preserve_client_ip": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "protocol": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "protocol_version": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "proxy_protocol_v2": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "slow_start": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "stickiness": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "cookie_duration": "number",
+              "cookie_name": "string",
+              "enabled": "bool",
+              "type": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "target_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "vpc_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,142 @@
+version: 1
+block:
+  attributes:
+    allow_claim:
+      type: bool
+      description_kind: plain
+      optional: true
+    disallow_public_ip_address:
+      type: bool
+      description_kind: plain
+      optional: true
+    fqdn:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    lab_name:
+      type: string
+      description_kind: plain
+      required: true
+    lab_subnet_name:
+      type: string
+      description_kind: plain
+      required: true
+    lab_virtual_network_id:
+      type: string
+      description_kind: plain
+      required: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    notes:
+      type: string
+      description_kind: plain
+      optional: true
+    password:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    size:
+      type: string
+      description_kind: plain
+      required: true
+    ssh_key:
+      type: string
+      description_kind: plain
+      optional: true
+    storage_type:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    unique_identifier:
+      type: string
+      description_kind: plain
+      computed: true
+    username:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    gallery_image_reference:
+      nesting_mode: list
+      block:
+        attributes:
+          offer:
+            type: string
+            description_kind: plain
+            required: true
+          publisher:
+            type: string
+            description_kind: plain
+            required: true
+          sku:
+            type: string
+            description_kind: plain
+            required: true
+          version:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    inbound_nat_rule:
+      nesting_mode: set
+      block:
+        attributes:
+          backend_port:
+            type: number
+            description_kind: plain
+            required: true
+          frontend_port:
+            type: number
+            description_kind: plain
+            computed: true
+          protocol:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

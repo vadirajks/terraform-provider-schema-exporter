@@ -1,0 +1,165 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "app_type": {
+        "type": "string",
+        "description": "This is the application type this engine resource represents. The supported values: 'APP_TYPE_UNSPECIFIED', 'APP_TYPE_INTRANET'.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "collection_id": {
+        "type": "string",
+        "description": "The collection ID.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "Timestamp the Engine was created at.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "data_store_ids": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "The data stores associated with this engine. For SOLUTION_TYPE_SEARCH type of engines, they can only associate with at most one data store.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "Required. The display name of the engine. Should be human readable. UTF-8 encoded string with limit of 1024 characters.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "engine_id": {
+        "type": "string",
+        "description": "Unique ID to use for Search Engine App.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "features": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "A map of the feature config for the engine to opt in or opt out of features.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "industry_vertical": {
+        "type": "string",
+        "description": "The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: If unspecified, default to GENERIC. Vertical on Engine has to match vertical of the DataStore liniked to the engine. Default value: \"GENERIC\" Possible values: [\"GENERIC\", \"MEDIA\", \"HEALTHCARE_FHIR\"]",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "kms_key_name": {
+        "type": "string",
+        "description": "The KMS key to be used to protect this Engine at creation time. Must be set for requests that need to comply with CMEK Org Policy protections. If this field is set and processed successfully, the Engine will be protected by the KMS key, as indicated in the cmek_config field.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "Location.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The unique full resource name of the search engine. Values are of the format 'projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}'. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Timestamp the Engine was last updated.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "common_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "company_name": {
+              "type": "string",
+              "description": "The name of the company, business or entity that is associated with the engine. Setting this may help improve LLM related features.cd",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Common config spec that specifies the metadata of the engine.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "search_engine_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "search_add_ons": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "The add-on that this search engine enables. Possible values: [\"SEARCH_ADD_ON_LLM\"]",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "search_tier": {
+              "type": "string",
+              "description": "The search feature tier of this engine. Defaults to SearchTier.SEARCH_TIER_STANDARD if not specified. Default value: \"SEARCH_TIER_STANDARD\" Possible values: [\"SEARCH_TIER_STANDARD\", \"SEARCH_TIER_ENTERPRISE\"]",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Configurations for a Search Engine.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,411 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "created_date": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "last_updated_date": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "mesh_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "mesh_owner": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "resource_owner": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "spec": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "backend_defaults": [
+                "list",
+                [
+                  "object",
+                  {
+                    "client_policy": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "tls": [
+                            "list",
+                            [
+                              "object",
+                              {
+                                "certificate": [
+                                  "list",
+                                  [
+                                    "object",
+                                    {
+                                      "file": [
+                                        "list",
+                                        [
+                                          "object",
+                                          {
+                                            "certificate_chain": "string",
+                                            "private_key": "string"
+                                          }
+                                        ]
+                                      ],
+                                      "sds": [
+                                        "list",
+                                        [
+                                          "object",
+                                          {
+                                            "secret_name": "string"
+                                          }
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                ],
+                                "enforce": "bool",
+                                "ports": [
+                                  "set",
+                                  "number"
+                                ],
+                                "validation": [
+                                  "list",
+                                  [
+                                    "object",
+                                    {
+                                      "subject_alternative_names": [
+                                        "list",
+                                        [
+                                          "object",
+                                          {
+                                            "match": [
+                                              "list",
+                                              [
+                                                "object",
+                                                {
+                                                  "exact": [
+                                                    "set",
+                                                    "string"
+                                                  ]
+                                                }
+                                              ]
+                                            ]
+                                          }
+                                        ]
+                                      ],
+                                      "trust": [
+                                        "list",
+                                        [
+                                          "object",
+                                          {
+                                            "acm": [
+                                              "list",
+                                              [
+                                                "object",
+                                                {
+                                                  "certificate_authority_arns": [
+                                                    "set",
+                                                    "string"
+                                                  ]
+                                                }
+                                              ]
+                                            ],
+                                            "file": [
+                                              "list",
+                                              [
+                                                "object",
+                                                {
+                                                  "certificate_chain": "string"
+                                                }
+                                              ]
+                                            ],
+                                            "sds": [
+                                              "list",
+                                              [
+                                                "object",
+                                                {
+                                                  "secret_name": "string"
+                                                }
+                                              ]
+                                            ]
+                                          }
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                ]
+                              }
+                            ]
+                          ]
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "listener": [
+                "list",
+                [
+                  "object",
+                  {
+                    "connection_pool": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "grpc": [
+                            "list",
+                            [
+                              "object",
+                              {
+                                "max_requests": "number"
+                              }
+                            ]
+                          ],
+                          "http": [
+                            "list",
+                            [
+                              "object",
+                              {
+                                "max_connections": "number",
+                                "max_pending_requests": "number"
+                              }
+                            ]
+                          ],
+                          "http2": [
+                            "list",
+                            [
+                              "object",
+                              {
+                                "max_requests": "number"
+                              }
+                            ]
+                          ]
+                        }
+                      ]
+                    ],
+                    "health_check": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "healthy_threshold": "number",
+                          "interval_millis": "number",
+                          "path": "string",
+                          "port": "number",
+                          "protocol": "string",
+                          "timeout_millis": "number",
+                          "unhealthy_threshold": "number"
+                        }
+                      ]
+                    ],
+                    "port_mapping": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "port": "number",
+                          "protocol": "string"
+                        }
+                      ]
+                    ],
+                    "tls": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "certificate": [
+                            "list",
+                            [
+                              "object",
+                              {
+                                "acm": [
+                                  "list",
+                                  [
+                                    "object",
+                                    {
+                                      "certificate_arn": "string"
+                                    }
+                                  ]
+                                ],
+                                "file": [
+                                  "list",
+                                  [
+                                    "object",
+                                    {
+                                      "certificate_chain": "string",
+                                      "private_key": "string"
+                                    }
+                                  ]
+                                ],
+                                "sds": [
+                                  "list",
+                                  [
+                                    "object",
+                                    {
+                                      "secret_name": "string"
+                                    }
+                                  ]
+                                ]
+                              }
+                            ]
+                          ],
+                          "mode": "string",
+                          "validation": [
+                            "list",
+                            [
+                              "object",
+                              {
+                                "subject_alternative_names": [
+                                  "list",
+                                  [
+                                    "object",
+                                    {
+                                      "match": [
+                                        "list",
+                                        [
+                                          "object",
+                                          {
+                                            "exact": [
+                                              "set",
+                                              "string"
+                                            ]
+                                          }
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                ],
+                                "trust": [
+                                  "list",
+                                  [
+                                    "object",
+                                    {
+                                      "file": [
+                                        "list",
+                                        [
+                                          "object",
+                                          {
+                                            "certificate_chain": "string"
+                                          }
+                                        ]
+                                      ],
+                                      "sds": [
+                                        "list",
+                                        [
+                                          "object",
+                                          {
+                                            "secret_name": "string"
+                                          }
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                ]
+                              }
+                            ]
+                          ]
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "logging": [
+                "list",
+                [
+                  "object",
+                  {
+                    "access_log": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "file": [
+                            "list",
+                            [
+                              "object",
+                              {
+                                "format": [
+                                  "list",
+                                  [
+                                    "object",
+                                    {
+                                      "json": [
+                                        "list",
+                                        [
+                                          "object",
+                                          {
+                                            "key": "string",
+                                            "value": "string"
+                                          }
+                                        ]
+                                      ],
+                                      "text": "string"
+                                    }
+                                  ]
+                                ],
+                                "path": "string"
+                              }
+                            ]
+                          ]
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

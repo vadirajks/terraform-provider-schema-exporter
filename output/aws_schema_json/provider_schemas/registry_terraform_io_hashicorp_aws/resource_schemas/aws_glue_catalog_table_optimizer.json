@@ -1,0 +1,126 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "catalog_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "database_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "table_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "type": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "required": true
+            },
+            "role_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "orphan_file_deletion_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "iceberg_configuration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "location": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "orphan_file_retention_period_in_days": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "run_rate_in_hours": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "retention_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "iceberg_configuration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "clean_expired_files": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "number_of_snapshots_to_retain": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "run_rate_in_hours": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "computed": true
+                        },
+                        "snapshot_retention_period_in_days": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    }
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

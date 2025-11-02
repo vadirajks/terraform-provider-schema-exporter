@@ -1,0 +1,249 @@
+version: 0
+block:
+  attributes:
+    cluster_id:
+      type: string
+      description_kind: plain
+      required: true
+    continuous_reconciliation_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    namespace:
+      type: string
+      description_kind: plain
+      required: true
+    scope:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    blob_storage:
+      nesting_mode: list
+      block:
+        attributes:
+          account_key:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          container_id:
+            type: string
+            description_kind: plain
+            required: true
+          local_auth_reference:
+            type: string
+            description_kind: plain
+            optional: true
+          sas_token:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          sync_interval_in_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+          timeout_in_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+        block_types:
+          service_principal:
+            nesting_mode: list
+            block:
+              attributes:
+                client_certificate_base64:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  sensitive: true
+                client_certificate_password:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  sensitive: true
+                client_certificate_send_chain:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                client_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+                client_secret:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  sensitive: true
+                tenant_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    bucket:
+      nesting_mode: list
+      block:
+        attributes:
+          access_key:
+            type: string
+            description_kind: plain
+            optional: true
+          bucket_name:
+            type: string
+            description_kind: plain
+            required: true
+          local_auth_reference:
+            type: string
+            description_kind: plain
+            optional: true
+          secret_key_base64:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          sync_interval_in_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+          timeout_in_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+          tls_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          url:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    git_repository:
+      nesting_mode: list
+      block:
+        attributes:
+          https_ca_cert_base64:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          https_key_base64:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          https_user:
+            type: string
+            description_kind: plain
+            optional: true
+          local_auth_reference:
+            type: string
+            description_kind: plain
+            optional: true
+          reference_type:
+            type: string
+            description_kind: plain
+            required: true
+          reference_value:
+            type: string
+            description_kind: plain
+            required: true
+          ssh_known_hosts_base64:
+            type: string
+            description_kind: plain
+            optional: true
+          ssh_private_key_base64:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          sync_interval_in_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+          timeout_in_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+          url:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    kustomizations:
+      nesting_mode: set
+      block:
+        attributes:
+          depends_on:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          garbage_collection_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          path:
+            type: string
+            description_kind: plain
+            optional: true
+          recreating_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          retry_interval_in_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+          sync_interval_in_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+          timeout_in_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,15 @@
+data "google_compute_interconnect_location" "name" {
+  name = string (Required)
+  address = string (Computed)
+  availability_zone = string (Computed)
+  city = string (Computed)
+  continent = string (Computed)
+  description = string (Computed)
+  facility_provider = string (Computed)
+  facility_provider_facility_id = string (Computed)
+  id = string (Optional, Computed)
+  peeringdb_facility_id = string (Computed)
+  project = string (Optional, Computed)
+  self_link = string (Computed)
+  status = string (Computed)
+}

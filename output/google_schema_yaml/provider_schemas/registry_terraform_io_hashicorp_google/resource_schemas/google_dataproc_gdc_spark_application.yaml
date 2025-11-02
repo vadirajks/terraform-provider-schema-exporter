@@ -1,0 +1,327 @@
+version: 0
+block:
+  attributes:
+    annotations:
+      type:
+      - map
+      - string
+      description: 'The annotations to associate with this application. Annotations may be used to store client information, but are not used by the server. **Note**: This field is non-authoritative, and will only manage the annotations present in your configuration. Please refer to the field ''effective_annotations'' for all of the annotations present on the resource.'
+      description_kind: plain
+      optional: true
+    application_environment:
+      type: string
+      description: An ApplicationEnvironment from which to inherit configuration properties.
+      description_kind: plain
+      optional: true
+    create_time:
+      type: string
+      description: The timestamp when the resource was created.
+      description_kind: plain
+      computed: true
+    dependency_images:
+      type:
+      - list
+      - string
+      description: List of container image uris for additional file dependencies. Dependent files are sequentially copied from each image. If a file with the same name exists in 2 images then the file from later image is used.
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description: User-provided human-readable name to be used in user interfaces.
+      description_kind: plain
+      optional: true
+    effective_annotations:
+      type:
+      - map
+      - string
+      description: All of annotations (key/value pairs) present on the resource in GCP, including the annotations configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'The labels to associate with this application. Labels may be used for filtering and billing tracking. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: The location of the spark application.
+      description_kind: plain
+      required: true
+    monitoring_endpoint:
+      type: string
+      description: URL for a monitoring UI for this application (for eventual Spark PHS/UI support) Out of scope for private GA
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: 'Identifier. The name of the application. Format: projects/{project}/locations/{location}/serviceInstances/{service_instance}/sparkApplications/{application}'
+      description_kind: plain
+      computed: true
+    namespace:
+      type: string
+      description: The Kubernetes namespace in which to create the application. This namespace must already exist on the cluster.
+      description_kind: plain
+      optional: true
+    output_uri:
+      type: string
+      description: An HCFS URI pointing to the location of stdout and stdout of the application Mainly useful for Pantheon and gcloud Not in scope for private GA
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    properties:
+      type:
+      - map
+      - string
+      description: application-specific properties.
+      description_kind: plain
+      optional: true
+    reconciling:
+      type: bool
+      description: Whether the application is currently reconciling. True if the current state of the resource does not match the intended state, and the system is working to reconcile them, whether or not the change was user initiated.
+      description_kind: plain
+      computed: true
+    serviceinstance:
+      type: string
+      description: The id of the service instance to which this spark application belongs.
+      description_kind: plain
+      required: true
+    spark_application_id:
+      type: string
+      description: The id of the application
+      description_kind: plain
+      required: true
+    state:
+      type: string
+      description: 'The current state. Possible values: * ''STATE_UNSPECIFIED'' * ''PENDING'' * ''RUNNING'' * ''CANCELLING'' * ''CANCELLED'' * ''SUCCEEDED'' * ''FAILED'''
+      description_kind: plain
+      computed: true
+    state_message:
+      type: string
+      description: A message explaining the current state.
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    uid:
+      type: string
+      description: System generated unique identifier for this application, formatted as UUID4.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: The timestamp when the resource was most recently updated.
+      description_kind: plain
+      computed: true
+    version:
+      type: string
+      description: The Dataproc version of this application.
+      description_kind: plain
+      optional: true
+  block_types:
+    pyspark_application_config:
+      nesting_mode: list
+      block:
+        attributes:
+          archive_uris:
+            type:
+            - list
+            - string
+            description: 'HCFS URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.'
+            description_kind: plain
+            optional: true
+          args:
+            type:
+            - list
+            - string
+            description: The arguments to pass to the driver.  Do not include arguments, such as '--conf', that can be set as job properties, since a collision may occur that causes an incorrect job submission.
+            description_kind: plain
+            optional: true
+          file_uris:
+            type:
+            - list
+            - string
+            description: HCFS URIs of files to be placed in the working directory of each executor. Useful for naively parallel tasks.
+            description_kind: plain
+            optional: true
+          jar_file_uris:
+            type:
+            - list
+            - string
+            description: HCFS URIs of jar files to add to the CLASSPATHs of the Python driver and tasks.
+            description_kind: plain
+            optional: true
+          main_python_file_uri:
+            type: string
+            description: The HCFS URI of the main Python file to use as the driver. Must be a .py file.
+            description_kind: plain
+            required: true
+          python_file_uris:
+            type:
+            - list
+            - string
+            description: 'HCFS file URIs of Python files to pass to the PySpark framework. Supported file types: .py, .egg, and .zip.'
+            description_kind: plain
+            optional: true
+        description: Represents the PySparkApplicationConfig.
+        description_kind: plain
+      max_items: 1
+    spark_application_config:
+      nesting_mode: list
+      block:
+        attributes:
+          archive_uris:
+            type:
+            - list
+            - string
+            description: 'HCFS URIs of archives to be extracted into the working directory of each executor. Supported file types: ''.jar'', ''.tar'', ''.tar.gz'', ''.tgz'', and ''.zip''.'
+            description_kind: plain
+            optional: true
+          args:
+            type:
+            - list
+            - string
+            description: The arguments to pass to the driver. Do not include arguments that can be set as application properties, such as '--conf', since a collision can occur that causes an incorrect application submission.
+            description_kind: plain
+            optional: true
+          file_uris:
+            type:
+            - list
+            - string
+            description: HCFS URIs of files to be placed in the working directory of each executor.
+            description_kind: plain
+            optional: true
+          jar_file_uris:
+            type:
+            - list
+            - string
+            description: HCFS URIs of jar files to add to the classpath of the Spark driver and tasks.
+            description_kind: plain
+            optional: true
+          main_class:
+            type: string
+            description: The name of the driver main class. The jar file that contains the class must be in the classpath or specified in 'jar_file_uris'.
+            description_kind: plain
+            optional: true
+          main_jar_file_uri:
+            type: string
+            description: The HCFS URI of the jar file that contains the main class.
+            description_kind: plain
+            optional: true
+        description: Represents the SparkApplicationConfig.
+        description_kind: plain
+      max_items: 1
+    spark_r_application_config:
+      nesting_mode: list
+      block:
+        attributes:
+          archive_uris:
+            type:
+            - list
+            - string
+            description: 'HCFS URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.'
+            description_kind: plain
+            optional: true
+          args:
+            type:
+            - list
+            - string
+            description: The arguments to pass to the driver.  Do not include arguments, such as '--conf', that can be set as job properties, since a collision may occur that causes an incorrect job submission.
+            description_kind: plain
+            optional: true
+          file_uris:
+            type:
+            - list
+            - string
+            description: HCFS URIs of files to be placed in the working directory of each executor. Useful for naively parallel tasks.
+            description_kind: plain
+            optional: true
+          main_r_file_uri:
+            type: string
+            description: The HCFS URI of the main R file to use as the driver. Must be a .R file.
+            description_kind: plain
+            required: true
+        description: Represents the SparkRApplicationConfig.
+        description_kind: plain
+      max_items: 1
+    spark_sql_application_config:
+      nesting_mode: list
+      block:
+        attributes:
+          jar_file_uris:
+            type:
+            - list
+            - string
+            description: HCFS URIs of jar files to be added to the Spark CLASSPATH.
+            description_kind: plain
+            optional: true
+          query_file_uri:
+            type: string
+            description: The HCFS URI of the script that contains SQL queries.
+            description_kind: plain
+            optional: true
+          script_variables:
+            type:
+            - map
+            - string
+            description: 'Mapping of query variable names to values (equivalent to the Spark SQL command: SET ''name="value";'').'
+            description_kind: plain
+            optional: true
+        block_types:
+          query_list:
+            nesting_mode: list
+            block:
+              attributes:
+                queries:
+                  type:
+                  - list
+                  - string
+                  description: The queries to run.
+                  description_kind: plain
+                  required: true
+              description: Represents a list of queries.
+              description_kind: plain
+            max_items: 1
+        description: Represents the SparkRApplicationConfig.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

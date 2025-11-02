@@ -1,0 +1,325 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "authorized_network": {
+        "type": "string",
+        "description": "The full name of the GCE network to connect the instance to.  If not provided, 'default' will be used.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "Creation timestamp in RFC3339 text format.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "deletion_protection": {
+        "type": "bool",
+        "description": "Whether Terraform will be prevented from destroying the instance. When a 'terraform destroy' or 'terraform apply' would delete the instance, the command will fail if this field is not set to false in Terraform state. When the field is set to true or unset in Terraform state, a 'terraform apply' or 'terraform destroy' that would delete the instance will fail. When the field is set to false, deleting the instance is allowed.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "discovery_endpoint": {
+        "type": "string",
+        "description": "Endpoint for Discovery API",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "A user-visible name for the instance.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Resource labels to represent user-provided metadata. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "maintenance_schedule": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "end_time": "string",
+              "schedule_deadline_time": "string",
+              "start_time": "string"
+            }
+          ]
+        ],
+        "description": "Output only. Published maintenance schedule.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "memcache_full_version": {
+        "type": "string",
+        "description": "The full version of memcached server running on this instance.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "memcache_nodes": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "host": "string",
+              "node_id": "string",
+              "port": "number",
+              "state": "string",
+              "zone": "string"
+            }
+          ]
+        ],
+        "description": "Additional information about the instance state, if available.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "memcache_version": {
+        "type": "string",
+        "description": "The major version of Memcached software. If not provided, latest supported version will be used. Currently the latest supported major version is MEMCACHE_1_5. The minor version will be automatically determined by our system based on the latest supported minor version. Default value: \"MEMCACHE_1_5\" Possible values: [\"MEMCACHE_1_5\", \"MEMCACHE_1_6_15\"]",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name of the instance.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "node_count": {
+        "type": "number",
+        "description": "Number of nodes in the memcache instance.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "The region of the Memcache instance. If it is not provided, the provider region is used.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "reserved_ip_range_id": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "Contains the name of allocated IP address ranges associated with the private service access connection for example, \"test-default\" associated with IP range 10.0.0.0/29.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "zones": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description": "Zones where memcache nodes should be provisioned.  If not provided, all zones will be used.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "maintenance_policy": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "create_time": {
+              "type": "string",
+              "description": "Output only. The time when the policy was created. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "description": {
+              "type": "string",
+              "description": "Optional. Description of what this policy is for. Create/Update methods return INVALID_ARGUMENT if the length is greater than 512.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update_time": {
+              "type": "string",
+              "description": "Output only. The time when the policy was updated. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits.",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "block_types": {
+            "weekly_maintenance_window": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "day": {
+                    "type": "string",
+                    "description": "Required. The day of week that maintenance updates occur. - DAY_OF_WEEK_UNSPECIFIED: The day of the week is unspecified. - MONDAY: Monday - TUESDAY: Tuesday - WEDNESDAY: Wednesday - THURSDAY: Thursday - FRIDAY: Friday - SATURDAY: Saturday - SUNDAY: Sunday Possible values: [\"DAY_OF_WEEK_UNSPECIFIED\", \"MONDAY\", \"TUESDAY\", \"WEDNESDAY\", \"THURSDAY\", \"FRIDAY\", \"SATURDAY\", \"SUNDAY\"]",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "duration": {
+                    "type": "string",
+                    "description": "Required. The length of the maintenance window, ranging from 3 hours to 8 hours. A duration in seconds with up to nine fractional digits, terminated by 's'. Example: \"3.5s\".",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "start_time": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "hours": {
+                          "type": "number",
+                          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "minutes": {
+                          "type": "number",
+                          "description": "Minutes of hour of day. Must be from 0 to 59.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "nanos": {
+                          "type": "number",
+                          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "seconds": {
+                          "type": "number",
+                          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "Required. Start time of the window in UTC time.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  }
+                },
+                "description": "Required. Maintenance window that is applied to resources covered by this policy. Minimum 1. For the current version, the maximum number of weekly_maintenance_windows is expected to be one.",
+                "description_kind": "plain"
+              },
+              "min_items": 1
+            }
+          },
+          "description": "Maintenance policy for an instance.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "memcache_parameters": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "id": {
+              "type": "string",
+              "description": "This is a unique ID associated with this set of parameters.",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "params": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description": "User-defined set of parameters to use in the memcache process.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "User-specified parameters for this memcache instance.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "node_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "cpu_count": {
+              "type": "number",
+              "description": "Number of CPUs per node.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "memory_size_mb": {
+              "type": "number",
+              "description": "Memory size in Mebibytes for each memcache node.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Configuration for memcache nodes.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

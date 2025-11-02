@@ -1,0 +1,157 @@
+version: 0
+block:
+  attributes:
+    agent_version:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    berkshelf_version:
+      type: string
+      description_kind: plain
+      optional: true
+    color:
+      type: string
+      description_kind: plain
+      optional: true
+    configuration_manager_name:
+      type: string
+      description_kind: plain
+      optional: true
+    configuration_manager_version:
+      type: string
+      description_kind: plain
+      optional: true
+    custom_json:
+      type: string
+      description_kind: plain
+      optional: true
+    default_availability_zone:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    default_instance_profile_arn:
+      type: string
+      description_kind: plain
+      required: true
+    default_os:
+      type: string
+      description_kind: plain
+      optional: true
+    default_root_device_type:
+      type: string
+      description_kind: plain
+      optional: true
+    default_ssh_key_name:
+      type: string
+      description_kind: plain
+      optional: true
+    default_subnet_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    hostname_theme:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    manage_berkshelf:
+      type: bool
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description_kind: plain
+      required: true
+    service_role_arn:
+      type: string
+      description_kind: plain
+      required: true
+    stack_endpoint:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    use_custom_cookbooks:
+      type: bool
+      description_kind: plain
+      optional: true
+    use_opsworks_security_groups:
+      type: bool
+      description_kind: plain
+      optional: true
+    vpc_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    custom_cookbooks_source:
+      nesting_mode: list
+      block:
+        attributes:
+          password:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          revision:
+            type: string
+            description_kind: plain
+            optional: true
+          ssh_key:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+          url:
+            type: string
+            description_kind: plain
+            required: true
+          username:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

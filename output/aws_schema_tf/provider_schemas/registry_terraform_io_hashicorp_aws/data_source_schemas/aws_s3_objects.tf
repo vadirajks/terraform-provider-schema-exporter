@@ -1,0 +1,16 @@
+data "aws_s3_objects" "name" {
+  bucket = string (Required)
+  common_prefixes = ['list', 'string'] (Computed)
+  delimiter = string (Optional)
+  encoding_type = string (Optional)
+  fetch_owner = bool (Optional)
+  id = string (Optional, Computed)
+  keys = ['list', 'string'] (Computed)
+  max_keys = number (Optional)
+  owners = ['list', 'string'] (Computed)
+  prefix = string (Optional)
+  region = string (Optional, Computed)
+  request_charged = string (Computed)
+  request_payer = string (Optional)
+  start_after = string (Optional)
+}

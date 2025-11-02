@@ -1,0 +1,279 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    enable_network_isolation:
+      type: bool
+      description_kind: plain
+      optional: true
+    execution_role_arn:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    container:
+      nesting_mode: list
+      block:
+        attributes:
+          container_hostname:
+            type: string
+            description_kind: plain
+            optional: true
+          environment:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+          image:
+            type: string
+            description_kind: plain
+            optional: true
+          inference_specification_name:
+            type: string
+            description_kind: plain
+            optional: true
+          mode:
+            type: string
+            description_kind: plain
+            optional: true
+          model_data_url:
+            type: string
+            description_kind: plain
+            optional: true
+          model_package_name:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          image_config:
+            nesting_mode: list
+            block:
+              attributes:
+                repository_access_mode:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                repository_auth_config:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      repository_credentials_provider_arn:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          model_data_source:
+            nesting_mode: list
+            block:
+              block_types:
+                s3_data_source:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      compression_type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      s3_data_type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      s3_uri:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      model_access_config:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            accept_eula:
+                              type: bool
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                        max_items: 1
+                    description_kind: plain
+                  min_items: 1
+              description_kind: plain
+            max_items: 1
+          multi_model_config:
+            nesting_mode: list
+            block:
+              attributes:
+                model_cache_setting:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+    inference_execution_config:
+      nesting_mode: list
+      block:
+        attributes:
+          mode:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    primary_container:
+      nesting_mode: list
+      block:
+        attributes:
+          container_hostname:
+            type: string
+            description_kind: plain
+            optional: true
+          environment:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+          image:
+            type: string
+            description_kind: plain
+            optional: true
+          inference_specification_name:
+            type: string
+            description_kind: plain
+            optional: true
+          mode:
+            type: string
+            description_kind: plain
+            optional: true
+          model_data_url:
+            type: string
+            description_kind: plain
+            optional: true
+          model_package_name:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          image_config:
+            nesting_mode: list
+            block:
+              attributes:
+                repository_access_mode:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                repository_auth_config:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      repository_credentials_provider_arn:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          model_data_source:
+            nesting_mode: list
+            block:
+              block_types:
+                s3_data_source:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      compression_type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      s3_data_type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      s3_uri:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      model_access_config:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            accept_eula:
+                              type: bool
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                        max_items: 1
+                    description_kind: plain
+                  min_items: 1
+              description_kind: plain
+            max_items: 1
+          multi_model_config:
+            nesting_mode: list
+            block:
+              attributes:
+                model_cache_setting:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    vpc_config:
+      nesting_mode: list
+      block:
+        attributes:
+          security_group_ids:
+            type:
+            - set
+            - string
+            description_kind: plain
+            required: true
+          subnets:
+            type:
+            - set
+            - string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

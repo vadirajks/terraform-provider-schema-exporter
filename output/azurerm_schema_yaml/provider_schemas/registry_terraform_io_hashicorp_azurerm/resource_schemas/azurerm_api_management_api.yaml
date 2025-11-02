@@ -1,0 +1,221 @@
+version: 1
+block:
+  attributes:
+    api_management_name:
+      type: string
+      description_kind: plain
+      required: true
+    api_type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    is_current:
+      type: bool
+      description_kind: plain
+      computed: true
+    is_online:
+      type: bool
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    path:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    protocols:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    revision:
+      type: string
+      description_kind: plain
+      required: true
+    revision_description:
+      type: string
+      description_kind: plain
+      optional: true
+    service_url:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    source_api_id:
+      type: string
+      description_kind: plain
+      optional: true
+    subscription_required:
+      type: bool
+      description_kind: plain
+      optional: true
+    terms_of_service_url:
+      type: string
+      description_kind: plain
+      optional: true
+    version:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    version_description:
+      type: string
+      description_kind: plain
+      optional: true
+    version_set_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    contact:
+      nesting_mode: list
+      block:
+        attributes:
+          email:
+            type: string
+            description_kind: plain
+            optional: true
+          name:
+            type: string
+            description_kind: plain
+            optional: true
+          url:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    import:
+      nesting_mode: list
+      block:
+        attributes:
+          content_format:
+            type: string
+            description_kind: plain
+            required: true
+          content_value:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          wsdl_selector:
+            nesting_mode: list
+            block:
+              attributes:
+                endpoint_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                service_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    license:
+      nesting_mode: list
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            optional: true
+          url:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    oauth2_authorization:
+      nesting_mode: list
+      block:
+        attributes:
+          authorization_server_name:
+            type: string
+            description_kind: plain
+            required: true
+          scope:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    openid_authentication:
+      nesting_mode: list
+      block:
+        attributes:
+          bearer_token_sending_methods:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          openid_provider_name:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    subscription_key_parameter_names:
+      nesting_mode: list
+      block:
+        attributes:
+          header:
+            type: string
+            description_kind: plain
+            required: true
+          query:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,32 @@
+resource "google_chronicle_rule" "name" {
+  instance = string (Required)
+  location = string (Required)
+  allowed_run_frequencies = ['list', 'string'] (Computed)
+  author = string (Computed)
+  compilation_diagnostics = ['list', ['object', {'message': 'string', 'position': ['list', ['object', {'end_column': 'number', 'end_line': 'number', 'start_column': 'number', 'start_line': 'number'}]], 'severity': 'string', 'uri': 'string'}]] (Computed)
+  compilation_state = string (Computed)
+  create_time = string (Computed)
+  data_tables = ['list', 'string'] (Computed)
+  deletion_policy = string (Optional)
+  display_name = string (Computed)
+  etag = string (Optional, Computed)
+  id = string (Optional, Computed)
+  metadata = ['map', 'string'] (Computed)
+  name = string (Computed)
+  near_real_time_live_rule_eligible = bool (Computed)
+  project = string (Optional, Computed)
+  reference_lists = ['list', 'string'] (Computed)
+  revision_create_time = string (Computed)
+  revision_id = string (Computed)
+  rule_id = string (Optional, Computed)
+  scope = string (Optional)
+  severity = ['list', ['object', {'display_name': 'string'}]] (Computed)
+  text = string (Optional)
+  type = string (Computed)
+
+  timeouts block "single" (Optional) {
+    create = string (Optional)
+    delete = string (Optional)
+    update = string (Optional)
+  }
+}

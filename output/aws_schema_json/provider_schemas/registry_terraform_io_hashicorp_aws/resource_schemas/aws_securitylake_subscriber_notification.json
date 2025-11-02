@@ -1,0 +1,86 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "endpoint_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "deprecated": true,
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "subscriber_endpoint": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "subscriber_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "configuration": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "https_notification_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "authorization_api_key_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "authorization_api_key_value": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "endpoint": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "http_method": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "target_role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "sqs_notification_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

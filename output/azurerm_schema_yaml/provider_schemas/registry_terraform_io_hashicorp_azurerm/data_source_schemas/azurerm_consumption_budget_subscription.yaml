@@ -1,0 +1,103 @@
+version: 0
+block:
+  attributes:
+    amount:
+      type: number
+      description_kind: plain
+      computed: true
+    filter:
+      type:
+      - list
+      - - object
+        - dimension:
+          - list
+          - - object
+            - name: string
+              operator: string
+              values:
+              - list
+              - string
+          not:
+          - list
+          - - object
+            - dimension:
+              - list
+              - - object
+                - name: string
+                  operator: string
+                  values:
+                  - list
+                  - string
+              tag:
+              - list
+              - - object
+                - name: string
+                  operator: string
+                  values:
+                  - list
+                  - string
+          tag:
+          - list
+          - - object
+            - name: string
+              operator: string
+              values:
+              - list
+              - string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    notification:
+      type:
+      - list
+      - - object
+        - contact_emails:
+          - list
+          - string
+          contact_groups:
+          - list
+          - string
+          contact_roles:
+          - list
+          - string
+          enabled: bool
+          operator: string
+          threshold: number
+          threshold_type: string
+      description_kind: plain
+      computed: true
+    subscription_id:
+      type: string
+      description_kind: plain
+      required: true
+    time_grain:
+      type: string
+      description_kind: plain
+      computed: true
+    time_period:
+      type:
+      - list
+      - - object
+        - end_date: string
+          start_date: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

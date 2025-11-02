@@ -1,0 +1,54 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: Output only. Time the release was created.
+      description_kind: plain
+      computed: true
+    disabled:
+      type: bool
+      description: Disable the release to keep it from being served. The response code of NOT_FOUND will be given for executables generated from this Release.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: 'Format: `projects/{project_id}/releases/{release_id}`\Firestore Rules Releases will **always** have the name ''cloud.firestore'''
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description: The project for the resource
+      description_kind: plain
+      optional: true
+      computed: true
+    ruleset_name:
+      type: string
+      description: Name of the `Ruleset` referred to by this `Release`. The `Ruleset` must exist for the `Release` to be created.
+      description_kind: plain
+      required: true
+    update_time:
+      type: string
+      description: Output only. Time the release was updated.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

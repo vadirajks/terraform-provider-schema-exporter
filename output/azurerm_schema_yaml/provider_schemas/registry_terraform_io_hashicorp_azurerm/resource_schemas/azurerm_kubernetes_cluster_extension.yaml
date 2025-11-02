@@ -1,0 +1,113 @@
+version: 0
+block:
+  attributes:
+    aks_assigned_identity:
+      type:
+      - list
+      - - object
+        - principal_id: string
+          tenant_id: string
+          type: string
+      description_kind: plain
+      computed: true
+    cluster_id:
+      type: string
+      description_kind: plain
+      required: true
+    configuration_protected_settings:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    configuration_settings:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    current_version:
+      type: string
+      description_kind: plain
+      computed: true
+    extension_type:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    release_namespace:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    release_train:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    target_namespace:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    version:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    plan:
+      nesting_mode: list
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          product:
+            type: string
+            description_kind: plain
+            required: true
+          promotion_code:
+            type: string
+            description_kind: plain
+            optional: true
+          publisher:
+            type: string
+            description_kind: plain
+            required: true
+          version:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

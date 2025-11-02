@@ -1,0 +1,60 @@
+version: 0
+block:
+  attributes:
+    cluster:
+      type: string
+      description: Identifies the alloydb cluster. Must be in the format 'projects/{project}/locations/{location}/clusters/{cluster_id}'
+      description_kind: plain
+      required: true
+    database_roles:
+      type:
+      - list
+      - string
+      description: List of database roles this database user has.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: Name of the resource in the form of projects/{project}/locations/{location}/clusters/{cluster}/users/{user}.
+      description_kind: plain
+      computed: true
+    password:
+      type: string
+      description: Password for this database user.
+      description_kind: plain
+      optional: true
+      sensitive: true
+    user_id:
+      type: string
+      description: The database role name of the user.
+      description_kind: plain
+      required: true
+    user_type:
+      type: string
+      description: 'The type of this user. Possible values: ["ALLOYDB_BUILT_IN", "ALLOYDB_IAM_USER"]'
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

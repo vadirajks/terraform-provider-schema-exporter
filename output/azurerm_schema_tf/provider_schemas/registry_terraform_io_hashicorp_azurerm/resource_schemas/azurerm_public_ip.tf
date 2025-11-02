@@ -1,0 +1,30 @@
+resource "azurerm_public_ip" "name" {
+  allocation_method = string (Required)
+  location = string (Required)
+  name = string (Required)
+  resource_group_name = string (Required)
+  ddos_protection_mode = string (Optional)
+  ddos_protection_plan_id = string (Optional)
+  domain_name_label = string (Optional)
+  domain_name_label_scope = string (Optional)
+  edge_zone = string (Optional)
+  fqdn = string (Computed)
+  id = string (Optional, Computed)
+  idle_timeout_in_minutes = number (Optional)
+  ip_address = string (Computed)
+  ip_tags = ['map', 'string'] (Optional)
+  ip_version = string (Optional)
+  public_ip_prefix_id = string (Optional)
+  reverse_fqdn = string (Optional)
+  sku = string (Optional)
+  sku_tier = string (Optional)
+  tags = ['map', 'string'] (Optional)
+  zones = ['set', 'string'] (Optional)
+
+  timeouts block "single" (Optional) {
+    create = string (Optional)
+    delete = string (Optional)
+    read = string (Optional)
+    update = string (Optional)
+  }
+}

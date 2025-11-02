@@ -1,0 +1,193 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    vpn_authentication_types:
+      type:
+      - list
+      - string
+      description_kind: plain
+      required: true
+    vpn_protocols:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    azure_active_directory_authentication:
+      nesting_mode: list
+      block:
+        attributes:
+          audience:
+            type: string
+            description_kind: plain
+            required: true
+          issuer:
+            type: string
+            description_kind: plain
+            required: true
+          tenant:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    client_revoked_certificate:
+      nesting_mode: set
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          thumbprint:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    client_root_certificate:
+      nesting_mode: set
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          public_cert_data:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    ipsec_policy:
+      nesting_mode: list
+      block:
+        attributes:
+          dh_group:
+            type: string
+            description_kind: plain
+            required: true
+          ike_encryption:
+            type: string
+            description_kind: plain
+            required: true
+          ike_integrity:
+            type: string
+            description_kind: plain
+            required: true
+          ipsec_encryption:
+            type: string
+            description_kind: plain
+            required: true
+          ipsec_integrity:
+            type: string
+            description_kind: plain
+            required: true
+          pfs_group:
+            type: string
+            description_kind: plain
+            required: true
+          sa_data_size_kilobytes:
+            type: number
+            description_kind: plain
+            required: true
+          sa_lifetime_seconds:
+            type: number
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    radius:
+      nesting_mode: list
+      block:
+        block_types:
+          client_root_certificate:
+            nesting_mode: set
+            block:
+              attributes:
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                thumbprint:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          server:
+            nesting_mode: list
+            block:
+              attributes:
+                address:
+                  type: string
+                  description_kind: plain
+                  required: true
+                score:
+                  type: number
+                  description_kind: plain
+                  required: true
+                secret:
+                  type: string
+                  description_kind: plain
+                  required: true
+                  sensitive: true
+              description_kind: plain
+          server_root_certificate:
+            nesting_mode: set
+            block:
+              attributes:
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                public_cert_data:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

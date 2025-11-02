@@ -1,0 +1,209 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "language_code": {
+        "type": "string",
+        "description": "Language for this settings.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The unique identifier of the generativeSettings. Format: projects/<ProjectID>/locations/<LocationID>/agents/<AgentID>/generativeSettings.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "parent": {
+        "type": "string",
+        "description": "The agent to create a flow for. Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>.",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "fallback_settings": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "selected_prompt": {
+              "type": "string",
+              "description": "Display name of the selected prompt.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "prompt_templates": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "display_name": {
+                    "type": "string",
+                    "description": "Prompt name.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "frozen": {
+                    "type": "bool",
+                    "description": "If the flag is true, the prompt is frozen and cannot be modified by users.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "prompt_text": {
+                    "type": "string",
+                    "description": "Prompt text that is sent to a LLM on no-match default, placeholders are filled downstream. For example: \"Here is a conversation $conversation, a response is: \"",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Stored prompts that can be selected, for example default templates like \"conservative\" or \"chatty\", or user defined ones.",
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description": "Settings for Generative Fallback.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "generative_safety_settings": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "default_banned_phrase_match_strategy": {
+              "type": "string",
+              "description": "Optional. Default phrase match strategy for banned phrases. See [PhraseMatchStrategy](https://cloud.google.com/dialogflow/cx/docs/reference/rest/v3/GenerativeSettings#phrasematchstrategy) for valid values.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "banned_phrases": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "language_code": {
+                    "type": "string",
+                    "description": "Language code of the phrase.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "text": {
+                    "type": "string",
+                    "description": "Text input which can be used for prompt or banned phrases.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Banned phrases for generated text.",
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description": "Settings for Generative Safety. w",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "knowledge_connector_settings": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "agent": {
+              "type": "string",
+              "description": "Name of the virtual agent. Used for LLM prompt. Can be left empty.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "agent_identity": {
+              "type": "string",
+              "description": "Identity of the agent, e.g. \"virtual agent\", \"AI assistant\".",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "agent_scope": {
+              "type": "string",
+              "description": "Agent scope, e.g. \"Example company website\", \"internal Example company website for employees\", \"manual of car owner\".",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "business": {
+              "type": "string",
+              "description": "Name of the company, organization or other entity that the agent represents. Used for knowledge connector LLM prompt and for knowledge search.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "business_description": {
+              "type": "string",
+              "description": "Company description, used for LLM prompt, e.g. \"a family company selling freshly roasted coffee beans\".''",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "disable_data_store_fallback": {
+              "type": "bool",
+              "description": "Whether to disable fallback to Data Store search results (in case the LLM couldn't pick a proper answer). Per default the feature is enabled.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Settings for knowledge connector.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "llm_model_settings": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "model": {
+              "type": "string",
+              "description": "The selected LLM model.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "prompt_text": {
+              "type": "string",
+              "description": "The custom prompt to use.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "LLM model settings.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

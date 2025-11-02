@@ -1,0 +1,62 @@
+version: 0
+block:
+  attributes:
+    cdn_frontdoor_profile_id:
+      type: string
+      description_kind: plain
+      computed: true
+    health_probe:
+      type:
+      - list
+      - - object
+        - interval_in_seconds: number
+          path: string
+          protocol: string
+          request_type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    load_balancing:
+      type:
+      - list
+      - - object
+        - additional_latency_in_milliseconds: number
+          sample_size: number
+          successful_samples_required: number
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    profile_name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    restore_traffic_time_to_healed_or_new_endpoint_in_minutes:
+      type: number
+      description_kind: plain
+      computed: true
+    session_affinity_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

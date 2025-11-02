@@ -1,0 +1,297 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "activated_storage_count": {
+        "type": "number",
+        "description": "The number of storage servers requested for the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "additional_storage_count": {
+        "type": "number",
+        "description": "The number of storage servers requested for the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "arn": {
+        "type": "string",
+        "description": "The Amazon Resource Name (ARN) for the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "availability_zone": {
+        "type": "string",
+        "description": "he name of the Availability Zone (AZ) where the Exadata infrastructure is located.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "availability_zone_id": {
+        "type": "string",
+        "description": "The AZ ID of the AZ where the Exadata infrastructure is located.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "available_storage_size_in_gbs": {
+        "type": "number",
+        "description": "The amount of available storage, in gigabytes (GB), for the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "compute_count": {
+        "type": "number",
+        "description": "The number of database servers for the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "compute_model": {
+        "type": "string",
+        "description": "The OCI model compute model used when you create or clone an instance: ECPU or OCPU. An ECPU is an abstracted measure of compute resources. ECPUs are based on the number of cores elastically allocated from a pool of compute and storage servers. An OCPU is a legacy physical measure of compute resources. OCPUs are based on the physical core of a processor with hyper-threading enabled.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cpu_count": {
+        "type": "number",
+        "description": "The total number of CPU cores that are allocated to the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "created_at": {
+        "type": "string",
+        "description": "The time when the Exadata infrastructure was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "customer_contacts_to_send_to_oci": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "email": "string"
+            }
+          ]
+        ],
+        "description": "The email addresses of contacts to receive notification from Oracle about maintenance updates for the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "data_storage_size_in_tbs": {
+        "type": "number",
+        "description": "The size of the Exadata infrastructure's data disk group, in terabytes (TB).",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "database_server_type": {
+        "type": "string",
+        "description": "The database server model type of the Exadata infrastructure. For the list of valid model names, use the ListDbSystemShapes operation.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "db_node_storage_size_in_gbs": {
+        "type": "number",
+        "description": "The database server model type of the Exadata infrastructure. For the list of valid model names, use the ListDbSystemShapes operation.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "db_server_version": {
+        "type": "string",
+        "description": "The version of the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "The display name of the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description": "The unique identifier of the Exadata infrastructure.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "last_maintenance_run_id": {
+        "type": "string",
+        "description": "The Oracle Cloud Identifier (OCID) of the last maintenance run for the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "maintenance_window": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "custom_action_timeout_in_mins": "number",
+              "days_of_week": [
+                "set",
+                [
+                  "object",
+                  {
+                    "name": "string"
+                  }
+                ]
+              ],
+              "hours_of_day": [
+                "set",
+                "number"
+              ],
+              "is_custom_action_timeout_enabled": "bool",
+              "lead_time_in_weeks": "number",
+              "months": [
+                "set",
+                [
+                  "object",
+                  {
+                    "name": "string"
+                  }
+                ]
+              ],
+              "patching_mode": "string",
+              "preference": "string",
+              "weeks_of_month": [
+                "set",
+                "number"
+              ]
+            }
+          ]
+        ],
+        "description": "The scheduling details for the maintenance window. Patching and system updates take place during the maintenance window",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "max_cpu_count": {
+        "type": "number",
+        "description": "The total number of CPU cores available on the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "max_data_storage_in_tbs": {
+        "type": "number",
+        "description": "The total amount of data disk group storage, in terabytes (TB), that's available on the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "max_db_node_storage_size_in_gbs": {
+        "type": "number",
+        "description": "The total amount of local node storage, in gigabytes (GB), that's available on the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "max_memory_in_gbs": {
+        "type": "number",
+        "description": "The total amount of memory, in gigabytes (GB), that's available on the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "memory_size_in_gbs": {
+        "type": "number",
+        "description": "The amount of memory, in gigabytes (GB), that's allocated on the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "monthly_db_server_version": {
+        "type": "string",
+        "description": "The monthly software version of the database servers installed on the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "monthly_storage_server_version": {
+        "type": "string",
+        "description": "The monthly software version of the storage servers installed on the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "next_maintenance_run_id": {
+        "type": "string",
+        "description": "The OCID of the next maintenance run for the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "oci_resource_anchor_name": {
+        "type": "string",
+        "description": "The name of the OCI resource anchor for the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "oci_url": {
+        "type": "string",
+        "description": "The HTTPS link to the Exadata infrastructure in OCI.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "ocid": {
+        "type": "string",
+        "description": "The OCID of the Exadata infrastructure in OCI.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "percent_progress": {
+        "type": "number",
+        "description": "The amount of progress made on the current operation on the Exadata infrastructure expressed as a percentage.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "shape": {
+        "type": "string",
+        "description": "The model name of the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "status": {
+        "type": "string",
+        "description": "The status of the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "status_reason": {
+        "type": "string",
+        "description": "Additional information about the status of the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "storage_count": {
+        "type": "number",
+        "description": "he number of storage servers that are activated for the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "storage_server_type": {
+        "type": "string",
+        "description": "The storage server model type of the Exadata infrastructure. For the list of valid model names, use the ListDbSystemShapes operation.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "storage_server_version": {
+        "type": "string",
+        "description": "The software version of the storage servers on the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "total_storage_size_in_gbs": {
+        "type": "number",
+        "description": "The total amount of storage, in gigabytes (GB), on the the Exadata infrastructure.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

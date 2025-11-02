@@ -1,0 +1,469 @@
+version: 0
+block:
+  attributes:
+    authorization_mode:
+      type: string
+      description: 'Optional. The authorization mode of the Redis cluster. If not provided, auth feature is disabled for the cluster. Default value: "AUTH_MODE_DISABLED" Possible values: ["AUTH_MODE_UNSPECIFIED", "AUTH_MODE_IAM_AUTH", "AUTH_MODE_DISABLED"]'
+      description_kind: plain
+      optional: true
+    available_maintenance_versions:
+      type:
+      - list
+      - string
+      description: This field is used to determine the available maintenance versions for the self service update.
+      description_kind: plain
+      computed: true
+    backup_collection:
+      type: string
+      description: 'The backup collection full resource name. Example: projects/{project}/locations/{location}/backupCollections/{collection}'
+      description_kind: plain
+      computed: true
+    create_time:
+      type: string
+      description: 'The timestamp associated with the cluster creation request. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".'
+      description_kind: plain
+      computed: true
+    deletion_protection_enabled:
+      type: bool
+      description: Optional. Indicates if the cluster is deletion protected or not. If the value if set to true, any delete cluster operation will fail. Default value is true.
+      description_kind: plain
+      optional: true
+    discovery_endpoints:
+      type:
+      - list
+      - - object
+        - address: string
+          port: number
+          psc_config:
+          - list
+          - - object
+            - network: string
+      description: Output only. Endpoints created on each given network, for Redis clients to connect to the cluster. Currently only one endpoint is supported.
+      description_kind: plain
+      computed: true
+    effective_maintenance_version:
+      type: string
+      description: This field represents the actual maintenance version of the cluster.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kms_key:
+      type: string
+      description: The KMS key used to encrypt the at-rest data of the cluster.
+      description_kind: plain
+      optional: true
+    maintenance_schedule:
+      type:
+      - list
+      - - object
+        - end_time: string
+          schedule_deadline_time: string
+          start_time: string
+      description: Upcoming maintenance schedule.
+      description_kind: plain
+      computed: true
+    maintenance_version:
+      type: string
+      description: 'This field can be used to trigger self service update to indicate the desired maintenance version. The input to this field can be determined by the available_maintenance_versions field. *Note*: This field can only be specified when updating an existing cluster to a newer version. Downgrades are currently not supported!'
+      description_kind: plain
+      optional: true
+    managed_server_ca:
+      type:
+      - list
+      - - object
+        - ca_certs:
+          - list
+          - - object
+            - certificates:
+              - list
+              - string
+      description: Cluster's Certificate Authority. This field will only be populated if Redis Cluster's transit_encryption_mode is TRANSIT_ENCRYPTION_MODE_SERVER_AUTHENTICATION
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: 'Unique name of the resource in this scope including project and location using the form: projects/{projectId}/locations/{locationId}/clusters/{clusterId}'
+      description_kind: plain
+      optional: true
+      computed: true
+    node_type:
+      type: string
+      description: 'The nodeType for the Redis cluster. If not provided, REDIS_HIGHMEM_MEDIUM will be used as default Possible values: ["REDIS_SHARED_CORE_NANO", "REDIS_HIGHMEM_MEDIUM", "REDIS_HIGHMEM_XLARGE", "REDIS_STANDARD_SMALL"]'
+      description_kind: plain
+      optional: true
+      computed: true
+    precise_size_gb:
+      type: number
+      description: Output only. Redis memory precise size in GB for the entire cluster.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    psc_connections:
+      type:
+      - list
+      - - object
+        - address: string
+          forwarding_rule: string
+          network: string
+          project_id: string
+          psc_connection_id: string
+      description: Output only. PSC connections for discovery of the cluster topology and accessing the cluster.
+      description_kind: plain
+      computed: true
+    psc_service_attachments:
+      type:
+      - list
+      - - object
+        - connection_type: string
+          service_attachment: string
+      description: Service attachment details to configure Psc connections.
+      description_kind: plain
+      computed: true
+    redis_configs:
+      type:
+      - map
+      - string
+      description: 'Configure Redis Cluster behavior using a subset of native Redis configuration parameters. Please check Memorystore documentation for the list of supported parameters: https://cloud.google.com/memorystore/docs/cluster/supported-instance-configurations'
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: The name of the region of the Redis cluster.
+      description_kind: plain
+      optional: true
+      computed: true
+    replica_count:
+      type: number
+      description: Optional. The number of replica nodes per shard.
+      description_kind: plain
+      optional: true
+    shard_count:
+      type: number
+      description: Required. Number of shards for the Redis cluster.
+      description_kind: plain
+      required: true
+    size_gb:
+      type: number
+      description: Output only. Redis memory size in GB for the entire cluster.
+      description_kind: plain
+      computed: true
+    state:
+      type: string
+      description: The current state of this cluster. Can be CREATING, READY, UPDATING, DELETING and SUSPENDED
+      description_kind: plain
+      computed: true
+    state_info:
+      type:
+      - list
+      - - object
+        - update_info:
+          - list
+          - - object
+            - target_replica_count: number
+              target_shard_count: number
+      description: Output only. Additional information about the current state of the cluster.
+      description_kind: plain
+      computed: true
+    transit_encryption_mode:
+      type: string
+      description: 'Optional. The in-transit encryption for the Redis cluster. If not provided, encryption is disabled for the cluster. Default value: "TRANSIT_ENCRYPTION_MODE_DISABLED" Possible values: ["TRANSIT_ENCRYPTION_MODE_UNSPECIFIED", "TRANSIT_ENCRYPTION_MODE_DISABLED", "TRANSIT_ENCRYPTION_MODE_SERVER_AUTHENTICATION"]'
+      description_kind: plain
+      optional: true
+    uid:
+      type: string
+      description: System assigned, unique identifier for the cluster.
+      description_kind: plain
+      computed: true
+  block_types:
+    automated_backup_config:
+      nesting_mode: list
+      block:
+        attributes:
+          retention:
+            type: string
+            description: 'How long to keep automated backups before the backups are deleted. The value should be between 1 day and 365 days. If not specified, the default value is 35 days. A duration in seconds with up to nine fractional digits, ending with ''s''. Example: "3.5s".'
+            description_kind: plain
+            required: true
+        block_types:
+          fixed_frequency_schedule:
+            nesting_mode: list
+            block:
+              block_types:
+                start_time:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      hours:
+                        type: number
+                        description: Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+                        description_kind: plain
+                        required: true
+                    description: The start time of every automated backup in UTC. It must be set to the start of an hour. This field is required.
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description: Trigger automated backups at a fixed frequency.
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description: The automated backup config for a instance.
+        description_kind: plain
+      max_items: 1
+    cross_cluster_replication_config:
+      nesting_mode: list
+      block:
+        attributes:
+          cluster_role:
+            type: string
+            description: 'The role of the cluster in cross cluster replication. Supported values are: 1. ''CLUSTER_ROLE_UNSPECIFIED'': This is an independent cluster that has never participated in cross cluster replication. It allows both reads and writes. 1. ''NONE'': This is an independent cluster that previously participated in cross cluster replication(either as a ''PRIMARY'' or ''SECONDARY'' cluster). It allows both reads and writes. 1. ''PRIMARY'': This cluster serves as the replication source for secondary clusters that are replicating from it. Any data written to it is automatically replicated to its secondary clusters. It allows both reads and writes. 1. ''SECONDARY'': This cluster replicates data from the primary cluster. It allows only reads. Possible values: ["CLUSTER_ROLE_UNSPECIFIED", "NONE", "PRIMARY", "SECONDARY"]'
+            description_kind: plain
+            optional: true
+          membership:
+            type:
+            - list
+            - - object
+              - primary_cluster:
+                - list
+                - - object
+                  - cluster: string
+                    uid: string
+                secondary_clusters:
+                - list
+                - - object
+                  - cluster: string
+                    uid: string
+            description: An output only view of all the member clusters participating in cross cluster replication. This field is populated for all the member clusters irrespective of their cluster role.
+            description_kind: plain
+            computed: true
+          update_time:
+            type: string
+            description: The last time cross cluster replication config was updated.
+            description_kind: plain
+            computed: true
+        block_types:
+          primary_cluster:
+            nesting_mode: list
+            block:
+              attributes:
+                cluster:
+                  type: string
+                  description: 'The full resource path of the primary cluster in the format: projects/{project}/locations/{region}/clusters/{cluster-id}'
+                  description_kind: plain
+                  optional: true
+                uid:
+                  type: string
+                  description: The unique id of the primary cluster.
+                  description_kind: plain
+                  computed: true
+              description: Details of the primary cluster that is used as the replication source for this secondary cluster. This is allowed to be set only for clusters whose cluster role is of type 'SECONDARY'.
+              description_kind: plain
+            max_items: 1
+          secondary_clusters:
+            nesting_mode: list
+            block:
+              attributes:
+                cluster:
+                  type: string
+                  description: 'The full resource path of the secondary cluster in the format: projects/{project}/locations/{region}/clusters/{cluster-id}'
+                  description_kind: plain
+                  optional: true
+                uid:
+                  type: string
+                  description: The unique id of the secondary cluster.
+                  description_kind: plain
+                  computed: true
+              description: List of secondary clusters that are replicating from this primary cluster. This is allowed to be set only for clusters whose cluster role is of type 'PRIMARY'.
+              description_kind: plain
+        description: Cross cluster replication config
+        description_kind: plain
+      max_items: 1
+    gcs_source:
+      nesting_mode: list
+      block:
+        attributes:
+          uris:
+            type:
+            - set
+            - string
+            description: 'URIs of the GCS objects to import. Example: gs://bucket1/object1, gs://bucket2/folder2/object2'
+            description_kind: plain
+            required: true
+        description: Backups stored in Cloud Storage buckets. The Cloud Storage buckets need to be the same region as the clusters.
+        description_kind: plain
+      max_items: 1
+    maintenance_policy:
+      nesting_mode: list
+      block:
+        attributes:
+          create_time:
+            type: string
+            description: Output only. The time when the policy was created. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits.
+            description_kind: plain
+            computed: true
+          update_time:
+            type: string
+            description: Output only. The time when the policy was last updated. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits.
+            description_kind: plain
+            computed: true
+        block_types:
+          weekly_maintenance_window:
+            nesting_mode: list
+            block:
+              attributes:
+                day:
+                  type: string
+                  description: 'Required. The day of week that maintenance updates occur. - DAY_OF_WEEK_UNSPECIFIED: The day of the week is unspecified. - MONDAY: Monday - TUESDAY: Tuesday - WEDNESDAY: Wednesday - THURSDAY: Thursday - FRIDAY: Friday - SATURDAY: Saturday - SUNDAY: Sunday Possible values: ["DAY_OF_WEEK_UNSPECIFIED", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY"]'
+                  description_kind: plain
+                  required: true
+                duration:
+                  type: string
+                  description: 'Output only. Duration of the maintenance window. The current window is fixed at 1 hour. A duration in seconds with up to nine fractional digits, terminated by ''s''. Example: "3.5s".'
+                  description_kind: plain
+                  computed: true
+              block_types:
+                start_time:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      hours:
+                        type: number
+                        description: Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+                        description_kind: plain
+                        optional: true
+                      minutes:
+                        type: number
+                        description: Minutes of hour of day. Must be from 0 to 59.
+                        description_kind: plain
+                        optional: true
+                      nanos:
+                        type: number
+                        description: Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+                        description_kind: plain
+                        optional: true
+                      seconds:
+                        type: number
+                        description: Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+                        description_kind: plain
+                        optional: true
+                    description: Required. Start time of the window in UTC time.
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description: Optional. Maintenance window that is applied to resources covered by this policy. Minimum 1. For the current version, the maximum number of weekly_window is expected to be one.
+              description_kind: plain
+        description: Maintenance policy for a cluster
+        description_kind: plain
+      max_items: 1
+    managed_backup_source:
+      nesting_mode: list
+      block:
+        attributes:
+          backup:
+            type: string
+            description: 'Example: ''projects/{project}/locations/{location}/backupCollections/{collection}/backups/{backup}''.'
+            description_kind: plain
+            required: true
+        description: Backups that generated and managed by memorystore.
+        description_kind: plain
+      max_items: 1
+    persistence_config:
+      nesting_mode: list
+      block:
+        attributes:
+          mode:
+            type: string
+            description: "Optional. Controls whether Persistence features are enabled. If not provided, the existing value will be used. - DISABLED: \tPersistence (both backup and restore) is disabled for the cluster. - RDB: RDB based Persistence is enabled. - AOF: AOF based Persistence is enabled. Possible values: [\"PERSISTENCE_MODE_UNSPECIFIED\", \"DISABLED\", \"RDB\", \"AOF\"]"
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          aof_config:
+            nesting_mode: list
+            block:
+              attributes:
+                append_fsync:
+                  type: string
+                  description: 'Optional. Available fsync modes. - NO - Do not explicitly call fsync(). Rely on OS defaults. - EVERYSEC - Call fsync() once per second in a background thread. A balance between performance and durability. - ALWAYS - Call fsync() for earch write command. Possible values: ["APPEND_FSYNC_UNSPECIFIED", "NO", "EVERYSEC", "ALWAYS"]'
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              description: AOF configuration. This field will be ignored if mode is not AOF.
+              description_kind: plain
+            max_items: 1
+          rdb_config:
+            nesting_mode: list
+            block:
+              attributes:
+                rdb_snapshot_period:
+                  type: string
+                  description: "Optional. Available snapshot periods for scheduling. - ONE_HOUR:\tSnapshot every 1 hour. - SIX_HOURS:\tSnapshot every 6 hours. - TWELVE_HOURS:\tSnapshot every 12 hours. - TWENTY_FOUR_HOURS:\tSnapshot every 24 hours. Possible values: [\"SNAPSHOT_PERIOD_UNSPECIFIED\", \"ONE_HOUR\", \"SIX_HOURS\", \"TWELVE_HOURS\", \"TWENTY_FOUR_HOURS\"]"
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                rdb_snapshot_start_time:
+                  type: string
+                  description: The time that the first snapshot was/will be attempted, and to which future snapshots will be aligned. If not provided, the current time will be used.
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              description: RDB configuration. This field will be ignored if mode is not RDB.
+              description_kind: plain
+            max_items: 1
+        description: Persistence config (RDB, AOF) for the cluster.
+        description_kind: plain
+      max_items: 1
+    psc_configs:
+      nesting_mode: list
+      block:
+        attributes:
+          network:
+            type: string
+            description: Required. The consumer network where the network address of the discovery endpoint will be reserved, in the form of projects/{network_project_id_or_number}/global/networks/{network_id}.
+            description_kind: plain
+            required: true
+        description: Required. Each PscConfig configures the consumer network where two network addresses will be designated to the cluster for client access. Currently, only one PscConfig is supported.
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    zone_distribution_config:
+      nesting_mode: list
+      block:
+        attributes:
+          mode:
+            type: string
+            description: 'Immutable. The mode for zone distribution for Memorystore Redis cluster. If not provided, MULTI_ZONE will be used as default Possible values: ["MULTI_ZONE", "SINGLE_ZONE"]'
+            description_kind: plain
+            optional: true
+            computed: true
+          zone:
+            type: string
+            description: Immutable. The zone for single zone Memorystore Redis cluster.
+            description_kind: plain
+            optional: true
+        description: Immutable. Zone distribution config for Memorystore Redis cluster.
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

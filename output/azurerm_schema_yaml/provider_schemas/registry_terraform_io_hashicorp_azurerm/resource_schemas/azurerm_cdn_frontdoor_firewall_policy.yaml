@@ -1,0 +1,295 @@
+version: 0
+block:
+  attributes:
+    captcha_cookie_expiration_in_minutes:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    custom_block_response_body:
+      type: string
+      description_kind: plain
+      optional: true
+    custom_block_response_status_code:
+      type: number
+      description_kind: plain
+      optional: true
+    enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    frontend_endpoint_ids:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    js_challenge_cookie_expiration_in_minutes:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    mode:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    redirect_url:
+      type: string
+      description_kind: plain
+      optional: true
+    request_body_check_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    sku_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    custom_rule:
+      nesting_mode: list
+      block:
+        attributes:
+          action:
+            type: string
+            description_kind: plain
+            required: true
+          enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          priority:
+            type: number
+            description_kind: plain
+            optional: true
+          rate_limit_duration_in_minutes:
+            type: number
+            description_kind: plain
+            optional: true
+          rate_limit_threshold:
+            type: number
+            description_kind: plain
+            optional: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          match_condition:
+            nesting_mode: list
+            block:
+              attributes:
+                match_values:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  required: true
+                match_variable:
+                  type: string
+                  description_kind: plain
+                  required: true
+                negation_condition:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                operator:
+                  type: string
+                  description_kind: plain
+                  required: true
+                selector:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                transforms:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 10
+        description_kind: plain
+      max_items: 100
+    log_scrubbing:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+        block_types:
+          scrubbing_rule:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                match_variable:
+                  type: string
+                  description_kind: plain
+                  required: true
+                operator:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                selector:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            min_items: 1
+            max_items: 100
+        description_kind: plain
+      max_items: 1
+    managed_rule:
+      nesting_mode: list
+      block:
+        attributes:
+          action:
+            type: string
+            description_kind: plain
+            required: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+          version:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          exclusion:
+            nesting_mode: list
+            block:
+              attributes:
+                match_variable:
+                  type: string
+                  description_kind: plain
+                  required: true
+                operator:
+                  type: string
+                  description_kind: plain
+                  required: true
+                selector:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 100
+          override:
+            nesting_mode: list
+            block:
+              attributes:
+                rule_group_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                exclusion:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      match_variable:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      operator:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      selector:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 100
+                rule:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      action:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      enabled:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                      rule_id:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    block_types:
+                      exclusion:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            match_variable:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            operator:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            selector:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                        max_items: 100
+                    description_kind: plain
+                  max_items: 1000
+              description_kind: plain
+            max_items: 100
+        description_kind: plain
+      max_items: 100
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

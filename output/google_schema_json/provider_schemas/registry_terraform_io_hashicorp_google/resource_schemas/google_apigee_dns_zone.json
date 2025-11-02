@@ -1,0 +1,87 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "description": {
+        "type": "string",
+        "description": "Description for the zone.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "dns_zone_id": {
+        "type": "string",
+        "description": "ID of the dns zone.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "domain": {
+        "type": "string",
+        "description": "Doamin for the zone.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the Dns Zone in the following format: organizations/{organization}/dnsZones/{dnsZone}.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "org_id": {
+        "type": "string",
+        "description": "The Apigee Organization associated with the Apigee instance, in the format 'organizations/{{org_name}}'.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "peering_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "target_network_id": {
+              "type": "string",
+              "description": "The name of the producer VPC network.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "target_project_id": {
+              "type": "string",
+              "description": "The ID of the project that contains the producer VPC network.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Peering zone config",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

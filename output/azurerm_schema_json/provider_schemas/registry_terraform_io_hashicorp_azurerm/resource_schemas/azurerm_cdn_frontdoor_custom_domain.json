@@ -1,0 +1,101 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "cdn_frontdoor_profile_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "dns_zone_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "expiration_date": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "host_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "validation_token": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "tls": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "cdn_frontdoor_secret_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "certificate_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "minimum_tls_version": {
+              "type": "string",
+              "description_kind": "plain",
+              "deprecated": true,
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

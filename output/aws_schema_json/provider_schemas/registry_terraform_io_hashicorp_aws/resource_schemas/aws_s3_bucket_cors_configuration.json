@@ -1,0 +1,85 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "bucket": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "expected_bucket_owner": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "cors_rule": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "allowed_headers": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "allowed_methods": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "allowed_origins": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "expose_headers": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "max_age_seconds": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 100
+      }
+    },
+    "description_kind": "plain"
+  }
+}

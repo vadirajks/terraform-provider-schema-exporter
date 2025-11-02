@@ -1,0 +1,61 @@
+resource "aws_ami_copy" "name" {
+  name = string (Required)
+  source_ami_id = string (Required)
+  source_ami_region = string (Required)
+  architecture = string (Computed)
+  arn = string (Computed)
+  boot_mode = string (Computed)
+  deprecation_time = string (Optional)
+  description = string (Optional)
+  destination_outpost_arn = string (Optional)
+  ena_support = bool (Computed)
+  encrypted = bool (Optional)
+  hypervisor = string (Computed)
+  id = string (Optional, Computed)
+  image_location = string (Computed)
+  image_owner_alias = string (Computed)
+  image_type = string (Computed)
+  imds_support = string (Computed)
+  kernel_id = string (Computed)
+  kms_key_id = string (Optional, Computed)
+  last_launched_time = string (Computed)
+  manage_ebs_snapshots = bool (Computed)
+  owner_id = string (Computed)
+  platform = string (Computed)
+  platform_details = string (Computed)
+  public = bool (Computed)
+  ramdisk_id = string (Computed)
+  region = string (Optional, Computed)
+  root_device_name = string (Computed)
+  root_snapshot_id = string (Computed)
+  sriov_net_support = string (Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+  tpm_support = string (Computed)
+  uefi_data = string (Computed)
+  usage_operation = string (Computed)
+  virtualization_type = string (Computed)
+
+  ebs_block_device block "set" (Optional) {
+    delete_on_termination = bool (Computed)
+    device_name = string (Computed)
+    encrypted = bool (Computed)
+    iops = number (Computed)
+    outpost_arn = string (Computed)
+    snapshot_id = string (Computed)
+    throughput = number (Computed)
+    volume_size = number (Computed)
+    volume_type = string (Computed)
+  }
+
+  ephemeral_block_device block "set" (Optional) {
+    device_name = string (Computed)
+    virtual_name = string (Computed)
+  }
+
+  timeouts block "single" (Optional) {
+    create = string (Optional)
+    delete = string (Optional)
+    update = string (Optional)
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "api_products": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description": "List of API products associated with the developer app.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "app_family": {
+        "type": "string",
+        "description": "Developer app family.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "app_id": {
+        "type": "string",
+        "description": "ID of the developer app. This ID is not user specified but is automatically generated on app creation. appId is a UUID.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "callback_url": {
+        "type": "string",
+        "description": "Callback URL used by OAuth 2.0 authorization servers to communicate authorization codes back to developer apps.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "created_at": {
+        "type": "string",
+        "description": "Time at which the developer was created in milliseconds since epoch.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "credentials": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "api_products": [
+                "list",
+                [
+                  "object",
+                  {
+                    "apiproduct": "string",
+                    "status": "string"
+                  }
+                ]
+              ],
+              "attributes": [
+                "list",
+                [
+                  "object",
+                  {
+                    "name": "string",
+                    "value": "string"
+                  }
+                ]
+              ],
+              "consumer_key": "string",
+              "consumer_secret": "string",
+              "expires_at": "string",
+              "issued_at": "string",
+              "scopes": [
+                "list",
+                "string"
+              ],
+              "status": "string"
+            }
+          ]
+        ],
+        "description": "Output only. Set of credentials for the developer app consisting of the consumer key/secret pairs associated with the API products.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "developer_email": {
+        "type": "string",
+        "description": "Email address of the developer. This value is used to uniquely identify the developer in Apigee hybrid. Note that the email address has to be in lowercase only.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "developer_id": {
+        "type": "string",
+        "description": "ID of the developer.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "key_expires_in": {
+        "type": "string",
+        "description": "Expiration time, in milliseconds, for the consumer key that is generated for the developer app. If not set or left to the default value of -1, the API key never expires. The expiration time can't be updated after it is set.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "last_modified_at": {
+        "type": "string",
+        "description": "Time at which the developer was last modified in milliseconds since epoch.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the developer app.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "org_id": {
+        "type": "string",
+        "description": "The Apigee Organization associated with the Apigee instance, in the format 'organizations/{{org_name}}'.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "scopes": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description": "Scopes to apply to the developer app. The specified scopes must already exist for the API product that you associate with the developer app.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "status": {
+        "type": "string",
+        "description": "Status of the credential. Valid values include approved or revoked.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "attributes": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "name": {
+              "type": "string",
+              "description": "Key of the attribute",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "value": {
+              "type": "string",
+              "description": "Value of the attribute",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Developer attributes (name/value pairs). The custom attribute limit is 18.",
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

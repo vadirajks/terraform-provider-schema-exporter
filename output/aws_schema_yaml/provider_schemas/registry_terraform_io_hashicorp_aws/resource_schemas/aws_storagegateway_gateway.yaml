@@ -1,0 +1,184 @@
+version: 0
+block:
+  attributes:
+    activation_key:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    average_download_rate_limit_in_bits_per_sec:
+      type: number
+      description_kind: plain
+      optional: true
+    average_upload_rate_limit_in_bits_per_sec:
+      type: number
+      description_kind: plain
+      optional: true
+    cloudwatch_log_group_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    ec2_instance_id:
+      type: string
+      description_kind: plain
+      computed: true
+    endpoint_type:
+      type: string
+      description_kind: plain
+      computed: true
+    gateway_id:
+      type: string
+      description_kind: plain
+      computed: true
+    gateway_ip_address:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    gateway_name:
+      type: string
+      description_kind: plain
+      required: true
+    gateway_network_interface:
+      type:
+      - list
+      - - object
+        - ipv4_address: string
+      description_kind: plain
+      computed: true
+    gateway_timezone:
+      type: string
+      description_kind: plain
+      required: true
+    gateway_type:
+      type: string
+      description_kind: plain
+      optional: true
+    gateway_vpc_endpoint:
+      type: string
+      description_kind: plain
+      optional: true
+    host_environment:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    medium_changer_type:
+      type: string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    smb_file_share_visibility:
+      type: bool
+      description_kind: plain
+      optional: true
+    smb_guest_password:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+    smb_security_strategy:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    tape_drive_type:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    maintenance_start_time:
+      nesting_mode: list
+      block:
+        attributes:
+          day_of_month:
+            type: string
+            description_kind: plain
+            optional: true
+          day_of_week:
+            type: string
+            description_kind: plain
+            optional: true
+          hour_of_day:
+            type: number
+            description_kind: plain
+            required: true
+          minute_of_hour:
+            type: number
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    smb_active_directory_settings:
+      nesting_mode: list
+      block:
+        attributes:
+          active_directory_status:
+            type: string
+            description_kind: plain
+            computed: true
+          domain_controllers:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          domain_name:
+            type: string
+            description_kind: plain
+            required: true
+          organizational_unit:
+            type: string
+            description_kind: plain
+            optional: true
+          password:
+            type: string
+            description_kind: plain
+            required: true
+            sensitive: true
+          timeout_in_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+          username:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

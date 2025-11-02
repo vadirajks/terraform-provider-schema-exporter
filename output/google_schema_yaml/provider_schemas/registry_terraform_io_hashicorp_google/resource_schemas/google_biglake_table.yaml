@@ -1,0 +1,109 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: 'Output only. The creation time of the table. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".'
+      description_kind: plain
+      computed: true
+    database:
+      type: string
+      description: The id of the parent database.
+      description_kind: plain
+      optional: true
+    delete_time:
+      type: string
+      description: 'Output only. The deletion time of the table. Only set after the table is deleted. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".'
+      description_kind: plain
+      computed: true
+    etag:
+      type: string
+      description: The checksum of a table object computed by the server based on the value of other fields. It may be sent on update requests to ensure the client has an up-to-date value before proceeding. It is only checked for update table operations.
+      description_kind: plain
+      computed: true
+    expire_time:
+      type: string
+      description: 'Output only. The time when this table is considered expired. Only set after the table is deleted. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".'
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: 'Output only. The name of the Table. Format: projects/{project_id_or_number}/locations/{locationId}/catalogs/{catalogId}/databases/{databaseId}/tables/{tableId}'
+      description_kind: plain
+      required: true
+    type:
+      type: string
+      description: 'The database type. Possible values: ["HIVE"]'
+      description_kind: plain
+      optional: true
+    update_time:
+      type: string
+      description: 'Output only. The last modification time of the table. A timestamp in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits. Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z".'
+      description_kind: plain
+      computed: true
+  block_types:
+    hive_options:
+      nesting_mode: list
+      block:
+        attributes:
+          parameters:
+            type:
+            - map
+            - string
+            description: 'Stores user supplied Hive table parameters. An object containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }.'
+            description_kind: plain
+            optional: true
+          table_type:
+            type: string
+            description: Hive table type. For example, MANAGED_TABLE, EXTERNAL_TABLE.
+            description_kind: plain
+            optional: true
+        block_types:
+          storage_descriptor:
+            nesting_mode: list
+            block:
+              attributes:
+                input_format:
+                  type: string
+                  description: The fully qualified Java class name of the input format.
+                  description_kind: plain
+                  optional: true
+                location_uri:
+                  type: string
+                  description: Cloud Storage folder URI where the table data is stored, starting with "gs://".
+                  description_kind: plain
+                  optional: true
+                output_format:
+                  type: string
+                  description: The fully qualified Java class name of the output format.
+                  description_kind: plain
+                  optional: true
+              description: Stores physical storage information on the data.
+              description_kind: plain
+            max_items: 1
+        description: Options of a Hive table.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,15 @@
+data "aws_ecr_repository_creation_template" "name" {
+  prefix = string (Required)
+  applied_for = ['set', 'string'] (Computed)
+  custom_role_arn = string (Computed)
+  description = string (Computed)
+  encryption_configuration = ['list', ['object', {'encryption_type': 'string', 'kms_key': 'string'}]] (Computed)
+  id = string (Optional, Computed)
+  image_tag_mutability = string (Computed)
+  image_tag_mutability_exclusion_filter = ['list', ['object', {'filter': 'string', 'filter_type': 'string'}]] (Computed)
+  lifecycle_policy = string (Computed)
+  region = string (Optional, Computed)
+  registry_id = string (Computed)
+  repository_policy = string (Computed)
+  resource_tags = ['map', 'string'] (Optional, Computed)
+}

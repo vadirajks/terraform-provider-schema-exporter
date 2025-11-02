@@ -1,0 +1,25 @@
+data "azurerm_function_app" "name" {
+  name = string (Required)
+  resource_group_name = string (Required)
+  app_service_plan_id = string (Computed)
+  app_settings = ['map', 'string'] (Computed)
+  client_cert_mode = string (Computed)
+  connection_string = ['list', ['object', {'name': 'string', 'type': 'string', 'value': 'string'}]] (Computed)
+  custom_domain_verification_id = string (Computed)
+  default_hostname = string (Computed)
+  enabled = bool (Computed)
+  id = string (Optional, Computed)
+  identity = ['list', ['object', {'identity_ids': ['list', 'string'], 'principal_id': 'string', 'tenant_id': 'string', 'type': 'string'}]] (Computed)
+  location = string (Computed)
+  os_type = string (Computed)
+  outbound_ip_addresses = string (Computed)
+  possible_outbound_ip_addresses = string (Computed)
+  site_config = ['list', ['object', {'always_on': 'bool', 'app_scale_limit': 'number', 'auto_swap_slot_name': 'string', 'cors': ['list', ['object', {'allowed_origins': ['set', 'string'], 'support_credentials': 'bool'}]], 'dotnet_framework_version': 'string', 'elastic_instance_minimum': 'number', 'ftps_state': 'string', 'health_check_path': 'string', 'http2_enabled': 'bool', 'ip_restriction': ['list', ['object', {'action': 'string', 'headers': ['list', ['object', {'x_azure_fdid': ['set', 'string'], 'x_fd_health_probe': ['set', 'string'], 'x_forwarded_for': ['set', 'string'], 'x_forwarded_host': ['set', 'string']}]], 'ip_address': 'string', 'name': 'string', 'priority': 'number', 'service_tag': 'string', 'virtual_network_subnet_id': 'string'}]], 'java_version': 'string', 'linux_fx_version': 'string', 'min_tls_version': 'string', 'pre_warmed_instance_count': 'number', 'runtime_scale_monitoring_enabled': 'bool', 'scm_ip_restriction': ['list', ['object', {'action': 'string', 'headers': ['list', ['object', {'x_azure_fdid': ['set', 'string'], 'x_fd_health_probe': ['set', 'string'], 'x_forwarded_for': ['set', 'string'], 'x_forwarded_host': ['set', 'string']}]], 'ip_address': 'string', 'name': 'string', 'priority': 'number', 'service_tag': 'string', 'virtual_network_subnet_id': 'string'}]], 'scm_type': 'string', 'scm_use_main_ip_restriction': 'bool', 'use_32_bit_worker_process': 'bool', 'vnet_route_all_enabled': 'bool', 'websockets_enabled': 'bool'}]] (Computed)
+  site_credential = ['list', ['object', {'password': 'string', 'username': 'string'}]] (Computed)
+  source_control = ['list', ['object', {'branch': 'string', 'manual_integration': 'bool', 'repo_url': 'string', 'rollback_enabled': 'bool', 'use_mercurial': 'bool'}]] (Computed)
+  tags = ['map', 'string'] (Optional)
+
+  timeouts block "single" (Optional) {
+    read = string (Optional)
+  }
+}

@@ -1,0 +1,307 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "auto_mitigate": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "frequency": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "scopes": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "required": true
+      },
+      "severity": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "target_resource_location": {
+        "type": "string",
+        "description": "The location of the target pluginsdk. Required when using subscription, resource group scope or multiple scopes.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "target_resource_type": {
+        "type": "string",
+        "description": "The resource type (e.g. Microsoft.Compute/virtualMachines) of the target pluginsdk. Required when using subscription, resource group scope or multiple scopes.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "window_size": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "action": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "action_group_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "webhook_properties": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "application_insights_web_test_location_availability_criteria": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "component_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "failed_location_count": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "web_test_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "criteria": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "aggregation": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "metric_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "metric_namespace": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "operator": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "skip_metric_validation": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "threshold": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "dimension": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "operator": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "values": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "dynamic_criteria": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "aggregation": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "alert_sensitivity": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "evaluation_failure_count": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "evaluation_total_count": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "ignore_data_before": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "metric_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "metric_namespace": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "operator": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "skip_metric_validation": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "dimension": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "operator": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "values": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

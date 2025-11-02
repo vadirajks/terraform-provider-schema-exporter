@@ -1,0 +1,462 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    aws_account_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    data_source_id:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    type:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    credentials:
+      nesting_mode: list
+      block:
+        attributes:
+          copy_source_arn:
+            type: string
+            description_kind: plain
+            optional: true
+          secret_arn:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          credential_pair:
+            nesting_mode: list
+            block:
+              attributes:
+                password:
+                  type: string
+                  description_kind: plain
+                  required: true
+                  sensitive: true
+                username:
+                  type: string
+                  description_kind: plain
+                  required: true
+                  sensitive: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    parameters:
+      nesting_mode: list
+      block:
+        block_types:
+          amazon_elasticsearch:
+            nesting_mode: list
+            block:
+              attributes:
+                domain:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          athena:
+            nesting_mode: list
+            block:
+              attributes:
+                work_group:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          aurora:
+            nesting_mode: list
+            block:
+              attributes:
+                database:
+                  type: string
+                  description_kind: plain
+                  required: true
+                host:
+                  type: string
+                  description_kind: plain
+                  required: true
+                port:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          aurora_postgresql:
+            nesting_mode: list
+            block:
+              attributes:
+                database:
+                  type: string
+                  description_kind: plain
+                  required: true
+                host:
+                  type: string
+                  description_kind: plain
+                  required: true
+                port:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          aws_iot_analytics:
+            nesting_mode: list
+            block:
+              attributes:
+                data_set_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          databricks:
+            nesting_mode: list
+            block:
+              attributes:
+                host:
+                  type: string
+                  description_kind: plain
+                  required: true
+                port:
+                  type: number
+                  description_kind: plain
+                  required: true
+                sql_endpoint_path:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          jira:
+            nesting_mode: list
+            block:
+              attributes:
+                site_base_url:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          maria_db:
+            nesting_mode: list
+            block:
+              attributes:
+                database:
+                  type: string
+                  description_kind: plain
+                  required: true
+                host:
+                  type: string
+                  description_kind: plain
+                  required: true
+                port:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          mysql:
+            nesting_mode: list
+            block:
+              attributes:
+                database:
+                  type: string
+                  description_kind: plain
+                  required: true
+                host:
+                  type: string
+                  description_kind: plain
+                  required: true
+                port:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          oracle:
+            nesting_mode: list
+            block:
+              attributes:
+                database:
+                  type: string
+                  description_kind: plain
+                  required: true
+                host:
+                  type: string
+                  description_kind: plain
+                  required: true
+                port:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          postgresql:
+            nesting_mode: list
+            block:
+              attributes:
+                database:
+                  type: string
+                  description_kind: plain
+                  required: true
+                host:
+                  type: string
+                  description_kind: plain
+                  required: true
+                port:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          presto:
+            nesting_mode: list
+            block:
+              attributes:
+                catalog:
+                  type: string
+                  description_kind: plain
+                  required: true
+                host:
+                  type: string
+                  description_kind: plain
+                  required: true
+                port:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          rds:
+            nesting_mode: list
+            block:
+              attributes:
+                database:
+                  type: string
+                  description_kind: plain
+                  required: true
+                instance_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          redshift:
+            nesting_mode: list
+            block:
+              attributes:
+                cluster_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                database:
+                  type: string
+                  description_kind: plain
+                  required: true
+                host:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                port:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          s3:
+            nesting_mode: list
+            block:
+              attributes:
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                manifest_file_location:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      bucket:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      key:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          service_now:
+            nesting_mode: list
+            block:
+              attributes:
+                site_base_url:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          snowflake:
+            nesting_mode: list
+            block:
+              attributes:
+                database:
+                  type: string
+                  description_kind: plain
+                  required: true
+                host:
+                  type: string
+                  description_kind: plain
+                  required: true
+                warehouse:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          spark:
+            nesting_mode: list
+            block:
+              attributes:
+                host:
+                  type: string
+                  description_kind: plain
+                  required: true
+                port:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          sql_server:
+            nesting_mode: list
+            block:
+              attributes:
+                database:
+                  type: string
+                  description_kind: plain
+                  required: true
+                host:
+                  type: string
+                  description_kind: plain
+                  required: true
+                port:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          teradata:
+            nesting_mode: list
+            block:
+              attributes:
+                database:
+                  type: string
+                  description_kind: plain
+                  required: true
+                host:
+                  type: string
+                  description_kind: plain
+                  required: true
+                port:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          twitter:
+            nesting_mode: list
+            block:
+              attributes:
+                max_rows:
+                  type: number
+                  description_kind: plain
+                  required: true
+                query:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    permission:
+      nesting_mode: set
+      block:
+        attributes:
+          actions:
+            type:
+            - set
+            - string
+            description_kind: plain
+            required: true
+          principal:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 64
+    ssl_properties:
+      nesting_mode: list
+      block:
+        attributes:
+          disable_ssl:
+            type: bool
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    vpc_connection_properties:
+      nesting_mode: list
+      block:
+        attributes:
+          vpc_connection_arn:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

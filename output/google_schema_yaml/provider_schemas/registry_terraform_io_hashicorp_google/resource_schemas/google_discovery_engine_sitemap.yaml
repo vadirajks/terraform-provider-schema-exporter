@@ -1,0 +1,58 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: Timestamp when the sitemap was created.
+      description_kind: plain
+      computed: true
+    data_store_id:
+      type: string
+      description: The unique id of the data store.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: The geographic location where the data store should reside. The value can only be one of "global", "us" and "eu".
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The unique full resource name of the sitemap. Values are of the format 'projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/siteSearchEngine/sitemaps/{sitemap_id}'. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    sitemap_id:
+      type: string
+      description: The unique id of the sitemap.
+      description_kind: plain
+      computed: true
+    uri:
+      type: string
+      description: Public URI for the sitemap, e.g. "www.example.com/sitemap.xml".
+      description_kind: plain
+      optional: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

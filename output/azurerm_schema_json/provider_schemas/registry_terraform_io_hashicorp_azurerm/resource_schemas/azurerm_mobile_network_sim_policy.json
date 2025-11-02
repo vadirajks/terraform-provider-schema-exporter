@@ -1,0 +1,205 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "default_slice_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "mobile_network_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "rat_frequency_selection_priority_index": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "registration_timer_in_seconds": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "slice": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "default_data_network_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "slice_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "data_network": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "additional_allowed_session_types": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "allocation_and_retention_priority_level": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "allowed_services_ids": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "data_network_id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "default_session_type": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "max_buffered_packets": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "preemption_capability": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "preemption_vulnerability": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "qos_indicator": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "session_aggregate_maximum_bit_rate": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "downlink": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "uplink": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "user_equipment_aggregate_maximum_bit_rate": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "downlink": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "uplink": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

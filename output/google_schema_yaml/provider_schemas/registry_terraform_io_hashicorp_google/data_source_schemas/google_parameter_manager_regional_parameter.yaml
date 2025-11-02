@@ -1,0 +1,78 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: The time at which the regional Parameter was created.
+      description_kind: plain
+      computed: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    format:
+      type: string
+      description: 'The format type of the regional parameter. Default value: "UNFORMATTED" Possible values: ["UNFORMATTED", "YAML", "JSON"]'
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kms_key:
+      type: string
+      description: The resource name of the Cloud KMS CryptoKey used to encrypt regional parameter version payload. Format 'projects/{{project}}/locations/{{location}}/keyRings/{{key_ring}}/cryptoKeys/{{crypto_key}}'
+      description_kind: plain
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'The labels assigned to this regional Parameter. Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}][\p{Ll}\p{Lo}\p{N}_-]{0,62} Label values must be between 0 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll}\p{Lo}\p{N}_-]{0,63} No more than 64 labels can be assigned to a given resource. An object containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" }. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description: The location of the regional parameter. eg us-central1
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: 'The resource name of the regional Parameter. Format: ''projects/{{project}}/locations/{{location}}/parameters/{{parameter_id}}'''
+      description_kind: plain
+      computed: true
+    parameter_id:
+      type: string
+      description: This must be unique within the project.
+      description_kind: plain
+      required: true
+    policy_member:
+      type:
+      - list
+      - - object
+        - iam_policy_name_principal: string
+          iam_policy_uid_principal: string
+      description: An object containing a unique resource identity tied to the regional parameter.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: The time at which the regional Parameter was updated.
+      description_kind: plain
+      computed: true
+  description_kind: plain

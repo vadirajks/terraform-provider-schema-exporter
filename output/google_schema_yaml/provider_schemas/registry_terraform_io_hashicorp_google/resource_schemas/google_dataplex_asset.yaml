@@ -1,0 +1,244 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: Output only. The time when the asset was created.
+      description_kind: plain
+      computed: true
+    dataplex_zone:
+      type: string
+      description: The zone for the resource
+      description_kind: plain
+      required: true
+    description:
+      type: string
+      description: Optional. Description of the asset.
+      description_kind: plain
+      optional: true
+    discovery_status:
+      type:
+      - list
+      - - object
+        - last_run_duration: string
+          last_run_time: string
+          message: string
+          state: string
+          stats:
+          - list
+          - - object
+            - data_items: number
+              data_size: number
+              filesets: number
+              tables: number
+          update_time: string
+      description: Output only. Status of the discovery feature applied to data referenced by this asset.
+      description_kind: plain
+      computed: true
+    display_name:
+      type: string
+      description: Optional. User friendly display name.
+      description_kind: plain
+      optional: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Optional. User defined labels for the asset. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field `effective_labels` for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    lake:
+      type: string
+      description: The lake for the resource
+      description_kind: plain
+      required: true
+    location:
+      type: string
+      description: The location for the resource
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: The name of the asset.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description: The project for the resource
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_status:
+      type:
+      - list
+      - - object
+        - message: string
+          state: string
+          update_time: string
+      description: Output only. Status of the resource referenced by this asset.
+      description_kind: plain
+      computed: true
+    security_status:
+      type:
+      - list
+      - - object
+        - message: string
+          state: string
+          update_time: string
+      description: Output only. Status of the security policy applied to resource referenced by this asset.
+      description_kind: plain
+      computed: true
+    state:
+      type: string
+      description: 'Output only. Current state of the asset. Possible values: STATE_UNSPECIFIED, ACTIVE, CREATING, DELETING, ACTION_REQUIRED'
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    uid:
+      type: string
+      description: Output only. System generated globally unique ID for the asset. This ID will be different if the asset is deleted and re-created with the same name.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: Output only. The time when the asset was last updated.
+      description_kind: plain
+      computed: true
+  block_types:
+    discovery_spec:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled:
+            type: bool
+            description: Required. Whether discovery is enabled.
+            description_kind: plain
+            required: true
+          exclude_patterns:
+            type:
+            - list
+            - string
+            description: Optional. The list of patterns to apply for selecting data to exclude during discovery. For Cloud Storage bucket assets, these are interpreted as glob patterns used to match object names. For BigQuery dataset assets, these are interpreted as patterns to match table names.
+            description_kind: plain
+            optional: true
+          include_patterns:
+            type:
+            - list
+            - string
+            description: Optional. The list of patterns to apply for selecting data to include during discovery if only a subset of the data should considered. For Cloud Storage bucket assets, these are interpreted as glob patterns used to match object names. For BigQuery dataset assets, these are interpreted as patterns to match table names.
+            description_kind: plain
+            optional: true
+          schedule:
+            type: string
+            description: 'Optional. Cron schedule (https://en.wikipedia.org/wiki/Cron) for running discovery periodically. Successive discovery runs must be scheduled at least 60 minutes apart. The default value is to run discovery every 60 minutes. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or TZ=${IANA_TIME_ZONE}". The ${IANA_TIME_ZONE} may only be a valid string from IANA time zone database. For example, "CRON_TZ=America/New_York 1 * * * *", or "TZ=America/New_York 1 * * * *".'
+            description_kind: plain
+            optional: true
+        block_types:
+          csv_options:
+            nesting_mode: list
+            block:
+              attributes:
+                delimiter:
+                  type: string
+                  description: Optional. The delimiter being used to separate values. This defaults to ','.
+                  description_kind: plain
+                  optional: true
+                disable_type_inference:
+                  type: bool
+                  description: Optional. Whether to disable the inference of data type for CSV data. If true, all columns will be registered as strings.
+                  description_kind: plain
+                  optional: true
+                encoding:
+                  type: string
+                  description: Optional. The character encoding of the data. The default is UTF-8.
+                  description_kind: plain
+                  optional: true
+                header_rows:
+                  type: number
+                  description: Optional. The number of rows to interpret as header rows that should be skipped when reading data rows.
+                  description_kind: plain
+                  optional: true
+              description: Optional. Configuration for CSV data.
+              description_kind: plain
+            max_items: 1
+          json_options:
+            nesting_mode: list
+            block:
+              attributes:
+                disable_type_inference:
+                  type: bool
+                  description: Optional. Whether to disable the inference of data type for Json data. If true, all columns will be registered as their primitive types (strings, number or boolean).
+                  description_kind: plain
+                  optional: true
+                encoding:
+                  type: string
+                  description: Optional. The character encoding of the data. The default is UTF-8.
+                  description_kind: plain
+                  optional: true
+              description: Optional. Configuration for Json data.
+              description_kind: plain
+            max_items: 1
+        description: Required. Specification of the discovery feature applied to data referenced by this asset. When this spec is left unset, the asset will use the spec set on the parent zone.
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    resource_spec:
+      nesting_mode: list
+      block:
+        attributes:
+          name:
+            type: string
+            description: 'Immutable. Relative name of the cloud resource that contains the data that is being managed within a lake. For example: `projects/{project_number}/buckets/{bucket_id}` `projects/{project_number}/datasets/{dataset_id}`'
+            description_kind: plain
+            optional: true
+          read_access_mode:
+            type: string
+            description: 'Optional. Determines how read permissions are handled for each asset and their associated tables. Only available to storage buckets assets. Possible values: DIRECT, MANAGED'
+            description_kind: plain
+            optional: true
+            computed: true
+          type:
+            type: string
+            description: 'Required. Immutable. Type of resource. Possible values: STORAGE_BUCKET, BIGQUERY_DATASET'
+            description_kind: plain
+            required: true
+        description: Required. Immutable. Specification of the resource that is referenced by this asset.
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,106 @@
+version: 0
+block:
+  attributes:
+    admins:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    allow_external_data_filtering:
+      type: bool
+      description_kind: plain
+      optional: true
+    allow_full_table_external_data_access:
+      type: bool
+      description_kind: plain
+      optional: true
+    authorized_session_tag_value_list:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    catalog_id:
+      type: string
+      description_kind: plain
+      optional: true
+    external_data_filtering_allow_list:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    parameters:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    read_only_admins:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    trusted_resource_owners:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    create_database_default_permissions:
+      nesting_mode: list
+      block:
+        attributes:
+          permissions:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+            computed: true
+          principal:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 3
+    create_table_default_permissions:
+      nesting_mode: list
+      block:
+        attributes:
+          permissions:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+            computed: true
+          principal:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 3
+  description_kind: plain

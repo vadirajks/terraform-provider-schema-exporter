@@ -1,0 +1,109 @@
+version: 0
+block:
+  attributes:
+    approval_rule:
+      type:
+      - list
+      - - object
+        - approve_after_days: number
+          approve_until_date: string
+          compliance_level: string
+          enable_non_security: bool
+          patch_filter:
+          - list
+          - - object
+            - key: string
+              values:
+              - list
+              - string
+      description_kind: plain
+      computed: true
+    approved_patches:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    approved_patches_compliance_level:
+      type: string
+      description_kind: plain
+      computed: true
+    approved_patches_enable_non_security:
+      type: bool
+      description_kind: plain
+      computed: true
+    available_security_updates_compliance_status:
+      type: string
+      description_kind: plain
+      computed: true
+    default_baseline:
+      type: bool
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description_kind: plain
+      computed: true
+    global_filter:
+      type:
+      - list
+      - - object
+        - key: string
+          values:
+          - list
+          - string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    json:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      computed: true
+    name_prefix:
+      type: string
+      description_kind: plain
+      optional: true
+    operating_system:
+      type: string
+      description_kind: plain
+      optional: true
+    owner:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    rejected_patches:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    rejected_patches_action:
+      type: string
+      description_kind: plain
+      computed: true
+    source:
+      type:
+      - list
+      - - object
+        - configuration: string
+          name: string
+          products:
+          - list
+          - string
+      description_kind: plain
+      computed: true
+  description_kind: plain

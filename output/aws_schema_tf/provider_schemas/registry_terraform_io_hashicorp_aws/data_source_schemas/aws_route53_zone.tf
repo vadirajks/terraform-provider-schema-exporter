@@ -1,0 +1,16 @@
+data "aws_route53_zone" "name" {
+  arn = string (Computed)
+  caller_reference = string (Computed)
+  comment = string (Computed)
+  id = string (Optional, Computed)
+  linked_service_description = string (Computed)
+  linked_service_principal = string (Computed)
+  name = string (Optional, Computed)
+  name_servers = ['list', 'string'] (Computed)
+  primary_name_server = string (Computed)
+  private_zone = bool (Optional)
+  resource_record_set_count = number (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  vpc_id = string (Optional, Computed)
+  zone_id = string (Optional, Computed)
+}

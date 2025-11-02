@@ -1,0 +1,15 @@
+data "aws_account_primary_contact" "name" {
+  account_id = string (Optional, Computed)
+  address_line_1 = string (Computed)
+  address_line_2 = string (Computed)
+  address_line_3 = string (Computed)
+  city = string (Computed)
+  company_name = string (Computed)
+  country_code = string (Computed)
+  district_or_county = string (Computed)
+  full_name = string (Computed)
+  phone_number = string (Computed)
+  postal_code = string (Computed)
+  state_or_region = string (Computed)
+  website_url = string (Computed)
+}

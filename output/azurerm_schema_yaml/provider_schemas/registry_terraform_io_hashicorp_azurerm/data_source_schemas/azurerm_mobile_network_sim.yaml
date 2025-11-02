@@ -1,0 +1,64 @@
+version: 0
+block:
+  attributes:
+    device_type:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    integrated_circuit_card_identifier:
+      type: string
+      description_kind: plain
+      computed: true
+    international_mobile_subscriber_identity:
+      type: string
+      description_kind: plain
+      computed: true
+    mobile_network_sim_group_id:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    sim_policy_id:
+      type: string
+      description_kind: plain
+      computed: true
+    sim_state:
+      type: string
+      description_kind: plain
+      computed: true
+    static_ip_configuration:
+      type:
+      - list
+      - - object
+        - attached_data_network_id: string
+          slice_id: string
+          static_ipv4_address: string
+      description_kind: plain
+      computed: true
+    vendor_key_fingerprint:
+      type: string
+      description_kind: plain
+      computed: true
+    vendor_name:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

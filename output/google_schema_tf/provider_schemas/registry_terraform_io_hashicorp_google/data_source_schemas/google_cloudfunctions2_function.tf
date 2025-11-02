@@ -1,0 +1,18 @@
+data "google_cloudfunctions2_function" "name" {
+  location = string (Required)
+  name = string (Required)
+  build_config = ['list', ['object', {'automatic_update_policy': ['list', ['object', {}]], 'build': 'string', 'docker_repository': 'string', 'entry_point': 'string', 'environment_variables': ['map', 'string'], 'on_deploy_update_policy': ['list', ['object', {'runtime_version': 'string'}]], 'runtime': 'string', 'service_account': 'string', 'source': ['list', ['object', {'repo_source': ['list', ['object', {'branch_name': 'string', 'commit_sha': 'string', 'dir': 'string', 'invert_regex': 'bool', 'project_id': 'string', 'repo_name': 'string', 'tag_name': 'string'}]], 'storage_source': ['list', ['object', {'bucket': 'string', 'generation': 'number', 'object': 'string'}]]}]], 'worker_pool': 'string'}]] (Computed)
+  description = string (Computed)
+  effective_labels = ['map', 'string'] (Computed)
+  environment = string (Computed)
+  event_trigger = ['list', ['object', {'event_filters': ['set', ['object', {'attribute': 'string', 'operator': 'string', 'value': 'string'}]], 'event_type': 'string', 'pubsub_topic': 'string', 'retry_policy': 'string', 'service_account_email': 'string', 'trigger': 'string', 'trigger_region': 'string'}]] (Computed)
+  id = string (Optional, Computed)
+  kms_key_name = string (Computed)
+  labels = ['map', 'string'] (Computed)
+  project = string (Optional)
+  service_config = ['list', ['object', {'all_traffic_on_latest_revision': 'bool', 'available_cpu': 'string', 'available_memory': 'string', 'binary_authorization_policy': 'string', 'environment_variables': ['map', 'string'], 'gcf_uri': 'string', 'ingress_settings': 'string', 'max_instance_count': 'number', 'max_instance_request_concurrency': 'number', 'min_instance_count': 'number', 'secret_environment_variables': ['list', ['object', {'key': 'string', 'project_id': 'string', 'secret': 'string', 'version': 'string'}]], 'secret_volumes': ['list', ['object', {'mount_path': 'string', 'project_id': 'string', 'secret': 'string', 'versions': ['list', ['object', {'path': 'string', 'version': 'string'}]]}]], 'service': 'string', 'service_account_email': 'string', 'timeout_seconds': 'number', 'uri': 'string', 'vpc_connector': 'string', 'vpc_connector_egress_settings': 'string'}]] (Computed)
+  state = string (Computed)
+  terraform_labels = ['map', 'string'] (Computed)
+  update_time = string (Computed)
+  url = string (Computed)
+}

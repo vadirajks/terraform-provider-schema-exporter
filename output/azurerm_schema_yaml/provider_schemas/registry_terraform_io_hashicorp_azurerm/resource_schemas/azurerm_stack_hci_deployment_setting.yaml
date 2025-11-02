@@ -1,0 +1,337 @@
+version: 0
+block:
+  attributes:
+    arc_resource_ids:
+      type:
+      - list
+      - string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    stack_hci_cluster_id:
+      type: string
+      description_kind: plain
+      required: true
+    version:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    scale_unit:
+      nesting_mode: list
+      block:
+        attributes:
+          active_directory_organizational_unit_path:
+            type: string
+            description_kind: plain
+            required: true
+          bitlocker_boot_volume_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          bitlocker_data_volume_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          credential_guard_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          domain_fqdn:
+            type: string
+            description_kind: plain
+            required: true
+          drift_control_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          drtm_protection_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          episodic_data_upload_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          eu_location_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          hvci_protection_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          name_prefix:
+            type: string
+            description_kind: plain
+            required: true
+          secrets_location:
+            type: string
+            description_kind: plain
+            required: true
+          side_channel_mitigation_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          smb_cluster_encryption_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          smb_signing_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          streaming_data_client_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          wdac_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+        block_types:
+          cluster:
+            nesting_mode: list
+            block:
+              attributes:
+                azure_service_endpoint:
+                  type: string
+                  description_kind: plain
+                  required: true
+                cloud_account_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                witness_path:
+                  type: string
+                  description_kind: plain
+                  required: true
+                witness_type:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+          host_network:
+            nesting_mode: list
+            block:
+              attributes:
+                storage_auto_ip_enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                storage_connectivity_switchless_enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              block_types:
+                intent:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      adapter:
+                        type:
+                        - list
+                        - string
+                        description_kind: plain
+                        required: true
+                      adapter_property_override_enabled:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                      name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      qos_policy_override_enabled:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                      traffic_type:
+                        type:
+                        - list
+                        - string
+                        description_kind: plain
+                        required: true
+                      virtual_switch_configuration_override_enabled:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      adapter_property_override:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            jumbo_packet:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            network_direct:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            network_direct_technology:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                      qos_policy_override:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            bandwidth_percentage_smb:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            priority_value8021_action_cluster:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            priority_value8021_action_smb:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                      virtual_switch_configuration_override:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            enable_iov:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            load_balancing_algorithm:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                    description_kind: plain
+                  min_items: 1
+                storage_network:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      network_adapter_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      vlan_id:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  min_items: 1
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+          infrastructure_network:
+            nesting_mode: list
+            block:
+              attributes:
+                dhcp_enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                dns_server:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  required: true
+                gateway:
+                  type: string
+                  description_kind: plain
+                  required: true
+                subnet_mask:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                ip_pool:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      ending_address:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      starting_address:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  min_items: 1
+              description_kind: plain
+            min_items: 1
+          optional_service:
+            nesting_mode: list
+            block:
+              attributes:
+                custom_location:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+          physical_node:
+            nesting_mode: list
+            block:
+              attributes:
+                ipv4_address:
+                  type: string
+                  description_kind: plain
+                  required: true
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+          storage:
+            nesting_mode: list
+            block:
+              attributes:
+                configuration_mode:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

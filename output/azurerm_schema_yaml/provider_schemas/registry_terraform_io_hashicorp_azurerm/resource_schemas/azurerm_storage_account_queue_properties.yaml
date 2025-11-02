@@ -1,0 +1,131 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    storage_account_id:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    cors_rule:
+      nesting_mode: list
+      block:
+        attributes:
+          allowed_headers:
+            type:
+            - list
+            - string
+            description_kind: plain
+            required: true
+          allowed_methods:
+            type:
+            - list
+            - string
+            description_kind: plain
+            required: true
+          allowed_origins:
+            type:
+            - list
+            - string
+            description_kind: plain
+            required: true
+          exposed_headers:
+            type:
+            - list
+            - string
+            description_kind: plain
+            required: true
+          max_age_in_seconds:
+            type: number
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 5
+    hour_metrics:
+      nesting_mode: list
+      block:
+        attributes:
+          include_apis:
+            type: bool
+            description_kind: plain
+            optional: true
+          retention_policy_days:
+            type: number
+            description_kind: plain
+            optional: true
+          version:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    logging:
+      nesting_mode: list
+      block:
+        attributes:
+          delete:
+            type: bool
+            description_kind: plain
+            required: true
+          read:
+            type: bool
+            description_kind: plain
+            required: true
+          retention_policy_days:
+            type: number
+            description_kind: plain
+            optional: true
+          version:
+            type: string
+            description_kind: plain
+            required: true
+          write:
+            type: bool
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    minute_metrics:
+      nesting_mode: list
+      block:
+        attributes:
+          include_apis:
+            type: bool
+            description_kind: plain
+            optional: true
+          retention_policy_days:
+            type: number
+            description_kind: plain
+            optional: true
+          version:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

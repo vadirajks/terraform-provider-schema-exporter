@@ -1,0 +1,60 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "endpoint": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "kinesis_stream_config": [
+                "list",
+                [
+                  "object",
+                  {
+                    "role_arn": "string",
+                    "stream_arn": "string"
+                  }
+                ]
+              ],
+              "stream_type": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "fields": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "sampling_rate": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

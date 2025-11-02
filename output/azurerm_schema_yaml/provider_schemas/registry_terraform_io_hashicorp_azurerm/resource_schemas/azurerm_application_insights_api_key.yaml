@@ -1,0 +1,52 @@
+version: 2
+block:
+  attributes:
+    api_key:
+      type: string
+      description_kind: plain
+      computed: true
+      sensitive: true
+    application_insights_id:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    read_permissions:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    write_permissions:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

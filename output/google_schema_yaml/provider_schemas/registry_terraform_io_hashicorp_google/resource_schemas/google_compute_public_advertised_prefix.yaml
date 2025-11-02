@@ -1,0 +1,62 @@
+version: 0
+block:
+  attributes:
+    description:
+      type: string
+      description: An optional description of this resource.
+      description_kind: plain
+      optional: true
+    dns_verification_ip:
+      type: string
+      description: The IPv4 address to be used for reverse DNS verification.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ip_cidr_range:
+      type: string
+      description: The address range, in CIDR format, represented by this public advertised prefix.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: Name of the resource. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+      description_kind: plain
+      required: true
+    pdp_scope:
+      type: string
+      description: 'Specifies how child public delegated prefix will be scoped. pdpScope must be one of: GLOBAL, REGIONAL * REGIONAL: The public delegated prefix is regional only. The provisioning will take a few minutes. * GLOBAL: The public delegated prefix is global only. The provisioning will take ~4 weeks. Possible values: ["GLOBAL", "REGIONAL"]'
+      description_kind: plain
+      optional: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    self_link:
+      type: string
+      description_kind: plain
+      computed: true
+    shared_secret:
+      type: string
+      description: Output Only. The shared secret to be used for reverse DNS verification.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

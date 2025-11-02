@@ -1,0 +1,99 @@
+version: 0
+block:
+  attributes:
+    creator_role_assignment_roles:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    deployment_target_id:
+      type: string
+      description_kind: plain
+      required: true
+    dev_center_project_id:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    identity:
+      nesting_mode: list
+      block:
+        attributes:
+          identity_ids:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          principal_id:
+            type: string
+            description_kind: plain
+            computed: true
+          tenant_id:
+            type: string
+            description_kind: plain
+            computed: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    user_role_assignment:
+      nesting_mode: set
+      block:
+        attributes:
+          roles:
+            type:
+            - set
+            - string
+            description_kind: plain
+            required: true
+          user_id:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+  description_kind: plain

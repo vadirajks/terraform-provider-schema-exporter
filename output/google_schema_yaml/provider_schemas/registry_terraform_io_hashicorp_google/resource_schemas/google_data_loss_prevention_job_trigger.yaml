@@ -1,0 +1,1060 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: The creation timestamp of an inspectTemplate. Set by the server.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: A description of the job trigger.
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description: User set display name of the job trigger.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    last_run_time:
+      type: string
+      description: The timestamp of the last time this trigger executed.
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: The resource name of the job trigger. Set by the server.
+      description_kind: plain
+      computed: true
+    parent:
+      type: string
+      description: The parent of the trigger, either in the format 'projects/{{project}}' or 'projects/{{project}}/locations/{{location}}'
+      description_kind: plain
+      required: true
+    status:
+      type: string
+      description: 'Whether the trigger is currently active. Default value: "HEALTHY" Possible values: ["PAUSED", "HEALTHY", "CANCELLED"]'
+      description_kind: plain
+      optional: true
+    trigger_id:
+      type: string
+      description: 'The trigger id can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: [a-zA-Z\d-_]+. The maximum length is 100 characters. Can be empty to allow the system to generate one.'
+      description_kind: plain
+      optional: true
+      computed: true
+    update_time:
+      type: string
+      description: The last update timestamp of an inspectTemplate. Set by the server.
+      description_kind: plain
+      computed: true
+  block_types:
+    inspect_job:
+      nesting_mode: list
+      block:
+        attributes:
+          inspect_template_name:
+            type: string
+            description: The name of the template to run when this job is triggered.
+            description_kind: plain
+            optional: true
+        block_types:
+          actions:
+            nesting_mode: list
+            block:
+              block_types:
+                deidentify:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      cloud_storage_output:
+                        type: string
+                        description: 'User settable Cloud Storage bucket and folders to store de-identified files. This field must be set for cloud storage deidentification. The output Cloud Storage bucket must be different from the input bucket. De-identified files will overwrite files in the output path. Form of: gs://bucket/folder/ or gs://bucket'
+                        description_kind: plain
+                        required: true
+                      file_types_to_transform:
+                        type:
+                        - list
+                        - string
+                        description: 'List of user-specified file type groups to transform. If specified, only the files with these filetypes will be transformed. If empty, all supported files will be transformed. Supported types may be automatically added over time. If a file type is set in this field that isn''t supported by the Deidentify action then the job will fail and will not be successfully created/started. Possible values: ["IMAGE", "TEXT_FILE", "CSV", "TSV"]'
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      transformation_config:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            deidentify_template:
+                              type: string
+                              description: If this template is specified, it will serve as the default de-identify template.
+                              description_kind: plain
+                              optional: true
+                            image_redact_template:
+                              type: string
+                              description: If this template is specified, it will serve as the de-identify template for images.
+                              description_kind: plain
+                              optional: true
+                            structured_deidentify_template:
+                              type: string
+                              description: If this template is specified, it will serve as the de-identify template for structured content such as delimited files and tables.
+                              description_kind: plain
+                              optional: true
+                          description: User specified deidentify templates and configs for structured, unstructured, and image files.
+                          description_kind: plain
+                        max_items: 1
+                      transformation_details_storage_config:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            table:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  dataset_id:
+                                    type: string
+                                    description: The ID of the dataset containing this table.
+                                    description_kind: plain
+                                    required: true
+                                  project_id:
+                                    type: string
+                                    description: The ID of the project containing this table.
+                                    description_kind: plain
+                                    required: true
+                                  table_id:
+                                    type: string
+                                    description: The ID of the table. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024 characters.
+                                    description_kind: plain
+                                    optional: true
+                                description: The BigQuery table in which to store the output.
+                                description_kind: plain
+                              min_items: 1
+                              max_items: 1
+                          description: Config for storing transformation details.
+                          description_kind: plain
+                        max_items: 1
+                    description: Create a de-identified copy of the requested table or files.
+                    description_kind: plain
+                  max_items: 1
+                job_notification_emails:
+                  nesting_mode: list
+                  block:
+                    description: Sends an email when the job completes. The email goes to IAM project owners and technical Essential Contacts.
+                    description_kind: plain
+                  max_items: 1
+                pub_sub:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      topic:
+                        type: string
+                        description: Cloud Pub/Sub topic to send notifications to.
+                        description_kind: plain
+                        required: true
+                    description: Publish a message into a given Pub/Sub topic when the job completes.
+                    description_kind: plain
+                  max_items: 1
+                publish_findings_to_cloud_data_catalog:
+                  nesting_mode: list
+                  block:
+                    description: Publish findings of a DlpJob to Data Catalog.
+                    description_kind: plain
+                  max_items: 1
+                publish_findings_to_dataplex_catalog:
+                  nesting_mode: list
+                  block:
+                    description: Publish findings of a DlpJob as an aspect to Dataplex Universal Catalog.
+                    description_kind: plain
+                  max_items: 1
+                publish_summary_to_cscc:
+                  nesting_mode: list
+                  block:
+                    description: Publish the result summary of a DlpJob to the Cloud Security Command Center.
+                    description_kind: plain
+                  max_items: 1
+                publish_to_stackdriver:
+                  nesting_mode: list
+                  block:
+                    description: Enable Stackdriver metric dlp.googleapis.com/findingCount.
+                    description_kind: plain
+                  max_items: 1
+                save_findings:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      output_config:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            output_schema:
+                              type: string
+                              description: 'Schema used for writing the findings for Inspect jobs. This field is only used for Inspect and must be unspecified for Risk jobs. Columns are derived from the Finding object. If appending to an existing table, any columns from the predefined schema that are missing will be added. No columns in the existing table will be deleted. If unspecified, then all available columns will be used for a new table or an (existing) table with no schema, and no changes will be made to an existing table that has a schema. Only for use with external storage. Possible values: ["BASIC_COLUMNS", "GCS_COLUMNS", "DATASTORE_COLUMNS", "BIG_QUERY_COLUMNS", "ALL_COLUMNS"]'
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            storage_path:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  path:
+                                    type: string
+                                    description: 'A URL representing a file or path (no wildcards) in Cloud Storage. Example: ''gs://[BUCKET_NAME]/dictionary.txt'''
+                                    description_kind: plain
+                                    required: true
+                                description: 'Store findings in an existing Cloud Storage bucket. Files will be generated with the job ID and file part number as the filename, and will contain findings in textproto format as SaveToGcsFindingsOutput. The file name will use the naming convention <job_id>-<shard_number>, for example: my-job-id-2. Supported for InspectJobs. The bucket must not be the same as the bucket being inspected. If storing findings to Cloud Storage, the output schema field should not be set. If set, it will be ignored.'
+                                description_kind: plain
+                              max_items: 1
+                            table:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  dataset_id:
+                                    type: string
+                                    description: Dataset ID of the table.
+                                    description_kind: plain
+                                    required: true
+                                  project_id:
+                                    type: string
+                                    description: The Google Cloud Platform project ID of the project containing the table.
+                                    description_kind: plain
+                                    required: true
+                                  table_id:
+                                    type: string
+                                    description: 'Name of the table. If is not set a new one will be generated for you with the following format: ''dlp_googleapis_yyyy_mm_dd_[dlp_job_id]''. Pacific timezone will be used for generating the date details.'
+                                    description_kind: plain
+                                    optional: true
+                                description: Information on the location of the target BigQuery Table.
+                                description_kind: plain
+                              max_items: 1
+                          description: Information on where to store output
+                          description_kind: plain
+                        min_items: 1
+                        max_items: 1
+                    description: 'If set, the detailed findings will be persisted to the specified OutputStorageConfig. Only a single instance of this action can be specified. Compatible with: Inspect, Risk'
+                    description_kind: plain
+                  max_items: 1
+              description: Configuration block for the actions to execute on the completion of a job. Can be specified multiple times, but only one for each type. Each action block supports fields documented below. This argument is processed in [attribute-as-blocks mode](https://www.terraform.io/docs/configuration/attr-as-blocks.html).
+              description_kind: plain
+          inspect_config:
+            nesting_mode: list
+            block:
+              attributes:
+                exclude_info_types:
+                  type: bool
+                  description: When true, excludes type information of the findings.
+                  description_kind: plain
+                  optional: true
+                include_quote:
+                  type: bool
+                  description: When true, a contextual quote from the data that triggered a finding is included in the response.
+                  description_kind: plain
+                  optional: true
+                min_likelihood:
+                  type: string
+                  description: 'Only returns findings equal or above this threshold. See https://cloud.google.com/dlp/docs/likelihood for more info Default value: "POSSIBLE" Possible values: ["VERY_UNLIKELY", "UNLIKELY", "POSSIBLE", "LIKELY", "VERY_LIKELY"]'
+                  description_kind: plain
+                  optional: true
+              block_types:
+                custom_info_types:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      exclusion_type:
+                        type: string
+                        description: 'If set to EXCLUSION_TYPE_EXCLUDE this infoType will not cause a finding to be returned. It still can be used for rules matching. Possible values: ["EXCLUSION_TYPE_EXCLUDE"]'
+                        description_kind: plain
+                        optional: true
+                      likelihood:
+                        type: string
+                        description: 'Likelihood to return for this CustomInfoType. This base value can be altered by a detection rule if the finding meets the criteria specified by the rule. Default value: "VERY_LIKELY" Possible values: ["VERY_UNLIKELY", "UNLIKELY", "POSSIBLE", "LIKELY", "VERY_LIKELY"]'
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      dictionary:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            cloud_storage_path:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  path:
+                                    type: string
+                                    description: 'A url representing a file or path (no wildcards) in Cloud Storage. Example: ''gs://[BUCKET_NAME]/dictionary.txt'''
+                                    description_kind: plain
+                                    required: true
+                                description: Newline-delimited file of words in Cloud Storage. Only a single file is accepted.
+                                description_kind: plain
+                              max_items: 1
+                            word_list:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  words:
+                                    type:
+                                    - list
+                                    - string
+                                    description: Words or phrases defining the dictionary. The dictionary must contain at least one phrase and every phrase must contain at least 2 characters that are letters or digits.
+                                    description_kind: plain
+                                    required: true
+                                description: List of words or phrases to search for.
+                                description_kind: plain
+                              max_items: 1
+                          description: Dictionary which defines the rule.
+                          description_kind: plain
+                        max_items: 1
+                      info_type:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            name:
+                              type: string
+                              description: Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/dlp/docs/infotypes-reference when specifying a built-in type.
+                              description_kind: plain
+                              required: true
+                            version:
+                              type: string
+                              description: Version of the information type to use. By default, the version is set to stable.
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            sensitivity_score:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  score:
+                                    type: string
+                                    description: 'The sensitivity score applied to the resource. Possible values: ["SENSITIVITY_LOW", "SENSITIVITY_MODERATE", "SENSITIVITY_HIGH"]'
+                                    description_kind: plain
+                                    required: true
+                                description: Optional custom sensitivity for this InfoType. This only applies to data profiling.
+                                description_kind: plain
+                              max_items: 1
+                          description: CustomInfoType can either be a new infoType, or an extension of built-in infoType, when the name matches one of existing infoTypes and that infoType is specified in 'info_types' field. Specifying the latter adds findings to the one detected by the system. If built-in info type is not specified in 'info_types' list then the name is treated as a custom info type.
+                          description_kind: plain
+                        min_items: 1
+                        max_items: 1
+                      regex:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            group_indexes:
+                              type:
+                              - list
+                              - number
+                              description: The index of the submatch to extract as findings. When not specified, the entire match is returned. No more than 3 may be included.
+                              description_kind: plain
+                              optional: true
+                            pattern:
+                              type: string
+                              description: Pattern defining the regular expression. Its syntax (https://github.com/google/re2/wiki/Syntax) can be found under the google/re2 repository on GitHub.
+                              description_kind: plain
+                              required: true
+                          description: Regular expression which defines the rule.
+                          description_kind: plain
+                        max_items: 1
+                      sensitivity_score:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            score:
+                              type: string
+                              description: 'The sensitivity score applied to the resource. Possible values: ["SENSITIVITY_LOW", "SENSITIVITY_MODERATE", "SENSITIVITY_HIGH"]'
+                              description_kind: plain
+                              required: true
+                          description: Optional custom sensitivity for this InfoType. This only applies to data profiling.
+                          description_kind: plain
+                        max_items: 1
+                      stored_type:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            create_time:
+                              type: string
+                              description: The creation timestamp of an inspectTemplate. Set by the server.
+                              description_kind: plain
+                              computed: true
+                            name:
+                              type: string
+                              description: Resource name of the requested StoredInfoType, for example 'organizations/433245324/storedInfoTypes/432452342' or 'projects/project-id/storedInfoTypes/432452342'.
+                              description_kind: plain
+                              required: true
+                          description: A reference to a StoredInfoType to use with scanning.
+                          description_kind: plain
+                        max_items: 1
+                      surrogate_type:
+                        nesting_mode: list
+                        block:
+                          description: Message for detecting output from deidentification transformations that support reversing.
+                          description_kind: plain
+                        max_items: 1
+                    description: Custom info types to be used. See https://cloud.google.com/dlp/docs/creating-custom-infotypes to learn more.
+                    description_kind: plain
+                info_types:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      name:
+                        type: string
+                        description: Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/dlp/docs/infotypes-reference when specifying a built-in type.
+                        description_kind: plain
+                        required: true
+                      version:
+                        type: string
+                        description: Version of the information type to use. By default, the version is set to stable
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      sensitivity_score:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            score:
+                              type: string
+                              description: 'The sensitivity score applied to the resource. Possible values: ["SENSITIVITY_LOW", "SENSITIVITY_MODERATE", "SENSITIVITY_HIGH"]'
+                              description_kind: plain
+                              required: true
+                          description: Optional custom sensitivity for this InfoType. This only applies to data profiling.
+                          description_kind: plain
+                        max_items: 1
+                    description: Restricts what infoTypes to look for. The values must correspond to InfoType values returned by infoTypes.list or listed at https://cloud.google.com/dlp/docs/infotypes-reference. When no InfoTypes or CustomInfoTypes are specified in a request, the system may automatically choose what detectors to run. By default this may be all types, but may change over time as detectors are updated.
+                    description_kind: plain
+                limits:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      max_findings_per_item:
+                        type: number
+                        description: Max number of findings that will be returned for each item scanned. The maximum returned is 2000.
+                        description_kind: plain
+                        optional: true
+                      max_findings_per_request:
+                        type: number
+                        description: Max number of findings that will be returned per request/job. The maximum returned is 2000.
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      max_findings_per_info_type:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            max_findings:
+                              type: number
+                              description: Max findings limit for the given infoType.
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            info_type:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  name:
+                                    type: string
+                                    description: Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/dlp/docs/infotypes-reference when specifying a built-in type.
+                                    description_kind: plain
+                                    required: true
+                                  version:
+                                    type: string
+                                    description: Version of the information type to use. By default, the version is set to stable
+                                    description_kind: plain
+                                    optional: true
+                                block_types:
+                                  sensitivity_score:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        score:
+                                          type: string
+                                          description: 'The sensitivity score applied to the resource. Possible values: ["SENSITIVITY_LOW", "SENSITIVITY_MODERATE", "SENSITIVITY_HIGH"]'
+                                          description_kind: plain
+                                          required: true
+                                      description: Optional custom sensitivity for this InfoType. This only applies to data profiling.
+                                      description_kind: plain
+                                    max_items: 1
+                                description: Type of information the findings limit applies to. Only one limit per infoType should be provided. If InfoTypeLimit does not have an infoType, the DLP API applies the limit against all infoTypes that are found but not specified in another InfoTypeLimit.
+                                description_kind: plain
+                              max_items: 1
+                          description: Configuration of findings limit given for specified infoTypes.
+                          description_kind: plain
+                    description: Configuration to control the number of findings returned.
+                    description_kind: plain
+                  max_items: 1
+                rule_set:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      info_types:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            name:
+                              type: string
+                              description: Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/dlp/docs/infotypes-reference when specifying a built-in type.
+                              description_kind: plain
+                              required: true
+                            version:
+                              type: string
+                              description: Version of the information type to use. By default, the version is set to stable.
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            sensitivity_score:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  score:
+                                    type: string
+                                    description: 'The sensitivity score applied to the resource. Possible values: ["SENSITIVITY_LOW", "SENSITIVITY_MODERATE", "SENSITIVITY_HIGH"]'
+                                    description_kind: plain
+                                    required: true
+                                description: Optional custom sensitivity for this InfoType. This only applies to data profiling.
+                                description_kind: plain
+                              max_items: 1
+                          description: List of infoTypes this rule set is applied to.
+                          description_kind: plain
+                      rules:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            exclusion_rule:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  matching_type:
+                                    type: string
+                                    description: 'How the rule is applied. See the documentation for more information: https://cloud.google.com/dlp/docs/reference/rest/v2/InspectConfig#MatchingType Possible values: ["MATCHING_TYPE_FULL_MATCH", "MATCHING_TYPE_PARTIAL_MATCH", "MATCHING_TYPE_INVERSE_MATCH"]'
+                                    description_kind: plain
+                                    required: true
+                                block_types:
+                                  dictionary:
+                                    nesting_mode: list
+                                    block:
+                                      block_types:
+                                        cloud_storage_path:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              path:
+                                                type: string
+                                                description: 'A url representing a file or path (no wildcards) in Cloud Storage. Example: ''gs://[BUCKET_NAME]/dictionary.txt'''
+                                                description_kind: plain
+                                                required: true
+                                            description: Newline-delimited file of words in Cloud Storage. Only a single file is accepted.
+                                            description_kind: plain
+                                          max_items: 1
+                                        word_list:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              words:
+                                                type:
+                                                - list
+                                                - string
+                                                description: Words or phrases defining the dictionary. The dictionary must contain at least one phrase and every phrase must contain at least 2 characters that are letters or digits.
+                                                description_kind: plain
+                                                required: true
+                                            description: List of words or phrases to search for.
+                                            description_kind: plain
+                                          max_items: 1
+                                      description: Dictionary which defines the rule.
+                                      description_kind: plain
+                                    max_items: 1
+                                  exclude_by_hotword:
+                                    nesting_mode: list
+                                    block:
+                                      block_types:
+                                        hotword_regex:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              group_indexes:
+                                                type:
+                                                - list
+                                                - number
+                                                description: The index of the submatch to extract as findings. When not specified, the entire match is returned. No more than 3 may be included.
+                                                description_kind: plain
+                                                optional: true
+                                              pattern:
+                                                type: string
+                                                description: Pattern defining the regular expression. Its syntax (https://github.com/google/re2/wiki/Syntax) can be found under the google/re2 repository on GitHub.
+                                                description_kind: plain
+                                                optional: true
+                                            description: Regular expression pattern defining what qualifies as a hotword.
+                                            description_kind: plain
+                                          max_items: 1
+                                        proximity:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              window_after:
+                                                type: number
+                                                description: Number of characters after the finding to consider. Either this or window_before must be specified
+                                                description_kind: plain
+                                                optional: true
+                                              window_before:
+                                                type: number
+                                                description: Number of characters before the finding to consider. Either this or window_after must be specified
+                                                description_kind: plain
+                                                optional: true
+                                            description: Proximity of the finding within which the entire hotword must reside. The total length of the window cannot exceed 1000 characters. Note that the finding itself will be included in the window, so that hotwords may be used to match substrings of the finding itself. For example, the certainty of a phone number regex '(\d{3}) \d{3}-\d{4}' could be adjusted upwards if the area code is known to be the local area code of a company office using the hotword regex '(xxx)', where 'xxx' is the area code in question.
+                                            description_kind: plain
+                                          max_items: 1
+                                      description: Drop if the hotword rule is contained in the proximate context.
+                                      description_kind: plain
+                                    max_items: 1
+                                  exclude_info_types:
+                                    nesting_mode: list
+                                    block:
+                                      block_types:
+                                        info_types:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              name:
+                                                type: string
+                                                description: Name of the information type. Either a name of your choosing when creating a CustomInfoType, or one of the names listed at https://cloud.google.com/dlp/docs/infotypes-reference when specifying a built-in type.
+                                                description_kind: plain
+                                                required: true
+                                              version:
+                                                type: string
+                                                description: Version of the information type to use. By default, the version is set to stable.
+                                                description_kind: plain
+                                                optional: true
+                                            block_types:
+                                              sensitivity_score:
+                                                nesting_mode: list
+                                                block:
+                                                  attributes:
+                                                    score:
+                                                      type: string
+                                                      description: 'The sensitivity score applied to the resource. Possible values: ["SENSITIVITY_LOW", "SENSITIVITY_MODERATE", "SENSITIVITY_HIGH"]'
+                                                      description_kind: plain
+                                                      required: true
+                                                  description: Optional custom sensitivity for this InfoType. This only applies to data profiling.
+                                                  description_kind: plain
+                                                max_items: 1
+                                            description: If a finding is matched by any of the infoType detectors listed here, the finding will be excluded from the scan results.
+                                            description_kind: plain
+                                          min_items: 1
+                                      description: Set of infoTypes for which findings would affect this rule.
+                                      description_kind: plain
+                                    max_items: 1
+                                  regex:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        group_indexes:
+                                          type:
+                                          - list
+                                          - number
+                                          description: The index of the submatch to extract as findings. When not specified, the entire match is returned. No more than 3 may be included.
+                                          description_kind: plain
+                                          optional: true
+                                        pattern:
+                                          type: string
+                                          description: Pattern defining the regular expression. Its syntax (https://github.com/google/re2/wiki/Syntax) can be found under the google/re2 repository on GitHub.
+                                          description_kind: plain
+                                          required: true
+                                      description: Regular expression which defines the rule.
+                                      description_kind: plain
+                                    max_items: 1
+                                description: The rule that specifies conditions when findings of infoTypes specified in InspectionRuleSet are removed from results.
+                                description_kind: plain
+                              max_items: 1
+                            hotword_rule:
+                              nesting_mode: list
+                              block:
+                                block_types:
+                                  hotword_regex:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        group_indexes:
+                                          type:
+                                          - list
+                                          - number
+                                          description: The index of the submatch to extract as findings. When not specified, the entire match is returned. No more than 3 may be included.
+                                          description_kind: plain
+                                          optional: true
+                                        pattern:
+                                          type: string
+                                          description: Pattern defining the regular expression. Its syntax (https://github.com/google/re2/wiki/Syntax) can be found under the google/re2 repository on GitHub.
+                                          description_kind: plain
+                                          optional: true
+                                      description: Regular expression pattern defining what qualifies as a hotword.
+                                      description_kind: plain
+                                    max_items: 1
+                                  likelihood_adjustment:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        fixed_likelihood:
+                                          type: string
+                                          description: 'Set the likelihood of a finding to a fixed value. Either this or relative_likelihood can be set. Possible values: ["VERY_UNLIKELY", "UNLIKELY", "POSSIBLE", "LIKELY", "VERY_LIKELY"]'
+                                          description_kind: plain
+                                          optional: true
+                                        relative_likelihood:
+                                          type: number
+                                          description: Increase or decrease the likelihood by the specified number of levels. For example, if a finding would be POSSIBLE without the detection rule and relativeLikelihood is 1, then it is upgraded to LIKELY, while a value of -1 would downgrade it to UNLIKELY. Likelihood may never drop below VERY_UNLIKELY or exceed VERY_LIKELY, so applying an adjustment of 1 followed by an adjustment of -1 when base likelihood is VERY_LIKELY will result in a final likelihood of LIKELY. Either this or fixed_likelihood can be set.
+                                          description_kind: plain
+                                          optional: true
+                                      description: Likelihood adjustment to apply to all matching findings.
+                                      description_kind: plain
+                                    max_items: 1
+                                  proximity:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        window_after:
+                                          type: number
+                                          description: Number of characters after the finding to consider. Either this or window_before must be specified
+                                          description_kind: plain
+                                          optional: true
+                                        window_before:
+                                          type: number
+                                          description: Number of characters before the finding to consider. Either this or window_after must be specified
+                                          description_kind: plain
+                                          optional: true
+                                      description: Proximity of the finding within which the entire hotword must reside. The total length of the window cannot exceed 1000 characters. Note that the finding itself will be included in the window, so that hotwords may be used to match substrings of the finding itself. For example, the certainty of a phone number regex '(\d{3}) \d{3}-\d{4}' could be adjusted upwards if the area code is known to be the local area code of a company office using the hotword regex '(xxx)', where 'xxx' is the area code in question.
+                                      description_kind: plain
+                                    max_items: 1
+                                description: Hotword-based detection rule.
+                                description_kind: plain
+                              max_items: 1
+                          description: Set of rules to be applied to infoTypes. The rules are applied in order.
+                          description_kind: plain
+                        min_items: 1
+                    description: Set of rules to apply to the findings for this InspectConfig. Exclusion rules, contained in the set are executed in the end, other rules are executed in the order they are specified for each info type.
+                    description_kind: plain
+              description: The core content of the template.
+              description_kind: plain
+            max_items: 1
+          storage_config:
+            nesting_mode: list
+            block:
+              block_types:
+                big_query_options:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      rows_limit:
+                        type: number
+                        description: Max number of rows to scan. If the table has more rows than this value, the rest of the rows are omitted. If not set, or if set to 0, all rows will be scanned. Only one of rowsLimit and rowsLimitPercent can be specified. Cannot be used in conjunction with TimespanConfig.
+                        description_kind: plain
+                        optional: true
+                      rows_limit_percent:
+                        type: number
+                        description: Max percentage of rows to scan. The rest are omitted. The number of rows scanned is rounded down. Must be between 0 and 100, inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one of rowsLimit and rowsLimitPercent can be specified. Cannot be used in conjunction with TimespanConfig.
+                        description_kind: plain
+                        optional: true
+                      sample_method:
+                        type: string
+                        description: 'How to sample rows if not all rows are scanned. Meaningful only when used in conjunction with either rowsLimit or rowsLimitPercent. If not specified, rows are scanned in the order BigQuery reads them. If TimespanConfig is set, set this to an empty string to avoid using the default value. Default value: "TOP" Possible values: ["TOP", "RANDOM_START"]'
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      excluded_fields:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            name:
+                              type: string
+                              description: Name describing the field excluded from scanning.
+                              description_kind: plain
+                              required: true
+                          description: References to fields excluded from scanning. This allows you to skip inspection of entire columns which you know have no findings.
+                          description_kind: plain
+                      identifying_fields:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            name:
+                              type: string
+                              description: Name of a BigQuery field to be returned with the findings.
+                              description_kind: plain
+                              required: true
+                          description: Specifies the BigQuery fields that will be returned with findings. If not specified, no identifying fields will be returned for findings.
+                          description_kind: plain
+                      included_fields:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            name:
+                              type: string
+                              description: Name describing the field to which scanning is limited.
+                              description_kind: plain
+                              required: true
+                          description: Limit scanning only to these fields.
+                          description_kind: plain
+                      table_reference:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            dataset_id:
+                              type: string
+                              description: The dataset ID of the table.
+                              description_kind: plain
+                              required: true
+                            project_id:
+                              type: string
+                              description: The Google Cloud Platform project ID of the project containing the table.
+                              description_kind: plain
+                              required: true
+                            table_id:
+                              type: string
+                              description: The name of the table.
+                              description_kind: plain
+                              required: true
+                          description: Set of files to scan.
+                          description_kind: plain
+                        min_items: 1
+                        max_items: 1
+                    description: Options defining BigQuery table and row identifiers.
+                    description_kind: plain
+                  max_items: 1
+                cloud_storage_options:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      bytes_limit_per_file:
+                        type: number
+                        description: Max number of bytes to scan from a file. If a scanned file's size is bigger than this value then the rest of the bytes are omitted.
+                        description_kind: plain
+                        optional: true
+                      bytes_limit_per_file_percent:
+                        type: number
+                        description: Max percentage of bytes to scan from a file. The rest are omitted. The number of bytes scanned is rounded down. Must be between 0 and 100, inclusively. Both 0 and 100 means no limit.
+                        description_kind: plain
+                        optional: true
+                      file_types:
+                        type:
+                        - list
+                        - string
+                        description: 'List of file type groups to include in the scan. If empty, all files are scanned and available data format processors are applied. In addition, the binary content of the selected files is always scanned as well. Images are scanned only as binary if the specified region does not support image inspection and no fileTypes were specified. Possible values: ["BINARY_FILE", "TEXT_FILE", "IMAGE", "WORD", "PDF", "AVRO", "CSV", "TSV", "POWERPOINT", "EXCEL"]'
+                        description_kind: plain
+                        optional: true
+                      files_limit_percent:
+                        type: number
+                        description: Limits the number of files to scan to this percentage of the input FileSet. Number of files scanned is rounded down. Must be between 0 and 100, inclusively. Both 0 and 100 means no limit.
+                        description_kind: plain
+                        optional: true
+                      sample_method:
+                        type: string
+                        description: 'How to sample bytes if not all bytes are scanned. Meaningful only when used in conjunction with bytesLimitPerFile. If not specified, scanning would start from the top. Possible values: ["TOP", "RANDOM_START"]'
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      file_set:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            url:
+                              type: string
+                              description: The Cloud Storage url of the file(s) to scan, in the format 'gs://<bucket>/<path>'. Trailing wildcard in the path is allowed. If the url ends in a trailing slash, the bucket or directory represented by the url will be scanned non-recursively (content in sub-directories will not be scanned). This means that 'gs://mybucket/' is equivalent to 'gs://mybucket/*', and 'gs://mybucket/directory/' is equivalent to 'gs://mybucket/directory/*'.
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            regex_file_set:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  bucket_name:
+                                    type: string
+                                    description: The name of a Cloud Storage bucket.
+                                    description_kind: plain
+                                    required: true
+                                  exclude_regex:
+                                    type:
+                                    - list
+                                    - string
+                                    description: A list of regular expressions matching file paths to exclude. All files in the bucket that match at least one of these regular expressions will be excluded from the scan.
+                                    description_kind: plain
+                                    optional: true
+                                  include_regex:
+                                    type:
+                                    - list
+                                    - string
+                                    description: A list of regular expressions matching file paths to include. All files in the bucket that match at least one of these regular expressions will be included in the set of files, except for those that also match an item in excludeRegex. Leaving this field empty will match all files by default (this is equivalent to including .* in the list)
+                                    description_kind: plain
+                                    optional: true
+                                description: The regex-filtered set of files to scan.
+                                description_kind: plain
+                              max_items: 1
+                          description: Set of files to scan.
+                          description_kind: plain
+                        min_items: 1
+                        max_items: 1
+                    description: Options defining a file or a set of files within a Google Cloud Storage bucket.
+                    description_kind: plain
+                  max_items: 1
+                datastore_options:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      kind:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            name:
+                              type: string
+                              description: The name of the Datastore kind.
+                              description_kind: plain
+                              required: true
+                          description: A representation of a Datastore kind.
+                          description_kind: plain
+                        min_items: 1
+                        max_items: 1
+                      partition_id:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            namespace_id:
+                              type: string
+                              description: If not empty, the ID of the namespace to which the entities belong.
+                              description_kind: plain
+                              optional: true
+                            project_id:
+                              type: string
+                              description: The ID of the project to which the entities belong.
+                              description_kind: plain
+                              required: true
+                          description: Datastore partition ID. A partition ID identifies a grouping of entities. The grouping is always by project and namespace, however the namespace ID may be empty.
+                          description_kind: plain
+                        min_items: 1
+                        max_items: 1
+                    description: Options defining a data set within Google Cloud Datastore.
+                    description_kind: plain
+                  max_items: 1
+                hybrid_options:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      description:
+                        type: string
+                        description: A short description of where the data is coming from. Will be stored once in the job. 256 max length.
+                        description_kind: plain
+                        optional: true
+                      labels:
+                        type:
+                        - map
+                        - string
+                        description: 'To organize findings, these labels will be added to each finding. Label keys must be between 1 and 63 characters long and must conform to the following regular expression: ''[a-z]([-a-z0-9]*[a-z0-9])?''. Label values must be between 0 and 63 characters long and must conform to the regular expression ''([a-z]([-a-z0-9]*[a-z0-9])?)?''. No more than 10 labels can be associated with a given finding. Examples: * ''"environment" : "production"'' * ''"pipeline" : "etl"'''
+                        description_kind: plain
+                        optional: true
+                      required_finding_label_keys:
+                        type:
+                        - list
+                        - string
+                        description: 'These are labels that each inspection request must include within their ''finding_labels'' map. Request may contain others, but any missing one of these will be rejected. Label keys must be between 1 and 63 characters long and must conform to the following regular expression: ''[a-z]([-a-z0-9]*[a-z0-9])?''. No more than 10 keys can be required.'
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      table_options:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            identifying_fields:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  name:
+                                    type: string
+                                    description: Name describing the field.
+                                    description_kind: plain
+                                    required: true
+                                description: The columns that are the primary keys for table objects included in ContentItem. A copy of this cell's value will stored alongside alongside each finding so that the finding can be traced to the specific row it came from. No more than 3 may be provided.
+                                description_kind: plain
+                          description: If the container is a table, additional information to make findings meaningful such as the columns that are primary keys.
+                          description_kind: plain
+                        max_items: 1
+                    description: Configuration to control jobs where the content being inspected is outside of Google Cloud Platform.
+                    description_kind: plain
+                  max_items: 1
+                timespan_config:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      enable_auto_population_of_timespan_config:
+                        type: bool
+                        description: When the job is started by a JobTrigger we will automatically figure out a valid startTime to avoid scanning files that have not been modified since the last time the JobTrigger executed. This will be based on the time of the execution of the last run of the JobTrigger or the timespan endTime used in the last run of the JobTrigger.
+                        description_kind: plain
+                        optional: true
+                      end_time:
+                        type: string
+                        description: Exclude files, tables, or rows newer than this value. If not set, no upper time limit is applied.
+                        description_kind: plain
+                        optional: true
+                      start_time:
+                        type: string
+                        description: Exclude files, tables, or rows older than this value. If not set, no lower time limit is applied.
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      timestamp_field:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            name:
+                              type: string
+                              description: 'Specification of the field containing the timestamp of scanned items. Used for data sources like Datastore and BigQuery. For BigQuery: Required to filter out rows based on the given start and end times. If not specified and the table was modified between the given start and end times, the entire table will be scanned. The valid data types of the timestamp field are: INTEGER, DATE, TIMESTAMP, or DATETIME BigQuery column. For Datastore. Valid data types of the timestamp field are: TIMESTAMP. Datastore entity will be scanned if the timestamp property does not exist or its value is empty or invalid.'
+                              description_kind: plain
+                              required: true
+                          description: Specification of the field containing the timestamp of scanned items.
+                          description_kind: plain
+                        max_items: 1
+                    description: Configuration of the timespan of the items to include in scanning
+                    description_kind: plain
+                  max_items: 1
+              description: Information on where to inspect
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description: Controls what and how to inspect for findings.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    triggers:
+      nesting_mode: list
+      block:
+        block_types:
+          manual:
+            nesting_mode: list
+            block:
+              description: For use with hybrid jobs. Jobs must be manually created and finished.
+              description_kind: plain
+            max_items: 1
+          schedule:
+            nesting_mode: list
+            block:
+              attributes:
+                recurrence_period_duration:
+                  type: string
+                  description: 'With this option a job is started a regular periodic basis. For example: every day (86400 seconds). A scheduled start time will be skipped if the previous execution has not ended when its scheduled time occurs. This value must be set to a time duration greater than or equal to 1 day and can be no longer than 60 days. A duration in seconds with up to nine fractional digits, terminated by ''s''. Example: "3.5s".'
+                  description_kind: plain
+                  optional: true
+              description: Schedule for triggered jobs
+              description_kind: plain
+            max_items: 1
+        description: What event needs to occur for a new job to be started.
+        description_kind: plain
+      min_items: 1
+  description_kind: plain

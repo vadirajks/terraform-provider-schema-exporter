@@ -1,0 +1,180 @@
+version: 0
+block:
+  attributes:
+    description:
+      type: string
+      description: A description of the info type.
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description: User set display name of the info type.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: The resource name of the info type. Set by the server.
+      description_kind: plain
+      computed: true
+    parent:
+      type: string
+      description: 'The parent of the info type in any of the following formats: * ''projects/{{project}}'' * ''projects/{{project}}/locations/{{location}}'' * ''organizations/{{organization_id}}'' * ''organizations/{{organization_id}}/locations/{{location}}'''
+      description_kind: plain
+      required: true
+    stored_info_type_id:
+      type: string
+      description: 'The storedInfoType ID can contain uppercase and lowercase letters, numbers, and hyphens; that is, it must match the regular expression: [a-zA-Z\d-_]+. The maximum length is 100 characters. Can be empty to allow the system to generate one.'
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    dictionary:
+      nesting_mode: list
+      block:
+        block_types:
+          cloud_storage_path:
+            nesting_mode: list
+            block:
+              attributes:
+                path:
+                  type: string
+                  description: 'A url representing a file or path (no wildcards) in Cloud Storage. Example: ''gs://[BUCKET_NAME]/dictionary.txt'''
+                  description_kind: plain
+                  required: true
+              description: Newline-delimited file of words in Cloud Storage. Only a single file is accepted.
+              description_kind: plain
+            max_items: 1
+          word_list:
+            nesting_mode: list
+            block:
+              attributes:
+                words:
+                  type:
+                  - list
+                  - string
+                  description: Words or phrases defining the dictionary. The dictionary must contain at least one phrase and every phrase must contain at least 2 characters that are letters or digits.
+                  description_kind: plain
+                  required: true
+              description: List of words or phrases to search for.
+              description_kind: plain
+            max_items: 1
+        description: Dictionary which defines the rule.
+        description_kind: plain
+      max_items: 1
+    large_custom_dictionary:
+      nesting_mode: list
+      block:
+        block_types:
+          big_query_field:
+            nesting_mode: list
+            block:
+              block_types:
+                field:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      name:
+                        type: string
+                        description: Name describing the field.
+                        description_kind: plain
+                        required: true
+                    description: Designated field in the BigQuery table.
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+                table:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      dataset_id:
+                        type: string
+                        description: The dataset ID of the table.
+                        description_kind: plain
+                        required: true
+                      project_id:
+                        type: string
+                        description: The Google Cloud Platform project ID of the project containing the table.
+                        description_kind: plain
+                        required: true
+                      table_id:
+                        type: string
+                        description: The name of the table.
+                        description_kind: plain
+                        required: true
+                    description: Field in a BigQuery table where each cell represents a dictionary phrase.
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description: Field in a BigQuery table where each cell represents a dictionary phrase.
+              description_kind: plain
+            max_items: 1
+          cloud_storage_file_set:
+            nesting_mode: list
+            block:
+              attributes:
+                url:
+                  type: string
+                  description: The url, in the format 'gs://<bucket>/<path>'. Trailing wildcard in the path is allowed.
+                  description_kind: plain
+                  required: true
+              description: Set of files containing newline-delimited lists of dictionary phrases.
+              description_kind: plain
+            max_items: 1
+          output_path:
+            nesting_mode: list
+            block:
+              attributes:
+                path:
+                  type: string
+                  description: 'A url representing a file or path (no wildcards) in Cloud Storage. Example: ''gs://[BUCKET_NAME]/dictionary.txt'''
+                  description_kind: plain
+                  required: true
+              description: Location to store dictionary artifacts in Google Cloud Storage. These files will only be accessible by project owners and the DLP API. If any of these artifacts are modified, the dictionary is considered invalid and can no longer be used.
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description: Dictionary which defines the rule.
+        description_kind: plain
+      max_items: 1
+    regex:
+      nesting_mode: list
+      block:
+        attributes:
+          group_indexes:
+            type:
+            - list
+            - number
+            description: The index of the submatch to extract as findings. When not specified, the entire match is returned. No more than 3 may be included.
+            description_kind: plain
+            optional: true
+          pattern:
+            type: string
+            description: Pattern defining the regular expression. Its syntax (https://github.com/google/re2/wiki/Syntax) can be found under the google/re2 repository on GitHub.
+            description_kind: plain
+            required: true
+        description: Regular expression which defines the rule.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

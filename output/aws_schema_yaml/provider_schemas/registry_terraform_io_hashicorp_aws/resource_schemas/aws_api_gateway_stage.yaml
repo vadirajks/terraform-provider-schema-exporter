@@ -1,0 +1,125 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    cache_cluster_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    cache_cluster_size:
+      type: string
+      description_kind: plain
+      optional: true
+    client_certificate_id:
+      type: string
+      description_kind: plain
+      optional: true
+    deployment_id:
+      type: string
+      description_kind: plain
+      required: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    documentation_version:
+      type: string
+      description_kind: plain
+      optional: true
+    execution_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    invoke_url:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    rest_api_id:
+      type: string
+      description_kind: plain
+      required: true
+    stage_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    variables:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    web_acl_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    xray_tracing_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+  block_types:
+    access_log_settings:
+      nesting_mode: list
+      block:
+        attributes:
+          destination_arn:
+            type: string
+            description_kind: plain
+            required: true
+          format:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    canary_settings:
+      nesting_mode: list
+      block:
+        attributes:
+          deployment_id:
+            type: string
+            description_kind: plain
+            required: true
+          percent_traffic:
+            type: number
+            description_kind: plain
+            optional: true
+          stage_variable_overrides:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+          use_stage_cache:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

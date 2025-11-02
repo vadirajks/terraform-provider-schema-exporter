@@ -1,0 +1,131 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "action": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "filter_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "sql_filter": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "sql_filter_compatibility_level": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "subscription_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "correlation_filter": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "content_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "correlation_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "label": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "message_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "properties": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "reply_to": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "reply_to_session_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "session_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "to": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

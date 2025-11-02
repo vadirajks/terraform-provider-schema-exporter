@@ -1,0 +1,139 @@
+version: 0
+block:
+  attributes:
+    data_plane_proxy_authentication_mode:
+      type: string
+      description_kind: plain
+      computed: true
+    data_plane_proxy_private_link_delegation_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    encryption:
+      type:
+      - list
+      - - object
+        - identity_client_id: string
+          key_vault_key_identifier: string
+      description_kind: plain
+      computed: true
+    endpoint:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    identity:
+      type:
+      - list
+      - - object
+        - identity_ids:
+          - list
+          - string
+          principal_id: string
+          tenant_id: string
+          type: string
+      description_kind: plain
+      computed: true
+    local_auth_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    primary_read_key:
+      type:
+      - list
+      - - object
+        - connection_string: string
+          id: string
+          secret: string
+      description_kind: plain
+      computed: true
+    primary_write_key:
+      type:
+      - list
+      - - object
+        - connection_string: string
+          id: string
+          secret: string
+      description_kind: plain
+      computed: true
+    public_network_access:
+      type: string
+      description_kind: plain
+      computed: true
+    public_network_access_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    purge_protection_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    replica:
+      type:
+      - list
+      - - object
+        - endpoint: string
+          id: string
+          location: string
+          name: string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    secondary_read_key:
+      type:
+      - list
+      - - object
+        - connection_string: string
+          id: string
+          secret: string
+      description_kind: plain
+      computed: true
+    secondary_write_key:
+      type:
+      - list
+      - - object
+        - connection_string: string
+          id: string
+          secret: string
+      description_kind: plain
+      computed: true
+    sku:
+      type: string
+      description_kind: plain
+      computed: true
+    soft_delete_retention_days:
+      type: number
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

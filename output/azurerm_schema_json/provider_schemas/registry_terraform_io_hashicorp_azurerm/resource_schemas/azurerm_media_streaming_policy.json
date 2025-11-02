@@ -1,0 +1,425 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "default_content_key_policy_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "media_services_account_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "common_encryption_cbcs": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "clear_key_encryption": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "custom_keys_acquisition_url_template": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "default_content_key": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "label": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "policy_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "drm_fairplay": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "allow_persistent_license": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "custom_license_acquisition_url_template": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "enabled_protocols": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "dash": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "download": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "hls": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "smooth_streaming": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "common_encryption_cenc": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "drm_widevine_custom_license_acquisition_url_template": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "clear_key_encryption": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "custom_keys_acquisition_url_template": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "clear_track": {
+              "nesting_mode": "set",
+              "block": {
+                "block_types": {
+                  "condition": {
+                    "nesting_mode": "set",
+                    "block": {
+                      "attributes": {
+                        "operation": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "property": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "value": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "content_key_to_track_mapping": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "label": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "policy_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "track": {
+                    "nesting_mode": "set",
+                    "block": {
+                      "block_types": {
+                        "condition": {
+                          "nesting_mode": "set",
+                          "block": {
+                            "attributes": {
+                              "operation": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "property": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "value": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "default_content_key": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "label": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "policy_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "drm_playready": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "custom_attributes": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "custom_license_acquisition_url_template": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "enabled_protocols": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "dash": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "download": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "hls": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "smooth_streaming": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "envelope_encryption": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "custom_keys_acquisition_url_template": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "default_content_key": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "label": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "policy_name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "enabled_protocols": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "dash": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "download": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "hls": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "smooth_streaming": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "no_encryption_enabled_protocols": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "dash": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "download": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "hls": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "smooth_streaming": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain",
+    "deprecated": true
+  }
+}

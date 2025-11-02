@@ -1,0 +1,60 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "baseline_identities": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "baseline_description": "string",
+              "baseline_id": "string",
+              "baseline_name": "string",
+              "default_baseline": "bool",
+              "operating_system": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "default_baselines": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "filter": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "key": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "values": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

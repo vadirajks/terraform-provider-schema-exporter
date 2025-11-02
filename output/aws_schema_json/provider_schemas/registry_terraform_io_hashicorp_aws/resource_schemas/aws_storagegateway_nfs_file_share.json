@@ -1,0 +1,210 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "audit_destination_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "bucket_region": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "client_list": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "required": true
+      },
+      "default_storage_class": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "file_share_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "fileshare_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "gateway_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "guess_mime_type_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "kms_encrypted": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "kms_key_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "notification_policy": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "object_acl": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "path": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "read_only": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "requester_pays": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "role_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "squash": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "vpc_endpoint_dns_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "cache_attributes": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "cache_stale_timeout_in_seconds": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "nfs_file_share_defaults": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "directory_mode": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "file_mode": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "group_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "owner_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,246 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "backend": {
+        "type": "string",
+        "description": "The ID of the Backend that this Domain is associated with",
+        "description_kind": "plain",
+        "required": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "Time at which the domain was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "custom_domain_status": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "cert_state": "string",
+              "host_state": "string",
+              "issues": [
+                "list",
+                [
+                  "object",
+                  {
+                    "code": "number",
+                    "details": "string",
+                    "message": "string"
+                  }
+                ]
+              ],
+              "ownership_state": "string",
+              "required_dns_updates": [
+                "list",
+                [
+                  "object",
+                  {
+                    "check_time": "string",
+                    "desired": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "check_error": [
+                            "list",
+                            [
+                              "object",
+                              {
+                                "code": "number",
+                                "details": "string",
+                                "message": "string"
+                              }
+                            ]
+                          ],
+                          "domain_name": "string",
+                          "records": [
+                            "list",
+                            [
+                              "object",
+                              {
+                                "domain_name": "string",
+                                "rdata": "string",
+                                "relevant_state": [
+                                  "list",
+                                  "string"
+                                ],
+                                "required_action": "string",
+                                "type": "string"
+                              }
+                            ]
+                          ]
+                        }
+                      ]
+                    ],
+                    "discovered": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "check_error": [
+                            "list",
+                            [
+                              "object",
+                              {
+                                "code": "number",
+                                "details": "string",
+                                "message": "string"
+                              }
+                            ]
+                          ],
+                          "domain_name": "string",
+                          "records": [
+                            "list",
+                            [
+                              "object",
+                              {
+                                "domain_name": "string",
+                                "rdata": "string",
+                                "relevant_state": [
+                                  "list",
+                                  "string"
+                                ],
+                                "required_action": "string",
+                                "type": "string"
+                              }
+                            ]
+                          ]
+                        }
+                      ]
+                    ],
+                    "domain_name": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "The status of a custom domain's linkage to the Backend.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "delete_time": {
+        "type": "string",
+        "description": "Time at which the domain was deleted.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "domain_id": {
+        "type": "string",
+        "description": "Id of the domain to create. Must be a valid domain name, such as \"foo.com\"",
+        "description_kind": "plain",
+        "required": true
+      },
+      "etag": {
+        "type": "string",
+        "description": "Server-computed checksum based on other values; may be sent on update or delete to ensure operation is done on expected resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location of the Backend that this Domain is associated with",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Identifier. The resource name of the domain, e.g. 'projects/{project}/locations/{locationId}/backends/{backendId}/domains/{domainId}'",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "purge_time": {
+        "type": "string",
+        "description": "Time at which a soft-deleted domain will be purged, rendering in permanently deleted.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "uid": {
+        "type": "string",
+        "description": "System-assigned, unique identifier.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Time at which the domain was last updated.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "serve": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "redirect": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "status": {
+                    "type": "string",
+                    "description": "The status code to use in a redirect response. Must be a valid HTTP 3XX status code. Defaults to 302 if not present.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "uri": {
+                    "type": "string",
+                    "description": "The URI of the redirect's intended destination. This URI will be prepended to the original request path. URI without a scheme are assumed to be HTTPS.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Specifies redirect behavior for a domain.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "The serving behavior of the domain. If specified, the domain will serve content other than its Backend's live content.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

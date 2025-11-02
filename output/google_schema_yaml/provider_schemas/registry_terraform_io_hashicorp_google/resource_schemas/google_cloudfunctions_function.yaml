@@ -1,0 +1,336 @@
+version: 0
+block:
+  attributes:
+    available_memory_mb:
+      type: number
+      description: Memory (in MB), available to the function. Default value is 256. Possible values include 128, 256, 512, 1024, etc.
+      description_kind: plain
+      optional: true
+    build_environment_variables:
+      type:
+      - map
+      - string
+      description: A set of key/value environment variable pairs available during build time.
+      description_kind: plain
+      optional: true
+    build_service_account:
+      type: string
+      description: The fully-qualified name of the service account to be used for the build step of deploying this function
+      description_kind: plain
+      optional: true
+      computed: true
+    build_worker_pool:
+      type: string
+      description: Name of the Cloud Build Custom Worker Pool that should be used to build the function.
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description: Description of the function.
+      description_kind: plain
+      optional: true
+    docker_registry:
+      type: string
+      description: Docker Registry to use for storing the function's Docker images. Allowed values are ARTIFACT_REGISTRY (default) and CONTAINER_REGISTRY.
+      description_kind: plain
+      optional: true
+      computed: true
+    docker_repository:
+      type: string
+      description: User managed repository created in Artifact Registry optionally with a customer managed encryption key. If specified, deployments will use Artifact Registry for storing images built with Cloud Build.
+      description_kind: plain
+      optional: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    entry_point:
+      type: string
+      description: Name of the function that will be executed when the Google Cloud Function is triggered.
+      description_kind: plain
+      optional: true
+    environment_variables:
+      type:
+      - map
+      - string
+      description: A set of key/value environment variable pairs to assign to the function.
+      description_kind: plain
+      optional: true
+    https_trigger_security_level:
+      type: string
+      description: The security level for the function. Defaults to SECURE_OPTIONAL. Valid only if trigger_http is used.
+      description_kind: plain
+      optional: true
+      computed: true
+    https_trigger_url:
+      type: string
+      description: URL which triggers function execution. Returned only if trigger_http is used.
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ingress_settings:
+      type: string
+      description: String value that controls what traffic can reach the function. Allowed values are ALLOW_ALL and ALLOW_INTERNAL_ONLY. Changes to this field will recreate the cloud function.
+      description_kind: plain
+      optional: true
+    kms_key_name:
+      type: string
+      description: Resource name of a KMS crypto key (managed by the user) used to encrypt/decrypt function resources.
+      description_kind: plain
+      optional: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'A set of key/value label pairs to assign to the function. Label keys must follow the requirements at https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    max_instances:
+      type: number
+      description: The limit on the maximum number of function instances that may coexist at a given time.
+      description_kind: plain
+      optional: true
+      computed: true
+    min_instances:
+      type: number
+      description: The limit on the minimum number of function instances that may coexist at a given time.
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: A user-defined name of the function. Function names must be unique globally.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description: Project of the function. If it is not provided, the provider project is used.
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region of function. If it is not provided, the provider region is used.
+      description_kind: plain
+      optional: true
+      computed: true
+    runtime:
+      type: string
+      description: The runtime in which the function is going to run. Eg. "nodejs20", "python37", "go111".
+      description_kind: plain
+      required: true
+    service_account_email:
+      type: string
+      description: If provided, the self-provided service account to run the function with.
+      description_kind: plain
+      optional: true
+      computed: true
+    source_archive_bucket:
+      type: string
+      description: The GCS bucket containing the zip archive which contains the function.
+      description_kind: plain
+      optional: true
+    source_archive_object:
+      type: string
+      description: The source archive object (file) in archive bucket.
+      description_kind: plain
+      optional: true
+    status:
+      type: string
+      description: Describes the current stage of a deployment.
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    timeout:
+      type: number
+      description: Timeout (in seconds) for the function. Default value is 60 seconds. Cannot be more than 540 seconds.
+      description_kind: plain
+      optional: true
+    trigger_http:
+      type: bool
+      description: 'Boolean variable. Any HTTP request (of a supported type) to the endpoint will trigger function execution. Supported HTTP request types are: POST, PUT, GET, DELETE, and OPTIONS. Endpoint is returned as https_trigger_url. Cannot be used with trigger_bucket and trigger_topic.'
+      description_kind: plain
+      optional: true
+    version_id:
+      type: string
+      description: The version identifier of the Cloud Function. Each deployment attempt results in a new version of a function being created.
+      description_kind: plain
+      computed: true
+    vpc_connector:
+      type: string
+      description: The VPC Network Connector that this cloud function can connect to. It can be either the fully-qualified URI, or the short name of the network connector resource. The format of this field is projects/*/locations/*/connectors/*.
+      description_kind: plain
+      optional: true
+    vpc_connector_egress_settings:
+      type: string
+      description: The egress settings for the connector, controlling what traffic is diverted through it. Allowed values are ALL_TRAFFIC and PRIVATE_RANGES_ONLY. Defaults to PRIVATE_RANGES_ONLY. If unset, this field preserves the previously set value.
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    automatic_update_policy:
+      nesting_mode: list
+      block:
+        description: Security patches are applied automatically to the runtime without requiring the function to be redeployed.
+        description_kind: plain
+      max_items: 1
+    event_trigger:
+      nesting_mode: list
+      block:
+        attributes:
+          event_type:
+            type: string
+            description: 'The type of event to observe. For example: "google.storage.object.finalize". See the documentation on calling Cloud Functions for a full reference of accepted triggers.'
+            description_kind: plain
+            required: true
+          resource:
+            type: string
+            description: The name or partial URI of the resource from which to observe events. For example, "myBucket" or "projects/my-project/topics/my-topic"
+            description_kind: plain
+            required: true
+        block_types:
+          failure_policy:
+            nesting_mode: list
+            block:
+              attributes:
+                retry:
+                  type: bool
+                  description: Whether the function should be retried on failure. Defaults to false.
+                  description_kind: plain
+                  required: true
+              description: Specifies policy for failed executions
+              description_kind: plain
+            max_items: 1
+        description: A source that fires events in response to a condition in another service. Cannot be used with trigger_http.
+        description_kind: plain
+      max_items: 1
+    on_deploy_update_policy:
+      nesting_mode: list
+      block:
+        attributes:
+          runtime_version:
+            type: string
+            description: The runtime version which was used during latest function deployment.
+            description_kind: plain
+            computed: true
+        description: Security patches are only applied when a function is redeployed.
+        description_kind: plain
+      max_items: 1
+    secret_environment_variables:
+      nesting_mode: list
+      block:
+        attributes:
+          key:
+            type: string
+            description: Name of the environment variable.
+            description_kind: plain
+            required: true
+          project_id:
+            type: string
+            description: Project identifier (due to a known limitation, only project number is supported by this field) of the project that contains the secret. If not set, it will be populated with the function's project, assuming that the secret exists in the same project as of the function.
+            description_kind: plain
+            optional: true
+            computed: true
+          secret:
+            type: string
+            description: ID of the secret in secret manager (not the full resource name).
+            description_kind: plain
+            required: true
+          version:
+            type: string
+            description: Version of the secret (version number or the string "latest"). It is recommended to use a numeric version for secret environment variables as any updates to the secret value is not reflected until new clones start.
+            description_kind: plain
+            required: true
+        description: Secret environment variables configuration
+        description_kind: plain
+    secret_volumes:
+      nesting_mode: list
+      block:
+        attributes:
+          mount_path:
+            type: string
+            description: 'The path within the container to mount the secret volume. For example, setting the mount_path as "/etc/secrets" would mount the secret value files under the "/etc/secrets" directory. This directory will also be completely shadowed and unavailable to mount any other secrets. Recommended mount paths: "/etc/secrets" Restricted mount paths: "/cloudsql", "/dev/log", "/pod", "/proc", "/var/log".'
+            description_kind: plain
+            required: true
+          project_id:
+            type: string
+            description: Project identifier (due to a known limitation, only project number is supported by this field) of the project that contains the secret. If not set, it will be populated with the function's project, assuming that the secret exists in the same project as of the function.
+            description_kind: plain
+            optional: true
+            computed: true
+          secret:
+            type: string
+            description: ID of the secret in secret manager (not the full resource name).
+            description_kind: plain
+            required: true
+        block_types:
+          versions:
+            nesting_mode: list
+            block:
+              attributes:
+                path:
+                  type: string
+                  description: Relative path of the file under the mount path where the secret value for this version will be fetched and made available. For example, setting the mount_path as "/etc/secrets" and path as "/secret_foo" would mount the secret value file at "/etc/secrets/secret_foo".
+                  description_kind: plain
+                  required: true
+                version:
+                  type: string
+                  description: Version of the secret (version number or the string "latest"). It is preferable to use "latest" version with secret volumes as secret value changes are reflected immediately.
+                  description_kind: plain
+                  required: true
+              description: List of secret versions to mount for this secret. If empty, the "latest" version of the secret will be made available in a file named after the secret under the mount point.
+              description_kind: plain
+        description: Secret volumes configuration.
+        description_kind: plain
+    source_repository:
+      nesting_mode: list
+      block:
+        attributes:
+          deployed_url:
+            type: string
+            description: The URL pointing to the hosted repository where the function was defined at the time of deployment.
+            description_kind: plain
+            computed: true
+          url:
+            type: string
+            description: The URL pointing to the hosted repository where the function is defined.
+            description_kind: plain
+            required: true
+        description: Represents parameters related to source repository where a function is hosted. Cannot be set alongside source_archive_bucket or source_archive_object.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

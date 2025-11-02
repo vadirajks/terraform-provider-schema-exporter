@@ -1,0 +1,15 @@
+data "aws_cloudfront_distribution" "name" {
+  id = string (Required)
+  aliases = ['set', 'string'] (Computed)
+  anycast_ip_list_id = string (Computed)
+  arn = string (Computed)
+  domain_name = string (Computed)
+  enabled = bool (Computed)
+  etag = string (Computed)
+  hosted_zone_id = string (Computed)
+  in_progress_validation_batches = number (Computed)
+  last_modified_time = string (Computed)
+  status = string (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  web_acl_id = string (Computed)
+}

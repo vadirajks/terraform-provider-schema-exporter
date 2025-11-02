@@ -1,0 +1,186 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "active_active": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "bgp_settings": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "asn": "number",
+              "peer_weight": "number",
+              "peering_address": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "custom_route": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "address_prefixes": [
+                "set",
+                "string"
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "default_local_network_gateway_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "enable_bgp": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "generation": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ip_configuration": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "id": "string",
+              "name": "string",
+              "private_ip_address": "string",
+              "private_ip_address_allocation": "string",
+              "public_ip_address_id": "string",
+              "subnet_id": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "private_ip_address_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "sku": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "type": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "vpn_client_configuration": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "aad_audience": "string",
+              "aad_issuer": "string",
+              "aad_tenant": "string",
+              "address_space": [
+                "list",
+                "string"
+              ],
+              "radius_server_address": "string",
+              "radius_server_secret": "string",
+              "revoked_certificate": [
+                "list",
+                [
+                  "object",
+                  {
+                    "name": "string",
+                    "thumbprint": "string"
+                  }
+                ]
+              ],
+              "root_certificate": [
+                "list",
+                [
+                  "object",
+                  {
+                    "name": "string",
+                    "public_cert_data": "string"
+                  }
+                ]
+              ],
+              "vpn_client_protocols": [
+                "set",
+                "string"
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "vpn_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

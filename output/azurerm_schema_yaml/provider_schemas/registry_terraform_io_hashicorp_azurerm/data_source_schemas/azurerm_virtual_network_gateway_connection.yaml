@@ -1,0 +1,135 @@
+version: 0
+block:
+  attributes:
+    authorization_key:
+      type: string
+      description_kind: plain
+      computed: true
+    connection_protocol:
+      type: string
+      description_kind: plain
+      computed: true
+    dpd_timeout_seconds:
+      type: number
+      description_kind: plain
+      computed: true
+    egress_bytes_transferred:
+      type: number
+      description_kind: plain
+      computed: true
+    enable_bgp:
+      type: bool
+      description_kind: plain
+      computed: true
+    express_route_circuit_id:
+      type: string
+      description_kind: plain
+      computed: true
+    express_route_gateway_bypass:
+      type: bool
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ingress_bytes_transferred:
+      type: number
+      description_kind: plain
+      computed: true
+    ipsec_policy:
+      type:
+      - list
+      - - object
+        - dh_group: string
+          ike_encryption: string
+          ike_integrity: string
+          ipsec_encryption: string
+          ipsec_integrity: string
+          pfs_group: string
+          sa_datasize: number
+          sa_lifetime: number
+      description_kind: plain
+      computed: true
+    local_azure_ip_address_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    local_network_gateway_id:
+      type: string
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    peer_virtual_network_gateway_id:
+      type: string
+      description_kind: plain
+      computed: true
+    private_link_fast_path_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_guid:
+      type: string
+      description_kind: plain
+      computed: true
+    routing_weight:
+      type: number
+      description_kind: plain
+      computed: true
+    shared_key:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    traffic_selector_policy:
+      type:
+      - list
+      - - object
+        - local_address_cidrs:
+          - list
+          - string
+          remote_address_cidrs:
+          - list
+          - string
+      description_kind: plain
+      computed: true
+    type:
+      type: string
+      description_kind: plain
+      computed: true
+    use_policy_based_traffic_selectors:
+      type: bool
+      description_kind: plain
+      computed: true
+    virtual_network_gateway_id:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

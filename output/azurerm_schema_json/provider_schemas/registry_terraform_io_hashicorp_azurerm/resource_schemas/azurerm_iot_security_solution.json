@@ -1,0 +1,236 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "disabled_data_sources": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "display_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "events_to_export": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "iothub_ids": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "required": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "log_analytics_workspace_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "log_unmasked_ips_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "query_for_resources": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "query_subscription_ids": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "additional_workspace": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "data_types": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "workspace_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "recommendations_enabled": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "acr_authentication": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "agent_send_unutilized_msg": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "baseline": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "edge_hub_mem_optimize": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "edge_logging_option": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "inconsistent_module_settings": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "install_agent": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "ip_filter_deny_all": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "ip_filter_permissive_rule": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "open_ports": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "permissive_firewall_policy": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "permissive_input_firewall_rules": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "permissive_output_firewall_rules": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "privileged_docker_options": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "shared_credentials": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "vulnerable_tls_cipher_suite": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

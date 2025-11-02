@@ -1,0 +1,17 @@
+data "aws_opensearchserverless_collection" "name" {
+  arn = string (Computed)
+  collection_endpoint = string (Computed)
+  created_date = string (Computed)
+  dashboard_endpoint = string (Computed)
+  description = string (Computed)
+  failure_code = string (Computed)
+  failure_message = string (Computed)
+  id = string (Optional, Computed)
+  kms_key_arn = string (Computed)
+  last_modified_date = string (Computed)
+  name = string (Optional, Computed)
+  region = string (Optional, Computed)
+  standby_replicas = string (Computed)
+  tags = ['map', 'string'] (Computed)
+  type = string (Computed)
+}

@@ -1,0 +1,61 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    storage_location:
+      nesting_mode: list
+      block:
+        attributes:
+          policy:
+            type: string
+            description: 'The chosen location policy Possible values: ["NEAREST_MULTI_REGION", "LOCAL_REGION", "SPECIFIC_LOCATIONS"]'
+            description_kind: plain
+            required: true
+        block_types:
+          locations:
+            nesting_mode: set
+            block:
+              attributes:
+                location:
+                  type: string
+                  description_kind: plain
+                  required: true
+                name:
+                  type: string
+                  description: Name of the location. It should be one of the Cloud Storage buckets. Only one location can be specified. (should match location)
+                  description_kind: plain
+                  required: true
+              description: When the policy is SPECIFIC_LOCATIONS, snapshots will be stored in the locations listed in this field. Keys are Cloud Storage bucket locations. Only one location can be specified.
+              description_kind: plain
+        description: Policy of which storage location is going to be resolved, and additional data that particularizes how the policy is going to be carried out
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

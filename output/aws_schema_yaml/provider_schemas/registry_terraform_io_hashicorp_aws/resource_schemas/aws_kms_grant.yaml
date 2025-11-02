@@ -1,0 +1,74 @@
+version: 0
+block:
+  attributes:
+    grant_creation_tokens:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    grant_id:
+      type: string
+      description_kind: plain
+      computed: true
+    grant_token:
+      type: string
+      description_kind: plain
+      computed: true
+      sensitive: true
+    grantee_principal:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    key_id:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+    operations:
+      type:
+      - set
+      - string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    retire_on_delete:
+      type: bool
+      description_kind: plain
+      optional: true
+    retiring_principal:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    constraints:
+      nesting_mode: set
+      block:
+        attributes:
+          encryption_context_equals:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+          encryption_context_subset:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

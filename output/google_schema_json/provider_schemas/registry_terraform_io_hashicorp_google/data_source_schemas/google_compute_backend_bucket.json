@@ -1,0 +1,154 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "bucket_name": {
+        "type": "string",
+        "description": "Cloud Storage bucket name.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cdn_policy": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "bypass_cache_on_request_headers": [
+                "list",
+                [
+                  "object",
+                  {
+                    "header_name": "string"
+                  }
+                ]
+              ],
+              "cache_key_policy": [
+                "list",
+                [
+                  "object",
+                  {
+                    "include_http_headers": [
+                      "list",
+                      "string"
+                    ],
+                    "query_string_whitelist": [
+                      "list",
+                      "string"
+                    ]
+                  }
+                ]
+              ],
+              "cache_mode": "string",
+              "client_ttl": "number",
+              "default_ttl": "number",
+              "max_ttl": "number",
+              "negative_caching": "bool",
+              "negative_caching_policy": [
+                "list",
+                [
+                  "object",
+                  {
+                    "code": "number",
+                    "ttl": "number"
+                  }
+                ]
+              ],
+              "request_coalescing": "bool",
+              "serve_while_stale": "number",
+              "signed_url_cache_max_age_sec": "number"
+            }
+          ]
+        ],
+        "description": "Cloud CDN configuration for this Backend Bucket.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "compression_mode": {
+        "type": "string",
+        "description": "Compress text responses using Brotli or gzip compression, based on the client's Accept-Encoding header. Possible values: [\"AUTOMATIC\", \"DISABLED\"]",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "creation_timestamp": {
+        "type": "string",
+        "description": "Creation timestamp in RFC3339 text format.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "custom_response_headers": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "Headers that the HTTP/S load balancer should add to proxied responses.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "An optional textual description of the resource; provided by the client when the resource is created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "edge_security_policy": {
+        "type": "string",
+        "description": "The security policy associated with this backend bucket.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "enable_cdn": {
+        "type": "bool",
+        "description": "If true, enable Cloud CDN for this BackendBucket. Note: This cannot be set to true when loadBalancingScheme is set to INTERNAL_MANAGED.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "load_balancing_scheme": {
+        "type": "string",
+        "description": "The value can only be INTERNAL_MANAGED for cross-region internal layer 7 load balancer. If loadBalancingScheme is not specified, the backend bucket can be used by classic global external load balancers, or global application external load balancers, or both. Important: CDN cannot be enabled (enableCdn cannot be set to true) when loadBalancingScheme is set to INTERNAL_MANAGED. Possible values: [\"INTERNAL_MANAGED\"]",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035.  Specifically, the name must be 1-63 characters long and match the regular expression '[a-z]([-a-z0-9]*[a-z0-9])?' which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "params": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "resource_manager_tags": [
+                "map",
+                "string"
+              ]
+            }
+          ]
+        ],
+        "description": "Additional params passed with the request, but not persisted as part of resource payload",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "self_link": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

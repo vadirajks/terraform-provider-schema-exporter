@@ -1,0 +1,17 @@
+data "aws_acmpca_certificate_authority" "name" {
+  arn = string (Required)
+  certificate = string (Computed)
+  certificate_chain = string (Computed)
+  certificate_signing_request = string (Computed)
+  id = string (Optional, Computed)
+  key_storage_security_standard = string (Computed)
+  not_after = string (Computed)
+  not_before = string (Computed)
+  region = string (Optional, Computed)
+  revocation_configuration = ['list', ['object', {'crl_configuration': ['list', ['object', {'custom_cname': 'string', 'enabled': 'bool', 'expiration_in_days': 'number', 's3_bucket_name': 'string', 's3_object_acl': 'string'}]], 'ocsp_configuration': ['list', ['object', {'enabled': 'bool', 'ocsp_custom_cname': 'string'}]]}]] (Computed)
+  serial = string (Computed)
+  status = string (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  type = string (Computed)
+  usage_mode = string (Computed)
+}

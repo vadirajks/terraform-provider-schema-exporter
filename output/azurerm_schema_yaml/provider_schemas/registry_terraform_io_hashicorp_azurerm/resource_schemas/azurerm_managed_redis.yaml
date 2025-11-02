@@ -1,0 +1,158 @@
+version: 0
+block:
+  attributes:
+    high_availability_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    hostname:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    sku_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    customer_managed_key:
+      nesting_mode: list
+      block:
+        attributes:
+          key_vault_key_id:
+            type: string
+            description_kind: plain
+            required: true
+          user_assigned_identity_id:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    default_database:
+      nesting_mode: list
+      block:
+        attributes:
+          access_keys_authentication_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          client_protocol:
+            type: string
+            description_kind: plain
+            optional: true
+          clustering_policy:
+            type: string
+            description_kind: plain
+            optional: true
+          eviction_policy:
+            type: string
+            description_kind: plain
+            optional: true
+          geo_replication_group_name:
+            type: string
+            description_kind: plain
+            optional: true
+          port:
+            type: number
+            description_kind: plain
+            computed: true
+          primary_access_key:
+            type: string
+            description_kind: plain
+            computed: true
+            sensitive: true
+          secondary_access_key:
+            type: string
+            description_kind: plain
+            computed: true
+            sensitive: true
+        block_types:
+          module:
+            nesting_mode: list
+            block:
+              attributes:
+                args:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                version:
+                  type: string
+                  description_kind: plain
+                  computed: true
+              description_kind: plain
+            max_items: 4
+        description_kind: plain
+      max_items: 1
+    identity:
+      nesting_mode: list
+      block:
+        attributes:
+          identity_ids:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          principal_id:
+            type: string
+            description_kind: plain
+            computed: true
+          tenant_id:
+            type: string
+            description_kind: plain
+            computed: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

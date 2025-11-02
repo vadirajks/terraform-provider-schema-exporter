@@ -1,0 +1,150 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "auto_renew": {
+        "type": "bool",
+        "description": "Whether the license config should be auto renewed when it reaches the end date.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "free_trial": {
+        "type": "bool",
+        "description": "Whether the license config is for free trial.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "license_config_id": {
+        "type": "string",
+        "description": "The unique id of the license config.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "license_count": {
+        "type": "number",
+        "description": "Number of licenses purchased.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The geographic location where the data store should reside. The value can only be one of \"global\", \"us\" and \"eu\".",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The unique full resource name of the license config. Values are of the format 'projects/{project}/locations/{location}/licenseConfigs/{license_config}'.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "subscription_term": {
+        "type": "string",
+        "description": "Subscription term. Possible values: [\"SUBSCRIPTION_TERM_UNSPECIFIED\", \"SUBSCRIPTION_TERM_ONE_MONTH\", \"SUBSCRIPTION_TERM_ONE_YEAR\", \"SUBSCRIPTION_TERM_THREE_YEARS\", \"SUBSCRIPTION_TERM_THREE_MONTHS\", \"SUBSCRIPTION_TERM_FOURTEEN_DAYS\", \"SUBSCRIPTION_TERM_CUSTOM\"]",
+        "description_kind": "plain",
+        "required": true
+      },
+      "subscription_tier": {
+        "type": "string",
+        "description": "Subscription tier information for the license config. Possible values: [\"SUBSCRIPTION_TIER_UNSPECIFIED\", \"SUBSCRIPTION_TIER_SEARCH\", \"SUBSCRIPTION_TIER_SEARCH_AND_ASSISTANT\", \"SUBSCRIPTION_TIER_NOTEBOOK_LM\", \"SUBSCRIPTION_TIER_FRONTLINE_WORKER\", \"SUBSCRIPTION_TIER_AGENTSPACE_STARTER\", \"SUBSCRIPTION_TIER_AGENTSPACE_BUSINESS\", \"SUBSCRIPTION_TIER_ENTERPRISE\", \"SUBSCRIPTION_TIER_EDU\", \"SUBSCRIPTION_TIER_EDU_PRO\"]",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "end_date": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "day": {
+              "type": "number",
+              "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "month": {
+              "type": "number",
+              "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "year": {
+              "type": "number",
+              "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "The planned end date.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "start_date": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "day": {
+              "type": "number",
+              "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "month": {
+              "type": "number",
+              "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "year": {
+              "type": "number",
+              "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "The start date.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

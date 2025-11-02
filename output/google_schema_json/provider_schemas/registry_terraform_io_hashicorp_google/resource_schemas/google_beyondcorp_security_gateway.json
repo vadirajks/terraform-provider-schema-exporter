@@ -1,0 +1,282 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "Output only. Timestamp when the resource was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "delegating_service_account": {
+        "type": "string",
+        "description": "Service account used for operations that involve resources in consumer projects.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "Optional. An arbitrary user-provided name for the SecurityGateway. Cannot exceed 64 characters.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "external_ips": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "Output only. IP addresses that will be used for establishing connection to the endpoints.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "Resource ID segment making up resource 'name'. It identifies the resource within its parent collection as described in https://google.aip.dev/122. Must be omitted or set to 'global'.",
+        "description_kind": "plain",
+        "deprecated": true,
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Identifier. Name of the resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "security_gateway_id": {
+        "type": "string",
+        "description": "Optional. User-settable SecurityGateway resource ID. * Must start with a letter. * Must contain between 4-63 characters from '/a-z-/'. * Must end with a number or letter.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "state": {
+        "type": "string",
+        "description": "Output only. The operational state of the SecurityGateway. Possible values: STATE_UNSPECIFIED CREATING UPDATING DELETING RUNNING DOWN ERROR",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Output only. Timestamp when the resource was last modified.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "hubs": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "region": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "internet_gateway": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "assigned_ips": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Output only. List of IP addresses assigned to the Cloud NAT.",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "description": "Internet Gateway configuration.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Optional. Map of Hubs that represents regional data path deployment with GCP region as a key.",
+          "description_kind": "plain"
+        }
+      },
+      "proxy_protocol_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "allowed_client_headers": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description": "The configuration for the proxy.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "client_ip": {
+              "type": "bool",
+              "description": "Client IP configuration. The client IP address is included if true.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "gateway_identity": {
+              "type": "string",
+              "description": "Gateway identity configuration. Possible values: [\"RESOURCE_NAME\"]",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "metadata_headers": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description": "Custom resource specific headers along with the values. The names should conform to RFC 9110: > Field names SHOULD constrain themselves to alphanumeric characters, \"-\", and \".\", and SHOULD begin with a letter. > Field values SHOULD contain only ASCII printable characters and tab.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "contextual_headers": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "output_type": {
+                    "type": "string",
+                    "description": "Default output type for all enabled headers. Possible values: [\"PROTOBUF\", \"JSON\", \"NONE\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "device_info": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "output_type": {
+                          "type": "string",
+                          "description": "The output type of the delegated device info. Possible values: [\"PROTOBUF\", \"JSON\", \"NONE\"]",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "Device info configuration.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "group_info": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "output_type": {
+                          "type": "string",
+                          "description": "The output type of the delegated group info. Possible values: [\"PROTOBUF\", \"JSON\", \"NONE\"]",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "Group info configuration.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "user_info": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "output_type": {
+                          "type": "string",
+                          "description": "The output type of the delegated user info. Possible values: [\"PROTOBUF\", \"JSON\", \"NONE\"]",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "User info configuration.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "Configuration for the contextual headers.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Shared proxy configuration for all apps.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "service_discovery": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "api_gateway": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "resource_override": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "path": {
+                          "type": "string",
+                          "description": "Contains uri path fragment where HTTP request is sent.",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "Enables fetching resource model updates to alter service behavior per Chrome profile.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "External API configuration.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Settings related to the Service Discovery.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,211 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "certificate_data": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "certificate_data_base64": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "certificate_policy": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "issuer_parameters": [
+                "list",
+                [
+                  "object",
+                  {
+                    "name": "string"
+                  }
+                ]
+              ],
+              "key_properties": [
+                "list",
+                [
+                  "object",
+                  {
+                    "curve": "string",
+                    "exportable": "bool",
+                    "key_size": "number",
+                    "key_type": "string",
+                    "reuse_key": "bool"
+                  }
+                ]
+              ],
+              "lifetime_action": [
+                "list",
+                [
+                  "object",
+                  {
+                    "action": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "action_type": "string"
+                        }
+                      ]
+                    ],
+                    "trigger": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "days_before_expiry": "number",
+                          "lifetime_percentage": "number"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "secret_properties": [
+                "list",
+                [
+                  "object",
+                  {
+                    "content_type": "string"
+                  }
+                ]
+              ],
+              "x509_certificate_properties": [
+                "list",
+                [
+                  "object",
+                  {
+                    "extended_key_usage": [
+                      "list",
+                      "string"
+                    ],
+                    "key_usage": [
+                      "list",
+                      "string"
+                    ],
+                    "subject": "string",
+                    "subject_alternative_names": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "dns_names": [
+                            "list",
+                            "string"
+                          ],
+                          "emails": [
+                            "list",
+                            "string"
+                          ],
+                          "upns": [
+                            "list",
+                            "string"
+                          ]
+                        }
+                      ]
+                    ],
+                    "validity_in_months": "number"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "expires": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "key_vault_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "not_before": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "resource_manager_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "resource_manager_versionless_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "secret_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "thumbprint": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "version": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "versionless_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "versionless_secret_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

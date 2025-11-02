@@ -1,0 +1,49 @@
+version: 0
+block:
+  attributes:
+    group:
+      type: string
+      description: The name of the instance group.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: The name for this named port. The name must be 1-63 characters long, and comply with RFC1035.
+      description_kind: plain
+      required: true
+    port:
+      type: number
+      description: The port number, which can be a value between 1 and 65535.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    zone:
+      type: string
+      description: The zone of the instance group.
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

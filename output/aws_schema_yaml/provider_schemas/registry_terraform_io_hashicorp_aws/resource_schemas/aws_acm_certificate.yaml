@@ -1,0 +1,153 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    certificate_authority_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    certificate_body:
+      type: string
+      description_kind: plain
+      optional: true
+    certificate_chain:
+      type: string
+      description_kind: plain
+      optional: true
+    domain_name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    domain_validation_options:
+      type:
+      - set
+      - - object
+        - domain_name: string
+          resource_record_name: string
+          resource_record_type: string
+          resource_record_value: string
+      description_kind: plain
+      computed: true
+    early_renewal_duration:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    key_algorithm:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    not_after:
+      type: string
+      description_kind: plain
+      computed: true
+    not_before:
+      type: string
+      description_kind: plain
+      computed: true
+    pending_renewal:
+      type: bool
+      description_kind: plain
+      computed: true
+    private_key:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    renewal_eligibility:
+      type: string
+      description_kind: plain
+      computed: true
+    renewal_summary:
+      type:
+      - list
+      - - object
+        - renewal_status: string
+          renewal_status_reason: string
+          updated_at: string
+      description_kind: plain
+      computed: true
+    status:
+      type: string
+      description_kind: plain
+      computed: true
+    subject_alternative_names:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    type:
+      type: string
+      description_kind: plain
+      computed: true
+    validation_emails:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    validation_method:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    options:
+      nesting_mode: list
+      block:
+        attributes:
+          certificate_transparency_logging_preference:
+            type: string
+            description_kind: plain
+            optional: true
+          export:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    validation_option:
+      nesting_mode: set
+      block:
+        attributes:
+          domain_name:
+            type: string
+            description_kind: plain
+            required: true
+          validation_domain:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+  description_kind: plain

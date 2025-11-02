@@ -1,0 +1,65 @@
+version: 0
+block:
+  attributes:
+    display_name:
+      type: string
+      description: An arbitrary user-provided name for the AppConnector.
+      description_kind: plain
+      computed: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Resource labels to represent user provided metadata. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: ID of the AppConnector.
+      description_kind: plain
+      required: true
+    principal_info:
+      type:
+      - list
+      - - object
+        - service_account:
+          - list
+          - - object
+            - email: string
+      description: Principal information about the Identity of the AppConnector.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: The region of the AppConnector.
+      description_kind: plain
+      optional: true
+    state:
+      type: string
+      description: Represents the different states of a AppConnector.
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+  description_kind: plain

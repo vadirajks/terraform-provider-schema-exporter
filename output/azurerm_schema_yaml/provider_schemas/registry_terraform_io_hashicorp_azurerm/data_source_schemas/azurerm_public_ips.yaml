@@ -1,0 +1,46 @@
+version: 0
+block:
+  attributes:
+    allocation_type:
+      type: string
+      description_kind: plain
+      optional: true
+    attachment_status:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name_prefix:
+      type: string
+      description_kind: plain
+      optional: true
+    public_ips:
+      type:
+      - list
+      - - object
+        - domain_name_label: string
+          fqdn: string
+          id: string
+          ip_address: string
+          name: string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

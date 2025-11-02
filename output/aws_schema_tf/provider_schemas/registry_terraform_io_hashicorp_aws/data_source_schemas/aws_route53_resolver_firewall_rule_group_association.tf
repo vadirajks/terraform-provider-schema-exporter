@@ -1,0 +1,17 @@
+data "aws_route53_resolver_firewall_rule_group_association" "name" {
+  firewall_rule_group_association_id = string (Required)
+  arn = string (Computed)
+  creation_time = string (Computed)
+  creator_request_id = string (Computed)
+  firewall_rule_group_id = string (Computed)
+  id = string (Optional, Computed)
+  managed_owner_name = string (Computed)
+  modification_time = string (Computed)
+  mutation_protection = string (Computed)
+  name = string (Computed)
+  priority = number (Computed)
+  region = string (Optional, Computed)
+  status = string (Computed)
+  status_message = string (Computed)
+  vpc_id = string (Computed)
+}

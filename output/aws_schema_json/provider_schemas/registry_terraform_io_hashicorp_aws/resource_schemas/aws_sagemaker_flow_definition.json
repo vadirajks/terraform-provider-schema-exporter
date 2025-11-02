@@ -1,0 +1,200 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "flow_definition_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "role_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "human_loop_activation_config": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "human_loop_activation_conditions_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "human_loop_activation_conditions": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "human_loop_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "human_task_ui_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "task_availability_lifetime_in_seconds": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "task_count": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "task_description": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "task_keywords": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "task_time_limit_in_seconds": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "task_title": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "workteam_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "public_workforce_task_price": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "amount_in_usd": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "cents": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "dollars": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "tenth_fractions_of_a_cent": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "human_loop_request_source": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "aws_managed_human_loop_request_source": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "output_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "kms_key_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "s3_output_path": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

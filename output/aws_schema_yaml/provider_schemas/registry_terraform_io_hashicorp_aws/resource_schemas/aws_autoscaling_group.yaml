@@ -1,0 +1,745 @@
+version: 1
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    availability_zones:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    capacity_rebalance:
+      type: bool
+      description_kind: plain
+      optional: true
+    context:
+      type: string
+      description_kind: plain
+      optional: true
+    default_cooldown:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    default_instance_warmup:
+      type: number
+      description_kind: plain
+      optional: true
+    desired_capacity:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    desired_capacity_type:
+      type: string
+      description_kind: plain
+      optional: true
+    enabled_metrics:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    force_delete:
+      type: bool
+      description_kind: plain
+      optional: true
+    force_delete_warm_pool:
+      type: bool
+      description_kind: plain
+      optional: true
+    health_check_grace_period:
+      type: number
+      description_kind: plain
+      optional: true
+    health_check_type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ignore_failed_scaling_activities:
+      type: bool
+      description_kind: plain
+      optional: true
+    launch_configuration:
+      type: string
+      description_kind: plain
+      optional: true
+    load_balancers:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    max_instance_lifetime:
+      type: number
+      description_kind: plain
+      optional: true
+    max_size:
+      type: number
+      description_kind: plain
+      required: true
+    metrics_granularity:
+      type: string
+      description_kind: plain
+      optional: true
+    min_elb_capacity:
+      type: number
+      description_kind: plain
+      optional: true
+    min_size:
+      type: number
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name_prefix:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    placement_group:
+      type: string
+      description_kind: plain
+      optional: true
+    predicted_capacity:
+      type: number
+      description_kind: plain
+      computed: true
+    protect_from_scale_in:
+      type: bool
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    service_linked_role_arn:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    suspended_processes:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    target_group_arns:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    termination_policies:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    vpc_zone_identifier:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    wait_for_capacity_timeout:
+      type: string
+      description_kind: plain
+      optional: true
+    wait_for_elb_capacity:
+      type: number
+      description_kind: plain
+      optional: true
+    warm_pool_size:
+      type: number
+      description_kind: plain
+      computed: true
+  block_types:
+    availability_zone_distribution:
+      nesting_mode: list
+      block:
+        attributes:
+          capacity_distribution_strategy:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    capacity_reservation_specification:
+      nesting_mode: list
+      block:
+        attributes:
+          capacity_reservation_preference:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          capacity_reservation_target:
+            nesting_mode: list
+            block:
+              attributes:
+                capacity_reservation_ids:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                capacity_reservation_resource_group_arns:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    initial_lifecycle_hook:
+      nesting_mode: set
+      block:
+        attributes:
+          default_result:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          heartbeat_timeout:
+            type: number
+            description_kind: plain
+            optional: true
+          lifecycle_transition:
+            type: string
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          notification_metadata:
+            type: string
+            description_kind: plain
+            optional: true
+          notification_target_arn:
+            type: string
+            description_kind: plain
+            optional: true
+          role_arn:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    instance_maintenance_policy:
+      nesting_mode: list
+      block:
+        attributes:
+          max_healthy_percentage:
+            type: number
+            description_kind: plain
+            required: true
+          min_healthy_percentage:
+            type: number
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    instance_refresh:
+      nesting_mode: list
+      block:
+        attributes:
+          strategy:
+            type: string
+            description_kind: plain
+            required: true
+          triggers:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+        block_types:
+          preferences:
+            nesting_mode: list
+            block:
+              attributes:
+                auto_rollback:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                checkpoint_delay:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                checkpoint_percentages:
+                  type:
+                  - list
+                  - number
+                  description_kind: plain
+                  optional: true
+                instance_warmup:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                max_healthy_percentage:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                min_healthy_percentage:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                scale_in_protected_instances:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                skip_matching:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                standby_instances:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                alarm_specification:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      alarms:
+                        type:
+                        - list
+                        - string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    launch_template:
+      nesting_mode: list
+      block:
+        attributes:
+          id:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          name:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          version:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    mixed_instances_policy:
+      nesting_mode: list
+      block:
+        block_types:
+          instances_distribution:
+            nesting_mode: list
+            block:
+              attributes:
+                on_demand_allocation_strategy:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                on_demand_base_capacity:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                on_demand_percentage_above_base_capacity:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                spot_allocation_strategy:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                spot_instance_pools:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                spot_max_price:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          launch_template:
+            nesting_mode: list
+            block:
+              block_types:
+                launch_template_specification:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      launch_template_id:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      launch_template_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      version:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+                override:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      instance_type:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      weighted_capacity:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      instance_requirements:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            accelerator_manufacturers:
+                              type:
+                              - set
+                              - string
+                              description_kind: plain
+                              optional: true
+                            accelerator_names:
+                              type:
+                              - set
+                              - string
+                              description_kind: plain
+                              optional: true
+                            accelerator_types:
+                              type:
+                              - set
+                              - string
+                              description_kind: plain
+                              optional: true
+                            allowed_instance_types:
+                              type:
+                              - set
+                              - string
+                              description_kind: plain
+                              optional: true
+                            bare_metal:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            burstable_performance:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            cpu_manufacturers:
+                              type:
+                              - set
+                              - string
+                              description_kind: plain
+                              optional: true
+                            excluded_instance_types:
+                              type:
+                              - set
+                              - string
+                              description_kind: plain
+                              optional: true
+                            instance_generations:
+                              type:
+                              - set
+                              - string
+                              description_kind: plain
+                              optional: true
+                            local_storage:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            local_storage_types:
+                              type:
+                              - set
+                              - string
+                              description_kind: plain
+                              optional: true
+                            max_spot_price_as_percentage_of_optimal_on_demand_price:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                            on_demand_max_price_percentage_over_lowest_price:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                            require_hibernate_support:
+                              type: bool
+                              description_kind: plain
+                              optional: true
+                            spot_max_price_percentage_over_lowest_price:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            accelerator_count:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  max:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  min:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                description_kind: plain
+                              max_items: 1
+                            accelerator_total_memory_mib:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  max:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  min:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                description_kind: plain
+                              max_items: 1
+                            baseline_ebs_bandwidth_mbps:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  max:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  min:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                description_kind: plain
+                              max_items: 1
+                            memory_gib_per_vcpu:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  max:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  min:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                description_kind: plain
+                              max_items: 1
+                            memory_mib:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  max:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  min:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                description_kind: plain
+                              max_items: 1
+                            network_bandwidth_gbps:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  max:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  min:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                description_kind: plain
+                              max_items: 1
+                            network_interface_count:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  max:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  min:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                description_kind: plain
+                              max_items: 1
+                            total_local_storage_gb:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  max:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  min:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                description_kind: plain
+                              max_items: 1
+                            vcpu_count:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  max:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  min:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                description_kind: plain
+                              max_items: 1
+                          description_kind: plain
+                        max_items: 1
+                      launch_template_specification:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            launch_template_id:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                              computed: true
+                            launch_template_name:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                              computed: true
+                            version:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                              computed: true
+                          description_kind: plain
+                        max_items: 1
+                    description_kind: plain
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    tag:
+      nesting_mode: set
+      block:
+        attributes:
+          key:
+            type: string
+            description_kind: plain
+            required: true
+          propagate_at_launch:
+            type: bool
+            description_kind: plain
+            required: true
+          value:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    traffic_source:
+      nesting_mode: set
+      block:
+        attributes:
+          identifier:
+            type: string
+            description_kind: plain
+            required: true
+          type:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    warm_pool:
+      nesting_mode: list
+      block:
+        attributes:
+          max_group_prepared_capacity:
+            type: number
+            description_kind: plain
+            optional: true
+          min_size:
+            type: number
+            description_kind: plain
+            optional: true
+          pool_state:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          instance_reuse_policy:
+            nesting_mode: list
+            block:
+              attributes:
+                reuse_on_scale_in:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

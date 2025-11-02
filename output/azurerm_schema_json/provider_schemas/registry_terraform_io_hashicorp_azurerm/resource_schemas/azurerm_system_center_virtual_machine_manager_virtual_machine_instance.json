@@ -1,0 +1,232 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "custom_location_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "scoped_resource_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "system_center_virtual_machine_manager_availability_set_ids": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "hardware": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "cpu_count": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dynamic_memory_max_in_mb": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dynamic_memory_min_in_mb": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "limit_cpu_for_migration_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "memory_in_mb": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "infrastructure": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "checkpoint_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "system_center_virtual_machine_manager_cloud_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "system_center_virtual_machine_manager_inventory_item_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "system_center_virtual_machine_manager_template_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "system_center_virtual_machine_manager_virtual_machine_server_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "network_interface": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "ipv4_address_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "ipv6_address_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "mac_address_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "virtual_network_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "operating_system": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "admin_password": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "sensitive": true
+            },
+            "computer_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "storage_disk": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "bus": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "bus_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "disk_size_gb": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "lun": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "storage_qos_policy_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "template_disk_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "vhd_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

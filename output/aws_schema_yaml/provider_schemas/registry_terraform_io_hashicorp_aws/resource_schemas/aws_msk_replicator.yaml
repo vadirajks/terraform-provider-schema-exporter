@@ -1,0 +1,208 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    current_version:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    replicator_name:
+      type: string
+      description_kind: plain
+      required: true
+    service_execution_role_arn:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    kafka_cluster:
+      nesting_mode: list
+      block:
+        block_types:
+          amazon_msk_cluster:
+            nesting_mode: list
+            block:
+              attributes:
+                msk_cluster_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+          vpc_config:
+            nesting_mode: list
+            block:
+              attributes:
+                security_groups_ids:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                subnet_ids:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      min_items: 2
+      max_items: 2
+    replication_info_list:
+      nesting_mode: list
+      block:
+        attributes:
+          source_kafka_cluster_alias:
+            type: string
+            description_kind: plain
+            computed: true
+          source_kafka_cluster_arn:
+            type: string
+            description_kind: plain
+            required: true
+          target_compression_type:
+            type: string
+            description_kind: plain
+            required: true
+          target_kafka_cluster_alias:
+            type: string
+            description_kind: plain
+            computed: true
+          target_kafka_cluster_arn:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          consumer_group_replication:
+            nesting_mode: list
+            block:
+              attributes:
+                consumer_groups_to_exclude:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                consumer_groups_to_replicate:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  required: true
+                detect_and_copy_new_consumer_groups:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                synchronise_consumer_group_offsets:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            min_items: 1
+          topic_replication:
+            nesting_mode: list
+            block:
+              attributes:
+                copy_access_control_lists_for_topics:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                copy_topic_configurations:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                detect_and_copy_new_topics:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                topics_to_exclude:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                topics_to_replicate:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  required: true
+              block_types:
+                starting_position:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      type:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+                topic_name_configuration:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      type:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

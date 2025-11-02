@@ -1,0 +1,298 @@
+version: 0
+block:
+  attributes:
+    action_after_completion:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    end_date:
+      type: string
+      description_kind: plain
+      optional: true
+    group_name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kms_key_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name_prefix:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    schedule_expression:
+      type: string
+      description_kind: plain
+      required: true
+    schedule_expression_timezone:
+      type: string
+      description_kind: plain
+      optional: true
+    start_date:
+      type: string
+      description_kind: plain
+      optional: true
+    state:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    flexible_time_window:
+      nesting_mode: list
+      block:
+        attributes:
+          maximum_window_in_minutes:
+            type: number
+            description_kind: plain
+            optional: true
+          mode:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    target:
+      nesting_mode: list
+      block:
+        attributes:
+          arn:
+            type: string
+            description_kind: plain
+            required: true
+          input:
+            type: string
+            description_kind: plain
+            optional: true
+          role_arn:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          dead_letter_config:
+            nesting_mode: list
+            block:
+              attributes:
+                arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          ecs_parameters:
+            nesting_mode: list
+            block:
+              attributes:
+                enable_ecs_managed_tags:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                enable_execute_command:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                group:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                launch_type:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                platform_version:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                propagate_tags:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                reference_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                tags:
+                  type:
+                  - map
+                  - string
+                  description_kind: plain
+                  optional: true
+                task_count:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                task_definition_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                capacity_provider_strategy:
+                  nesting_mode: set
+                  block:
+                    attributes:
+                      base:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                      capacity_provider:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      weight:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 6
+                network_configuration:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      assign_public_ip:
+                        type: bool
+                        description_kind: plain
+                        optional: true
+                      security_groups:
+                        type:
+                        - set
+                        - string
+                        description_kind: plain
+                        optional: true
+                      subnets:
+                        type:
+                        - set
+                        - string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 1
+                placement_constraints:
+                  nesting_mode: set
+                  block:
+                    attributes:
+                      expression:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 10
+                placement_strategy:
+                  nesting_mode: set
+                  block:
+                    attributes:
+                      field:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 5
+              description_kind: plain
+            max_items: 1
+          eventbridge_parameters:
+            nesting_mode: list
+            block:
+              attributes:
+                detail_type:
+                  type: string
+                  description_kind: plain
+                  required: true
+                source:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          kinesis_parameters:
+            nesting_mode: list
+            block:
+              attributes:
+                partition_key:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          retry_policy:
+            nesting_mode: list
+            block:
+              attributes:
+                maximum_event_age_in_seconds:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                maximum_retry_attempts:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          sagemaker_pipeline_parameters:
+            nesting_mode: list
+            block:
+              block_types:
+                pipeline_parameter:
+                  nesting_mode: set
+                  block:
+                    attributes:
+                      name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      value:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 200
+              description_kind: plain
+            max_items: 1
+          sqs_parameters:
+            nesting_mode: list
+            block:
+              attributes:
+                message_group_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+  description_kind: plain

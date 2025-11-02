@@ -1,0 +1,82 @@
+version: 0
+block:
+  attributes:
+    checksum:
+      type: string
+      description_kind: plain
+      computed: true
+    create_version:
+      type: bool
+      description_kind: plain
+      optional: true
+    created_date:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    last_updated_date:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    value_selection_strategy:
+      type: string
+      description_kind: plain
+      optional: true
+    version:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    enumeration_value:
+      nesting_mode: set
+      block:
+        attributes:
+          synonyms:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          value:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+      max_items: 10000
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

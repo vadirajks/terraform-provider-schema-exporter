@@ -1,0 +1,969 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: Output only. The creation timestamp of a DiscoveryConfig.
+      description_kind: plain
+      computed: true
+    display_name:
+      type: string
+      description: Display Name (max 1000 Chars)
+      description_kind: plain
+      optional: true
+    errors:
+      type:
+      - list
+      - - object
+        - details:
+          - list
+          - - object
+            - code: number
+              details:
+              - list
+              - - map
+                - string
+              message: string
+          timestamp: string
+      description: Output only. A stream of errors encountered when the config was activated. Repeated errors may result in the config automatically being paused. Output only field. Will return the last 100 errors. Whenever the config is modified this list will be cleared.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    inspect_templates:
+      type:
+      - list
+      - string
+      description: Detection logic for profile generation
+      description_kind: plain
+      optional: true
+    last_run_time:
+      type: string
+      description: Output only. The timestamp of the last time this config was executed
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description: Location to create the discovery config in.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: Unique resource name for the DiscoveryConfig, assigned by the service when the DiscoveryConfig is created.
+      description_kind: plain
+      computed: true
+    parent:
+      type: string
+      description: 'The parent of the discovery config in any of the following formats: * ''projects/{{project}}/locations/{{location}}'' * ''organizations/{{organization_id}}/locations/{{location}}'''
+      description_kind: plain
+      required: true
+    status:
+      type: string
+      description: 'Required. A status for this configuration Possible values: ["RUNNING", "PAUSED"]'
+      description_kind: plain
+      optional: true
+    update_time:
+      type: string
+      description: Output only. The last update timestamp of a DiscoveryConfig.
+      description_kind: plain
+      computed: true
+  block_types:
+    actions:
+      nesting_mode: list
+      block:
+        block_types:
+          export_data:
+            nesting_mode: list
+            block:
+              block_types:
+                profile_table:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      dataset_id:
+                        type: string
+                        description: Dataset Id of the table
+                        description_kind: plain
+                        optional: true
+                      project_id:
+                        type: string
+                        description: The Google Cloud Platform project ID of the project containing the table. If omitted, the project ID is inferred from the API call.
+                        description_kind: plain
+                        optional: true
+                      table_id:
+                        type: string
+                        description: Name of the table
+                        description_kind: plain
+                        optional: true
+                    description: Store all table and column profiles in an existing table or a new table in an existing dataset. Each re-generation will result in a new row in BigQuery
+                    description_kind: plain
+                  max_items: 1
+              description: Export data profiles into a provided location
+              description_kind: plain
+            max_items: 1
+          pub_sub_notification:
+            nesting_mode: list
+            block:
+              attributes:
+                detail_of_message:
+                  type: string
+                  description: 'How much data to include in the pub/sub message. Possible values: ["TABLE_PROFILE", "RESOURCE_NAME"]'
+                  description_kind: plain
+                  optional: true
+                event:
+                  type: string
+                  description: 'The type of event that triggers a Pub/Sub. At most one PubSubNotification per EventType is permitted. Possible values: ["NEW_PROFILE", "CHANGED_PROFILE", "SCORE_INCREASED", "ERROR_CHANGED"]'
+                  description_kind: plain
+                  optional: true
+                topic:
+                  type: string
+                  description: Cloud Pub/Sub topic to send notifications to. Format is projects/{project}/topics/{topic}.
+                  description_kind: plain
+                  optional: true
+              block_types:
+                pubsub_condition:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      expressions:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            logical_operator:
+                              type: string
+                              description: 'The operator to apply to the collection of conditions Possible values: ["OR", "AND"]'
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            conditions:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  minimum_risk_score:
+                                    type: string
+                                    description: 'The minimum data risk score that triggers the condition. Possible values: ["HIGH", "MEDIUM_OR_HIGH"]'
+                                    description_kind: plain
+                                    optional: true
+                                  minimum_sensitivity_score:
+                                    type: string
+                                    description: 'The minimum sensitivity level that triggers the condition. Possible values: ["HIGH", "MEDIUM_OR_HIGH"]'
+                                    description_kind: plain
+                                    optional: true
+                                description: Conditions to apply to the expression
+                                description_kind: plain
+                          description: An expression
+                          description_kind: plain
+                        max_items: 1
+                    description: Conditions for triggering pubsub
+                    description_kind: plain
+                  max_items: 1
+              description: Publish a message into the Pub/Sub topic.
+              description_kind: plain
+            max_items: 1
+          publish_to_dataplex_catalog:
+            nesting_mode: list
+            block:
+              description: Publish a portion of each profile to Dataplex Universal Catalog with the aspect type Sensitive Data Protection Profile.
+              description_kind: plain
+            max_items: 1
+          tag_resources:
+            nesting_mode: list
+            block:
+              attributes:
+                lower_data_risk_to_low:
+                  type: bool
+                  description: Whether applying a tag to a resource should lower the risk of the profile for that resource. For example, in conjunction with an [IAM deny policy](https://cloud.google.com/iam/docs/deny-overview), you can deny all principals a permission if a tag value is present, mitigating the risk of the resource. This also lowers the data risk of resources at the lower levels of the resource hierarchy. For example, reducing the data risk of a table data profile also reduces the data risk of the constituent column data profiles.
+                  description_kind: plain
+                  optional: true
+                profile_generations_to_tag:
+                  type:
+                  - list
+                  - string
+                  description: 'The profile generations for which the tag should be attached to resources. If you attach a tag to only new profiles, then if the sensitivity score of a profile subsequently changes, its tag doesn''t change. By default, this field includes only new profiles. To include both new and updated profiles for tagging, this field should explicitly include both ''PROFILE_GENERATION_NEW'' and ''PROFILE_GENERATION_UPDATE''. Possible values: ["PROFILE_GENERATION_NEW", "PROFILE_GENERATION_UPDATE"]'
+                  description_kind: plain
+                  optional: true
+              block_types:
+                tag_conditions:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      sensitivity_score:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            score:
+                              type: string
+                              description: 'The sensitivity score applied to the resource. Possible values: ["SENSITIVITY_LOW", "SENSITIVITY_MODERATE", "SENSITIVITY_HIGH", "SENSITIVITY_UNKNOWN"]'
+                              description_kind: plain
+                              required: true
+                          description: Conditions attaching the tag to a resource on its profile having this sensitivity score.
+                          description_kind: plain
+                        max_items: 1
+                      tag:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            namespaced_value:
+                              type: string
+                              description: The namespaced name for the tag value to attach to resources. Must be in the format '{parent_id}/{tag_key_short_name}/{short_name}', for example, "123456/environment/prod".
+                              description_kind: plain
+                              optional: true
+                          description: The tag value to attach to resources.
+                          description_kind: plain
+                        max_items: 1
+                    description: The tags to associate with different conditions.
+                    description_kind: plain
+              description: Tag the profiled resources with the specified tag values.
+              description_kind: plain
+            max_items: 1
+        description: Actions to execute at the completion of scanning
+        description_kind: plain
+    org_config:
+      nesting_mode: list
+      block:
+        attributes:
+          project_id:
+            type: string
+            description: The project that will run the scan. The DLP service account that exists within this project must have access to all resources that are profiled, and the cloud DLP API must be enabled.
+            description_kind: plain
+            optional: true
+        block_types:
+          location:
+            nesting_mode: list
+            block:
+              attributes:
+                folder_id:
+                  type: string
+                  description: The ID for the folder within an organization to scan
+                  description_kind: plain
+                  optional: true
+                organization_id:
+                  type: string
+                  description: The ID of an organization to scan
+                  description_kind: plain
+                  optional: true
+              description: The data to scan folder org or project
+              description_kind: plain
+            max_items: 1
+        description: A nested object resource.
+        description_kind: plain
+      max_items: 1
+    other_cloud_starting_location:
+      nesting_mode: list
+      block:
+        block_types:
+          aws_location:
+            nesting_mode: list
+            block:
+              attributes:
+                account_id:
+                  type: string
+                  description: 'The AWS account ID that this discovery config applies to. Within an organization, you can find the AWS account ID inside an AWS account ARN. Example: arn:<partition>:organizations::<management-account-id>:account/<organization-id>/<account-id>'
+                  description_kind: plain
+                  optional: true
+                all_asset_inventory_assets:
+                  type: bool
+                  description: All AWS assets stored in Asset Inventory that didn't match other AWS discovery configs.
+                  description_kind: plain
+                  optional: true
+              description: A nested object resource.
+              description_kind: plain
+            max_items: 1
+        description: A nested object resource.
+        description_kind: plain
+      max_items: 1
+    targets:
+      nesting_mode: list
+      block:
+        block_types:
+          big_query_target:
+            nesting_mode: list
+            block:
+              block_types:
+                cadence:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      inspect_template_modified_cadence:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            frequency:
+                              type: string
+                              description: 'How frequently data profiles can be updated when the template is modified. Defaults to never. Possible values: ["UPDATE_FREQUENCY_NEVER", "UPDATE_FREQUENCY_DAILY", "UPDATE_FREQUENCY_MONTHLY"]'
+                              description_kind: plain
+                              optional: true
+                          description: Governs when to update data profiles when the inspection rules defined by the 'InspectTemplate' change. If not set, changing the template will not cause a data profile to update.
+                          description_kind: plain
+                        max_items: 1
+                      schema_modified_cadence:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            frequency:
+                              type: string
+                              description: 'How frequently profiles may be updated when schemas are modified. Default to monthly Possible values: ["UPDATE_FREQUENCY_NEVER", "UPDATE_FREQUENCY_DAILY", "UPDATE_FREQUENCY_MONTHLY"]'
+                              description_kind: plain
+                              optional: true
+                            types:
+                              type:
+                              - list
+                              - string
+                              description: 'The type of events to consider when deciding if the table''s schema has been modified and should have the profile updated. Defaults to NEW_COLUMN. Possible values: ["SCHEMA_NEW_COLUMNS", "SCHEMA_REMOVED_COLUMNS"]'
+                              description_kind: plain
+                              optional: true
+                          description: Governs when to update data profiles when a schema is modified
+                          description_kind: plain
+                        max_items: 1
+                      table_modified_cadence:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            frequency:
+                              type: string
+                              description: 'How frequently data profiles can be updated when tables are modified. Defaults to never. Possible values: ["UPDATE_FREQUENCY_NEVER", "UPDATE_FREQUENCY_DAILY", "UPDATE_FREQUENCY_MONTHLY"]'
+                              description_kind: plain
+                              optional: true
+                            types:
+                              type:
+                              - list
+                              - string
+                              description: 'The type of events to consider when deciding if the table has been modified and should have the profile updated. Defaults to MODIFIED_TIMESTAMP Possible values: ["TABLE_MODIFIED_TIMESTAMP"]'
+                              description_kind: plain
+                              optional: true
+                          description: Governs when to update profile when a table is modified.
+                          description_kind: plain
+                        max_items: 1
+                    description: How often and when to update profiles. New tables that match both the fiter and conditions are scanned as quickly as possible depending on system capacity.
+                    description_kind: plain
+                  max_items: 1
+                conditions:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      created_after:
+                        type: string
+                        description: A timestamp in RFC3339 UTC "Zulu" format with nanosecond resolution and upto nine fractional digits.
+                        description_kind: plain
+                        optional: true
+                      type_collection:
+                        type: string
+                        description: 'Restrict discovery to categories of table types. Currently view, materialized view, snapshot and non-biglake external tables are supported. Possible values: ["BIG_QUERY_COLLECTION_ALL_TYPES", "BIG_QUERY_COLLECTION_ONLY_SUPPORTED_TYPES"]'
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      or_conditions:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            min_age:
+                              type: string
+                              description: Duration format. The minimum age a table must have before Cloud DLP can profile it. Value greater than 1.
+                              description_kind: plain
+                              optional: true
+                            min_row_count:
+                              type: number
+                              description: Minimum number of rows that should be present before Cloud DLP profiles as a table.
+                              description_kind: plain
+                              optional: true
+                          description: At least one of the conditions must be true for a table to be scanned.
+                          description_kind: plain
+                        max_items: 1
+                      types:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            types:
+                              type:
+                              - list
+                              - string
+                              description: 'A set of BiqQuery table types Possible values: ["BIG_QUERY_TABLE_TYPE_TABLE", "BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE"]'
+                              description_kind: plain
+                              optional: true
+                          description: Restrict discovery to specific table type
+                          description_kind: plain
+                        max_items: 1
+                    description: In addition to matching the filter, these conditions must be true before a profile is generated
+                    description_kind: plain
+                  max_items: 1
+                disabled:
+                  nesting_mode: list
+                  block:
+                    description: Tables that match this filter will not have profiles created.
+                    description_kind: plain
+                  max_items: 1
+                filter:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      other_tables:
+                        nesting_mode: list
+                        block:
+                          description: Catch-all. This should always be the last filter in the list because anything above it will apply first.
+                          description_kind: plain
+                        max_items: 1
+                      table_reference:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            dataset_id:
+                              type: string
+                              description: Dataset ID of the table.
+                              description_kind: plain
+                              required: true
+                            table_id:
+                              type: string
+                              description: Name of the table.
+                              description_kind: plain
+                              required: true
+                          description: The table to scan. Discovery configurations including this can only include one DiscoveryTarget (the DiscoveryTarget with this TableReference).
+                          description_kind: plain
+                        max_items: 1
+                      tables:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            include_regexes:
+                              nesting_mode: list
+                              block:
+                                block_types:
+                                  patterns:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        dataset_id_regex:
+                                          type: string
+                                          description: if unset, this property matches all datasets
+                                          description_kind: plain
+                                          optional: true
+                                        project_id_regex:
+                                          type: string
+                                          description: For organizations, if unset, will match all projects. Has no effect for data profile configurations created within a project.
+                                          description_kind: plain
+                                          optional: true
+                                        table_id_regex:
+                                          type: string
+                                          description: if unset, this property matches all tables
+                                          description_kind: plain
+                                          optional: true
+                                      description: A single BigQuery regular expression pattern to match against one or more tables, datasets, or projects that contain BigQuery tables.
+                                      description_kind: plain
+                                description: A collection of regular expressions to match a BQ table against.
+                                description_kind: plain
+                              max_items: 1
+                          description: A specific set of tables for this filter to apply to. A table collection must be specified in only one filter per config.
+                          description_kind: plain
+                        max_items: 1
+                    description: Required. The tables the discovery cadence applies to. The first target with a matching filter will be the one to apply to a table
+                    description_kind: plain
+                  max_items: 1
+              description: BigQuery target for Discovery. The first target to match a table will be the one applied.
+              description_kind: plain
+            max_items: 1
+          cloud_sql_target:
+            nesting_mode: list
+            block:
+              block_types:
+                conditions:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      database_engines:
+                        type:
+                        - list
+                        - string
+                        description: 'Database engines that should be profiled. Optional. Defaults to ALL_SUPPORTED_DATABASE_ENGINES if unspecified. Possible values: ["ALL_SUPPORTED_DATABASE_ENGINES", "MYSQL", "POSTGRES"]'
+                        description_kind: plain
+                        optional: true
+                      types:
+                        type:
+                        - list
+                        - string
+                        description: 'Data profiles will only be generated for the database resource types specified in this field. If not specified, defaults to [DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES]. Possible values: ["DATABASE_RESOURCE_TYPE_ALL_SUPPORTED_TYPES", "DATABASE_RESOURCE_TYPE_TABLE"]'
+                        description_kind: plain
+                        optional: true
+                    description: In addition to matching the filter, these conditions must be true before a profile is generated.
+                    description_kind: plain
+                  max_items: 1
+                disabled:
+                  nesting_mode: list
+                  block:
+                    description: Disable profiling for database resources that match this filter.
+                    description_kind: plain
+                  max_items: 1
+                filter:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      collection:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            include_regexes:
+                              nesting_mode: list
+                              block:
+                                block_types:
+                                  patterns:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        database_regex:
+                                          type: string
+                                          description: Regex to test the database name against. If empty, all databases match.
+                                          description_kind: plain
+                                          optional: true
+                                        database_resource_name_regex:
+                                          type: string
+                                          description: Regex to test the database resource's name against. An example of a database resource name is a table's name. Other database resource names like view names could be included in the future. If empty, all database resources match.'
+                                          description_kind: plain
+                                          optional: true
+                                        instance_regex:
+                                          type: string
+                                          description: Regex to test the instance name against. If empty, all instances match.
+                                          description_kind: plain
+                                          optional: true
+                                        project_id_regex:
+                                          type: string
+                                          description: For organizations, if unset, will match all projects. Has no effect for data profile configurations created within a project.
+                                          description_kind: plain
+                                          optional: true
+                                      description: A group of regular expression patterns to match against one or more database resources. Maximum of 100 entries. The sum of all regular expressions' length can't exceed 10 KiB.
+                                      description_kind: plain
+                                description: A collection of regular expressions to match a database resource against.
+                                description_kind: plain
+                              max_items: 1
+                          description: A specific set of database resources for this filter to apply to.
+                          description_kind: plain
+                        max_items: 1
+                      database_resource_reference:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            database:
+                              type: string
+                              description: Required. Name of a database within the instance.
+                              description_kind: plain
+                              required: true
+                            database_resource:
+                              type: string
+                              description: Required. Name of a database resource, for example, a table within the database.
+                              description_kind: plain
+                              required: true
+                            instance:
+                              type: string
+                              description: 'Required. The instance where this resource is located. For example: Cloud SQL instance ID.'
+                              description_kind: plain
+                              required: true
+                            project_id:
+                              type: string
+                              description: Required. If within a project-level config, then this must match the config's project ID.
+                              description_kind: plain
+                              required: true
+                          description: The database resource to scan. Targets including this can only include one target (the target with this database resource reference).
+                          description_kind: plain
+                        max_items: 1
+                      others:
+                        nesting_mode: list
+                        block:
+                          description: Catch-all. This should always be the last target in the list because anything above it will apply first. Should only appear once in a configuration. If none is specified, a default one will be added automatically.
+                          description_kind: plain
+                        max_items: 1
+                    description: Required. The tables the discovery cadence applies to. The first target with a matching filter will be the one to apply to a table.
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+                generation_cadence:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      refresh_frequency:
+                        type: string
+                        description: 'Data changes (non-schema changes) in Cloud SQL tables can''t trigger reprofiling. If you set this field, profiles are refreshed at this frequency regardless of whether the underlying tables have changes. Defaults to never. Possible values: ["UPDATE_FREQUENCY_NEVER", "UPDATE_FREQUENCY_DAILY", "UPDATE_FREQUENCY_MONTHLY"]'
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      inspect_template_modified_cadence:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            frequency:
+                              type: string
+                              description: 'How frequently data profiles can be updated when the template is modified. Defaults to never. Possible values: ["UPDATE_FREQUENCY_NEVER", "UPDATE_FREQUENCY_DAILY", "UPDATE_FREQUENCY_MONTHLY"]'
+                              description_kind: plain
+                              required: true
+                          description: Governs when to update data profiles when the inspection rules defined by the 'InspectTemplate' change. If not set, changing the template will not cause a data profile to update.
+                          description_kind: plain
+                        max_items: 1
+                      schema_modified_cadence:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            frequency:
+                              type: string
+                              description: 'Frequency to regenerate data profiles when the schema is modified. Defaults to monthly. Possible values: ["UPDATE_FREQUENCY_NEVER", "UPDATE_FREQUENCY_DAILY", "UPDATE_FREQUENCY_MONTHLY"]'
+                              description_kind: plain
+                              optional: true
+                            types:
+                              type:
+                              - list
+                              - string
+                              description: 'The types of schema modifications to consider. Defaults to NEW_COLUMNS. Possible values: ["NEW_COLUMNS", "REMOVED_COLUMNS"]'
+                              description_kind: plain
+                              optional: true
+                          description: Governs when to update data profiles when a schema is modified
+                          description_kind: plain
+                        max_items: 1
+                    description: How often and when to update profiles. New tables that match both the filter and conditions are scanned as quickly as possible depending on system capacity.
+                    description_kind: plain
+                  max_items: 1
+              description: Cloud SQL target for Discovery. The first target to match a table will be the one applied.
+              description_kind: plain
+            max_items: 1
+          cloud_storage_target:
+            nesting_mode: list
+            block:
+              block_types:
+                conditions:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      created_after:
+                        type: string
+                        description: File store must have been created after this date. Used to avoid backfilling. A timestamp in RFC3339 UTC "Zulu" format with nanosecond resolution and upto nine fractional digits.
+                        description_kind: plain
+                        optional: true
+                      min_age:
+                        type: string
+                        description: Duration format. Minimum age a file store must have. If set, the value must be 1 hour or greater.
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      cloud_storage_conditions:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            included_bucket_attributes:
+                              type:
+                              - list
+                              - string
+                              description: 'Only objects with the specified attributes will be scanned. Defaults to [ALL_SUPPORTED_BUCKETS] if unset. Possible values: ["ALL_SUPPORTED_BUCKETS", "AUTOCLASS_DISABLED", "AUTOCLASS_ENABLED"]'
+                              description_kind: plain
+                              optional: true
+                            included_object_attributes:
+                              type:
+                              - list
+                              - string
+                              description: 'Only objects with the specified attributes will be scanned. If an object has one of the specified attributes but is inside an excluded bucket, it will not be scanned. Defaults to [ALL_SUPPORTED_OBJECTS]. A profile will be created even if no objects match the included_object_attributes. Possible values: ["ALL_SUPPORTED_OBJECTS", "STANDARD", "NEARLINE", "COLDLINE", "ARCHIVE", "REGIONAL", "MULTI_REGIONAL", "DURABLE_REDUCED_AVAILABILITY"]'
+                              description_kind: plain
+                              optional: true
+                          description: Cloud Storage conditions.
+                          description_kind: plain
+                        max_items: 1
+                    description: In addition to matching the filter, these conditions must be true before a profile is generated.
+                    description_kind: plain
+                  max_items: 1
+                disabled:
+                  nesting_mode: list
+                  block:
+                    description: Disable profiling for buckets that match this filter.
+                    description_kind: plain
+                  max_items: 1
+                filter:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      cloud_storage_resource_reference:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            bucket_name:
+                              type: string
+                              description: The bucket to scan.
+                              description_kind: plain
+                              optional: true
+                            project_id:
+                              type: string
+                              description: If within a project-level config, then this must match the config's project id.
+                              description_kind: plain
+                              optional: true
+                          description: The bucket to scan. Targets including this can only include one target (the target with this bucket). This enables profiling the contents of a single bucket, while the other options allow for easy profiling of many buckets within a project or an organization.
+                          description_kind: plain
+                        max_items: 1
+                      collection:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            include_regexes:
+                              nesting_mode: list
+                              block:
+                                block_types:
+                                  patterns:
+                                    nesting_mode: list
+                                    block:
+                                      block_types:
+                                        cloud_storage_regex:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              bucket_name_regex:
+                                                type: string
+                                                description: 'Regex to test the bucket name against. If empty, all buckets match. Example: "marketing2021" or "(marketing)\d{4}" will both match the bucket gs://marketing2021'
+                                                description_kind: plain
+                                                optional: true
+                                              project_id_regex:
+                                                type: string
+                                                description: For organizations, if unset, will match all projects.
+                                                description_kind: plain
+                                                optional: true
+                                            description: Regex for Cloud Storage.
+                                            description_kind: plain
+                                          max_items: 1
+                                      description: The group of regular expression patterns to match against one or more file stores. Maximum of 100 entries. The sum of all lengths of regular expressions can't exceed 10 KiB.
+                                      description_kind: plain
+                                description: A collection of regular expressions to match a file store against.
+                                description_kind: plain
+                              max_items: 1
+                          description: A specific set of buckets for this filter to apply to.
+                          description_kind: plain
+                        max_items: 1
+                      others:
+                        nesting_mode: list
+                        block:
+                          description: Match discovery resources not covered by any other filter.
+                          description_kind: plain
+                        max_items: 1
+                    description: The buckets the generation_cadence applies to. The first target with a matching filter will be the one to apply to a bucket.
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+                generation_cadence:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      refresh_frequency:
+                        type: string
+                        description: 'Data changes in Cloud Storage can''t trigger reprofiling. If you set this field, profiles are refreshed at this frequency regardless of whether the underlying buckets have changes. Defaults to never. Possible values: ["UPDATE_FREQUENCY_NEVER", "UPDATE_FREQUENCY_DAILY", "UPDATE_FREQUENCY_MONTHLY"]'
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      inspect_template_modified_cadence:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            frequency:
+                              type: string
+                              description: 'How frequently data profiles can be updated when the template is modified. Defaults to never. Possible values: ["UPDATE_FREQUENCY_NEVER", "UPDATE_FREQUENCY_DAILY", "UPDATE_FREQUENCY_MONTHLY"]'
+                              description_kind: plain
+                              optional: true
+                          description: Governs when to update data profiles when the inspection rules defined by the 'InspectTemplate' change. If not set, changing the template will not cause a data profile to update.
+                          description_kind: plain
+                        max_items: 1
+                    description: How often and when to update profiles. New buckets that match both the filter and conditions are scanned as quickly as possible depending on system capacity.
+                    description_kind: plain
+                  max_items: 1
+              description: Cloud Storage target for Discovery. The first target to match a bucket will be the one applied.
+              description_kind: plain
+            max_items: 1
+          other_cloud_target:
+            nesting_mode: list
+            block:
+              block_types:
+                conditions:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      min_age:
+                        type: string
+                        description: Duration format.  Minimum age a resource must be before a profile can be generated. Value must be 1 hour or greater. Minimum age is not supported for Azure Blob Storage containers.
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      amazon_s3_bucket_conditions:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            bucket_types:
+                              type:
+                              - list
+                              - string
+                              description: 'Bucket types that should be profiled. Optional. Defaults to TYPE_ALL_SUPPORTED if unspecified. Possible values: ["TYPE_ALL_SUPPORTED", "TYPE_GENERAL_PURPOSE"]'
+                              description_kind: plain
+                              optional: true
+                            object_storage_classes:
+                              type:
+                              - list
+                              - string
+                              description: 'Object classes that should be profiled. Optional. Defaults to ALL_SUPPORTED_CLASSES if unspecified. Possible values: ["ALL_SUPPORTED_CLASSES", "STANDARD", "STANDARD_INFREQUENT_ACCESS", "GLACIER_INSTANT_RETRIEVAL", "INTELLIGENT_TIERING"]'
+                              description_kind: plain
+                              optional: true
+                          description: Amazon S3 bucket conditions.
+                          description_kind: plain
+                        max_items: 1
+                    description: In addition to matching the filter, these conditions must be true before a profile is generated.
+                    description_kind: plain
+                  max_items: 1
+                data_source_type:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      data_source:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description: 'Required. The type of data profiles generated by this discovery target. Supported values are: aws/s3/bucket'
+                    description_kind: plain
+                  max_items: 1
+                disabled:
+                  nesting_mode: list
+                  block:
+                    description: Disable profiling for resources that match this filter.
+                    description_kind: plain
+                  max_items: 1
+                filter:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      collection:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            include_regexes:
+                              nesting_mode: list
+                              block:
+                                block_types:
+                                  patterns:
+                                    nesting_mode: list
+                                    block:
+                                      block_types:
+                                        amazon_s3_bucket_regex:
+                                          nesting_mode: list
+                                          block:
+                                            attributes:
+                                              bucket_name_regex:
+                                                type: string
+                                                description: Regex to test the bucket name against. If empty, all buckets match.
+                                                description_kind: plain
+                                                optional: true
+                                            block_types:
+                                              aws_account_regex:
+                                                nesting_mode: list
+                                                block:
+                                                  attributes:
+                                                    account_id_regex:
+                                                      type: string
+                                                      description: 'Regex to test the AWS account ID against. If empty, all accounts match. Example: arn:aws:organizations::123:account/o-b2c3d4/345'
+                                                      description_kind: plain
+                                                      optional: true
+                                                  description: The AWS account regex
+                                                  description_kind: plain
+                                                max_items: 1
+                                            description: Regex for Cloud Storage.
+                                            description_kind: plain
+                                          max_items: 1
+                                      description: The group of regular expression patterns to match against one or more resources. Maximum of 100 entries. The sum of all lengths of regular expressions can't exceed 10 KiB.
+                                      description_kind: plain
+                                description: A collection of regular expressions to match a resource against.
+                                description_kind: plain
+                              max_items: 1
+                          description: A collection of resources for this filter to apply to.
+                          description_kind: plain
+                        max_items: 1
+                      others:
+                        nesting_mode: list
+                        block:
+                          description: Match discovery resources not covered by any other filter.
+                          description_kind: plain
+                        max_items: 1
+                      single_resource:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            amazon_s3_bucket:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  bucket_name:
+                                    type: string
+                                    description: The bucket name.
+                                    description_kind: plain
+                                    optional: true
+                                block_types:
+                                  aws_account:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        account_id:
+                                          type: string
+                                          description: AWS account ID.
+                                          description_kind: plain
+                                          optional: true
+                                      description: The AWS account.
+                                      description_kind: plain
+                                    max_items: 1
+                                description: Amazon S3 bucket.
+                                description_kind: plain
+                              max_items: 1
+                          description: The resource to scan. Configs using this filter can only have one target (the target with this single resource reference).
+                          description_kind: plain
+                        max_items: 1
+                    description: Required. The resources that the discovery cadence applies to. The first target with a matching filter will be the one to apply to a resource.
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+                generation_cadence:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      refresh_frequency:
+                        type: string
+                        description: 'Frequency to update profiles regardless of whether the underlying resource has changes. Defaults to never. Possible values: ["UPDATE_FREQUENCY_NEVER", "UPDATE_FREQUENCY_DAILY", "UPDATE_FREQUENCY_MONTHLY"]'
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      inspect_template_modified_cadence:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            frequency:
+                              type: string
+                              description: 'How frequently data profiles can be updated when the template is modified. Defaults to never. Possible values: ["UPDATE_FREQUENCY_NEVER", "UPDATE_FREQUENCY_DAILY", "UPDATE_FREQUENCY_MONTHLY"]'
+                              description_kind: plain
+                              optional: true
+                          description: Governs when to update data profiles when the inspection rules defined by the 'InspectTemplate' change. If not set, changing the template will not cause a data profile to update.
+                          description_kind: plain
+                        max_items: 1
+                    description: How often and when to update profiles. New resources that match both the filter and conditions are scanned as quickly as possible depending on system capacity.
+                    description_kind: plain
+                  max_items: 1
+              description: Other clouds target for discovery. The first target to match a resource will be the one applied.
+              description_kind: plain
+            max_items: 1
+          secrets_target:
+            nesting_mode: list
+            block:
+              description: Discovery target that looks for credentials and secrets stored in cloud resource metadata and reports them as vulnerabilities to Security Command Center. Only one target of this type is allowed.
+              description_kind: plain
+            max_items: 1
+        description: Target to match against for determining what to scan and how frequently
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

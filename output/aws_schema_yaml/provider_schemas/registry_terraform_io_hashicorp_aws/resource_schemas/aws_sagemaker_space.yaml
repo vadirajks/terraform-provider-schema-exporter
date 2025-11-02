@@ -1,0 +1,333 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    domain_id:
+      type: string
+      description_kind: plain
+      required: true
+    home_efs_file_system_uid:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    space_display_name:
+      type: string
+      description_kind: plain
+      optional: true
+    space_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    url:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    ownership_settings:
+      nesting_mode: list
+      block:
+        attributes:
+          owner_user_profile_name:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    space_settings:
+      nesting_mode: list
+      block:
+        attributes:
+          app_type:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          code_editor_app_settings:
+            nesting_mode: list
+            block:
+              block_types:
+                app_lifecycle_management:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      idle_settings:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            idle_timeout_in_minutes:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                    description_kind: plain
+                  max_items: 1
+                default_resource_spec:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      instance_type:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      lifecycle_config_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_alias:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          custom_file_system:
+            nesting_mode: list
+            block:
+              block_types:
+                efs_file_system:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      file_system_id:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description_kind: plain
+          jupyter_lab_app_settings:
+            nesting_mode: list
+            block:
+              block_types:
+                app_lifecycle_management:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      idle_settings:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            idle_timeout_in_minutes:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                    description_kind: plain
+                  max_items: 1
+                code_repository:
+                  nesting_mode: set
+                  block:
+                    attributes:
+                      repository_url:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 10
+                default_resource_spec:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      instance_type:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      lifecycle_config_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_alias:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          jupyter_server_app_settings:
+            nesting_mode: list
+            block:
+              attributes:
+                lifecycle_config_arns:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                code_repository:
+                  nesting_mode: set
+                  block:
+                    attributes:
+                      repository_url:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 10
+                default_resource_spec:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      instance_type:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      lifecycle_config_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_alias:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          kernel_gateway_app_settings:
+            nesting_mode: list
+            block:
+              attributes:
+                lifecycle_config_arns:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                custom_image:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      app_image_config_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      image_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      image_version_number:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 200
+                default_resource_spec:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      instance_type:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      lifecycle_config_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_alias:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          space_storage_settings:
+            nesting_mode: list
+            block:
+              block_types:
+                ebs_storage_settings:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      ebs_volume_size_in_gb:
+                        type: number
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    space_sharing_settings:
+      nesting_mode: list
+      block:
+        attributes:
+          sharing_type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

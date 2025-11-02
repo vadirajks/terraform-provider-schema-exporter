@@ -1,0 +1,236 @@
+version: 0
+block:
+  attributes:
+    alias:
+      type: string
+      description_kind: plain
+      computed: true
+    customer_user_name:
+      type: string
+      description_kind: plain
+      computed: true
+    directory_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    directory_name:
+      type: string
+      description_kind: plain
+      computed: true
+    directory_type:
+      type: string
+      description_kind: plain
+      computed: true
+    dns_ip_addresses:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    iam_role_id:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ip_group_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    registration_code:
+      type: string
+      description_kind: plain
+      computed: true
+    subnet_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    user_identity_type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    workspace_directory_description:
+      type: string
+      description_kind: plain
+      optional: true
+    workspace_directory_name:
+      type: string
+      description_kind: plain
+      optional: true
+    workspace_security_group_id:
+      type: string
+      description_kind: plain
+      computed: true
+    workspace_type:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    active_directory_config:
+      nesting_mode: list
+      block:
+        attributes:
+          domain_name:
+            type: string
+            description_kind: plain
+            required: true
+          service_account_secret_arn:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    certificate_based_auth_properties:
+      nesting_mode: list
+      block:
+        attributes:
+          certificate_authority_arn:
+            type: string
+            description_kind: plain
+            optional: true
+          status:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    saml_properties:
+      nesting_mode: list
+      block:
+        attributes:
+          relay_state_parameter_name:
+            type: string
+            description_kind: plain
+            optional: true
+          status:
+            type: string
+            description_kind: plain
+            optional: true
+          user_access_url:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    self_service_permissions:
+      nesting_mode: list
+      block:
+        attributes:
+          change_compute_type:
+            type: bool
+            description_kind: plain
+            optional: true
+          increase_volume_size:
+            type: bool
+            description_kind: plain
+            optional: true
+          rebuild_workspace:
+            type: bool
+            description_kind: plain
+            optional: true
+          restart_workspace:
+            type: bool
+            description_kind: plain
+            optional: true
+          switch_running_mode:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    workspace_access_properties:
+      nesting_mode: list
+      block:
+        attributes:
+          device_type_android:
+            type: string
+            description_kind: plain
+            optional: true
+          device_type_chromeos:
+            type: string
+            description_kind: plain
+            optional: true
+          device_type_ios:
+            type: string
+            description_kind: plain
+            optional: true
+          device_type_linux:
+            type: string
+            description_kind: plain
+            optional: true
+          device_type_osx:
+            type: string
+            description_kind: plain
+            optional: true
+          device_type_web:
+            type: string
+            description_kind: plain
+            optional: true
+          device_type_windows:
+            type: string
+            description_kind: plain
+            optional: true
+          device_type_zeroclient:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    workspace_creation_properties:
+      nesting_mode: list
+      block:
+        attributes:
+          custom_security_group_id:
+            type: string
+            description_kind: plain
+            optional: true
+          default_ou:
+            type: string
+            description_kind: plain
+            optional: true
+          enable_internet_access:
+            type: bool
+            description_kind: plain
+            optional: true
+          enable_maintenance_mode:
+            type: bool
+            description_kind: plain
+            optional: true
+          user_enabled_as_local_administrator:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

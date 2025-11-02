@@ -1,0 +1,45 @@
+resource "aws_cloudwatch_metric_alarm" "name" {
+  alarm_name = string (Required)
+  comparison_operator = string (Required)
+  evaluation_periods = number (Required)
+  actions_enabled = bool (Optional)
+  alarm_actions = ['set', 'string'] (Optional)
+  alarm_description = string (Optional)
+  arn = string (Computed)
+  datapoints_to_alarm = number (Optional)
+  dimensions = ['map', 'string'] (Optional)
+  evaluate_low_sample_count_percentiles = string (Optional, Computed)
+  extended_statistic = string (Optional)
+  id = string (Optional, Computed)
+  insufficient_data_actions = ['set', 'string'] (Optional)
+  metric_name = string (Optional)
+  namespace = string (Optional)
+  ok_actions = ['set', 'string'] (Optional)
+  period = number (Optional)
+  region = string (Optional, Computed)
+  statistic = string (Optional)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+  threshold = number (Optional)
+  threshold_metric_id = string (Optional)
+  treat_missing_data = string (Optional)
+  unit = string (Optional)
+
+  metric_query block "set" (Optional) {
+    id = string (Required)
+    account_id = string (Optional)
+    expression = string (Optional)
+    label = string (Optional)
+    period = number (Optional)
+    return_data = bool (Optional)
+
+    metric block "list" (Optional) {
+      metric_name = string (Required)
+      period = number (Required)
+      stat = string (Required)
+      dimensions = ['map', 'string'] (Optional)
+      namespace = string (Optional)
+      unit = string (Optional)
+    }
+  }
+}

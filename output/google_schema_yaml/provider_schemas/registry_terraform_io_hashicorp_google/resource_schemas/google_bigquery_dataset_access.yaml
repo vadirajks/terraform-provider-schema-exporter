@@ -1,0 +1,172 @@
+version: 0
+block:
+  attributes:
+    api_updated_member:
+      type: bool
+      description: If true, represents that that the iam_member in the config was translated to a different member type by the API, and is stored in state as a different member type
+      description_kind: plain
+      computed: true
+    dataset_id:
+      type: string
+      description: A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024 characters.
+      description_kind: plain
+      required: true
+    domain:
+      type: string
+      description: A domain to grant access to. Any users signed in with the domain specified will be granted the specified access
+      description_kind: plain
+      optional: true
+    group_by_email:
+      type: string
+      description: An email address of a Google Group to grant access to.
+      description_kind: plain
+      optional: true
+    iam_member:
+      type: string
+      description: 'Some other type of member that appears in the IAM Policy but isn''t a user, group, domain, or special group. For example: ''allUsers'''
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    role:
+      type: string
+      description: Describes the rights granted to the user specified by the other member of the access object. Basic, predefined, and custom roles are supported. Predefined roles that have equivalent basic roles are swapped by the API to their basic counterparts, and will show a diff post-create. See [official docs](https://cloud.google.com/bigquery/docs/access-control).
+      description_kind: plain
+      optional: true
+    special_group:
+      type: string
+      description: 'A special group to grant access to. Possible values include: * ''projectOwners'': Owners of the enclosing project. * ''projectReaders'': Readers of the enclosing project. * ''projectWriters'': Writers of the enclosing project. * ''allAuthenticatedUsers'': All authenticated BigQuery users.'
+      description_kind: plain
+      optional: true
+    user_by_email:
+      type: string
+      description: 'An email address of a user to grant access to. For example: fred@example.com'
+      description_kind: plain
+      optional: true
+  block_types:
+    condition:
+      nesting_mode: list
+      block:
+        attributes:
+          description:
+            type: string
+            description: Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.
+            description_kind: plain
+            optional: true
+          expression:
+            type: string
+            description: Textual representation of an expression in Common Expression Language syntax.
+            description_kind: plain
+            required: true
+          location:
+            type: string
+            description: String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.
+            description_kind: plain
+            optional: true
+          title:
+            type: string
+            description: Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
+            description_kind: plain
+            optional: true
+        description: Condition for the binding. If CEL expression in this field is true, this access binding will be considered.
+        description_kind: plain
+      max_items: 1
+    dataset:
+      nesting_mode: list
+      block:
+        attributes:
+          target_types:
+            type:
+            - list
+            - string
+            description: 'Which resources in the dataset this entry applies to. Currently, only views are supported, but additional target types may be added in the future. Possible values: VIEWS'
+            description_kind: plain
+            required: true
+        block_types:
+          dataset:
+            nesting_mode: list
+            block:
+              attributes:
+                dataset_id:
+                  type: string
+                  description: The ID of the dataset containing this table.
+                  description_kind: plain
+                  required: true
+                project_id:
+                  type: string
+                  description: The ID of the project containing this table.
+                  description_kind: plain
+                  required: true
+              description: The dataset this entry applies to
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description: Grants all resources of particular types in a particular dataset read access to the current dataset.
+        description_kind: plain
+      max_items: 1
+    routine:
+      nesting_mode: list
+      block:
+        attributes:
+          dataset_id:
+            type: string
+            description: The ID of the dataset containing this table.
+            description_kind: plain
+            required: true
+          project_id:
+            type: string
+            description: The ID of the project containing this table.
+            description_kind: plain
+            required: true
+          routine_id:
+            type: string
+            description: The ID of the routine. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 256 characters.
+            description_kind: plain
+            required: true
+        description: A routine from a different dataset to grant access to. Queries executed against that routine will have read access to tables in this dataset. The role field is not required when this field is set. If that routine is updated by any user, access to the routine needs to be granted again via an update operation.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    view:
+      nesting_mode: list
+      block:
+        attributes:
+          dataset_id:
+            type: string
+            description: The ID of the dataset containing this table.
+            description_kind: plain
+            required: true
+          project_id:
+            type: string
+            description: The ID of the project containing this table.
+            description_kind: plain
+            required: true
+          table_id:
+            type: string
+            description: The ID of the table. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024 characters.
+            description_kind: plain
+            required: true
+        description: A view from a different dataset to grant access to. Queries executed against that view will have read access to tables in this dataset. The role field is not required when this field is set. If that view is updated by any user, access to the view needs to be granted again via an update operation.
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

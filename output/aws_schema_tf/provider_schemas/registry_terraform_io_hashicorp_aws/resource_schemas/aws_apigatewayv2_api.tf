@@ -1,0 +1,31 @@
+resource "aws_apigatewayv2_api" "name" {
+  name = string (Required)
+  protocol_type = string (Required)
+  api_endpoint = string (Computed)
+  api_key_selection_expression = string (Optional)
+  arn = string (Computed)
+  body = string (Optional)
+  credentials_arn = string (Optional)
+  description = string (Optional)
+  disable_execute_api_endpoint = bool (Optional)
+  execution_arn = string (Computed)
+  fail_on_warnings = bool (Optional)
+  id = string (Optional, Computed)
+  ip_address_type = string (Optional, Computed)
+  region = string (Optional, Computed)
+  route_key = string (Optional)
+  route_selection_expression = string (Optional)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+  target = string (Optional)
+  version = string (Optional)
+
+  cors_configuration block "list" (Optional) {
+    allow_credentials = bool (Optional)
+    allow_headers = ['set', 'string'] (Optional)
+    allow_methods = ['set', 'string'] (Optional)
+    allow_origins = ['set', 'string'] (Optional)
+    expose_headers = ['set', 'string'] (Optional)
+    max_age = number (Optional)
+  }
+}

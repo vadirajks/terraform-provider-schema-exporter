@@ -1,0 +1,48 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    private_endpoint_connections:
+      type:
+      - list
+      - - object
+        - action_required: string
+          connection_id: string
+          connection_name: string
+          description: string
+          private_endpoint_id: string
+          private_endpoint_name: string
+          status: string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    service_id:
+      type: string
+      description_kind: plain
+      required: true
+    service_name:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

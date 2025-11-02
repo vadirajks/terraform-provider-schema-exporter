@@ -1,0 +1,114 @@
+version: 0
+block:
+  attributes:
+    api_id:
+      type: string
+      description_kind: plain
+      required: true
+    connection_id:
+      type: string
+      description_kind: plain
+      optional: true
+    connection_type:
+      type: string
+      description_kind: plain
+      optional: true
+    content_handling_strategy:
+      type: string
+      description_kind: plain
+      optional: true
+    credentials_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    integration_method:
+      type: string
+      description_kind: plain
+      optional: true
+    integration_response_selection_expression:
+      type: string
+      description_kind: plain
+      computed: true
+    integration_subtype:
+      type: string
+      description_kind: plain
+      optional: true
+    integration_type:
+      type: string
+      description_kind: plain
+      required: true
+    integration_uri:
+      type: string
+      description_kind: plain
+      optional: true
+    passthrough_behavior:
+      type: string
+      description_kind: plain
+      optional: true
+    payload_format_version:
+      type: string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    request_parameters:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    request_templates:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    template_selection_expression:
+      type: string
+      description_kind: plain
+      optional: true
+    timeout_milliseconds:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    response_parameters:
+      nesting_mode: set
+      block:
+        attributes:
+          mappings:
+            type:
+            - map
+            - string
+            description_kind: plain
+            required: true
+          status_code:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    tls_config:
+      nesting_mode: list
+      block:
+        attributes:
+          server_name_to_verify:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

@@ -1,0 +1,18 @@
+data "aws_imagebuilder_image_recipe" "name" {
+  arn = string (Required)
+  ami_tags = ['map', 'string'] (Computed)
+  block_device_mapping = ['set', ['object', {'device_name': 'string', 'ebs': ['list', ['object', {'delete_on_termination': 'string', 'encrypted': 'string', 'iops': 'number', 'kms_key_id': 'string', 'snapshot_id': 'string', 'throughput': 'number', 'volume_size': 'number', 'volume_type': 'string'}]], 'no_device': 'string', 'virtual_name': 'string'}]] (Computed)
+  component = ['list', ['object', {'component_arn': 'string', 'parameter': ['set', ['object', {'name': 'string', 'value': 'string'}]]}]] (Computed)
+  date_created = string (Computed)
+  description = string (Computed)
+  id = string (Optional, Computed)
+  name = string (Computed)
+  owner = string (Computed)
+  parent_image = string (Computed)
+  platform = string (Computed)
+  region = string (Optional, Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  user_data_base64 = string (Computed)
+  version = string (Computed)
+  working_directory = string (Computed)
+}

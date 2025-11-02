@@ -1,0 +1,273 @@
+version: 1
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    arn_without_revision:
+      type: string
+      description_kind: plain
+      computed: true
+    container_definitions:
+      type: string
+      description_kind: plain
+      required: true
+    cpu:
+      type: string
+      description_kind: plain
+      optional: true
+    enable_fault_injection:
+      type: bool
+      description_kind: plain
+      optional: true
+      computed: true
+    execution_role_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    family:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    ipc_mode:
+      type: string
+      description_kind: plain
+      optional: true
+    memory:
+      type: string
+      description_kind: plain
+      optional: true
+    network_mode:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    pid_mode:
+      type: string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    requires_compatibilities:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    revision:
+      type: number
+      description_kind: plain
+      computed: true
+    skip_destroy:
+      type: bool
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    task_role_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    track_latest:
+      type: bool
+      description_kind: plain
+      optional: true
+  block_types:
+    ephemeral_storage:
+      nesting_mode: list
+      block:
+        attributes:
+          size_in_gib:
+            type: number
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    placement_constraints:
+      nesting_mode: set
+      block:
+        attributes:
+          expression:
+            type: string
+            description_kind: plain
+            optional: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 10
+    proxy_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          container_name:
+            type: string
+            description_kind: plain
+            required: true
+          properties:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+          type:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    runtime_platform:
+      nesting_mode: list
+      block:
+        attributes:
+          cpu_architecture:
+            type: string
+            description_kind: plain
+            optional: true
+          operating_system_family:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    volume:
+      nesting_mode: set
+      block:
+        attributes:
+          configure_at_launch:
+            type: bool
+            description_kind: plain
+            optional: true
+            computed: true
+          host_path:
+            type: string
+            description_kind: plain
+            optional: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          docker_volume_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                autoprovision:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                driver:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                driver_opts:
+                  type:
+                  - map
+                  - string
+                  description_kind: plain
+                  optional: true
+                labels:
+                  type:
+                  - map
+                  - string
+                  description_kind: plain
+                  optional: true
+                scope:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              description_kind: plain
+            max_items: 1
+          efs_volume_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                file_system_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+                root_directory:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                transit_encryption:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                transit_encryption_port:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              block_types:
+                authorization_config:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      access_point_id:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      iam:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          fsx_windows_file_server_volume_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                file_system_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+                root_directory:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                authorization_config:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      credentials_parameter:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      domain:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,124 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "dns_addresses": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "mobile_network_data_network_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "mobile_network_packet_core_data_plane_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "network_address_port_translation": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "icmp_pinhole_timeout_in_seconds": "number",
+              "pinhole_maximum_number": "number",
+              "port_range": [
+                "list",
+                [
+                  "object",
+                  {
+                    "maximum": "number",
+                    "minimum": "number"
+                  }
+                ]
+              ],
+              "tcp_pinhole_timeout_in_seconds": "number",
+              "tcp_port_reuse_minimum_hold_time_in_seconds": "number",
+              "udp_pinhole_timeout_in_seconds": "number",
+              "udp_port_reuse_minimum_hold_time_in_seconds": "number"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "user_equipment_address_pool_prefixes": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "user_equipment_static_address_pool_prefixes": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "user_plane_access_ipv4_address": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "user_plane_access_ipv4_gateway": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "user_plane_access_ipv4_subnet": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "user_plane_access_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

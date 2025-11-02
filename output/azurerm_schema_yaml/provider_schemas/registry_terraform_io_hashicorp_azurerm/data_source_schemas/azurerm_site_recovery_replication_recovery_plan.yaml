@@ -1,0 +1,91 @@
+version: 0
+block:
+  attributes:
+    azure_to_azure_settings:
+      type:
+      - list
+      - - object
+        - primary_edge_zone: string
+          primary_zone: string
+          recovery_edge_zone: string
+          recovery_zone: string
+      description_kind: plain
+      computed: true
+    failover_deployment_model:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    recovery_group:
+      type:
+      - set
+      - - object
+        - post_action:
+          - set
+          - - list
+            - - object
+              - fabric_location: string
+                fail_over_directions:
+                - set
+                - string
+                fail_over_types:
+                - set
+                - string
+                manual_action_instruction: string
+                name: string
+                runbook_id: string
+                script_path: string
+                type: string
+          pre_action:
+          - set
+          - - list
+            - - object
+              - fabric_location: string
+                fail_over_directions:
+                - set
+                - string
+                fail_over_types:
+                - set
+                - string
+                manual_action_instruction: string
+                name: string
+                runbook_id: string
+                script_path: string
+                type: string
+          replicated_protected_items:
+          - list
+          - string
+          type: string
+      description_kind: plain
+      computed: true
+    recovery_vault_id:
+      type: string
+      description_kind: plain
+      required: true
+    source_recovery_fabric_id:
+      type: string
+      description_kind: plain
+      computed: true
+    target_recovery_fabric_id:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

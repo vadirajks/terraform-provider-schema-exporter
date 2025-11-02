@@ -1,0 +1,143 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "bundle_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "computer_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "directory_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ip_address": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "root_volume_encryption_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "state": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "user_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "user_volume_encryption_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "volume_encryption_key": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "workspace_properties": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "compute_type_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "root_volume_size_gib": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "running_mode": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "running_mode_auto_stop_timeout_in_minutes": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "user_volume_size_gib": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

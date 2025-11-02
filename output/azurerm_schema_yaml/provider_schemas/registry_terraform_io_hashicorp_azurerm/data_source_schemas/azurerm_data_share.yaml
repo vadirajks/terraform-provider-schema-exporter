@@ -1,0 +1,48 @@
+version: 0
+block:
+  attributes:
+    account_id:
+      type: string
+      description_kind: plain
+      required: true
+    description:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kind:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    snapshot_schedule:
+      type:
+      - list
+      - - object
+        - name: string
+          recurrence: string
+          start_time: string
+      description_kind: plain
+      computed: true
+    terms:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

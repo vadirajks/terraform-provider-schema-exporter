@@ -1,0 +1,59 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instance_name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    port_info:
+      nesting_mode: set
+      block:
+        attributes:
+          cidr_list_aliases:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+            computed: true
+          cidrs:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+            computed: true
+          from_port:
+            type: number
+            description_kind: plain
+            required: true
+          ipv6_cidrs:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+            computed: true
+          protocol:
+            type: string
+            description_kind: plain
+            required: true
+          to_port:
+            type: number
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+  description_kind: plain

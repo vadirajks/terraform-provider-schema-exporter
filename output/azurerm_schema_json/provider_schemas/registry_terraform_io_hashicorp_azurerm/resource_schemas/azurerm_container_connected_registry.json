@@ -1,0 +1,130 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "audit_log_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "client_token_ids": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "container_registry_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "log_level": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "mode": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "parent_registry_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "sync_message_ttl": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "sync_schedule": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "sync_token_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "sync_window": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "notification": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "action": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "digest": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "tag": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,17 @@
+data "google_vpc_access_connector" "name" {
+  name = string (Required)
+  connected_projects = ['list', 'string'] (Computed)
+  id = string (Optional, Computed)
+  ip_cidr_range = string (Computed)
+  machine_type = string (Computed)
+  max_instances = number (Computed)
+  max_throughput = number (Computed)
+  min_instances = number (Computed)
+  min_throughput = number (Computed)
+  network = string (Computed)
+  project = string (Optional)
+  region = string (Optional)
+  self_link = string (Computed)
+  state = string (Computed)
+  subnet = ['list', ['object', {'name': 'string', 'project_id': 'string'}]] (Computed)
+}

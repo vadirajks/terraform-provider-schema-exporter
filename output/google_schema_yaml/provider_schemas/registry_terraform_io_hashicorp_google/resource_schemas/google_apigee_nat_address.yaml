@@ -1,0 +1,52 @@
+version: 0
+block:
+  attributes:
+    activate:
+      type: bool
+      description: Flag that specifies whether the reserved NAT address should be activate.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instance_id:
+      type: string
+      description: The Apigee instance associated with the Apigee environment, in the format 'organizations/{{org_name}}/instances/{{instance_name}}'.
+      description_kind: plain
+      required: true
+    ip_address:
+      type: string
+      description: The allocated NAT IP address.
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: Resource ID of the NAT address.
+      description_kind: plain
+      required: true
+    state:
+      type: string
+      description: State of the NAT IP address.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

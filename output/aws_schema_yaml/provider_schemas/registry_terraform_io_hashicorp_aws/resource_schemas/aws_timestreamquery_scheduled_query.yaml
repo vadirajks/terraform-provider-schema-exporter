@@ -1,0 +1,489 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    creation_time:
+      type: string
+      description_kind: plain
+      computed: true
+    execution_role_arn:
+      type: string
+      description_kind: plain
+      required: true
+    kms_key_id:
+      type: string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    next_invocation_time:
+      type: string
+      description_kind: plain
+      computed: true
+    previous_invocation_time:
+      type: string
+      description_kind: plain
+      computed: true
+    query_string:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    state:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    error_report_configuration:
+      nesting_mode: list
+      block:
+        block_types:
+          s3_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                encryption_option:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                object_key_prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+        description_kind: plain
+    last_run_summary:
+      nesting_mode: list
+      block:
+        attributes:
+          failure_reason:
+            type: string
+            description_kind: plain
+            computed: true
+          invocation_time:
+            type: string
+            description_kind: plain
+            computed: true
+          run_status:
+            type: string
+            description_kind: plain
+            computed: true
+          trigger_time:
+            type: string
+            description_kind: plain
+            computed: true
+        block_types:
+          error_report_location:
+            nesting_mode: list
+            block:
+              block_types:
+                s3_report_location:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      bucket_name:
+                        type: string
+                        description_kind: plain
+                        computed: true
+                      object_key:
+                        type: string
+                        description_kind: plain
+                        computed: true
+                    description_kind: plain
+              description_kind: plain
+          execution_stats:
+            nesting_mode: list
+            block:
+              attributes:
+                bytes_metered:
+                  type: number
+                  description_kind: plain
+                  computed: true
+                cumulative_bytes_scanned:
+                  type: number
+                  description_kind: plain
+                  computed: true
+                data_writes:
+                  type: number
+                  description_kind: plain
+                  computed: true
+                execution_time_in_millis:
+                  type: number
+                  description_kind: plain
+                  computed: true
+                query_result_rows:
+                  type: number
+                  description_kind: plain
+                  computed: true
+                records_ingested:
+                  type: number
+                  description_kind: plain
+                  computed: true
+              description_kind: plain
+          query_insights_response:
+            nesting_mode: list
+            block:
+              attributes:
+                output_bytes:
+                  type: number
+                  description_kind: plain
+                  computed: true
+                output_rows:
+                  type: number
+                  description_kind: plain
+                  computed: true
+                query_table_count:
+                  type: number
+                  description_kind: plain
+                  computed: true
+              block_types:
+                query_spatial_coverage:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      max:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            partition_key:
+                              type:
+                              - list
+                              - string
+                              description_kind: plain
+                              computed: true
+                            table_arn:
+                              type: string
+                              description_kind: plain
+                              computed: true
+                            value:
+                              type: number
+                              description_kind: plain
+                              computed: true
+                          description_kind: plain
+                    description_kind: plain
+                query_temporal_range:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      max:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            table_arn:
+                              type: string
+                              description_kind: plain
+                              computed: true
+                            value:
+                              type: number
+                              description_kind: plain
+                              computed: true
+                          description_kind: plain
+                    description_kind: plain
+              description_kind: plain
+        description_kind: plain
+    notification_configuration:
+      nesting_mode: list
+      block:
+        block_types:
+          sns_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                topic_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+    recently_failed_runs:
+      nesting_mode: list
+      block:
+        attributes:
+          failure_reason:
+            type: string
+            description_kind: plain
+            computed: true
+          invocation_time:
+            type: string
+            description_kind: plain
+            computed: true
+          run_status:
+            type: string
+            description_kind: plain
+            computed: true
+          trigger_time:
+            type: string
+            description_kind: plain
+            computed: true
+        block_types:
+          error_report_location:
+            nesting_mode: list
+            block:
+              block_types:
+                s3_report_location:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      bucket_name:
+                        type: string
+                        description_kind: plain
+                        computed: true
+                      object_key:
+                        type: string
+                        description_kind: plain
+                        computed: true
+                    description_kind: plain
+              description_kind: plain
+          execution_stats:
+            nesting_mode: list
+            block:
+              attributes:
+                bytes_metered:
+                  type: number
+                  description_kind: plain
+                  computed: true
+                cumulative_bytes_scanned:
+                  type: number
+                  description_kind: plain
+                  computed: true
+                data_writes:
+                  type: number
+                  description_kind: plain
+                  computed: true
+                execution_time_in_millis:
+                  type: number
+                  description_kind: plain
+                  computed: true
+                query_result_rows:
+                  type: number
+                  description_kind: plain
+                  computed: true
+                records_ingested:
+                  type: number
+                  description_kind: plain
+                  computed: true
+              description_kind: plain
+          query_insights_response:
+            nesting_mode: list
+            block:
+              attributes:
+                output_bytes:
+                  type: number
+                  description_kind: plain
+                  computed: true
+                output_rows:
+                  type: number
+                  description_kind: plain
+                  computed: true
+                query_table_count:
+                  type: number
+                  description_kind: plain
+                  computed: true
+              block_types:
+                query_spatial_coverage:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      max:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            partition_key:
+                              type:
+                              - list
+                              - string
+                              description_kind: plain
+                              computed: true
+                            table_arn:
+                              type: string
+                              description_kind: plain
+                              computed: true
+                            value:
+                              type: number
+                              description_kind: plain
+                              computed: true
+                          description_kind: plain
+                    description_kind: plain
+                query_temporal_range:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      max:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            table_arn:
+                              type: string
+                              description_kind: plain
+                              computed: true
+                            value:
+                              type: number
+                              description_kind: plain
+                              computed: true
+                          description_kind: plain
+                    description_kind: plain
+              description_kind: plain
+        description_kind: plain
+    schedule_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          schedule_expression:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    target_configuration:
+      nesting_mode: list
+      block:
+        block_types:
+          timestream_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                database_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                measure_name_column:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                table_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                time_column:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                dimension_mapping:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      dimension_value_type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                mixed_measure_mapping:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      measure_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      measure_value_type:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      source_column:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      target_measure_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      multi_measure_attribute_mapping:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            measure_value_type:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            source_column:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            target_multi_measure_attribute_name:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                    description_kind: plain
+                multi_measure_mappings:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      target_multi_measure_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      multi_measure_attribute_mapping:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            measure_value_type:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            source_column:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            target_multi_measure_attribute_name:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                    description_kind: plain
+              description_kind: plain
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

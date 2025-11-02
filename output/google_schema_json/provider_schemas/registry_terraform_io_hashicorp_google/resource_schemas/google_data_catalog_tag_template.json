@@ -1,0 +1,174 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "display_name": {
+        "type": "string",
+        "description": "The display name for this template.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "force_delete": {
+        "type": "bool",
+        "description": "This confirms the deletion of any possible tags using this template. Must be set to true in order to delete the tag template.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name of the tag template in URL format. Example: projects/{project_id}/locations/{location}/tagTemplates/{tagTemplateId}",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Template location region.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tag_template_id": {
+        "type": "string",
+        "description": "The id of the tag template to create.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "fields": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "description": {
+              "type": "string",
+              "description": "A description for this field.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "display_name": {
+              "type": "string",
+              "description": "The display name for this field.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "field_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "is_required": {
+              "type": "bool",
+              "description": "Whether this is a required field. Defaults to false.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "name": {
+              "type": "string",
+              "description": "The resource name of the tag template field in URL format. Example: projects/{project_id}/locations/{location}/tagTemplates/{tagTemplateId}/fields/{field}",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "order": {
+              "type": "number",
+              "description": "The order of this field with respect to other fields in this tag template. A higher value indicates a more important field. The value can be negative. Multiple fields can have the same order, and field orders within a tag do not have to be sequential.",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "block_types": {
+            "type": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "primitive_type": {
+                    "type": "string",
+                    "description": "Represents primitive types - string, bool etc. Exactly one of 'primitive_type' or 'enum_type' must be set Possible values: [\"DOUBLE\", \"STRING\", \"BOOL\", \"TIMESTAMP\"]",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  }
+                },
+                "block_types": {
+                  "enum_type": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "block_types": {
+                        "allowed_values": {
+                          "nesting_mode": "set",
+                          "block": {
+                            "attributes": {
+                              "display_name": {
+                                "type": "string",
+                                "description": "The display name of the enum value.",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description": "The set of allowed values for this enum. The display names of the values must be case-insensitively unique within this set. Currently, enum values can only be added to the list of allowed values. Deletion and renaming of enum values are not supported. Can have up to 500 allowed values.",
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1
+                        }
+                      },
+                      "description": "Represents an enum type. Exactly one of 'primitive_type' or 'enum_type' must be set",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "The type of value this tag field can contain.",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description": "Set of tag template field IDs and the settings for the field. This set is an exhaustive list of the allowed fields. This set must contain at least one field and at most 500 fields. The change of field_id will be resulting in re-creating of field. The change of primitive_type will be resulting in re-creating of field, however if the field is a required, you cannot update it.",
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain",
+    "deprecated": true
+  }
+}

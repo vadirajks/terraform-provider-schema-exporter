@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "accelerator_tags": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "accelerator_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "display_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "icon_url": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "spring_cloud_accelerator_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "git_repository": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "branch": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "ca_certificate_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "commit": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "git_tag": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "interval_in_seconds": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "path": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "url": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "basic_auth": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "password": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true,
+                    "sensitive": true
+                  },
+                  "username": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "ssh_auth": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "host_key": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  },
+                  "host_key_algorithm": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "private_key": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true,
+                    "sensitive": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

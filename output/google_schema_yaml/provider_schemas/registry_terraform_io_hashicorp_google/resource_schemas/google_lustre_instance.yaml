@@ -1,0 +1,118 @@
+version: 0
+block:
+  attributes:
+    capacity_gib:
+      type: string
+      description: The storage capacity of the instance in gibibytes (GiB). Allowed values are from '18000' to '954000', in increments of 9000.
+      description_kind: plain
+      required: true
+    create_time:
+      type: string
+      description: Timestamp when the instance was created.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: A user-readable description of the instance.
+      description_kind: plain
+      optional: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    filesystem:
+      type: string
+      description: The filesystem name for this instance. This name is used by client-side tools, including when mounting the instance. Must be eight characters or less and can only contain letters and numbers.
+      description_kind: plain
+      required: true
+    gke_support_enabled:
+      type: bool
+      description: Indicates whether you want to enable support for GKE clients. By default, GKE clients are not supported.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instance_id:
+      type: string
+      description: The name of the Managed Lustre instance. * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter.
+      description_kind: plain
+      required: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Labels as key value pairs. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: Resource ID segment making up resource 'name'. It identifies the resource within its parent collection as described in https://google.aip.dev/122.
+      description_kind: plain
+      required: true
+    mount_point:
+      type: string
+      description: Mount point of the instance in the format 'IP_ADDRESS@tcp:/FILESYSTEM'.
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: Identifier. The name of the instance.
+      description_kind: plain
+      computed: true
+    network:
+      type: string
+      description: The full name of the VPC network to which the instance is connected. Must be in the format 'projects/{project_id}/global/networks/{network_name}'.
+      description_kind: plain
+      required: true
+    per_unit_storage_throughput:
+      type: string
+      description: The throughput of the instance in MB/s/TiB. Valid values are 125, 250, 500, 1000.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    state:
+      type: string
+      description: 'The state of the instance. Possible values: STATE_UNSPECIFIED ACTIVE CREATING DELETING UPGRADING REPAIRING STOPPED'
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: Timestamp when the instance was last updated.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

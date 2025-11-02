@@ -1,0 +1,38 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "api_key": {
+        "type": "string",
+        "description": "The API key value. This is sensitive and not included in responses.",
+        "description_kind": "plain",
+        "computed": true,
+        "sensitive": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "scope": {
+        "type": "string",
+        "description": "Specifies whether this is for an AWS CloudFront distribution or for a regional application. Valid values are CLOUDFRONT or REGIONAL.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "token_domains": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description": "The domains that you want to be able to use the API key with, for example example.com. Maximum of 5 domains.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "description": "Provides a WAFv2 API Key resource.",
+    "description_kind": "plain"
+  }
+}

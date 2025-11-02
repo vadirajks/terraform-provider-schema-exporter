@@ -1,0 +1,60 @@
+version: 0
+block:
+  attributes:
+    agent_orchestration_config:
+      type:
+      - list
+      - - object
+        - profiling_enabled: bool
+      description_kind: plain
+      computed: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    compute_platform:
+      type: string
+      description_kind: plain
+      computed: true
+    created_at:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    profiling_status:
+      type:
+      - list
+      - - object
+        - latest_agent_orchestrated_at: string
+          latest_agent_profile_reported_at: string
+          latest_aggregated_profile:
+          - list
+          - - object
+            - period: string
+              start: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    updated_at:
+      type: string
+      description_kind: plain
+      computed: true
+  description_kind: plain

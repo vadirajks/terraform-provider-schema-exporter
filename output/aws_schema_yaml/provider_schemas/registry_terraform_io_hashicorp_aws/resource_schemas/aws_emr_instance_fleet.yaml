@@ -1,0 +1,134 @@
+version: 0
+block:
+  attributes:
+    cluster_id:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+    provisioned_on_demand_capacity:
+      type: number
+      description_kind: plain
+      computed: true
+    provisioned_spot_capacity:
+      type: number
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    target_on_demand_capacity:
+      type: number
+      description_kind: plain
+      optional: true
+    target_spot_capacity:
+      type: number
+      description_kind: plain
+      optional: true
+  block_types:
+    instance_type_configs:
+      nesting_mode: set
+      block:
+        attributes:
+          bid_price:
+            type: string
+            description_kind: plain
+            optional: true
+          bid_price_as_percentage_of_on_demand_price:
+            type: number
+            description_kind: plain
+            optional: true
+          instance_type:
+            type: string
+            description_kind: plain
+            required: true
+          weighted_capacity:
+            type: number
+            description_kind: plain
+            optional: true
+        block_types:
+          configurations:
+            nesting_mode: set
+            block:
+              attributes:
+                classification:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                properties:
+                  type:
+                  - map
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          ebs_config:
+            nesting_mode: set
+            block:
+              attributes:
+                iops:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                size:
+                  type: number
+                  description_kind: plain
+                  required: true
+                type:
+                  type: string
+                  description_kind: plain
+                  required: true
+                volumes_per_instance:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+        description_kind: plain
+    launch_specifications:
+      nesting_mode: list
+      block:
+        block_types:
+          on_demand_specification:
+            nesting_mode: list
+            block:
+              attributes:
+                allocation_strategy:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          spot_specification:
+            nesting_mode: list
+            block:
+              attributes:
+                allocation_strategy:
+                  type: string
+                  description_kind: plain
+                  required: true
+                block_duration_minutes:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                timeout_action:
+                  type: string
+                  description_kind: plain
+                  required: true
+                timeout_duration_minutes:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

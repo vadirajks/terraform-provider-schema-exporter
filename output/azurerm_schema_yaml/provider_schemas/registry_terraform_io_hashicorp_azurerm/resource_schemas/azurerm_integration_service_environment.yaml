@@ -1,0 +1,88 @@
+version: 0
+block:
+  attributes:
+    access_endpoint_type:
+      type: string
+      description_kind: plain
+      required: true
+    connector_endpoint_ip_addresses:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    connector_outbound_ip_addresses:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    sku_name:
+      type: string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    virtual_network_subnet_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      required: true
+    workflow_endpoint_ip_addresses:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    workflow_outbound_ip_addresses:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

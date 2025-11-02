@@ -1,0 +1,82 @@
+version: 0
+block:
+  attributes:
+    function_app_id:
+      type: string
+      description: The ID of the Function App for this Hybrid Connection.
+      description_kind: plain
+      required: true
+    hostname:
+      type: string
+      description: The hostname of the endpoint.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    namespace_name:
+      type: string
+      description: The name of the Relay Namespace.
+      description_kind: plain
+      computed: true
+    port:
+      type: number
+      description: The port to use for the endpoint
+      description_kind: plain
+      required: true
+    relay_id:
+      type: string
+      description: The ID of the Relay Hybrid Connection to use.
+      description_kind: plain
+      required: true
+    relay_name:
+      type: string
+      description: The name of the Relay in use.
+      description_kind: plain
+      computed: true
+    send_key_name:
+      type: string
+      description: The name of the Relay key with `Send` permission to use. Defaults to `RootManageSharedAccessKey`
+      description_kind: plain
+      optional: true
+    send_key_value:
+      type: string
+      description: The Primary Access Key for the `send_key_name`
+      description_kind: plain
+      computed: true
+      sensitive: true
+    service_bus_namespace:
+      type: string
+      description: The Service Bus Namespace.
+      description_kind: plain
+      computed: true
+    service_bus_suffix:
+      type: string
+      description: The suffix for the endpoint.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

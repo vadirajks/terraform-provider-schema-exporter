@@ -1,0 +1,852 @@
+version: 1
+block:
+  attributes:
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    media_services_account_name:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    output:
+      nesting_mode: list
+      block:
+        attributes:
+          on_error_action:
+            type: string
+            description_kind: plain
+            optional: true
+          relative_priority:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          audio_analyzer_preset:
+            nesting_mode: list
+            block:
+              attributes:
+                audio_analysis_mode:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                audio_language:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                experimental_options:
+                  type:
+                  - map
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          builtin_preset:
+            nesting_mode: list
+            block:
+              attributes:
+                preset_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                preset_configuration:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      complexity:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      interleave_output:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      key_frame_interval_in_seconds:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                      max_bitrate_bps:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                      max_height:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                      max_layers:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                      min_bitrate_bps:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                      min_height:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          custom_preset:
+            nesting_mode: list
+            block:
+              attributes:
+                experimental_options:
+                  type:
+                  - map
+                  - string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                codec:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      aac_audio:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            bitrate:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                            channels:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                            label:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            profile:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            sampling_rate:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                      copy_audio:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            label:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                      copy_video:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            label:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                      dd_audio:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            bitrate:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                            channels:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                            label:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            sampling_rate:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                      h264_video:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            complexity:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            key_frame_interval:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            label:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            rate_control_mode:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            scene_change_detection_enabled:
+                              type: bool
+                              description_kind: plain
+                              optional: true
+                            stretch_mode:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            sync_mode:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            layer:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  adaptive_b_frame_enabled:
+                                    type: bool
+                                    description_kind: plain
+                                    optional: true
+                                  b_frames:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                    computed: true
+                                  bitrate:
+                                    type: number
+                                    description_kind: plain
+                                    required: true
+                                  buffer_window:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  crf:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  entropy_mode:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                    computed: true
+                                  frame_rate:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  height:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                    computed: true
+                                  label:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  level:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  max_bitrate:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                    computed: true
+                                  profile:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  reference_frames:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                    computed: true
+                                  slices:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                    computed: true
+                                  width:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                    computed: true
+                                description_kind: plain
+                          description_kind: plain
+                        max_items: 1
+                      h265_video:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            complexity:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            key_frame_interval:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            label:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            scene_change_detection_enabled:
+                              type: bool
+                              description_kind: plain
+                              optional: true
+                            stretch_mode:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            sync_mode:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            layer:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  adaptive_b_frame_enabled:
+                                    type: bool
+                                    description_kind: plain
+                                    optional: true
+                                  b_frames:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                    computed: true
+                                  bitrate:
+                                    type: number
+                                    description_kind: plain
+                                    required: true
+                                  buffer_window:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  crf:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  frame_rate:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  height:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                    computed: true
+                                  label:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  level:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  max_bitrate:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                    computed: true
+                                  profile:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  reference_frames:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                    computed: true
+                                  slices:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                    computed: true
+                                  width:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                    computed: true
+                                description_kind: plain
+                          description_kind: plain
+                        max_items: 1
+                      jpg_image:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            key_frame_interval:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            label:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            range:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            sprite_column:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                            start:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            step:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            stretch_mode:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            sync_mode:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            layer:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  height:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  label:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  quality:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  width:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                description_kind: plain
+                          description_kind: plain
+                        max_items: 1
+                      png_image:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            key_frame_interval:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            label:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            range:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            start:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            step:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            stretch_mode:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            sync_mode:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          block_types:
+                            layer:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  height:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  label:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  width:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                description_kind: plain
+                          description_kind: plain
+                        max_items: 1
+                    description_kind: plain
+                  min_items: 1
+                filter:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      rotation:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    block_types:
+                      crop_rectangle:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            height:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            left:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            top:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            width:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                      deinterlace:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            mode:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            parity:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                      fade_in:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            duration:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            fade_color:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            start:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                      fade_out:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            duration:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            fade_color:
+                              type: string
+                              description_kind: plain
+                              required: true
+                            start:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                      overlay:
+                        nesting_mode: list
+                        block:
+                          block_types:
+                            audio:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  audio_gain_level:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  end:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  fade_in_duration:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  fade_out_duration:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  input_label:
+                                    type: string
+                                    description_kind: plain
+                                    required: true
+                                  start:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                description_kind: plain
+                              max_items: 1
+                            video:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  audio_gain_level:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  end:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  fade_in_duration:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  fade_out_duration:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                  input_label:
+                                    type: string
+                                    description_kind: plain
+                                    required: true
+                                  opacity:
+                                    type: number
+                                    description_kind: plain
+                                    optional: true
+                                  start:
+                                    type: string
+                                    description_kind: plain
+                                    optional: true
+                                block_types:
+                                  crop_rectangle:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        height:
+                                          type: string
+                                          description_kind: plain
+                                          optional: true
+                                        left:
+                                          type: string
+                                          description_kind: plain
+                                          optional: true
+                                        top:
+                                          type: string
+                                          description_kind: plain
+                                          optional: true
+                                        width:
+                                          type: string
+                                          description_kind: plain
+                                          optional: true
+                                      description_kind: plain
+                                    max_items: 1
+                                  position:
+                                    nesting_mode: list
+                                    block:
+                                      attributes:
+                                        height:
+                                          type: string
+                                          description_kind: plain
+                                          optional: true
+                                        left:
+                                          type: string
+                                          description_kind: plain
+                                          optional: true
+                                        top:
+                                          type: string
+                                          description_kind: plain
+                                          optional: true
+                                        width:
+                                          type: string
+                                          description_kind: plain
+                                          optional: true
+                                      description_kind: plain
+                                    max_items: 1
+                                description_kind: plain
+                              max_items: 1
+                          description_kind: plain
+                    description_kind: plain
+                  max_items: 1
+                format:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      jpg:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            filename_pattern:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                        max_items: 1
+                      mp4:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            filename_pattern:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            output_file:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  labels:
+                                    type:
+                                    - list
+                                    - string
+                                    description_kind: plain
+                                    required: true
+                                description_kind: plain
+                          description_kind: plain
+                        max_items: 1
+                      png:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            filename_pattern:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          description_kind: plain
+                        max_items: 1
+                      transport_stream:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            filename_pattern:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            output_file:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  labels:
+                                    type:
+                                    - list
+                                    - string
+                                    description_kind: plain
+                                    required: true
+                                description_kind: plain
+                          description_kind: plain
+                        max_items: 1
+                    description_kind: plain
+                  min_items: 1
+              description_kind: plain
+            max_items: 1
+          face_detector_preset:
+            nesting_mode: list
+            block:
+              attributes:
+                analysis_resolution:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                blur_type:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                experimental_options:
+                  type:
+                  - map
+                  - string
+                  description_kind: plain
+                  optional: true
+                face_redactor_mode:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+              deprecated: true
+            max_items: 1
+          video_analyzer_preset:
+            nesting_mode: list
+            block:
+              attributes:
+                audio_analysis_mode:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                audio_language:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                experimental_options:
+                  type:
+                  - map
+                  - string
+                  description_kind: plain
+                  optional: true
+                insights_type:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+              deprecated: true
+            max_items: 1
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

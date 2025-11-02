@@ -1,0 +1,301 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cloudwatch_log_group_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "destination_location_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "source_location_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "task_mode": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "excludes": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "filter_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "value": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "includes": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "filter_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "value": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "options": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "atime": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "bytes_per_second": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "gid": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "log_level": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "mtime": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "object_tags": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "overwrite_mode": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "posix_permissions": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "preserve_deleted_files": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "preserve_devices": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "security_descriptor_copy_flags": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "task_queueing": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "transfer_mode": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "uid": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "verify_mode": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "schedule": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "schedule_expression": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "task_report_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "output_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "report_level": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "s3_object_versioning": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "report_overrides": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "deleted_override": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "skipped_override": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "transferred_override": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "verified_override": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "s3_destination": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "bucket_access_role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "s3_bucket_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "subdirectory": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

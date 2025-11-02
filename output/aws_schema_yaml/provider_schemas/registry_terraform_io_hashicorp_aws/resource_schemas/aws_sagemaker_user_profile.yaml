@@ -1,0 +1,696 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    domain_id:
+      type: string
+      description_kind: plain
+      required: true
+    home_efs_file_system_uid:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    single_sign_on_user_identifier:
+      type: string
+      description_kind: plain
+      optional: true
+    single_sign_on_user_value:
+      type: string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    user_profile_name:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    user_settings:
+      nesting_mode: list
+      block:
+        attributes:
+          auto_mount_home_efs:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          default_landing_uri:
+            type: string
+            description_kind: plain
+            optional: true
+          execution_role:
+            type: string
+            description_kind: plain
+            required: true
+          security_groups:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          studio_web_portal:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          canvas_app_settings:
+            nesting_mode: list
+            block:
+              block_types:
+                direct_deploy_settings:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      status:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+                emr_serverless_settings:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      execution_role_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      status:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+                generative_ai_settings:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      amazon_bedrock_role_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+                identity_provider_oauth_settings:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      data_source_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      secret_arn:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      status:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 20
+                kendra_settings:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      status:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+                model_register_settings:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      cross_account_model_register_role_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      status:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+                time_series_forecasting_settings:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      amazon_forecast_role_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      status:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+                workspace_settings:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      s3_artifact_path:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      s3_kms_key_id:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          code_editor_app_settings:
+            nesting_mode: list
+            block:
+              attributes:
+                built_in_lifecycle_config_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                lifecycle_config_arns:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                app_lifecycle_management:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      idle_settings:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            idle_timeout_in_minutes:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                            lifecycle_management:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            max_idle_timeout_in_minutes:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                            min_idle_timeout_in_minutes:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                    description_kind: plain
+                  max_items: 1
+                custom_image:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      app_image_config_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      image_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      image_version_number:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 200
+                default_resource_spec:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      instance_type:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      lifecycle_config_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_alias:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          custom_file_system_config:
+            nesting_mode: list
+            block:
+              block_types:
+                efs_file_system_config:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      file_system_id:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      file_system_path:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+              description_kind: plain
+          custom_posix_user_config:
+            nesting_mode: list
+            block:
+              attributes:
+                gid:
+                  type: number
+                  description_kind: plain
+                  required: true
+                uid:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          jupyter_lab_app_settings:
+            nesting_mode: list
+            block:
+              attributes:
+                built_in_lifecycle_config_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                lifecycle_config_arns:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                app_lifecycle_management:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      idle_settings:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            idle_timeout_in_minutes:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                            lifecycle_management:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                            max_idle_timeout_in_minutes:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                            min_idle_timeout_in_minutes:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                    description_kind: plain
+                  max_items: 1
+                code_repository:
+                  nesting_mode: set
+                  block:
+                    attributes:
+                      repository_url:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 10
+                custom_image:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      app_image_config_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      image_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      image_version_number:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 200
+                default_resource_spec:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      instance_type:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      lifecycle_config_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_alias:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+                emr_settings:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      assumable_role_arns:
+                        type:
+                        - set
+                        - string
+                        description_kind: plain
+                        optional: true
+                      execution_role_arns:
+                        type:
+                        - set
+                        - string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          jupyter_server_app_settings:
+            nesting_mode: list
+            block:
+              attributes:
+                lifecycle_config_arns:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                code_repository:
+                  nesting_mode: set
+                  block:
+                    attributes:
+                      repository_url:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 10
+                default_resource_spec:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      instance_type:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      lifecycle_config_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_alias:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          kernel_gateway_app_settings:
+            nesting_mode: list
+            block:
+              attributes:
+                lifecycle_config_arns:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                custom_image:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      app_image_config_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      image_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      image_version_number:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 200
+                default_resource_spec:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      instance_type:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      lifecycle_config_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_alias:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          r_session_app_settings:
+            nesting_mode: list
+            block:
+              block_types:
+                custom_image:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      app_image_config_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      image_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      image_version_number:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 200
+                default_resource_spec:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      instance_type:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      lifecycle_config_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_alias:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          r_studio_server_pro_app_settings:
+            nesting_mode: list
+            block:
+              attributes:
+                access_status:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                user_group:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          sharing_settings:
+            nesting_mode: list
+            block:
+              attributes:
+                notebook_output_option:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                s3_kms_key_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                s3_output_path:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          space_storage_settings:
+            nesting_mode: list
+            block:
+              block_types:
+                default_ebs_storage_settings:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      default_ebs_volume_size_in_gb:
+                        type: number
+                        description_kind: plain
+                        required: true
+                      maximum_ebs_volume_size_in_gb:
+                        type: number
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          studio_web_portal_settings:
+            nesting_mode: list
+            block:
+              attributes:
+                hidden_app_types:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                hidden_instance_types:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                hidden_ml_tools:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          tensor_board_app_settings:
+            nesting_mode: list
+            block:
+              block_types:
+                default_resource_spec:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      instance_type:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      lifecycle_config_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_alias:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      sagemaker_image_version_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

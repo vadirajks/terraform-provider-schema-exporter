@@ -1,0 +1,120 @@
+version: 0
+block:
+  attributes:
+    access_url:
+      type: string
+      description_kind: plain
+      computed: true
+    alias:
+      type: string
+      description_kind: plain
+      computed: true
+    connect_settings:
+      type:
+      - list
+      - - object
+        - availability_zones:
+          - set
+          - string
+          connect_ips:
+          - set
+          - string
+          customer_dns_ips:
+          - set
+          - string
+          customer_username: string
+          subnet_ids:
+          - set
+          - string
+          vpc_id: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      computed: true
+    directory_id:
+      type: string
+      description_kind: plain
+      required: true
+    dns_ip_addresses:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    edition:
+      type: string
+      description_kind: plain
+      computed: true
+    enable_sso:
+      type: bool
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      computed: true
+    radius_settings:
+      type:
+      - list
+      - - object
+        - authentication_protocol: string
+          display_label: string
+          radius_port: number
+          radius_retries: number
+          radius_servers:
+          - set
+          - string
+          radius_timeout: number
+          use_same_username: bool
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    security_group_id:
+      type: string
+      description_kind: plain
+      computed: true
+    short_name:
+      type: string
+      description_kind: plain
+      computed: true
+    size:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    type:
+      type: string
+      description_kind: plain
+      computed: true
+    vpc_settings:
+      type:
+      - list
+      - - object
+        - availability_zones:
+          - set
+          - string
+          subnet_ids:
+          - set
+          - string
+          vpc_id: string
+      description_kind: plain
+      computed: true
+  description_kind: plain

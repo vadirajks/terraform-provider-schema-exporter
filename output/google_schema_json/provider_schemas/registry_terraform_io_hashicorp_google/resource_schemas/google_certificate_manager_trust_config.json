@@ -1,0 +1,158 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "The creation timestamp of a TrustConfig. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\".",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "One or more paragraphs of text description of a trust config.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Set of label tags associated with the trust config. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The trust config location.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "A user-defined name of the trust config. Trust config names must be unique globally.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "The last update timestamp of a TrustConfig. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\".",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "allowlisted_certificates": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "pem_certificate": {
+              "type": "string",
+              "description": "PEM certificate that is allowlisted. The certificate can be up to 5k bytes, and must be a parseable X.509 certificate.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Allowlisted PEM-encoded certificates. A certificate matching an allowlisted certificate is always considered valid as long as the certificate is parseable, proof of private key possession is established, and constraints on the certificate's SAN field are met.",
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "trust_stores": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "intermediate_cas": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "pem_certificate": {
+                    "type": "string",
+                    "description": "PEM intermediate certificate used for building up paths for validation. Each certificate provided in PEM format may occupy up to 5kB.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  }
+                },
+                "description": "Set of intermediate CA certificates used for the path building phase of chain validation. The field is currently not supported if trust config is used for the workload certificate feature.",
+                "description_kind": "plain"
+              }
+            },
+            "trust_anchors": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "pem_certificate": {
+                    "type": "string",
+                    "description": "PEM root certificate of the PKI used for validation. Each certificate provided in PEM format may occupy up to 5kB.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "sensitive": true
+                  }
+                },
+                "description": "List of Trust Anchors to be used while performing validation against a given TrustStore.",
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description": "Set of trust stores to perform validation against. This field is supported when TrustConfig is configured with Load Balancers, currently not supported for SPIFFE certificate validation.",
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

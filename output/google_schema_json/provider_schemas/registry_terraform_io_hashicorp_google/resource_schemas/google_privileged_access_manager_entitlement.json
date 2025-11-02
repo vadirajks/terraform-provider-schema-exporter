@@ -1,0 +1,301 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "Output only. Create time stamp. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\"",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "entitlement_id": {
+        "type": "string",
+        "description": "The ID to use for this Entitlement. This will become the last part of the resource name. This value should be 4-63 characters, and valid characters are \"[a-z]\", \"[0-9]\", and \"-\". The first character should be from [a-z]. This value should be unique among all other Entitlements under the specified 'parent'.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "etag": {
+        "type": "string",
+        "description": "For Resource freshness validation (https://google.aip.dev/154)",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The region of the Entitlement resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "max_request_duration": {
+        "type": "string",
+        "description": "The maximum amount of time for which access would be granted for a request. A requester can choose to ask for access for less than this duration but never more. Format: calculate the time in seconds and concatenate it with 's' i.e. 2 hours = \"7200s\", 45 minutes = \"2700s\"",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Output Only. The entitlement's name follows a hierarchical structure, comprising the organization, folder, or project, alongside the region and a unique entitlement ID. Formats: organizations/{organization-number}/locations/{region}/entitlements/{entitlement-id}, folders/{folder-number}/locations/{region}/entitlements/{entitlement-id}, and projects/{project-id|project-number}/locations/{region}/entitlements/{entitlement-id}.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "parent": {
+        "type": "string",
+        "description": "Format: projects/{project-id|project-number} or organizations/{organization-number} or folders/{folder-number}",
+        "description_kind": "plain",
+        "required": true
+      },
+      "state": {
+        "type": "string",
+        "description": "Output only. The current state of the Entitlement.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Output only. Update time stamp. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\".",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "additional_notification_targets": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "admin_email_recipients": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description": "Optional. Additional email addresses to be notified when a principal(requester) is granted access.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "requester_email_recipients": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description": "Optional. Additional email address to be notified about an eligible entitlement.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "AdditionalNotificationTargets includes email addresses to be notified.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "approval_workflow": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "manual_approvals": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "require_approver_justification": {
+                    "type": "bool",
+                    "description": "Optional. Do the approvers need to provide a justification for their actions?",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "steps": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "approvals_needed": {
+                          "type": "number",
+                          "description": "How many users from the above list need to approve. If there are not enough distinct users in the list above then the workflow will indefinitely block. Should always be greater than 0. Currently 1 is the only supported value.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "approver_email_recipients": {
+                          "type": [
+                            "set",
+                            "string"
+                          ],
+                          "description": "Optional. Additional email addresses to be notified when a grant is pending approval.",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "approvers": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "principals": {
+                                "type": [
+                                  "set",
+                                  "string"
+                                ],
+                                "description": "Users who are being allowed for the operation. Each entry should be a valid v1 IAM Principal Identifier. Format for these is documented at: https://cloud.google.com/iam/docs/principal-identifiers#v1",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description": "The potential set of approvers in this step. This list should contain at only one entry.",
+                            "description_kind": "plain"
+                          },
+                          "min_items": 1,
+                          "max_items": 1
+                        }
+                      },
+                      "description": "List of approval steps in this workflow. These steps would be followed in the specified order sequentially.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1
+                  }
+                },
+                "description": "A manual approval workflow where users who are designated as approvers need to call the ApproveGrant/DenyGrant APIs for an Grant. The workflow can consist of multiple serial steps where each step defines who can act as Approver in that step and how many of those users should approve before the workflow moves to the next step. This can be used to create approval workflows such as * Require an approval from any user in a group G. * Require an approval from any k number of users from a Group G. * Require an approval from any user in a group G and then from a user U. etc. A single user might be part of 'approvers' ACL for multiple steps in this workflow but they can only approve once and that approval will only be considered to satisfy the approval step at which it was granted.",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description": "The approvals needed before access will be granted to a requester. No approvals will be needed if this field is null. Different types of approval workflows that can be used to gate privileged access granting.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "eligible_users": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "principals": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description": "Users who are being allowed for the operation. Each entry should be a valid v1 IAM Principal Identifier. Format for these is documented at \"https://cloud.google.com/iam/docs/principal-identifiers#v1\"",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Who can create Grants using Entitlement. This list should contain at most one entry",
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "privileged_access": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "gcp_iam_access": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "resource": {
+                    "type": "string",
+                    "description": "Name of the resource.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "resource_type": {
+                    "type": "string",
+                    "description": "The type of this resource.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "block_types": {
+                  "role_bindings": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "condition_expression": {
+                          "type": "string",
+                          "description": "The expression field of the IAM condition to be associated with the role. If specified, a user with an active grant for this entitlement would be able to access the resource only if this condition evaluates to true for their request. https://cloud.google.com/iam/docs/conditions-overview#attributes.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "role": {
+                          "type": "string",
+                          "description": "IAM role to be granted. https://cloud.google.com/iam/docs/roles-overview.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "Role bindings to be created on successful grant.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1
+                  }
+                },
+                "description": "GcpIamAccess represents IAM based access control on a GCP resource. Refer to https://cloud.google.com/iam/docs to understand more about IAM.",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description": "Privileged access that this service can be used to gate.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "requester_justification_config": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "not_mandatory": {
+              "nesting_mode": "list",
+              "block": {
+                "description": "The justification is not mandatory but can be provided in any of the supported formats.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "unstructured": {
+              "nesting_mode": "list",
+              "block": {
+                "description": "The requester has to provide a justification in the form of free flowing text.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Defines the ways in which a requester should provide the justification while requesting for access.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

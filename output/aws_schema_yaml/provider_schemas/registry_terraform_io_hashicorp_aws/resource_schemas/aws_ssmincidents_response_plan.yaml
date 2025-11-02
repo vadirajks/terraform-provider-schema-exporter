@@ -1,0 +1,164 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    chat_channel:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description_kind: plain
+      optional: true
+    engagements:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    action:
+      nesting_mode: list
+      block:
+        block_types:
+          ssm_automation:
+            nesting_mode: list
+            block:
+              attributes:
+                document_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                document_version:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                dynamic_parameters:
+                  type:
+                  - map
+                  - string
+                  description_kind: plain
+                  optional: true
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                target_account:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                parameter:
+                  nesting_mode: set
+                  block:
+                    attributes:
+                      name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      values:
+                        type:
+                        - set
+                        - string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+              description_kind: plain
+        description_kind: plain
+      max_items: 1
+    incident_template:
+      nesting_mode: list
+      block:
+        attributes:
+          dedupe_string:
+            type: string
+            description_kind: plain
+            optional: true
+          impact:
+            type: number
+            description_kind: plain
+            required: true
+          incident_tags:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+          summary:
+            type: string
+            description_kind: plain
+            optional: true
+          title:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          notification_target:
+            nesting_mode: set
+            block:
+              attributes:
+                sns_topic_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    integration:
+      nesting_mode: list
+      block:
+        block_types:
+          pagerduty:
+            nesting_mode: list
+            block:
+              attributes:
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                secret_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+                service_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

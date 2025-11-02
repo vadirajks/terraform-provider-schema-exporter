@@ -1,0 +1,116 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    attachment_policy_rule_number:
+      type: number
+      description_kind: plain
+      computed: true
+    attachment_type:
+      type: string
+      description_kind: plain
+      computed: true
+    core_network_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    core_network_id:
+      type: string
+      description_kind: plain
+      required: true
+    edge_location:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    owner_account_id:
+      type: string
+      description_kind: plain
+      computed: true
+    resource_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    segment_name:
+      type: string
+      description_kind: plain
+      computed: true
+    state:
+      type: string
+      description_kind: plain
+      computed: true
+    subnet_arns:
+      type:
+      - set
+      - string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    vpc_arn:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    options:
+      nesting_mode: list
+      block:
+        attributes:
+          appliance_mode_support:
+            type: bool
+            description_kind: plain
+            optional: true
+            computed: true
+          dns_support:
+            type: bool
+            description_kind: plain
+            optional: true
+            computed: true
+          ipv6_support:
+            type: bool
+            description_kind: plain
+            optional: true
+            computed: true
+          security_group_referencing_support:
+            type: bool
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

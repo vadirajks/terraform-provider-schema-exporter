@@ -1,0 +1,123 @@
+version: 0
+block:
+  attributes:
+    backup_repeating_time_intervals:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    operational_default_retention_duration:
+      type: string
+      description_kind: plain
+      optional: true
+    time_zone:
+      type: string
+      description_kind: plain
+      optional: true
+    vault_default_retention_duration:
+      type: string
+      description_kind: plain
+      optional: true
+    vault_id:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    retention_rule:
+      nesting_mode: list
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          priority:
+            type: number
+            description_kind: plain
+            required: true
+        block_types:
+          criteria:
+            nesting_mode: list
+            block:
+              attributes:
+                absolute_criteria:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                days_of_month:
+                  type:
+                  - set
+                  - number
+                  description_kind: plain
+                  optional: true
+                days_of_week:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                months_of_year:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                scheduled_backup_times:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                weeks_of_month:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+          life_cycle:
+            nesting_mode: list
+            block:
+              attributes:
+                data_store_type:
+                  type: string
+                  description_kind: plain
+                  required: true
+                duration:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

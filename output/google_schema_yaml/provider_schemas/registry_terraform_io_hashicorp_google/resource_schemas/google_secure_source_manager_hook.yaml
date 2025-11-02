@@ -1,0 +1,103 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: Create timestamp.
+      description_kind: plain
+      computed: true
+    disabled:
+      type: bool
+      description: Determines if the hook disabled or not. Set to true to stop sending traffic.
+      description_kind: plain
+      optional: true
+    events:
+      type:
+      - list
+      - string
+      description: 'The events that trigger hook on. Possible values: ["PUSH", "PULL_REQUEST"]'
+      description_kind: plain
+      optional: true
+      computed: true
+    hook_id:
+      type: string
+      description: The ID for the Hook.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: The location for the Repository.
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description: 'A unique identifier for a Hook. The name should be of the format: ''projects/{project}/locations/{location_id}/repositories/{repository_id}/hooks/{hook_id}'''
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    repository_id:
+      type: string
+      description: The ID for the Repository.
+      description_kind: plain
+      required: true
+    sensitive_query_string:
+      type: string
+      description: The sensitive query string to be appended to the target URI.
+      description_kind: plain
+      optional: true
+      sensitive: true
+    target_uri:
+      type: string
+      description: The target URI to which the payloads will be delivered.
+      description_kind: plain
+      required: true
+    uid:
+      type: string
+      description: Unique identifier of the hook.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: Update timestamp.
+      description_kind: plain
+      computed: true
+  block_types:
+    push_option:
+      nesting_mode: list
+      block:
+        attributes:
+          branch_filter:
+            type: string
+            description: 'Trigger hook for matching branches only. Specified as glob pattern. If empty or *, events for all branches are reported. Examples: main, {main,release*}. See https://pkg.go.dev/github.com/gobwas/glob documentation.'
+            description_kind: plain
+            optional: true
+        description: The trigger option for push events.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

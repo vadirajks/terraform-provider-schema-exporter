@@ -1,0 +1,157 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "display_name": {
+        "type": "string",
+        "description": "The human-readable name of the generator, unique within the agent.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "language_code": {
+        "type": "string",
+        "description": "The language to create generators for the following fields: * Generator.prompt_text.text If not specified, the agent's default language is used.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The unique identifier of the Generator. Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>/generators/<Generator ID>.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "parent": {
+        "type": "string",
+        "description": "The agent to create a Generator for. Format: projects/<Project ID>/locations/<Location ID>/agents/<Agent ID>.",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "llm_model_settings": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "model": {
+              "type": "string",
+              "description": "The selected LLM model.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "prompt_text": {
+              "type": "string",
+              "description": "The custom prompt to use.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "The LLM model settings.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "model_parameter": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "max_decode_steps": {
+              "type": "number",
+              "description": "The maximum number of tokens to generate.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "temperature": {
+              "type": "number",
+              "description": "The temperature used for sampling. Temperature sampling occurs after both topP and topK have been applied. Valid range: [0.0, 1.0] Low temperature = less random. High temperature = more random.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "top_k": {
+              "type": "number",
+              "description": "If set, the sampling process in each step is limited to the topK tokens with highest probabilities. Valid range: [1, 40] or 1000+. Small topK = less random. Large topK = more random.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "top_p": {
+              "type": "number",
+              "description": "If set, only the tokens comprising the top topP probability mass are considered. If both topP and topK are set, topP will be used for further refining candidates selected with topK. Valid range: (0.0, 1.0]. Small topP = less random. Large topP = more random.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Parameters passed to the LLM to configure its behavior.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "placeholders": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "id": {
+              "type": "string",
+              "description": "Unique ID used to map custom placeholder to parameters in fulfillment.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "name": {
+              "type": "string",
+              "description": "Custom placeholder value in the prompt text.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "List of custom placeholders in the prompt text.",
+          "description_kind": "plain"
+        }
+      },
+      "prompt_text": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "text": {
+              "type": "string",
+              "description": "Text input which can be used for prompt or banned phrases.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Prompt for the LLM model.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

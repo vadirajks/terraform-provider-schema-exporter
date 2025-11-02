@@ -1,0 +1,307 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    created_date:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    last_updated_date:
+      type: string
+      description_kind: plain
+      computed: true
+    mesh_name:
+      type: string
+      description_kind: plain
+      required: true
+    mesh_owner:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_owner:
+      type: string
+      description_kind: plain
+      computed: true
+    spec:
+      type:
+      - list
+      - - object
+        - grpc_route:
+          - list
+          - - object
+            - action:
+              - list
+              - - object
+                - weighted_target:
+                  - set
+                  - - object
+                    - port: number
+                      virtual_node: string
+                      weight: number
+              match:
+              - list
+              - - object
+                - metadata:
+                  - set
+                  - - object
+                    - invert: bool
+                      match:
+                      - list
+                      - - object
+                        - exact: string
+                          prefix: string
+                          range:
+                          - list
+                          - - object
+                            - end: number
+                              start: number
+                          regex: string
+                          suffix: string
+                      name: string
+                  method_name: string
+                  port: number
+                  prefix: string
+                  service_name: string
+              retry_policy:
+              - list
+              - - object
+                - grpc_retry_events:
+                  - set
+                  - string
+                  http_retry_events:
+                  - set
+                  - string
+                  max_retries: number
+                  per_retry_timeout:
+                  - list
+                  - - object
+                    - unit: string
+                      value: number
+                  tcp_retry_events:
+                  - set
+                  - string
+              timeout:
+              - list
+              - - object
+                - idle:
+                  - list
+                  - - object
+                    - unit: string
+                      value: number
+                  per_request:
+                  - list
+                  - - object
+                    - unit: string
+                      value: number
+          http2_route:
+          - list
+          - - object
+            - action:
+              - list
+              - - object
+                - weighted_target:
+                  - set
+                  - - object
+                    - port: number
+                      virtual_node: string
+                      weight: number
+              match:
+              - list
+              - - object
+                - header:
+                  - set
+                  - - object
+                    - invert: bool
+                      match:
+                      - list
+                      - - object
+                        - exact: string
+                          prefix: string
+                          range:
+                          - list
+                          - - object
+                            - end: number
+                              start: number
+                          regex: string
+                          suffix: string
+                      name: string
+                  method: string
+                  path:
+                  - list
+                  - - object
+                    - exact: string
+                      regex: string
+                  port: number
+                  prefix: string
+                  query_parameter:
+                  - set
+                  - - object
+                    - match:
+                      - list
+                      - - object
+                        - exact: string
+                      name: string
+                  scheme: string
+              retry_policy:
+              - list
+              - - object
+                - http_retry_events:
+                  - set
+                  - string
+                  max_retries: number
+                  per_retry_timeout:
+                  - list
+                  - - object
+                    - unit: string
+                      value: number
+                  tcp_retry_events:
+                  - set
+                  - string
+              timeout:
+              - list
+              - - object
+                - idle:
+                  - list
+                  - - object
+                    - unit: string
+                      value: number
+                  per_request:
+                  - list
+                  - - object
+                    - unit: string
+                      value: number
+          http_route:
+          - list
+          - - object
+            - action:
+              - list
+              - - object
+                - weighted_target:
+                  - set
+                  - - object
+                    - port: number
+                      virtual_node: string
+                      weight: number
+              match:
+              - list
+              - - object
+                - header:
+                  - set
+                  - - object
+                    - invert: bool
+                      match:
+                      - list
+                      - - object
+                        - exact: string
+                          prefix: string
+                          range:
+                          - list
+                          - - object
+                            - end: number
+                              start: number
+                          regex: string
+                          suffix: string
+                      name: string
+                  method: string
+                  path:
+                  - list
+                  - - object
+                    - exact: string
+                      regex: string
+                  port: number
+                  prefix: string
+                  query_parameter:
+                  - set
+                  - - object
+                    - match:
+                      - list
+                      - - object
+                        - exact: string
+                      name: string
+                  scheme: string
+              retry_policy:
+              - list
+              - - object
+                - http_retry_events:
+                  - set
+                  - string
+                  max_retries: number
+                  per_retry_timeout:
+                  - list
+                  - - object
+                    - unit: string
+                      value: number
+                  tcp_retry_events:
+                  - set
+                  - string
+              timeout:
+              - list
+              - - object
+                - idle:
+                  - list
+                  - - object
+                    - unit: string
+                      value: number
+                  per_request:
+                  - list
+                  - - object
+                    - unit: string
+                      value: number
+          priority: number
+          tcp_route:
+          - list
+          - - object
+            - action:
+              - list
+              - - object
+                - weighted_target:
+                  - set
+                  - - object
+                    - port: number
+                      virtual_node: string
+                      weight: number
+              match:
+              - list
+              - - object
+                - port: number
+              timeout:
+              - list
+              - - object
+                - idle:
+                  - list
+                  - - object
+                    - unit: string
+                      value: number
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    virtual_router_name:
+      type: string
+      description_kind: plain
+      required: true
+  description_kind: plain

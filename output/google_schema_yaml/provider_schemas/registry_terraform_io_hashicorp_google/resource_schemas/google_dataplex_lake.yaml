@@ -1,0 +1,132 @@
+version: 0
+block:
+  attributes:
+    asset_status:
+      type:
+      - list
+      - - object
+        - active_assets: number
+          security_policy_applying_assets: number
+          update_time: string
+      description: Output only. Aggregated status of the underlying assets of the lake.
+      description_kind: plain
+      computed: true
+    create_time:
+      type: string
+      description: Output only. The time when the lake was created.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: Optional. Description of the lake.
+      description_kind: plain
+      optional: true
+    display_name:
+      type: string
+      description: Optional. User friendly display name.
+      description_kind: plain
+      optional: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Optional. User-defined labels for the lake. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field `effective_labels` for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: The location for the resource
+      description_kind: plain
+      required: true
+    metastore_status:
+      type:
+      - list
+      - - object
+        - endpoint: string
+          message: string
+          state: string
+          update_time: string
+      description: Output only. Metastore status of the lake.
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: The name of the lake.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description: The project for the resource
+      description_kind: plain
+      optional: true
+      computed: true
+    service_account:
+      type: string
+      description: Output only. Service account associated with this lake. This service account must be authorized to access or operate on resources managed by the lake.
+      description_kind: plain
+      computed: true
+    state:
+      type: string
+      description: 'Output only. Current state of the lake. Possible values: STATE_UNSPECIFIED, ACTIVE, CREATING, DELETING, ACTION_REQUIRED'
+      description_kind: plain
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    uid:
+      type: string
+      description: Output only. System generated globally unique ID for the lake. This ID will be different if the lake is deleted and re-created with the same name.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: Output only. The time when the lake was last updated.
+      description_kind: plain
+      computed: true
+  block_types:
+    metastore:
+      nesting_mode: list
+      block:
+        attributes:
+          service:
+            type: string
+            description: 'Optional. A relative reference to the Dataproc Metastore (https://cloud.google.com/dataproc-metastore/docs) service associated with the lake: `projects/{project_id}/locations/{location_id}/services/{service_id}`'
+            description_kind: plain
+            optional: true
+        description: Optional. Settings to manage lake and Dataproc Metastore service instance association.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

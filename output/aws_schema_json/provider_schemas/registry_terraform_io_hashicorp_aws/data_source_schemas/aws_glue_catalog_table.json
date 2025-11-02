@@ -1,0 +1,253 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "catalog_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "database_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "owner": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "parameters": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "partition_index": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "index_name": "string",
+              "index_status": "string",
+              "keys": [
+                "list",
+                "string"
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "partition_keys": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "comment": "string",
+              "name": "string",
+              "parameters": [
+                "map",
+                "string"
+              ],
+              "type": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "query_as_of_time": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "retention": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "storage_descriptor": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "additional_locations": [
+                "list",
+                "string"
+              ],
+              "bucket_columns": [
+                "list",
+                "string"
+              ],
+              "columns": [
+                "list",
+                [
+                  "object",
+                  {
+                    "comment": "string",
+                    "name": "string",
+                    "parameters": [
+                      "map",
+                      "string"
+                    ],
+                    "type": "string"
+                  }
+                ]
+              ],
+              "compressed": "bool",
+              "input_format": "string",
+              "location": "string",
+              "number_of_buckets": "number",
+              "output_format": "string",
+              "parameters": [
+                "map",
+                "string"
+              ],
+              "schema_reference": [
+                "list",
+                [
+                  "object",
+                  {
+                    "schema_id": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "registry_name": "string",
+                          "schema_arn": "string",
+                          "schema_name": "string"
+                        }
+                      ]
+                    ],
+                    "schema_version_id": "string",
+                    "schema_version_number": "number"
+                  }
+                ]
+              ],
+              "ser_de_info": [
+                "list",
+                [
+                  "object",
+                  {
+                    "name": "string",
+                    "parameters": [
+                      "map",
+                      "string"
+                    ],
+                    "serialization_library": "string"
+                  }
+                ]
+              ],
+              "skewed_info": [
+                "list",
+                [
+                  "object",
+                  {
+                    "skewed_column_names": [
+                      "list",
+                      "string"
+                    ],
+                    "skewed_column_value_location_maps": [
+                      "map",
+                      "string"
+                    ],
+                    "skewed_column_values": [
+                      "list",
+                      "string"
+                    ]
+                  }
+                ]
+              ],
+              "sort_columns": [
+                "list",
+                [
+                  "object",
+                  {
+                    "column": "string",
+                    "sort_order": "number"
+                  }
+                ]
+              ],
+              "stored_as_sub_directories": "bool"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "table_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "target_table": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "catalog_id": "string",
+              "database_name": "string",
+              "name": "string",
+              "region": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "transaction_id": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "view_expanded_text": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "view_original_text": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

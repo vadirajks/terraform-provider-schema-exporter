@@ -1,0 +1,99 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    auth_token_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    automatic_failover_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    cluster_mode:
+      type: string
+      description_kind: plain
+      computed: true
+    configuration_endpoint_address:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    log_delivery_configuration:
+      type:
+      - set
+      - - object
+        - destination: string
+          destination_type: string
+          log_format: string
+          log_type: string
+      description_kind: plain
+      computed: true
+    member_clusters:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    multi_az_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    node_type:
+      type: string
+      description_kind: plain
+      computed: true
+    num_cache_clusters:
+      type: number
+      description_kind: plain
+      computed: true
+    num_node_groups:
+      type: number
+      description_kind: plain
+      computed: true
+    port:
+      type: number
+      description_kind: plain
+      computed: true
+    primary_endpoint_address:
+      type: string
+      description_kind: plain
+      computed: true
+    reader_endpoint_address:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    replicas_per_node_group:
+      type: number
+      description_kind: plain
+      computed: true
+    replication_group_id:
+      type: string
+      description_kind: plain
+      required: true
+    snapshot_retention_limit:
+      type: number
+      description_kind: plain
+      computed: true
+    snapshot_window:
+      type: string
+      description_kind: plain
+      computed: true
+  description_kind: plain

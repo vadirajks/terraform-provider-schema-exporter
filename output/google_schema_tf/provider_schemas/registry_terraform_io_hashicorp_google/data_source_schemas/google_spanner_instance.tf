@@ -1,0 +1,18 @@
+data "google_spanner_instance" "name" {
+  name = string (Required)
+  autoscaling_config = ['list', ['object', {'asymmetric_autoscaling_options': ['list', ['object', {'overrides': ['list', ['object', {'autoscaling_limits': ['list', ['object', {'max_nodes': 'number', 'min_nodes': 'number'}]]}]], 'replica_selection': ['list', ['object', {'location': 'string'}]]}]], 'autoscaling_limits': ['list', ['object', {'max_nodes': 'number', 'max_processing_units': 'number', 'min_nodes': 'number', 'min_processing_units': 'number'}]], 'autoscaling_targets': ['list', ['object', {'high_priority_cpu_utilization_percent': 'number', 'storage_utilization_percent': 'number'}]]}]] (Computed)
+  config = string (Optional)
+  default_backup_schedule_type = string (Computed)
+  display_name = string (Optional)
+  edition = string (Computed)
+  effective_labels = ['map', 'string'] (Computed)
+  force_destroy = bool (Computed)
+  id = string (Optional, Computed)
+  instance_type = string (Computed)
+  labels = ['map', 'string'] (Computed)
+  num_nodes = number (Computed)
+  processing_units = number (Computed)
+  project = string (Optional)
+  state = string (Computed)
+  terraform_labels = ['map', 'string'] (Computed)
+}

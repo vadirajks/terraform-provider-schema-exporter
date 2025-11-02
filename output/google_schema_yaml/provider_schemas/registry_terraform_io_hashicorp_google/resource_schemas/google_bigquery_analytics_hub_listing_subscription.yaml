@@ -1,0 +1,172 @@
+version: 0
+block:
+  attributes:
+    commercial_info:
+      type:
+      - list
+      - - object
+        - cloud_marketplace:
+          - list
+          - - object
+            - order: string
+      description: Commercial info metadata for this subscription. This is set if this is a commercial subscription i.e. if this subscription was created from subscribing to a commercial listing.
+      description_kind: plain
+      computed: true
+    creation_time:
+      type: string
+      description: Timestamp when the subscription was created.
+      description_kind: plain
+      computed: true
+    data_exchange_id:
+      type: string
+      description: The ID of the data exchange. Must contain only Unicode letters, numbers (0-9), underscores (_). Should not use characters that require URL-escaping, or characters outside of ASCII, spaces.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    last_modify_time:
+      type: string
+      description: Timestamp when the subscription was last modified.
+      description_kind: plain
+      computed: true
+    linked_dataset_map:
+      type:
+      - set
+      - - object
+        - linked_dataset: string
+          listing: string
+          resource_name: string
+      description: Output only. Map of listing resource names to associated linked resource, e.g. projects/123/locations/US/dataExchanges/456/listings/789 -> projects/123/datasets/my_dataset
+      description_kind: plain
+      computed: true
+    linked_resources:
+      type:
+      - list
+      - - object
+        - linked_dataset: string
+          listing: string
+      description: Output only. Linked resources created in the subscription. Only contains values if state = STATE_ACTIVE.
+      description_kind: plain
+      computed: true
+    listing_id:
+      type: string
+      description: The ID of the listing. Must contain only Unicode letters, numbers (0-9), underscores (_). Should not use characters that require URL-escaping, or characters outside of ASCII, spaces.
+      description_kind: plain
+      required: true
+    location:
+      type: string
+      description: The name of the location of the data exchange. Distinct from the location of the destination data set.
+      description_kind: plain
+      required: true
+    log_linked_dataset_query_user_email:
+      type: bool
+      description: Output only. By default, false. If true, the Subscriber agreed to the email sharing mandate that is enabled for Listing.
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: The resource name of the subscription. e.g. "projects/myproject/locations/US/subscriptions/123"
+      description_kind: plain
+      computed: true
+    organization_display_name:
+      type: string
+      description: Display name of the project of this subscription.
+      description_kind: plain
+      computed: true
+    organization_id:
+      type: string
+      description: Organization of the project this subscription belongs to.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_type:
+      type: string
+      description: Listing shared asset type.
+      description_kind: plain
+      computed: true
+    state:
+      type: string
+      description: Current state of the subscription.
+      description_kind: plain
+      computed: true
+    subscriber_contact:
+      type: string
+      description: Email of the subscriber.
+      description_kind: plain
+      computed: true
+    subscription_id:
+      type: string
+      description: The subscription id used to reference the subscription.
+      description_kind: plain
+      computed: true
+  block_types:
+    destination_dataset:
+      nesting_mode: list
+      block:
+        attributes:
+          description:
+            type: string
+            description: A user-friendly description of the dataset.
+            description_kind: plain
+            optional: true
+          friendly_name:
+            type: string
+            description: A descriptive name for the dataset.
+            description_kind: plain
+            optional: true
+          labels:
+            type:
+            - map
+            - string
+            description: The labels associated with this dataset. You can use these to organize and group your datasets.
+            description_kind: plain
+            optional: true
+          location:
+            type: string
+            description: The geographic location where the dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.
+            description_kind: plain
+            required: true
+        block_types:
+          dataset_reference:
+            nesting_mode: list
+            block:
+              attributes:
+                dataset_id:
+                  type: string
+                  description: A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024 characters.
+                  description_kind: plain
+                  required: true
+                project_id:
+                  type: string
+                  description: The ID of the project containing this dataset.
+                  description_kind: plain
+                  required: true
+              description: A reference that identifies the destination dataset.
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description: The destination dataset for this subscription.
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

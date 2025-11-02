@@ -1,0 +1,143 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "create_time": {
+        "type": "string",
+        "description": "Time the Namespace was created in UTC.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "delete_time": {
+        "type": "string",
+        "description": "Time the Namespace was deleted in UTC.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Labels for this Namespace. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name for the namespace",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "namespace_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Namespace-level cluster namespace labels. These labels are applied to the related namespace of the member clusters bound to the parent Scope. Scope-level labels ('namespace_labels' in the Fleet Scope resource) take precedence over Namespace-level labels if they share a key. Keys and values must be Kubernetes-conformant.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "scope": {
+        "type": "string",
+        "description": "The name of the Scope instance.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "scope_id": {
+        "type": "string",
+        "description": "Id of the scope",
+        "description_kind": "plain",
+        "required": true
+      },
+      "scope_namespace_id": {
+        "type": "string",
+        "description": "The client-provided identifier of the namespace.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "state": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "code": "string"
+            }
+          ]
+        ],
+        "description": "State of the namespace resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "uid": {
+        "type": "string",
+        "description": "Google-generated UUID for this resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Time the Namespace was updated in UTC.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

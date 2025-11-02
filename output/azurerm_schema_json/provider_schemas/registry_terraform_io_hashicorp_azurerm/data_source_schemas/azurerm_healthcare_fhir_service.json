@@ -1,0 +1,138 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "access_policy_object_ids": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "authentication": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "audience": "string",
+              "authority": "string",
+              "smart_proxy_enabled": "bool"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "configuration_export_storage_account_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "container_registry_login_server_url": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cors": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "allowed_headers": [
+                "list",
+                "string"
+              ],
+              "allowed_methods": [
+                "list",
+                "string"
+              ],
+              "allowed_origins": [
+                "list",
+                "string"
+              ],
+              "credentials_allowed": "bool",
+              "max_age_in_seconds": "number"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "identity": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "identity_ids": [
+                "list",
+                "string"
+              ],
+              "principal_id": "string",
+              "tenant_id": "string",
+              "type": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "kind": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "workspace_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

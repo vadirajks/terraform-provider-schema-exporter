@@ -1,0 +1,58 @@
+version: 0
+block:
+  attributes:
+    assignment_id:
+      type: string
+      description_kind: plain
+      computed: true
+    assignment_name:
+      type: string
+      description_kind: plain
+      required: true
+    assignment_status:
+      type: string
+      description_kind: plain
+      required: true
+    aws_account_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+    namespace:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    policy_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    identities:
+      nesting_mode: list
+      block:
+        attributes:
+          group:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          user:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

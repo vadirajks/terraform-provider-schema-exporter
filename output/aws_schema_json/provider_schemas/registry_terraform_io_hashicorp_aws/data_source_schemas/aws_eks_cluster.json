@@ -1,0 +1,315 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "access_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "authentication_mode": "string",
+              "bootstrap_cluster_creator_admin_permissions": "bool"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "certificate_authority": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "data": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "cluster_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "compute_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "enabled": "bool",
+              "node_pools": [
+                "set",
+                "string"
+              ],
+              "node_role_arn": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "created_at": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "deletion_protection": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "enabled_cluster_log_types": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "endpoint": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "identity": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "oidc": [
+                "list",
+                [
+                  "object",
+                  {
+                    "issuer": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "kubernetes_network_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "elastic_load_balancing": [
+                "list",
+                [
+                  "object",
+                  {
+                    "enabled": "bool"
+                  }
+                ]
+              ],
+              "ip_family": "string",
+              "service_ipv4_cidr": "string",
+              "service_ipv6_cidr": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "outpost_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "control_plane_instance_type": "string",
+              "control_plane_placement": [
+                "list",
+                [
+                  "object",
+                  {
+                    "group_name": "string"
+                  }
+                ]
+              ],
+              "outpost_arns": [
+                "set",
+                "string"
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "platform_version": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "remote_network_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "remote_node_networks": [
+                "list",
+                [
+                  "object",
+                  {
+                    "cidrs": [
+                      "set",
+                      "string"
+                    ]
+                  }
+                ]
+              ],
+              "remote_pod_networks": [
+                "list",
+                [
+                  "object",
+                  {
+                    "cidrs": [
+                      "set",
+                      "string"
+                    ]
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "role_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "status": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "storage_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "block_storage": [
+                "list",
+                [
+                  "object",
+                  {
+                    "enabled": "bool"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "upgrade_policy": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "support_type": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "version": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "vpc_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "cluster_security_group_id": "string",
+              "endpoint_private_access": "bool",
+              "endpoint_public_access": "bool",
+              "public_access_cidrs": [
+                "set",
+                "string"
+              ],
+              "security_group_ids": [
+                "set",
+                "string"
+              ],
+              "subnet_ids": [
+                "set",
+                "string"
+              ],
+              "vpc_id": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "zonal_shift_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "enabled": "bool"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

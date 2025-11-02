@@ -1,0 +1,101 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "creator_role_assignment_roles": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "deployment_target_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "dev_center_project_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "identity": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "identity_ids": [
+                "list",
+                "string"
+              ],
+              "principal_id": "string",
+              "tenant_id": "string",
+              "type": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "user_role_assignment": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "roles": [
+                "set",
+                "string"
+              ],
+              "user_id": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

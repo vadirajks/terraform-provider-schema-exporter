@@ -1,0 +1,65 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    metadata:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    quota:
+      type: number
+      description_kind: plain
+      computed: true
+    resource_manager_id:
+      type: string
+      description_kind: plain
+      deprecated: true
+      computed: true
+    storage_account_id:
+      type: string
+      description_kind: plain
+      optional: true
+    storage_account_name:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    acl:
+      nesting_mode: list
+      block:
+        attributes:
+          access_policy:
+            type:
+            - list
+            - - object
+              - expiry: string
+                permissions: string
+                start: string
+            description_kind: plain
+            computed: true
+          id:
+            type: string
+            description_kind: plain
+            computed: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

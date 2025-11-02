@@ -1,0 +1,18 @@
+data "google_compute_network_attachment" "name" {
+  name = string (Required)
+  region = string (Required)
+  connection_endpoints = ['list', ['object', {'ip_address': 'string', 'project_id_or_num': 'string', 'secondary_ip_cidr_ranges': 'string', 'status': 'string', 'subnetwork': 'string'}]] (Computed)
+  connection_preference = string (Computed)
+  creation_timestamp = string (Computed)
+  description = string (Computed)
+  fingerprint = string (Computed)
+  id = string (Computed)
+  kind = string (Computed)
+  network = string (Computed)
+  producer_accept_lists = ['list', 'string'] (Computed)
+  producer_reject_lists = ['list', 'string'] (Computed)
+  project = string (Optional)
+  self_link = string (Computed)
+  self_link_with_id = string (Computed)
+  subnetworks = ['list', 'string'] (Computed)
+}

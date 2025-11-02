@@ -1,0 +1,75 @@
+version: 2
+block:
+  attributes:
+    configuration_store_id:
+      type: string
+      description_kind: plain
+      required: true
+    content_type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    etag:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    key:
+      type: string
+      description_kind: plain
+      required: true
+    label:
+      type: string
+      description_kind: plain
+      optional: true
+    locked:
+      type: bool
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    type:
+      type: string
+      description_kind: plain
+      optional: true
+    value:
+      type: string
+      description_kind: plain
+      optional: true
+    vault_key_reference:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

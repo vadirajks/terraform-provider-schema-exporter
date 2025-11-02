@@ -1,0 +1,44 @@
+version: 0
+block:
+  attributes:
+    backend_bucket:
+      type: string
+      description: The backend bucket this signed URL key belongs.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    key_value:
+      type: string
+      description: 128-bit key value used for signing the URL. The key value must be a valid RFC 4648 Section 5 base64url encoded string.
+      description_kind: plain
+      required: true
+      sensitive: true
+    name:
+      type: string
+      description: Name of the signed URL key.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

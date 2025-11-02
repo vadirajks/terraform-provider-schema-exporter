@@ -1,0 +1,85 @@
+version: 0
+block:
+  attributes:
+    activity_log_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    azure_active_directory_log_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    metric_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    monitor_id:
+      type: string
+      description_kind: plain
+      required: true
+    subscription_log_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+  block_types:
+    log_tag_filter:
+      nesting_mode: list
+      block:
+        attributes:
+          action:
+            type: string
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          value:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    metric_tag_filter:
+      nesting_mode: list
+      block:
+        attributes:
+          action:
+            type: string
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          value:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

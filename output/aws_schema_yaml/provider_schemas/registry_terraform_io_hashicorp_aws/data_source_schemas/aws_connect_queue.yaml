@@ -1,0 +1,65 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      computed: true
+    hours_of_operation_id:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    instance_id:
+      type: string
+      description_kind: plain
+      required: true
+    max_contacts:
+      type: number
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    outbound_caller_config:
+      type:
+      - list
+      - - object
+        - outbound_caller_id_name: string
+          outbound_caller_id_number_id: string
+          outbound_flow_id: string
+      description_kind: plain
+      computed: true
+    queue_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    status:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  description_kind: plain

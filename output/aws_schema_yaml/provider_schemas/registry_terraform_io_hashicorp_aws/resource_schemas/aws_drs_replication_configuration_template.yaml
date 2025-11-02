@@ -1,0 +1,133 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    associate_default_security_group:
+      type: bool
+      description_kind: plain
+      required: true
+    auto_replicate_new_disks:
+      type: bool
+      description_kind: plain
+      optional: true
+      computed: true
+    bandwidth_throttling:
+      type: number
+      description_kind: plain
+      required: true
+    create_public_ip:
+      type: bool
+      description_kind: plain
+      required: true
+    data_plane_routing:
+      type: string
+      description_kind: plain
+      required: true
+    default_large_staging_disk_type:
+      type: string
+      description_kind: plain
+      required: true
+    ebs_encryption:
+      type: string
+      description_kind: plain
+      required: true
+    ebs_encryption_key_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    replication_server_instance_type:
+      type: string
+      description_kind: plain
+      required: true
+    replication_servers_security_groups_ids:
+      type:
+      - list
+      - string
+      description_kind: plain
+      required: true
+    staging_area_subnet_id:
+      type: string
+      description_kind: plain
+      required: true
+    staging_area_tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    use_dedicated_replication_server:
+      type: bool
+      description_kind: plain
+      required: true
+  block_types:
+    pit_policy:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          interval:
+            type: number
+            description_kind: plain
+            required: true
+          retention_duration:
+            type: number
+            description_kind: plain
+            required: true
+          rule_id:
+            type: number
+            description_kind: plain
+            optional: true
+          units:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

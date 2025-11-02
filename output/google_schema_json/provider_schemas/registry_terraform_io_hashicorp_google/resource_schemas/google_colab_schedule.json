@@ -1,0 +1,216 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "allow_queueing": {
+        "type": "bool",
+        "description": "Whether new scheduled runs can be queued when max_concurrent_runs limit is reached. If set to true, new runs will be queued instead of skipped. Default to false.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "cron": {
+        "type": "string",
+        "description": "Cron schedule (https://en.wikipedia.org/wiki/Cron) to launch scheduled runs.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "desired_state": {
+        "type": "string",
+        "description": "Desired state of the Colab Schedule. Set this field to 'ACTIVE' to start/resume the schedule, and 'PAUSED' to pause the schedule.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "Required. The display name of the Schedule.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "end_time": {
+        "type": "string",
+        "description": "Timestamp after which no new runs can be scheduled. If specified, the schedule will be completed when either end_time is reached or when scheduled_run_count >= max_run_count. Must be in the RFC 3339 (https://www.ietf.org/rfc/rfc3339.txt) format.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The location for the resource: https://cloud.google.com/colab/docs/locations",
+        "description_kind": "plain",
+        "required": true
+      },
+      "max_concurrent_run_count": {
+        "type": "string",
+        "description": "Maximum number of runs that can be started concurrently for this Schedule. This is the limit for starting the scheduled requests and not the execution of the notebook execution jobs created by the requests.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "max_run_count": {
+        "type": "string",
+        "description": "Maximum run count of the schedule. If specified, The schedule will be completed when either startedRunCount >= maxRunCount or when endTime is reached. If not specified, new runs will keep getting scheduled until this Schedule is paused or deleted. Already scheduled runs will be allowed to complete. Unset if not specified.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name of the Schedule",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "start_time": {
+        "type": "string",
+        "description": "The timestamp after which the first run can be scheduled. Defaults to the schedule creation time. Must be in the RFC 3339 (https://www.ietf.org/rfc/rfc3339.txt) format.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "state": {
+        "type": "string",
+        "description": "Output only. The state of the schedule.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "create_notebook_execution_job_request": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "notebook_execution_job": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "display_name": {
+                    "type": "string",
+                    "description": "Required. The display name of the Notebook Execution.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "execution_timeout": {
+                    "type": "string",
+                    "description": "Max running time of the execution job in seconds (default 86400s / 24 hrs). A duration in seconds with up to nine fractional digits, ending with \"s\". Example: \"3.5s\".",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "execution_user": {
+                    "type": "string",
+                    "description": "The user email to run the execution as.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "gcs_output_uri": {
+                    "type": "string",
+                    "description": "The Cloud Storage location to upload the result to. Format:'gs://bucket-name'",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "notebook_runtime_template_resource_name": {
+                    "type": "string",
+                    "description": "The NotebookRuntimeTemplate to source compute configuration from.",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "service_account": {
+                    "type": "string",
+                    "description": "The service account to run the execution as.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "dataform_repository_source": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "commit_sha": {
+                          "type": "string",
+                          "description": "The commit SHA to read repository with. If unset, the file will be read at HEAD.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "dataform_repository_resource_name": {
+                          "type": "string",
+                          "description": "The resource name of the Dataform Repository.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "The Dataform Repository containing the input notebook.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "gcs_notebook_source": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "generation": {
+                          "type": "string",
+                          "description": "The version of the Cloud Storage object to read. If unset, the current version of the object is read. See https://cloud.google.com/storage/docs/metadata#generation-number.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "uri": {
+                          "type": "string",
+                          "description": "The Cloud Storage uri pointing to the ipynb file. Format: gs://bucket/notebook_file.ipynb",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "The Cloud Storage uri for the input notebook.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "The NotebookExecutionJob to create.",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description": "Request for google_colab_notebook_execution.",
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

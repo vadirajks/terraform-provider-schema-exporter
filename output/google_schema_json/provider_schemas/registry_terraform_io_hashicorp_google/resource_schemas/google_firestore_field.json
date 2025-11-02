@@ -1,0 +1,122 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "collection": {
+        "type": "string",
+        "description": "The id of the collection group to configure.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "database": {
+        "type": "string",
+        "description": "The Firestore database id. Defaults to '\"(default)\"'.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "field": {
+        "type": "string",
+        "description": "The id of the field to configure.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of this field. Format: 'projects/{{project}}/databases/{{database}}/collectionGroups/{{collection}}/fields/{{field}}'",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "index_config": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "indexes": {
+              "nesting_mode": "set",
+              "block": {
+                "attributes": {
+                  "array_config": {
+                    "type": "string",
+                    "description": "Indicates that this field supports operations on arrayValues. Only one of 'order' and 'arrayConfig' can be specified. Possible values: [\"CONTAINS\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "order": {
+                    "type": "string",
+                    "description": "Indicates that this field supports ordering by the specified order or comparing using =, <, <=, >, >=, !=. Only one of 'order' and 'arrayConfig' can be specified. Possible values: [\"ASCENDING\", \"DESCENDING\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "query_scope": {
+                    "type": "string",
+                    "description": "The scope at which a query is run. Collection scoped queries require you specify the collection at query time. Collection group scope allows queries across all collections with the same id. Default value: \"COLLECTION\" Possible values: [\"COLLECTION\", \"COLLECTION_GROUP\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "The indexes to configure on the field. Order or array contains must be specified.",
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description": "The single field index configuration for this field. Creating an index configuration for this field will override any inherited configuration with the indexes specified. Configuring the index configuration with an empty block disables all indexes on the field.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "ttl_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "state": {
+              "type": "string",
+              "description": "The state of TTL (time-to-live) configuration for documents that have this Field set.",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "description": "The TTL configuration for this Field. If set to an empty block (i.e. 'ttl_config {}'), a TTL policy is configured based on the field. If unset, a TTL policy is not configured (or will be disabled upon updating the resource).",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,209 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "mgs_address": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "sku_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "storage_capacity_in_tb": {
+        "type": "number",
+        "description_kind": "plain",
+        "required": true
+      },
+      "subnet_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "zones": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "encryption_key": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "key_url": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "source_vault_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "hsm_setting": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "container_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "import_prefix": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "logging_container_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "identity": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "identity_ids": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "maintenance_window": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "day_of_week": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "time_of_day_in_utc": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "root_squash": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "mode": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "no_squash_nids": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "squash_gid": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "squash_uid": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

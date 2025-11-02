@@ -1,0 +1,105 @@
+version: 0
+block:
+  attributes:
+    app_service_certificate_not_renewable_reasons:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    auto_renew:
+      type: bool
+      description_kind: plain
+      computed: true
+    certificates:
+      type:
+      - list
+      - - object
+        - certificate_name: string
+          key_vault_id: string
+          key_vault_secret_name: string
+          provisioning_state: string
+      description_kind: plain
+      computed: true
+    csr:
+      type: string
+      description_kind: plain
+      computed: true
+    distinguished_name:
+      type: string
+      description_kind: plain
+      computed: true
+    domain_verification_token:
+      type: string
+      description_kind: plain
+      computed: true
+    expiration_time:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    intermediate_thumbprint:
+      type: string
+      description_kind: plain
+      computed: true
+    is_private_key_external:
+      type: bool
+      description_kind: plain
+      computed: true
+    key_size:
+      type: number
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    product_type:
+      type: string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    root_thumbprint:
+      type: string
+      description_kind: plain
+      computed: true
+    signed_certificate_thumbprint:
+      type: string
+      description_kind: plain
+      computed: true
+    status:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    validity_in_years:
+      type: number
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

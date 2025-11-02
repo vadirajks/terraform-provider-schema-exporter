@@ -1,0 +1,74 @@
+version: 0
+block:
+  attributes:
+    api_root_url:
+      type: string
+      description_kind: plain
+      required: true
+    collection_id:
+      type: string
+      description_kind: plain
+      required: true
+    display_name:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    log_analytics_workspace_id:
+      type: string
+      description_kind: plain
+      required: true
+    lookback_date:
+      type: string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    password:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+    polling_frequency:
+      type: string
+      description_kind: plain
+      optional: true
+    tenant_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    user_name:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

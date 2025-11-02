@@ -1,0 +1,65 @@
+version: 0
+block:
+  attributes:
+    cidr_endpoints_custom_subdomain:
+      type: string
+      description_kind: plain
+      optional: true
+    creation_time:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    fips_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    last_updated_time:
+      type: string
+      description_kind: plain
+      computed: true
+    name_servers:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    verified_access_trust_providers:
+      type:
+      - list
+      - - object
+        - description: string
+          device_trust_provider_type: string
+          trust_provider_type: string
+          user_trust_provider_type: string
+          verified_access_trust_provider_id: string
+      description_kind: plain
+      computed: true
+  description_kind: plain

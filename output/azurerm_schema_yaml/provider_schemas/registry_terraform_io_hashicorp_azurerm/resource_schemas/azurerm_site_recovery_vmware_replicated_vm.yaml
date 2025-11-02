@@ -1,0 +1,157 @@
+version: 0
+block:
+  attributes:
+    appliance_name:
+      type: string
+      description_kind: plain
+      required: true
+    default_log_storage_account_id:
+      type: string
+      description_kind: plain
+      optional: true
+    default_recovery_disk_type:
+      type: string
+      description_kind: plain
+      optional: true
+    default_target_disk_encryption_set_id:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    license_type:
+      type: string
+      description_kind: plain
+      optional: true
+    multi_vm_group_name:
+      type: string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    physical_server_credential_name:
+      type: string
+      description_kind: plain
+      required: true
+    recovery_replication_policy_id:
+      type: string
+      description_kind: plain
+      required: true
+    recovery_vault_id:
+      type: string
+      description_kind: plain
+      required: true
+    source_vm_name:
+      type: string
+      description_kind: plain
+      required: true
+    target_availability_set_id:
+      type: string
+      description_kind: plain
+      optional: true
+    target_boot_diagnostics_storage_account_id:
+      type: string
+      description_kind: plain
+      optional: true
+    target_network_id:
+      type: string
+      description_kind: plain
+      optional: true
+    target_proximity_placement_group_id:
+      type: string
+      description_kind: plain
+      optional: true
+    target_resource_group_id:
+      type: string
+      description_kind: plain
+      required: true
+    target_vm_name:
+      type: string
+      description_kind: plain
+      required: true
+    target_vm_size:
+      type: string
+      description_kind: plain
+      optional: true
+    target_zone:
+      type: string
+      description_kind: plain
+      optional: true
+    test_network_id:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    managed_disk:
+      nesting_mode: list
+      block:
+        attributes:
+          disk_id:
+            type: string
+            description_kind: plain
+            required: true
+          log_storage_account_id:
+            type: string
+            description_kind: plain
+            optional: true
+          target_disk_encryption_set_id:
+            type: string
+            description_kind: plain
+            optional: true
+          target_disk_type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    network_interface:
+      nesting_mode: list
+      block:
+        attributes:
+          is_primary:
+            type: bool
+            description_kind: plain
+            required: true
+          source_mac_address:
+            type: string
+            description_kind: plain
+            required: true
+          target_static_ip:
+            type: string
+            description_kind: plain
+            optional: true
+          target_subnet_name:
+            type: string
+            description_kind: plain
+            optional: true
+          test_subnet_name:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

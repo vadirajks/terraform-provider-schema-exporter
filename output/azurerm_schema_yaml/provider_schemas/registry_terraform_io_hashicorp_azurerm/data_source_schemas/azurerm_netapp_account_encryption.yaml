@@ -1,0 +1,44 @@
+version: 0
+block:
+  attributes:
+    cross_tenant_key_vault_resource_id:
+      type: string
+      description_kind: plain
+      computed: true
+    encryption_key:
+      type: string
+      description_kind: plain
+      computed: true
+    federated_client_id:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    netapp_account_id:
+      type: string
+      description: The ID of the NetApp Account where encryption will be set.
+      description_kind: plain
+      required: true
+    system_assigned_identity_principal_id:
+      type: string
+      description_kind: plain
+      computed: true
+    user_assigned_identity_id:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

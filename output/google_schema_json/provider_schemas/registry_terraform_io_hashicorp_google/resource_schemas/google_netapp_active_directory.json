@@ -1,0 +1,215 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "administrators": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "Domain user accounts to be added to the local Administrators group of the SMB service. Comma-separated list of domain users or groups. The Domain Admin group is automatically added when the service joins your domain as a hidden group.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "aes_encryption": {
+        "type": "bool",
+        "description": "Enables AES-128 and AES-256 encryption for Kerberos-based communication with Active Directory.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "backup_operators": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "Domain user/group accounts to be added to the Backup Operators group of the SMB service. The Backup Operators group allows members to backup and restore files regardless of whether they have read or write access to the files. Comma-separated list.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "Create time of the active directory. A timestamp in RFC3339 UTC \"Zulu\" format. Examples: \"2023-06-22T09:13:01.617Z\".",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "An optional description of this resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "dns": {
+        "type": "string",
+        "description": "Comma separated list of DNS server IP addresses for the Active Directory domain.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "domain": {
+        "type": "string",
+        "description": "Fully qualified domain name for the Active Directory domain.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "encrypt_dc_connections": {
+        "type": "bool",
+        "description": "If enabled, traffic between the SMB server to Domain Controller (DC) will be encrypted.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "kdc_hostname": {
+        "type": "string",
+        "description": "Hostname of the Active Directory server used as Kerberos Key Distribution Center. Only required for volumes using kerberized NFSv4.1",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "kdc_ip": {
+        "type": "string",
+        "description": "IP address of the Active Directory server used as Kerberos Key Distribution Center.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Labels as key value pairs. Example: '{ \"owner\": \"Bob\", \"department\": \"finance\", \"purpose\": \"testing\" }'. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "ldap_signing": {
+        "type": "bool",
+        "description": "Specifies whether or not the LDAP traffic needs to be signed.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "Name of the region for the policy to apply to.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name of the Active Directory pool. Needs to be unique per location.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "net_bios_prefix": {
+        "type": "string",
+        "description": "NetBIOS name prefix of the server to be created. A five-character random ID is generated automatically, for example, -6f9a, and appended to the prefix. The full UNC share path will have the following format: '\\\\NetBIOS_PREFIX-ABCD.DOMAIN_NAME\\SHARE_NAME'",
+        "description_kind": "plain",
+        "required": true
+      },
+      "nfs_users_with_ldap": {
+        "type": "bool",
+        "description": "Local UNIX users on clients without valid user information in Active Directory are blocked from access to LDAP enabled volumes. This option can be used to temporarily switch such volumes to AUTH_SYS authentication (user ID + 1-16 groups).",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "organizational_unit": {
+        "type": "string",
+        "description": "Name of the Organizational Unit where you intend to create the computer account for NetApp Volumes. Defaults to 'CN=Computers' if left empty.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "password": {
+        "type": "string",
+        "description": "Password for specified username. Note - Manual changes done to the password will not be detected. Terraform will not re-apply the password, unless you use a new password in Terraform.",
+        "description_kind": "plain",
+        "required": true,
+        "sensitive": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "security_operators": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "Domain accounts that require elevated privileges such as 'SeSecurityPrivilege' to manage security logs. Comma-separated list.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "site": {
+        "type": "string",
+        "description": "Specifies an Active Directory site to manage domain controller selection. Use when Active Directory domain controllers in multiple regions are configured. Defaults to 'Default-First-Site-Name' if left empty.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "state": {
+        "type": "string",
+        "description": "The state of the Active Directory policy (not the Active Directory itself).",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "state_details": {
+        "type": "string",
+        "description": "The state details of the Active Directory.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "username": {
+        "type": "string",
+        "description": "Username for the Active Directory account with permissions to create the compute account within the specified organizational unit.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

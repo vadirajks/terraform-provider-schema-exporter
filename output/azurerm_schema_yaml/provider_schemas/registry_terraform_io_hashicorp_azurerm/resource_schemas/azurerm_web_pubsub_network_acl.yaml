@@ -1,0 +1,79 @@
+version: 0
+block:
+  attributes:
+    default_action:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    web_pubsub_id:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    private_endpoint:
+      nesting_mode: set
+      block:
+        attributes:
+          allowed_request_types:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          denied_request_types:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          id:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    public_network:
+      nesting_mode: list
+      block:
+        attributes:
+          allowed_request_types:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          denied_request_types:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

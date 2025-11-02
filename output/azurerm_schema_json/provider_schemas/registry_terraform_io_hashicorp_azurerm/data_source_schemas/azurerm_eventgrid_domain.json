@@ -1,0 +1,145 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "endpoint": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "identity": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "identity_ids": [
+                "list",
+                "string"
+              ],
+              "principal_id": "string",
+              "tenant_id": "string",
+              "type": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "inbound_ip_rule": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "action": "string",
+              "ip_mask": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "input_mapping_default_values": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "data_version": "string",
+              "event_type": "string",
+              "subject": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "input_mapping_fields": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "data_version": "string",
+              "event_time": "string",
+              "event_type": "string",
+              "id": "string",
+              "subject": "string",
+              "topic": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "input_schema": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "primary_access_key": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true,
+        "sensitive": true
+      },
+      "public_network_access_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "secondary_access_key": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true,
+        "sensitive": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

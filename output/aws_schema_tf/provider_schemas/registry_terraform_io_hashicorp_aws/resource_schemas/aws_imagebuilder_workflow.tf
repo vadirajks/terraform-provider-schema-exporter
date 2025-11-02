@@ -1,0 +1,17 @@
+resource "aws_imagebuilder_workflow" "name" {
+  name = string (Required)
+  type = string (Required)
+  version = string (Required)
+  arn = string (Computed)
+  change_description = string (Optional)
+  data = string (Optional, Computed)
+  date_created = string (Computed)
+  description = string (Optional)
+  id = string (Optional, Computed)
+  kms_key_id = string (Optional)
+  owner = string (Computed)
+  region = string (Optional, Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+  uri = string (Optional)
+}

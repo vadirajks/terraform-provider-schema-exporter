@@ -1,0 +1,247 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "marketplace_offer_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "plan_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "rulestack_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "destination_nat": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "protocol": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "backend_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "port": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "public_ip_address": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "frontend_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "port": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "public_ip_address_id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "dns_settings": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "azure_dns_servers": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "computed": true
+            },
+            "dns_servers": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "use_azure_dns": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "network_profile": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "egress_nat_ip_address_ids": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "egress_nat_ip_addresses": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "computed": true
+            },
+            "public_ip_address_ids": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "public_ip_addresses": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "computed": true
+            },
+            "trusted_address_ranges": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "vnet_configuration": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "ip_of_trust_for_user_defined_routes": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "computed": true
+                  },
+                  "trusted_subnet_id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "untrusted_subnet_id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "virtual_network_id": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

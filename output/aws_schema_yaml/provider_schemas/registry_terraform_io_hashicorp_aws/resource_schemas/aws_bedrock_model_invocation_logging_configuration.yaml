@@ -1,0 +1,82 @@
+version: 1
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      deprecated: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    logging_config:
+      nesting_mode: list
+      block:
+        attributes:
+          embedding_data_delivery_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+            computed: true
+          image_data_delivery_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+            computed: true
+          text_data_delivery_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+            computed: true
+          video_data_delivery_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          cloudwatch_config:
+            nesting_mode: list
+            block:
+              attributes:
+                log_group_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                role_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                large_data_delivery_s3_config:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      bucket_name:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      key_prefix:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+              description_kind: plain
+          s3_config:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                key_prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+        description_kind: plain
+  description_kind: plain

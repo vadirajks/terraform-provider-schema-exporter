@@ -1,0 +1,16 @@
+resource "aws_account_primary_contact" "name" {
+  address_line_1 = string (Required)
+  city = string (Required)
+  country_code = string (Required)
+  full_name = string (Required)
+  phone_number = string (Required)
+  postal_code = string (Required)
+  account_id = string (Optional)
+  address_line_2 = string (Optional)
+  address_line_3 = string (Optional)
+  company_name = string (Optional)
+  district_or_county = string (Optional)
+  id = string (Optional, Computed)
+  state_or_region = string (Optional)
+  website_url = string (Optional)
+}

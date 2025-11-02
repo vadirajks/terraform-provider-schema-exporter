@@ -1,0 +1,41 @@
+version: 0
+block:
+  attributes:
+    groups:
+      type:
+      - list
+      - - object
+        - additional_group_keys:
+          - list
+          - - object
+            - id: string
+              namespace: string
+          create_time: string
+          description: string
+          display_name: string
+          group_key:
+          - list
+          - - object
+            - id: string
+              namespace: string
+          initial_group_config: string
+          labels:
+          - map
+          - string
+          name: string
+          parent: string
+          update_time: string
+      description: List of Cloud Identity groups.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    parent:
+      type: string
+      description: The resource name of the entity under which this Group resides in the Cloud Identity resource hierarchy. Must be of the form identitysources/{identity_source_id} for external-identity-mapped groups or customers/{customer_id} for Google Groups.
+      description_kind: plain
+      required: true
+  description_kind: plain

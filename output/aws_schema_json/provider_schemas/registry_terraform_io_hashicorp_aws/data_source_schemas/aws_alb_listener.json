@@ -1,0 +1,208 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "alpn_policy": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "certificate_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "default_action": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "authenticate_cognito": [
+                "list",
+                [
+                  "object",
+                  {
+                    "authentication_request_extra_params": [
+                      "map",
+                      "string"
+                    ],
+                    "on_unauthenticated_request": "string",
+                    "scope": "string",
+                    "session_cookie_name": "string",
+                    "session_timeout": "number",
+                    "user_pool_arn": "string",
+                    "user_pool_client_id": "string",
+                    "user_pool_domain": "string"
+                  }
+                ]
+              ],
+              "authenticate_oidc": [
+                "list",
+                [
+                  "object",
+                  {
+                    "authentication_request_extra_params": [
+                      "map",
+                      "string"
+                    ],
+                    "authorization_endpoint": "string",
+                    "client_id": "string",
+                    "client_secret": "string",
+                    "issuer": "string",
+                    "on_unauthenticated_request": "string",
+                    "scope": "string",
+                    "session_cookie_name": "string",
+                    "session_timeout": "number",
+                    "token_endpoint": "string",
+                    "user_info_endpoint": "string"
+                  }
+                ]
+              ],
+              "fixed_response": [
+                "list",
+                [
+                  "object",
+                  {
+                    "content_type": "string",
+                    "message_body": "string",
+                    "status_code": "string"
+                  }
+                ]
+              ],
+              "forward": [
+                "list",
+                [
+                  "object",
+                  {
+                    "stickiness": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "duration": "number",
+                          "enabled": "bool"
+                        }
+                      ]
+                    ],
+                    "target_group": [
+                      "set",
+                      [
+                        "object",
+                        {
+                          "arn": "string",
+                          "weight": "number"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "order": "number",
+              "redirect": [
+                "list",
+                [
+                  "object",
+                  {
+                    "host": "string",
+                    "path": "string",
+                    "port": "string",
+                    "protocol": "string",
+                    "query": "string",
+                    "status_code": "string"
+                  }
+                ]
+              ],
+              "target_group_arn": "string",
+              "type": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "load_balancer_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "mutual_authentication": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "advertise_trust_store_ca_names": "string",
+              "ignore_client_certificate_expiry": "bool",
+              "mode": "string",
+              "trust_store_arn": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "port": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "protocol": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ssl_policy": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

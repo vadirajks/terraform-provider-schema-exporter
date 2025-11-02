@@ -1,0 +1,771 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "authorization_mode": {
+        "type": "string",
+        "description": "Optional. Immutable. Authorization mode of the instance. Possible values: AUTH_DISABLED IAM_AUTH",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "available_maintenance_versions": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "This field is used to determine the available maintenance versions for the self service update.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "backup_collection": {
+        "type": "string",
+        "description": "The backup collection full resource name. Example: projects/{project}/locations/{location}/backupCollections/{collection}",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "Output only. Creation timestamp of the instance.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "deletion_protection_enabled": {
+        "type": "bool",
+        "description": "Optional. If set to true deletion of the instance will fail.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "discovery_endpoints": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "address": "string",
+              "network": "string",
+              "port": "number"
+            }
+          ]
+        ],
+        "description": "Deprecated. Output only. Endpoints clients can connect to the instance through.",
+        "description_kind": "plain",
+        "deprecated": true,
+        "computed": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "effective_maintenance_version": {
+        "type": "string",
+        "description": "This field represents the actual maintenance version of the cluster.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "endpoints": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "connections": [
+                "list",
+                [
+                  "object",
+                  {
+                    "psc_auto_connection": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "connection_type": "string",
+                          "forwarding_rule": "string",
+                          "ip_address": "string",
+                          "network": "string",
+                          "port": "number",
+                          "project_id": "string",
+                          "psc_connection_id": "string",
+                          "service_attachment": "string"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "Endpoints for the instance.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "engine_configs": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Optional. User-provided engine configurations for the instance.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "engine_version": {
+        "type": "string",
+        "description": "Optional. Engine version of the instance.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "instance_id": {
+        "type": "string",
+        "description": "Required. The ID to use for the instance, which will become the final component of the instance's resource name. This value is subject to the following restrictions: * Must be 4-63 characters in length * Must begin with a letter or digit * Must contain only lowercase letters, digits, and hyphens * Must not end with a hyphen * Must be unique within a location",
+        "description_kind": "plain",
+        "required": true
+      },
+      "kms_key": {
+        "type": "string",
+        "description": "The KMS key used to encrypt the at-rest data of the cluster",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Optional. Labels to represent user-provided metadata. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "location": {
+        "type": "string",
+        "description": "Resource ID segment making up resource 'name'. It identifies the resource within its parent collection as described in https://google.aip.dev/122. See documentation for resource type 'memorystore.googleapis.com/CertificateAuthority'.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "maintenance_schedule": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "end_time": "string",
+              "schedule_deadline_time": "string",
+              "start_time": "string"
+            }
+          ]
+        ],
+        "description": "Upcoming maintenance schedule.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "maintenance_version": {
+        "type": "string",
+        "description": "This field can be used to trigger self service update to indicate the desired maintenance version. The input to this field can be determined by the available_maintenance_versions field. *Note*: This field can only be specified when updating an existing cluster to a newer version. Downgrades are currently not supported!",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "managed_server_ca": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "ca_certs": [
+                "list",
+                [
+                  "object",
+                  {
+                    "certificates": [
+                      "list",
+                      "string"
+                    ]
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "Instance's Certificate Authority. This field will only be populated if instance's transit_encryption_mode is SERVER_AUTHENTICATION",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "mode": {
+        "type": "string",
+        "description": "Optional. cluster or cluster-disabled. Possible values: CLUSTER CLUSTER_DISABLED Possible values: [\"CLUSTER\", \"CLUSTER_DISABLED\"]",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Identifier. Unique name of the instance. Format: projects/{project}/locations/{location}/instances/{instance}",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "node_config": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "size_gb": "number"
+            }
+          ]
+        ],
+        "description": "Represents configuration for nodes of the instance.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "node_type": {
+        "type": "string",
+        "description": "Optional. Machine type for individual nodes of the instance. Possible values: SHARED_CORE_NANO HIGHMEM_MEDIUM HIGHMEM_XLARGE STANDARD_SMALL",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "psc_attachment_details": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "connection_type": "string",
+              "service_attachment": "string"
+            }
+          ]
+        ],
+        "description": "Configuration of a service attachment of the cluster, for creating PSC connections.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "psc_auto_connections": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "connection_type": "string",
+              "forwarding_rule": "string",
+              "ip_address": "string",
+              "network": "string",
+              "port": "number",
+              "project_id": "string",
+              "psc_connection_id": "string",
+              "psc_connection_status": "string",
+              "service_attachment": "string"
+            }
+          ]
+        ],
+        "description": "Output only. User inputs and resource details of the auto-created PSC connections.",
+        "description_kind": "plain",
+        "deprecated": true,
+        "computed": true
+      },
+      "replica_count": {
+        "type": "number",
+        "description": "Optional. Number of replica nodes per shard. If omitted the default is 0 replicas.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "shard_count": {
+        "type": "number",
+        "description": "Required. Number of shards for the instance.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "state": {
+        "type": "string",
+        "description": "Output only. Current state of the instance. Possible values: CREATING ACTIVE UPDATING DELETING",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "state_info": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "update_info": [
+                "list",
+                [
+                  "object",
+                  {
+                    "target_engine_version": "string",
+                    "target_node_type": "string",
+                    "target_replica_count": "number",
+                    "target_shard_count": "number"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "Additional information about the state of the instance.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "transit_encryption_mode": {
+        "type": "string",
+        "description": "Optional. Immutable. In-transit encryption mode of the instance. Possible values: TRANSIT_ENCRYPTION_DISABLED SERVER_AUTHENTICATION",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "uid": {
+        "type": "string",
+        "description": "Output only. System assigned, unique identifier for the instance.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Output only. Latest update timestamp of the instance.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "automated_backup_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "retention": {
+              "type": "string",
+              "description": "How long to keep automated backups before the backups are deleted. The value should be between 1 day and 365 days. If not specified, the default value is 35 days. A duration in seconds with up to nine fractional digits, ending with 's'. Example: \"3.5s\". The default_value is \"3024000s\"",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "fixed_frequency_schedule": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "start_time": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "hours": {
+                          "type": "number",
+                          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "The start time of every automated backup in UTC. It must be set to the start of an hour. This field is required.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  }
+                },
+                "description": "Trigger automated backups at a fixed frequency.",
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description": "The automated backup config for a instance.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "cross_instance_replication_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "instance_role": {
+              "type": "string",
+              "description": "The instance role supports the following values: 1. 'INSTANCE_ROLE_UNSPECIFIED': This is an independent instance that has never participated in cross instance replication. It allows both reads and writes. 2. 'NONE': This is an independent instance that previously participated in cross instance replication(either as a 'PRIMARY' or 'SECONDARY' cluster). It allows both reads and writes. 3. 'PRIMARY': This instance serves as the replication source for secondary instance that are replicating from it. Any data written to it is automatically replicated to its secondary clusters. It allows both reads and writes. 4. 'SECONDARY': This instance replicates data from the primary instance. It allows only reads. Possible values: [\"INSTANCE_ROLE_UNSPECIFIED\", \"NONE\", \"PRIMARY\", \"SECONDARY\"]",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "membership": {
+              "type": [
+                "list",
+                [
+                  "object",
+                  {
+                    "primary_instance": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "instance": "string",
+                          "uid": "string"
+                        }
+                      ]
+                    ],
+                    "secondary_instance": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "instance": "string",
+                          "uid": "string"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "description": "An output only view of all the member instance participating in cross instance replication. This field is populated for all the member clusters irrespective of their cluster role.",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "update_time": {
+              "type": "string",
+              "description": "The last time cross instance replication config was updated.",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "block_types": {
+            "primary_instance": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "instance": {
+                    "type": "string",
+                    "description": "The full resource path of the primary instance in the format: projects/{project}/locations/{region}/instances/{instance-id}",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "uid": {
+                    "type": "string",
+                    "description": "The unique id of the primary instance.",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "description": "This field is only set for a secondary instance. Details of the primary instance that is used as the replication source for this secondary instance. This is allowed to be set only for clusters whose cluster role is of type 'SECONDARY'.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "secondary_instances": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "instance": {
+                    "type": "string",
+                    "description": "The full resource path of the Nth instance in the format: projects/{project}/locations/{region}/instance/{instance-id}",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "uid": {
+                    "type": "string",
+                    "description": "The unique id of the Nth instance.",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "description": "List of secondary instances that are replicating from this primary cluster. This is allowed to be set only for instances whose cluster role is of type 'PRIMARY'.",
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description": "Cross instance replication config",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "desired_auto_created_endpoints": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "network": {
+              "type": "string",
+              "description": "Required. The consumer network where the IP address resides, in the form of projects/{project_id}/global/networks/{network_id}.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "project_id": {
+              "type": "string",
+              "description": "Required. The consumer project_id where the forwarding rule is created from.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Immutable. User inputs for the auto-created endpoints connections.",
+          "description_kind": "plain"
+        }
+      },
+      "desired_psc_auto_connections": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "network": {
+              "type": "string",
+              "description": "Required. The consumer network where the IP address resides, in the form of projects/{project_id}/global/networks/{network_id}.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "project_id": {
+              "type": "string",
+              "description": "Required. The consumer project_id where the forwarding rule is created from.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "'desired_psc_auto_connections' is deprecated  Use 'desired_auto_created_endpoints' instead 'terraform import' will only work with desired_auto_created_endpoints'.",
+          "description_kind": "plain",
+          "deprecated": true
+        }
+      },
+      "gcs_source": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "uris": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description": "URIs of the GCS objects to import. Example: gs://bucket1/object1, gs://bucket2/folder2/object2",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "GCS source for the instance.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "maintenance_policy": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "create_time": {
+              "type": "string",
+              "description": "The time when the policy was created. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits.",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "update_time": {
+              "type": "string",
+              "description": "The time when the policy was last updated. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits.",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "block_types": {
+            "weekly_maintenance_window": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "day": {
+                    "type": "string",
+                    "description": "The day of week that maintenance updates occur. - DAY_OF_WEEK_UNSPECIFIED: The day of the week is unspecified. - MONDAY: Monday - TUESDAY: Tuesday - WEDNESDAY: Wednesday - THURSDAY: Thursday - FRIDAY: Friday - SATURDAY: Saturday - SUNDAY: Sunday Possible values: [\"DAY_OF_WEEK_UNSPECIFIED\", \"MONDAY\", \"TUESDAY\", \"WEDNESDAY\", \"THURSDAY\", \"FRIDAY\", \"SATURDAY\", \"SUNDAY\"]",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "duration": {
+                    "type": "string",
+                    "description": "Duration of the maintenance window. The current window is fixed at 1 hour. A duration in seconds with up to nine fractional digits, terminated by 's'. Example: \"3.5s\".",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "block_types": {
+                  "start_time": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "hours": {
+                          "type": "number",
+                          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "minutes": {
+                          "type": "number",
+                          "description": "Minutes of hour of day. Must be from 0 to 59.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "nanos": {
+                          "type": "number",
+                          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "seconds": {
+                          "type": "number",
+                          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "Start time of the window in UTC time.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1,
+                    "max_items": 1
+                  }
+                },
+                "description": "Optional. Maintenance window that is applied to resources covered by this policy. Minimum 1. For the current version, the maximum number of weekly_window is expected to be one.",
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description": "Maintenance policy for a cluster",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "managed_backup_source": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "backup": {
+              "type": "string",
+              "description": "Example: 'projects/{project}/locations/{location}/backupCollections/{collection}/backups/{backup}'.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Managed backup source for the instance.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "persistence_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "mode": {
+              "type": "string",
+              "description": "Optional. Current persistence mode. Possible values: DISABLED RDB AOF Possible values: [\"DISABLED\", \"RDB\", \"AOF\"]",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "block_types": {
+            "aof_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "append_fsync": {
+                    "type": "string",
+                    "description": "Optional. The fsync mode. Possible values: NEVER EVERY_SEC ALWAYS",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  }
+                },
+                "description": "Configuration for AOF based persistence.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "rdb_config": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "rdb_snapshot_period": {
+                    "type": "string",
+                    "description": "Optional. Period between RDB snapshots. Possible values: ONE_HOUR SIX_HOURS TWELVE_HOURS TWENTY_FOUR_HOURS",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  },
+                  "rdb_snapshot_start_time": {
+                    "type": "string",
+                    "description": "Optional. Time that the first snapshot was/will be attempted, and to which future snapshots will be aligned. If not provided, the current time will be used.",
+                    "description_kind": "plain",
+                    "optional": true,
+                    "computed": true
+                  }
+                },
+                "description": "Configuration for RDB based persistence.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Represents persistence configuration for a instance.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "zone_distribution_config": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "mode": {
+              "type": "string",
+              "description": "Optional. Current zone distribution mode. Defaults to MULTI_ZONE. Possible values: MULTI_ZONE SINGLE_ZONE Possible values: [\"MULTI_ZONE\", \"SINGLE_ZONE\"]",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "zone": {
+              "type": "string",
+              "description": "Optional. Defines zone where all resources will be allocated with SINGLE_ZONE mode. Ignored for MULTI_ZONE mode.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "Zone distribution configuration for allocation of instance resources.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

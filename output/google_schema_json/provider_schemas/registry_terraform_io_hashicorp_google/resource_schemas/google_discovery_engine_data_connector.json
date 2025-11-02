@@ -1,0 +1,264 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "action_state": {
+        "type": "string",
+        "description": "State of the action connector. This reflects whether the action connector is initializing, active or has encountered errors. The possible value can be: 'STATE_UNSPECIFIED', 'CREATING', 'ACTIVE', 'FAILED', 'RUNNING', 'WARNING', 'INITIALIZATION_FAILED', 'UPDATING'.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "auto_run_disabled": {
+        "type": "bool",
+        "description": "Indicates whether full syncs are paused for this connector",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "blocking_reasons": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "User actions that must be completed before the connector can start syncing data. The possible values can be: 'ALLOWLIST_STATIC_IP', 'ALLOWLIST_IN_SERVICE_ATTACHMENT'.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "collection_display_name": {
+        "type": "string",
+        "description": "The display name of the Collection. Should be human readable, used to display collections in the Console Dashboard. UTF-8 encoded string with limit of 1024 characters.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "collection_id": {
+        "type": "string",
+        "description": "The ID to use for the Collection, which will become the final component of the Collection's resource name. A new Collection is created as part of the DataConnector setup. DataConnector is a singleton resource under Collection, managing all DataStores of the Collection. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "connector_modes": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "The modes enabled for this connector. The possible value can be: 'DATA_INGESTION', 'ACTIONS', 'FEDERATED' 'EUA', 'FEDERATED_AND_EUA'.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "connector_type": {
+        "type": "string",
+        "description": "The type of connector. Each source can only map to one type. For example, salesforce, confluence and jira have THIRD_PARTY connector type. It is not mutable once set by system. The possible value can be: 'CONNECTOR_TYPE_UNSPECIFIED', 'THIRD_PARTY', 'GCP_FHIR', 'BIG_QUERY', 'GCS', 'GOOGLE_MAIL', 'GOOGLE_CALENDAR', 'GOOGLE_DRIVE', 'NATIVE_CLOUD_IDENTITY', 'THIRD_PARTY_FEDERATED', 'THIRD_PARTY_EUA', 'GCNV'.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "Timestamp when the DataConnector was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "data_source": {
+        "type": "string",
+        "description": "The name of the data source. Supported values: 'salesforce', 'jira', 'confluence', 'bigquery'.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "errors": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "code": "number",
+              "message": "string"
+            }
+          ]
+        ],
+        "description": "The errors from initialization or from the latest connector run.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "incremental_refresh_interval": {
+        "type": "string",
+        "description": "The refresh interval specifically for incremental data syncs. If unset, incremental syncs will use the default from env, set to 3hrs. The minimum is 30 minutes and maximum is 7 days. Applicable to only 3P connectors. When the refresh interval is set to the same value as the incremental refresh interval, incremental sync will be disabled.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "incremental_sync_disabled": {
+        "type": "bool",
+        "description": "Indicates whether incremental syncs are paused for this connector.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "json_params": {
+        "type": "string",
+        "description": "Params needed to access the source in the format of json string.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "kms_key_name": {
+        "type": "string",
+        "description": "The KMS key to be used to protect the DataStores managed by this connector. Must be set for requests that need to comply with CMEK Org Policy protections. If this field is set and processed successfully, the DataStores created by this connector will be protected by the KMS key.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "last_sync_time": {
+        "type": "string",
+        "description": "For periodic connectors only, the last time a data sync was completed.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "latest_pause_time": {
+        "type": "string",
+        "description": "The most recent timestamp when this [DataConnector][] was paused, affecting all functionalities such as data synchronization. Pausing a connector has the following effects: - All functionalities, including data synchronization, are halted. - Any ongoing data synchronization job will be canceled. - No future data synchronization runs will be scheduled nor can be triggered.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "The geographic location where the data store should reside. The value can only be one of \"global\", \"us\" and \"eu\".",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The full resource name of the Data Connector. Format: 'projects/*/locations/*/collections/*/dataConnector'.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "params": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Params needed to access the source in the format of String-to-String (Key, Value) pairs.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "private_connectivity_project_id": {
+        "type": "string",
+        "description": "The tenant project ID associated with private connectivity connectors. This project must be allowlisted by in order for the connector to function.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "realtime_state": {
+        "type": "string",
+        "description": "The real-time sync state. The possible values can be: 'STATE_UNSPECIFIED', 'CREATING', 'ACTIVE', 'FAILED', 'RUNNING', 'WARNING', 'INITIALIZATION_FAILED', 'UPDATING'.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "refresh_interval": {
+        "type": "string",
+        "description": "The refresh interval for data sync. If duration is set to 0, the data will be synced in real time. The streaming feature is not supported yet. The minimum is 30 minutes and maximum is 7 days. When the refresh interval is set to the same value as the incremental refresh interval, incremental sync will be disabled.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "state": {
+        "type": "string",
+        "description": "The state of connector. The possible value can be: 'STATE_UNSPECIFIED', 'CREATING', 'ACTIVE', 'FAILED', 'RUNNING', 'WARNING', 'INITIALIZATION_FAILED', 'UPDATING'.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "static_ip_addresses": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description": "The static IP addresses used by this connector.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "static_ip_enabled": {
+        "type": "bool",
+        "description": "Whether customer has enabled static IP addresses for this connector.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "sync_mode": {
+        "type": "string",
+        "description": "The data synchronization mode supported by the data connector. The possible value can be: 'PERIODIC', 'STREAMING'.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Timestamp when the DataConnector was updated.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "entities": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "data_store": {
+              "type": "string",
+              "description": "The full resource name of the associated data store for the source entity. Format: 'projects/*/locations/*/collections/*/dataStores/*'. When the connector is initialized by the DataConnectorService.SetUpDataConnector method, a DataStore is automatically created for each source entity.",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "entity_name": {
+              "type": "string",
+              "description": "The name of the entity. Supported values by data source: * Salesforce: 'Lead', 'Opportunity', 'Contact', 'Account', 'Case', 'Contract', 'Campaign' * Jira: project, issue, attachment, comment, worklog * Confluence: 'Content', 'Space'",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "key_property_mappings": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description": "Attributes for indexing. Key: Field name. Value: The key property to map a field to, such as 'title', and 'description'. Supported key properties: * 'title': The title for data record. This would be displayed on search results. * 'description': The description for data record. This would be displayed on search results.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "params": {
+              "type": "string",
+              "description": "The parameters for the entity to facilitate data ingestion.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description": "List of entities from the connected data source to ingest.",
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,141 @@
+version: 0
+block:
+  attributes:
+    account_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    auto_adjust_data:
+      type:
+      - list
+      - - object
+        - auto_adjust_type: string
+          historical_options:
+          - list
+          - - object
+            - budget_adjustment_period: number
+              lookback_available_periods: number
+          last_auto_adjust_time: string
+      description_kind: plain
+      computed: true
+    billing_view_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    budget_exceeded:
+      type: bool
+      description_kind: plain
+      computed: true
+    budget_limit:
+      type:
+      - list
+      - - object
+        - amount: string
+          unit: string
+      description_kind: plain
+      computed: true
+    budget_type:
+      type: string
+      description_kind: plain
+      computed: true
+    calculated_spend:
+      type:
+      - list
+      - - object
+        - actual_spend:
+          - list
+          - - object
+            - amount: string
+              unit: string
+      description_kind: plain
+      computed: true
+    cost_filter:
+      type:
+      - set
+      - - object
+        - name: string
+          values:
+          - list
+          - string
+      description_kind: plain
+      computed: true
+    cost_types:
+      type:
+      - list
+      - - object
+        - include_credit: bool
+          include_discount: bool
+          include_other_subscription: bool
+          include_recurring: bool
+          include_refund: bool
+          include_subscription: bool
+          include_support: bool
+          include_tax: bool
+          include_upfront: bool
+          use_amortized: bool
+          use_blended: bool
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    name_prefix:
+      type: string
+      description_kind: plain
+      optional: true
+    notification:
+      type:
+      - set
+      - - object
+        - comparison_operator: string
+          notification_type: string
+          subscriber_email_addresses:
+          - set
+          - string
+          subscriber_sns_topic_arns:
+          - set
+          - string
+          threshold: number
+          threshold_type: string
+      description_kind: plain
+      computed: true
+    planned_limit:
+      type:
+      - set
+      - - object
+        - amount: string
+          start_time: string
+          unit: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    time_period_end:
+      type: string
+      description_kind: plain
+      computed: true
+    time_period_start:
+      type: string
+      description_kind: plain
+      computed: true
+    time_unit:
+      type: string
+      description_kind: plain
+      computed: true
+  description_kind: plain

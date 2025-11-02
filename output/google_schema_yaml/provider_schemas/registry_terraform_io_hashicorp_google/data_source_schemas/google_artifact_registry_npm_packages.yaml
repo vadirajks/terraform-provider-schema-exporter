@@ -1,0 +1,35 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    npm_packages:
+      type:
+      - list
+      - - object
+        - create_time: string
+          name: string
+          package_name: string
+          tags:
+          - list
+          - string
+          update_time: string
+          version: string
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+    repository_id:
+      type: string
+      description_kind: plain
+      required: true
+  description_kind: plain

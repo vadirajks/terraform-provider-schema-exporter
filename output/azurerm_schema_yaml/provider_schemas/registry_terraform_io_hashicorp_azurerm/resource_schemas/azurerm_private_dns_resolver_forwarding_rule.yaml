@@ -1,0 +1,67 @@
+version: 0
+block:
+  attributes:
+    dns_forwarding_ruleset_id:
+      type: string
+      description_kind: plain
+      required: true
+    domain_name:
+      type: string
+      description_kind: plain
+      required: true
+    enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    metadata:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    target_dns_servers:
+      nesting_mode: list
+      block:
+        attributes:
+          ip_address:
+            type: string
+            description_kind: plain
+            required: true
+          port:
+            type: number
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

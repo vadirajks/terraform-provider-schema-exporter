@@ -1,0 +1,143 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: The timestamp of when the featureOnlinestore was created in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits.
+      description_kind: plain
+      computed: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    feature_online_store:
+      type: string
+      description: The name of the FeatureOnlineStore to use for the featureview.
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'A set of key/value label pairs to assign to this FeatureView. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: Name of the FeatureView. This value may be up to 60 characters, and valid characters are [a-z0-9_]. The first character cannot be a number.
+      description_kind: plain
+      optional: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: The region for the resource. It should be the same as the featureonlinestore region.
+      description_kind: plain
+      optional: true
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: The timestamp of when the featureOnlinestore was last updated in RFC3339 UTC "Zulu" format, with nanosecond resolution and up to nine fractional digits.
+      description_kind: plain
+      computed: true
+  block_types:
+    big_query_source:
+      nesting_mode: list
+      block:
+        attributes:
+          entity_id_columns:
+            type:
+            - list
+            - string
+            description: Columns to construct entityId / row keys. Start by supporting 1 only.
+            description_kind: plain
+            required: true
+          uri:
+            type: string
+            description: The BigQuery view URI that will be materialized on each sync trigger based on FeatureView.SyncConfig.
+            description_kind: plain
+            required: true
+        description: Configures how data is supposed to be extracted from a BigQuery source to be loaded onto the FeatureOnlineStore.
+        description_kind: plain
+      max_items: 1
+    feature_registry_source:
+      nesting_mode: list
+      block:
+        attributes:
+          project_number:
+            type: string
+            description: The project number of the parent project of the feature Groups.
+            description_kind: plain
+            optional: true
+        block_types:
+          feature_groups:
+            nesting_mode: list
+            block:
+              attributes:
+                feature_group_id:
+                  type: string
+                  description: Identifier of the feature group.
+                  description_kind: plain
+                  required: true
+                feature_ids:
+                  type:
+                  - list
+                  - string
+                  description: Identifiers of features under the feature group.
+                  description_kind: plain
+                  required: true
+              description: List of features that need to be synced to Online Store.
+              description_kind: plain
+            min_items: 1
+        description: Configures the features from a Feature Registry source that need to be loaded onto the FeatureOnlineStore.
+        description_kind: plain
+      max_items: 1
+    sync_config:
+      nesting_mode: list
+      block:
+        attributes:
+          cron:
+            type: string
+            description: 'Cron schedule (https://en.wikipedia.org/wiki/Cron) to launch scheduled runs. To explicitly set a timezone to the cron tab, apply a prefix in the cron tab: "CRON_TZ=${IANA_TIME_ZONE}" or "TZ=${IANA_TIME_ZONE}".'
+            description_kind: plain
+            optional: true
+            computed: true
+        description: Configures when data is to be synced/updated for this FeatureView. At the end of the sync the latest featureValues for each entityId of this FeatureView are made ready for online serving.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

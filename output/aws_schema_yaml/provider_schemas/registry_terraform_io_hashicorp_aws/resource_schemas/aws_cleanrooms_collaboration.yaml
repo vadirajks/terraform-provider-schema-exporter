@@ -1,0 +1,128 @@
+version: 0
+block:
+  attributes:
+    analytics_engine:
+      type: string
+      description_kind: plain
+      optional: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    create_time:
+      type: string
+      description_kind: plain
+      computed: true
+    creator_display_name:
+      type: string
+      description_kind: plain
+      required: true
+    creator_member_abilities:
+      type:
+      - list
+      - string
+      description_kind: plain
+      required: true
+    description:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    query_log_status:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    update_time:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    data_encryption_metadata:
+      nesting_mode: list
+      block:
+        attributes:
+          allow_clear_text:
+            type: bool
+            description_kind: plain
+            required: true
+          allow_duplicates:
+            type: bool
+            description_kind: plain
+            required: true
+          allow_joins_on_columns_with_different_names:
+            type: bool
+            description_kind: plain
+            required: true
+          preserve_nulls:
+            type: bool
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    member:
+      nesting_mode: set
+      block:
+        attributes:
+          account_id:
+            type: string
+            description_kind: plain
+            required: true
+          display_name:
+            type: string
+            description_kind: plain
+            required: true
+          member_abilities:
+            type:
+            - list
+            - string
+            description_kind: plain
+            required: true
+          status:
+            type: string
+            description_kind: plain
+            computed: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

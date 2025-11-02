@@ -1,0 +1,142 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "display_name": {
+        "type": "string",
+        "description": "The display name of the rule.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "etag": {
+        "type": "string",
+        "description": "The hash of the resource. Used internally during updates.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the policy.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "parent": {
+        "type": "string",
+        "description": "The attachment point is identified by its URL-encoded full resource name.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "rules": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "description": {
+              "type": "string",
+              "description": "The description of the rule.",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "access_boundary_rule": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "available_permissions": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "A list of permissions that may be allowed for use on the specified resource.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "available_resource": {
+                    "type": "string",
+                    "description": "The full resource name of a Google Cloud resource entity.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "availability_condition": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "description": {
+                          "type": "string",
+                          "description": "Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "expression": {
+                          "type": "string",
+                          "description": "Textual representation of an expression in Common Expression Language syntax.",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "location": {
+                          "type": "string",
+                          "description": "String indicating the location of the expression for error reporting, e.g. a file name and a position in the file.",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "title": {
+                          "type": "string",
+                          "description": "Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description": "The availability condition further constrains the access allowed by the access boundary rule.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "An access boundary rule in an IAM policy.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Rules to be applied.",
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

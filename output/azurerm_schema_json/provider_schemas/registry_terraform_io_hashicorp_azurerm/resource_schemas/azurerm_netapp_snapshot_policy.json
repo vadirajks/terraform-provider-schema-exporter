@@ -1,0 +1,184 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "account_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "daily_schedule": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "hour": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "minute": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "snapshots_to_keep": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "hourly_schedule": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "minute": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "snapshots_to_keep": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "monthly_schedule": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "days_of_month": {
+              "type": [
+                "set",
+                "number"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "hour": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "minute": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "snapshots_to_keep": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "weekly_schedule": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "days_of_week": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            },
+            "hour": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "minute": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "snapshots_to_keep": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,295 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "application_id": {
+        "type": "string",
+        "description": "User-settable Application resource ID. * Must start with a letter. * Must contain between 4-63 characters from '/a-z-/'. * Must end with a number or letter.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "Output only. Timestamp when the resource was created.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "Optional. An arbitrary user-provided name for the Application resource. Cannot exceed 64 characters.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Identifier. Name of the resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "schema": {
+        "type": "string",
+        "description": "Type of the external application. Possible values: [\"PROXY_GATEWAY\", \"API_GATEWAY\"]",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "security_gateway_id": {
+        "type": "string",
+        "description": "ID of the Security Gateway resource this belongs to.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Output only. Timestamp when the resource was last modified.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "endpoint_matchers": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "hostname": {
+              "type": "string",
+              "description": "Required. Hostname of the application.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "ports": {
+              "type": [
+                "list",
+                "number"
+              ],
+              "description": "Optional. Ports of the application.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Required. Endpoint matchers associated with an application. A combination of hostname and ports as endpoint matcher is used to match the application. Match conditions for OR logic. An array of match conditions to allow for multiple matching criteria. The rule is considered a match if one the conditions are met. The conditions can be one of the following combination (Hostname), (Hostname & Ports) EXAMPLES: Hostname - (\"*.abc.com\"), (\"xyz.abc.com\") Hostname and Ports - (\"abc.com\" and \"22\"), (\"abc.com\" and \"22,33\") etc",
+          "description_kind": "plain"
+        }
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "upstreams": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "egress_policy": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "regions": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "Required. List of regions where the application sends traffic to.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Optional. Routing policy information.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "external": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "endpoints": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "hostname": {
+                          "type": "string",
+                          "description": "Hostname of the endpoint.",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "port": {
+                          "type": "number",
+                          "description": "Port of the endpoint.",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description": "List of the endpoints to forward traffic to.",
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1
+                  }
+                },
+                "description": "List of the external endpoints to forward traffic to.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "network": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "name": {
+                    "type": "string",
+                    "description": "Required. Network name is of the format: 'projects/{project}/global/networks/{network}'",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Network to forward traffic to.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "proxy_protocol": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "allowed_client_headers": {
+                    "type": [
+                      "list",
+                      "string"
+                    ],
+                    "description": "The configuration for the proxy.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "client_ip": {
+                    "type": "bool",
+                    "description": "Client IP configuration. The client IP address is included if true.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "gateway_identity": {
+                    "type": "string",
+                    "description": "Gateway identity configuration. Possible values: [\"RESOURCE_NAME\"]",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "metadata_headers": {
+                    "type": [
+                      "map",
+                      "string"
+                    ],
+                    "description": "Custom resource specific headers along with the values. The names should conform to RFC 9110: > Field names SHOULD constrain themselves to alphanumeric characters, \"-\", and \".\", and SHOULD begin with a letter. > Field values SHOULD contain only ASCII printable characters and tab.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "block_types": {
+                  "contextual_headers": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "output_type": {
+                          "type": "string",
+                          "description": "Default output type for all enabled headers. Possible values: [\"PROTOBUF\", \"JSON\", \"NONE\"]",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "device_info": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "output_type": {
+                                "type": "string",
+                                "description": "The output type of the delegated device info. Possible values: [\"PROTOBUF\", \"JSON\", \"NONE\"]",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description": "Device info configuration.",
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "group_info": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "output_type": {
+                                "type": "string",
+                                "description": "The output type of the delegated group info. Possible values: [\"PROTOBUF\", \"JSON\", \"NONE\"]",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description": "Group info configuration.",
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "user_info": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "output_type": {
+                                "type": "string",
+                                "description": "The output type of the delegated user info. Possible values: [\"PROTOBUF\", \"JSON\", \"NONE\"]",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description": "User info configuration.",
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description": "Configuration for the contextual headers.",
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description": "Shared proxy configuration for all apps.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Optional. List of which upstream resource(s) to forward traffic to.",
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

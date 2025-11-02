@@ -1,0 +1,12 @@
+resource "azurerm_log_analytics_cluster_customer_managed_key" "name" {
+  key_vault_key_id = string (Required)
+  log_analytics_cluster_id = string (Required)
+  id = string (Optional, Computed)
+
+  timeouts block "single" (Optional) {
+    create = string (Optional)
+    delete = string (Optional)
+    read = string (Optional)
+    update = string (Optional)
+  }
+}

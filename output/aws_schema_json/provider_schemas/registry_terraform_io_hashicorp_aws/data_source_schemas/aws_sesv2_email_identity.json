@@ -1,0 +1,83 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "configuration_set_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "dkim_signing_attributes": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "current_signing_key_length": "string",
+              "domain_signing_private_key": "string",
+              "domain_signing_selector": "string",
+              "last_key_generation_timestamp": "string",
+              "next_signing_key_length": "string",
+              "signing_attributes_origin": "string",
+              "status": "string",
+              "tokens": [
+                "list",
+                "string"
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "email_identity": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "identity_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "verification_status": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "verified_for_sending_status": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

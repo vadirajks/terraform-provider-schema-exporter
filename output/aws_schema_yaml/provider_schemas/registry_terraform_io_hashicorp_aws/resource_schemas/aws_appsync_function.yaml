@@ -1,0 +1,100 @@
+version: 0
+block:
+  attributes:
+    api_id:
+      type: string
+      description_kind: plain
+      required: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    code:
+      type: string
+      description_kind: plain
+      optional: true
+    data_source:
+      type: string
+      description_kind: plain
+      required: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    function_id:
+      type: string
+      description_kind: plain
+      computed: true
+    function_version:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    max_batch_size:
+      type: number
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    request_mapping_template:
+      type: string
+      description_kind: plain
+      optional: true
+    response_mapping_template:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    runtime:
+      nesting_mode: list
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          runtime_version:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    sync_config:
+      nesting_mode: list
+      block:
+        attributes:
+          conflict_detection:
+            type: string
+            description_kind: plain
+            optional: true
+          conflict_handler:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          lambda_conflict_handler_config:
+            nesting_mode: list
+            block:
+              attributes:
+                lambda_conflict_handler_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

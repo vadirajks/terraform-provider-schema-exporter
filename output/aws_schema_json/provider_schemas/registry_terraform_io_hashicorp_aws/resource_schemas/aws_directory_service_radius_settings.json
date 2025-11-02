@@ -1,0 +1,90 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "authentication_protocol": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "directory_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "display_label": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "radius_port": {
+        "type": "number",
+        "description_kind": "plain",
+        "required": true
+      },
+      "radius_retries": {
+        "type": "number",
+        "description_kind": "plain",
+        "required": true
+      },
+      "radius_servers": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "required": true
+      },
+      "radius_timeout": {
+        "type": "number",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "shared_secret": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true,
+        "sensitive": true
+      },
+      "use_same_username": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

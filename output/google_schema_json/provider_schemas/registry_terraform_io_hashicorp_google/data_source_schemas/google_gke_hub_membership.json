@@ -1,0 +1,100 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "authority": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "issuer": "string"
+            }
+          ]
+        ],
+        "description": "Authority encodes how Google will recognize identities from this Membership. See the workload identity documentation for more details: https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "effective_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "endpoint": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "gke_cluster": [
+                "list",
+                [
+                  "object",
+                  {
+                    "resource_link": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "If this Membership is a Kubernetes API server hosted on GKE, this is a self link to its GCP resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "Labels to apply to this membership. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field 'effective_labels' for all of the labels present on the resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "Location of the membership. The default value is 'global'.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "membership_id": {
+        "type": "string",
+        "description": "The client-provided identifier of the membership.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The unique identifier of the membership.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "terraform_labels": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "The combination of labels configured directly on the resource and default labels configured on the provider.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

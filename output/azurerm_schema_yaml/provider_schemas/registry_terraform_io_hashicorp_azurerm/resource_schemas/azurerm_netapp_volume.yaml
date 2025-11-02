@@ -1,0 +1,300 @@
+version: 0
+block:
+  attributes:
+    accept_grow_capacity_pool_for_short_term_clone_split:
+      type: string
+      description: While auto splitting the short term clone volume, if the parent pool does not have enough space to accommodate the volume after split, it will be automatically resized, which will lead to increased billing. To accept capacity pool size auto grow and create a short term clone volume, set the property as accepted. Can only be used in conjunction with `create_from_snapshot_resource_id`.
+      description_kind: plain
+      optional: true
+    account_name:
+      type: string
+      description_kind: plain
+      required: true
+    azure_vmware_data_store_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    create_from_snapshot_resource_id:
+      type: string
+      description_kind: plain
+      optional: true
+    encryption_key_source:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kerberos_enabled:
+      type: bool
+      description: Enable to allow Kerberos secured volumes. Requires appropriate export rules as well as the parent `azurerm_netapp_account` having a defined AD connection.
+      description_kind: plain
+      optional: true
+    key_vault_private_endpoint_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    large_volume_enabled:
+      type: bool
+      description: Indicates whether the volume is a large volume.
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    mount_ip_addresses:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    network_features:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    pool_name:
+      type: string
+      description_kind: plain
+      required: true
+    protocols:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    security_style:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    service_level:
+      type: string
+      description_kind: plain
+      required: true
+    smb3_protocol_encryption_enabled:
+      type: bool
+      description: SMB3 encryption option should be used only for SMB/DualProtocol volumes. Using it for any other workloads is not supported.
+      description_kind: plain
+      optional: true
+    smb_access_based_enumeration_enabled:
+      type: bool
+      description: Enable access based enumeration setting for SMB/Dual Protocol volume. When enabled, users who do not have permission to access a shared folder or file underneath it, do not see that shared resource displayed in their environment.
+      description_kind: plain
+      optional: true
+    smb_continuous_availability_enabled:
+      type: bool
+      description: Continuous availability option should be used only for SQL and FSLogix workloads. Using it for any other SMB workloads is not supported.
+      description_kind: plain
+      optional: true
+    smb_non_browsable_enabled:
+      type: bool
+      description: Enable non browsable share setting for SMB/Dual Protocol volume. When enabled, it restricts windows clients to browse the share
+      description_kind: plain
+      optional: true
+    snapshot_directory_visible:
+      type: bool
+      description_kind: plain
+      optional: true
+    storage_quota_in_gb:
+      type: number
+      description_kind: plain
+      required: true
+    subnet_id:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    throughput_in_mibps:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    volume_path:
+      type: string
+      description_kind: plain
+      required: true
+    zone:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    cool_access:
+      nesting_mode: list
+      block:
+        attributes:
+          coolness_period_in_days:
+            type: number
+            description_kind: plain
+            required: true
+          retrieval_policy:
+            type: string
+            description_kind: plain
+            required: true
+          tiering_policy:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    data_protection_backup_policy:
+      nesting_mode: list
+      block:
+        attributes:
+          backup_policy_id:
+            type: string
+            description: The ID of the backup policy to associate with this volume.
+            description_kind: plain
+            required: true
+          backup_vault_id:
+            type: string
+            description: The ID of the backup vault to associate with this volume.
+            description_kind: plain
+            required: true
+          policy_enabled:
+            type: bool
+            description: If set to false, the backup policy will not be enabled on this volume, thus disabling scheduled backups.
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    data_protection_replication:
+      nesting_mode: list
+      block:
+        attributes:
+          endpoint_type:
+            type: string
+            description_kind: plain
+            optional: true
+          remote_volume_location:
+            type: string
+            description_kind: plain
+            required: true
+          remote_volume_resource_id:
+            type: string
+            description_kind: plain
+            required: true
+          replication_frequency:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    data_protection_snapshot_policy:
+      nesting_mode: list
+      block:
+        attributes:
+          snapshot_policy_id:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    export_policy_rule:
+      nesting_mode: list
+      block:
+        attributes:
+          allowed_clients:
+            type:
+            - set
+            - string
+            description_kind: plain
+            required: true
+          kerberos_5_read_only_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          kerberos_5_read_write_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          kerberos_5i_read_only_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          kerberos_5i_read_write_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          kerberos_5p_read_only_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          kerberos_5p_read_write_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          protocol:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+            computed: true
+          protocols_enabled:
+            type:
+            - list
+            - string
+            description_kind: plain
+            deprecated: true
+            optional: true
+            computed: true
+          root_access_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          rule_index:
+            type: number
+            description_kind: plain
+            required: true
+          unix_read_only:
+            type: bool
+            description_kind: plain
+            optional: true
+          unix_read_write:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 5
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,31 @@
+data "azurerm_virtual_network_gateway_connection" "name" {
+  name = string (Required)
+  resource_group_name = string (Required)
+  authorization_key = string (Computed)
+  connection_protocol = string (Computed)
+  dpd_timeout_seconds = number (Computed)
+  egress_bytes_transferred = number (Computed)
+  enable_bgp = bool (Computed)
+  express_route_circuit_id = string (Computed)
+  express_route_gateway_bypass = bool (Computed)
+  id = string (Optional, Computed)
+  ingress_bytes_transferred = number (Computed)
+  ipsec_policy = ['list', ['object', {'dh_group': 'string', 'ike_encryption': 'string', 'ike_integrity': 'string', 'ipsec_encryption': 'string', 'ipsec_integrity': 'string', 'pfs_group': 'string', 'sa_datasize': 'number', 'sa_lifetime': 'number'}]] (Computed)
+  local_azure_ip_address_enabled = bool (Computed)
+  local_network_gateway_id = string (Computed)
+  location = string (Computed)
+  peer_virtual_network_gateway_id = string (Computed)
+  private_link_fast_path_enabled = bool (Computed)
+  resource_guid = string (Computed)
+  routing_weight = number (Computed)
+  shared_key = string (Computed)
+  tags = ['map', 'string'] (Computed)
+  traffic_selector_policy = ['list', ['object', {'local_address_cidrs': ['list', 'string'], 'remote_address_cidrs': ['list', 'string']}]] (Computed)
+  type = string (Computed)
+  use_policy_based_traffic_selectors = bool (Computed)
+  virtual_network_gateway_id = string (Computed)
+
+  timeouts block "single" (Optional) {
+    read = string (Optional)
+  }
+}

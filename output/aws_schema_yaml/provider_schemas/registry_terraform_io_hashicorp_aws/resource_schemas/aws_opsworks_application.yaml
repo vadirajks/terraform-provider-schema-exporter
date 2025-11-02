@@ -1,0 +1,136 @@
+version: 0
+block:
+  attributes:
+    auto_bundle_on_deploy:
+      type: string
+      description_kind: plain
+      optional: true
+    aws_flow_ruby_settings:
+      type: string
+      description_kind: plain
+      optional: true
+    data_source_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    data_source_database_name:
+      type: string
+      description_kind: plain
+      optional: true
+    data_source_type:
+      type: string
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    document_root:
+      type: string
+      description_kind: plain
+      optional: true
+    domains:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+    enable_ssl:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    rails_env:
+      type: string
+      description_kind: plain
+      optional: true
+    short_name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    stack_id:
+      type: string
+      description_kind: plain
+      required: true
+    type:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    app_source:
+      nesting_mode: list
+      block:
+        attributes:
+          password:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          revision:
+            type: string
+            description_kind: plain
+            optional: true
+          ssh_key:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+          url:
+            type: string
+            description_kind: plain
+            optional: true
+          username:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    environment:
+      nesting_mode: set
+      block:
+        attributes:
+          key:
+            type: string
+            description_kind: plain
+            required: true
+          secure:
+            type: bool
+            description_kind: plain
+            optional: true
+          value:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    ssl_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          certificate:
+            type: string
+            description_kind: plain
+            required: true
+          chain:
+            type: string
+            description_kind: plain
+            optional: true
+          private_key:
+            type: string
+            description_kind: plain
+            required: true
+            sensitive: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

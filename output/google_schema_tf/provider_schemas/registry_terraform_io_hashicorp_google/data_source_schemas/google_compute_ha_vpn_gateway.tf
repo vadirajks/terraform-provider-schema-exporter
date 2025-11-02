@@ -1,0 +1,16 @@
+data "google_compute_ha_vpn_gateway" "name" {
+  name = string (Required)
+  description = string (Computed)
+  effective_labels = ['map', 'string'] (Computed)
+  gateway_ip_version = string (Computed)
+  id = string (Optional, Computed)
+  label_fingerprint = string (Computed)
+  labels = ['map', 'string'] (Computed)
+  network = string (Computed)
+  project = string (Optional)
+  region = string (Optional)
+  self_link = string (Computed)
+  stack_type = string (Computed)
+  terraform_labels = ['map', 'string'] (Computed)
+  vpn_interfaces = ['list', ['object', {'id': 'number', 'interconnect_attachment': 'string', 'ip_address': 'string'}]] (Computed)
+}

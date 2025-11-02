@@ -1,0 +1,399 @@
+version: 1
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    billing_mode:
+      type: string
+      description_kind: plain
+      optional: true
+    deletion_protection_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    hash_key:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    range_key:
+      type: string
+      description_kind: plain
+      optional: true
+    read_capacity:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    restore_date_time:
+      type: string
+      description_kind: plain
+      optional: true
+    restore_source_name:
+      type: string
+      description_kind: plain
+      optional: true
+    restore_source_table_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    restore_to_latest_time:
+      type: bool
+      description_kind: plain
+      optional: true
+    stream_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    stream_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    stream_label:
+      type: string
+      description_kind: plain
+      computed: true
+    stream_view_type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    table_class:
+      type: string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    write_capacity:
+      type: number
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    attribute:
+      nesting_mode: set
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    global_secondary_index:
+      nesting_mode: set
+      block:
+        attributes:
+          hash_key:
+            type: string
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          non_key_attributes:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          projection_type:
+            type: string
+            description_kind: plain
+            required: true
+          range_key:
+            type: string
+            description_kind: plain
+            optional: true
+          read_capacity:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+          write_capacity:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          on_demand_throughput:
+            nesting_mode: list
+            block:
+              attributes:
+                max_read_request_units:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                max_write_request_units:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              description_kind: plain
+            max_items: 1
+          warm_throughput:
+            nesting_mode: list
+            block:
+              attributes:
+                read_units_per_second:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                write_units_per_second:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+    import_table:
+      nesting_mode: list
+      block:
+        attributes:
+          input_compression_type:
+            type: string
+            description_kind: plain
+            optional: true
+          input_format:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          input_format_options:
+            nesting_mode: list
+            block:
+              block_types:
+                csv:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      delimiter:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      header_list:
+                        type:
+                        - set
+                        - string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          s3_bucket_source:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket:
+                  type: string
+                  description_kind: plain
+                  required: true
+                bucket_owner:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                key_prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    local_secondary_index:
+      nesting_mode: set
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          non_key_attributes:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          projection_type:
+            type: string
+            description_kind: plain
+            required: true
+          range_key:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    on_demand_throughput:
+      nesting_mode: list
+      block:
+        attributes:
+          max_read_request_units:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+          max_write_request_units:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    point_in_time_recovery:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled:
+            type: bool
+            description_kind: plain
+            required: true
+          recovery_period_in_days:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    replica:
+      nesting_mode: set
+      block:
+        attributes:
+          arn:
+            type: string
+            description_kind: plain
+            computed: true
+          consistency_mode:
+            type: string
+            description_kind: plain
+            optional: true
+          deletion_protection_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+            computed: true
+          kms_key_arn:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          point_in_time_recovery:
+            type: bool
+            description_kind: plain
+            optional: true
+          propagate_tags:
+            type: bool
+            description_kind: plain
+            optional: true
+          region_name:
+            type: string
+            description_kind: plain
+            required: true
+          stream_arn:
+            type: string
+            description_kind: plain
+            computed: true
+          stream_label:
+            type: string
+            description_kind: plain
+            computed: true
+        description_kind: plain
+    server_side_encryption:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled:
+            type: bool
+            description_kind: plain
+            required: true
+          kms_key_arn:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    ttl:
+      nesting_mode: list
+      block:
+        attributes:
+          attribute_name:
+            type: string
+            description_kind: plain
+            optional: true
+          enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    warm_throughput:
+      nesting_mode: list
+      block:
+        attributes:
+          read_units_per_second:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+          write_units_per_second:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

@@ -1,0 +1,80 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    lab_id:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    notes:
+      type: string
+      description_kind: plain
+      optional: true
+    start_time:
+      type: string
+      description_kind: plain
+      optional: true
+    stop_time:
+      type: string
+      description_kind: plain
+      required: true
+    time_zone:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    recurrence:
+      nesting_mode: list
+      block:
+        attributes:
+          expiration_date:
+            type: string
+            description_kind: plain
+            required: true
+          frequency:
+            type: string
+            description_kind: plain
+            required: true
+          interval:
+            type: number
+            description_kind: plain
+            optional: true
+          week_days:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

@@ -1,0 +1,568 @@
+{
+  "attributes": {
+    "ado_pipeline_service_connection_id": {
+      "type": "string",
+      "description": "The Azure DevOps Pipeline Service Connection ID.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "auxiliary_tenant_ids": {
+      "type": [
+        "list",
+        "string"
+      ],
+      "description_kind": "plain",
+      "optional": true
+    },
+    "client_certificate": {
+      "type": "string",
+      "description": "Base64 encoded PKCS#12 certificate bundle to use when authenticating as a Service Principal using a Client Certificate",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "client_certificate_password": {
+      "type": "string",
+      "description": "The password associated with the Client Certificate. For use when authenticating as a Service Principal using a Client Certificate",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "client_certificate_path": {
+      "type": "string",
+      "description": "The path to the Client Certificate associated with the Service Principal for use when authenticating as a Service Principal using a Client Certificate.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "client_id": {
+      "type": "string",
+      "description": "The Client ID which should be used.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "client_id_file_path": {
+      "type": "string",
+      "description": "The path to a file containing the Client ID which should be used.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "client_secret": {
+      "type": "string",
+      "description": "The Client Secret which should be used. For use When authenticating as a Service Principal using a Client Secret.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "client_secret_file_path": {
+      "type": "string",
+      "description": "The path to a file containing the Client Secret which should be used. For use When authenticating as a Service Principal using a Client Secret.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "disable_correlation_request_id": {
+      "type": "bool",
+      "description": "This will disable the x-ms-correlation-request-id header.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "disable_terraform_partner_id": {
+      "type": "bool",
+      "description": "This will disable the Terraform Partner ID which is used if a custom `partner_id` isn't specified.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "environment": {
+      "type": "string",
+      "description": "The Cloud Environment which should be used. Possible values are public, usgovernment, and china. Defaults to public. Not used and should not be specified when `metadata_host` is specified.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "metadata_host": {
+      "type": "string",
+      "description": "The Hostname which should be used for the Azure Metadata Service.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "msi_api_version": {
+      "type": "string",
+      "description": "The API version to use for Managed Service Identity (IMDS) - for cases where the default API version is not supported by the endpoint. e.g. for Azure Container Apps.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "msi_endpoint": {
+      "type": "string",
+      "description": "The path to a custom endpoint for Managed Service Identity - in most circumstances this should be detected automatically.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "oidc_request_token": {
+      "type": "string",
+      "description": "The bearer token for the request to the OIDC provider. For use when authenticating as a Service Principal using OpenID Connect.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "oidc_request_url": {
+      "type": "string",
+      "description": "The URL for the OIDC provider from which to request an ID token. For use when authenticating as a Service Principal using OpenID Connect.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "oidc_token": {
+      "type": "string",
+      "description": "The OIDC ID token for use when authenticating as a Service Principal using OpenID Connect.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "oidc_token_file_path": {
+      "type": "string",
+      "description": "The path to a file containing an OIDC ID token for use when authenticating as a Service Principal using OpenID Connect.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "partner_id": {
+      "type": "string",
+      "description": "A GUID/UUID that is registered with Microsoft to facilitate partner resource usage attribution.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "resource_provider_registrations": {
+      "type": "string",
+      "description": "The set of Resource Providers which should be automatically registered for the subscription.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "resource_providers_to_register": {
+      "type": [
+        "list",
+        "string"
+      ],
+      "description": "A list of Resource Providers to explicitly register for the subscription, in addition to those specified by the `resource_provider_registrations` property.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "skip_provider_registration": {
+      "type": "bool",
+      "description": "Should the AzureRM Provider skip registering all of the Resource Providers that it supports, if they're not already registered?",
+      "description_kind": "plain",
+      "deprecated": true,
+      "optional": true
+    },
+    "storage_use_azuread": {
+      "type": "bool",
+      "description": "Should the AzureRM Provider use Azure AD Authentication when accessing the Storage Data Plane APIs?",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "subscription_id": {
+      "type": "string",
+      "description": "The Subscription ID which should be used.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "tenant_id": {
+      "type": "string",
+      "description": "The Tenant ID which should be used.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "use_aks_workload_identity": {
+      "type": "bool",
+      "description": "Allow Azure AKS Workload Identity to be used for Authentication.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "use_cli": {
+      "type": "bool",
+      "description": "Allow Azure CLI to be used for Authentication.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "use_msi": {
+      "type": "bool",
+      "description": "Allow Managed Service Identity to be used for Authentication.",
+      "description_kind": "plain",
+      "optional": true
+    },
+    "use_oidc": {
+      "type": "bool",
+      "description": "Allow OpenID Connect to be used for authentication",
+      "description_kind": "plain",
+      "optional": true
+    }
+  },
+  "block_types": {
+    "features": {
+      "nesting_mode": "list",
+      "block": {
+        "block_types": {
+          "api_management": {
+            "nesting_mode": "list",
+            "block": {
+              "attributes": {
+                "purge_soft_delete_on_destroy": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "recover_soft_deleted": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                }
+              },
+              "description_kind": "plain"
+            }
+          },
+          "app_configuration": {
+            "nesting_mode": "list",
+            "block": {
+              "attributes": {
+                "purge_soft_delete_on_destroy": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "recover_soft_deleted": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                }
+              },
+              "description_kind": "plain"
+            }
+          },
+          "application_insights": {
+            "nesting_mode": "list",
+            "block": {
+              "attributes": {
+                "disable_generated_rule": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                }
+              },
+              "description_kind": "plain"
+            }
+          },
+          "cognitive_account": {
+            "nesting_mode": "list",
+            "block": {
+              "attributes": {
+                "purge_soft_delete_on_destroy": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                }
+              },
+              "description_kind": "plain"
+            }
+          },
+          "databricks_workspace": {
+            "nesting_mode": "list",
+            "block": {
+              "attributes": {
+                "force_delete": {
+                  "type": "bool",
+                  "description": "When enabled, the managed resource group that contains the Unity Catalog data will be forcibly deleted when the workspace is destroyed, regardless of contents.",
+                  "description_kind": "plain",
+                  "optional": true
+                }
+              },
+              "description_kind": "plain"
+            }
+          },
+          "key_vault": {
+            "nesting_mode": "list",
+            "block": {
+              "attributes": {
+                "purge_soft_delete_on_destroy": {
+                  "type": "bool",
+                  "description": "When enabled soft-deleted `azurerm_key_vault` resources will be permanently deleted (e.g purged), when destroyed",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "purge_soft_deleted_certificates_on_destroy": {
+                  "type": "bool",
+                  "description": "When enabled soft-deleted `azurerm_key_vault_certificate` resources will be permanently deleted (e.g purged), when destroyed",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "purge_soft_deleted_hardware_security_module_keys_on_destroy": {
+                  "type": "bool",
+                  "description": "When enabled soft-deleted `azurerm_key_vault_managed_hardware_security_module_key` resources will be permanently deleted (e.g purged), when destroyed",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "purge_soft_deleted_hardware_security_modules_on_destroy": {
+                  "type": "bool",
+                  "description": "When enabled soft-deleted `azurerm_key_vault_managed_hardware_security_module` resources will be permanently deleted (e.g purged), when destroyed",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "purge_soft_deleted_keys_on_destroy": {
+                  "type": "bool",
+                  "description": "When enabled soft-deleted `azurerm_key_vault_key` resources will be permanently deleted (e.g purged), when destroyed",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "purge_soft_deleted_secrets_on_destroy": {
+                  "type": "bool",
+                  "description": "When enabled soft-deleted `azurerm_key_vault_secret` resources will be permanently deleted (e.g purged), when destroyed",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "recover_soft_deleted_certificates": {
+                  "type": "bool",
+                  "description": "When enabled soft-deleted `azurerm_key_vault_certificate` resources will be restored, instead of creating new ones",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "recover_soft_deleted_hardware_security_module_keys": {
+                  "type": "bool",
+                  "description": "When enabled soft-deleted `azurerm_key_vault_managed_hardware_security_module_key` resources will be restored, instead of creating new ones",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "recover_soft_deleted_key_vaults": {
+                  "type": "bool",
+                  "description": "When enabled soft-deleted `azurerm_key_vault` resources will be restored, instead of creating new ones",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "recover_soft_deleted_keys": {
+                  "type": "bool",
+                  "description": "When enabled soft-deleted `azurerm_key_vault_key` resources will be restored, instead of creating new ones",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "recover_soft_deleted_secrets": {
+                  "type": "bool",
+                  "description": "When enabled soft-deleted `azurerm_key_vault_secret` resources will be restored, instead of creating new ones",
+                  "description_kind": "plain",
+                  "optional": true
+                }
+              },
+              "description_kind": "plain"
+            }
+          },
+          "log_analytics_workspace": {
+            "nesting_mode": "list",
+            "block": {
+              "attributes": {
+                "permanently_delete_on_destroy": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                }
+              },
+              "description_kind": "plain"
+            }
+          },
+          "machine_learning": {
+            "nesting_mode": "list",
+            "block": {
+              "attributes": {
+                "purge_soft_deleted_workspace_on_destroy": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                }
+              },
+              "description_kind": "plain"
+            }
+          },
+          "managed_disk": {
+            "nesting_mode": "list",
+            "block": {
+              "attributes": {
+                "expand_without_downtime": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                }
+              },
+              "description_kind": "plain"
+            }
+          },
+          "netapp": {
+            "nesting_mode": "list",
+            "block": {
+              "attributes": {
+                "delete_backups_on_backup_vault_destroy": {
+                  "type": "bool",
+                  "description": "When enabled, backups will be deleted when the `azurerm_netapp_backup_vault` resource is destroyed",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "prevent_volume_destruction": {
+                  "type": "bool",
+                  "description": "When enabled, the volume will not be destroyed, safeguarding from severe data loss",
+                  "description_kind": "plain",
+                  "optional": true
+                }
+              },
+              "description_kind": "plain"
+            }
+          },
+          "postgresql_flexible_server": {
+            "nesting_mode": "list",
+            "block": {
+              "attributes": {
+                "restart_server_on_configuration_value_change": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                }
+              },
+              "description_kind": "plain"
+            }
+          },
+          "recovery_service": {
+            "nesting_mode": "list",
+            "block": {
+              "attributes": {
+                "purge_protected_items_from_vault_on_destroy": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "vm_backup_stop_protection_and_retain_data_on_destroy": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "vm_backup_suspend_protection_and_retain_data_on_destroy": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                }
+              },
+              "description_kind": "plain"
+            }
+          },
+          "recovery_services_vaults": {
+            "nesting_mode": "list",
+            "block": {
+              "attributes": {
+                "recover_soft_deleted_backup_protected_vm": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                }
+              },
+              "description_kind": "plain"
+            }
+          },
+          "resource_group": {
+            "nesting_mode": "list",
+            "block": {
+              "attributes": {
+                "prevent_deletion_if_contains_resources": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                }
+              },
+              "description_kind": "plain"
+            }
+          },
+          "storage": {
+            "nesting_mode": "list",
+            "block": {
+              "attributes": {
+                "data_plane_available": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                }
+              },
+              "description_kind": "plain"
+            }
+          },
+          "subscription": {
+            "nesting_mode": "list",
+            "block": {
+              "attributes": {
+                "prevent_cancellation_on_destroy": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                }
+              },
+              "description_kind": "plain"
+            }
+          },
+          "template_deployment": {
+            "nesting_mode": "list",
+            "block": {
+              "attributes": {
+                "delete_nested_items_during_deletion": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "required": true
+                }
+              },
+              "description_kind": "plain"
+            }
+          },
+          "virtual_machine": {
+            "nesting_mode": "list",
+            "block": {
+              "attributes": {
+                "delete_os_disk_on_deletion": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "detach_implicit_data_disk_on_deletion": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "graceful_shutdown": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "deprecated": true,
+                  "optional": true
+                },
+                "skip_shutdown_and_force_delete": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                }
+              },
+              "description_kind": "plain"
+            }
+          },
+          "virtual_machine_scale_set": {
+            "nesting_mode": "list",
+            "block": {
+              "attributes": {
+                "force_delete": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "reimage_on_manual_upgrade": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "roll_instances_when_required": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                },
+                "scale_to_zero_before_deletion": {
+                  "type": "bool",
+                  "description_kind": "plain",
+                  "optional": true
+                }
+              },
+              "description_kind": "plain"
+            }
+          }
+        },
+        "description_kind": "plain"
+      }
+    }
+  },
+  "description_kind": "plain"
+}

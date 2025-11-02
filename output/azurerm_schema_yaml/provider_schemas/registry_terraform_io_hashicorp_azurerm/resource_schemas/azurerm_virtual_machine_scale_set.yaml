@@ -1,0 +1,546 @@
+version: 1
+block:
+  attributes:
+    automatic_os_upgrade:
+      type: bool
+      description_kind: plain
+      optional: true
+    eviction_policy:
+      type: string
+      description_kind: plain
+      optional: true
+    health_probe_id:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    license_type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    overprovision:
+      type: bool
+      description_kind: plain
+      optional: true
+    priority:
+      type: string
+      description_kind: plain
+      optional: true
+    proximity_placement_group_id:
+      type: string
+      description_kind: plain
+      optional: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    single_placement_group:
+      type: bool
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    upgrade_policy_mode:
+      type: string
+      description_kind: plain
+      required: true
+    zones:
+      type:
+      - list
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    boot_diagnostics:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          storage_uri:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    extension:
+      nesting_mode: set
+      block:
+        attributes:
+          auto_upgrade_minor_version:
+            type: bool
+            description_kind: plain
+            optional: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          protected_settings:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          provision_after_extensions:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          publisher:
+            type: string
+            description_kind: plain
+            required: true
+          settings:
+            type: string
+            description_kind: plain
+            optional: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+          type_handler_version:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    identity:
+      nesting_mode: list
+      block:
+        attributes:
+          identity_ids:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          principal_id:
+            type: string
+            description_kind: plain
+            computed: true
+          tenant_id:
+            type: string
+            description_kind: plain
+            computed: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    network_profile:
+      nesting_mode: set
+      block:
+        attributes:
+          accelerated_networking:
+            type: bool
+            description_kind: plain
+            optional: true
+          ip_forwarding:
+            type: bool
+            description_kind: plain
+            optional: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          network_security_group_id:
+            type: string
+            description_kind: plain
+            optional: true
+          primary:
+            type: bool
+            description_kind: plain
+            required: true
+        block_types:
+          dns_settings:
+            nesting_mode: list
+            block:
+              attributes:
+                dns_servers:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          ip_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                application_gateway_backend_address_pool_ids:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                application_security_group_ids:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                load_balancer_backend_address_pool_ids:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                load_balancer_inbound_nat_rules_ids:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                primary:
+                  type: bool
+                  description_kind: plain
+                  required: true
+                subnet_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                public_ip_address_configuration:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      domain_name_label:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      idle_timeout:
+                        type: number
+                        description_kind: plain
+                        required: true
+                      name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+        description_kind: plain
+      min_items: 1
+    os_profile:
+      nesting_mode: list
+      block:
+        attributes:
+          admin_password:
+            type: string
+            description_kind: plain
+            optional: true
+            sensitive: true
+          admin_username:
+            type: string
+            description_kind: plain
+            required: true
+          computer_name_prefix:
+            type: string
+            description_kind: plain
+            required: true
+          custom_data:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    os_profile_linux_config:
+      nesting_mode: set
+      block:
+        attributes:
+          disable_password_authentication:
+            type: bool
+            description_kind: plain
+            optional: true
+        block_types:
+          ssh_keys:
+            nesting_mode: list
+            block:
+              attributes:
+                key_data:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                path:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+      max_items: 1
+    os_profile_secrets:
+      nesting_mode: set
+      block:
+        attributes:
+          source_vault_id:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          vault_certificates:
+            nesting_mode: list
+            block:
+              attributes:
+                certificate_store:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                certificate_url:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+    os_profile_windows_config:
+      nesting_mode: set
+      block:
+        attributes:
+          enable_automatic_upgrades:
+            type: bool
+            description_kind: plain
+            optional: true
+          provision_vm_agent:
+            type: bool
+            description_kind: plain
+            optional: true
+        block_types:
+          additional_unattend_config:
+            nesting_mode: list
+            block:
+              attributes:
+                component:
+                  type: string
+                  description_kind: plain
+                  required: true
+                content:
+                  type: string
+                  description_kind: plain
+                  required: true
+                  sensitive: true
+                pass:
+                  type: string
+                  description_kind: plain
+                  required: true
+                setting_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          winrm:
+            nesting_mode: list
+            block:
+              attributes:
+                certificate_url:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                protocol:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+      max_items: 1
+    plan:
+      nesting_mode: set
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          product:
+            type: string
+            description_kind: plain
+            required: true
+          publisher:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    rolling_upgrade_policy:
+      nesting_mode: list
+      block:
+        attributes:
+          max_batch_instance_percent:
+            type: number
+            description_kind: plain
+            optional: true
+          max_unhealthy_instance_percent:
+            type: number
+            description_kind: plain
+            optional: true
+          max_unhealthy_upgraded_instance_percent:
+            type: number
+            description_kind: plain
+            optional: true
+          pause_time_between_batches:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    sku:
+      nesting_mode: list
+      block:
+        attributes:
+          capacity:
+            type: number
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          tier:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    storage_profile_data_disk:
+      nesting_mode: list
+      block:
+        attributes:
+          caching:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          create_option:
+            type: string
+            description_kind: plain
+            required: true
+          disk_size_gb:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+          lun:
+            type: number
+            description_kind: plain
+            required: true
+          managed_disk_type:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+    storage_profile_image_reference:
+      nesting_mode: set
+      block:
+        attributes:
+          id:
+            type: string
+            description_kind: plain
+            optional: true
+          offer:
+            type: string
+            description_kind: plain
+            optional: true
+          publisher:
+            type: string
+            description_kind: plain
+            optional: true
+          sku:
+            type: string
+            description_kind: plain
+            optional: true
+          version:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    storage_profile_os_disk:
+      nesting_mode: set
+      block:
+        attributes:
+          caching:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          create_option:
+            type: string
+            description_kind: plain
+            required: true
+          image:
+            type: string
+            description_kind: plain
+            optional: true
+          managed_disk_type:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          name:
+            type: string
+            description_kind: plain
+            optional: true
+          os_type:
+            type: string
+            description_kind: plain
+            optional: true
+          vhd_containers:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain
+  deprecated: true

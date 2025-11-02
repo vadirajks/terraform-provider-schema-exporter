@@ -1,0 +1,292 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    connector_configuration:
+      type:
+      - map
+      - string
+      description_kind: plain
+      required: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kafkaconnect_version:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    service_execution_role_arn:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    version:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    capacity:
+      nesting_mode: list
+      block:
+        block_types:
+          autoscaling:
+            nesting_mode: list
+            block:
+              attributes:
+                max_worker_count:
+                  type: number
+                  description_kind: plain
+                  required: true
+                mcu_count:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                min_worker_count:
+                  type: number
+                  description_kind: plain
+                  required: true
+              block_types:
+                scale_in_policy:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      cpu_utilization_percentage:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                    description_kind: plain
+                  max_items: 1
+                scale_out_policy:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      cpu_utilization_percentage:
+                        type: number
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          provisioned_capacity:
+            nesting_mode: list
+            block:
+              attributes:
+                mcu_count:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                worker_count:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    kafka_cluster:
+      nesting_mode: list
+      block:
+        block_types:
+          apache_kafka_cluster:
+            nesting_mode: list
+            block:
+              attributes:
+                bootstrap_servers:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                vpc:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      security_groups:
+                        type:
+                        - set
+                        - string
+                        description_kind: plain
+                        required: true
+                      subnets:
+                        type:
+                        - set
+                        - string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    kafka_cluster_client_authentication:
+      nesting_mode: list
+      block:
+        attributes:
+          authentication_type:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    kafka_cluster_encryption_in_transit:
+      nesting_mode: list
+      block:
+        attributes:
+          encryption_type:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    log_delivery:
+      nesting_mode: list
+      block:
+        block_types:
+          worker_log_delivery:
+            nesting_mode: list
+            block:
+              block_types:
+                cloudwatch_logs:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      enabled:
+                        type: bool
+                        description_kind: plain
+                        required: true
+                      log_group:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+                firehose:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      delivery_stream:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      enabled:
+                        type: bool
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  max_items: 1
+                s3:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      bucket:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      enabled:
+                        type: bool
+                        description_kind: plain
+                        required: true
+                      prefix:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    plugin:
+      nesting_mode: set
+      block:
+        block_types:
+          custom_plugin:
+            nesting_mode: list
+            block:
+              attributes:
+                arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                revision:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    worker_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          arn:
+            type: string
+            description_kind: plain
+            required: true
+          revision:
+            type: number
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

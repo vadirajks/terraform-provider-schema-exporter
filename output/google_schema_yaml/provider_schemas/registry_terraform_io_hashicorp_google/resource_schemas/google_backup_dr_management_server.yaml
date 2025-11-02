@@ -1,0 +1,73 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: The location for the management server (management console)
+      description_kind: plain
+      required: true
+    management_uri:
+      type:
+      - list
+      - - object
+        - api: string
+          web_ui: string
+      description: The management console URI
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: The name of management server (management console)
+      description_kind: plain
+      required: true
+    oauth2_client_id:
+      type: string
+      description: The oauth2ClientId of management console.
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    type:
+      type: string
+      description: 'The type of management server (management console). Default value: "BACKUP_RESTORE" Possible values: ["BACKUP_RESTORE"]'
+      description_kind: plain
+      optional: true
+  block_types:
+    networks:
+      nesting_mode: list
+      block:
+        attributes:
+          network:
+            type: string
+            description: Network with format 'projects/{{project_id}}/global/networks/{{network_id}}'
+            description_kind: plain
+            required: true
+          peering_mode:
+            type: string
+            description: 'Type of Network peeringMode Default value: "PRIVATE_SERVICE_ACCESS" Possible values: ["PRIVATE_SERVICE_ACCESS"]'
+            description_kind: plain
+            optional: true
+        description: Network details to create management server (management console).
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

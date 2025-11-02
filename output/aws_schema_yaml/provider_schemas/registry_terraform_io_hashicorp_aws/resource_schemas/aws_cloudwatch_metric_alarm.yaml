@@ -1,0 +1,184 @@
+version: 1
+block:
+  attributes:
+    actions_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    alarm_actions:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    alarm_description:
+      type: string
+      description_kind: plain
+      optional: true
+    alarm_name:
+      type: string
+      description_kind: plain
+      required: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    comparison_operator:
+      type: string
+      description_kind: plain
+      required: true
+    datapoints_to_alarm:
+      type: number
+      description_kind: plain
+      optional: true
+    dimensions:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    evaluate_low_sample_count_percentiles:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    evaluation_periods:
+      type: number
+      description_kind: plain
+      required: true
+    extended_statistic:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    insufficient_data_actions:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    metric_name:
+      type: string
+      description_kind: plain
+      optional: true
+    namespace:
+      type: string
+      description_kind: plain
+      optional: true
+    ok_actions:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    period:
+      type: number
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    statistic:
+      type: string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    threshold:
+      type: number
+      description_kind: plain
+      optional: true
+    threshold_metric_id:
+      type: string
+      description_kind: plain
+      optional: true
+    treat_missing_data:
+      type: string
+      description_kind: plain
+      optional: true
+    unit:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    metric_query:
+      nesting_mode: set
+      block:
+        attributes:
+          account_id:
+            type: string
+            description_kind: plain
+            optional: true
+          expression:
+            type: string
+            description_kind: plain
+            optional: true
+          id:
+            type: string
+            description_kind: plain
+            required: true
+          label:
+            type: string
+            description_kind: plain
+            optional: true
+          period:
+            type: number
+            description_kind: plain
+            optional: true
+          return_data:
+            type: bool
+            description_kind: plain
+            optional: true
+        block_types:
+          metric:
+            nesting_mode: list
+            block:
+              attributes:
+                dimensions:
+                  type:
+                  - map
+                  - string
+                  description_kind: plain
+                  optional: true
+                metric_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                namespace:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                period:
+                  type: number
+                  description_kind: plain
+                  required: true
+                stat:
+                  type: string
+                  description_kind: plain
+                  required: true
+                unit:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+  description_kind: plain

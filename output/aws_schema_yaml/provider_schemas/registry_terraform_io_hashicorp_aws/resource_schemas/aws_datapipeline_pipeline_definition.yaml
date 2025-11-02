@@ -1,0 +1,88 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    pipeline_id:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    parameter_object:
+      nesting_mode: set
+      block:
+        attributes:
+          id:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          attribute:
+            nesting_mode: set
+            block:
+              attributes:
+                key:
+                  type: string
+                  description_kind: plain
+                  required: true
+                string_value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+    parameter_value:
+      nesting_mode: set
+      block:
+        attributes:
+          id:
+            type: string
+            description_kind: plain
+            required: true
+          string_value:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    pipeline_object:
+      nesting_mode: set
+      block:
+        attributes:
+          id:
+            type: string
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          field:
+            nesting_mode: set
+            block:
+              attributes:
+                key:
+                  type: string
+                  description_kind: plain
+                  required: true
+                ref_value:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                string_value:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+        description_kind: plain
+      min_items: 1
+  description_kind: plain

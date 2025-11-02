@@ -1,0 +1,260 @@
+version: 0
+block:
+  attributes:
+    allow_version_upgrade:
+      type: bool
+      description_kind: plain
+      optional: true
+    apply_immediately:
+      type: bool
+      description_kind: plain
+      optional: true
+    aqua_configuration_status:
+      type: string
+      description_kind: plain
+      deprecated: true
+      optional: true
+      computed: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    automated_snapshot_retention_period:
+      type: number
+      description_kind: plain
+      optional: true
+    availability_zone:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    availability_zone_relocation_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    cluster_identifier:
+      type: string
+      description_kind: plain
+      required: true
+    cluster_namespace_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    cluster_nodes:
+      type:
+      - list
+      - - object
+        - node_role: string
+          private_ip_address: string
+          public_ip_address: string
+      description_kind: plain
+      computed: true
+    cluster_parameter_group_name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    cluster_public_key:
+      type: string
+      description_kind: plain
+      computed: true
+    cluster_revision_number:
+      type: string
+      description_kind: plain
+      computed: true
+    cluster_subnet_group_name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    cluster_type:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    cluster_version:
+      type: string
+      description_kind: plain
+      optional: true
+    database_name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    default_iam_role_arn:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    dns_name:
+      type: string
+      description_kind: plain
+      computed: true
+    elastic_ip:
+      type: string
+      description_kind: plain
+      optional: true
+    encrypted:
+      type: string
+      description_kind: plain
+      optional: true
+    endpoint:
+      type: string
+      description_kind: plain
+      computed: true
+    enhanced_vpc_routing:
+      type: bool
+      description_kind: plain
+      optional: true
+      computed: true
+    final_snapshot_identifier:
+      type: string
+      description_kind: plain
+      optional: true
+    iam_roles:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kms_key_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    maintenance_track_name:
+      type: string
+      description_kind: plain
+      optional: true
+    manage_master_password:
+      type: bool
+      description_kind: plain
+      optional: true
+    manual_snapshot_retention_period:
+      type: number
+      description_kind: plain
+      optional: true
+    master_password:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+    master_password_secret_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    master_password_secret_kms_key_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    master_password_wo:
+      type: string
+      description_kind: plain
+      optional: true
+      sensitive: true
+      write_only: true
+    master_password_wo_version:
+      type: number
+      description_kind: plain
+      optional: true
+    master_username:
+      type: string
+      description_kind: plain
+      optional: true
+    multi_az:
+      type: bool
+      description_kind: plain
+      optional: true
+    node_type:
+      type: string
+      description_kind: plain
+      required: true
+    number_of_nodes:
+      type: number
+      description_kind: plain
+      optional: true
+    owner_account:
+      type: string
+      description_kind: plain
+      optional: true
+    port:
+      type: number
+      description_kind: plain
+      optional: true
+    preferred_maintenance_window:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    publicly_accessible:
+      type: bool
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    skip_final_snapshot:
+      type: bool
+      description_kind: plain
+      optional: true
+    snapshot_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    snapshot_cluster_identifier:
+      type: string
+      description_kind: plain
+      optional: true
+    snapshot_identifier:
+      type: string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    vpc_security_group_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,229 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "capacity_units": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "query_capacity_units": "number",
+              "storage_capacity_units": "number"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "created_at": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "document_metadata_configuration_updates": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "name": "string",
+              "relevance": [
+                "list",
+                [
+                  "object",
+                  {
+                    "duration": "string",
+                    "freshness": "bool",
+                    "importance": "number",
+                    "rank_order": "string",
+                    "values_importance_map": [
+                      "map",
+                      "number"
+                    ]
+                  }
+                ]
+              ],
+              "search": [
+                "list",
+                [
+                  "object",
+                  {
+                    "displayable": "bool",
+                    "facetable": "bool",
+                    "searchable": "bool",
+                    "sortable": "bool"
+                  }
+                ]
+              ],
+              "type": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "edition": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "error_message": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "index_statistics": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "faq_statistics": [
+                "list",
+                [
+                  "object",
+                  {
+                    "indexed_question_answers_count": "number"
+                  }
+                ]
+              ],
+              "text_document_statistics": [
+                "list",
+                [
+                  "object",
+                  {
+                    "indexed_text_bytes": "number",
+                    "indexed_text_documents_count": "number"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "role_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "server_side_encryption_configuration": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "kms_key_id": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "status": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "updated_at": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "user_context_policy": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "user_group_resolution_configuration": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "user_group_resolution_mode": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "user_token_configurations": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "json_token_type_configuration": [
+                "list",
+                [
+                  "object",
+                  {
+                    "group_attribute_field": "string",
+                    "user_name_attribute_field": "string"
+                  }
+                ]
+              ],
+              "jwt_token_type_configuration": [
+                "list",
+                [
+                  "object",
+                  {
+                    "claim_regex": "string",
+                    "group_attribute_field": "string",
+                    "issuer": "string",
+                    "key_location": "string",
+                    "secrets_manager_arn": "string",
+                    "url": "string",
+                    "user_name_attribute_field": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

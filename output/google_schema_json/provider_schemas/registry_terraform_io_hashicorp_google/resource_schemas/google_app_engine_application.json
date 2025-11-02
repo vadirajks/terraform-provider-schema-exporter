@@ -1,0 +1,177 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "app_id": {
+        "type": "string",
+        "description": "Identifier of the app.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "auth_domain": {
+        "type": "string",
+        "description": "The domain to authenticate users with when using App Engine's User API.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "code_bucket": {
+        "type": "string",
+        "description": "The GCS bucket code is being stored in for this app.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "database_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "default_bucket": {
+        "type": "string",
+        "description": "The GCS bucket content is being stored in for this app.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "default_hostname": {
+        "type": "string",
+        "description": "The default hostname for this app.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "gcr_domain": {
+        "type": "string",
+        "description": "The GCR domain used for storing managed Docker images for this app.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location_id": {
+        "type": "string",
+        "description": "The location to serve the app from.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Unique name of the app.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description": "The project ID to create the application under.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "serving_status": {
+        "type": "string",
+        "description": "The serving status of the app.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ssl_policy": {
+        "type": "string",
+        "description": "The SSL policy that will be applied to the application. If set to Modern it will restrict traffic with TLS \\u003c 1.2 and allow only Modern Ciphers suite",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "url_dispatch_rule": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "domain": "string",
+              "path": "string",
+              "service": "string"
+            }
+          ]
+        ],
+        "description": "A list of dispatch rule blocks. Each block has a domain, path, and service field.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "feature_settings": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "split_health_checks": {
+              "type": "bool",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "A block of optional settings to configure specific App Engine features:",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "iap": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enabled": {
+              "type": "bool",
+              "description": "Adapted for use with the app",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "oauth2_client_id": {
+              "type": "string",
+              "description": "OAuth2 client ID to use for the authentication flow.",
+              "description_kind": "plain",
+              "required": true
+            },
+            "oauth2_client_secret": {
+              "type": "string",
+              "description": "OAuth2 client secret to use for the authentication flow. The SHA-256 hash of the value is returned in the oauth2ClientSecretSha256 field.",
+              "description_kind": "plain",
+              "required": true,
+              "sensitive": true
+            },
+            "oauth2_client_secret_sha256": {
+              "type": "string",
+              "description": "Hex-encoded SHA-256 hash of the client secret.",
+              "description_kind": "plain",
+              "computed": true,
+              "sensitive": true
+            }
+          },
+          "description": "Settings for enabling Cloud Identity Aware Proxy",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

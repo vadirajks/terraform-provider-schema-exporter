@@ -1,0 +1,289 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    role_arn:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    data_quality_app_specification:
+      nesting_mode: list
+      block:
+        attributes:
+          environment:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+          image_uri:
+            type: string
+            description_kind: plain
+            required: true
+          post_analytics_processor_source_uri:
+            type: string
+            description_kind: plain
+            optional: true
+          record_preprocessor_source_uri:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    data_quality_baseline_config:
+      nesting_mode: list
+      block:
+        block_types:
+          constraints_resource:
+            nesting_mode: list
+            block:
+              attributes:
+                s3_uri:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          statistics_resource:
+            nesting_mode: list
+            block:
+              attributes:
+                s3_uri:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    data_quality_job_input:
+      nesting_mode: list
+      block:
+        block_types:
+          batch_transform_input:
+            nesting_mode: list
+            block:
+              attributes:
+                data_captured_destination_s3_uri:
+                  type: string
+                  description_kind: plain
+                  required: true
+                local_path:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                s3_data_distribution_type:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                s3_input_mode:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              block_types:
+                dataset_format:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      csv:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            header:
+                              type: bool
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                      json:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            line:
+                              type: bool
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                        max_items: 1
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+          endpoint_input:
+            nesting_mode: list
+            block:
+              attributes:
+                endpoint_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                local_path:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                s3_data_distribution_type:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                s3_input_mode:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    data_quality_job_output_config:
+      nesting_mode: list
+      block:
+        attributes:
+          kms_key_id:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          monitoring_outputs:
+            nesting_mode: list
+            block:
+              block_types:
+                s3_output:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      local_path:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      s3_upload_mode:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                        computed: true
+                      s3_uri:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    job_resources:
+      nesting_mode: list
+      block:
+        block_types:
+          cluster_config:
+            nesting_mode: list
+            block:
+              attributes:
+                instance_count:
+                  type: number
+                  description_kind: plain
+                  required: true
+                instance_type:
+                  type: string
+                  description_kind: plain
+                  required: true
+                volume_kms_key_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                volume_size_in_gb:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    network_config:
+      nesting_mode: list
+      block:
+        attributes:
+          enable_inter_container_traffic_encryption:
+            type: bool
+            description_kind: plain
+            optional: true
+          enable_network_isolation:
+            type: bool
+            description_kind: plain
+            optional: true
+        block_types:
+          vpc_config:
+            nesting_mode: list
+            block:
+              attributes:
+                security_group_ids:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  required: true
+                subnets:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    stopping_condition:
+      nesting_mode: list
+      block:
+        attributes:
+          max_runtime_in_seconds:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

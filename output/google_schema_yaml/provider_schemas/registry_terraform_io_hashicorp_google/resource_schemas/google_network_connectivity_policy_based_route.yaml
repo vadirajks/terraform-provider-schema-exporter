@@ -1,0 +1,164 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: Time when the policy-based route was created.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: An optional description of this resource.
+      description_kind: plain
+      optional: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kind:
+      type: string
+      description: Type of this resource.
+      description_kind: plain
+      computed: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'User-defined labels. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: The name of the policy based route.
+      description_kind: plain
+      required: true
+    network:
+      type: string
+      description: 'Fully-qualified URL of the network that this route applies to, for example: projects/my-project/global/networks/my-network.'
+      description_kind: plain
+      required: true
+    next_hop_ilb_ip:
+      type: string
+      description: The IP address of a global-access-enabled L4 ILB that is the next hop for matching packets.
+      description_kind: plain
+      optional: true
+    next_hop_other_routes:
+      type: string
+      description: 'Other routes that will be referenced to determine the next hop of the packet. Possible values: ["DEFAULT_ROUTING"]'
+      description_kind: plain
+      optional: true
+    priority:
+      type: number
+      description: The priority of this policy-based route. Priority is used to break ties in cases where there are more than one matching policy-based routes found. In cases where multiple policy-based routes are matched, the one with the lowest-numbered priority value wins. The default value is 1000. The priority value must be from 1 to 65535, inclusive.
+      description_kind: plain
+      optional: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: Time when the policy-based route was created.
+      description_kind: plain
+      computed: true
+    warnings:
+      type:
+      - list
+      - - object
+        - code: string
+          data:
+          - map
+          - string
+          warning_message: string
+      description: If potential misconfigurations are detected for this route, this field will be populated with warning messages.
+      description_kind: plain
+      computed: true
+  block_types:
+    filter:
+      nesting_mode: list
+      block:
+        attributes:
+          dest_range:
+            type: string
+            description: The destination IP range of outgoing packets that this policy-based route applies to. Default is "0.0.0.0/0".
+            description_kind: plain
+            optional: true
+          ip_protocol:
+            type: string
+            description: The IP protocol that this policy-based route applies to. Valid values are 'TCP', 'UDP', and 'ALL'. Default is 'ALL'.
+            description_kind: plain
+            optional: true
+          protocol_version:
+            type: string
+            description: 'Internet protocol versions this policy-based route applies to. Possible values: ["IPV4", "IPV6"]'
+            description_kind: plain
+            required: true
+          src_range:
+            type: string
+            description: The source IP range of outgoing packets that this policy-based route applies to. Default is "0.0.0.0/0".
+            description_kind: plain
+            optional: true
+        description: The filter to match L4 traffic.
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    interconnect_attachment:
+      nesting_mode: list
+      block:
+        attributes:
+          region:
+            type: string
+            description: Cloud region to install this policy-based route on for Interconnect attachments. Use 'all' to install it on all Interconnect attachments.
+            description_kind: plain
+            required: true
+        description: The interconnect attachments that this policy-based route applies to.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    virtual_machine:
+      nesting_mode: list
+      block:
+        attributes:
+          tags:
+            type:
+            - list
+            - string
+            description: A list of VM instance tags that this policy-based route applies to. VM instances that have ANY of tags specified here will install this PBR.
+            description_kind: plain
+            required: true
+        description: VM instances to which this policy-based route applies to.
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

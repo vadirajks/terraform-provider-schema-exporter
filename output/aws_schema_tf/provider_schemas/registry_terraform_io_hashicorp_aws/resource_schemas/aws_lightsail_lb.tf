@@ -1,0 +1,16 @@
+resource "aws_lightsail_lb" "name" {
+  instance_port = number (Required)
+  name = string (Required)
+  arn = string (Computed)
+  created_at = string (Computed)
+  dns_name = string (Computed)
+  health_check_path = string (Optional)
+  id = string (Optional, Computed)
+  ip_address_type = string (Optional)
+  protocol = string (Computed)
+  public_ports = ['list', 'number'] (Computed)
+  region = string (Optional, Computed)
+  support_code = string (Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+}

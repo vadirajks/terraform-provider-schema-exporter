@@ -1,0 +1,15 @@
+data "google_project" "name" {
+  auto_create_network = bool (Computed)
+  billing_account = string (Computed)
+  deletion_policy = string (Computed)
+  effective_labels = ['map', 'string'] (Computed)
+  folder_id = string (Computed)
+  id = string (Optional, Computed)
+  labels = ['map', 'string'] (Computed)
+  name = string (Computed)
+  number = string (Computed)
+  org_id = string (Computed)
+  project_id = string (Optional)
+  tags = ['map', 'string'] (Computed)
+  terraform_labels = ['map', 'string'] (Computed)
+}

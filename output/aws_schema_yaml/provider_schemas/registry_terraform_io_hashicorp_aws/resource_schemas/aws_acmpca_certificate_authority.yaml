@@ -1,0 +1,210 @@
+version: 1
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    certificate:
+      type: string
+      description_kind: plain
+      computed: true
+    certificate_chain:
+      type: string
+      description_kind: plain
+      computed: true
+    certificate_signing_request:
+      type: string
+      description_kind: plain
+      computed: true
+    enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    key_storage_security_standard:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    not_after:
+      type: string
+      description_kind: plain
+      computed: true
+    not_before:
+      type: string
+      description_kind: plain
+      computed: true
+    permanent_deletion_time_in_days:
+      type: number
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    serial:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    type:
+      type: string
+      description_kind: plain
+      optional: true
+    usage_mode:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    certificate_authority_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          key_algorithm:
+            type: string
+            description_kind: plain
+            required: true
+          signing_algorithm:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          subject:
+            nesting_mode: list
+            block:
+              attributes:
+                common_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                country:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                distinguished_name_qualifier:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                generation_qualifier:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                given_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                initials:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                locality:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                organization:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                organizational_unit:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                pseudonym:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                state:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                surname:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                title:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    revocation_configuration:
+      nesting_mode: list
+      block:
+        block_types:
+          crl_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                custom_cname:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                expiration_in_days:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                s3_bucket_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                s3_object_acl:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              description_kind: plain
+            max_items: 1
+          ocsp_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  required: true
+                ocsp_custom_cname:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

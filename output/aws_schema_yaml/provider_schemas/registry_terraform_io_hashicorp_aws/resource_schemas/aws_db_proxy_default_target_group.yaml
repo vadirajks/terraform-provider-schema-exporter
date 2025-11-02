@@ -1,0 +1,69 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    db_proxy_name:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    connection_pool_config:
+      nesting_mode: list
+      block:
+        attributes:
+          connection_borrow_timeout:
+            type: number
+            description_kind: plain
+            optional: true
+          init_query:
+            type: string
+            description_kind: plain
+            optional: true
+          max_connections_percent:
+            type: number
+            description_kind: plain
+            optional: true
+          max_idle_connections_percent:
+            type: number
+            description_kind: plain
+            optional: true
+          session_pinning_filters:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

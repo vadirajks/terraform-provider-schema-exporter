@@ -1,0 +1,119 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "description": {
+        "type": "string",
+        "description": "A description of this sink. The maximum length of the description is 8000 characters.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "destination": {
+        "type": "string",
+        "description": "The destination of the sink (or, in other words, where logs are written to). Can be a Cloud Storage bucket, a PubSub topic, or a BigQuery dataset. Examples: \"storage.googleapis.com/[GCS_BUCKET]\" \"bigquery.googleapis.com/projects/[PROJECT_ID]/datasets/[DATASET]\" \"pubsub.googleapis.com/projects/[PROJECT_ID]/topics/[TOPIC_ID]\" The writer associated with the sink must have access to write to the above resource.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "disabled": {
+        "type": "bool",
+        "description": "If set to True, then this sink is disabled and it does not export any log entries.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "filter": {
+        "type": "string",
+        "description": "The filter to apply when exporting logs. Only log entries that match the filter are exported.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "folder": {
+        "type": "string",
+        "description": "The folder to be exported to the sink. Note that either [FOLDER_ID] or \"folders/[FOLDER_ID]\" is accepted.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "include_children": {
+        "type": "bool",
+        "description": "Whether or not to include children folders in the sink export. If true, logs associated with child projects are also exported; otherwise only logs relating to the provided folder are included.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "intercept_children": {
+        "type": "bool",
+        "description": "Whether or not to intercept logs from child projects. If true, matching logs will not match with sinks in child resources, except _Required sinks. This sink will be visible to child resources when listing sinks.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the logging sink.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "writer_identity": {
+        "type": "string",
+        "description": "The identity associated with this sink. This identity must be granted write access to the configured destination.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "bigquery_options": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "use_partitioned_tables": {
+              "type": "bool",
+              "description": "Whether to use BigQuery's partition tables. By default, Logging creates dated tables based on the log entries' timestamps, e.g. syslog_20170523. With partitioned tables the date suffix is no longer present and special query syntax has to be used instead. In both cases, tables are sharded based on UTC timezone.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Options that affect sinks exporting data to BigQuery.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "exclusions": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "description": {
+              "type": "string",
+              "description": "A description of this exclusion.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "disabled": {
+              "type": "bool",
+              "description": "If set to True, then this exclusion is disabled and it does not exclude any log entries",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "filter": {
+              "type": "string",
+              "description": "An advanced logs filter that matches the log entries to be excluded. By using the sample function, you can exclude less than 100% of the matching log entries",
+              "description_kind": "plain",
+              "required": true
+            },
+            "name": {
+              "type": "string",
+              "description": "A client-assigned identifier, such as \"load-balancer-exclusion\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description": "Log entries that match any of the exclusion filters will not be exported. If a log entry is matched by both filter and one of exclusion's filters, it will not be exported.",
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

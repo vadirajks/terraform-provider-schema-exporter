@@ -1,0 +1,81 @@
+version: 0
+block:
+  attributes:
+    backend_address_pool_id:
+      type: string
+      description_kind: plain
+      computed: true
+    backend_port:
+      type: number
+      description_kind: plain
+      computed: true
+    disable_outbound_snat:
+      type: bool
+      description_kind: plain
+      computed: true
+    enable_floating_ip:
+      type: bool
+      description_kind: plain
+      deprecated: true
+      computed: true
+    enable_tcp_reset:
+      type: bool
+      description_kind: plain
+      deprecated: true
+      computed: true
+    floating_ip_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    frontend_ip_configuration_name:
+      type: string
+      description_kind: plain
+      computed: true
+    frontend_port:
+      type: number
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    idle_timeout_in_minutes:
+      type: number
+      description_kind: plain
+      computed: true
+    load_distribution:
+      type: string
+      description_kind: plain
+      computed: true
+    loadbalancer_id:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    probe_id:
+      type: string
+      description_kind: plain
+      computed: true
+    protocol:
+      type: string
+      description_kind: plain
+      computed: true
+    tcp_reset_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,35 @@
+version: 0
+block:
+  attributes:
+    all_regions:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    names:
+      type:
+      - set
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    filter:
+      nesting_mode: set
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          values:
+            type:
+            - set
+            - string
+            description_kind: plain
+            required: true
+        description_kind: plain
+  description_kind: plain

@@ -1,0 +1,311 @@
+version: 1
+block:
+  attributes:
+    enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    short_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    arm_role_receiver:
+      nesting_mode: list
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          role_id:
+            type: string
+            description_kind: plain
+            required: true
+          use_common_alert_schema:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    automation_runbook_receiver:
+      nesting_mode: list
+      block:
+        attributes:
+          automation_account_id:
+            type: string
+            description_kind: plain
+            required: true
+          is_global_runbook:
+            type: bool
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          runbook_name:
+            type: string
+            description_kind: plain
+            required: true
+          service_uri:
+            type: string
+            description_kind: plain
+            required: true
+          use_common_alert_schema:
+            type: bool
+            description_kind: plain
+            optional: true
+          webhook_resource_id:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    azure_app_push_receiver:
+      nesting_mode: list
+      block:
+        attributes:
+          email_address:
+            type: string
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    azure_function_receiver:
+      nesting_mode: list
+      block:
+        attributes:
+          function_app_resource_id:
+            type: string
+            description_kind: plain
+            required: true
+          function_name:
+            type: string
+            description_kind: plain
+            required: true
+          http_trigger_url:
+            type: string
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          use_common_alert_schema:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    email_receiver:
+      nesting_mode: list
+      block:
+        attributes:
+          email_address:
+            type: string
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          use_common_alert_schema:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    event_hub_receiver:
+      nesting_mode: list
+      block:
+        attributes:
+          event_hub_name:
+            type: string
+            description_kind: plain
+            required: true
+          event_hub_namespace:
+            type: string
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          subscription_id:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          tenant_id:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+          use_common_alert_schema:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    itsm_receiver:
+      nesting_mode: list
+      block:
+        attributes:
+          connection_id:
+            type: string
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          region:
+            type: string
+            description_kind: plain
+            required: true
+          ticket_configuration:
+            type: string
+            description_kind: plain
+            required: true
+          workspace_id:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    logic_app_receiver:
+      nesting_mode: list
+      block:
+        attributes:
+          callback_url:
+            type: string
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          resource_id:
+            type: string
+            description_kind: plain
+            required: true
+          use_common_alert_schema:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    sms_receiver:
+      nesting_mode: list
+      block:
+        attributes:
+          country_code:
+            type: string
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          phone_number:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    voice_receiver:
+      nesting_mode: list
+      block:
+        attributes:
+          country_code:
+            type: string
+            description_kind: plain
+            required: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          phone_number:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    webhook_receiver:
+      nesting_mode: list
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          service_uri:
+            type: string
+            description_kind: plain
+            required: true
+          use_common_alert_schema:
+            type: bool
+            description_kind: plain
+            optional: true
+        block_types:
+          aad_auth:
+            nesting_mode: list
+            block:
+              attributes:
+                identifier_uri:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                object_id:
+                  type: string
+                  description_kind: plain
+                  required: true
+                tenant_id:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+  description_kind: plain

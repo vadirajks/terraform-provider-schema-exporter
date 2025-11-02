@@ -1,0 +1,154 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "action": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "ssm_automation": [
+                "list",
+                [
+                  "object",
+                  {
+                    "document_name": "string",
+                    "document_version": "string",
+                    "dynamic_parameters": [
+                      "map",
+                      "string"
+                    ],
+                    "parameter": [
+                      "set",
+                      [
+                        "object",
+                        {
+                          "name": "string",
+                          "values": [
+                            "set",
+                            "string"
+                          ]
+                        }
+                      ]
+                    ],
+                    "role_arn": "string",
+                    "target_account": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "chat_channel": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "display_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "engagements": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "incident_template": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "dedupe_string": "string",
+              "impact": "number",
+              "incident_tags": [
+                "map",
+                "string"
+              ],
+              "notification_target": [
+                "set",
+                [
+                  "object",
+                  {
+                    "sns_topic_arn": "string"
+                  }
+                ]
+              ],
+              "summary": "string",
+              "title": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "integration": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "pagerduty": [
+                "list",
+                [
+                  "object",
+                  {
+                    "name": "string",
+                    "secret_id": "string",
+                    "service_id": "string"
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

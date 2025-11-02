@@ -1,0 +1,124 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "configuration_set_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "email_identity": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "identity_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "verification_status": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "verified_for_sending_status": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "dkim_signing_attributes": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "current_signing_key_length": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "domain_signing_private_key": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "sensitive": true
+            },
+            "domain_signing_selector": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "last_key_generation_timestamp": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "next_signing_key_length": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "signing_attributes_origin": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "status": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "tokens": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

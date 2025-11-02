@@ -1,0 +1,8 @@
+data "google_data_catalog_entry_group_iam_policy" "name" {
+  entry_group = string (Required)
+  etag = string (Computed)
+  id = string (Optional, Computed)
+  policy_data = string (Computed)
+  project = string (Optional, Computed)
+  region = string (Optional, Computed)
+}

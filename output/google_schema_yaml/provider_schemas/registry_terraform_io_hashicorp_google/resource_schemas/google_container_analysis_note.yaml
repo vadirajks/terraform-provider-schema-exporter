@@ -1,0 +1,111 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: The time this note was created.
+      description_kind: plain
+      computed: true
+    expiration_time:
+      type: string
+      description: Time of expiration for this note. Leave empty if note does not expire.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kind:
+      type: string
+      description: The type of analysis this note describes
+      description_kind: plain
+      computed: true
+    long_description:
+      type: string
+      description: A detailed description of the note
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: The name of the note.
+      description_kind: plain
+      required: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    related_note_names:
+      type:
+      - set
+      - string
+      description: Names of other notes related to this note.
+      description_kind: plain
+      optional: true
+    short_description:
+      type: string
+      description: A one sentence description of the note.
+      description_kind: plain
+      optional: true
+    update_time:
+      type: string
+      description: The time this note was last updated.
+      description_kind: plain
+      computed: true
+  block_types:
+    attestation_authority:
+      nesting_mode: list
+      block:
+        block_types:
+          hint:
+            nesting_mode: list
+            block:
+              attributes:
+                human_readable_name:
+                  type: string
+                  description: The human readable name of this Attestation Authority, for example "qa".
+                  description_kind: plain
+                  required: true
+              description: This submessage provides human-readable hints about the purpose of the AttestationAuthority. Because the name of a Note acts as its resource reference, it is important to disambiguate the canonical name of the Note (which might be a UUID for security purposes) from "readable" names more suitable for debug output. Note that these hints should NOT be used to look up AttestationAuthorities in security sensitive contexts, such as when looking up Attestations to verify.
+              description_kind: plain
+            min_items: 1
+            max_items: 1
+        description: Note kind that represents a logical attestation "role" or "authority". For example, an organization might have one AttestationAuthority for "QA" and one for "build". This Note is intended to act strictly as a grouping mechanism for the attached Occurrences (Attestations). This grouping mechanism also provides a security boundary, since IAM ACLs gate the ability for a principle to attach an Occurrence to a given Note. It also provides a single point of lookup to find all attached Attestation Occurrences, even if they don't all live in the same project.
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    related_url:
+      nesting_mode: set
+      block:
+        attributes:
+          label:
+            type: string
+            description: Label to describe usage of the URL
+            description_kind: plain
+            optional: true
+          url:
+            type: string
+            description: Specific URL associated with the resource.
+            description_kind: plain
+            required: true
+        description: URLs associated with this note and related metadata.
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

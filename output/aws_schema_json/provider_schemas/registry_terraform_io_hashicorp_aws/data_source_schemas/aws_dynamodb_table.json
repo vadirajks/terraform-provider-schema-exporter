@@ -1,0 +1,261 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "attribute": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "name": "string",
+              "type": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "billing_mode": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "deletion_protection_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "global_secondary_index": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "hash_key": "string",
+              "name": "string",
+              "non_key_attributes": [
+                "list",
+                "string"
+              ],
+              "on_demand_throughput": [
+                "list",
+                [
+                  "object",
+                  {
+                    "max_read_request_units": "number",
+                    "max_write_request_units": "number"
+                  }
+                ]
+              ],
+              "projection_type": "string",
+              "range_key": "string",
+              "read_capacity": "number",
+              "warm_throughput": [
+                "list",
+                [
+                  "object",
+                  {
+                    "read_units_per_second": "number",
+                    "write_units_per_second": "number"
+                  }
+                ]
+              ],
+              "write_capacity": "number"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "hash_key": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "local_secondary_index": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "name": "string",
+              "non_key_attributes": [
+                "list",
+                "string"
+              ],
+              "projection_type": "string",
+              "range_key": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "on_demand_throughput": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "max_read_request_units": "number",
+              "max_write_request_units": "number"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "point_in_time_recovery": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "enabled": "bool",
+              "recovery_period_in_days": "number"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "range_key": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "read_capacity": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "replica": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "kms_key_arn": "string",
+              "region_name": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "stream_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "stream_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "stream_label": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "stream_view_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "table_class": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ttl": {
+        "type": [
+          "set",
+          [
+            "object",
+            {
+              "attribute_name": "string",
+              "enabled": "bool"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "warm_throughput": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "read_units_per_second": "number",
+              "write_units_per_second": "number"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "write_capacity": {
+        "type": "number",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "server_side_encryption": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "kms_key_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

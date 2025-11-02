@@ -1,0 +1,151 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the Config resource. Example: \"projects/my-awesome-project/config\"",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "sign_in": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "allow_duplicate_emails": {
+              "type": "bool",
+              "description": "Whether to allow more than one account to have the same email.",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "hash_config": {
+              "type": [
+                "list",
+                [
+                  "object",
+                  {
+                    "algorithm": "string",
+                    "memory_cost": "number",
+                    "rounds": "number",
+                    "salt_separator": "string",
+                    "signer_key": "string"
+                  }
+                ]
+              ],
+              "description": "Output only. Hash config information.",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "block_types": {
+            "anonymous": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enabled": {
+                    "type": "bool",
+                    "description": "Whether anonymous user auth is enabled for the project or not.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Configuration options related to authenticating an anonymous user.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "email": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enabled": {
+                    "type": "bool",
+                    "description": "Whether email auth is enabled for the project or not.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "password_required": {
+                    "type": "bool",
+                    "description": "Whether a password is required for email auth or not. If true, both an email and password must be provided to sign in. If false, a user may sign in via either email/password or email link.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Configuration options related to authenticating a user by their email address.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "phone_number": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enabled": {
+                    "type": "bool",
+                    "description": "Whether phone number auth is enabled for the project or not.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "test_phone_numbers": {
+                    "type": [
+                      "map",
+                      "string"
+                    ],
+                    "description": "A map of <test phone number, fake code> that can be used for phone auth testing.",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description": "Configuration options related to authenticated a user by their phone number.",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description": "Configuration related to local sign in methods.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain",
+    "deprecated": true
+  }
+}

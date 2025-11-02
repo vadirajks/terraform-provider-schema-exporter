@@ -1,0 +1,58 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "environment": {
+        "type": "string",
+        "description": "The Apigee Environment associated with the Apigee API deployment.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description": "The ID of the API deployment in the format 'organizations/{{org_id}}/environments/{{environment}}/apis/{{proxy_id}}/revisions/{{revision}}/deployments'.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "org_id": {
+        "type": "string",
+        "description": "The Apigee Organization associated with the Apigee API deployment.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "proxy_id": {
+        "type": "string",
+        "description": "The Apigee API associated with the Apigee API deployment.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "revision": {
+        "type": "string",
+        "description": "The revision of the API proxy to be deployed.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

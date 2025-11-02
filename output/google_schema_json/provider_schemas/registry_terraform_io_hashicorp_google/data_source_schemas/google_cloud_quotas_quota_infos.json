@@ -1,0 +1,88 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "parent": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "quota_infos": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "container_type": "string",
+              "dimensions": [
+                "list",
+                "string"
+              ],
+              "dimensions_infos": [
+                "list",
+                [
+                  "object",
+                  {
+                    "applicable_locations": [
+                      "list",
+                      "string"
+                    ],
+                    "details": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "value": "string"
+                        }
+                      ]
+                    ],
+                    "dimensions": [
+                      "map",
+                      "string"
+                    ]
+                  }
+                ]
+              ],
+              "is_concurrent": "bool",
+              "is_fixed": "bool",
+              "is_precise": "bool",
+              "metric": "string",
+              "metric_display_name": "string",
+              "metric_unit": "string",
+              "name": "string",
+              "quota_display_name": "string",
+              "quota_id": "string",
+              "quota_increase_eligibility": [
+                "list",
+                [
+                  "object",
+                  {
+                    "ineligibility_reason": "string",
+                    "is_eligible": "bool"
+                  }
+                ]
+              ],
+              "refresh_interval": "string",
+              "service": "string",
+              "service_request_quota_uri": "string"
+            }
+          ]
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "service": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "description_kind": "plain"
+  }
+}

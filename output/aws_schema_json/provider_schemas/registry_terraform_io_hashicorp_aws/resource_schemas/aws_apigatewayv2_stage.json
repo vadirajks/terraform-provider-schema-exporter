@@ -1,0 +1,187 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "api_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "auto_deploy": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "client_certificate_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "deployment_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "execution_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "invoke_url": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "stage_variables": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "access_log_settings": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "destination_arn": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "format": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "default_route_settings": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "data_trace_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "detailed_metrics_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "logging_level": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "throttling_burst_limit": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "throttling_rate_limit": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "route_settings": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "data_trace_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "detailed_metrics_enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "logging_level": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "route_key": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "throttling_burst_limit": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "throttling_rate_limit": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

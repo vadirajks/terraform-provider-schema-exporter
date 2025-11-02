@@ -1,0 +1,84 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "disable_default_sink": {
+        "type": "bool",
+        "description": "If set to true, the _Default sink in newly created projects and folders will created in a disabled state. This can be used to automatically disable log storage if there is already an aggregated sink configured in the hierarchy. The _Default sink can be re-enabled manually if needed.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "kms_key_name": {
+        "type": "string",
+        "description": "The resource name for the configured Cloud KMS key.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "kms_service_account_id": {
+        "type": "string",
+        "description": "The service account that will be used by the Log Router to access your Cloud KMS key.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "logging_service_account_id": {
+        "type": "string",
+        "description": "The service account for the given container. Sinks use this service account as their writerIdentity if no custom service account is provided.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The resource name of the settings.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "organization": {
+        "type": "string",
+        "description": "The organization for which to retrieve or configure settings.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "storage_location": {
+        "type": "string",
+        "description": "The storage location that Cloud Logging will use to create new resources when a location is needed but not explicitly provided.",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

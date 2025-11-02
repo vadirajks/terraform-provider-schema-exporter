@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "bucket": {
+        "type": "string",
+        "description": "The name of the bucket.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "custom_attributes": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description": "A set of key/value attribute pairs to attach to each Cloud Pub/Sub message published for this notification subscription.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "event_types": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description": "List of event type filters for this notification config. If not specified, Cloud Storage will send notifications for all event types. The valid types are: \"OBJECT_FINALIZE\", \"OBJECT_METADATA_UPDATE\", \"OBJECT_DELETE\", \"OBJECT_ARCHIVE\"",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "notification_id": {
+        "type": "string",
+        "description": "The ID of the created notification.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "object_name_prefix": {
+        "type": "string",
+        "description": "Specifies a prefix path filter for this notification config. Cloud Storage will only send notifications for objects in this bucket whose names begin with the specified prefix.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "payload_format": {
+        "type": "string",
+        "description": "The desired content of the Payload. One of \"JSON_API_V1\" or \"NONE\".",
+        "description_kind": "plain",
+        "required": true
+      },
+      "self_link": {
+        "type": "string",
+        "description": "The URI of the created resource.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "topic": {
+        "type": "string",
+        "description": "The Cloud Pub/Sub topic to which this subscription publishes.",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "description": "Creates a new notification configuration on a specified bucket, establishing a flow of event notifications from GCS to a Cloud Pub/Sub topic.",
+    "description_kind": "plain"
+  }
+}

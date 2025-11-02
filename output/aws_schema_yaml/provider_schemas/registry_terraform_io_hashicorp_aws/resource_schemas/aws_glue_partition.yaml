@@ -1,0 +1,176 @@
+version: 0
+block:
+  attributes:
+    catalog_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    creation_time:
+      type: string
+      description_kind: plain
+      computed: true
+    database_name:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    last_accessed_time:
+      type: string
+      description_kind: plain
+      computed: true
+    last_analyzed_time:
+      type: string
+      description_kind: plain
+      computed: true
+    parameters:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    partition_values:
+      type:
+      - list
+      - string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    table_name:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    storage_descriptor:
+      nesting_mode: list
+      block:
+        attributes:
+          additional_locations:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          bucket_columns:
+            type:
+            - list
+            - string
+            description_kind: plain
+            optional: true
+          compressed:
+            type: bool
+            description_kind: plain
+            optional: true
+          input_format:
+            type: string
+            description_kind: plain
+            optional: true
+          location:
+            type: string
+            description_kind: plain
+            optional: true
+          number_of_buckets:
+            type: number
+            description_kind: plain
+            optional: true
+          output_format:
+            type: string
+            description_kind: plain
+            optional: true
+          parameters:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+          stored_as_sub_directories:
+            type: bool
+            description_kind: plain
+            optional: true
+        block_types:
+          columns:
+            nesting_mode: list
+            block:
+              attributes:
+                comment:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                type:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+          ser_de_info:
+            nesting_mode: list
+            block:
+              attributes:
+                name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                parameters:
+                  type:
+                  - map
+                  - string
+                  description_kind: plain
+                  optional: true
+                serialization_library:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          skewed_info:
+            nesting_mode: list
+            block:
+              attributes:
+                skewed_column_names:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+                skewed_column_value_location_maps:
+                  type:
+                  - map
+                  - string
+                  description_kind: plain
+                  optional: true
+                skewed_column_values:
+                  type:
+                  - list
+                  - string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+          sort_columns:
+            nesting_mode: list
+            block:
+              attributes:
+                column:
+                  type: string
+                  description_kind: plain
+                  required: true
+                sort_order:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

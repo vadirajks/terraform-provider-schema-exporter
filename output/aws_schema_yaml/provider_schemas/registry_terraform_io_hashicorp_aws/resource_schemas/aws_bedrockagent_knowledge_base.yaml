@@ -1,0 +1,289 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    created_at:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    failure_reasons:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    role_arn:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+    updated_at:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    knowledge_base_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          vector_knowledge_base_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                embedding_model_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                embedding_model_configuration:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      bedrock_embedding_model_configuration:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            dimensions:
+                              type: number
+                              description_kind: plain
+                              optional: true
+                            embedding_data_type:
+                              type: string
+                              description_kind: plain
+                              optional: true
+                          description_kind: plain
+                    description_kind: plain
+                supplemental_data_storage_configuration:
+                  nesting_mode: list
+                  block:
+                    block_types:
+                      storage_location:
+                        nesting_mode: list
+                        block:
+                          attributes:
+                            type:
+                              type: string
+                              description_kind: plain
+                              required: true
+                          block_types:
+                            s3_location:
+                              nesting_mode: list
+                              block:
+                                attributes:
+                                  uri:
+                                    type: string
+                                    description_kind: plain
+                                    required: true
+                                description_kind: plain
+                          description_kind: plain
+                    description_kind: plain
+              description_kind: plain
+        description_kind: plain
+    storage_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          opensearch_serverless_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                collection_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                vector_index_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                field_mapping:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      metadata_field:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      text_field:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      vector_field:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+              description_kind: plain
+          pinecone_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                connection_string:
+                  type: string
+                  description_kind: plain
+                  required: true
+                credentials_secret_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                namespace:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              block_types:
+                field_mapping:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      metadata_field:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      text_field:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+              description_kind: plain
+          rds_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                credentials_secret_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                database_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                resource_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                table_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                field_mapping:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      metadata_field:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      primary_key_field:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      text_field:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      vector_field:
+                        type: string
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+              description_kind: plain
+          redis_enterprise_cloud_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                credentials_secret_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+                endpoint:
+                  type: string
+                  description_kind: plain
+                  required: true
+                vector_index_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                field_mapping:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      metadata_field:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      text_field:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                      vector_field:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+              description_kind: plain
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

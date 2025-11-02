@@ -1,0 +1,31 @@
+data "aws_dynamodb_table" "name" {
+  name = string (Required)
+  arn = string (Computed)
+  attribute = ['set', ['object', {'name': 'string', 'type': 'string'}]] (Computed)
+  billing_mode = string (Computed)
+  deletion_protection_enabled = bool (Computed)
+  global_secondary_index = ['set', ['object', {'hash_key': 'string', 'name': 'string', 'non_key_attributes': ['list', 'string'], 'on_demand_throughput': ['list', ['object', {'max_read_request_units': 'number', 'max_write_request_units': 'number'}]], 'projection_type': 'string', 'range_key': 'string', 'read_capacity': 'number', 'warm_throughput': ['list', ['object', {'read_units_per_second': 'number', 'write_units_per_second': 'number'}]], 'write_capacity': 'number'}]] (Computed)
+  hash_key = string (Computed)
+  id = string (Optional, Computed)
+  local_secondary_index = ['set', ['object', {'name': 'string', 'non_key_attributes': ['list', 'string'], 'projection_type': 'string', 'range_key': 'string'}]] (Computed)
+  on_demand_throughput = ['list', ['object', {'max_read_request_units': 'number', 'max_write_request_units': 'number'}]] (Computed)
+  point_in_time_recovery = ['list', ['object', {'enabled': 'bool', 'recovery_period_in_days': 'number'}]] (Computed)
+  range_key = string (Computed)
+  read_capacity = number (Computed)
+  region = string (Optional, Computed)
+  replica = ['set', ['object', {'kms_key_arn': 'string', 'region_name': 'string'}]] (Computed)
+  stream_arn = string (Computed)
+  stream_enabled = bool (Computed)
+  stream_label = string (Computed)
+  stream_view_type = string (Computed)
+  table_class = string (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  ttl = ['set', ['object', {'attribute_name': 'string', 'enabled': 'bool'}]] (Computed)
+  warm_throughput = ['list', ['object', {'read_units_per_second': 'number', 'write_units_per_second': 'number'}]] (Computed)
+  write_capacity = number (Computed)
+
+  server_side_encryption block "list" (Optional) {
+    enabled = bool (Computed)
+    kms_key_arn = string (Computed)
+  }
+}

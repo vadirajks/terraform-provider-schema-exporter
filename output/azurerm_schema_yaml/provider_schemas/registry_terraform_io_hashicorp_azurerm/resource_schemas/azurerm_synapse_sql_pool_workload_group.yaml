@@ -1,0 +1,63 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    importance:
+      type: string
+      description_kind: plain
+      optional: true
+    max_resource_percent:
+      type: number
+      description_kind: plain
+      required: true
+    max_resource_percent_per_request:
+      type: number
+      description_kind: plain
+      optional: true
+    min_resource_percent:
+      type: number
+      description_kind: plain
+      required: true
+    min_resource_percent_per_request:
+      type: number
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    query_execution_timeout_in_seconds:
+      type: number
+      description_kind: plain
+      optional: true
+    sql_pool_id:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

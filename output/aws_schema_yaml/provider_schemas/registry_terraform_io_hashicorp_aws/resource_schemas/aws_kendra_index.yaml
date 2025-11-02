@@ -1,0 +1,265 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    created_at:
+      type: string
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    edition:
+      type: string
+      description_kind: plain
+      optional: true
+    error_message:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    index_statistics:
+      type:
+      - list
+      - - object
+        - faq_statistics:
+          - list
+          - - object
+            - indexed_question_answers_count: number
+          text_document_statistics:
+          - list
+          - - object
+            - indexed_text_bytes: number
+              indexed_text_documents_count: number
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    role_arn:
+      type: string
+      description_kind: plain
+      required: true
+    status:
+      type: string
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    updated_at:
+      type: string
+      description_kind: plain
+      computed: true
+    user_context_policy:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    capacity_units:
+      nesting_mode: list
+      block:
+        attributes:
+          query_capacity_units:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+          storage_capacity_units:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    document_metadata_configuration_updates:
+      nesting_mode: set
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          type:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          relevance:
+            nesting_mode: list
+            block:
+              attributes:
+                duration:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                freshness:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                importance:
+                  type: number
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                rank_order:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                values_importance_map:
+                  type:
+                  - map
+                  - number
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              description_kind: plain
+            max_items: 1
+          search:
+            nesting_mode: list
+            block:
+              attributes:
+                displayable:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                facetable:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                searchable:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                  computed: true
+                sortable:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 500
+    server_side_encryption_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          kms_key_id:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    user_group_resolution_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          user_group_resolution_mode:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    user_token_configurations:
+      nesting_mode: list
+      block:
+        block_types:
+          json_token_type_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                group_attribute_field:
+                  type: string
+                  description_kind: plain
+                  required: true
+                user_name_attribute_field:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          jwt_token_type_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                claim_regex:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                group_attribute_field:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                issuer:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                key_location:
+                  type: string
+                  description_kind: plain
+                  required: true
+                secrets_manager_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                url:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                user_name_attribute_field:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

@@ -1,0 +1,104 @@
+version: 0
+block:
+  attributes:
+    backup_plan_id:
+      type: string
+      description: The ID of the backup plan
+      description_kind: plain
+      required: true
+    backup_rules:
+      type:
+      - list
+      - - object
+        - backup_retention_days: number
+          rule_id: string
+          standard_schedule:
+          - list
+          - - object
+            - backup_window:
+              - list
+              - - object
+                - end_hour_of_day: number
+                  start_hour_of_day: number
+              days_of_month:
+              - list
+              - number
+              days_of_week:
+              - list
+              - string
+              hourly_frequency: number
+              months:
+              - list
+              - string
+              recurrence_type: string
+              time_zone: string
+              week_day_of_month:
+              - list
+              - - object
+                - day_of_week: string
+                  week_of_month: string
+      description: The backup rules for this 'BackupPlan'. There must be at least one 'BackupRule' message.
+      description_kind: plain
+      computed: true
+    backup_vault:
+      type: string
+      description: Backup vault where the backups gets stored using this Backup plan.
+      description_kind: plain
+      computed: true
+    backup_vault_service_account:
+      type: string
+      description: The Google Cloud Platform Service Account to be used by the BackupVault for taking backups.
+      description_kind: plain
+      computed: true
+    create_time:
+      type: string
+      description: When the 'BackupPlan' was created.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: The description allows for additional details about 'BackupPlan' and its use cases to be provided.
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: The location for the backup plan
+      description_kind: plain
+      required: true
+    log_retention_days:
+      type: number
+      description: This is only applicable for CloudSql resource. Days for which logs will be stored. This value should be greater than or equal to minimum enforced log retention duration of the backup vault.
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: The name of backup plan resource created
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+    resource_type:
+      type: string
+      description: The resource type to which the 'BackupPlan' will be applied. Examples include, "compute.googleapis.com/Instance", "compute.googleapis.com/Disk", "sqladmin.googleapis.com/Instance" and "storage.googleapis.com/Bucket".
+      description_kind: plain
+      computed: true
+    supported_resource_types:
+      type:
+      - list
+      - string
+      description: The list of all resource types to which the 'BackupPlan' can be applied.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: When the 'BackupPlan' was last updated.
+      description_kind: plain
+      computed: true
+  description_kind: plain

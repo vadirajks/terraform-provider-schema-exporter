@@ -1,0 +1,17 @@
+resource "aws_datasync_location_object_storage" "name" {
+  bucket_name = string (Required)
+  server_hostname = string (Required)
+  access_key = string (Optional)
+  agent_arns = ['set', 'string'] (Optional)
+  arn = string (Computed)
+  id = string (Optional, Computed)
+  region = string (Optional, Computed)
+  secret_key = string (Optional)
+  server_certificate = string (Optional)
+  server_port = number (Optional)
+  server_protocol = string (Optional)
+  subdirectory = string (Optional, Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+  uri = string (Computed)
+}

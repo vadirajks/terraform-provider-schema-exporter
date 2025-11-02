@@ -1,0 +1,147 @@
+version: 0
+block:
+  attributes:
+    addresses:
+      type:
+      - list
+      - - object
+        - country: string
+          formatted: string
+          locality: string
+          postal_code: string
+          primary: bool
+          region: string
+          street_address: string
+          type: string
+      description_kind: plain
+      computed: true
+    display_name:
+      type: string
+      description_kind: plain
+      computed: true
+    emails:
+      type:
+      - list
+      - - object
+        - primary: bool
+          type: string
+          value: string
+      description_kind: plain
+      computed: true
+    external_ids:
+      type:
+      - list
+      - - object
+        - id: string
+          issuer: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    identity_store_id:
+      type: string
+      description_kind: plain
+      required: true
+    locale:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type:
+      - list
+      - - object
+        - family_name: string
+          formatted: string
+          given_name: string
+          honorific_prefix: string
+          honorific_suffix: string
+          middle_name: string
+      description_kind: plain
+      computed: true
+    nickname:
+      type: string
+      description_kind: plain
+      computed: true
+    phone_numbers:
+      type:
+      - list
+      - - object
+        - primary: bool
+          type: string
+          value: string
+      description_kind: plain
+      computed: true
+    preferred_language:
+      type: string
+      description_kind: plain
+      computed: true
+    profile_url:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    timezone:
+      type: string
+      description_kind: plain
+      computed: true
+    title:
+      type: string
+      description_kind: plain
+      computed: true
+    user_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    user_name:
+      type: string
+      description_kind: plain
+      computed: true
+    user_type:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    alternate_identifier:
+      nesting_mode: list
+      block:
+        block_types:
+          external_id:
+            nesting_mode: list
+            block:
+              attributes:
+                id:
+                  type: string
+                  description_kind: plain
+                  required: true
+                issuer:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          unique_attribute:
+            nesting_mode: list
+            block:
+              attributes:
+                attribute_path:
+                  type: string
+                  description_kind: plain
+                  required: true
+                attribute_value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

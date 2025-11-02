@@ -1,0 +1,251 @@
+version: 0
+block:
+  attributes:
+    application_domain:
+      type: string
+      description_kind: plain
+      optional: true
+    attachment_type:
+      type: string
+      description_kind: plain
+      required: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    device_validation_domain:
+      type: string
+      description_kind: plain
+      computed: true
+    domain_certificate_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    endpoint_domain:
+      type: string
+      description_kind: plain
+      computed: true
+    endpoint_domain_prefix:
+      type: string
+      description_kind: plain
+      optional: true
+    endpoint_type:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    policy_document:
+      type: string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    security_group_ids:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    verified_access_group_id:
+      type: string
+      description_kind: plain
+      required: true
+    verified_access_instance_id:
+      type: string
+      description_kind: plain
+      computed: true
+  block_types:
+    cidr_options:
+      nesting_mode: list
+      block:
+        attributes:
+          cidr:
+            type: string
+            description_kind: plain
+            required: true
+          protocol:
+            type: string
+            description_kind: plain
+            optional: true
+          subnet_ids:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+        block_types:
+          port_range:
+            nesting_mode: set
+            block:
+              attributes:
+                from_port:
+                  type: number
+                  description_kind: plain
+                  required: true
+                to_port:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            min_items: 1
+        description_kind: plain
+      max_items: 1
+    load_balancer_options:
+      nesting_mode: list
+      block:
+        attributes:
+          load_balancer_arn:
+            type: string
+            description_kind: plain
+            optional: true
+          port:
+            type: number
+            description_kind: plain
+            optional: true
+          protocol:
+            type: string
+            description_kind: plain
+            optional: true
+          subnet_ids:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+        block_types:
+          port_range:
+            nesting_mode: set
+            block:
+              attributes:
+                from_port:
+                  type: number
+                  description_kind: plain
+                  required: true
+                to_port:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+      max_items: 1
+    network_interface_options:
+      nesting_mode: list
+      block:
+        attributes:
+          network_interface_id:
+            type: string
+            description_kind: plain
+            optional: true
+          port:
+            type: number
+            description_kind: plain
+            optional: true
+          protocol:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          port_range:
+            nesting_mode: set
+            block:
+              attributes:
+                from_port:
+                  type: number
+                  description_kind: plain
+                  required: true
+                to_port:
+                  type: number
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+        description_kind: plain
+      max_items: 1
+    rds_options:
+      nesting_mode: list
+      block:
+        attributes:
+          port:
+            type: number
+            description_kind: plain
+            optional: true
+          protocol:
+            type: string
+            description_kind: plain
+            optional: true
+          rds_db_cluster_arn:
+            type: string
+            description_kind: plain
+            optional: true
+          rds_db_instance_arn:
+            type: string
+            description_kind: plain
+            optional: true
+          rds_db_proxy_arn:
+            type: string
+            description_kind: plain
+            optional: true
+          rds_endpoint:
+            type: string
+            description_kind: plain
+            optional: true
+          subnet_ids:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    sse_specification:
+      nesting_mode: list
+      block:
+        attributes:
+          customer_managed_key_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          kms_key_arn:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

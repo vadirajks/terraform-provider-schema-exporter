@@ -1,0 +1,101 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "destination_object_replication_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "destination_storage_account_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "source_object_replication_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "source_storage_account_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "rules": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "copy_blobs_created_after": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "destination_container_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "filter_out_blobs_with_prefix": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            },
+            "source_container_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

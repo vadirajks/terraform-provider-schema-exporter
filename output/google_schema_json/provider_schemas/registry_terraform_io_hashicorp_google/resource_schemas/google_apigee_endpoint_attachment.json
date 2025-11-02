@@ -1,0 +1,76 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "connection_state": {
+        "type": "string",
+        "description": "State of the endpoint attachment connection to the service attachment.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "endpoint_attachment_id": {
+        "type": "string",
+        "description": "ID of the endpoint attachment.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "host": {
+        "type": "string",
+        "description": "Host that can be used in either HTTP Target Endpoint directly, or as the host in Target Server.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "Location of the endpoint attachment.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the Endpoint Attachment in the following format: organizations/{organization}/endpointAttachments/{endpointAttachment}.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "org_id": {
+        "type": "string",
+        "description": "The Apigee Organization associated with the Apigee instance, in the format 'organizations/{{org_name}}'.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "service_attachment": {
+        "type": "string",
+        "description": "Format: projects/*/regions/*/serviceAttachments/*",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

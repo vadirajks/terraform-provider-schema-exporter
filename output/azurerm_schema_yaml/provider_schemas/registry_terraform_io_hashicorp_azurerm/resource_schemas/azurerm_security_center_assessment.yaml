@@ -1,0 +1,64 @@
+version: 0
+block:
+  attributes:
+    additional_data:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    assessment_policy_id:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    target_resource_id:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    status:
+      nesting_mode: list
+      block:
+        attributes:
+          cause:
+            type: string
+            description_kind: plain
+            optional: true
+          code:
+            type: string
+            description_kind: plain
+            required: true
+          description:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

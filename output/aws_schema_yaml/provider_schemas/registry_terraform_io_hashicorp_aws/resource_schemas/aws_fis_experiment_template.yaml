@@ -1,0 +1,278 @@
+version: 0
+block:
+  attributes:
+    description:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    role_arn:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    action:
+      nesting_mode: set
+      block:
+        attributes:
+          action_id:
+            type: string
+            description_kind: plain
+            required: true
+          description:
+            type: string
+            description_kind: plain
+            optional: true
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          start_after:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+        block_types:
+          parameter:
+            nesting_mode: set
+            block:
+              attributes:
+                key:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          target:
+            nesting_mode: list
+            block:
+              attributes:
+                key:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      min_items: 1
+    experiment_options:
+      nesting_mode: list
+      block:
+        attributes:
+          account_targeting:
+            type: string
+            description_kind: plain
+            optional: true
+          empty_target_resolution_mode:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+    experiment_report_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          post_experiment_duration:
+            type: string
+            description_kind: plain
+            optional: true
+          pre_experiment_duration:
+            type: string
+            description_kind: plain
+            optional: true
+        block_types:
+          data_sources:
+            nesting_mode: list
+            block:
+              block_types:
+                cloudwatch_dashboard:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      dashboard_arn:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+              description_kind: plain
+            max_items: 1
+          outputs:
+            nesting_mode: list
+            block:
+              block_types:
+                s3_configuration:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      bucket_name:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      prefix:
+                        type: string
+                        description_kind: plain
+                        optional: true
+                    description_kind: plain
+                  max_items: 1
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    log_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          log_schema_version:
+            type: number
+            description_kind: plain
+            required: true
+        block_types:
+          cloudwatch_logs_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                log_group_arn:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 1
+          s3_configuration:
+            nesting_mode: list
+            block:
+              attributes:
+                bucket_name:
+                  type: string
+                  description_kind: plain
+                  required: true
+                prefix:
+                  type: string
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    stop_condition:
+      nesting_mode: set
+      block:
+        attributes:
+          source:
+            type: string
+            description_kind: plain
+            required: true
+          value:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      min_items: 1
+    target:
+      nesting_mode: set
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          parameters:
+            type:
+            - map
+            - string
+            description_kind: plain
+            optional: true
+          resource_arns:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          resource_type:
+            type: string
+            description_kind: plain
+            required: true
+          selection_mode:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          filter:
+            nesting_mode: list
+            block:
+              attributes:
+                path:
+                  type: string
+                  description_kind: plain
+                  required: true
+                values:
+                  type:
+                  - set
+                  - string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+          resource_tag:
+            nesting_mode: set
+            block:
+              attributes:
+                key:
+                  type: string
+                  description_kind: plain
+                  required: true
+                value:
+                  type: string
+                  description_kind: plain
+                  required: true
+              description_kind: plain
+            max_items: 50
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

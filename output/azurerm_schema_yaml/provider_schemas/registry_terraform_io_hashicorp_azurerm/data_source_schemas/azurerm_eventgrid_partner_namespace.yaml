@@ -1,0 +1,65 @@
+version: 0
+block:
+  attributes:
+    endpoint:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    inbound_ip_rule:
+      type:
+      - list
+      - - object
+        - action: string
+          ip_mask: string
+      description_kind: plain
+      computed: true
+    local_authentication_enabled:
+      type: bool
+      description_kind: plain
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    partner_registration_id:
+      type: string
+      description_kind: plain
+      computed: true
+    partner_topic_routing_mode:
+      type: string
+      description_kind: plain
+      computed: true
+    public_network_access:
+      type: string
+      description_kind: plain
+      computed: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

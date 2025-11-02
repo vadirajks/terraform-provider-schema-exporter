@@ -1,0 +1,98 @@
+version: 0
+block:
+  attributes:
+    cache_key_parameters:
+      type:
+      - set
+      - string
+      description_kind: plain
+      optional: true
+    cache_namespace:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    connection_id:
+      type: string
+      description_kind: plain
+      optional: true
+    connection_type:
+      type: string
+      description_kind: plain
+      optional: true
+    content_handling:
+      type: string
+      description_kind: plain
+      optional: true
+    credentials:
+      type: string
+      description_kind: plain
+      optional: true
+    http_method:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    integration_http_method:
+      type: string
+      description_kind: plain
+      optional: true
+    passthrough_behavior:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    request_parameters:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    request_templates:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    resource_id:
+      type: string
+      description_kind: plain
+      required: true
+    rest_api_id:
+      type: string
+      description_kind: plain
+      required: true
+    timeout_milliseconds:
+      type: number
+      description_kind: plain
+      optional: true
+    type:
+      type: string
+      description_kind: plain
+      required: true
+    uri:
+      type: string
+      description_kind: plain
+      optional: true
+  block_types:
+    tls_config:
+      nesting_mode: list
+      block:
+        attributes:
+          insecure_skip_verification:
+            type: bool
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

@@ -1,0 +1,108 @@
+version: 0
+block:
+  attributes:
+    access_role:
+      type: string
+      description_kind: plain
+      required: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    connector_id:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    logging_role:
+      type: string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    security_policy_name:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    url:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    as2_config:
+      nesting_mode: list
+      block:
+        attributes:
+          compression:
+            type: string
+            description_kind: plain
+            required: true
+          encryption_algorithm:
+            type: string
+            description_kind: plain
+            required: true
+          local_profile_id:
+            type: string
+            description_kind: plain
+            required: true
+          mdn_response:
+            type: string
+            description_kind: plain
+            required: true
+          mdn_signing_algorithm:
+            type: string
+            description_kind: plain
+            optional: true
+          message_subject:
+            type: string
+            description_kind: plain
+            optional: true
+          partner_profile_id:
+            type: string
+            description_kind: plain
+            required: true
+          signing_algorithm:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    sftp_config:
+      nesting_mode: list
+      block:
+        attributes:
+          trusted_host_keys:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          user_secret_id:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

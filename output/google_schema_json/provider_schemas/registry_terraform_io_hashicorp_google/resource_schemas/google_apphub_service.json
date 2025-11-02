@@ -1,0 +1,246 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "application_id": {
+        "type": "string",
+        "description": "Part of 'parent'.  Full resource name of a parent Application. Example: projects/{HOST_PROJECT_ID}/locations/{LOCATION}/applications/{APPLICATION_ID}",
+        "description_kind": "plain",
+        "required": true
+      },
+      "create_time": {
+        "type": "string",
+        "description": "Output only. Create time.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "User-defined description of a Service.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "discovered_service": {
+        "type": "string",
+        "description": "Immutable. The resource name of the original discovered service.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "display_name": {
+        "type": "string",
+        "description": "User-defined name for the Service.",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description": "Part of 'parent'.  Full resource name of a parent Application. Example: projects/{HOST_PROJECT_ID}/locations/{LOCATION}/applications/{APPLICATION_ID}",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description": "Identifier. The resource name of a Service. Format: \"projects/{host-project-id}/locations/{location}/applications/{application-id}/services/{service-id}\"",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "project": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "service_id": {
+        "type": "string",
+        "description": "The Service identifier.",
+        "description_kind": "plain",
+        "required": true
+      },
+      "service_properties": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "gcp_project": "string",
+              "location": "string",
+              "zone": "string"
+            }
+          ]
+        ],
+        "description": "Properties of an underlying cloud resource that can comprise a Service.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "service_reference": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "uri": "string"
+            }
+          ]
+        ],
+        "description": "Reference to an underlying networking resource that can comprise a Service.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "state": {
+        "type": "string",
+        "description": "Output only. Service state. Possible values: STATE_UNSPECIFIED CREATING ACTIVE DELETING DETACHED",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "uid": {
+        "type": "string",
+        "description": "Output only. A universally unique identifier (UUID) for the 'Service' in the UUID4 format.",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "update_time": {
+        "type": "string",
+        "description": "Output only. Update time.",
+        "description_kind": "plain",
+        "computed": true
+      }
+    },
+    "block_types": {
+      "attributes": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "business_owners": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "display_name": {
+                    "type": "string",
+                    "description": "Contact's name.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "Required. Email address of the contacts.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Business team that ensures user needs are met and value is delivered",
+                "description_kind": "plain"
+              }
+            },
+            "criticality": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "type": {
+                    "type": "string",
+                    "description": "Criticality type. Possible values: [\"MISSION_CRITICAL\", \"HIGH\", \"MEDIUM\", \"LOW\"]",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Criticality of the Application, Service, or Workload",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "developer_owners": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "display_name": {
+                    "type": "string",
+                    "description": "Contact's name.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "Required. Email address of the contacts.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Developer team that owns development and coding.",
+                "description_kind": "plain"
+              }
+            },
+            "environment": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "type": {
+                    "type": "string",
+                    "description": "Environment type. Possible values: [\"PRODUCTION\", \"STAGING\", \"TEST\", \"DEVELOPMENT\"]",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Environment of the Application, Service, or Workload",
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "operator_owners": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "display_name": {
+                    "type": "string",
+                    "description": "Contact's name.",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "Required. Email address of the contacts.",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description": "Operator team that ensures runtime and operations.",
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description": "Consumer provided attributes.",
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

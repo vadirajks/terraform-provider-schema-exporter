@@ -1,0 +1,164 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "api_bridge": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "auto_generated_domain_name_label_scope": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "codecs": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "connectivity": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "e911_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "emergency_dial_strings": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "microsoft_teams_voicemail_pilot_number": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "on_prem_mcp_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "platforms": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "service_location": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "allowed_media_source_address_prefixes": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "allowed_signaling_source_address_prefixes": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "esrp_addresses": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "location": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "operator_addresses": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

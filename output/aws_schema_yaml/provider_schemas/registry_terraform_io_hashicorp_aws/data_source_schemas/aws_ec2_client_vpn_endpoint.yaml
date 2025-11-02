@@ -1,0 +1,163 @@
+version: 0
+block:
+  attributes:
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    authentication_options:
+      type:
+      - list
+      - - object
+        - active_directory_id: string
+          root_certificate_chain_arn: string
+          saml_provider_arn: string
+          self_service_saml_provider_arn: string
+          type: string
+      description_kind: plain
+      computed: true
+    client_cidr_block:
+      type: string
+      description_kind: plain
+      computed: true
+    client_connect_options:
+      type:
+      - list
+      - - object
+        - enabled: bool
+          lambda_function_arn: string
+      description_kind: plain
+      computed: true
+    client_login_banner_options:
+      type:
+      - list
+      - - object
+        - banner_text: string
+          enabled: bool
+      description_kind: plain
+      computed: true
+    client_route_enforcement_options:
+      type:
+      - list
+      - - object
+        - enforced: bool
+      description_kind: plain
+      computed: true
+    client_vpn_endpoint_id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    connection_log_options:
+      type:
+      - list
+      - - object
+        - cloudwatch_log_group: string
+          cloudwatch_log_stream: string
+          enabled: bool
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description_kind: plain
+      computed: true
+    dns_name:
+      type: string
+      description_kind: plain
+      computed: true
+    dns_servers:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    endpoint_ip_address_type:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    security_group_ids:
+      type:
+      - list
+      - string
+      description_kind: plain
+      computed: true
+    self_service_portal:
+      type: string
+      description_kind: plain
+      computed: true
+    self_service_portal_url:
+      type: string
+      description_kind: plain
+      computed: true
+    server_certificate_arn:
+      type: string
+      description_kind: plain
+      computed: true
+    session_timeout_hours:
+      type: number
+      description_kind: plain
+      computed: true
+    split_tunnel:
+      type: bool
+      description_kind: plain
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    traffic_ip_address_type:
+      type: string
+      description_kind: plain
+      computed: true
+    transport_protocol:
+      type: string
+      description_kind: plain
+      computed: true
+    vpc_id:
+      type: string
+      description_kind: plain
+      computed: true
+    vpn_port:
+      type: number
+      description_kind: plain
+      computed: true
+  block_types:
+    filter:
+      nesting_mode: set
+      block:
+        attributes:
+          name:
+            type: string
+            description_kind: plain
+            required: true
+          values:
+            type:
+            - set
+            - string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

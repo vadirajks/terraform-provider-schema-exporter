@@ -1,0 +1,468 @@
+version: 0
+block:
+  attributes:
+    cleanup_policy_dry_run:
+      type: bool
+      description: If true, the cleanup pipeline is prevented from deleting versions in this repository.
+      description_kind: plain
+      optional: true
+    create_time:
+      type: string
+      description: The time when the repository was created.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: The user-provided description of the repository.
+      description_kind: plain
+      optional: true
+    effective_labels:
+      type:
+      - map
+      - string
+      description: All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.
+      description_kind: plain
+      computed: true
+    format:
+      type: string
+      description: The format of packages that are stored in the repository. Supported formats can be found [here](https://cloud.google.com/artifact-registry/docs/supported-formats). You can only create alpha formats if you are a member of the [alpha user group](https://cloud.google.com/artifact-registry/docs/supported-formats#alpha-access).
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kms_key_name:
+      type: string
+      description: "The Cloud KMS resource name of the customer managed encryption key that\u2019s used to encrypt the contents of the Repository. Has the form: 'projects/my-project/locations/my-region/keyRings/my-kr/cryptoKeys/my-key'. This value may not be changed after the Repository has been created."
+      description_kind: plain
+      optional: true
+    labels:
+      type:
+      - map
+      - string
+      description: 'Labels with user-defined metadata. This field may contain up to 64 entries. Label keys and values may be no longer than 63 characters. Label keys must begin with a lowercase letter and may only contain lowercase letters, numeric characters, underscores, and dashes. **Note**: This field is non-authoritative, and will only manage the labels present in your configuration. Please refer to the field ''effective_labels'' for all of the labels present on the resource.'
+      description_kind: plain
+      optional: true
+    location:
+      type: string
+      description: The name of the repository's location. In addition to specific regions, special values for multi-region locations are 'asia', 'europe', and 'us'. See [here](https://cloud.google.com/artifact-registry/docs/repositories/repo-locations), or use the [google_artifact_registry_locations](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/artifact_registry_locations) data source for possible values.
+      description_kind: plain
+      optional: true
+      computed: true
+    mode:
+      type: string
+      description: 'The mode configures the repository to serve artifacts from different sources. Default value: "STANDARD_REPOSITORY" Possible values: ["STANDARD_REPOSITORY", "VIRTUAL_REPOSITORY", "REMOTE_REPOSITORY"]'
+      description_kind: plain
+      optional: true
+    name:
+      type: string
+      description: 'The name of the repository, for example: "repo1"'
+      description_kind: plain
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    registry_uri:
+      type: string
+      description: 'The repository endpoint, for example: us-docker.pkg.dev/my-proj/my-repo.'
+      description_kind: plain
+      computed: true
+    repository_id:
+      type: string
+      description: 'The last part of the repository name, for example: "repo1"'
+      description_kind: plain
+      required: true
+    terraform_labels:
+      type:
+      - map
+      - string
+      description: The combination of labels configured directly on the resource and default labels configured on the provider.
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: The time when the repository was last updated.
+      description_kind: plain
+      computed: true
+  block_types:
+    cleanup_policies:
+      nesting_mode: set
+      block:
+        attributes:
+          action:
+            type: string
+            description: 'Policy action. Possible values: ["DELETE", "KEEP"]'
+            description_kind: plain
+            optional: true
+          id:
+            type: string
+            description_kind: plain
+            required: true
+        block_types:
+          condition:
+            nesting_mode: list
+            block:
+              attributes:
+                newer_than:
+                  type: string
+                  description: Match versions newer than a duration.
+                  description_kind: plain
+                  optional: true
+                older_than:
+                  type: string
+                  description: Match versions older than a duration.
+                  description_kind: plain
+                  optional: true
+                package_name_prefixes:
+                  type:
+                  - list
+                  - string
+                  description: Match versions by package prefix. Applied on any prefix match.
+                  description_kind: plain
+                  optional: true
+                tag_prefixes:
+                  type:
+                  - list
+                  - string
+                  description: Match versions by tag prefix. Applied on any prefix match.
+                  description_kind: plain
+                  optional: true
+                tag_state:
+                  type: string
+                  description: 'Match versions by tag status. Default value: "ANY" Possible values: ["TAGGED", "UNTAGGED", "ANY"]'
+                  description_kind: plain
+                  optional: true
+                version_name_prefixes:
+                  type:
+                  - list
+                  - string
+                  description: Match versions by version name prefix. Applied on any prefix match.
+                  description_kind: plain
+                  optional: true
+              description: Policy condition for matching versions.
+              description_kind: plain
+            max_items: 1
+          most_recent_versions:
+            nesting_mode: list
+            block:
+              attributes:
+                keep_count:
+                  type: number
+                  description: Minimum number of versions to keep.
+                  description_kind: plain
+                  optional: true
+                package_name_prefixes:
+                  type:
+                  - list
+                  - string
+                  description: Match versions by package prefix. Applied on any prefix match.
+                  description_kind: plain
+                  optional: true
+              description: Policy condition for retaining a minimum number of versions. May only be specified with a Keep action.
+              description_kind: plain
+            max_items: 1
+        description: Cleanup policies for this repository. Cleanup policies indicate when certain package versions can be automatically deleted. Map keys are policy IDs supplied by users during policy creation. They must unique within a repository and be under 128 characters in length.
+        description_kind: plain
+    docker_config:
+      nesting_mode: list
+      block:
+        attributes:
+          immutable_tags:
+            type: bool
+            description: The repository which enabled this flag prevents all tags from being modified, moved or deleted. This does not prevent tags from being created.
+            description_kind: plain
+            optional: true
+        description: Docker repository config contains repository level configuration for the repositories of docker type.
+        description_kind: plain
+      max_items: 1
+    maven_config:
+      nesting_mode: list
+      block:
+        attributes:
+          allow_snapshot_overwrites:
+            type: bool
+            description: The repository with this flag will allow publishing the same snapshot versions.
+            description_kind: plain
+            optional: true
+          version_policy:
+            type: string
+            description: 'Version policy defines the versions that the registry will accept. Default value: "VERSION_POLICY_UNSPECIFIED" Possible values: ["VERSION_POLICY_UNSPECIFIED", "RELEASE", "SNAPSHOT"]'
+            description_kind: plain
+            optional: true
+        description: MavenRepositoryConfig is maven related repository details. Provides additional configuration details for repositories of the maven format type.
+        description_kind: plain
+      max_items: 1
+    remote_repository_config:
+      nesting_mode: list
+      block:
+        attributes:
+          description:
+            type: string
+            description: The description of the remote source.
+            description_kind: plain
+            optional: true
+          disable_upstream_validation:
+            type: bool
+            description: If true, the remote repository upstream and upstream credentials will not be validated.
+            description_kind: plain
+            optional: true
+        block_types:
+          apt_repository:
+            nesting_mode: list
+            block:
+              block_types:
+                public_repository:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      repository_base:
+                        type: string
+                        description: 'A common public repository base for Apt, e.g. ''"debian/dists/stable"'' Possible values: ["DEBIAN", "UBUNTU", "DEBIAN_SNAPSHOT"]'
+                        description_kind: plain
+                        required: true
+                      repository_path:
+                        type: string
+                        description: Specific repository from the base.
+                        description_kind: plain
+                        required: true
+                    description: One of the publicly available Apt repositories supported by Artifact Registry.
+                    description_kind: plain
+                  max_items: 1
+              description: Specific settings for an Apt remote repository.
+              description_kind: plain
+            max_items: 1
+          common_repository:
+            nesting_mode: list
+            block:
+              attributes:
+                uri:
+                  type: string
+                  description: 'One of: a. Artifact Registry Repository resource, e.g. ''projects/UPSTREAM_PROJECT_ID/locations/REGION/repositories/UPSTREAM_REPOSITORY'' b. URI to the registry, e.g. ''"https://registry-1.docker.io"'' c. URI to Artifact Registry Repository, e.g. ''"https://REGION-docker.pkg.dev/UPSTREAM_PROJECT_ID/UPSTREAM_REPOSITORY"'''
+                  description_kind: plain
+                  required: true
+              description: Specific settings for an Artifact Registory remote repository.
+              description_kind: plain
+            max_items: 1
+          docker_repository:
+            nesting_mode: list
+            block:
+              attributes:
+                public_repository:
+                  type: string
+                  description: 'Address of the remote repository. Possible values: ["DOCKER_HUB"]'
+                  description_kind: plain
+                  optional: true
+              block_types:
+                custom_repository:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      uri:
+                        type: string
+                        description: Specific uri to the registry, e.g. '"https://registry-1.docker.io"'
+                        description_kind: plain
+                        optional: true
+                    description: '[Deprecated, please use commonRepository instead] Settings for a remote repository with a custom uri.'
+                    description_kind: plain
+                  max_items: 1
+              description: Specific settings for a Docker remote repository.
+              description_kind: plain
+            max_items: 1
+          maven_repository:
+            nesting_mode: list
+            block:
+              attributes:
+                public_repository:
+                  type: string
+                  description: 'Address of the remote repository. Possible values: ["MAVEN_CENTRAL"]'
+                  description_kind: plain
+                  optional: true
+              block_types:
+                custom_repository:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      uri:
+                        type: string
+                        description: Specific uri to the registry, e.g. '"https://repo.maven.apache.org/maven2"'
+                        description_kind: plain
+                        optional: true
+                    description: '[Deprecated, please use commonRepository instead] Settings for a remote repository with a custom uri.'
+                    description_kind: plain
+                  max_items: 1
+              description: Specific settings for a Maven remote repository.
+              description_kind: plain
+            max_items: 1
+          npm_repository:
+            nesting_mode: list
+            block:
+              attributes:
+                public_repository:
+                  type: string
+                  description: 'Address of the remote repository. Possible values: ["NPMJS"]'
+                  description_kind: plain
+                  optional: true
+              block_types:
+                custom_repository:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      uri:
+                        type: string
+                        description: Specific uri to the registry, e.g. '"https://registry.npmjs.org"'
+                        description_kind: plain
+                        optional: true
+                    description: '[Deprecated, please use commonRepository instead] Settings for a remote repository with a custom uri.'
+                    description_kind: plain
+                  max_items: 1
+              description: Specific settings for an Npm remote repository.
+              description_kind: plain
+            max_items: 1
+          python_repository:
+            nesting_mode: list
+            block:
+              attributes:
+                public_repository:
+                  type: string
+                  description: 'Address of the remote repository. Possible values: ["PYPI"]'
+                  description_kind: plain
+                  optional: true
+              block_types:
+                custom_repository:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      uri:
+                        type: string
+                        description: Specific uri to the registry, e.g. '"https://pypi.io"'
+                        description_kind: plain
+                        optional: true
+                    description: '[Deprecated, please use commonRepository instead] Settings for a remote repository with a custom uri.'
+                    description_kind: plain
+                  max_items: 1
+              description: Specific settings for a Python remote repository.
+              description_kind: plain
+            max_items: 1
+          upstream_credentials:
+            nesting_mode: list
+            block:
+              block_types:
+                username_password_credentials:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      password_secret_version:
+                        type: string
+                        description: The Secret Manager key version that holds the password to access the remote repository. Must be in the format of 'projects/{project}/secrets/{secret}/versions/{version}'.
+                        description_kind: plain
+                        optional: true
+                      username:
+                        type: string
+                        description: The username to access the remote repository.
+                        description_kind: plain
+                        optional: true
+                    description: Use username and password to access the remote repository.
+                    description_kind: plain
+                  max_items: 1
+              description: The credentials used to access the remote repository.
+              description_kind: plain
+            max_items: 1
+          yum_repository:
+            nesting_mode: list
+            block:
+              block_types:
+                public_repository:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      repository_base:
+                        type: string
+                        description: 'A common public repository base for Yum. Possible values: ["CENTOS", "CENTOS_DEBUG", "CENTOS_VAULT", "CENTOS_STREAM", "ROCKY", "EPEL"]'
+                        description_kind: plain
+                        required: true
+                      repository_path:
+                        type: string
+                        description: Specific repository from the base, e.g. '"pub/rocky/9/BaseOS/x86_64/os"'
+                        description_kind: plain
+                        required: true
+                    description: One of the publicly available Yum repositories supported by Artifact Registry.
+                    description_kind: plain
+                  max_items: 1
+              description: Specific settings for an Yum remote repository.
+              description_kind: plain
+            max_items: 1
+        description: Configuration specific for a Remote Repository.
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    virtual_repository_config:
+      nesting_mode: list
+      block:
+        block_types:
+          upstream_policies:
+            nesting_mode: list
+            block:
+              attributes:
+                id:
+                  type: string
+                  description: The user-provided ID of the upstream policy.
+                  description_kind: plain
+                  optional: true
+                priority:
+                  type: number
+                  description: Entries with a greater priority value take precedence in the pull order.
+                  description_kind: plain
+                  optional: true
+                repository:
+                  type: string
+                  description: 'A reference to the repository resource, for example: "projects/p1/locations/us-central1/repository/repo1".'
+                  description_kind: plain
+                  optional: true
+              description: Policies that configure the upstream artifacts distributed by the Virtual Repository. Upstream policies cannot be set on a standard repository.
+              description_kind: plain
+        description: Configuration specific for a Virtual Repository.
+        description_kind: plain
+      max_items: 1
+    vulnerability_scanning_config:
+      nesting_mode: list
+      block:
+        attributes:
+          enablement_config:
+            type: string
+            description: 'This configures whether vulnerability scanning is automatically performed for artifacts pushed to this repository. Possible values: ["INHERITED", "DISABLED"]'
+            description_kind: plain
+            optional: true
+          enablement_state:
+            type: string
+            description: This field returns whether scanning is active for this repository.
+            description_kind: plain
+            computed: true
+          enablement_state_reason:
+            type: string
+            description: This provides an explanation for the state of scanning on this repository.
+            description_kind: plain
+            computed: true
+        description: Configuration for vulnerability scanning of artifacts stored in this repository.
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

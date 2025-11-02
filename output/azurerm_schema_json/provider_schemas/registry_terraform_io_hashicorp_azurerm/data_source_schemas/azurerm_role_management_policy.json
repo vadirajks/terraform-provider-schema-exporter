@@ -1,0 +1,286 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "activation_rules": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "approval_stage": [
+                "list",
+                [
+                  "object",
+                  {
+                    "primary_approver": [
+                      "set",
+                      [
+                        "object",
+                        {
+                          "object_id": "string",
+                          "type": "string"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "maximum_duration": "string",
+              "require_approval": "bool",
+              "require_justification": "bool",
+              "require_multifactor_authentication": "bool",
+              "require_ticket_info": "bool",
+              "required_conditional_access_authentication_context": "string"
+            }
+          ]
+        ],
+        "description": "The activation rules of the policy",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "active_assignment_rules": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "expiration_required": "bool",
+              "expire_after": "string",
+              "require_justification": "bool",
+              "require_multifactor_authentication": "bool",
+              "require_ticket_info": "bool"
+            }
+          ]
+        ],
+        "description": "The rules for active assignment of the policy",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "description": {
+        "type": "string",
+        "description": "The Description of the policy",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "eligible_assignment_rules": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "expiration_required": "bool",
+              "expire_after": "string"
+            }
+          ]
+        ],
+        "description": "The rules for eligible assignment of the policy",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description": "The name of the policy",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "notification_rules": {
+        "type": [
+          "list",
+          [
+            "object",
+            {
+              "active_assignments": [
+                "list",
+                [
+                  "object",
+                  {
+                    "admin_notifications": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "additional_recipients": [
+                            "set",
+                            "string"
+                          ],
+                          "default_recipients": "bool",
+                          "notification_level": "string"
+                        }
+                      ]
+                    ],
+                    "approver_notifications": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "additional_recipients": [
+                            "set",
+                            "string"
+                          ],
+                          "default_recipients": "bool",
+                          "notification_level": "string"
+                        }
+                      ]
+                    ],
+                    "assignee_notifications": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "additional_recipients": [
+                            "set",
+                            "string"
+                          ],
+                          "default_recipients": "bool",
+                          "notification_level": "string"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "eligible_activations": [
+                "list",
+                [
+                  "object",
+                  {
+                    "admin_notifications": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "additional_recipients": [
+                            "set",
+                            "string"
+                          ],
+                          "default_recipients": "bool",
+                          "notification_level": "string"
+                        }
+                      ]
+                    ],
+                    "approver_notifications": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "additional_recipients": [
+                            "set",
+                            "string"
+                          ],
+                          "default_recipients": "bool",
+                          "notification_level": "string"
+                        }
+                      ]
+                    ],
+                    "assignee_notifications": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "additional_recipients": [
+                            "set",
+                            "string"
+                          ],
+                          "default_recipients": "bool",
+                          "notification_level": "string"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ],
+              "eligible_assignments": [
+                "list",
+                [
+                  "object",
+                  {
+                    "admin_notifications": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "additional_recipients": [
+                            "set",
+                            "string"
+                          ],
+                          "default_recipients": "bool",
+                          "notification_level": "string"
+                        }
+                      ]
+                    ],
+                    "approver_notifications": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "additional_recipients": [
+                            "set",
+                            "string"
+                          ],
+                          "default_recipients": "bool",
+                          "notification_level": "string"
+                        }
+                      ]
+                    ],
+                    "assignee_notifications": [
+                      "list",
+                      [
+                        "object",
+                        {
+                          "additional_recipients": [
+                            "set",
+                            "string"
+                          ],
+                          "default_recipients": "bool",
+                          "notification_level": "string"
+                        }
+                      ]
+                    ]
+                  }
+                ]
+              ]
+            }
+          ]
+        ],
+        "description": "The notification rules of the policy",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "role_definition_id": {
+        "type": "string",
+        "description": "ID of the Azure Role to which this policy is assigned",
+        "description_kind": "plain",
+        "required": true
+      },
+      "scope": {
+        "type": "string",
+        "description": "The scope of the role to which this policy will apply",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

@@ -1,0 +1,61 @@
+version: 0
+block:
+  attributes:
+    bucket:
+      type: string
+      description: The name of the bucket that contains the managed folder.
+      description_kind: plain
+      required: true
+    create_time:
+      type: string
+      description: The timestamp at which this managed folder was created.
+      description_kind: plain
+      computed: true
+    force_destroy:
+      type: bool
+      description: Allows the deletion of a managed folder even if contains objects. If a non-empty managed folder is deleted, any objects within the folder will remain in a simulated folder with the same name.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    metageneration:
+      type: string
+      description: The metadata generation of the managed folder.
+      description_kind: plain
+      computed: true
+    name:
+      type: string
+      description: The name of the managed folder expressed as a path. Must include trailing '/'. For example, 'example_dir/example_dir2/'.
+      description_kind: plain
+      required: true
+    self_link:
+      type: string
+      description_kind: plain
+      computed: true
+    update_time:
+      type: string
+      description: The timestamp at which this managed folder was most recently updated.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

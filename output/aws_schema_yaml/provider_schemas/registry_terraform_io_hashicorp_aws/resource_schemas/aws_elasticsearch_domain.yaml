@@ -1,0 +1,383 @@
+version: 0
+block:
+  attributes:
+    access_policies:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    advanced_options:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+    arn:
+      type: string
+      description_kind: plain
+      computed: true
+    domain_id:
+      type: string
+      description_kind: plain
+      computed: true
+    domain_name:
+      type: string
+      description_kind: plain
+      required: true
+    elasticsearch_version:
+      type: string
+      description_kind: plain
+      optional: true
+    endpoint:
+      type: string
+      description_kind: plain
+      computed: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    kibana_endpoint:
+      type: string
+      description_kind: plain
+      computed: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    tags_all:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+      computed: true
+  block_types:
+    advanced_security_options:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled:
+            type: bool
+            description_kind: plain
+            required: true
+          internal_user_database_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+        block_types:
+          master_user_options:
+            nesting_mode: list
+            block:
+              attributes:
+                master_user_arn:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                master_user_name:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                master_user_password:
+                  type: string
+                  description_kind: plain
+                  optional: true
+                  sensitive: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    auto_tune_options:
+      nesting_mode: list
+      block:
+        attributes:
+          desired_state:
+            type: string
+            description_kind: plain
+            required: true
+          rollback_on_disable:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        block_types:
+          maintenance_schedule:
+            nesting_mode: set
+            block:
+              attributes:
+                cron_expression_for_recurrence:
+                  type: string
+                  description_kind: plain
+                  required: true
+                start_at:
+                  type: string
+                  description_kind: plain
+                  required: true
+              block_types:
+                duration:
+                  nesting_mode: list
+                  block:
+                    attributes:
+                      unit:
+                        type: string
+                        description_kind: plain
+                        required: true
+                      value:
+                        type: number
+                        description_kind: plain
+                        required: true
+                    description_kind: plain
+                  min_items: 1
+                  max_items: 1
+              description_kind: plain
+        description_kind: plain
+      max_items: 1
+    cluster_config:
+      nesting_mode: list
+      block:
+        attributes:
+          dedicated_master_count:
+            type: number
+            description_kind: plain
+            optional: true
+          dedicated_master_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          dedicated_master_type:
+            type: string
+            description_kind: plain
+            optional: true
+          instance_count:
+            type: number
+            description_kind: plain
+            optional: true
+          instance_type:
+            type: string
+            description_kind: plain
+            optional: true
+          warm_count:
+            type: number
+            description_kind: plain
+            optional: true
+          warm_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          warm_type:
+            type: string
+            description_kind: plain
+            optional: true
+          zone_awareness_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+        block_types:
+          cold_storage_options:
+            nesting_mode: list
+            block:
+              attributes:
+                enabled:
+                  type: bool
+                  description_kind: plain
+                  optional: true
+                  computed: true
+              description_kind: plain
+            max_items: 1
+          zone_awareness_config:
+            nesting_mode: list
+            block:
+              attributes:
+                availability_zone_count:
+                  type: number
+                  description_kind: plain
+                  optional: true
+              description_kind: plain
+            max_items: 1
+        description_kind: plain
+      max_items: 1
+    cognito_options:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          identity_pool_id:
+            type: string
+            description_kind: plain
+            required: true
+          role_arn:
+            type: string
+            description_kind: plain
+            required: true
+          user_pool_id:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    domain_endpoint_options:
+      nesting_mode: list
+      block:
+        attributes:
+          custom_endpoint:
+            type: string
+            description_kind: plain
+            optional: true
+          custom_endpoint_certificate_arn:
+            type: string
+            description_kind: plain
+            optional: true
+          custom_endpoint_enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          enforce_https:
+            type: bool
+            description_kind: plain
+            optional: true
+          tls_security_policy:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    ebs_options:
+      nesting_mode: list
+      block:
+        attributes:
+          ebs_enabled:
+            type: bool
+            description_kind: plain
+            required: true
+          iops:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+          throughput:
+            type: number
+            description_kind: plain
+            optional: true
+            computed: true
+          volume_size:
+            type: number
+            description_kind: plain
+            optional: true
+          volume_type:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    encrypt_at_rest:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled:
+            type: bool
+            description_kind: plain
+            required: true
+          kms_key_id:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+      max_items: 1
+    log_publishing_options:
+      nesting_mode: set
+      block:
+        attributes:
+          cloudwatch_log_group_arn:
+            type: string
+            description_kind: plain
+            required: true
+          enabled:
+            type: bool
+            description_kind: plain
+            optional: true
+          log_type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+    node_to_node_encryption:
+      nesting_mode: list
+      block:
+        attributes:
+          enabled:
+            type: bool
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    snapshot_options:
+      nesting_mode: list
+      block:
+        attributes:
+          automated_snapshot_start_hour:
+            type: number
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+    vpc_options:
+      nesting_mode: list
+      block:
+        attributes:
+          availability_zones:
+            type:
+            - set
+            - string
+            description_kind: plain
+            computed: true
+          security_group_ids:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          subnet_ids:
+            type:
+            - set
+            - string
+            description_kind: plain
+            optional: true
+          vpc_id:
+            type: string
+            description_kind: plain
+            computed: true
+        description_kind: plain
+      max_items: 1
+  description_kind: plain

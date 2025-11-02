@@ -1,0 +1,287 @@
+{
+  "version": 1,
+  "block": {
+    "attributes": {
+      "auto_start_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "description": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "hostname_prefix": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "location": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "media_services_account_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "resource_group_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "stream_options": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "transcription_languages": {
+        "type": [
+          "list",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "use_static_hostname": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "cross_site_access_policy": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "client_access_policy": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cross_domain_policy": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "encoding": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "key_frame_interval": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "preset_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "stretch_mode": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "input": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "access_token": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "endpoint": {
+              "type": [
+                "list",
+                [
+                  "object",
+                  {
+                    "protocol": "string",
+                    "url": "string"
+                  }
+                ]
+              ],
+              "description_kind": "plain",
+              "computed": true
+            },
+            "key_frame_interval_duration": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "streaming_protocol": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "ip_access_control_allow": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "address": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "subnet_prefix_length": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      },
+      "preview": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "alternative_media_id": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "endpoint": {
+              "type": [
+                "list",
+                [
+                  "object",
+                  {
+                    "protocol": "string",
+                    "url": "string"
+                  }
+                ]
+              ],
+              "description_kind": "plain",
+              "computed": true
+            },
+            "preview_locator": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "streaming_policy_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            }
+          },
+          "block_types": {
+            "ip_access_control_allow": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "address": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "name": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "subnet_prefix_length": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "timeouts": {
+        "nesting_mode": "single",
+        "block": {
+          "attributes": {
+            "create": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "delete": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "read": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "update": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain",
+    "deprecated": true
+  }
+}

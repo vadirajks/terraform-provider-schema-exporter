@@ -1,0 +1,51 @@
+version: 0
+block:
+  attributes:
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    immutability_period_in_days:
+      type: number
+      description_kind: plain
+      required: true
+    locked:
+      type: bool
+      description_kind: plain
+      optional: true
+    protected_append_writes_all_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    protected_append_writes_enabled:
+      type: bool
+      description_kind: plain
+      optional: true
+    storage_container_resource_manager_id:
+      type: string
+      description_kind: plain
+      required: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

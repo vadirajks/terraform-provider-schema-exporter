@@ -1,0 +1,17 @@
+resource "aws_kms_replica_key" "name" {
+  primary_key_arn = string (Required)
+  arn = string (Computed)
+  bypass_policy_lockout_safety_check = bool (Optional)
+  deletion_window_in_days = number (Optional)
+  description = string (Optional)
+  enabled = bool (Optional)
+  id = string (Optional, Computed)
+  key_id = string (Computed)
+  key_rotation_enabled = bool (Computed)
+  key_spec = string (Computed)
+  key_usage = string (Computed)
+  policy = string (Optional, Computed)
+  region = string (Optional, Computed)
+  tags = ['map', 'string'] (Optional)
+  tags_all = ['map', 'string'] (Optional, Computed)
+}

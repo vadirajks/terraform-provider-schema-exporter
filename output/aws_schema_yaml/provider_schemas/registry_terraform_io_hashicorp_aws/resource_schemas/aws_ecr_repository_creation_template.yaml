@@ -1,0 +1,84 @@
+version: 0
+block:
+  attributes:
+    applied_for:
+      type:
+      - set
+      - string
+      description_kind: plain
+      required: true
+    custom_role_arn:
+      type: string
+      description_kind: plain
+      optional: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    image_tag_mutability:
+      type: string
+      description_kind: plain
+      optional: true
+    lifecycle_policy:
+      type: string
+      description_kind: plain
+      optional: true
+    prefix:
+      type: string
+      description_kind: plain
+      required: true
+    region:
+      type: string
+      description: Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).
+      description_kind: plain
+      optional: true
+      computed: true
+    registry_id:
+      type: string
+      description_kind: plain
+      computed: true
+    repository_policy:
+      type: string
+      description_kind: plain
+      optional: true
+    resource_tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+  block_types:
+    encryption_configuration:
+      nesting_mode: list
+      block:
+        attributes:
+          encryption_type:
+            type: string
+            description_kind: plain
+            optional: true
+          kms_key:
+            type: string
+            description_kind: plain
+            optional: true
+            computed: true
+        description_kind: plain
+    image_tag_mutability_exclusion_filter:
+      nesting_mode: list
+      block:
+        attributes:
+          filter:
+            type: string
+            description_kind: plain
+            required: true
+          filter_type:
+            type: string
+            description_kind: plain
+            required: true
+        description_kind: plain
+      max_items: 5
+  description_kind: plain

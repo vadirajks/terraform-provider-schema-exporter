@@ -1,0 +1,87 @@
+version: 0
+block:
+  attributes:
+    additional_flash_cache_percentage:
+      type: number
+      description_kind: plain
+      required: true
+    description:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    display_name:
+      type: string
+      description_kind: plain
+      required: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description_kind: plain
+      required: true
+    name:
+      type: string
+      description_kind: plain
+      required: true
+    resource_group_name:
+      type: string
+      description_kind: plain
+      required: true
+    tags:
+      type:
+      - map
+      - string
+      description_kind: plain
+      optional: true
+    time_zone:
+      type: string
+      description_kind: plain
+      optional: true
+    zones:
+      type:
+      - set
+      - string
+      description_kind: plain
+      required: true
+  block_types:
+    high_capacity_database_storage:
+      nesting_mode: list
+      block:
+        attributes:
+          available_size_in_gb:
+            type: number
+            description_kind: plain
+            computed: true
+          total_size_in_gb:
+            type: number
+            description_kind: plain
+            required: true
+        description_kind: plain
+      min_items: 1
+      max_items: 1
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          read:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

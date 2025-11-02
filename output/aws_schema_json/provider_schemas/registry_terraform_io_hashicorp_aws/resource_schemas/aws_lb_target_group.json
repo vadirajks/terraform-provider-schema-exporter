@@ -1,0 +1,321 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "arn_suffix": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "connection_termination": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "deregistration_delay": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "ip_address_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "lambda_multi_value_headers_enabled": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "load_balancer_arns": {
+        "type": [
+          "set",
+          "string"
+        ],
+        "description_kind": "plain",
+        "computed": true
+      },
+      "load_balancing_algorithm_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "load_balancing_anomaly_mitigation": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "load_balancing_cross_zone_enabled": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name_prefix": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "port": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "preserve_client_ip": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "protocol": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "protocol_version": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "proxy_protocol_v2": {
+        "type": "bool",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "slow_start": {
+        "type": "number",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "target_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "vpc_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      }
+    },
+    "block_types": {
+      "health_check": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "healthy_threshold": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "interval": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "matcher": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "path": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "port": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "protocol": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "timeout": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true,
+              "computed": true
+            },
+            "unhealthy_threshold": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "stickiness": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "cookie_duration": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cookie_name": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "target_failover": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "on_deregistration": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "on_unhealthy": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "target_group_health": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "dns_failover": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "minimum_healthy_targets_count": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "minimum_healthy_targets_percentage": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "unhealthy_state_routing": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "minimum_healthy_targets_count": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "minimum_healthy_targets_percentage": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "target_health_state": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enable_unhealthy_connection_termination": {
+              "type": "bool",
+              "description_kind": "plain",
+              "required": true
+            },
+            "unhealthy_draining_interval": {
+              "type": "number",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}

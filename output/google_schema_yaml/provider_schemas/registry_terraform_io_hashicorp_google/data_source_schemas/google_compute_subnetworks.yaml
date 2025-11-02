@@ -1,0 +1,35 @@
+version: 0
+block:
+  attributes:
+    filter:
+      type: string
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    project:
+      type: string
+      description_kind: plain
+      optional: true
+    region:
+      type: string
+      description_kind: plain
+      optional: true
+    subnetworks:
+      type:
+      - list
+      - - object
+        - description: string
+          ip_cidr_range: string
+          name: string
+          network: string
+          network_name: string
+          network_self_link: string
+          private_ip_google_access: bool
+          self_link: string
+      description_kind: plain
+      computed: true
+  description_kind: plain

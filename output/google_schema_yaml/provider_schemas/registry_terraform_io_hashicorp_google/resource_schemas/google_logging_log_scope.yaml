@@ -1,0 +1,66 @@
+version: 0
+block:
+  attributes:
+    create_time:
+      type: string
+      description: Output only. The creation timestamp of the log scopes.
+      description_kind: plain
+      computed: true
+    description:
+      type: string
+      description: Describes this log scopes.
+      description_kind: plain
+      optional: true
+    id:
+      type: string
+      description_kind: plain
+      optional: true
+      computed: true
+    location:
+      type: string
+      description: The location of the resource. The only supported location is global so far.
+      description_kind: plain
+      optional: true
+      computed: true
+    name:
+      type: string
+      description: 'The resource name of the log scope. For example: \''projects/my-project/locations/global/logScopes/my-log-scope\'''
+      description_kind: plain
+      required: true
+    parent:
+      type: string
+      description: The parent of the resource.
+      description_kind: plain
+      optional: true
+      computed: true
+    resource_names:
+      type:
+      - list
+      - string
+      description: 'Names of one or more parent resources : *  \''projects/[PROJECT_ID]\'' May alternatively be one or more views : * \''projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]\'' A log scope can include a maximum of 50 projects and a maximum of 100 resources in total.'
+      description_kind: plain
+      required: true
+    update_time:
+      type: string
+      description: Output only. The last update timestamp of the log scopes.
+      description_kind: plain
+      computed: true
+  block_types:
+    timeouts:
+      nesting_mode: single
+      block:
+        attributes:
+          create:
+            type: string
+            description_kind: plain
+            optional: true
+          delete:
+            type: string
+            description_kind: plain
+            optional: true
+          update:
+            type: string
+            description_kind: plain
+            optional: true
+        description_kind: plain
+  description_kind: plain

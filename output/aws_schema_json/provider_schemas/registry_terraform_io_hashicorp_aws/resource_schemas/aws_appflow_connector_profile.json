@@ -1,0 +1,1154 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "connection_mode": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "connector_label": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "connector_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "credentials_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "kms_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "connector_profile_config": {
+        "nesting_mode": "list",
+        "block": {
+          "block_types": {
+            "connector_profile_credentials": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "amplitude": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "api_key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "secret_key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true,
+                          "sensitive": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "custom_connector": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "authentication_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "block_types": {
+                        "api_key": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "api_key": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "api_secret_key": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "basic": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "password": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true,
+                                "sensitive": true
+                              },
+                              "username": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "custom": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "credentials_map": {
+                                "type": [
+                                  "map",
+                                  "string"
+                                ],
+                                "description_kind": "plain",
+                                "optional": true,
+                                "sensitive": true
+                              },
+                              "custom_authentication_type": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "oauth2": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "access_token": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "sensitive": true
+                              },
+                              "client_id": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "client_secret": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "sensitive": true
+                              },
+                              "refresh_token": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "block_types": {
+                              "oauth_request": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "auth_code": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "redirect_uri": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "datadog": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "api_key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "application_key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "dynatrace": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "api_token": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "google_analytics": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "access_token": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "sensitive": true
+                        },
+                        "client_id": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "client_secret": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true,
+                          "sensitive": true
+                        },
+                        "refresh_token": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "oauth_request": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "auth_code": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "redirect_uri": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "honeycode": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "access_token": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "sensitive": true
+                        },
+                        "refresh_token": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "oauth_request": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "auth_code": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "redirect_uri": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "infor_nexus": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "access_key_id": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "datakey": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "secret_access_key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true,
+                          "sensitive": true
+                        },
+                        "user_id": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "marketo": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "access_token": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "sensitive": true
+                        },
+                        "client_id": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "client_secret": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true,
+                          "sensitive": true
+                        }
+                      },
+                      "block_types": {
+                        "oauth_request": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "auth_code": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "redirect_uri": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "redshift": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "password": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true,
+                          "sensitive": true
+                        },
+                        "username": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "salesforce": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "access_token": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "sensitive": true
+                        },
+                        "client_credentials_arn": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "jwt_token": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "oauth2_grant_type": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "refresh_token": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "oauth_request": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "auth_code": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "redirect_uri": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "sapo_data": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "block_types": {
+                        "basic_auth_credentials": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "password": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true,
+                                "sensitive": true
+                              },
+                              "username": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        },
+                        "oauth_credentials": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "access_token": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true,
+                                "sensitive": true
+                              },
+                              "client_id": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "client_secret": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "refresh_token": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "block_types": {
+                              "oauth_request": {
+                                "nesting_mode": "list",
+                                "block": {
+                                  "attributes": {
+                                    "auth_code": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    },
+                                    "redirect_uri": {
+                                      "type": "string",
+                                      "description_kind": "plain",
+                                      "optional": true
+                                    }
+                                  },
+                                  "description_kind": "plain"
+                                },
+                                "max_items": 1
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "service_now": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "password": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true,
+                          "sensitive": true
+                        },
+                        "username": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "singular": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "api_key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "slack": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "access_token": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "sensitive": true
+                        },
+                        "client_id": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "client_secret": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true,
+                          "sensitive": true
+                        }
+                      },
+                      "block_types": {
+                        "oauth_request": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "auth_code": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "redirect_uri": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "snowflake": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "password": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true,
+                          "sensitive": true
+                        },
+                        "username": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "trendmicro": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "api_secret_key": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true,
+                          "sensitive": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "veeva": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "password": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true,
+                          "sensitive": true
+                        },
+                        "username": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "zendesk": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "access_token": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true,
+                          "sensitive": true
+                        },
+                        "client_id": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "client_secret": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true,
+                          "sensitive": true
+                        }
+                      },
+                      "block_types": {
+                        "oauth_request": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "auth_code": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              },
+                              "redirect_uri": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            },
+            "connector_profile_properties": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "amplitude": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "custom_connector": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "profile_properties": {
+                          "type": [
+                            "map",
+                            "string"
+                          ],
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "oauth2_properties": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "oauth2_grant_type": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "token_url": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "token_url_custom_properties": {
+                                "type": [
+                                  "map",
+                                  "string"
+                                ],
+                                "description_kind": "plain",
+                                "optional": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "datadog": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "instance_url": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "dynatrace": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "instance_url": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "google_analytics": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "honeycode": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "infor_nexus": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "instance_url": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "marketo": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "instance_url": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "redshift": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "bucket_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "bucket_prefix": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "cluster_identifier": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "data_api_role_arn": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "database_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "database_url": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "role_arn": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "salesforce": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "instance_url": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "is_sandbox_environment": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "use_privatelink_for_metadata_and_authorization": {
+                          "type": "bool",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "sapo_data": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "application_host_url": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "application_service_path": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "client_number": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "logon_language": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "port_number": {
+                          "type": "number",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "private_link_service_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        }
+                      },
+                      "block_types": {
+                        "oauth_properties": {
+                          "nesting_mode": "list",
+                          "block": {
+                            "attributes": {
+                              "auth_code_url": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "oauth_scopes": {
+                                "type": [
+                                  "list",
+                                  "string"
+                                ],
+                                "description_kind": "plain",
+                                "required": true
+                              },
+                              "token_url": {
+                                "type": "string",
+                                "description_kind": "plain",
+                                "required": true
+                              }
+                            },
+                            "description_kind": "plain"
+                          },
+                          "max_items": 1
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "service_now": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "instance_url": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "singular": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "slack": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "instance_url": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "snowflake": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "account_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "bucket_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "bucket_prefix": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "private_link_service_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "region": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "optional": true
+                        },
+                        "stage": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "warehouse": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "trendmicro": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "veeva": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "instance_url": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  },
+                  "zendesk": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "instance_url": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "max_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "min_items": 1,
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

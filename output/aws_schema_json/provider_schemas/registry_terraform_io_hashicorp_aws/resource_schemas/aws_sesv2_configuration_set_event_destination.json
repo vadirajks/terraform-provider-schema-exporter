@@ -1,0 +1,152 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "configuration_set_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "event_destination_name": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "region": {
+        "type": "string",
+        "description": "Region where this resource will be [managed](https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints). Defaults to the Region set in the [provider configuration](https://registry.terraform.io/providers/hashicorp/aws/latest/docs#aws-configuration-reference).",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      }
+    },
+    "block_types": {
+      "event_destination": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "enabled": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "matching_event_types": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "block_types": {
+            "cloud_watch_destination": {
+              "nesting_mode": "list",
+              "block": {
+                "block_types": {
+                  "dimension_configuration": {
+                    "nesting_mode": "list",
+                    "block": {
+                      "attributes": {
+                        "default_dimension_value": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "dimension_name": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        },
+                        "dimension_value_source": {
+                          "type": "string",
+                          "description_kind": "plain",
+                          "required": true
+                        }
+                      },
+                      "description_kind": "plain"
+                    },
+                    "min_items": 1
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "event_bridge_destination": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "event_bus_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "kinesis_firehose_destination": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "delivery_stream_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "iam_role_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "pinpoint_destination": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "application_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            },
+            "sns_destination": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "topic_arn": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "min_items": 1,
+        "max_items": 1
+      }
+    },
+    "description_kind": "plain"
+  }
+}

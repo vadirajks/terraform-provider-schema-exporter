@@ -1,0 +1,18 @@
+data "aws_kendra_query_suggestions_block_list" "name" {
+  index_id = string (Required)
+  query_suggestions_block_list_id = string (Required)
+  arn = string (Computed)
+  created_at = string (Computed)
+  description = string (Computed)
+  error_message = string (Computed)
+  file_size_bytes = number (Computed)
+  id = string (Optional, Computed)
+  item_count = number (Computed)
+  name = string (Computed)
+  region = string (Optional, Computed)
+  role_arn = string (Computed)
+  source_s3_path = ['list', ['object', {'bucket': 'string', 'key': 'string'}]] (Computed)
+  status = string (Computed)
+  tags = ['map', 'string'] (Optional, Computed)
+  updated_at = string (Computed)
+}

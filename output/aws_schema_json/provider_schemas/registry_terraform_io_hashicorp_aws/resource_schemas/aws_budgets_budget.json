@@ -1,0 +1,286 @@
+{
+  "version": 0,
+  "block": {
+    "attributes": {
+      "account_id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "computed": true
+      },
+      "billing_view_arn": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "budget_type": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      },
+      "id": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "limit_amount": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "limit_unit": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "name_prefix": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "tags": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true
+      },
+      "tags_all": {
+        "type": [
+          "map",
+          "string"
+        ],
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "time_period_end": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true
+      },
+      "time_period_start": {
+        "type": "string",
+        "description_kind": "plain",
+        "optional": true,
+        "computed": true
+      },
+      "time_unit": {
+        "type": "string",
+        "description_kind": "plain",
+        "required": true
+      }
+    },
+    "block_types": {
+      "auto_adjust_data": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "auto_adjust_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "last_auto_adjust_time": {
+              "type": "string",
+              "description_kind": "plain",
+              "computed": true
+            }
+          },
+          "block_types": {
+            "historical_options": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "budget_adjustment_period": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "lookback_available_periods": {
+                    "type": "number",
+                    "description_kind": "plain",
+                    "computed": true
+                  }
+                },
+                "description_kind": "plain"
+              },
+              "max_items": 1
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "cost_filter": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "name": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "values": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "cost_types": {
+        "nesting_mode": "list",
+        "block": {
+          "attributes": {
+            "include_credit": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "include_discount": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "include_other_subscription": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "include_recurring": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "include_refund": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "include_subscription": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "include_support": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "include_tax": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "include_upfront": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "use_amortized": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "use_blended": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "description_kind": "plain"
+        },
+        "max_items": 1
+      },
+      "notification": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "comparison_operator": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "notification_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "subscriber_email_addresses": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "subscriber_sns_topic_arns": {
+              "type": [
+                "set",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "threshold": {
+              "type": "number",
+              "description_kind": "plain",
+              "required": true
+            },
+            "threshold_type": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "planned_limit": {
+        "nesting_mode": "set",
+        "block": {
+          "attributes": {
+            "amount": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "start_time": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            },
+            "unit": {
+              "type": "string",
+              "description_kind": "plain",
+              "required": true
+            }
+          },
+          "description_kind": "plain"
+        }
+      }
+    },
+    "description_kind": "plain"
+  }
+}
