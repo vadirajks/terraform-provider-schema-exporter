@@ -4,8 +4,10 @@ Python scripts to parse the output of terraform providers schema \-json into org
 
 ## **What is this?**
 
-The terraform providers schema \-json command is a powerful way to get the *entire* schema for one or more providers. However, its output is a single, massive JSON file (often 20MB+) that is impossible to navigate.  
-These scripts solve that problem. They read the giant schema.json file and split it into thousands of individual files, organized by provider and schema type (resource, data source, etc.).  
+The terraform providers schema \-json command is a powerful way to get the *entire* schema for one or more providers. However, its output is a single, massive JSON file (often 20MB+) that is impossible to navigate.
+
+These scripts solve that problem. They read the giant schema.json file and split it into thousands of individual files, organized by provider and schema type (resource, data source, etc.).
+
 This creates a human-readable "schema library" that you can browse, search, and use as a reference.
 
 ### **Core Features**
@@ -47,8 +49,10 @@ This creates a human-readable "schema library" that you can browse, search, and 
 
 ### **Step 1: Configure Providers**
 
-Edit the main.tf file to include all the providers you want to export. You do not need to specify a version.  
-**main.tf**  
+Edit the main.tf file to include all the providers you want to export. You do not need to specify a version.
+
+**main.tf**
+
 terraform {  
   required\_providers {  
     google \= {  
@@ -65,8 +69,10 @@ terraform {
 
 ### **Step 2: Configure Helper Scripts**
 
-The split\_\*.sh scripts tell the Python scripts which providers to extract from the main schema.json. If you added a new provider to main.tf (e.g., kubernetes), you must also add it to all three split\_\*.sh scripts.  
-**split\_schema\_tf.sh (Example)**  
+The split\_\*.sh scripts tell the Python scripts which providers to extract from the main schema.json. If you added a new provider to main.tf (e.g., kubernetes), you must also add it to all three split\_\*.sh scripts.
+
+**split\_schema\_tf.sh (Example)**
+
 python3 extract\_schema\_tf.py \\  
   \--provider google \\  
   \--schema-json schema.json \\  
@@ -100,8 +106,10 @@ This script will:
 
 ### **Step 4: Browse the Output**
 
-You can now browse the generated schemas in the output/ directory.  
-The tree structure will look like this:  
+You can now browse the generated schemas in the output/ directory.
+
+The tree structure will look like this:
+
 output/  
 ├── aws\_schema\_tf  
 │   └── provider\_schemas  
@@ -124,8 +132,10 @@ output/
 
 ## **Example Output**
 
-The generated .tf files are formatted for readability, with required arguments and blocks listed first.  
-**Example: output/aws\_schema\_tf/.../resource\_schemas/aws\_instance.tf**  
+The generated .tf files are formatted for readability, with required arguments and blocks listed first.
+
+**Example: output/aws\_schema\_tf/.../resource\_schemas/aws\_instance.tf**
+
 resource "aws\_instance" "name" {  
   // Required arguments  
   ami \= string (Required)  
